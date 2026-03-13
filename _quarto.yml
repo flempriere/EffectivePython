@@ -2,7 +2,7 @@ project:
   type: website
   render:
     - "*.qmd"
-  post-render: quartoScripts/restoreMarkdownToRepositoryHierachy.sh
+  post-render: quarto/scripts/restoreMarkdownToHeirarchy.sh
   #resources:
 
 website:
@@ -17,13 +17,14 @@ website:
     style: "docked"
     search: true
     contents:
+      - Chapter_01/Chapter_01.qmd
 format:
   html:
     code-fold: false
     code-links: repo
   gfm:
     filters:
-      - quarto/scripts/remove_ansi.lua
+      - quarto/scripts/strip_ansi.lua
 toc: true
 toc-depth: 6
 format-links: false
