@@ -1,0 +1,39 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+        args: ["--maxkb=2000"]
+  - repo: https://github.com/gitleaks/gitleaks #security check
+    rev: v8.30.0
+    hooks:
+      - id: gitleaks
+        name: "gitleaks security check"
+  - repo: https://github.com/astral-sh/uv-pre-commit #update uv lock file
+    rev: 0.10.7
+    hooks:
+      - id: uv-lock
+  - repo: https://github.com/tsvikas/sync-with-uv #sync uv tools and pre commit tools
+    rev: v0.5.0 # replace with the latest version
+    hooks:
+      - id: sync-with-uv
+  - repo: https://github.com/astral-sh/ruff-pre-commit #use ruff to format and lint python
+    # Ruff version.
+    rev: v0.15.6
+    hooks:
+      # Run the linter.
+      - id: ruff-check
+        args: [--fix]
+      # Run the formatter.
+      - id: ruff-format
+  - repo: https://github.com/DavidAnson/markdownlint-cli2 #format and lint markdown
+    rev: v0.21.0
+    hooks:
+      - id: markdownlint-cli2 #format
+        args: [--fix]
+      - id: markdownlint-cli2 #lint
