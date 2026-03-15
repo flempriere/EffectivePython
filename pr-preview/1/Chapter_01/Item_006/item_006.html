@@ -276,7 +276,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   fourth = 1,2,3,
 ```</code></pre></li>
 </ul>
-<div id="0545addd" class="cell" data-execution_count="1">
+<div id="f4711200" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>first <span class="op">=</span> (<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>second <span class="op">=</span> (</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>,</span>
@@ -297,14 +297,14 @@ Fourth: (1, 2, 3)</code></pre>
 <ul>
 <li>All of these are treated as the same</li>
 </ul>
-<div id="c3144f10" class="cell" data-execution_count="2">
+<div id="669cf990" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> first <span class="op">==</span> second <span class="op">==</span> third <span class="op">==</span> fourth</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>Have to be careful of special cases</li>
 <li>To create an empty tuple</li>
 </ul>
-<div id="7bf7e314" class="cell" data-execution_count="3">
+<div id="34cd5cb4" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>empty <span class="op">=</span> ()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
@@ -313,7 +313,7 @@ Fourth: (1, 2, 3)</code></pre>
 <li>Otherwise it is interpreted as a single value enclosed in parentheses</li>
 </ul></li>
 </ul>
-<div id="3b98c659" class="cell" data-execution_count="4">
+<div id="8c2da828" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>single_with_comma <span class="op">=</span> (<span class="dv">1</span>,)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>single_without <span class="op">=</span> (<span class="dv">1</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> single_without <span class="op">!=</span> single_with_comma</span>
@@ -322,7 +322,7 @@ Fourth: (1, 2, 3)</code></pre>
 <ul>
 <li>In theory can use the second form with a trailing comma</li>
 </ul>
-<div id="9909537c" class="cell" data-execution_count="5">
+<div id="906b6d4d" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>single_value_with_comma <span class="op">=</span> <span class="dv">1</span>,</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> single_value_with_comma <span class="op">=</span> single_with_comma</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
@@ -342,7 +342,7 @@ Fourth: (1, 2, 3)</code></pre>
 <li>There is an insidious bug</li>
 </ul></li>
 </ul>
-<div id="bd12dc27" class="cell" data-execution_count="6">
+<div id="8596b13d" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># placeholder functions</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_refund(value, tax discount):</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span></span>
@@ -392,7 +392,7 @@ Fourth: (1, 2, 3)</code></pre>
 <li>Can’t easy move assignment into expression, e.g.</li>
 </ul></li>
 </ul>
-<div id="85e85008" class="cell" data-execution_count="7">
+<div id="d1db925a" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>value_a <span class="op">=</span> <span class="dv">1</span>, <span class="co"># No parentheses, right</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>list_b <span class="op">=</span> [<span class="dv">1</span>, ] <span class="co">#No parentheses, wrong -&gt; list of int, not list of tuple</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>list_c <span class="op">=</span> [(<span class="dv">1</span>,)] <span class="co"># Parentheses, correct</span></span>
@@ -409,7 +409,7 @@ C: [(1,)]</code></pre>
 <ul>
 <li>Single element tuple on the left side of expression can also be used for unpacking</li>
 </ul>
-<div id="03c9eda4" class="cell" data-execution_count="8">
+<div id="64792eb1" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_coupon_codes(user):</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [[<span class="st">"DEAL20"</span>]]</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -442,7 +442,7 @@ C: [(1,)]</code></pre>
 <ul>
 <li>If you don’t understand what has happened above, let’s look at the individual variables</li>
 </ul>
-<div id="915dedea" class="cell" data-execution_count="9">
+<div id="b9478007" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"a1: </span><span class="sc">{</span>a1<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"a2: </span><span class="sc">{</span>a2<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"a3: </span><span class="sc">{</span>a3<span class="sc">}</span><span class="ss">"</span>)</span>
