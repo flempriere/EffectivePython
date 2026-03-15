@@ -109,7 +109,13 @@ class Order:
     dest: str
 
 
-user = "Alice"
+@dataclass
+class User:
+    name: str
+    address: str
+
+
+user = User("Alice", "Bobsville")
 order = Order(1, "Bobsville")
 
 to_refund = (
