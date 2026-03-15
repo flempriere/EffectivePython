@@ -1,6 +1,5 @@
 # Item 3: Never Expect Python to Detect Errors at Compile Time
 
-
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
 
@@ -138,9 +137,9 @@ bad_math()
 
 - Some other problems python will fail to statically detect are
 
-  1.  undefined methods
-  2.  too many or too few arguments to a function call
-  3.  mismatched return types
+  1. undefined methods
+  2. too many or too few arguments to a function call
+  3. mismatched return types
 
 - Linting tools like [Flake 8](../Item_002/item_002.qmd#automation) and
   Ruff (see above) can help catch these
@@ -155,8 +154,8 @@ bad_math()
 
 - Therefore it’s important to,
 
-  1.  Check assumptions are correct at run time
-  2.  Verify program correctness with automated tests
+  1. Check assumptions are correct at run time
+  2. Verify program correctness with automated tests
 
 ## Things to Remember
 

@@ -4,9 +4,9 @@
   that follows community best practice style
 - Python’s style isn’t enforced by a compiler
 - Some basic tenants are:
-  1.  Explicit over implicit
-  2.  Simple over complex
-  3.  Maximise readability
+  1. Explicit over implicit
+  2. Simple over complex
+  3. Maximise readability
 - *The Zen of Python* is a document that outlines some of these
   principles
   - You can read it by calling `import this` from the interpreter

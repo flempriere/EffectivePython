@@ -1,6 +1,5 @@
 # Item 5: Prefer Multiple-Assignment Unpacking over Indexing
 
-
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
 
@@ -154,12 +153,12 @@ for rank, (name, calories) in enumerate(snacks, 1):
 
 - Unpacking can also be used for
 
-  1.  Unpacking list construction
-  2.  Function arguments
-  3.  Keyword arguments
-  4.  Multiple return values
-  5.  Structural pattern matching
-  6.  etc.
+  1. Unpacking list construction
+  2. Function arguments
+  3. Keyword arguments
+  4. Multiple return values
+  5. Structural pattern matching
+  6. etc.
 
 - Unpacking does not work for assignment expressions
 

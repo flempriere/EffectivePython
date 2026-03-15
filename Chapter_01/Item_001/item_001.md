@@ -1,6 +1,5 @@
 # Item 1: Know which version of Python you’re using
 
-
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
 

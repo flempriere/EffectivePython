@@ -1,6 +1,5 @@
 # Item 2: Follow the PEP Style Guide
 
-
 - [Notes](#notes)
   - [Whitespace](#whitespace)
   - [Naming](#naming)
@@ -24,27 +23,27 @@
 
 - Python whitespace is syntactically significant
 - As a result you should
-  1.  Use spaces instead of tabs
-  2.  Use four spaces for each level of syntactically significant
+  1. Use spaces instead of tabs
+  2. Use four spaces for each level of syntactically significant
       indenting
-  3.  Lines should be $79$ characters or less
+  3. Lines should be $79$ characters or less
       - Docstrings and comments should be $72$ characters or less
       - Internal teams may relax the first requirement to $99$
         characters
-  4.  Continuation of expressions onto additional lines should be
+  4. Continuation of expressions onto additional lines should be
       indented by four extra spaces
-  5.  In a file
+  5. In a file
       - Functions and classes should be separated by two blank lines
-  6.  In a class
+  6. In a class
       - Methods are separated by one line
-  7.  In a dictionary,
+  7. In a dictionary,
       - No whitespace between key and colon value e.g. `key:value` not
         `key :`
       - One space between colon and value if room on the same line,
         e.g. `: value` not `:value`
-  8.  One whitespace before and after assignment operator
+  8. One whitespace before and after assignment operator
       - e.g. `a = b` not `a=b`
-  9.  For a type annotation
+  9. For a type annotation
       - No space between variable and colon e.g. `x:` not `x :`
       - One space before the type information e.g. `x: int` not `x:int`
 
@@ -55,52 +54,52 @@
 - Helps the reader quickly distinguish between variables, constants,
   functions and classes
 
-  1.  *Functions*, *variables* and *attributes* to use *snake_case*
+  1. *Functions*, *variables* and *attributes* to use *snake_case*
       e.g. `lowercase_underscore`
-  2.  *Protected* attributes to have a leading underscore,
+  2. *Protected* attributes to have a leading underscore,
       e.g. `_protected_attribute`
-  3.  *Private* attributes to use a double leading underscore,
+  3. *Private* attributes to use a double leading underscore,
       e.g. `__private_attribute`
-  4.  *Classes* to use capitalised *CamelCase* e.g. `ClassName`
+  4. *Classes* to use capitalised *CamelCase* e.g. `ClassName`
       - This includes exceptions
-  5.  *Instance methods* should name the first parameter (the object
+  5. *Instance methods* should name the first parameter (the object
       reference) `self`
-  6.  Class methods should name the first parameter (the class
+  6. Class methods should name the first parameter (the class
       reference) `cls`
 
 ### Expressions and Statements
 
-1.  Use inline negation `if a is not b` instead of negating a positive
+1. Use inline negation `if a is not b` instead of negating a positive
     `if not a is b`
-2.  Don’t check for empty containers (e.g. `[]` or `""`) by checking the
+2. Don’t check for empty containers (e.g. `[]` or `""`) by checking the
     length
     - Use `not`, e.g. `if not some_list`
       - Assume that empty values will evaluate to `False`
-3.  Assume a non-empty container (e.g. `[1]` or `"a"`) will evaluate
+3. Assume a non-empty container (e.g. `[1]` or `"a"`) will evaluate
     `True`
     - e.g. `if some_list` should evaluate to `True`
-4.  Avoid single line `if`, `while` and `except` statements
+4. Avoid single line `if`, `while` and `except` statements
     - Prefer to spread these over multiple lines for readability
-5.  Break a statement over multiple lines by wrapping it in parentheses
+5. Break a statement over multiple lines by wrapping it in parentheses
     - Add line breaks and indentation to make it readable
-6.  Corollary to the above:
+6. Corollary to the above:
     - Prefer using parentheses to split over multiple lines
     - Avoid using the line continuation marker `\`
 
 ### Imports
 
-1.  Put `import` statements at the top of a file
-2.  Use absolute names for modules
+1. Put `import` statements at the top of a file
+2. Use absolute names for modules
     - Don’t use relative names
     - e.g. use `from foo import bar` not `import foo` to get the package
       `bar`
-3.  If you *must* do relative imports, use explicit syntax
+3. If you *must* do relative imports, use explicit syntax
     - e.g. `from . import foo`
-4.  Imports should be:
+4. Imports should be:
     - Sectioned into the following,
-      1.  standard library modules
-      2.  third-party modules
-      3.  Your own modules
+      1. standard library modules
+      2. third-party modules
+      3. Your own modules
     - Each subsection should be sorted alphabetically
 
 ### Automation
@@ -123,6 +122,7 @@
         All done!
         1 file reformatted
       ```
+
   - [isort](https://pycqa.github.io/isort/index.html) automatically
     sorts imports
   - [Ruff](https://docs.astral.sh/ruff/) combines linting, formatting
@@ -132,10 +132,11 @@
     - Can replace the previous three entirely
 
       ``` shell
-        $ pip install ruff
-        $ ruff check [file] # lint a file
-        $ ruff format [file] # format a file
+        pip install ruff
+        ruff check [file] # lint a file
+        ruff format [file] # format a file
       ```
+
   - [Pylint](https://www.pylint.org/) another linting tool
 
 ## Things to Remember

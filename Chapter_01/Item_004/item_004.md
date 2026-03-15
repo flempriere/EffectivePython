@@ -1,6 +1,5 @@
 # Item 4: Write Helper Functions instead of Complex Expressions
 
-
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
 
@@ -19,10 +18,10 @@ print(repr(my_values))
     {'red': ['5'], 'blue': ['0'], 'green': ['']}
 
 - Query strings parameters may
-  1.  Have multiple values
-  2.  Have a single value
-  3.  Be present with no value
-  4.  Be omitted entirely
+  1. Have multiple values
+  2. Have a single value
+  3. Be present with no value
+  4. Be omitted entirely
 - If we try and access them using a dictionary, we get different results
 
 ``` python
