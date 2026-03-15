@@ -27,10 +27,10 @@ if True # Bad Syntax
     - Errors in literals can also be caught
 
 ``` python
-    1.3j5 # Bad number
+1.3j5 # Bad number
 ```
 
-    SyntaxError: invalid imaginary literal (1598858671.py, line 1)
+    SyntaxError: invalid imaginary literal (59466289.py, line 1)
       Cell In[2], line 1
         1.3j5 # Bad number
            ^
@@ -56,7 +56,7 @@ def bad_reference():
 - The error will only trip once we try to execute it
 
 ``` python
-    bad_reference()
+bad_reference()
 ```
 
     UnboundLocalError: cannot access local variable 'local_var' where it is not associated with a value

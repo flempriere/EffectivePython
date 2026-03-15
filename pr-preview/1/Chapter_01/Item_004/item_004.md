@@ -42,34 +42,34 @@ print("Opacity: {0}".format(my_values.get("opacity")))
     - Means that in the below expressions, if the first part is `False`,
       then the rest evaluates to $0$
 
-  ``` python
-    red = my_values.get("red", [""])[0] or 0
-    green = my_values.get("green", [""])[0] or 0
-    opacity = my_values.get("opacity", [""])[0] or 0
+``` python
+red = my_values.get("red", [""])[0] or 0
+green = my_values.get("green", [""])[0] or 0
+opacity = my_values.get("opacity", [""])[0] or 0
 
-    print(f"Red:        {red!r}")
-    print(f"Green:      {green!r}")
-    print(f"Opacity:    {opacity!r}")
-  ```
+print(f"Red:        {red!r}")
+print(f"Green:      {green!r}")
+print(f"Opacity:    {opacity!r}")
+```
 
-      Red:        '5'
-      Green:      0
-      Opacity:    0
+    Red:        '5'
+    Green:      0
+    Opacity:    0
 
-  - In the `"red"` case, red is in the dictionary and so is retrieved
-    - The value is non-zero and so `True`
-    - The first expression ends and `"5"` is returned
-  - In the `"green"` case, green is in the dictionary
-    - The empty string is retrieved
-    - Evaluates to `False`
-    - So we move to the second sub-expression which results in `0` being
-      returned
-  - In the `"opacity"` case, opacity is not in the dictionary
-    - `get` returns `[""]`
-    - We then access the list to get the empty string
-    - This evaluates to `False`
-    - We move to the second sub-expression which results in `0` being
-      returned
+- In the `"red"` case, red is in the dictionary and so is retrieved
+  - The value is non-zero and so `True`
+  - The first expression ends and `"5"` is returned
+- In the `"green"` case, green is in the dictionary
+  - The empty string is retrieved
+  - Evaluates to `False`
+  - So we move to the second sub-expression which results in `0` being
+    returned
+- In the `"opacity"` case, opacity is not in the dictionary
+  - `get` returns `[""]`
+  - We then access the list to get the empty string
+  - This evaluates to `False`
+  - We move to the second sub-expression which results in `0` being
+    returned
 - This logic is very hard to understand, even while knowing what is
   trying to be achieved
 - Still not complete!
