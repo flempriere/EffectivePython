@@ -2,9 +2,13 @@
 
 `if` Statements are Sufficient
 
-- [`match` is for Destructuring](#match-is-for-destructuring)
-- [Semi-structured Data vs Encapsulated
-  Data](#semi-structured-data-vs-encapsulated-data)
+- [Notes](#notes)
+  - [`match` is for Destructuring](#match-is-for-destructuring)
+  - [Semi-structured Data vs Encapsulated
+    Data](#semi-structured-data-vs-encapsulated-data)
+- [Things to Remember](#things-to-remember)
+
+## Notes
 
 - `match` was introduced in Python 3.10
 - `match` has it’s own mini-language embedded in python
@@ -97,7 +101,7 @@ take_constant_action("green")
 - If we have the same `match` above, but with only the `RED` branch and
   pass `GREEN`:
 
-``` dxqmrwss:
+``` ajytyskq:
     def truncated_action(light):
         match light:
             case RED:
@@ -457,3 +461,26 @@ print("Record for a business: ", deserialize(record_business))
 
     Record for a person:  PersonCustomer(first_name='Bob', last_name='Ross')
     Record for a business:  BusinessCustomer(company_name="Steve's Painting Co.")
+
+- `match` supports a bunch of other forms of matching
+  1. set patterns
+  2. `as` patterns
+  3. Positional constructor patterns (with `__match_args__`
+      customisation)
+  4. Exhaustiveness checking with type annotations
+  5. and more…
+- Refer to the official [tutorial](https://peps.python.org/pep-0636/)
+
+## Things to Remember
+
+- `match` statements can replace simple `if` statements but doing so is
+  error prone
+  - Structural nature of capture patterns in `case` clauses is
+    unintuitive
+- `match` statements give an way to combine `isinstance` checks and
+  destructuring to manage control flow
+  - Useful for processing heterogeneous data
+  - Interpreting semantic meaning of semi-structured data
+- `case`patterns can be used with built-in data structures and
+  user-defined classes
+  - Each type has unique semantics that aren’t immediately obvious
