@@ -1,5 +1,8 @@
 # Effective Python
 
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/flempriere/EffectivePython/main.svg)](https://results.pre-commit.ci/latest/github/flempriere/EffectivePython/main)
+[![pages-build-deployment](https://github.com/flempriere/EffectivePython/actions/workflows/pages/pages-build-deployment/badge.svg?branch=gh-pages)](https://github.com/flempriere/EffectivePython/actions/workflows/pages/pages-build-deployment)
+
 This repository contains code fragments and notes from the book, Effective Python by Brett Slatkin
 
 ## Contents

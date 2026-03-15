@@ -14,7 +14,7 @@ shopt -s nullglob  # expand patterns that don't match anything to the empty stri
 shopt -s globstar  # search multiple layers of directories
 
 
-cp "${dirFrom}/index.html.md" "${dirTo}/README.md"
+cp "${dirFrom}/index.md" "${dirTo}/README.md"
 
 
 # Use globbing to find all subdirectories - note the trailing '/'
