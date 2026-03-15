@@ -14,19 +14,18 @@
 
       - This can optionally have a trailing comma
 
-  <!-- -->
-
-      ```python
-        second = (
-            1,
-            2,
-            3,
-        )
+      ``` python
+       second = (
+           1,
+           2,
+           3,
+       )
       ```
-        - Makes multiple lines easier to read
-        - Easier to edit, if we later append elements
 
-  2.  Comma-separated list without parentheses
+      - Makes multiple lines easier to read
+      - Easier to edit, if we later append elements
+
+  2. Comma-separated list without parentheses
 
       ``` python
        third = 1, 2, 3
@@ -34,10 +33,8 @@
 
       - Again can have an optional trailing comma
 
-  <!-- -->
-
-      ```python
-        fourth = 1,2,3,
+      ``` python
+       fourth = 1,2,3,
       ```
 
 ``` python
@@ -85,15 +82,9 @@ assert single_without == single_with_comma[0]
 - In theory can use the second form with a trailing comma
 
 ``` python
-single_value_with_comma = 1,
-assert single_value_with_comma = single_with_comma
+single_value_with_comma = (1,)
+assert single_value_with_comma == single_with_comma
 ```
-
-    SyntaxError: invalid syntax (2400883139.py, line 2)
-      Cell In[5], line 2
-        assert single_value_with_comma = single_with_comma
-                                       ^
-    SyntaxError: invalid syntax
 
 - **However** the third form can cause issues
   - Following example shows an e-commerce site function call
@@ -101,23 +92,30 @@ assert single_value_with_comma = single_with_comma
 
 ``` python
 # placeholder functions
-def calculate_refund(value, tax discount):
+def calculate_refund(value, tax, discount):
     return 1
+
 
 def get_order_value(user, order_id):
     pass
 
+
 def get_tax(address, dest):
     pass
+
 
 def adjust_discount(user):
     pass
 
+
 from dataclasses import dataclass
+
+
 @dataclass
 class Order:
     id: int
     dest: str
+
 
 user = "Alice"
 order = Order(1, "Bobsville")
@@ -133,11 +131,22 @@ to_refund = (
 print(type(to_refund))
 ```
 
-    SyntaxError: invalid syntax (2715381329.py, line 2)
-      Cell In[6], line 2
-        def calculate_refund(value, tax discount):
-                                        ^
-    SyntaxError: invalid syntax
+    AttributeError: 'str' object has no attribute 'address'
+    ---------------------------------------------------------------------------
+    AttributeError                            Traceback (most recent call last)
+    Cell In[6], line 33
+         27 user = "Alice"
+         28 order = Order(1, "Bobsville")
+         30 to_refund = (
+         31     calculate_refund(
+         32         get_order_value(user, order.id),
+    ---> 33         get_tax(user.address, order.dest),
+         34         adjust_discount(user) + 0.1,
+         35     ),
+         36 )
+         38 print(type(to_refund))
+
+    AttributeError: 'str' object has no attribute 'address'
 
 - The trailing comma above has accidentally converted the `to_refund`
   variable to a tuple
@@ -164,6 +173,9 @@ print('C:', list_c)
   for unpacking
 
 ``` python
+user = "Alice"
+
+
 def get_coupon_codes(user):
     return [["DEAL20"]]
 
@@ -180,18 +192,6 @@ assert a2 == a3 == a5
 assert a4 == a6
 ```
 
-    NameError: name 'user' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[8], line 5
-          1 def get_coupon_codes(user):
-          2     return [["DEAL20"]]
-    ----> 5 ((a1,),) = get_coupon_codes(user)
-          6 (a2,) = get_coupon_codes(user)
-          7 ((a3),) = get_coupon_codes(user)
-
-    NameError: name 'user' is not defined
-
 - If you don’t understand what has happened above, let’s look at the
   individual variables
 
@@ -204,15 +204,12 @@ print(f"a5: {a5}")
 print(f"a6: {a6}")
 ```
 
-    NameError: name 'a1' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[9], line 1
-    ----> 1 print(f"a1: {a1}")
-          2 print(f"a2: {a2}")
-          3 print(f"a3: {a3}")
-
-    NameError: name 'a1' is not defined
+    a1: DEAL20
+    a2: ['DEAL20']
+    a3: ['DEAL20']
+    a4: [['DEAL20']]
+    a5: ['DEAL20']
+    a6: [['DEAL20']]
 
 - Sometimes autoformatters and linters can flag a trailing comma or make
   it more visible
