@@ -31,12 +31,13 @@ def take_match_action(light):
     match light:
         case "red":
             print("Stop")
-        case "yellow"
+        case "yellow":
             print("Slow")
         case "green":
             print("Go")
         case _:
             raise RuntimeError
+
 
 take_match_action("red")
 take_match_action("yellow")
@@ -99,15 +100,16 @@ truncated_action(GREEN)
     - We could write this in longform
 
 ```{python}
-    def take_unpacking_action(light):
-        try:
-            (RED, ) = (light, )
-        except TypeError:
-            # did not match
-            raise RuntimeError
-        else:
-            # Matched
-            print(f"{RED=}, {light=}")
+def take_unpacking_action(light):
+    try:
+        (RED,) = (light,)
+    except TypeError:
+        # did not match
+        raise RuntimeError
+    else:
+        # Matched
+        print(f"{RED=}, {light=}")
+
 
 take_unpacking_action(GREEN)
 ```
@@ -134,7 +136,7 @@ take_unpacking_action(GREEN)
 import enum
 
 
-class ColourEnum(enum.Enum):
+class ColourEnum(enum.StrEnum):
     RED = "red"
     YELLOW = "yellow"
     GREEN = "green"
@@ -214,12 +216,16 @@ assert not contains(my_tree, 14)
 - We could instead implement this using `match`
 
 ```{python}
+my_tree = (10, (7, None, 9), (13, 11, None))
+
+
 def contains_match(tree, value):
+
     match tree:
         case pivot, left, _ if value < pivot:
             return contains_match(left, value)
         case pivot, _, right if value > pivot:
-            return contains_match(right, pivot)
+            return contains_match(right, value)
         case (pivot, _, _) | pivot:
             return pivot == value
 
@@ -266,7 +272,7 @@ def contains_class(tree, value):
     if not isinstance(tree, Node):
         return tree == value
     elif value < tree.value:
-        return contains_class(left, value)
+        return contains_class(tree.left, value)
     elif value > tree.value:
         return contains_class(tree.right, value)
     else:
@@ -290,6 +296,10 @@ def contains_match_class(tree, value):
             return contains_match_class(right, value)
         case Node(value=pivot) | pivot:
             return pivot == value
+
+
+assert contains_match_class(obj_tree, 9)
+assert not contains_match_class(obj_tree, 14)
 ```
 
 - Each clause implicitly does an `isinstance` check

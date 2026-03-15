@@ -12,13 +12,13 @@ title: "Item 6: Always surround single-element tuples with Parentheses"
        ```
         - This can optionally have a trailing comma
 
-      ```python
+       ```python
         second = (
             1,
             2,
             3,
         )
-      ```
+       ```
         - Makes multiple lines easier to read
         - Easier to edit, if we later append elements
 
@@ -30,9 +30,9 @@ title: "Item 6: Always surround single-element tuples with Parentheses"
 
         - Again can have an optional trailing comma
 
-      ```python
+       ```python
         fourth = 1,2,3,
-      ```
+       ```
 
 ```{python}
 first = (1,2,3)
@@ -73,8 +73,8 @@ assert single_without == single_with_comma[0]
 - In theory can use the second form with a trailing comma
 
 ```{python}
-single_value_with_comma = 1,
-assert single_value_with_comma = single_with_comma
+single_value_with_comma = (1,)
+assert single_value_with_comma == single_with_comma
 ```
 
 - **However** the third form can cause issues
@@ -84,23 +84,30 @@ assert single_value_with_comma = single_with_comma
 
 ```{python}
 # placeholder functions
-def calculate_refund(value, tax discount):
+def calculate_refund(value, tax, discount):
     return 1
+
 
 def get_order_value(user, order_id):
     pass
 
+
 def get_tax(address, dest):
     pass
+
 
 def adjust_discount(user):
     pass
 
+
 from dataclasses import dataclass
+
+
 @dataclass
 class Order:
     id: int
     dest: str
+
 
 user = "Alice"
 order = Order(1, "Bobsville")
@@ -135,6 +142,9 @@ print('C:', list_c)
 - Single element tuple on the left side of expression can also be used for unpacking
 
 ```{python}
+user = "Alice"
+
+
 def get_coupon_codes(user):
     return [["DEAL20"]]
 
