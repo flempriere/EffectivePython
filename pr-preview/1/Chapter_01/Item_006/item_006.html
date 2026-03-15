@@ -292,7 +292,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a> fourth <span class="op">=</span> <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol></li>
 </ul>
-<div id="de906272" class="cell" data-execution_count="1">
+<div id="3d7ad337" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>first <span class="op">=</span> (<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>second <span class="op">=</span> (</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>,</span>
@@ -313,14 +313,14 @@ Fourth: (1, 2, 3)</code></pre>
 <ul>
 <li>All of these are treated as the same</li>
 </ul>
-<div id="99e3bc62" class="cell" data-execution_count="2">
+<div id="3e294973" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> first <span class="op">==</span> second <span class="op">==</span> third <span class="op">==</span> fourth</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>Have to be careful of special cases</li>
 <li>To create an empty tuple</li>
 </ul>
-<div id="d1b88e7a" class="cell" data-execution_count="3">
+<div id="bb2bccf6" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>empty <span class="op">=</span> ()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
@@ -329,7 +329,7 @@ Fourth: (1, 2, 3)</code></pre>
 <li>Otherwise it is interpreted as a single value enclosed in parentheses</li>
 </ul></li>
 </ul>
-<div id="7de0eb4b" class="cell" data-execution_count="4">
+<div id="02d5e53d" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>single_with_comma <span class="op">=</span> (<span class="dv">1</span>,)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>single_without <span class="op">=</span> (<span class="dv">1</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> single_without <span class="op">!=</span> single_with_comma</span>
@@ -338,7 +338,7 @@ Fourth: (1, 2, 3)</code></pre>
 <ul>
 <li>In theory can use the second form with a trailing comma</li>
 </ul>
-<div id="38945ae6" class="cell" data-execution_count="5">
+<div id="d722e072" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>single_value_with_comma <span class="op">=</span> (<span class="dv">1</span>,)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> single_value_with_comma <span class="op">==</span> single_with_comma</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -349,7 +349,7 @@ Fourth: (1, 2, 3)</code></pre>
 <li>There is an insidious bug</li>
 </ul></li>
 </ul>
-<div id="a96bfa61" class="cell" data-execution_count="6">
+<div id="d09c1e87" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># placeholder functions</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_refund(value, tax, discount):</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span></span>
@@ -376,35 +376,41 @@ Fourth: (1, 2, 3)</code></pre>
 <span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    dest: <span class="bu">str</span></span>
 <span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>user <span class="op">=</span> <span class="st">"Alice"</span></span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> Order(<span class="dv">1</span>, <span class="st">"Bobsville"</span>)</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>to_refund <span class="op">=</span> (</span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    calculate_refund(</span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>        get_order_value(user, order.<span class="bu">id</span>),</span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>        get_tax(user.address, order.dest),</span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>        adjust_discount(user) <span class="op">+</span> <span class="fl">0.1</span>,</span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(to_refund))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> User:</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    name: <span class="bu">str</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    address: <span class="bu">str</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>user <span class="op">=</span> User(<span class="st">"Alice"</span>, <span class="st">"Bobsville"</span>)</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> Order(<span class="dv">1</span>, <span class="st">"Bobsville"</span>)</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>to_refund <span class="op">=</span> (</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    calculate_refund(</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>        get_order_value(user, order.<span class="bu">id</span>),</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>        get_tax(user.address, order.dest),</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>        adjust_discount(user) <span class="op">+</span> <span class="fl">0.1</span>,</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(to_refund))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 33</span>
-<span class="ansi-green-fg">     27</span> user = <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Alice</span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">     28</span> order = Order(<span class="ansi-green-fg">1</span>, <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Bobsville</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">     30</span> to_refund = (
-<span class="ansi-green-fg">     31</span>     calculate_refund(
-<span class="ansi-green-fg">     32</span>         get_order_value(user, order.id),
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">33</span>         get_tax(<span class="ansi-yellow-bg">user</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">address</span>, order.dest),
-<span class="ansi-green-fg">     34</span>         adjust_discount(user) + <span class="ansi-green-fg">0.1</span>,
-<span class="ansi-green-fg">     35</span>     ),
-<span class="ansi-green-fg">     36</span> )
-<span class="ansi-green-fg">     38</span> <span style="color:rgb(0,135,0)">print</span>(<span style="color:rgb(0,135,0)">type</span>(to_refund))
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 40</span>
+<span class="ansi-green-fg">     33</span> user = User(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Alice</span><span class="ansi-yellow-fg">"</span>, <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Bobsville</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">     34</span> order = Order(<span class="ansi-green-fg">1</span>, <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Bobsville</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">     36</span> to_refund = (
+<span class="ansi-green-fg">     37</span>     calculate_refund(
+<span class="ansi-green-fg">     38</span>         get_order_value(user, order.id),
+<span class="ansi-green-fg">     39</span>         get_tax(user.address, order.dest),
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">40</span>         <span class="ansi-yellow-bg">adjust_discount</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">user</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">+</span><span class="ansi-yellow-bg"> </span><span class="ansi-green-fg ansi-yellow-bg">0.1</span>,
+<span class="ansi-green-fg">     41</span>     ),
+<span class="ansi-green-fg">     42</span> )
+<span class="ansi-green-fg">     44</span> <span style="color:rgb(0,135,0)">print</span>(<span style="color:rgb(0,135,0)">type</span>(to_refund))
 
-<span class="ansi-red-fg">AttributeError</span>: 'str' object has no attribute 'address'</pre>
+<span class="ansi-red-fg">TypeError</span>: unsupported operand type(s) for +: 'NoneType' and 'float'</pre>
 </div>
 </div>
 </div>
@@ -416,7 +422,7 @@ Fourth: (1, 2, 3)</code></pre>
 <li>Can’t easy move assignment into expression, e.g.</li>
 </ul></li>
 </ul>
-<div id="a9b0a49d" class="cell" data-execution_count="7">
+<div id="425cab88" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>value_a <span class="op">=</span> <span class="dv">1</span>, <span class="co"># No parentheses, right</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>list_b <span class="op">=</span> [<span class="dv">1</span>, ] <span class="co">#No parentheses, wrong -&gt; list of int, not list of tuple</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>list_c <span class="op">=</span> [(<span class="dv">1</span>,)] <span class="co"># Parentheses, correct</span></span>
@@ -433,7 +439,7 @@ C: [(1,)]</code></pre>
 <ul>
 <li>Single element tuple on the left side of expression can also be used for unpacking</li>
 </ul>
-<div id="cff328d2" class="cell" data-execution_count="8">
+<div id="be7ba97a" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>user <span class="op">=</span> <span class="st">"Alice"</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -455,7 +461,7 @@ C: [(1,)]</code></pre>
 <ul>
 <li>If you don’t understand what has happened above, let’s look at the individual variables</li>
 </ul>
-<div id="b2909bd7" class="cell" data-execution_count="9">
+<div id="5afe22ee" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"a1: </span><span class="sc">{</span>a1<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"a2: </span><span class="sc">{</span>a2<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"a3: </span><span class="sc">{</span>a3<span class="sc">}</span><span class="ss">"</span>)</span>

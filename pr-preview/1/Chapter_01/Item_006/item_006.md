@@ -118,7 +118,13 @@ class Order:
     dest: str
 
 
-user = "Alice"
+@dataclass
+class User:
+    name: str
+    address: str
+
+
+user = User("Alice", "Bobsville")
 order = Order(1, "Bobsville")
 
 to_refund = (
@@ -132,22 +138,22 @@ to_refund = (
 print(type(to_refund))
 ```
 
-    AttributeError: 'str' object has no attribute 'address'
+    TypeError: unsupported operand type(s) for +: 'NoneType' and 'float'
     ---------------------------------------------------------------------------
-    AttributeError                            Traceback (most recent call last)
-    Cell In[6], line 33
-         27 user = "Alice"
-         28 order = Order(1, "Bobsville")
-         30 to_refund = (
-         31     calculate_refund(
-         32         get_order_value(user, order.id),
-    ---> 33         get_tax(user.address, order.dest),
-         34         adjust_discount(user) + 0.1,
-         35     ),
-         36 )
-         38 print(type(to_refund))
+    TypeError                                 Traceback (most recent call last)
+    Cell In[6], line 40
+         33 user = User("Alice", "Bobsville")
+         34 order = Order(1, "Bobsville")
+         36 to_refund = (
+         37     calculate_refund(
+         38         get_order_value(user, order.id),
+         39         get_tax(user.address, order.dest),
+    ---> 40         adjust_discount(user) + 0.1,
+         41     ),
+         42 )
+         44 print(type(to_refund))
 
-    AttributeError: 'str' object has no attribute 'address'
+    TypeError: unsupported operand type(s) for +: 'NoneType' and 'float'
 
 - The trailing comma above has accidentally converted the `to_refund`
   variable to a tuple
