@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Effective Python: Notes</title>
+<title>Item 2: Follow the PEP Style Guide – Effective Python: Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-007a8609411f977ffbfe52380a417f90.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-007a8609411f977ffbfe52380a417f90.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,9 +69,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<meta property="og:title" content="Effective Python: Notes">
-<meta property="og:description" content="">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Item 2: Follow the PEP Style Guide – Effective Python: Notes">
 <meta property="og:site_name" content="Effective Python: Notes">
 </head>
 
@@ -82,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Effective Python: Notes</span>
     </a>
   </div>
@@ -93,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
 </ul>
@@ -107,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Effective Python: Notes</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Item 2: Follow the PEP Style Guide</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -129,7 +157,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./Chapter_01/Chapter_01.html" class="sidebar-item-text sidebar-link">
+            <a href="../../Chapter_01/Chapter_01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 1: Pythonic Thinking</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -163,8 +191,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#contents" id="toc-contents" class="nav-link active" data-scroll-target="#contents">Contents</a></li>
-  <li><a href="#attribution" id="toc-attribution" class="nav-link" data-scroll-target="#attribution">Attribution</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a>
+  <ul>
+  <li><a href="#whitespace" id="toc-whitespace" class="nav-link" data-scroll-target="#whitespace">Whitespace</a></li>
+  <li><a href="#naming" id="toc-naming" class="nav-link" data-scroll-target="#naming">Naming</a></li>
+  <li><a href="#expressions-and-statements" id="toc-expressions-and-statements" class="nav-link" data-scroll-target="#expressions-and-statements">Expressions and Statements</a></li>
+  <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports">Imports</a></li>
+  <li><a href="#automation" id="toc-automation" class="nav-link" data-scroll-target="#automation">Automation</a></li>
+  </ul></li>
+  <li><a href="#things-to-remember" id="toc-things-to-remember" class="nav-link" data-scroll-target="#things-to-remember">Things to Remember</a></li>
   </ul>
 <div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/flempriere/EffectivePython/" target="_blank"><i class="bi bi-github"></i>GitHub Repo</a></li></ul></div></nav>
     </div>
@@ -173,7 +208,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Effective Python: Notes</h1>
+<h1 class="title">Item 2: Follow the PEP Style Guide</h1>
 </div>
 
 
@@ -190,29 +225,168 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This repository contains code fragments and notes from the book, Effective Python by Brett Slatkin</p>
-<section id="contents" class="level2">
-<h2 class="anchored" data-anchor-id="contents">Contents</h2>
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
-<li><a href="./Chapter_01/Chapter_01.html">Chapter 1: Pythonic Thinking</a></li>
+<li>PEP (short for Python Enhancement Proposal) 8 is the style guide for python code</li>
+<li>A common style encourages collaboration</li>
+<li>Let’s you use common tooling</li>
+<li><a href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a> evolves as the language ecosystem does too
+<ul>
+<li>You should stay up to date with it</li>
+</ul></li>
+<li>Below highlights some of the main points</li>
+</ul>
+<section id="whitespace" class="level3">
+<h3 class="anchored" data-anchor-id="whitespace">Whitespace</h3>
+<ul>
+<li>Python whitespace is syntactically significant</li>
+<li>As a result you should
+<ol type="1">
+<li>Use spaces instead of tabs</li>
+<li>Use four spaces for each level of syntactically significant indenting</li>
+<li>Lines should be <span class="math inline">\(79\)</span> characters or less
+<ul>
+<li>Docstrings and comments should be <span class="math inline">\(72\)</span> characters or less</li>
+<li>Internal teams may relax the first requirement to <span class="math inline">\(99\)</span> characters</li>
+</ul></li>
+<li>Continuation of expressions onto additional lines should be indented by four extra spaces</li>
+<li>In a file
+<ul>
+<li>Functions and classes should be separated by two blank lines</li>
+</ul></li>
+<li>In a class
+<ul>
+<li>Methods are separated by one line</li>
+</ul></li>
+<li>In a dictionary,
+<ul>
+<li>No whitespace between key and colon value e.g.&nbsp;<code>key:value</code> not <code>key :</code></li>
+<li>One space between colon and value if room on the same line, e.g.&nbsp;<code>: value</code> not <code>:value</code></li>
+</ul></li>
+<li>One whitespace before and after assignment operator
+<ul>
+<li>e.g.&nbsp;<code>a = b</code> not <code>a=b</code></li>
+</ul></li>
+<li>For a type annotation
+<ul>
+<li>No space between variable and colon e.g.&nbsp;<code>x:</code> not <code>x :</code></li>
+<li>One space before the type information e.g.&nbsp;<code>x: int</code> not <code>x:int</code></li>
+</ul></li>
+</ol></li>
 </ul>
 </section>
-<section id="attribution" class="level2">
-<h2 class="anchored" data-anchor-id="attribution">Attribution</h2>
-<p>The examples in this repository are derived from the code snippets presented in the book. The complete programs these are based on are distributed under the following license</p>
-<pre class="{text}"><code># Copyright 2014-2024 Brett Slatkin, Pearson Education Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.</code></pre>
+<section id="naming" class="level3">
+<h3 class="anchored" data-anchor-id="naming">Naming</h3>
+<ul>
+<li><p>Different parts of the language should be named differently</p></li>
+<li><p>Helps the reader quickly distinguish between variables, constants, functions and classes</p>
+<ol type="1">
+<li><em>Functions</em>, <em>variables</em> and <em>attributes</em> to use <em>snake_case</em> e.g.&nbsp;<code>lowercase_underscore</code></li>
+<li><em>Protected</em> attributes to have a leading underscore, e.g.&nbsp;<code>_protected_attribute</code></li>
+<li><em>Private</em> attributes to use a double leading underscore, e.g.&nbsp;<code>__private_attribute</code></li>
+<li><em>Classes</em> to use capitalised <em>CamelCase</em> e.g.&nbsp;<code>ClassName</code>
+<ul>
+<li>This includes exceptions</li>
+</ul></li>
+<li><em>Instance methods</em> should name the first parameter (the object reference) <code>self</code></li>
+<li>Class methods should name the first parameter (the class reference) <code>cls</code></li>
+</ol></li>
+</ul>
+</section>
+<section id="expressions-and-statements" class="level3">
+<h3 class="anchored" data-anchor-id="expressions-and-statements">Expressions and Statements</h3>
+<ol type="1">
+<li>Use inline negation <code>if a is not b</code> instead of negating a positive <code>if not a is b</code></li>
+<li>Don’t check for empty containers (e.g.&nbsp;<code>[]</code> or <code>""</code>) by checking the length
+<ul>
+<li>Use <code>not</code>, e.g.&nbsp;<code>if not some_list</code>
+<ul>
+<li>Assume that empty values will evaluate to <code>False</code></li>
+</ul></li>
+</ul></li>
+<li>Assume a non-empty container (e.g.&nbsp;<code>[1]</code> or <code>"a"</code>) will evaluate <code>True</code>
+<ul>
+<li>e.g.&nbsp;<code>if some_list</code> should evaluate to <code>True</code></li>
+</ul></li>
+<li>Avoid single line <code>if</code>, <code>while</code> and <code>except</code> statements
+<ul>
+<li>Prefer to spread these over multiple lines for readability</li>
+</ul></li>
+<li>Break a statement over multiple lines by wrapping it in parentheses
+<ul>
+<li>Add line breaks and indentation to make it readable</li>
+</ul></li>
+<li>Corollary to the above:
+<ul>
+<li>Prefer using parentheses to split over multiple lines</li>
+<li>Avoid using the line continuation marker <code>\</code></li>
+</ul></li>
+</ol>
+</section>
+<section id="imports" class="level3">
+<h3 class="anchored" data-anchor-id="imports">Imports</h3>
+<ol type="1">
+<li>Put <code>import</code> statements at the top of a file</li>
+<li>Use absolute names for modules
+<ul>
+<li>Don’t use relative names</li>
+<li>e.g.&nbsp;use <code>from foo import bar</code> not <code>import foo</code> to get the package <code>bar</code></li>
+</ul></li>
+<li>If you <em>must</em> do relative imports, use explicit syntax
+<ul>
+<li>e.g.&nbsp;<code>from . import foo</code></li>
+</ul></li>
+<li>Imports should be:
+<ul>
+<li>Sectioned into the following,
+<ol type="1">
+<li>standard library modules</li>
+<li>third-party modules</li>
+<li>Your own modules</li>
+</ol></li>
+<li>Each subsection should be sorted alphabetically</li>
+</ul></li>
+</ol>
+</section>
+<section id="automation" class="level3">
+<h3 class="anchored" data-anchor-id="automation">Automation</h3>
+<ul>
+<li>Because there is a common framework of style that means there can be a common tooling ecosystem</li>
+<li>Some popular ones are
+<ul>
+<li><a href="https://flake8.pycqa.org/en/latest/">Flake8</a> is a <em>linter</em> that assesses code style</li>
+<li><a href="https://black.readthedocs.io/en/stable/">Black</a> is a <em>formatter</em> that automatically updates code to conform to the PEP 8 style guide
+<ul>
+<li><p>Black is also officially supported by the Python Software Foundation</p>
+<pre class="shell"><code>  $ pip install black
+  $ python -m black example.py
+  reformatted example.py
+
+  All done!
+  1 file reformatted</code></pre></li>
+</ul></li>
+<li><a href="https://pycqa.github.io/isort/index.html">isort</a> automatically sorts imports</li>
+<li><a href="https://docs.astral.sh/ruff/">Ruff</a> combines linting, formatting and import sorting
+<ul>
+<li><p>Plus other features</p></li>
+<li><p>Can replace the previous three entirely</p>
+<pre class="shell"><code>  $ pip install ruff
+  $ ruff check [file] # lint a file
+  $ ruff format [file] # format a file</code></pre></li>
+</ul></li>
+<li><a href="https://www.pylint.org/">Pylint</a> another linting tool</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="things-to-remember" class="level2">
+<h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li>Always follow PEP 8 when writing python code</li>
+<li>Sharing a common style helps you collaborate</li>
+<li>Community tooling helps you stick to the PEP 8 style and can be used to catch errors</li>
+</ul>
 
 
 </section>
