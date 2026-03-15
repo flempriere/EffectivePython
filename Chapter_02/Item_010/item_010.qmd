@@ -1,5 +1,5 @@
 ---
-title: "Item 10: Know the difference between `bytes` and `str`
+title: "Item 10: Know the difference between `bytes` and `str`"
 ---
 
 ## Notes
@@ -89,6 +89,25 @@ print(b"one" + b"two")
 print("one" + "two")
 print(b"one" + "two")
 ```
+
+- Can compare `bytes` to `bytes` or `str` to `str`
+    - But again, not across the types
+
+```{python}
+assert b"red" > b"blue"
+assert "red" > "blue"
+assert "red" > b"blue"
+```
+
+- Comparing `bytes` to `str` for equality always evaluates to `False`
+
+```{python}
+assert "foo" == "foo"
+assert b"foo" == b"foo"
+print(b"foo" == "foo")
+```
+
+
 
 
 
