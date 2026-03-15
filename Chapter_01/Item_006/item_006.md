@@ -1,13 +1,12 @@
 # Item 6: Always surround single-element tuples with Parentheses
 
-
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
 
 ## Notes
 
 - Python has multiple forms for a tuple literal
-  1.  A comma-separated list denoted by parentheses
+  1. A comma-separated list denoted by parentheses
 
       ``` python
        first = (1, 2, 3)

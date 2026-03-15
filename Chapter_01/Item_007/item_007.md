@@ -1,6 +1,5 @@
 # Item 7: Consider Conditional Expressions for Simple Inline Logic
 
-
 - [Things to Remember](#things-to-remember)
 
 - Python `if` statements are *not* expressions
@@ -188,6 +187,7 @@ if x and z := x > y:
         ...
     if x > (y if z else w): # clear
   ```
+
 - Assignment expressions also need parentheses inside a function call
   argument list
 

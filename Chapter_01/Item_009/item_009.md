@@ -1,6 +1,6 @@
 # Item 9: Consider `match` for Destructuring in Flow Control; Avoid When
-`if` Statements are Sufficient
 
+`if` Statements are Sufficient
 
 - [`match` is for Destructuring](#match-is-for-destructuring)
 - [Semi-structured Data vs Encapsulated
@@ -158,6 +158,7 @@ take_unpacking_action(GREEN)
             case GREEN:
                 ...
   ```
+
 - A workaround is to ensure the case label has a `.` operator
   - Causes python to do an attribute look up
   - This means to emulate standard switch behaviour we can use an `Enum`
@@ -189,7 +190,7 @@ take_enum_action("yellow")
 take_enum_action("green")
 ```
 
-    RuntimeError: 
+    RuntimeError:
     ---------------------------------------------------------------------------
     RuntimeError                              Traceback (most recent call last)
     Cell In[5], line 22
@@ -204,7 +205,7 @@ take_enum_action("green")
          18 case _:
     ---> 19     raise RuntimeError
 
-    RuntimeError: 
+    RuntimeError:
 
 - The code works as expected
 - But we’ve had to add a whole load of boilerplate to get it to work as
@@ -239,9 +240,9 @@ for index, value in enumerate("abc"):
 - Let’s look at using structural matching to help us search for a value
   in a binary tree
   - Tree is represented as a 3-tuple, indexed as,
-    1.  The stored value
-    2.  Left child (lower-valued)
-    3.  Right child (higher-valued)
+    1. The stored value
+    2. Left child (lower-valued)
+    3. Right child (higher-valued)
   - We use `None` to represent a missing child
   - A leaf node is represented by an inlined value rather than
     `(value, None, None)`
@@ -289,7 +290,7 @@ assert contains_match(my_tree, 9)
 assert not contains_match(my_tree, 14)
 ```
 
-    AssertionError: 
+    AssertionError:
     ---------------------------------------------------------------------------
     AssertionError                            Traceback (most recent call last)
     Cell In[9], line 11
@@ -298,7 +299,7 @@ assert not contains_match(my_tree, 14)
     ---> 11 assert contains_match(my_tree, 9)
          12 assert not contains_match(my_tree, 14)
 
-    AssertionError: 
+    AssertionError:
 
 - Eliminates the call to `isinstance` relies on the implicit unpacking
 - Code structure is regularised
@@ -397,10 +398,10 @@ def contains_match_class(tree, value):
   decoupled
 - e.g. Deserializing a JSON object
   - The Deserialized object is a nested structure of
-    1.  Dictionaries
-    2.  Lists
-    3.  Strings
-    4.  Numbers
+    1. Dictionaries
+    2. Lists
+    3. Strings
+    4. Numbers
 - Responsibilities are not clearly encapsulated like with a class
   hierarchy
 - The nesting structure gives the semantic meaning for a program

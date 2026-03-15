@@ -1,6 +1,5 @@
 # Item 8: Prevent Repetition with Assignment Expressions
 
-
 - [Things to Remember](#things-to-remember)
 
 - The walrus operator `:=` or assignment expression is introduced in
