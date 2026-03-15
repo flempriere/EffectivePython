@@ -65,6 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../Chapter_01/Item_005/item_005.html" rel="next">
+<link href="../../Chapter_01/Item_003/item_003.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -170,7 +172,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Item 4: Write Helper Functions instead of Complex Expressions</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_01/Chapter_01.html">Chapter 1: Pythonic Thinking</a></li><li class="breadcrumb-item"><a href="../../Chapter_01/Item_004/item_004.html">Item 4: Write Helper Functions instead of Complex Expressions</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -218,23 +220,41 @@ window.Quarto = {
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_01/item_004/item_004.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_01/Item_004/item_004.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Item 4: Write Helper Functions instead of Complex Expressions</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_01/item_005/item_005.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_01/Item_005/item_005.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 5: Prefer Multiple-Assignment Unpacking over Indexing</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_01/item_006/item_006.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_01/Item_006/item_006.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 6: Always surround single-element tuples with Parentheses</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_01/item_007/item_007.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_01/Item_007/item_007.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 7: Consider Conditional Expressions for Simple Inline Logic</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_01/item_008/item_008.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_01/Item_008/item_008.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 8: Prevent Repetition with Assignment Expressions</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_01/item_009/item_009.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_01/Item_009/item_009.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 9: Consider <code>match</code> for Destructuring in Flow Control; Avoid When <code>if</code> Statements are Sufficient</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -255,7 +275,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_01/Chapter_01.html">Chapter 1: Pythonic Thinking</a></li><li class="breadcrumb-item"><a href="../../Chapter_01/Item_004/item_004.html">Item 4: Write Helper Functions instead of Complex Expressions</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Item 4: Write Helper Functions instead of Complex Expressions</h1>
 </div>
@@ -280,7 +300,7 @@ window.Quarto = {
 <li>Python’s high level syntax lets you write very compact expressions</li>
 <li>e.g.&nbsp;To decode a website query string,</li>
 </ul>
-<div id="b5bfb256" class="cell" data-execution_count="1">
+<div id="49daaaf7" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib.parse <span class="im">import</span> parse_qs</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>my_values <span class="op">=</span> parse_qs(<span class="st">"red=5&amp;blue=0&amp;green="</span>, keep_blank_values<span class="op">=</span><span class="va">True</span>)</span>
@@ -299,7 +319,7 @@ window.Quarto = {
 </ol></li>
 <li>If we try and access them using a dictionary, we get different results</li>
 </ul>
-<div id="841a99f8" class="cell" data-execution_count="2">
+<div id="3c1d5976" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Red: </span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>(my_values.get(<span class="st">"red"</span>)))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Green: </span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>(my_values.get(<span class="st">"green"</span>)))</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Opacity: </span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>(my_values.get(<span class="st">"opacity"</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -319,7 +339,7 @@ Opacity: None</code></pre>
 <li>Means that in the below expressions, if the first part is <code>False</code>, then the rest evaluates to <span class="math inline">\(0\)</span></li>
 </ul></li>
 </ul>
-<div id="35e1d3b2" class="cell" data-execution_count="3">
+<div id="fd0d7b94" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  red <span class="op">=</span> my_values.get(<span class="st">"red"</span>, [<span class="st">""</span>])[<span class="dv">0</span>] <span class="kw">or</span> <span class="dv">0</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  green <span class="op">=</span> my_values.get(<span class="st">"green"</span>, [<span class="st">""</span>])[<span class="dv">0</span>] <span class="kw">or</span> <span class="dv">0</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  opacity <span class="op">=</span> my_values.get(<span class="st">"opacity"</span>, [<span class="st">""</span>])[<span class="dv">0</span>] <span class="kw">or</span> <span class="dv">0</span></span>
@@ -361,7 +381,7 @@ Opacity:    0</code></pre>
 <li>So we need to add an extra layer to do a conversion to integer, e.g.</li>
 </ul></li>
 </ul>
-<div id="cbd29389" class="cell" data-execution_count="4">
+<div id="0d25e8cb" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>red <span class="op">=</span> <span class="bu">int</span>(my_values.get(<span class="st">"red"</span>, [<span class="st">""</span>])[<span class="dv">0</span>] <span class="kw">or</span> <span class="dv">0</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Red:        </span><span class="sc">{</span>red<span class="sc">!r}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -372,7 +392,7 @@ Opacity:    0</code></pre>
 <li>At this the code while functional is too obscure to be easily understood</li>
 <li>Instead we could write a simple function</li>
 </ul>
-<div id="85c0019f" class="cell" data-execution_count="5">
+<div id="2c62fc50" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_first_int(values, key, default<span class="op">=</span><span class="dv">0</span>):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    found <span class="op">=</span> values.get(key, [<span class="st">""</span>])</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> found[<span class="dv">0</span>]:</span>
@@ -386,7 +406,7 @@ Opacity:    0</code></pre>
 </ul></li>
 <li>We can rewrite our initial parse as</li>
 </ul>
-<div id="5cd4b26d" class="cell" data-execution_count="6">
+<div id="e91a2991" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>red <span class="op">=</span> get_first_int(my_values, <span class="st">"red"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>green <span class="op">=</span> get_first_int(my_values, <span class="st">"green"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>opacity <span class="op">=</span> get_first_int(my_values, <span class="st">"opacity"</span>)</span>
@@ -822,6 +842,18 @@ Opacity:    0</code></pre>
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../Chapter_01/Item_003/item_003.html" class="pagination-link" aria-label="Item 3: Never Expect Python to Detect Errors at Compile Time">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Item 3: Never Expect Python to Detect Errors at Compile Time</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../Chapter_01/Item_005/item_005.html" class="pagination-link" aria-label="Item 5: Prefer Multiple-Assignment Unpacking over Indexing">
+        <span class="nav-page-text">Item 5: Prefer Multiple-Assignment Unpacking over Indexing</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../Chapter_01/Item_008/item_008.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -170,7 +171,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Item 9: Consider <code>match</code> for Destructuring in Flow Control; Avoid When <code>if</code> Statements are Sufficient</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_01/Chapter_01.html">Chapter 1: Pythonic Thinking</a></li><li class="breadcrumb-item"><a href="../../Chapter_01/Item_009/item_009.html">Item 9: Consider <code>match</code> for Destructuring in Flow Control; Avoid When <code>if</code> Statements are Sufficient</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -218,23 +219,41 @@ window.Quarto = {
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_01/item_004/item_004.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_01/Item_004/item_004.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 4: Write Helper Functions instead of Complex Expressions</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_01/item_005/item_005.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_01/Item_005/item_005.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 5: Prefer Multiple-Assignment Unpacking over Indexing</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_01/item_006/item_006.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_01/Item_006/item_006.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 6: Always surround single-element tuples with Parentheses</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_01/item_007/item_007.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_01/Item_007/item_007.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 7: Consider Conditional Expressions for Simple Inline Logic</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_01/item_008/item_008.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_01/Item_008/item_008.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 8: Prevent Repetition with Assignment Expressions</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_01/item_009/item_009.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_01/Item_009/item_009.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Item 9: Consider <code>match</code> for Destructuring in Flow Control; Avoid When <code>if</code> Statements are Sufficient</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -259,7 +278,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_01/Chapter_01.html">Chapter 1: Pythonic Thinking</a></li><li class="breadcrumb-item"><a href="../../Chapter_01/Item_009/item_009.html">Item 9: Consider <code>match</code> for Destructuring in Flow Control; Avoid When <code>if</code> Statements are Sufficient</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Item 9: Consider <code>match</code> for Destructuring in Flow Control; Avoid When <code>if</code> Statements are Sufficient</h1>
 </div>
@@ -288,7 +307,7 @@ window.Quarto = {
 <li>e.g.&nbsp;The <code>if</code> statement based construct below,</li>
 </ul></li>
 </ul>
-<div id="17eb7646" class="cell" data-execution_count="1">
+<div id="861c9053" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> take_action(light):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> light <span class="op">==</span> <span class="st">"red"</span>:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Stop"</span>)</span>
@@ -311,7 +330,7 @@ Go</code></pre>
 <ul>
 <li>We can convert this a <code>match</code> structure by adding <code>case</code> clauses</li>
 </ul>
-<div id="ca20c9ba" class="cell" data-execution_count="2">
+<div id="b6bfb468" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> take_match_action(light):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> light:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="st">"red"</span>:</span>
@@ -348,7 +367,7 @@ Go</code></pre>
 <li>Prefer instead to use module level constants</li>
 </ul></li>
 </ul>
-<div id="c4d39c5e" class="cell" data-execution_count="3">
+<div id="8f48af4d" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># module level constants</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>RED <span class="op">=</span> <span class="st">"red"</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>YELLOW <span class="op">=</span> <span class="st">"yellow"</span></span>
@@ -386,7 +405,7 @@ Go</code></pre>
 </ul></li>
 <li>If we have the same <code>match</code> above, but with only the <code>RED</code> branch and pass <code>GREEN</code>:</li>
 </ul>
-<pre class="imifqgny:"><code>    def truncated_action(light):
+<pre class="wgokwfyf:"><code>    def truncated_action(light):
         match light:
             case RED:
                 print(f"{RED=}, {light=}: Stop")
@@ -406,7 +425,7 @@ truncated_action(GREEN)</code></pre>
 <li><p>We could write this in longform</p></li>
 </ul></li>
 </ul>
-<div id="bba3a234" class="cell" data-execution_count="4">
+<div id="dd993ca1" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> take_unpacking_action(light):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>            (RED, ) <span class="op">=</span> (light, )</span>
@@ -448,7 +467,7 @@ truncated_action(GREEN)</code></pre>
 <li>This means to emulate standard switch behaviour we can use an <code>Enum</code></li>
 </ul></li>
 </ul>
-<div id="67273e84" class="cell" data-execution_count="5">
+<div id="332dd505" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> enum</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -503,7 +522,7 @@ truncated_action(GREEN)</code></pre>
 <li><em>Destructuring</em> means extracting components from a complex nested data structure</li>
 <li>multiple assignment and tuple unpacking is an example of destructuring, e.g.</li>
 </ul>
-<div id="349ec27f" class="cell" data-execution_count="6">
+<div id="4d3c5d68" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, value <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="st">"abc"</span>):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Index is </span><span class="sc">{</span>index<span class="sc">}</span><span class="ss"> and value is </span><span class="sc">{</span>value<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -536,13 +555,13 @@ Index is 2 and value is c</code></pre>
 <li>A nested tree containing <span class="math inline">\(7, 9, 10, 11, 13\)</span> might then be defined as</li>
 </ul></li>
 </ul>
-<div id="53752334" class="cell" data-execution_count="7">
+<div id="29256e96" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>my_tree <span class="op">=</span> (<span class="dv">10</span>, (<span class="dv">7</span>, <span class="va">None</span>, <span class="dv">9</span>), (<span class="dv">13</span>, <span class="dv">11</span>, <span class="va">None</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>A recursive search using the <code>if...elif...else</code> can be written as below</li>
 </ul>
-<div id="ba185353" class="cell" data-execution_count="8">
+<div id="d3f8e0e7" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> contains(tree, value):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(tree, <span class="bu">tuple</span>):</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> tree <span class="op">==</span> value</span>
@@ -562,7 +581,7 @@ Index is 2 and value is c</code></pre>
 <ul>
 <li>We could instead implement this using <code>match</code></li>
 </ul>
-<div id="61299a97" class="cell" data-execution_count="9">
+<div id="d7e24e2d" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> contains_match(tree, value):</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> tree:</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> pivot, left, _ <span class="cf">if</span> value <span class="op">&lt;</span> pivot:</span>
@@ -613,7 +632,7 @@ Index is 2 and value is c</code></pre>
 </ul></li>
 <li>Now suppose we want to use class structure to capture our nodes</li>
 </ul>
-<div id="3eee0f0d" class="cell" data-execution_count="10">
+<div id="029cbc0a" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Node:</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, value, left<span class="op">=</span><span class="va">None</span>, right<span class="op">=</span><span class="va">None</span>):</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.value <span class="op">=</span> value</span>
@@ -626,13 +645,13 @@ Index is 2 and value is c</code></pre>
 <li>leaf nodes still specified by a simple value</li>
 </ul></li>
 </ul>
-<div id="84870341" class="cell" data-execution_count="11">
+<div id="61f9530d" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>obj_tree <span class="op">=</span> Node(value<span class="op">=</span><span class="dv">10</span>, left<span class="op">=</span>Node(value<span class="op">=</span><span class="dv">7</span>, right<span class="op">=</span><span class="dv">9</span>), right<span class="op">=</span>Node(value<span class="op">=</span><span class="dv">13</span>, left<span class="op">=</span><span class="dv">11</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>The <code>if</code> statement construction is straightforward to update</li>
 </ul>
-<div id="b66b99b9" class="cell" data-execution_count="12">
+<div id="7b140d8d" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> contains_class(tree, value):</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(tree, Node):</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> tree <span class="op">==</span> value</span>
@@ -674,7 +693,7 @@ Index is 2 and value is c</code></pre>
 </ul></li>
 <li>The <code>match</code> version can also be updated</li>
 </ul>
-<div id="27330981" class="cell" data-execution_count="13">
+<div id="41dbb6fd" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> contains_match_class(tree, value):</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> tree:</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> Node(value<span class="op">=</span>pivot, left<span class="op">=</span>left) <span class="cf">if</span> value <span class="op">&lt;</span> pivot:</span>
@@ -715,7 +734,7 @@ Index is 2 and value is c</code></pre>
 <li>Some might be businesses</li>
 </ul></li>
 </ul>
-<div id="6e4394db" class="cell" data-execution_count="14">
+<div id="e93ac501" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>record_person <span class="op">=</span> <span class="st">"""{"customer": {"last": "Ross", "first": "Bob"</span><span class="sc">}}</span><span class="st">"""</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>record_business <span class="op">=</span> <span class="st">"""{"customer": {"entity": "Steve's Painting Co."</span><span class="sc">}}</span><span class="st">"""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -727,7 +746,7 @@ Index is 2 and value is c</code></pre>
 <li>etc.</li>
 </ul></li>
 </ul>
-<div id="88d8cefc" class="cell" data-execution_count="15">
+<div id="088fe5df" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
@@ -742,7 +761,7 @@ Index is 2 and value is c</code></pre>
 <ul>
 <li>We can use <code>match</code> to convert the JSON data to the appropriate class structure</li>
 </ul>
-<div id="e430ccb3" class="cell" data-execution_count="16">
+<div id="7a334176" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1199,6 +1218,15 @@ Record for a business:  BusinessCustomer(company_name="Steve's Painting Co.")</c
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../Chapter_01/Item_008/item_008.html" class="pagination-link" aria-label="Item 8: Prevent Repetition with Assignment Expressions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Item 8: Prevent Repetition with Assignment Expressions</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
