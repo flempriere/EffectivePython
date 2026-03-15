@@ -1,0 +1,238 @@
+---
+title: "Item 8: Prevent Repetition with Assignment Expressions"
+---
+
+- The walrus operator `:=` or assignment expression is introduced in Python 3.8
+- Let's you assign variables where you normally wouldn't be allowed to
+    - e.g. `if` test expression
+- Evaluates to whatever was assigned to the left side of the operator
+
+- Consider a basket of fresh fruit being managed by a juice bar
+
+```{python}
+fresh_fruit = {
+    "apple": 10,
+    "banana": 8,
+    "lemon": 5,
+}
+```
+
+- To serve lemonade needs to be at least one lemon available
+- Standard `if` construction might look like,
+
+```{python}
+def make_lemonade(count):
+    print(f"Making {count} lemons into lemonade")
+
+
+def out_of_stock():
+    print("Out of stock")
+
+
+count = fresh_fruit.get("lemon", 0)
+if count:
+    make_lemonade(count)
+else:
+    out_of_stock()
+```
+
+- Here we effectively duplicate `count`, because we assign then test it
+    - Also means that `count` is promoted to an outer scope
+    - This is a common and negative python pattern
+    - People will try and create workarounds
+- We can rewrite the above using the walrus operator
+
+```{python}
+if count := fresh_fruit.get("lemon", 0):
+    make_lemonade(count)
+else:
+    out_of_stock()
+```
+
+- Now we don't have `count` polluting the outer scope
+- You can combine assignment expressions in larger expressions
+- For example if making cider requires four apples
+
+```{python}
+def make_cider(count):
+    print(f"Turned {count} apples into cider")
+
+count = fresh_fruit.get("apple", 0)
+if count >= 4:
+    make_cider(count)
+else:
+    out_of_stock()
+```
+
+- We can make this clearer using assignment expressions
+
+```{python}
+if (count := fresh_fruit.get("apple", 0)) >= 4:
+    make_cider(count)
+else:
+    out_of_stock()
+```
+
+- Assignment expressions need parentheses when being used as a sub-expression to clearly delineate what is being assigned
+
+- A variation is assigning a variable in the enclosing scope depending on a condition
+    - Then have to reference that assigned variable
+- For example, in our fruit shop example, to make a banana smoothie we need sliced banana
+
+```{python}
+def slice_bananas(count):
+    print(f"Slicing {count} bananas")
+    return count * 4
+
+
+class OutOfBananas(Exception):
+    pass
+
+
+def make_smoothies(count):
+    if count < 8:
+        raise OutOfBananas
+    print(f"Making smoothies with {count} banana slices")
+
+
+pieces = 0
+count = fresh_fruit.get("banana", 0)
+if count >= 2:
+    pieces = slice_bananas(count)
+try:
+    smoothies = make_smoothies(pieces)
+except OutOfBananas:
+    out_of_stock()
+```
+
+- Could instead put the pieces assignment in an `else` clause with the `if`
+    - Means that `pieces` has two places where it can potentially be defined
+    - Works because of python's scoping rules, but easy to break if code changes around it
+- We can instead use the walrus operator
+
+```{python}
+if (count := fresh_fruit.get("banana", 0)) >= 2:
+    pieces = slice_bananas(count)
+
+try:
+    smoothies = make_smoothies(pieces)
+except OutOfBananas:
+    out_of_stock()
+```
+
+- Python doesn't support a standard `switch/case` construct
+    - Can be emulated using nested `if...elif...else`
+- Suppose we want a priority hierarchy for our juice
+
+```{python}
+count = fresh_fruit.get("banana", 0)
+if count >= 2:
+    pieces = slice_bananas(count)
+    to_enjoy = make_smoothies(pieces)
+else:
+    count = fresh_fruit.get("apple", 0)
+    if count >= 4:
+        to_enjoy = make_cider(count)
+    else:
+        count = fresh_fruit.get("lemon", 0)
+        if count:
+            to_enjoy = make_lemonade(count)
+        else:
+            to_enjoy = "Nothing"
+```
+
+- We can use the walrus operator to flatten this structure
+
+```{python}
+if (count := fresh_fruit.get("banana", 0)) >= 2:
+    pieces = slice_bananas(count)
+    to_enjoy = make_smoothies(pieces)
+elif (count := fresh_fruit.get("apple", 0)) >= 4:
+    to_enjoy = make_cider(count)
+elif count := fresh_fruit.get("lemon", 0):
+    to_enjoy = make_lemonade(count)
+else:
+    to_enjoy = "Nothing"
+```
+
+- Walrus can also be used to emulate a `do...while` construct
+- For example, lets say we want to bottle juice while we have fruit available
+- A traditional approach:
+
+```{python}
+FRUIT_TO_PICK = [
+    {"apple": 1, "banana": 3},
+    {"lemon": 2, "lime": 5},
+    {"orange": 3, "melon": 2},
+]
+
+
+def pick_fruit():
+    if FRUIT_TO_PICK:
+        return FRUIT_TO_PICK.pop(0)
+    else:
+        return []
+
+
+def make_juice(fruit, count):
+    return [(f"{fruit} juice", count)]
+
+
+bottles = []
+fresh_fruit = pick_fruit()
+while fresh_fruit:
+    for fruit, count in fresh_fruit.items():
+        batch = make_juice(fruit, count)
+        bottles.extend(batch)
+    fresh_fruit = pick_fruit()
+
+print(bottles)
+```
+
+- Requires two separate calls to `fresh_fruit = pick_fruit()`
+    - One before loop for initial setup
+    - One at the end of the loop to prepare the next loop
+- Can use the *loop and a half idiom*
+    - Use a `while True` and `break` combination
+
+```{python}
+FRUIT_TO_PICK = [
+    {"apple": 1, "banana": 3},
+    {"lemon": 2, "lime": 5},
+    {"orange": 3, "melon": 2},
+]
+
+
+bottles = []
+while True:
+    fresh_fruit = pick_fruit()
+    if not fresh_fruit:
+        break
+    for fruit, count in fresh_fruit.items():
+        batch = make_juice(fruit, count)
+        bottles.extend(batch)
+print(bottles)
+```
+
+- Downside is that the `break` (i.e. loop termination condition) is hidden in the loop itself
+- Instead we can use the walrus operator to put the assignment and test in one statement
+
+```{python}
+FRUIT_TO_PICK = [
+    {"apple": 1, "banana": 3},
+    {"lemon": 2, "lime": 5},
+    {"orange": 3, "melon": 2},
+]
+
+while fresh_fruit := pick_fruit():
+    for fruit, count in fresh_fruit.items():
+        batch = make_juice(fruit, count)
+        bottles.extend(batch)
+print(bottles)
+```
+
+## Things to Remember
+
+- Assignment expressions use the Walrus operator `:=` to assign and evaluate variables
+- When used as a sub-expression an assignment expression must use parentheses
+- Assignment expressions help emulate the functionality of a `switch/case` and `do...while` structure
