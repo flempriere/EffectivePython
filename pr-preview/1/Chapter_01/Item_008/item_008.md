@@ -1,7 +1,10 @@
 # Item 8: Prevent Repetition with Assignment Expressions
 
 
+- [Notes](#notes)
 - [Things to Remember](#things-to-remember)
+
+## Notes
 
 - The walrus operator `:=` or assignment expression is introduced in
   Python 3.8
@@ -264,6 +267,8 @@ FRUIT_TO_PICK = [
     {"orange": 3, "melon": 2},
 ]
 
+bottles = []
+
 while fresh_fruit := pick_fruit():
     for fruit, count in fresh_fruit.items():
         batch = make_juice(fruit, count)
@@ -271,7 +276,7 @@ while fresh_fruit := pick_fruit():
 print(bottles)
 ```
 
-    [('apple juice', 1), ('banana juice', 3), ('lemon juice', 2), ('lime juice', 5), ('orange juice', 3), ('melon juice', 2), ('apple juice', 1), ('banana juice', 3), ('lemon juice', 2), ('lime juice', 5), ('orange juice', 3), ('melon juice', 2)]
+    [('apple juice', 1), ('banana juice', 3), ('lemon juice', 2), ('lime juice', 5), ('orange juice', 3), ('melon juice', 2)]
 
 ## Things to Remember
 

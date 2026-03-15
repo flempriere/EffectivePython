@@ -42,23 +42,22 @@ def take_match_action(light):
     match light:
         case "red":
             print("Stop")
-        case "yellow"
+        case "yellow":
             print("Slow")
         case "green":
             print("Go")
         case _:
             raise RuntimeError
 
+
 take_match_action("red")
 take_match_action("yellow")
 take_match_action("green")
 ```
 
-    SyntaxError: expected ':' (739178037.py, line 5)
-      Cell In[2], line 5
-        case "yellow"
-                     ^
-    SyntaxError: expected ':'
+    Stop
+    Slow
+    Go
 
 - `match` looks cleaner
   - Only one reference now to the variable `light`
@@ -101,7 +100,7 @@ take_constant_action("green")
 - If we have the same `match` above, but with only the `RED` branch and
   pass `GREEN`:
 
-``` xctezdro:
+``` qnknozfi:
     def truncated_action(light):
         match light:
             case RED:
@@ -127,24 +126,21 @@ truncated_action(GREEN)
   - We could write this in longform
 
 ``` python
-    def take_unpacking_action(light):
-        try:
-            (RED, ) = (light, )
-        except TypeError:
-            # did not match
-            raise RuntimeError
-        else:
-            # Matched
-            print(f"{RED=}, {light=}")
+def take_unpacking_action(light):
+    try:
+        (RED,) = (light,)
+    except TypeError:
+        # did not match
+        raise RuntimeError
+    else:
+        # Matched
+        print(f"{RED=}, {light=}")
+
 
 take_unpacking_action(GREEN)
 ```
 
-    IndentationError: unexpected indent (300515828.py, line 1)
-      Cell In[4], line 1
-        def take_unpacking_action(light):
-        ^
-    IndentationError: unexpected indent
+    RED='green', light='green'
 
 - This explains why we couldn’t have our switch like style work
   - The `YELLOW` and `GREEN` cases have the same structure as the
@@ -170,7 +166,7 @@ take_unpacking_action(GREEN)
 import enum
 
 
-class ColourEnum(enum.Enum):
+class ColourEnum(enum.StrEnum):
     RED = "red"
     YELLOW = "yellow"
     GREEN = "green"
@@ -193,22 +189,9 @@ take_enum_action("yellow")
 take_enum_action("green")
 ```
 
-    RuntimeError: 
-    ---------------------------------------------------------------------------
-    RuntimeError                              Traceback (most recent call last)
-    Cell In[5], line 22
-         18         case _:
-         19             raise RuntimeError
-    ---> 22 take_enum_action("red")
-         23 take_enum_action("yellow")
-         24 take_enum_action("green")
-
-    Cell In[5], line 19, in take_enum_action(light)
-         17     print("Go")
-         18 case _:
-    ---> 19     raise RuntimeError
-
-    RuntimeError: 
+    Stop
+    Slow
+    Go
 
 - The code works as expected
 - But we’ve had to add a whole load of boilerplate to get it to work as
@@ -279,12 +262,16 @@ assert not contains(my_tree, 14)
 - We could instead implement this using `match`
 
 ``` python
+my_tree = (10, (7, None, 9), (13, 11, None))
+
+
 def contains_match(tree, value):
+
     match tree:
         case pivot, left, _ if value < pivot:
             return contains_match(left, value)
         case pivot, _, right if value > pivot:
-            return contains_match(right, pivot)
+            return contains_match(right, value)
         case (pivot, _, _) | pivot:
             return pivot == value
 
@@ -292,17 +279,6 @@ def contains_match(tree, value):
 assert contains_match(my_tree, 9)
 assert not contains_match(my_tree, 14)
 ```
-
-    AssertionError: 
-    ---------------------------------------------------------------------------
-    AssertionError                            Traceback (most recent call last)
-    Cell In[9], line 11
-          7         case (pivot, _, _) | pivot:
-          8             return pivot == value
-    ---> 11 assert contains_match(my_tree, 9)
-         12 assert not contains_match(my_tree, 14)
-
-    AssertionError: 
 
 - Eliminates the call to `isinstance` relies on the implicit unpacking
 - Code structure is regularised
@@ -345,7 +321,7 @@ def contains_class(tree, value):
     if not isinstance(tree, Node):
         return tree == value
     elif value < tree.value:
-        return contains_class(left, value)
+        return contains_class(tree.left, value)
     elif value > tree.value:
         return contains_class(tree.right, value)
     else:
@@ -355,24 +331,6 @@ def contains_class(tree, value):
 assert contains_class(obj_tree, 9)
 assert not contains_class(obj_tree, 14)
 ```
-
-    NameError: name 'left' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[12], line 12
-          8     else:
-          9         return tree.value == value
-    ---> 12 assert contains_class(obj_tree, 9)
-         13 assert not contains_class(obj_tree, 14)
-
-    Cell In[12], line 5, in contains_class(tree, value)
-          3     return tree == value
-          4 elif value < tree.value:
-    ----> 5     return contains_class(left, value)
-          6 elif value > tree.value:
-          7     return contains_class(tree.right, value)
-
-    NameError: name 'left' is not defined
 
 - Pretty similar to the original
   - We trade the namespace resolution of `tree.` for not having to do
@@ -388,6 +346,10 @@ def contains_match_class(tree, value):
             return contains_match_class(right, value)
         case Node(value=pivot) | pivot:
             return pivot == value
+
+
+assert contains_match_class(obj_tree, 9)
+assert not contains_match_class(obj_tree, 14)
 ```
 
 - Each clause implicitly does an `isinstance` check

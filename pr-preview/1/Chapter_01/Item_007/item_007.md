@@ -1,7 +1,10 @@
 # Item 7: Consider Conditional Expressions for Simple Inline Logic
 
 
+- [Notes](#notes)
 - [Things to Remember](#things-to-remember)
+
+## Notes
 
 - Python `if` statements are *not* expressions
   - The whole block does not evaluate to a result
