@@ -100,11 +100,12 @@ take_constant_action("green")
 - If we have the same `match` above, but with only the `RED` branch and
   pass `GREEN`:
 
-``` rkgqekdg:
-    def truncated_action(light):
-        match light:
-            case RED:
-                print(f"{RED=}, {light=}: Stop")
+``` brwqrkjg:
+def truncated_action(light):
+    match light:
+        case RED:
+            print(f"{RED=}, {light=}: Stop")
+
 
 truncated_action(GREEN)
 ```

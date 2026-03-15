@@ -57,12 +57,12 @@
 - You can inspect the python version at run time using the `sys` module
 
 ``` python
-    import sys
+import sys
 
-    print(sys.platform)
-    print(sys.implementation.name)
-    print(sys.version_info)
-    print(sys.version)
+print(sys.platform)
+print(sys.implementation.name)
+print(sys.version_info)
+print(sys.version)
 ```
 
     linux
