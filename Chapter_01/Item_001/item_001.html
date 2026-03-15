@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Item 5: Prefer Multiple-Assignment Unpacking over Indexing – Effective Python: Notes</title>
+<title>Item 1: Know which version of Python you’re using – Effective Python: Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../Chapter_01/Item_006/item_006.html" rel="next">
-<link href="../../Chapter_01/Item_004/item_004.html" rel="prev">
+<link href="../../Chapter_01/Item_002/item_002.html" rel="next">
+<link href="../../Chapter_01/Chapter_01.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="Item 5: Prefer Multiple-Assignment Unpacking over Indexing – Effective Python: Notes">
+<meta property="og:title" content="Item 1: Know which version of Python you’re using – Effective Python: Notes">
 <meta property="og:site_name" content="Effective Python: Notes">
 </head>
 
@@ -143,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_01/Chapter_01.html">Chapter 1: Pythonic Thinking</a></li><li class="breadcrumb-item"><a href="../../Chapter_01/Item_005/item_005.html">Item 5: Prefer Multiple-Assignment Unpacking over Indexing</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_01/Chapter_01.html">Chapter 1: Pythonic Thinking</a></li><li class="breadcrumb-item"><a href="../../Chapter_01/Item_001/item_001.html">Item 1: Know which version of Python you’re using</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -174,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Chapter_01/Item_001/item_001.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_01/Item_001/item_001.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Item 1: Know which version of Python you’re using</span></a>
   </div>
 </li>
@@ -198,7 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Chapter_01/Item_005/item_005.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../Chapter_01/Item_005/item_005.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 5: Prefer Multiple-Assignment Unpacking over Indexing</span></a>
   </div>
 </li>
@@ -246,9 +246,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_01/Chapter_01.html">Chapter 1: Pythonic Thinking</a></li><li class="breadcrumb-item"><a href="../../Chapter_01/Item_005/item_005.html">Item 5: Prefer Multiple-Assignment Unpacking over Indexing</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_01/Chapter_01.html">Chapter 1: Pythonic Thinking</a></li><li class="breadcrumb-item"><a href="../../Chapter_01/Item_001/item_001.html">Item 1: Know which version of Python you’re using</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Item 5: Prefer Multiple-Assignment Unpacking over Indexing</h1>
+<h1 class="title">Item 1: Know which version of Python you’re using</h1>
 </div>
 
 
@@ -268,185 +268,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
-<li><code>tuple</code> is a builtin type for immutable, ordered sequences</li>
-<li>Can be empty, contain a single item, or multiple, e.g.</li>
-</ul>
-<div id="9f9c3b7e" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>no_snack <span class="op">=</span> ()</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(no_snack)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>snack <span class="op">=</span> (<span class="st">"chips"</span>,)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(snack)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>snack_calories <span class="op">=</span> {<span class="st">"chips"</span>: <span class="dv">140</span>, <span class="st">"popcorn"</span>: <span class="dv">80</span>, <span class="st">"nuts"</span>: <span class="dv">190</span>}</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> <span class="bu">list</span>(snack_calories.items())</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(items)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>()
-('chips',)
-[('chips', 140), ('popcorn', 80), ('nuts', 190)]</code></pre>
-</div>
-</div>
+<li><p>Python has several different versions all in various states of maintenance</p></li>
+<li><p>Python 2 is the previous major version</p>
 <ul>
-<li>Like lists, they support numerical indices and slices</li>
-</ul>
-<div id="7c700d43" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>item <span class="op">=</span> (<span class="st">"Peanut butter"</span>, <span class="st">"Jelly"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>first_item <span class="op">=</span> item[<span class="dv">0</span>] <span class="co"># index access</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>first_half <span class="op">=</span> item[:<span class="dv">1</span>] <span class="co"># slice access</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(first_item)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(first_half)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Peanut butter
-('Peanut butter',)</code></pre>
-</div>
-</div>
+<li>No longer supported</li>
+</ul></li>
+<li><p>Many Operating Systems have multiple python versions installed by default</p></li>
+<li><p>However the default meaning of <code>python</code> (the command to run python) is ill-defined</p>
 <ul>
-<li>Tuples are <em>immutable</em>
+<li>Typically an alias for <em>python 2.7</em>
 <ul>
-<li>Once created they cannot be modified</li>
+<li>May be an older version of python 2 though</li>
+<li>Or even <em>python 3</em></li>
+</ul></li>
+<li>On systems where python 2 is not installed, then the command may error
+<ul>
+<li>This happens on my machine</li>
 </ul></li>
 </ul>
-<div id="d7ad2cd3" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pair <span class="op">=</span> (<span class="st">"Chocolate"</span>, <span class="st">"Peanut Butter"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>pair[<span class="dv">0</span>] <span class="op">=</span> <span class="st">"Honey"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 2</span>
-<span class="ansi-green-fg">      1</span> pair = (<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Chocolate</span><span class="ansi-yellow-fg">"</span>, <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Peanut Butter</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> <span class="ansi-yellow-bg">pair</span><span class="ansi-yellow-bg">[</span><span class="ansi-green-fg ansi-yellow-bg">0</span><span class="ansi-yellow-bg">]</span> = <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Honey</span><span class="ansi-yellow-fg">"</span>
-
-<span class="ansi-red-fg">TypeError</span>: 'tuple' object does not support item assignment</pre>
-</div>
-</div>
-</div>
+<pre class="shell"><code>  $ python --version
+  Command 'python' not found, did you mean:
+      command 'python3' from deb python3
+      command 'python' from deb python-is-python3</code></pre></li>
+<li><p><em>Python 3</em>, the new and currently developed major version is usually found under the command <code>python3</code></p></li>
+<li><p>On my machine</p>
+<pre class="shell"><code>  $ python3 --version
+  Python 3.12.3</code></pre></li>
+<li><p>Alternative run times like <a href="https://pypy.org/">PyPy</a> have their own run commands</p></li>
+<li><p>I use <a href="https://docs.astral.sh/uv/">uv</a> which is a python version manager</p>
 <ul>
-<li>Python supports an <em>unpacking</em> syntax</li>
-<li>Let’s us perform multiple assignments on one line</li>
-<li>For example, if we know a tuple is a pair, we can assign both values to variables</li>
-</ul>
-<div id="7464b516" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>item <span class="op">=</span> (<span class="st">"Peanut Butter"</span>, <span class="st">"Jelly"</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>first, second <span class="op">=</span> item <span class="co"># unpacking</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>first<span class="sc">}</span><span class="ss"> and </span><span class="sc">{</span>second<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Peanut Butter and Jelly</code></pre>
-</div>
-</div>
-<ul>
-<li>Unpacking tends to be less noisy than repeated explicit index accesses</li>
-<li>Uses pattern matching
-<ul>
-<li>We can extend this to more complex scenarios</li>
-<li>Can also extend it to list, sequence assignments and nested iterables</li>
+<li><p>To run a uv managed python version my command is</p>
+<pre class="shell"><code>  uv run [python3.X]</code></pre></li>
 </ul></li>
+<li><p>You can inspect the python version at run time using the <code>sys</code> module</p></li>
 </ul>
-<div id="792c6546" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>favourite_snacks <span class="op">=</span> {</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"salty"</span>: (<span class="st">"pretzels"</span>, <span class="dv">100</span>),</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sweet"</span>: (<span class="st">"cookies"</span>, <span class="dv">180</span>),</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"veggie"</span>: (<span class="st">"carrots"</span>, <span class="dv">20</span>),</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>((type1, (name1, cals1)), (type2, (name2, cals2)), (type3, (name3, cals3))) <span class="op">=</span> (</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    favourite_snacks.items()</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Favourite </span><span class="sc">{</span>type1<span class="sc">}</span><span class="ss"> is </span><span class="sc">{</span>name1<span class="sc">}</span><span class="ss"> with </span><span class="sc">{</span>cals1<span class="sc">}</span><span class="ss"> calories"</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Favourite </span><span class="sc">{</span>type2<span class="sc">}</span><span class="ss"> is </span><span class="sc">{</span>name2<span class="sc">}</span><span class="ss"> with </span><span class="sc">{</span>cals2<span class="sc">}</span><span class="ss"> calories"</span>)</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Favourite </span><span class="sc">{</span>type3<span class="sc">}</span><span class="ss"> is </span><span class="sc">{</span>name3<span class="sc">}</span><span class="ss"> with </span><span class="sc">{</span>cals3<span class="sc">}</span><span class="ss"> calories"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="4a7357f2" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sys.platform)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sys.implementation.name)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sys.version_info)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sys.version)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Favourite salty is pretzels with 100 calories
-Favourite sweet is cookies with 180 calories
-Favourite veggie is carrots with 20 calories</code></pre>
+<pre><code>linux
+cpython
+sys.version_info(major=3, minor=14, micro=3, releaselevel='final', serial=0)
+3.14.3 (main, Feb  4 2026, 13:50:59) [GCC 13.3.0]</code></pre>
 </div>
 </div>
 <ul>
-<li>Can also be used to swap without a temporary variables</li>
-<li>Using the normal syntax</li>
-</ul>
-<div id="22bede3a" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bubble_sort(a):</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(a)):</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(a)):</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> a[i] <span class="op">&lt;</span> a[i <span class="op">-</span> <span class="dv">1</span>]:</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                temp <span class="op">=</span> a[i]</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                a[i] <span class="op">=</span> a[i <span class="op">-</span> <span class="dv">1</span>]</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                a[i <span class="op">-</span> <span class="dv">1</span>] <span class="op">=</span> temp</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"pretzels"</span>, <span class="st">"carrots"</span>, <span class="st">"arugula"</span>, <span class="st">"bacon"</span>]</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>bubble_sort(names)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>['arugula', 'bacon', 'carrots', 'pretzels']</code></pre>
-</div>
-</div>
+<li>Python 3’s minor versions update relatively often
 <ul>
-<li>We can rewrite this with unpacking syntax</li>
-</ul>
-<div id="e285030e" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bubble_sort(a):</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(a)):</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(a)):</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> a[i] <span class="op">&lt;</span> a[i <span class="op">-</span> <span class="dv">1</span>]:</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>                a[i <span class="op">-</span> <span class="dv">1</span>], a[i] <span class="op">=</span> a[i], a[i <span class="op">-</span> <span class="dv">1</span>] <span class="co"># swap</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"pretzels"</span>,  <span class="st">"carrots"</span>, <span class="st">"arugula"</span>, <span class="st">"bacon"</span>]</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>bubble_sort(names)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>['arugula', 'bacon', 'carrots', 'pretzels']</code></pre>
-</div>
-</div>
-<ul>
-<li>How does this work?
-<ul>
-<li>Right side is evaluated and stored in a temporary tuple</li>
-<li>The left side is then assigned via unpacking of this temporary right side tuple</li>
-<li>Temporary tuple then ceases to exist at the end of the process</li>
+<li>These add new features, deprecate or remove old ones</li>
+<li>The <a href="http://docs.python.org/3/whatsnew/index.html">Release Notes</a> are the best place to keep track of the updates</li>
 </ul></li>
-<li>A common use case is in unpacking lists generated in <code>for</code> loop expressions, e.g.</li>
-</ul>
-<div id="579ce14f" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>snacks <span class="op">=</span> [(<span class="st">"bacon"</span>, <span class="dv">350</span>), (<span class="st">"donut"</span>, <span class="dv">240</span>), (<span class="st">"muffin"</span>, <span class="dv">190</span>)]</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> rank, (name, calories) <span class="kw">in</span> <span class="bu">enumerate</span>(snacks, <span class="dv">1</span>):</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>rank<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss"> as </span><span class="sc">{</span>calories<span class="sc">}</span><span class="ss"> calories"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>1: bacon as 350 calories
-2: donut as 240 calories
-3: muffin as 190 calories</code></pre>
-</div>
-</div>
-<ul>
-<li><p>This is the classic example of <em>pythonic</em></p></li>
-<li><p>Short, but clear to see what is happening</p>
-<ul>
-<li>No indices, which clutter the code with noise</li>
-</ul></li>
-<li><p>Unpacking can also be used for</p>
-<ol type="1">
-<li>Unpacking list construction</li>
-<li>Function arguments</li>
-<li>Keyword arguments</li>
-<li>Multiple return values</li>
-<li>Structural pattern matching</li>
-<li>etc.</li>
-</ol></li>
-<li><p>Unpacking does not work for assignment expressions</p></li>
-<li><p>Requires you to be careful with your data structure to ensure the pattern matching works</p></li>
+<li>There is also constant evolution of community packages</li>
 </ul>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
 <ul>
-<li>Python provides unpacking syntax for assigning multiple values in one statement</li>
-<li>Unpacking uses generalised pattern matching
+<li>Python 3 is the sole actively maintained and developed python version</li>
+<li>It can be unclear what python is installed on a computer
 <ul>
-<li>Can be applied to any iterable</li>
-<li>including iterables of iterables</li>
+<li>Use <code>--version</code> or <code>sys</code> to verify</li>
 </ul></li>
-<li>Unpacking reduces code noise by removing indices, enhancing clarity</li>
 </ul>
 
 
@@ -855,13 +741,13 @@ Favourite veggie is carrots with 20 calories</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../Chapter_01/Item_004/item_004.html" class="pagination-link" aria-label="Item 4: Write Helper Functions instead of Complex Expressions">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Item 4: Write Helper Functions instead of Complex Expressions</span>
+      <a href="../../Chapter_01/Chapter_01.html" class="pagination-link" aria-label="Chapter 1: Pythonic Thinking">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Chapter 1: Pythonic Thinking</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../Chapter_01/Item_006/item_006.html" class="pagination-link" aria-label="Item 6: Always surround single-element tuples with Parentheses">
-        <span class="nav-page-text">Item 6: Always surround single-element tuples with Parentheses</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../Chapter_01/Item_002/item_002.html" class="pagination-link" aria-label="Item 2: Follow the PEP Style Guide">
+        <span class="nav-page-text">Item 2: Follow the PEP Style Guide</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
