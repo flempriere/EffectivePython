@@ -1,0 +1,96 @@
+---
+title: "Item 3: Never Expect Python to Detect Errors at Compile Time"
+---
+
+## Notes
+
+- Python doesn't have a strict compile time
+- It's an interpreted language
+- When a python program is loaded
+    - Source code is parsed into abstract syntax trees
+    - Checked for obvious syntax errors
+        - This will raise a `SyntaxError`
+
+```{python}
+if True # Bad Syntax
+    print("hello")
+```
+
+    - Errors in literals can also be caught
+
+```{python}
+    1.3j5 # Bad number
+```
+
+- Not likely to get much than that
+    - Basic tokenization errors
+    - Parse errors
+
+- Because python is dynamic, variable definitions and lifetimes are difficult to track
+
+- Means that something obviously wrong like below, is not strictly invalid, so can't be flagged as an error at parse time
+
+```{python}
+def bad_reference():
+    print(local_var)
+    local_var = 123
+```
+
+- The error will only trip once we try to execute it
+
+```{python}
+    bad_reference()
+```
+
+- To emphasise this issue, we can see that in the function below, sometimes `x` is valid, sometimes not
+
+```{python}
+def sometimes_ok(x):
+    if x:
+        local_var = 123
+    print(local_var)
+```
+
+- If we call it, with a truthful value for `x`, every work fine
+
+```{python}
+sometimes_ok(True)
+```
+
+- If not,
+
+```{python}
+sometimes_ok(False)
+```
+
+- Python can also struggle with mathematical errors, e.g.
+
+```{python}
+def bad_math():
+    return 1 / 0
+
+
+bad_math()
+```
+
+- Can't immediately infer this is wrong because the `/` operator might have been overloaded
+- Some other problems python will fail to statically detect are
+
+    1. undefined methods
+    2. too many or too few arguments to a function call
+    3. mismatched return types
+
+- Linting tools like [Flake 8](../Item_002/item_002.qmd#automation) and Ruff (see above) can help catch these
+    - More advanced techniques are *type checkers*
+    - We'll discuss these later
+- Even with these tools its important to be aware that most python errors will be caught at run time
+    - This is because python prioritises run time flexibility
+- Therefore it's important to,
+
+    1. Check assumptions are correct at run time
+    2. Verify program correctness with automated tests
+
+## Things to Remember
+
+- Python detects most errors at run time
+- Community projects like linters and type checkers can help catch some types of errors
