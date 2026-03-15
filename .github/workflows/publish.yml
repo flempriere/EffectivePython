@@ -78,6 +78,7 @@ jobs:
 
           # Stage generated Markdown files (use -- to protect the pathspec)
           git add -- '**/*.md' || true
+          git add -- '**/*.ipynb' || true
 
           if ! git diff --cached --quiet; then
             git commit -m "Update generated Markdown"
