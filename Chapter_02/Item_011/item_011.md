@@ -1,6 +1,6 @@
 # Item 11: Prefer Interpolated F-strings over C-Style Format Strings and
-`str.format`
 
+`str.format`
 
 - [Notes](#notes)
   - [C Style Formatting](#c-style-formatting)
