@@ -274,22 +274,12 @@ print(formatted)
 
 # formatting a string
 string = "my string"
-formatted = format(b, "^20s")
+formatted = format(string, "^20s")
 print("*", formatted, "*")
 ```
 
     1,234.57
-
-    NameError: name 'b' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[13], line 8
-          6 # formatting a string
-          7 string = "my string"
-    ----> 8 formatted = format(b, "^20s")
-          9 print("*", formatted, "*")
-
-    NameError: name 'b' is not defined
+    *      my string       *
 
 - To format multiple values together we can use the `str.format` method
 - Placeholders are specified with `{}` rather than `%`
