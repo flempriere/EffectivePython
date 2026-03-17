@@ -5,17 +5,17 @@
   sequence manipulation
   - More ergonomic than Perl
 - Python has found broader use for
-  1.  parsing text
-  2.  generating structured data
-  3.  inspecting file formats
-  4.  analysing logs
-  5.  etc.
+  1. parsing text
+  2. generating structured data
+  3. inspecting file formats
+  4. analysing logs
+  5. etc.
 - `bytes` and `str` are python types for
-  1.  Interfacing with natural language text
-  2.  Manipulating low-level binary data formats
-  3.  Perform I/O and communicate with the outside world
+  1. Interfacing with natural language text
+  2. Manipulating low-level binary data formats
+  3. Perform I/O and communicate with the outside world
 - Python abstracts over character types, lists and other sequences to
   provide a common interface for
-  1.  Indexing
-  2.  Sub-sequencing
-  3.  more…
+  1. Indexing
+  2. Sub-sequencing
+  3. more…

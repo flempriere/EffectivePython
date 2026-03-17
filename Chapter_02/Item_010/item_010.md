@@ -1,16 +1,15 @@
 # Item 10: Know the difference between `bytes` and `str`
 
-
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
 
 ## Notes
 
 - Python has two types for raw character data sequences
-  1.  `bytes`
+  1. `bytes`
       - Contains raw unsigned 8-bit values
       - Typically reported as ASCII encodings
-  2.  `str`
+  2. `str`
       - Contains unicode *code points*
       - Represent textual characters from human languages
 
@@ -55,8 +54,8 @@ print(a)
   - UTF-8 (ideally)
 - The split leads to two scenarios
 
-1.  Operating on raw 8-bit sequences of UTF-8 encoded strings
-2.  Operating on unicode strings of unspecified encoding
+1. Operating on raw 8-bit sequences of UTF-8 encoded strings
+2. Operating on unicode strings of unspecified encoding
 
 - Typically need helper functions
   - Let’s you convert, but enforce expectations
