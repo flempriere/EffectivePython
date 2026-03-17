@@ -117,13 +117,14 @@ blue_bytes = b"blue"
 blue_str = "blue"
 
 # bytes with bytes and str with str works
-print(b"red %s" blue_bytes)
-print("red %s", blue_str)
+print(b"red %s" % blue_bytes)
+print("red %s" % blue_str)
 ```
 
 - Can't pass a `str` to a `bytes` format string
 ```{python}
-print(b"red %s" blue_str)
+blue_str = "blue"
+print(b"red %s" % blue_str)
 ```
 
 - *But can* pass `bytes` to a `str`
@@ -133,6 +134,7 @@ print(b"red %s" blue_str)
     - This is then injected into the string
 
 ```{python}
+blue_bytes = b"blue"
 print("red %s" % blue_bytes)
 print(f"red {blue_bytes}")
 ```
