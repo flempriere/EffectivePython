@@ -157,27 +157,28 @@ blue_bytes = b"blue"
 blue_str = "blue"
 
 # bytes with bytes and str with str works
-print(b"red %s" blue_bytes)
-print("red %s", blue_str)
+print(b"red %s" % blue_bytes)
+print("red %s" % blue_str)
 ```
 
-    SyntaxError: invalid syntax. Perhaps you forgot a comma? (4166547504.py, line 5)
-      Cell In[8], line 5
-        print(b"red %s" blue_bytes)
-              ^
-    SyntaxError: invalid syntax. Perhaps you forgot a comma?
+    b'red blue'
+    red blue
 
 - Can’t pass a `str` to a `bytes` format string
 
 ``` python
-print(b"red %s" blue_str)
+blue_str = "blue"
+print(b"red %s" % blue_str)
 ```
 
-    SyntaxError: invalid syntax. Perhaps you forgot a comma? (1699062751.py, line 1)
-      Cell In[9], line 1
-        print(b"red %s" blue_str)
-              ^
-    SyntaxError: invalid syntax. Perhaps you forgot a comma?
+    TypeError: %b requires a bytes-like object, or an object that implements __bytes__, not 'str'
+    ---------------------------------------------------------------------------
+    TypeError                                 Traceback (most recent call last)
+    Cell In[9], line 2
+          1 blue_str = "blue"
+    ----> 2 print(b"red %s" % blue_str)
+
+    TypeError: %b requires a bytes-like object, or an object that implements __bytes__, not 'str'
 
 - *But can* pass `bytes` to a `str`
   - Or in an interpolated f-string
@@ -187,18 +188,13 @@ print(b"red %s" blue_str)
   - This is then injected into the string
 
 ``` python
+blue_bytes = b"blue"
 print("red %s" % blue_bytes)
 print(f"red {blue_bytes}")
 ```
 
-    NameError: name 'blue_bytes' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[10], line 1
-    ----> 1 print("red %s" % blue_bytes)
-          2 print(f"red {blue_bytes}")
-
-    NameError: name 'blue_bytes' is not defined
+    red b'blue'
+    red b'blue'
 
 ### File Handling
 
