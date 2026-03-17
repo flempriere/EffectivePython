@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../Chapter_02/Item_011/item_011.html" rel="next">
 <link href="../../Chapter_02/Chapter_02.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -242,6 +243,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Item 10: Know the difference between <code>bytes</code> and <code>str</code></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_02/Item_011/item_011.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 11: Prefer Interpolated F-strings over C-Style Format Strings and <code>str.format</code></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -254,7 +261,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a>
+  <ul>
+  <li><a href="#type-compatibility" id="toc-type-compatibility" class="nav-link" data-scroll-target="#type-compatibility">Type Compatibility</a></li>
+  <li><a href="#file-handling" id="toc-file-handling" class="nav-link" data-scroll-target="#file-handling">File Handling</a></li>
+  </ul></li>
   <li><a href="#things-to-remember" id="toc-things-to-remember" class="nav-link" data-scroll-target="#things-to-remember">Things to Remember</a></li>
   </ul>
 <div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/flempriere/EffectivePython/" target="_blank"><i class="bi bi-github"></i>GitHub Repo</a></li><li><a href="https://mybinder.org/v2/gh/flempriere/EffectivePython/HEAD?urlpath=vscode" target="_blank"><i class="bi bi-journals"></i>Launch Binder</a></li></ul></div></nav>
@@ -298,7 +309,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ol></li>
 </ul>
-<div id="c72248af" class="cell" data-execution_count="1">
+<div id="ee35b522" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A demonstration of bytes</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="st">b"h</span><span class="ch">\x65</span><span class="st">llo"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(a))</span>
@@ -310,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 b'hello'</code></pre>
 </div>
 </div>
-<div id="2c2fe7e6" class="cell" data-execution_count="2">
+<div id="2b42a591" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="st">"a</span><span class="ch">\u0300</span><span class="st"> propos"</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(a))</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(a))</span>
@@ -364,7 +375,7 @@ à propos</code></pre>
 </ul></li>
 <li>First to enforce that we have a unicode string</li>
 </ul>
-<div id="c7e333d7" class="cell" data-execution_count="3">
+<div id="22c27db7" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> to_str(bytes_or_str):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(bytes_or_str, <span class="bu">bytes</span>):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        value <span class="op">=</span> bytes_or_str.decode(<span class="st">"utf-8"</span>) <span class="co">#decode bytes using UTF-8</span></span>
@@ -382,7 +393,7 @@ à propos</code></pre>
 <ul>
 <li>Second that we have a raw UTF-8 string</li>
 </ul>
-<div id="66afaed0" class="cell" data-execution_count="4">
+<div id="55975077" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> to_bytes(bytes_or_str):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(bytes_or_str, <span class="bu">str</span>):</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        value <span class="op">=</span> bytes_or_str.encode(<span class="st">"utf-8"</span>)</span>
@@ -397,6 +408,8 @@ à propos</code></pre>
 'bar'</code></pre>
 </div>
 </div>
+<section id="type-compatibility" class="level3">
+<h3 class="anchored" data-anchor-id="type-compatibility">Type Compatibility</h3>
 <ul>
 <li><code>bytes</code> and <code>str</code> seem to behave the same way
 <ul>
@@ -407,7 +420,7 @@ à propos</code></pre>
 <li>Cannot concatenate <code>bytes</code> to <code>str</code> or vice-versa</li>
 </ul></li>
 </ul>
-<div id="ccb3d2a5" class="cell" data-execution_count="5">
+<div id="9041e144" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">b"one"</span> <span class="op">+</span> <span class="st">b"two"</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"one"</span> <span class="op">+</span> <span class="st">"two"</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">b"one"</span> <span class="op">+</span> <span class="st">"two"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -434,7 +447,7 @@ onetwo</code></pre>
 <li>But again, not across the types</li>
 </ul></li>
 </ul>
-<div id="ef3bcb1b" class="cell" data-execution_count="6">
+<div id="f5e41a82" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">b"red"</span> <span class="op">&gt;</span> <span class="st">b"blue"</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">"red"</span> <span class="op">&gt;</span> <span class="st">"blue"</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">"red"</span> <span class="op">&gt;</span> <span class="st">b"blue"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -454,7 +467,7 @@ onetwo</code></pre>
 <ul>
 <li>Comparing <code>bytes</code> to <code>str</code> for equality always evaluates to <code>False</code></li>
 </ul>
-<div id="b534c7d6" class="cell" data-execution_count="7">
+<div id="afae664c" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">"foo"</span> <span class="op">==</span> <span class="st">"foo"</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">b"foo"</span> <span class="op">==</span> <span class="st">b"foo"</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">b"foo"</span> <span class="op">==</span> <span class="st">"foo"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -462,9 +475,193 @@ onetwo</code></pre>
 <pre><code>False</code></pre>
 </div>
 </div>
+<ul>
+<li>The <code>%</code> operator works with format strings for both</li>
+</ul>
+<div id="a200a91e" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>blue_bytes <span class="op">=</span> <span class="st">b"blue"</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>blue_str <span class="op">=</span> <span class="st">"blue"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># bytes with bytes and str with str works</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">b"red %s"</span> blue_bytes)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"red </span><span class="sc">%s</span><span class="st">"</span>, blue_str)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 5</span>
+<span class="ansi-red-fg">    </span><span class="ansi-red-fg">print(b"red %s" blue_bytes)</span>
+          ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid syntax. Perhaps you forgot a comma?
+</pre>
+</div>
+</div>
+</div>
+<ul>
+<li>Can’t pass a <code>str</code> to a <code>bytes</code> format string</li>
+</ul>
+<div id="ce04f49c" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">b"red %s"</span> blue_str)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[9]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-red-fg">    </span><span class="ansi-red-fg">print(b"red %s" blue_str)</span>
+          ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid syntax. Perhaps you forgot a comma?
+</pre>
+</div>
+</div>
+</div>
+<ul>
+<li><em>But can</em> pass <code>bytes</code> to a <code>str</code>
+<ul>
+<li>Or in an interpolated f-string</li>
+</ul></li>
+<li>However, the code doesn’t behave as expected
+<ul>
+<li>The <code>bytes</code> text is converted to its <code>__repr__</code> i.e.&nbsp;the string <code>"b'text'"</code></li>
+<li>This is then injected into the string</li>
+</ul></li>
+</ul>
+<div id="2bd82da8" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"red </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> blue_bytes)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"red </span><span class="sc">{</span>blue_bytes<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[10]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">red </span><span style="font-weight:bold;color:rgb(175,95,135)">%s</span><span class="ansi-yellow-fg">"</span> % <span class="ansi-yellow-bg">blue_bytes</span>)
+<span class="ansi-green-fg">      2</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">red </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>blue_bytes<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
+
+<span class="ansi-red-fg">NameError</span>: name 'blue_bytes' is not defined</pre>
+</div>
+</div>
+</div>
+</section>
+<section id="file-handling" class="level3">
+<h3 class="anchored" data-anchor-id="file-handling">File Handling</h3>
+<ul>
+<li>Operations involving file handles (the result of the <code>open</code> built-in) expect Unicode strings by default</li>
+<li>The code below which attempts to write some binary data will break</li>
+</ul>
+<div id="d647afba" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os  <span class="co"># so we can clean up the file</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data.bin"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        f.write(<span class="st">b"</span><span class="ch">\xf1\xf2\xf3\xf4\xf4</span><span class="st">"</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># clean up</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">type</span>(e)<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> os.path.exists(<span class="st">"data.bin"</span>):</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        os.remove(<span class="st">"data.bin"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'TypeError'&gt;: write() argument must be str, not bytes</code></pre>
+</div>
+</div>
+<ul>
+<li>Error arises because <code>"w"</code> means <em>write</em> which default to text
+<ul>
+<li>Uses <code>str.encode</code> with the default text encoding</li>
+<li>Need to use <code>"wb"</code> for <em>write binary</em></li>
+</ul></li>
+<li>This problem is mirrored for reading</li>
+</ul>
+<div id="1b2d67da" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># corrected write</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data.bin"</span>, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">b"</span><span class="ch">\xf1\xf2\xf3\xf4\xf5</span><span class="st">"</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:  <span class="co"># failed read</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data.bin"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> f.read()</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(data)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">type</span>(e)<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> os.path.exists(<span class="st">"data.bin"</span>):</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>        os.remove(<span class="st">"data.bin"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'UnicodeDecodeError'&gt;: 'utf-8' codec can't decode byte 0xf1 in position 0: invalid continuation byte</code></pre>
+</div>
+</div>
+<ul>
+<li>Again <code>"r"</code> or <em>read mode</em>
+<ul>
+<li>Uses default text encoding to decode the binary data (via <code>bytes.decode</code>)</li>
+<li></li>
+<li>We need <code>"rb"</code> or <em>read bytes mode</em></li>
+</ul></li>
+<li>For most systems UTF-8 is the default text encoding
+<ul>
+<li>Can’t read arbitrary binary</li>
+</ul></li>
+<li>The fixed version is</li>
+</ul>
+<div id="70465ef5" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># write the binary data out</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data.bin"</span>, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>        f.write(<span class="st">b"</span><span class="ch">\xf1\xf2\xf3\xf4\xf5</span><span class="st">"</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># read the binary data back in</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data.bin"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> f.read()</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> data <span class="op">==</span> <span class="st">b"</span><span class="ch">\xf1\xf2\xf3\xf4\xf5</span><span class="st">"</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">type</span>(e)<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> os.path.exists(<span class="st">"data.bin"</span>):</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    os.remove(<span class="st">"data.bin"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>You can always specify the encoding to pass to the <code>open</code> function instead
+<ul>
+<li><code>cp1252</code> is an old windows text encoding</li>
+<li>Observe that here we use <code>"r"</code> mode</li>
+<li>We get an error if we use <code>"rb"</code></li>
+</ul></li>
+</ul>
+<div id="d99a84b2" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># write the binary data out</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data.bin"</span>, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>        f.write(<span class="st">b"</span><span class="ch">\xf1\xf2\xf3\xf4\xf5</span><span class="st">"</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># read the binary data back in under a different text encoding</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data.bin"</span>, <span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"cp1252"</span>) <span class="im">as</span> f:</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> f.read()</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(data)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">type</span>(e)<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> os.path.exists(<span class="st">"data.bin"</span>):</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    os.remove(<span class="st">"data.bin"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ñòóôõ</code></pre>
+</div>
+</div>
+</section>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li><code>bytes</code> contains sequences of 8-bit values</li>
+<li><code>str</code> contains sequences of Unicode code points</li>
+<li>Use helper functions to make sure inputs are the correct type of character sequence</li>
+<li><code>bytes</code> and <code>str</code> can’t be used together with operators</li>
+<li>To read or write binary use <code>"rb"</code> or <code>"wb"</code> as the opening mode respectively (b for binary)</li>
+<li>If you want to read/write text to a file be careful about the system default encoding
+<ul>
+<li>Explicitly pass the encoding to avoid surprises</li>
+</ul></li>
+</ul>
 
 
 </section>
@@ -877,6 +1074,9 @@ onetwo</code></pre>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../Chapter_02/Item_011/item_011.html" class="pagination-link" aria-label="Item 11: Prefer Interpolated F-strings over C-Style Format Strings and `str.format`">
+        <span class="nav-page-text">Item 11: Prefer Interpolated F-strings over C-Style Format Strings and <code>str.format</code></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
