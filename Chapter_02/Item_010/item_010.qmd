@@ -79,6 +79,9 @@ print(repr(to_str(b"foo")))
 print(repr(to_str("bar")))
 ```
 
+
+### Type Compatibility
+
 - `bytes` and `str` seem to behave the same way
     - But they are not compatible
 - Can concatenate `bytes` together, or `str` together
@@ -107,10 +110,132 @@ assert b"foo" == b"foo"
 print(b"foo" == "foo")
 ```
 
+- The `%` operator works with format strings for both
 
+```{python}
+blue_bytes = b"blue"
+blue_str = "blue"
 
+# bytes with bytes and str with str works
+print(b"red %s" blue_bytes)
+print("red %s", blue_str)
+```
 
+- Can't pass a `str` to a `bytes` format string
+```{python}
+print(b"red %s" blue_str)
+```
 
+- *But can* pass `bytes` to a `str`
+    - Or in an interpolated f-string
+- However, the code doesn't behave as expected
+    - The `bytes` text is converted to its `__repr__` i.e. the string `"b'text'"`
+    - This is then injected into the string
 
+```{python}
+print("red %s" % blue_bytes)
+print(f"red {blue_bytes}")
+```
+
+### File Handling
+
+- Operations involving file handles (the result of the `open` built-in) expect Unicode strings by default
+- The code below which attempts to write some binary data will break
+
+```{python}
+import os  # so we can clean up the file
+
+try:
+    with open("data.bin", "w") as f:
+        f.write(b"\xf1\xf2\xf3\xf4\xf4")
+except Exception as e:
+    # clean up
+    print(f"{type(e)}: {e}")
+    if os.path.exists("data.bin"):
+        os.remove("data.bin")
+```
+
+- Error arises because `"w"` means *write* which default to text
+    - Uses `str.encode` with the default text encoding
+    - Need to use `"wb"` for *write binary*
+- This problem is mirrored for reading
+
+```{python}
+import os
+
+# corrected write
+with open("data.bin", "wb") as f:
+    f.write(b"\xf1\xf2\xf3\xf4\xf5")
+
+try:  # failed read
+    with open("data.bin", "r") as f:
+        data = f.read()
+        print(data)
+except Exception as e:
+    print(f"{type(e)}: {e}")
+    if os.path.exists("data.bin"):
+        os.remove("data.bin")
+```
+
+- Again `"r"` or *read mode*
+    - Uses default text encoding to decode the binary data (via `bytes.decode`)
+    -
+    - We need `"rb"` or *read bytes mode*
+- For most systems UTF-8 is the default text encoding
+    -  Can't read arbitrary binary
+- The fixed version is
+
+```{python}
+import os
+
+try:
+    # write the binary data out
+    with open("data.bin", "wb") as f:
+        f.write(b"\xf1\xf2\xf3\xf4\xf5")
+
+    # read the binary data back in
+    with open("data.bin", "rb") as f:
+        data = f.read()
+        assert data == b"\xf1\xf2\xf3\xf4\xf5"
+
+except Exception as e:
+    print(f"{type(e)}: {e}")
+
+if os.path.exists("data.bin"):
+    os.remove("data.bin")
+```
+
+- You can always specify the encoding to pass to the `open` function instead
+    - `cp1252` is an old windows text encoding
+    - Observe that here we use `"r"` mode
+    - We get an error if we use `"rb"`
+
+```{python}
+import os
+
+try:
+    # write the binary data out
+    with open("data.bin", "wb") as f:
+        f.write(b"\xf1\xf2\xf3\xf4\xf5")
+
+    # read the binary data back in under a different text encoding
+    with open("data.bin", "r", encoding="cp1252") as f:
+        data = f.read()
+        print(data)
+
+except Exception as e:
+    print(f"{type(e)}: {e}")
+
+if os.path.exists("data.bin"):
+    os.remove("data.bin")
+```
 
 ## Things to Remember
+
+- `bytes` contains sequences of 8-bit values
+- `str` contains sequences of Unicode code points
+- Use helper functions to make sure inputs are the correct type of character sequence
+- `bytes` and `str` can't be used together with operators
+- To read or write binary use `"rb"` or `"wb"` as the opening mode respectively (b for binary)
+- If you want to read/write text to a file be careful about the system default encoding
+    - Explicitly pass the encoding to avoid surprises
