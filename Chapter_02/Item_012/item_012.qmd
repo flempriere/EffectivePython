@@ -23,7 +23,7 @@ print("foo bar")
     2. Using the `%s` format specifier with the `%` operator
     3. The default f-string formatting i.e. `f"{"foo bar"}"`
     4. Calling the `format` built-in
-    5. Calling the `__format__` dunder method
+    5. Calling the `__format__("s")` dunder method
     6. Calling the `__str__` dunder method
 
 ```{python}
@@ -32,7 +32,7 @@ print(str(foo))
 print("%s" % foo)
 print(f"{foo}")
 print(format(foo))
-print(foo.__format__())
+print(foo.__format__("s"))
 print(foo.__str__())
 ```
 
@@ -61,7 +61,7 @@ a = "\x07"
 print(repr(a))
 
 b = eval(repr(a))
-print(b)
+print(repr(b))
 assert a == b
 ```
 
@@ -77,7 +77,7 @@ print(repr(str_five))
 # using repr format specifiers
 
 print("Is %r == %r?" % (int_five, str_five))
-print(f"Is {int_value!r} == {str_value!r}?")
+print(f"Is {int_five!r} == {str_five!r}?")
 ```
 
 - When `str` is called on an argument
