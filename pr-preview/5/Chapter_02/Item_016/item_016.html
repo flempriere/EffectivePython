@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Item 6: Always surround single-element tuples with Parentheses – Effective Python: Notes</title>
+<title>Item 16: Prefer Catch-All Unpacking over Slicing – Effective Python: Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../Chapter_01/Item_007/item_007.html" rel="next">
-<link href="../../Chapter_01/Item_005/item_005.html" rel="prev">
+<link href="../../Chapter_02/Item_015/item_015.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -106,8 +105,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<meta property="og:title" content="Item 6: Always surround single-element tuples with Parentheses – Effective Python: Notes">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Item 16: Prefer Catch-All Unpacking over Slicing – Effective Python: Notes">
+<meta property="og:description" content="">
 <meta property="og:site_name" content="Effective Python: Notes">
 </head>
 
@@ -143,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_01/Chapter_01.html">Chapter 1: Pythonic Thinking</a></li><li class="breadcrumb-item"><a href="../../Chapter_01/Item_006/item_006.html">Item 6: Always surround single-element tuples with Parentheses</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_02/Chapter_02.html">Chapter 2: Strings and Slicing</a></li><li class="breadcrumb-item"><a href="../../Chapter_02/Item_016/item_016.html">Item 16: Prefer Catch-All Unpacking over Slicing</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -204,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Chapter_01/Item_006/item_006.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../Chapter_01/Item_006/item_006.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 6: Always surround single-element tuples with Parentheses</span></a>
   </div>
 </li>
@@ -275,7 +304,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Chapter_02/Item_016/item_016.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_02/Item_016/item_016.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Item 16: Prefer Catch-All Unpacking over Slicing</span></a>
   </div>
 </li>
@@ -299,9 +328,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_01/Chapter_01.html">Chapter 1: Pythonic Thinking</a></li><li class="breadcrumb-item"><a href="../../Chapter_01/Item_006/item_006.html">Item 6: Always surround single-element tuples with Parentheses</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_02/Chapter_02.html">Chapter 2: Strings and Slicing</a></li><li class="breadcrumb-item"><a href="../../Chapter_02/Item_016/item_016.html">Item 16: Prefer Catch-All Unpacking over Slicing</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Item 6: Always surround single-element tuples with Parentheses</h1>
+<h1 class="title">Item 16: Prefer Catch-All Unpacking over Slicing</h1>
 </div>
 
 
@@ -321,215 +350,245 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
-<li>Python has multiple forms for a tuple literal
-<ol type="1">
-<li><p>A comma-separated list denoted by parentheses</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> first <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<li>A limitation of basic unpacking is that you must know the length of the sequence being unpacked
 <ul>
-<li>This can optionally have a trailing comma</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> second <span class="op">=</span> (</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>     <span class="dv">1</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>     <span class="dv">2</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>     <span class="dv">3</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>Makes multiple lines easier to read</li>
-<li>Easier to edit, if we later append elements</li>
+<li>For example, lets say we want to extract the two oldest car’s from a list</li>
+<li>Below fails because it expects two items but encounters more than two</li>
 </ul></li>
-<li><p>Comma-separated list without parentheses</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> third <span class="op">=</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</ul>
+<div id="f4911049" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>car_ages <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">15</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>car_ages_descending <span class="op">=</span> <span class="bu">sorted</span>(car_ages, reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>oldest, second_oldest <span class="op">=</span> car_ages_descending</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-green-fg">      1</span> car_ages = [<span class="ansi-green-fg">0</span>, <span class="ansi-green-fg">9</span>, <span class="ansi-green-fg">4</span>, <span class="ansi-green-fg">8</span>, <span class="ansi-green-fg">7</span>, <span class="ansi-green-fg">20</span>, <span class="ansi-green-fg">19</span>, <span class="ansi-green-fg">1</span>, <span class="ansi-green-fg">6</span>, <span class="ansi-green-fg">15</span>]
+<span class="ansi-green-fg">      2</span> car_ages_descending = <span style="color:rgb(0,135,0)">sorted</span>(car_ages, reverse=<span style="font-weight:bold;color:rgb(0,135,0)">True</span>)
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> oldest, second_oldest = car_ages_descending
+
+<span class="ansi-red-fg">ValueError</span>: too many values to unpack (expected 2, got 10)</pre>
+</div>
+</div>
+</div>
 <ul>
-<li>Again can have an optional trailing comma</li>
+<li>It seems natural to attempt to resolve the above with indices and slicing (see <a href="../../Chapter_02/Item_014/item_014.html">Item 14</a>)</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a> fourth <span class="op">=</span> <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-</ol></li>
-</ul>
-<div id="ca5f8089" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>first <span class="op">=</span> (<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>second <span class="op">=</span> (</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">3</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>third <span class="op">=</span> <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>fourth <span class="op">=</span> <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"First: </span><span class="sc">{</span>first<span class="sc">}</span><span class="ch">\n</span><span class="ss">Second: </span><span class="sc">{</span>second<span class="sc">}</span><span class="ch">\n</span><span class="ss">Third: </span><span class="sc">{</span>third<span class="sc">}</span><span class="ch">\n</span><span class="ss">Fourth: </span><span class="sc">{</span>fourth<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="58858d64" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>car_ages <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">15</span>]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>car_ages_descending <span class="op">=</span> <span class="bu">sorted</span>(car_ages, reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>oldest <span class="op">=</span> car_ages_descending[<span class="dv">0</span>]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>second_oldest <span class="op">=</span> car_ages_descending[<span class="dv">1</span>]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>others <span class="op">=</span> car_ages_descending[<span class="dv">2</span>:]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"oldest: </span><span class="sc">{</span>oldest<span class="sc">}</span><span class="ss">, second oldest: </span><span class="sc">{</span>second_oldest<span class="sc">}</span><span class="ss">, others: </span><span class="sc">{</span>others<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>First: (1, 2, 3)
-Second: (1, 2, 3)
-Third: (1, 2, 3)
-Fourth: (1, 2, 3)</code></pre>
+<pre><code>oldest: 20, second oldest: 19, others: [15, 9, 8, 7, 6, 4, 1, 0]</code></pre>
 </div>
 </div>
 <ul>
-<li>All of these are treated as the same</li>
-</ul>
-<div id="e667f769" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> first <span class="op">==</span> second <span class="op">==</span> third <span class="op">==</span> fourth</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<li>Works but is noisy
 <ul>
-<li>Have to be careful of special cases</li>
-<li>To create an empty tuple</li>
-</ul>
-<div id="d476149b" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>empty <span class="op">=</span> ()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<li>Would be nice to have the clean syntax of the unpacking</li>
+</ul></li>
+<li>Also prone to off-by-one errors
 <ul>
-<li>For single element tuples, we have to include the trailing comma
+<li>If we modify the size of one set, we have to make sure the other subsets are synchronised</li>
+</ul></li>
+<li>Python provides <em>catch-all</em> unpacking via the <code>*</code> operator
 <ul>
-<li>Otherwise it is interpreted as a single value enclosed in parentheses</li>
+<li>Let’s part of an unpacking expression receive all other values that aren’t matched</li>
 </ul></li>
 </ul>
-<div id="3a60c6b1" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>single_with_comma <span class="op">=</span> (<span class="dv">1</span>,)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>single_without <span class="op">=</span> (<span class="dv">1</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> single_without <span class="op">!=</span> single_with_comma</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> single_without <span class="op">==</span> single_with_comma[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<ul>
-<li>In theory can use the second form with a trailing comma</li>
-</ul>
-<div id="d12e4d89" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>single_value_with_comma <span class="op">=</span> (<span class="dv">1</span>,)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> single_value_with_comma <span class="op">==</span> single_with_comma</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<ul>
-<li><strong>However</strong> the third form can cause issues
-<ul>
-<li>Following example shows an e-commerce site function call</li>
-<li>There is an insidious bug</li>
-</ul></li>
-</ul>
-<div id="6fa157cc" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># placeholder functions</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_refund(value, tax, discount):</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_order_value(user, order_id):</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_tax(address, dest):</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> adjust_discount(user):</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Order:</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span>: <span class="bu">int</span></span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    dest: <span class="bu">str</span></span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> User:</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    name: <span class="bu">str</span></span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    address: <span class="bu">str</span></span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>user <span class="op">=</span> User(<span class="st">"Alice"</span>, <span class="st">"Bobsville"</span>)</span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> Order(<span class="dv">1</span>, <span class="st">"Bobsville"</span>)</span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>to_refund <span class="op">=</span> (</span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    calculate_refund(</span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>        get_order_value(user, order.<span class="bu">id</span>),</span>
-<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>        get_tax(user.address, order.dest),</span>
-<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>        adjust_discount(user) <span class="op">+</span> <span class="fl">0.1</span>,</span>
-<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(to_refund))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="6def1d90" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>car_ages <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">15</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>car_ages_descending <span class="op">=</span> <span class="bu">sorted</span>(car_ages, reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>oldest, second_oldest, <span class="op">*</span>others <span class="op">=</span> car_ages_descending</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"oldest: </span><span class="sc">{</span>oldest<span class="sc">}</span><span class="ss">, second oldest: </span><span class="sc">{</span>second_oldest<span class="sc">}</span><span class="ss">, others: </span><span class="sc">{</span>others<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;class 'tuple'&gt;</code></pre>
+<pre><code>oldest: 20, second oldest: 19, others: [15, 9, 8, 7, 6, 4, 1, 0]</code></pre>
 </div>
 </div>
 <ul>
-<li>The trailing comma above has accidentally converted the <code>to_refund</code> variable to a tuple</li>
-<li>This commonly happens when editing tuples, or other sequence collections</li>
-<li>Other disadvantage of the second form
+<li>Code is shorter, easier to read and less brittle to changes</li>
+<li>Starred expression can appear at any point in an unpacking
 <ul>
-<li>Can’t easy move assignment into expression, e.g.</li>
+<li>Start, end, middle etc.</li>
+<li>Benefits any time we have one optional slice</li>
+<li>E.g. if we instead wanted to extract the oldest and the youngest car</li>
 </ul></li>
 </ul>
-<div id="83231f45" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>value_a <span class="op">=</span> <span class="dv">1</span>, <span class="co"># No parentheses, right</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>list_b <span class="op">=</span> [<span class="dv">1</span>, ] <span class="co">#No parentheses, wrong -&gt; list of int, not list of tuple</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>list_c <span class="op">=</span> [(<span class="dv">1</span>,)] <span class="co"># Parentheses, correct</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'A:'</span>, value_a)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'B:'</span>, list_b)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'C:'</span>, list_c)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="49fc9dd7" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>car_ages <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">15</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>car_ages_descending <span class="op">=</span> <span class="bu">sorted</span>(car_ages, reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>oldest, <span class="op">*</span>others, youngest <span class="op">=</span> car_ages_descending</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"oldest: </span><span class="sc">{</span>oldest<span class="sc">}</span><span class="ss">, youngest: </span><span class="sc">{</span>youngest<span class="sc">}</span><span class="ss">, others: </span><span class="sc">{</span>others<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>A: (1,)
-B: [1]
-C: [(1,)]</code></pre>
+<pre><code>oldest: 20, youngest: 0, others: [19, 15, 9, 8, 7, 6, 4, 1]</code></pre>
 </div>
 </div>
 <ul>
-<li>Single element tuple on the left side of expression can also be used for unpacking</li>
-</ul>
-<div id="f36b84e5" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>user <span class="op">=</span> <span class="st">"Alice"</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_coupon_codes(user):</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [[<span class="st">"DEAL20"</span>]]</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>((a1,),) <span class="op">=</span> get_coupon_codes(user)</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>(a2,) <span class="op">=</span> get_coupon_codes(user)</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>((a3),) <span class="op">=</span> get_coupon_codes(user)</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>(a4) <span class="op">=</span> get_coupon_codes(user)</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>(a5,) <span class="op">=</span> get_coupon_codes(user)</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>a6 <span class="op">=</span> get_coupon_codes(user)</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> a1 <span class="kw">not</span> <span class="kw">in</span> (a2, a3, a4, a5, a6)</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> a2 <span class="op">==</span> a3 <span class="op">==</span> a5</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> a4 <span class="op">==</span> a6</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<li>Whenever you use a star expression, you must have at least one required match,
 <ul>
-<li>If you don’t understand what has happened above, let’s look at the individual variables</li>
-</ul>
-<div id="94b206df" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"a1: </span><span class="sc">{</span>a1<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"a2: </span><span class="sc">{</span>a2<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"a3: </span><span class="sc">{</span>a3<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"a4: </span><span class="sc">{</span>a4<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"a5: </span><span class="sc">{</span>a5<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"a6: </span><span class="sc">{</span>a6<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>a1: DEAL20
-a2: ['DEAL20']
-a3: ['DEAL20']
-a4: [['DEAL20']]
-a5: ['DEAL20']
-a6: [['DEAL20']]</code></pre>
-</div>
-</div>
-<ul>
-<li>Sometimes autoformatters and linters can flag a trailing comma or make it more visible</li>
-<li>Often not
-<ul>
-<li>Won’t be until a test breaks because something that should be a collection suddenly isn’t</li>
-<li>Or something that shouldn’t be a collection suddenly is</li>
+<li>e.g.&nbsp;Below generates a syntax error</li>
 </ul></li>
-<li>Solution is to always use trailing commas and surround in parentheses</li>
+</ul>
+<div id="44e7ddd1" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>car_ages <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">15</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>car_ages_descending <span class="op">=</span> <span class="bu">sorted</span>(car_ages, reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">*</span>others <span class="op">=</span> car_ages_descending</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-red-fg">    </span><span class="ansi-red-fg">*others = car_ages_descending</span>
+    ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> starred assignment target must be in a list or tuple
+</pre>
+</div>
+</div>
+</div>
+<ul>
+<li>You can only use <em>one</em> catch-all expression in an unpacking at the same level
+<ul>
+<li>e.g.&nbsp;Below fails too</li>
+</ul></li>
+</ul>
+<div id="e68cb0a8" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>first, <span class="op">*</span>middle, <span class="op">*</span>second_middle, last <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-red-fg">    </span><span class="ansi-red-fg">first, *middle, *second_middle, last = [1,2,3,4]</span>
+    ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> multiple starred expressions in assignment
+</pre>
+</div>
+</div>
+</div>
+<ul>
+<li>You can use multiple catch-all’s for different levels in a nested structure
+<ul>
+<li>Generally try to avoid this</li>
+<li>It can make things hard to read</li>
+</ul></li>
+</ul>
+<div id="f7d0a0af" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>car_inventory <span class="op">=</span> {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Downtown"</span>: (<span class="st">"Silver Shadow"</span>, <span class="st">"Pinto"</span>, <span class="st">"DMC"</span>),</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Airport"</span> : (<span class="st">"Skyline"</span>, <span class="st">"Viper"</span>, <span class="st">"Gremlin"</span>, <span class="st">"Nova"</span>),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>((loc1, (best1, <span class="op">*</span>rest1)),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a> (loc2, (best2, <span class="op">*</span>rest2))) <span class="op">=</span> car_inventory.items()</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Best at </span><span class="sc">{</span>loc1<span class="sc">}</span><span class="ss"> is </span><span class="sc">{</span>best1<span class="sc">}</span><span class="ss">, others are </span><span class="sc">{</span>rest1<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Best at </span><span class="sc">{</span>loc2<span class="sc">}</span><span class="ss"> is </span><span class="sc">{</span>best2<span class="sc">}</span><span class="ss">, others are </span><span class="sc">{</span>rest2<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Best at Downtown is Silver Shadow, others are ['Pinto', 'DMC']
+Best at Airport is Skyline, others are ['Viper', 'Gremlin', 'Nova']</code></pre>
+</div>
+</div>
+<ul>
+<li>Starred expressions always become lists</li>
+<li>If there is nothing left to unpack then the list is empty
+<ul>
+<li>Very useful when working with lists of at least <span class="math inline">\(N\)</span> elements</li>
+</ul></li>
+</ul>
+<div id="544b3950" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>short_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>first, second, <span class="op">*</span>rest <span class="op">=</span> short_list</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"First: </span><span class="sc">{</span>first<span class="sc">}</span><span class="ss">, Second: </span><span class="sc">{</span>second<span class="sc">}</span><span class="ss">, Rest: </span><span class="sc">{</span>rest<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>First: 1, Second: 2, Rest: []</code></pre>
+</div>
+</div>
+<ul>
+<li>You can unpack arbitrary iterators
+<ul>
+<li>Typically not very useful with basic multiple assignment</li>
+<li>Here we unpack values iterating over a range</li>
+<li>In this case probably more useful to assign to a list matching the unpacking pattern</li>
+</ul></li>
+</ul>
+<div id="b76eaa13" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> <span class="bu">iter</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>first, second <span class="op">=</span> it</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>first<span class="sc">}</span><span class="ss"> and </span><span class="sc">{</span>second<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1 and 2</code></pre>
+</div>
+</div>
+<ul>
+<li>Much more useful when we have starred expressions</li>
+<li>E.g. iterating over CSV data
+<ul>
+<li>Iterator yields rows from the CSV (+ the header)</li>
+</ul></li>
+</ul>
+<p>We could process this using indices and slices</p>
+<div id="c1a1d19b" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_csv():</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">yield</span> (<span class="st">"Date"</span>, <span class="st">"Make"</span>, <span class="st">"Model"</span>, <span class="st">"Year"</span>, <span class="st">"Price"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> (<span class="st">"2019-03-25"</span>, <span class="st">"Honda"</span>, <span class="st">"Fit"</span>, <span class="st">"2010"</span>, <span class="st">"$3400"</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> (<span class="st">"2019-03-26"</span>, <span class="st">"Ford"</span>, <span class="st">"F150"</span>, <span class="st">"2008"</span>, <span class="st">"$2400"</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>all_csv_rows <span class="op">=</span> <span class="bu">list</span>(generate_csv())</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>header <span class="op">=</span> all_csv_rows[<span class="dv">0</span>]</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> all_csv_rows[<span class="dv">1</span>:]</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"CSV header:"</span>, header)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Row count:"</span>, <span class="bu">len</span>(rows))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CSV header: ('Date', 'Make', 'Model', 'Year', 'Price')
+Row count: 200</code></pre>
+</div>
+</div>
+<ul>
+<li>But we can also easily unpack using a starred expression</li>
+</ul>
+<div id="7fe28903" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_csv():</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">yield</span> (<span class="st">"Date"</span>, <span class="st">"Make"</span>, <span class="st">"Model"</span>, <span class="st">"Year"</span>, <span class="st">"Price"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> (<span class="st">"2019-03-25"</span>, <span class="st">"Honda"</span>, <span class="st">"Fit"</span>, <span class="st">"2010"</span>, <span class="st">"$3400"</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> (<span class="st">"2019-03-26"</span>, <span class="st">"Ford"</span>, <span class="st">"F150"</span>, <span class="st">"2008"</span>, <span class="st">"$2400"</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> generate_csv()</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>header, <span class="op">*</span>rows <span class="op">=</span> it</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"CSV header:"</span>, header)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Row count:"</span>, <span class="bu">len</span>(rows))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CSV header: ('Date', 'Make', 'Model', 'Year', 'Price')
+Row count: 200</code></pre>
+</div>
+</div>
+<ul>
+<li>One thing to be careful is that the unpacking assignment will result in the entire iterator being read into memory
+<ul>
+<li>This could cause your program to crash</li>
+<li>Only use catch-all unpacking for iterators when you have a good understanding of their size and can ensure it will fit in memory</li>
+</ul></li>
 </ul>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
 <ul>
-<li>Tuple literals may have optional parentheses and optional trailing commas</li>
-<li>Single element tuples require a trailing comma</li>
-<li>An extraneous trailing comma can convert expressions into unexpected tuples</li>
+<li>Unpacking assignments may include a starred expression to store all values not matching by any other variable capture</li>
+<li>Starred expressions may appear in any position of the unpacking
+<ul>
+<li>But only once per level of unpacking</li>
+<li>There must be at least one variable assignment that is not to the starred expression</li>
+</ul></li>
+<li>The variable assigned by a starred expression will always be a list
+<ul>
+<li>If nothing is assigned to the variable, the list is empty</li>
+</ul></li>
+<li>When dividing a list into non-overlapping parts, catch-all unpacking is less error-prone and cleaner to read than using separate slicing and indexing statements</li>
 </ul>
 
 
@@ -938,14 +997,11 @@ a6: [['DEAL20']]</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../Chapter_01/Item_005/item_005.html" class="pagination-link" aria-label="Item 5: Prefer Multiple-Assignment Unpacking over Indexing">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Item 5: Prefer Multiple-Assignment Unpacking over Indexing</span>
+      <a href="../../Chapter_02/Item_015/item_015.html" class="pagination-link" aria-label="Item 15: Avoid Striding and Slicing in a Single Expression">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Item 15: Avoid Striding and Slicing in a Single Expression</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../Chapter_01/Item_007/item_007.html" class="pagination-link" aria-label="Item 7: Consider Conditional Expressions for Simple Inline Logic">
-        <span class="nav-page-text">Item 7: Consider Conditional Expressions for Simple Inline Logic</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
