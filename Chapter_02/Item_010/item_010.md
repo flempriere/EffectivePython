@@ -1,0 +1,312 @@
+# Item 10: Know the difference between `bytes` and `str`
+
+- [Notes](#notes)
+  - [Type Compatibility](#type-compatibility)
+  - [File Handling](#file-handling)
+- [Things to Remember](#things-to-remember)
+
+## Notes
+
+- Python has two types for raw character data sequences
+  1. `bytes`
+      - Contains raw unsigned 8-bit values
+      - Typically reported as ASCII encodings
+  2. `str`
+      - Contains unicode *code points*
+      - Represent textual characters from human languages
+
+``` python
+# A demonstration of bytes
+a = b"h\x65llo"
+print(type(a))
+print(list(a))
+print(a)
+```
+
+    <class 'bytes'>
+    [104, 101, 108, 108, 111]
+    b'hello'
+
+``` python
+a = "a\u0300 propos"
+print(type(a))
+print(list(a))
+print(a)
+```
+
+    <class 'str'>
+    ['a', '̀', ' ', 'p', 'r', 'o', 'p', 'o', 's']
+    à propos
+
+- A `str` instance does not have an associated binary encoding
+  - Can convert to binary using the `encode` string method
+- A `bytes` instance does not have an associated text encoding
+  - Can convert to text using the `decode` bytes method
+- You can specify the encoding / decoding you want
+  - Typically by default it is UTF-8
+- You should perform encoding / decoding at the furthest boundary of
+  your interface
+  - Referred to as the *unicode sandwich*
+- Core of a program should use the `str` type
+  - Which contains unicode data
+  - Should not assume anything about the encoding
+- Let’s you be flexible to other text encodings
+  - e.g. Latin-1, Shift JIS, Big5
+- Maintain strictness of your output encoding
+  - UTF-8 (ideally)
+- The split leads to two scenarios
+
+1. Operating on raw 8-bit sequences of UTF-8 encoded strings
+2. Operating on unicode strings of unspecified encoding
+
+- Typically need helper functions
+  - Let’s you convert, but enforce expectations
+- First to enforce that we have a unicode string
+
+``` python
+def to_str(bytes_or_str):
+    if isinstance(bytes_or_str, bytes):
+        value = bytes_or_str.decode("utf-8") #decode bytes using UTF-8
+    else:
+        value = bytes_or_str
+    return value
+
+print(repr(to_str(b"foo")))
+print(repr(to_str("bar")))
+```
+
+    'foo'
+    'bar'
+
+- Second that we have a raw UTF-8 string
+
+``` python
+def to_bytes(bytes_or_str):
+    if isinstance(bytes_or_str, str):
+        value = bytes_or_str.encode("utf-8")
+    else:
+        value = bytes_or_str
+    return value
+
+print(repr(to_str(b"foo")))
+print(repr(to_str("bar")))
+```
+
+    'foo'
+    'bar'
+
+### Type Compatibility
+
+- `bytes` and `str` seem to behave the same way
+  - But they are not compatible
+- Can concatenate `bytes` together, or `str` together
+  - Cannot concatenate `bytes` to `str` or vice-versa
+
+``` python
+print(b"one" + b"two")
+print("one" + "two")
+print(b"one" + "two")
+```
+
+    b'onetwo'
+    onetwo
+
+    TypeError: can't concat str to bytes
+    ---------------------------------------------------------------------------
+    TypeError                                 Traceback (most recent call last)
+    Cell In[5], line 3
+          1 print(b"one" + b"two")
+          2 print("one" + "two")
+    ----> 3 print(b"one" + "two")
+
+    TypeError: can't concat str to bytes
+
+- Can compare `bytes` to `bytes` or `str` to `str`
+  - But again, not across the types
+
+``` python
+assert b"red" > b"blue"
+assert "red" > "blue"
+assert "red" > b"blue"
+```
+
+    TypeError: '>' not supported between instances of 'str' and 'bytes'
+    ---------------------------------------------------------------------------
+    TypeError                                 Traceback (most recent call last)
+    Cell In[6], line 3
+          1 assert b"red" > b"blue"
+          2 assert "red" > "blue"
+    ----> 3 assert "red" > b"blue"
+
+    TypeError: '>' not supported between instances of 'str' and 'bytes'
+
+- Comparing `bytes` to `str` for equality always evaluates to `False`
+
+``` python
+assert "foo" == "foo"
+assert b"foo" == b"foo"
+print(b"foo" == "foo")
+```
+
+    False
+
+- The `%` operator works with format strings for both
+
+``` python
+blue_bytes = b"blue"
+blue_str = "blue"
+
+# bytes with bytes and str with str works
+print(b"red %s" % blue_bytes)
+print("red %s" % blue_str)
+```
+
+    b'red blue'
+    red blue
+
+- Can’t pass a `str` to a `bytes` format string
+
+``` python
+blue_str = "blue"
+print(b"red %s" % blue_str)
+```
+
+    TypeError: %b requires a bytes-like object, or an object that implements __bytes__, not 'str'
+    ---------------------------------------------------------------------------
+    TypeError                                 Traceback (most recent call last)
+    Cell In[9], line 2
+          1 blue_str = "blue"
+    ----> 2 print(b"red %s" % blue_str)
+
+    TypeError: %b requires a bytes-like object, or an object that implements __bytes__, not 'str'
+
+- *But can* pass `bytes` to a `str`
+  - Or in an interpolated f-string
+- However, the code doesn’t behave as expected
+  - The `bytes` text is converted to its `__repr__` i.e. the string
+    `"b'text'"`
+  - This is then injected into the string
+
+``` python
+blue_bytes = b"blue"
+print("red %s" % blue_bytes)
+print(f"red {blue_bytes}")
+```
+
+    red b'blue'
+    red b'blue'
+
+### File Handling
+
+- Operations involving file handles (the result of the `open` built-in)
+  expect Unicode strings by default
+- The code below which attempts to write some binary data will break
+
+``` python
+import os  # so we can clean up the file
+
+try:
+    with open("data.bin", "w") as f:
+        f.write(b"\xf1\xf2\xf3\xf4\xf4")
+except Exception as e:
+    # clean up
+    print(f"{type(e)}: {e}")
+    if os.path.exists("data.bin"):
+        os.remove("data.bin")
+```
+
+    <class 'TypeError'>: write() argument must be str, not bytes
+
+- Error arises because `"w"` means *write* which default to text
+  - Uses `str.encode` with the default text encoding
+  - Need to use `"wb"` for *write binary*
+- This problem is mirrored for reading
+
+``` python
+import os
+
+# corrected write
+with open("data.bin", "wb") as f:
+    f.write(b"\xf1\xf2\xf3\xf4\xf5")
+
+try:  # failed read
+    with open("data.bin", "r") as f:
+        data = f.read()
+        print(data)
+except Exception as e:
+    print(f"{type(e)}: {e}")
+    if os.path.exists("data.bin"):
+        os.remove("data.bin")
+```
+
+    <class 'UnicodeDecodeError'>: 'utf-8' codec can't decode byte 0xf1 in position 0: invalid continuation byte
+
+- Again `"r"` or *read mode*
+  - Uses default text encoding to decode the binary data (via
+    `bytes.decode`)
+  -
+  - We need `"rb"` or *read bytes mode*
+- For most systems UTF-8 is the default text encoding
+  - Can’t read arbitrary binary
+- The fixed version is
+
+``` python
+import os
+
+try:
+    # write the binary data out
+    with open("data.bin", "wb") as f:
+        f.write(b"\xf1\xf2\xf3\xf4\xf5")
+
+    # read the binary data back in
+    with open("data.bin", "rb") as f:
+        data = f.read()
+        assert data == b"\xf1\xf2\xf3\xf4\xf5"
+
+except Exception as e:
+    print(f"{type(e)}: {e}")
+
+if os.path.exists("data.bin"):
+    os.remove("data.bin")
+```
+
+- You can always specify the encoding to pass to the `open` function
+  instead
+  - `cp1252` is an old windows text encoding
+  - Observe that here we use `"r"` mode
+  - We get an error if we use `"rb"`
+
+``` python
+import os
+
+try:
+    # write the binary data out
+    with open("data.bin", "wb") as f:
+        f.write(b"\xf1\xf2\xf3\xf4\xf5")
+
+    # read the binary data back in under a different text encoding
+    with open("data.bin", "r", encoding="cp1252") as f:
+        data = f.read()
+        print(data)
+
+except Exception as e:
+    print(f"{type(e)}: {e}")
+
+if os.path.exists("data.bin"):
+    os.remove("data.bin")
+```
+
+    ñòóôõ
+
+## Things to Remember
+
+- `bytes` contains sequences of 8-bit values
+- `str` contains sequences of Unicode code points
+- Use helper functions to make sure inputs are the correct type of
+  character sequence
+- `bytes` and `str` can’t be used together with operators
+- To read or write binary use `"rb"` or `"wb"` as the opening mode
+  respectively (b for binary)
+- If you want to read/write text to a file be careful about the system
+  default encoding
+  - Explicitly pass the encoding to avoid surprises
