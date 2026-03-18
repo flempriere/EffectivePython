@@ -1,0 +1,221 @@
+---
+title: "Item 23: Pass Iterators to `any` and `all` for Efficient Short-Circuiting Logic"
+---
+
+## Notes
+
+- Imagine try to analyse a coin-flip
+    - Denote heads as `True`, tails as `False`
+
+```{python}
+import random
+
+
+def coin_flip():
+    if random.randint(0, 1):
+        return "Heads"
+    else:
+        return "Tails"
+
+
+def flip_is_heads():
+    return flip_coin() == "Heads"
+```
+
+- Want to flip a coin a fixed number of times, and see if every result is heads
+- Can perform with a comprehension and an `in` query
+
+```{python}
+import random
+
+
+def coin_flip():
+    if random.randint(0, 1):
+        return "Heads"
+    else:
+        return "Tails"
+
+
+def flip_is_heads():
+    return flip_coin() == "Heads"
+
+
+flips = [flip_is_heads() for _ in range(20)]
+all_heads = False not in flips
+```
+
+- The above approach performs all twenty coin flips even once a tails has been seen
+- If coin flips were instead a more expensive operation this would represent a lot of wasted computation
+- We could write a terminating `for` loop
+
+```{python}
+import random
+
+
+def coin_flip():
+    if random.randint(0, 1):
+        return "Heads"
+    else:
+        return "Tails"
+
+
+def flip_is_heads():
+    return flip_coin() == "Heads"
+
+
+all_heads = True
+for _ in range(20):
+    if not flip_is_heads():
+        all_heads = False
+        break
+```
+
+- Code is now much longer and less clear
+- We can use the `all` built-in to combine the short-circuiting behaviour with a succinct expression
+- `all` steps through an iterator, checks for truthy values
+    - Stops processing if not
+    - Returns `True` if it reaches the end of the iterator, else `False`
+- This is different to `and` which returns the value that determines truthyness
+
+```{python}
+print("All truthy")
+print(all([1, 2, 3]))
+print(1 and 2 and 3)
+
+print("One falsey")
+print(all([1, 0, 3]))
+print(1 and 0 and 3)
+```
+
+- Rewriting our `all_heads` calculation
+
+```{python}
+import random
+
+
+def coin_flip():
+    if random.randint(0, 1):
+        return "Heads"
+    else:
+        return "Tails"
+
+
+def flip_is_heads():
+    return flip_coin() == "Heads"
+
+
+all_heads = all(flip_is_heads() for _ in range(20))
+```
+
+- Stops doing coin flips as soon as a `False` value is met
+- If we pass a list comprehension the list is generated first
+    - Which defeats the whole point of using `all`
+
+- You can use a generator expression instead
+    - i.e. something that `yield`'s
+    - So it's only called as required
+
+```{python}
+import random
+
+
+def coin_flip():
+    if random.randint(0, 1):
+        return "Heads"
+    else:
+        return "Tails"
+
+
+def flip_is_heads():
+    return flip_coin() == "Heads"
+
+
+all_heads = all([flip_is_heads() for _ in range(20)])  # list comprehension - Wrong
+
+
+def repeated_is_heads(count):
+    for _ in range(count):
+        yield flip_is_heads()  # Generator
+
+
+all_heads = all(repeated_is_heads(20))  # generator expression is good
+```
+
+- When a `False` is found,
+    - `all` stops calling the iterator and the result is returned
+    - No references exist any more to the iterator
+    - It is garbage collected
+
+- What if we have a function that behaves the opposite?
+    - i.e. Mostly returns `False` and we want to look for a single `True` result
+    - For example `flip_is_tails` inverts `flip_is_heads`
+- To detect consecutive heads we can't use `all`
+    - Instead use `any` (another built-in)
+    - Steps through an iterator
+    - Terminates after seeing the first `True` value
+    - Like `any` always returns `True` or `False`
+
+```{python}
+print("All falsey")
+print(any[0, False, None])
+print(0 or False or None)
+
+print("One truthy")
+print(any([None, 3, 0]))
+print(None or 3 or 0)
+```
+
+- We can then rewrite our test for consecutive heads
+
+```{python}
+import random
+
+
+def coin_flip():
+    if random.randint(0, 1):
+        return "Heads"
+    else:
+        return "Tails"
+
+
+def flip_is_tails():
+    return flip_coin() == "Tails"
+
+
+all_heads = not any(flip_is_tails() for _ in range(20))  # iterator directly
+
+
+def repeated_is tails(count):
+    for _ in range(count):
+        yield flip_is_tails()  # Generator
+
+
+all_heads = not any(repeated_is_heads(20))  # generator expression is good
+```
+
+- When to use `any` vs `all`?
+    - Depends on the use case and which condition is more difficult to test
+    - To end early with a `True` use `any`
+    - To end early with a `False` use `all`
+- They are equivalent via De Morgan's laws for Boolean logic
+
+```{python}
+for a in (True, False):
+    for b in (True, False):
+        assert any([a, b]) == (not all ([not a, not b]))
+        assert all([a, b]) == (not any ([not a, not b]))
+```
+
+
+## Things to Remember
+
+- The `all` built-in returns `True` if all items provided are truthy
+    - It stops processing input and returns `False` once a falsey item is encountered
+- The `any` built-in works similarly but with opposite logic
+    - It returns `False` if all items are falsey
+    - Ends early with `True` on a truthy value
+- `any` and `all` always return the boolean values `True` or `False`
+    - Unlike `or` and `and` which return the last item necessary to test
+- Using list comprehensions with `any` and `all` instead of generators results in the full expression being evaluated before being tested
+    - This defeats the point of using `any` and `all`
+    - Use generators instead
