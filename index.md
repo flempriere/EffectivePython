@@ -7,6 +7,7 @@
 [![pre-commit.ci
 status](https://results.pre-commit.ci/badge/github/flempriere/EffectivePython/main.svg)](https://results.pre-commit.ci/latest/github/flempriere/EffectivePython/main)
 [![pages-build-deployment](https://github.com/flempriere/EffectivePython/actions/workflows/pages/pages-build-deployment/badge.svg?branch=gh-pages)](https://github.com/flempriere/EffectivePython/actions/workflows/pages/pages-build-deployment)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/flempriere/EffectivePython.git/main)
 
 This repository contains code fragments and notes from the book,
 Effective Python by Brett Slatkin
@@ -14,6 +15,7 @@ Effective Python by Brett Slatkin
 ## Contents
 
 - [Chapter 1: Pythonic Thinking](./Chapter_01/Chapter_01.qmd)
+- [Chapter 2: Strings and Slicing](./Chapter_02/Chapter_02.qmd)
 
 ## Attribution
 

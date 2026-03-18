@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Item 3: Never Expect Python to Detect Errors at Compile Time – Effective Python: Notes</title>
+<title>Item 16: Prefer Catch-All Unpacking over Slicing – Effective Python: Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../Chapter_01/Item_004/item_004.html" rel="next">
-<link href="../../Chapter_01/Item_002/item_002.html" rel="prev">
+<link href="../../Chapter_02/Item_015/item_015.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -106,8 +105,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<meta property="og:title" content="Item 3: Never Expect Python to Detect Errors at Compile Time – Effective Python: Notes">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Item 16: Prefer Catch-All Unpacking over Slicing – Effective Python: Notes">
+<meta property="og:description" content="">
 <meta property="og:site_name" content="Effective Python: Notes">
 </head>
 
@@ -143,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_01/Chapter_01.html">Chapter 1: Pythonic Thinking</a></li><li class="breadcrumb-item"><a href="../../Chapter_01/Item_003/item_003.html">Item 3: Never Expect Python to Detect Errors at Compile Time</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_02/Chapter_02.html">Chapter 2: Strings and Slicing</a></li><li class="breadcrumb-item"><a href="../../Chapter_02/Item_016/item_016.html">Item 16: Prefer Catch-All Unpacking over Slicing</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -167,11 +196,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../../Chapter_01/Chapter_01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 1: Pythonic Thinking</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Chapter_01/Item_001/item_001.html" class="sidebar-item-text sidebar-link">
@@ -186,7 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Chapter_01/Item_003/item_003.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../Chapter_01/Item_003/item_003.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 3: Never Expect Python to Detect Errors at Compile Time</span></a>
   </div>
 </li>
@@ -232,11 +261,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../../Chapter_02/Chapter_02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 2: Strings and Slicing</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Chapter_02/Item_010/item_010.html" class="sidebar-item-text sidebar-link">
@@ -275,7 +304,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Chapter_02/Item_016/item_016.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_02/Item_016/item_016.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Item 16: Prefer Catch-All Unpacking over Slicing</span></a>
   </div>
 </li>
@@ -299,9 +328,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_01/Chapter_01.html">Chapter 1: Pythonic Thinking</a></li><li class="breadcrumb-item"><a href="../../Chapter_01/Item_003/item_003.html">Item 3: Never Expect Python to Detect Errors at Compile Time</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_02/Chapter_02.html">Chapter 2: Strings and Slicing</a></li><li class="breadcrumb-item"><a href="../../Chapter_02/Item_016/item_016.html">Item 16: Prefer Catch-All Unpacking over Slicing</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Item 3: Never Expect Python to Detect Errors at Compile Time</h1>
+<h1 class="title">Item 16: Prefer Catch-All Unpacking over Slicing</h1>
 </div>
 
 
@@ -321,172 +350,245 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
-<li>Python doesn’t have a strict compile time</li>
-<li>It’s an interpreted language</li>
-<li>When a python program is loaded
+<li>A limitation of basic unpacking is that you must know the length of the sequence being unpacked
 <ul>
-<li>Source code is parsed into abstract syntax trees</li>
-<li>Checked for obvious syntax errors
-<ul>
-<li>This will raise a <code>SyntaxError</code></li>
-</ul></li>
+<li>For example, lets say we want to extract the two oldest car’s from a list</li>
+<li>Below fails because it expects two items but encounters more than two</li>
 </ul></li>
 </ul>
-<div id="c7a433fc" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">True</span> <span class="co"># Bad Syntax</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"hello"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 1</span>
-<span class="ansi-red-fg">    </span><span class="ansi-red-fg">if True # Bad Syntax</span>
-            ^
-<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> expected ':'
-</pre>
-</div>
-</div>
-</div>
-<pre><code>- Errors in literals can also be caught</code></pre>
-<div id="eacda6aa" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ot">1.3j</span><span class="er">5</span> <span class="co"># Bad number</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 1</span>
-<span class="ansi-red-fg">    </span><span class="ansi-red-fg">1.3j5 # Bad number</span>
-       ^
-<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid imaginary literal
-</pre>
-</div>
-</div>
-</div>
-<ul>
-<li><p>Not likely to get much than that</p>
-<ul>
-<li>Basic tokenization errors</li>
-<li>Parse errors</li>
-</ul></li>
-<li><p>Because python is dynamic, variable definitions and lifetimes are difficult to track</p></li>
-<li><p>Means that something obviously wrong like below, is not strictly invalid, so can’t be flagged as an error at parse time</p></li>
-</ul>
-<div id="b8dbbe6b" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bad_reference():</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(local_var)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    local_var <span class="op">=</span> <span class="dv">123</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<ul>
-<li>The error will only trip once we try to execute it</li>
-</ul>
-<div id="d24f8665" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bad_reference()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="8f743129" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>car_ages <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">15</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>car_ages_descending <span class="op">=</span> <span class="bu">sorted</span>(car_ages, reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>oldest, second_oldest <span class="op">=</span> car_ages_descending</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">UnboundLocalError</span>                         Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 1</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span class="ansi-yellow-bg">bad_reference</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-green-fg">      1</span> car_ages = [<span class="ansi-green-fg">0</span>, <span class="ansi-green-fg">9</span>, <span class="ansi-green-fg">4</span>, <span class="ansi-green-fg">8</span>, <span class="ansi-green-fg">7</span>, <span class="ansi-green-fg">20</span>, <span class="ansi-green-fg">19</span>, <span class="ansi-green-fg">1</span>, <span class="ansi-green-fg">6</span>, <span class="ansi-green-fg">15</span>]
+<span class="ansi-green-fg">      2</span> car_ages_descending = <span style="color:rgb(0,135,0)">sorted</span>(car_ages, reverse=<span style="font-weight:bold;color:rgb(0,135,0)">True</span>)
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> oldest, second_oldest = car_ages_descending
 
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 2</span>, in <span class="ansi-cyan-fg">bad_reference</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">bad_reference</span>():
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span>     <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-bg">local_var</span>)
-<span class="ansi-green-fg">      3</span>     local_var = <span class="ansi-green-fg">123</span>
-
-<span class="ansi-red-fg">UnboundLocalError</span>: cannot access local variable 'local_var' where it is not associated with a value</pre>
+<span class="ansi-red-fg">ValueError</span>: too many values to unpack (expected 2, got 10)</pre>
 </div>
 </div>
 </div>
 <ul>
-<li>To emphasise this issue, we can see that in the function below, sometimes <code>x</code> is valid, sometimes not</li>
+<li>It seems natural to attempt to resolve the above with indices and slicing (see <a href="../../Chapter_02/Item_014/item_014.html">Item 14</a>)</li>
 </ul>
-<div id="6943084b" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sometimes_ok(x):</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x:</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        local_var <span class="op">=</span> <span class="dv">123</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(local_var)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<ul>
-<li>If we call it, with a truthful value for <code>x</code>, every work fine</li>
-</ul>
-<div id="6106bf23" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sometimes_ok(<span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="d4cab440" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>car_ages <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">15</span>]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>car_ages_descending <span class="op">=</span> <span class="bu">sorted</span>(car_ages, reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>oldest <span class="op">=</span> car_ages_descending[<span class="dv">0</span>]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>second_oldest <span class="op">=</span> car_ages_descending[<span class="dv">1</span>]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>others <span class="op">=</span> car_ages_descending[<span class="dv">2</span>:]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"oldest: </span><span class="sc">{</span>oldest<span class="sc">}</span><span class="ss">, second oldest: </span><span class="sc">{</span>second_oldest<span class="sc">}</span><span class="ss">, others: </span><span class="sc">{</span>others<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>123</code></pre>
+<pre><code>oldest: 20, second oldest: 19, others: [15, 9, 8, 7, 6, 4, 1, 0]</code></pre>
 </div>
 </div>
 <ul>
-<li>If not,</li>
+<li>Works but is noisy
+<ul>
+<li>Would be nice to have the clean syntax of the unpacking</li>
+</ul></li>
+<li>Also prone to off-by-one errors
+<ul>
+<li>If we modify the size of one set, we have to make sure the other subsets are synchronised</li>
+</ul></li>
+<li>Python provides <em>catch-all</em> unpacking via the <code>*</code> operator
+<ul>
+<li>Let’s part of an unpacking expression receive all other values that aren’t matched</li>
+</ul></li>
 </ul>
-<div id="b68f9090" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sometimes_ok(<span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="70d3de11" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>car_ages <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">15</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>car_ages_descending <span class="op">=</span> <span class="bu">sorted</span>(car_ages, reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>oldest, second_oldest, <span class="op">*</span>others <span class="op">=</span> car_ages_descending</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"oldest: </span><span class="sc">{</span>oldest<span class="sc">}</span><span class="ss">, second oldest: </span><span class="sc">{</span>second_oldest<span class="sc">}</span><span class="ss">, others: </span><span class="sc">{</span>others<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>oldest: 20, second oldest: 19, others: [15, 9, 8, 7, 6, 4, 1, 0]</code></pre>
+</div>
+</div>
+<ul>
+<li>Code is shorter, easier to read and less brittle to changes</li>
+<li>Starred expression can appear at any point in an unpacking
+<ul>
+<li>Start, end, middle etc.</li>
+<li>Benefits any time we have one optional slice</li>
+<li>E.g. if we instead wanted to extract the oldest and the youngest car</li>
+</ul></li>
+</ul>
+<div id="12512e86" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>car_ages <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">15</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>car_ages_descending <span class="op">=</span> <span class="bu">sorted</span>(car_ages, reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>oldest, <span class="op">*</span>others, youngest <span class="op">=</span> car_ages_descending</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"oldest: </span><span class="sc">{</span>oldest<span class="sc">}</span><span class="ss">, youngest: </span><span class="sc">{</span>youngest<span class="sc">}</span><span class="ss">, others: </span><span class="sc">{</span>others<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>oldest: 20, youngest: 0, others: [19, 15, 9, 8, 7, 6, 4, 1]</code></pre>
+</div>
+</div>
+<ul>
+<li>Whenever you use a star expression, you must have at least one required match,
+<ul>
+<li>e.g.&nbsp;Below generates a syntax error</li>
+</ul></li>
+</ul>
+<div id="109c2152" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>car_ages <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">15</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>car_ages_descending <span class="op">=</span> <span class="bu">sorted</span>(car_ages, reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">*</span>others <span class="op">=</span> car_ages_descending</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">UnboundLocalError</span>                         Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 1</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span class="ansi-yellow-bg">sometimes_ok</span><span class="ansi-yellow-bg">(</span><span style="font-weight:bold;color:rgb(0,135,0)" class="ansi-yellow-bg">False</span><span class="ansi-yellow-bg">)</span>
-
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 4</span>, in <span class="ansi-cyan-fg">sometimes_ok</span><span class="ansi-blue-fg">(x)</span>
-<span class="ansi-green-fg">      2</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> x:
-<span class="ansi-green-fg">      3</span>     local_var = <span class="ansi-green-fg">123</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">4</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-bg">local_var</span>)
-
-<span class="ansi-red-fg">UnboundLocalError</span>: cannot access local variable 'local_var' where it is not associated with a value</pre>
+<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-red-fg">    </span><span class="ansi-red-fg">*others = car_ages_descending</span>
+    ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> starred assignment target must be in a list or tuple
+</pre>
 </div>
 </div>
 </div>
 <ul>
-<li>Python can also struggle with mathematical errors, e.g.</li>
+<li>You can only use <em>one</em> catch-all expression in an unpacking at the same level
+<ul>
+<li>e.g.&nbsp;Below fails too</li>
+</ul></li>
 </ul>
-<div id="1da79413" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bad_math():</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> <span class="dv">0</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>bad_math()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="07b5d6e7" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>first, <span class="op">*</span>middle, <span class="op">*</span>second_middle, last <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ZeroDivisionError</span>                         Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 5</span>
-<span class="ansi-green-fg">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">bad_math</span>():
-<span class="ansi-green-fg">      2</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-green-fg">1</span> / <span class="ansi-green-fg">0</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">5</span> <span class="ansi-yellow-bg">bad_math</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
-
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 2</span>, in <span class="ansi-cyan-fg">bad_math</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">bad_math</span>():
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-green-fg ansi-yellow-bg">1</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">/</span><span class="ansi-yellow-bg"> </span><span class="ansi-green-fg ansi-yellow-bg">0</span>
-
-<span class="ansi-red-fg">ZeroDivisionError</span>: division by zero</pre>
+<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-red-fg">    </span><span class="ansi-red-fg">first, *middle, *second_middle, last = [1,2,3,4]</span>
+    ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> multiple starred expressions in assignment
+</pre>
 </div>
 </div>
 </div>
 <ul>
-<li><p>Can’t immediately infer this is wrong because the <code>/</code> operator might have been overloaded</p></li>
-<li><p>Some other problems python will fail to statically detect are</p>
-<ol type="1">
-<li>undefined methods</li>
-<li>too many or too few arguments to a function call</li>
-<li>mismatched return types</li>
-</ol></li>
-<li><p>Linting tools like <a href="../../Chapter_01/Item_002/item_002.html#automation">Flake 8</a> and Ruff (see above) can help catch these</p>
+<li>You can use multiple catch-all’s for different levels in a nested structure
 <ul>
-<li>More advanced techniques are <em>type checkers</em></li>
-<li>We’ll discuss these later</li>
+<li>Generally try to avoid this</li>
+<li>It can make things hard to read</li>
 </ul></li>
-<li><p>Even with these tools its important to be aware that most python errors will be caught at run time</p>
+</ul>
+<div id="80d29858" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>car_inventory <span class="op">=</span> {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Downtown"</span>: (<span class="st">"Silver Shadow"</span>, <span class="st">"Pinto"</span>, <span class="st">"DMC"</span>),</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Airport"</span> : (<span class="st">"Skyline"</span>, <span class="st">"Viper"</span>, <span class="st">"Gremlin"</span>, <span class="st">"Nova"</span>),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>((loc1, (best1, <span class="op">*</span>rest1)),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a> (loc2, (best2, <span class="op">*</span>rest2))) <span class="op">=</span> car_inventory.items()</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Best at </span><span class="sc">{</span>loc1<span class="sc">}</span><span class="ss"> is </span><span class="sc">{</span>best1<span class="sc">}</span><span class="ss">, others are </span><span class="sc">{</span>rest1<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Best at </span><span class="sc">{</span>loc2<span class="sc">}</span><span class="ss"> is </span><span class="sc">{</span>best2<span class="sc">}</span><span class="ss">, others are </span><span class="sc">{</span>rest2<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Best at Downtown is Silver Shadow, others are ['Pinto', 'DMC']
+Best at Airport is Skyline, others are ['Viper', 'Gremlin', 'Nova']</code></pre>
+</div>
+</div>
 <ul>
-<li>This is because python prioritises run time flexibility</li>
+<li>Starred expressions always become lists</li>
+<li>If there is nothing left to unpack then the list is empty
+<ul>
+<li>Very useful when working with lists of at least <span class="math inline">\(N\)</span> elements</li>
 </ul></li>
-<li><p>Therefore it’s important to,</p>
-<ol type="1">
-<li>Check assumptions are correct at run time</li>
-<li>Verify program correctness with automated tests</li>
-</ol></li>
+</ul>
+<div id="2bc4b454" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>short_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>first, second, <span class="op">*</span>rest <span class="op">=</span> short_list</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"First: </span><span class="sc">{</span>first<span class="sc">}</span><span class="ss">, Second: </span><span class="sc">{</span>second<span class="sc">}</span><span class="ss">, Rest: </span><span class="sc">{</span>rest<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>First: 1, Second: 2, Rest: []</code></pre>
+</div>
+</div>
+<ul>
+<li>You can unpack arbitrary iterators
+<ul>
+<li>Typically not very useful with basic multiple assignment</li>
+<li>Here we unpack values iterating over a range</li>
+<li>In this case probably more useful to assign to a list matching the unpacking pattern</li>
+</ul></li>
+</ul>
+<div id="39222987" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> <span class="bu">iter</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>first, second <span class="op">=</span> it</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>first<span class="sc">}</span><span class="ss"> and </span><span class="sc">{</span>second<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1 and 2</code></pre>
+</div>
+</div>
+<ul>
+<li>Much more useful when we have starred expressions</li>
+<li>E.g. iterating over CSV data
+<ul>
+<li>Iterator yields rows from the CSV (+ the header)</li>
+</ul></li>
+</ul>
+<p>We could process this using indices and slices</p>
+<div id="99c8ee6e" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_csv():</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">yield</span> (<span class="st">"Date"</span>, <span class="st">"Make"</span>, <span class="st">"Model"</span>, <span class="st">"Year"</span>, <span class="st">"Price"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> (<span class="st">"2019-03-25"</span>, <span class="st">"Honda"</span>, <span class="st">"Fit"</span>, <span class="st">"2010"</span>, <span class="st">"$3400"</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> (<span class="st">"2019-03-26"</span>, <span class="st">"Ford"</span>, <span class="st">"F150"</span>, <span class="st">"2008"</span>, <span class="st">"$2400"</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>all_csv_rows <span class="op">=</span> <span class="bu">list</span>(generate_csv())</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>header <span class="op">=</span> all_csv_rows[<span class="dv">0</span>]</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> all_csv_rows[<span class="dv">1</span>:]</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"CSV header:"</span>, header)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Row count:"</span>, <span class="bu">len</span>(rows))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CSV header: ('Date', 'Make', 'Model', 'Year', 'Price')
+Row count: 200</code></pre>
+</div>
+</div>
+<ul>
+<li>But we can also easily unpack using a starred expression</li>
+</ul>
+<div id="8b0fd7e7" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_csv():</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">yield</span> (<span class="st">"Date"</span>, <span class="st">"Make"</span>, <span class="st">"Model"</span>, <span class="st">"Year"</span>, <span class="st">"Price"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> (<span class="st">"2019-03-25"</span>, <span class="st">"Honda"</span>, <span class="st">"Fit"</span>, <span class="st">"2010"</span>, <span class="st">"$3400"</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> (<span class="st">"2019-03-26"</span>, <span class="st">"Ford"</span>, <span class="st">"F150"</span>, <span class="st">"2008"</span>, <span class="st">"$2400"</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> generate_csv()</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>header, <span class="op">*</span>rows <span class="op">=</span> it</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"CSV header:"</span>, header)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Row count:"</span>, <span class="bu">len</span>(rows))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CSV header: ('Date', 'Make', 'Model', 'Year', 'Price')
+Row count: 200</code></pre>
+</div>
+</div>
+<ul>
+<li>One thing to be careful is that the unpacking assignment will result in the entire iterator being read into memory
+<ul>
+<li>This could cause your program to crash</li>
+<li>Only use catch-all unpacking for iterators when you have a good understanding of their size and can ensure it will fit in memory</li>
+</ul></li>
 </ul>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
 <ul>
-<li>Python detects most errors at run time</li>
-<li>Community projects like linters and type checkers can help catch some types of errors</li>
+<li>Unpacking assignments may include a starred expression to store all values not matching by any other variable capture</li>
+<li>Starred expressions may appear in any position of the unpacking
+<ul>
+<li>But only once per level of unpacking</li>
+<li>There must be at least one variable assignment that is not to the starred expression</li>
+</ul></li>
+<li>The variable assigned by a starred expression will always be a list
+<ul>
+<li>If nothing is assigned to the variable, the list is empty</li>
+</ul></li>
+<li>When dividing a list into non-overlapping parts, catch-all unpacking is less error-prone and cleaner to read than using separate slicing and indexing statements</li>
 </ul>
 
 
@@ -895,14 +997,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../Chapter_01/Item_002/item_002.html" class="pagination-link" aria-label="Item 2: Follow the PEP Style Guide">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Item 2: Follow the PEP Style Guide</span>
+      <a href="../../Chapter_02/Item_015/item_015.html" class="pagination-link" aria-label="Item 15: Avoid Striding and Slicing in a Single Expression">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Item 15: Avoid Striding and Slicing in a Single Expression</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../Chapter_01/Item_004/item_004.html" class="pagination-link" aria-label="Item 4: Write Helper Functions instead of Complex Expressions">
-        <span class="nav-page-text">Item 4: Write Helper Functions instead of Complex Expressions</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

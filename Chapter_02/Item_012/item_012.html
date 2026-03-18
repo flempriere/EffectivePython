@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Item 3: Never Expect Python to Detect Errors at Compile Time – Effective Python: Notes</title>
+<title>Understand the Difference Between repr and str when Printing Objects – Effective Python: Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../Chapter_01/Item_004/item_004.html" rel="next">
-<link href="../../Chapter_01/Item_002/item_002.html" rel="prev">
+<link href="../../Chapter_02/Item_013/item_013.html" rel="next">
+<link href="../../Chapter_02/Item_011/item_011.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="Item 3: Never Expect Python to Detect Errors at Compile Time – Effective Python: Notes">
+<meta property="og:title" content="Understand the Difference Between repr and str when Printing Objects – Effective Python: Notes">
 <meta property="og:site_name" content="Effective Python: Notes">
 </head>
 
@@ -143,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_01/Chapter_01.html">Chapter 1: Pythonic Thinking</a></li><li class="breadcrumb-item"><a href="../../Chapter_01/Item_003/item_003.html">Item 3: Never Expect Python to Detect Errors at Compile Time</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_02/Chapter_02.html">Chapter 2: Strings and Slicing</a></li><li class="breadcrumb-item"><a href="../../Chapter_02/Item_012/item_012.html">Understand the Difference Between <code>repr</code> and <code>str</code> when Printing Objects</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -167,11 +167,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../../Chapter_01/Chapter_01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 1: Pythonic Thinking</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Chapter_01/Item_001/item_001.html" class="sidebar-item-text sidebar-link">
@@ -186,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Chapter_01/Item_003/item_003.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../Chapter_01/Item_003/item_003.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 3: Never Expect Python to Detect Errors at Compile Time</span></a>
   </div>
 </li>
@@ -232,11 +232,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../../Chapter_02/Chapter_02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 2: Strings and Slicing</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Chapter_02/Item_010/item_010.html" class="sidebar-item-text sidebar-link">
@@ -251,7 +251,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Chapter_02/Item_012/item_012.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_02/Item_012/item_012.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Understand the Difference Between <code>repr</code> and <code>str</code> when Printing Objects</span></a>
   </div>
 </li>
@@ -299,9 +299,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_01/Chapter_01.html">Chapter 1: Pythonic Thinking</a></li><li class="breadcrumb-item"><a href="../../Chapter_01/Item_003/item_003.html">Item 3: Never Expect Python to Detect Errors at Compile Time</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_02/Chapter_02.html">Chapter 2: Strings and Slicing</a></li><li class="breadcrumb-item"><a href="../../Chapter_02/Item_012/item_012.html">Understand the Difference Between <code>repr</code> and <code>str</code> when Printing Objects</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Item 3: Never Expect Python to Detect Errors at Compile Time</h1>
+<h1 class="title">Understand the Difference Between <code>repr</code> and <code>str</code> when Printing Objects</h1>
 </div>
 
 
@@ -321,172 +321,223 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
-<li>Python doesn’t have a strict compile time</li>
-<li>It’s an interpreted language</li>
-<li>When a python program is loaded
+<li><code>print</code> statement style debugging refers to debugging via format strings or <code>logging</code>
 <ul>
-<li>Source code is parsed into abstract syntax trees</li>
-<li>Checked for obvious syntax errors
-<ul>
-<li>This will raise a <code>SyntaxError</code></li>
+<li>Tend’s to get you pretty far</li>
+<li>Consider a proper debugger for more complicated issues</li>
 </ul></li>
+<li>Python object internals are typically public and accessible via attributes</li>
+<li><code>print</code> returns a human readable string
+<ul>
+<li>Can be customised via formatting (see <a href="../../Chapter_02/Item_011/item_011.html">Item 11</a>)</li>
+<li>For example <code>print</code> called with a string displays the string without quotes</li>
 </ul></li>
 </ul>
-<div id="c7a433fc" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">True</span> <span class="co"># Bad Syntax</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"hello"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 1</span>
-<span class="ansi-red-fg">    </span><span class="ansi-red-fg">if True # Bad Syntax</span>
-            ^
-<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> expected ':'
-</pre>
-</div>
-</div>
-</div>
-<pre><code>- Errors in literals can also be caught</code></pre>
-<div id="eacda6aa" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ot">1.3j</span><span class="er">5</span> <span class="co"># Bad number</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 1</span>
-<span class="ansi-red-fg">    </span><span class="ansi-red-fg">1.3j5 # Bad number</span>
-       ^
-<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid imaginary literal
-</pre>
-</div>
-</div>
-</div>
-<ul>
-<li><p>Not likely to get much than that</p>
-<ul>
-<li>Basic tokenization errors</li>
-<li>Parse errors</li>
-</ul></li>
-<li><p>Because python is dynamic, variable definitions and lifetimes are difficult to track</p></li>
-<li><p>Means that something obviously wrong like below, is not strictly invalid, so can’t be flagged as an error at parse time</p></li>
-</ul>
-<div id="b8dbbe6b" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bad_reference():</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(local_var)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    local_var <span class="op">=</span> <span class="dv">123</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<ul>
-<li>The error will only trip once we try to execute it</li>
-</ul>
-<div id="d24f8665" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bad_reference()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">UnboundLocalError</span>                         Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 1</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span class="ansi-yellow-bg">bad_reference</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
-
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 2</span>, in <span class="ansi-cyan-fg">bad_reference</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">bad_reference</span>():
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span>     <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-bg">local_var</span>)
-<span class="ansi-green-fg">      3</span>     local_var = <span class="ansi-green-fg">123</span>
-
-<span class="ansi-red-fg">UnboundLocalError</span>: cannot access local variable 'local_var' where it is not associated with a value</pre>
-</div>
-</div>
-</div>
-<ul>
-<li>To emphasise this issue, we can see that in the function below, sometimes <code>x</code> is valid, sometimes not</li>
-</ul>
-<div id="6943084b" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sometimes_ok(x):</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x:</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        local_var <span class="op">=</span> <span class="dv">123</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(local_var)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<ul>
-<li>If we call it, with a truthful value for <code>x</code>, every work fine</li>
-</ul>
-<div id="6106bf23" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sometimes_ok(<span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="a6b65908" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"foo bar"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>123</code></pre>
+<pre><code>foo bar</code></pre>
 </div>
 </div>
 <ul>
-<li>If not,</li>
-</ul>
-<div id="b68f9090" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sometimes_ok(<span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">UnboundLocalError</span>                         Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 1</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span class="ansi-yellow-bg">sometimes_ok</span><span class="ansi-yellow-bg">(</span><span style="font-weight:bold;color:rgb(0,135,0)" class="ansi-yellow-bg">False</span><span class="ansi-yellow-bg">)</span>
-
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 4</span>, in <span class="ansi-cyan-fg">sometimes_ok</span><span class="ansi-blue-fg">(x)</span>
-<span class="ansi-green-fg">      2</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> x:
-<span class="ansi-green-fg">      3</span>     local_var = <span class="ansi-green-fg">123</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">4</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-bg">local_var</span>)
-
-<span class="ansi-red-fg">UnboundLocalError</span>: cannot access local variable 'local_var' where it is not associated with a value</pre>
-</div>
-</div>
-</div>
-<ul>
-<li>Python can also struggle with mathematical errors, e.g.</li>
-</ul>
-<div id="1da79413" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bad_math():</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> <span class="dv">0</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>bad_math()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ZeroDivisionError</span>                         Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 5</span>
-<span class="ansi-green-fg">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">bad_math</span>():
-<span class="ansi-green-fg">      2</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-green-fg">1</span> / <span class="ansi-green-fg">0</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">5</span> <span class="ansi-yellow-bg">bad_math</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
-
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 2</span>, in <span class="ansi-cyan-fg">bad_math</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">bad_math</span>():
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-green-fg ansi-yellow-bg">1</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">/</span><span class="ansi-yellow-bg"> </span><span class="ansi-green-fg ansi-yellow-bg">0</span>
-
-<span class="ansi-red-fg">ZeroDivisionError</span>: division by zero</pre>
-</div>
-</div>
-</div>
-<ul>
-<li><p>Can’t immediately infer this is wrong because the <code>/</code> operator might have been overloaded</p></li>
-<li><p>Some other problems python will fail to statically detect are</p>
+<li><p>There are many ways to modify happens when a variable get’s passed to <code>print</code></p></li>
+<li><p>Here all the following are equivalent to the above</p>
 <ol type="1">
-<li>undefined methods</li>
-<li>too many or too few arguments to a function call</li>
-<li>mismatched return types</li>
+<li>Calling <code>str</code> on the variable, then <code>print</code> on the result</li>
+<li>Using the <code>%s</code> format specifier with the <code>%</code> operator</li>
+<li>The default f-string formatting i.e.&nbsp;<code>f"{"foo bar"}"</code></li>
+<li>Calling the <code>format</code> built-in</li>
+<li>Calling the <code>__format__("s")</code> dunder method</li>
+<li>Calling the <code>__str__</code> dunder method</li>
 </ol></li>
-<li><p>Linting tools like <a href="../../Chapter_01/Item_002/item_002.html#automation">Flake 8</a> and Ruff (see above) can help catch these</p>
+</ul>
+<div id="60660812" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>foo <span class="op">=</span> <span class="st">"foo bar"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">str</span>(foo))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> foo)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>foo<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">format</span>(foo))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(foo.<span class="fu">__format__</span>(<span class="st">"s"</span>))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(foo.<span class="fu">__str__</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>foo bar
+foo bar
+foo bar
+foo bar
+foo bar
+foo bar</code></pre>
+</div>
+</div>
 <ul>
-<li>More advanced techniques are <em>type checkers</em></li>
-<li>We’ll discuss these later</li>
-</ul></li>
-<li><p>Even with these tools its important to be aware that most python errors will be caught at run time</p>
+<li>Human readable string doesn’t strictly mean the most expressive about what the actual variable <em>is</em></li>
+<li>e.g.&nbsp;The integer <code>5</code> and the string <code>"5"</code> have the same output, despite being incompatible types</li>
+</ul>
+<div id="451bd193" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>int_five <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>str_five <span class="op">=</span> <span class="st">"5"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(int_five)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(str_five)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Is </span><span class="sc">{</span>int_five<span class="sc">}</span><span class="ss"> == </span><span class="sc">{</span>str_five<span class="sc">}</span><span class="ss">? </span><span class="sc">{</span>int_five <span class="op">==</span> str_five<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>5
+5
+Is 5 == 5? False</code></pre>
+</div>
+</div>
 <ul>
-<li>This is because python prioritises run time flexibility</li>
+<li>While debugging typically want the type information to be clear
+<ul>
+<li>This is normally the <code>repr</code> string</li>
 </ul></li>
-<li><p>Therefore it’s important to,</p>
+<li><code>repr</code> built-in returns the <em>printable representation</em> on an object
+<ul>
+<li>For many built-in types this is also a valid python expression</li>
+<li>i.e we can <code>eval</code> it to get the object back</li>
+</ul></li>
+</ul>
+<div id="d3167143" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># repr of a byte string</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="st">"</span><span class="ch">\x07</span><span class="st">"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(a))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="bu">eval</span>(<span class="bu">repr</span>(a))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(b))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> a <span class="op">==</span> b</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'\x07'
+'\x07'</code></pre>
+</div>
+</div>
+<ul>
+<li>When debugging explicitly call <code>repr</code> to ensure type information is conveyed
+<ul>
+<li><code>%r</code> format specifier (<code>%</code> operator) or <code>!r</code> format specifier (<code>format</code> / F-string) is a shorthand for <code>repr</code></li>
+</ul></li>
+</ul>
+<div id="f117bb82" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>int_five <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>str_five <span class="op">=</span> <span class="st">"5"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(int_five))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(str_five))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># using repr format specifiers</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Is </span><span class="sc">%r</span><span class="st"> == </span><span class="sc">%r</span><span class="st">?"</span> <span class="op">%</span> (int_five, str_five))</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Is </span><span class="sc">{</span>int_five<span class="sc">!r}</span><span class="ss"> == </span><span class="sc">{</span>str_five<span class="sc">!r}</span><span class="ss">?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>5
+'5'
+Is 5 == '5'?
+Is 5 == '5'?</code></pre>
+</div>
+</div>
+<ul>
+<li>When <code>str</code> is called on an argument
 <ol type="1">
-<li>Check assumptions are correct at run time</li>
-<li>Verify program correctness with automated tests</li>
+<li>First tries to call <code>__str__</code> on the argument</li>
+<li>If no <code>__str__</code> falls back to <code>__repr__</code></li>
+<li>If neither exists, goes through method resolution
+<ul>
+<li>Calls the default object <code>repr</code></li>
+<li>The default is not very useful, just object type and memory address
+<ul>
+<li>Can’t pass to <code>eval</code></li>
+</ul></li>
+</ul></li>
 </ol></li>
+</ul>
+<div id="78ff1ca6" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resolving the default object repr</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> OpaqueClass:</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, x, y):</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x <span class="op">=</span> x</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y <span class="op">=</span> y</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> OpaqueClass(<span class="dv">1</span>, <span class="st">"foo"</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(obj)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;__main__.OpaqueClass object at 0x7feed2cf0590&gt;</code></pre>
+</div>
+</div>
+<ul>
+<li>A lightweight <code>repr</code> implementation may be,</li>
+</ul>
+<div id="66abb1d5" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BetterClass:</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, x, y):</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x <span class="op">=</span> x</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y <span class="op">=</span> y</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__repr__</span>(<span class="va">self</span>):</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"BetterClass(x=</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>x<span class="sc">!r}</span><span class="ss">, y=</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>y<span class="sc">!r}</span><span class="ss">)"</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> BetterClass(<span class="dv">1</span>, <span class="st">"foo"</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(obj)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>BetterClass(x=1, y='foo')</code></pre>
+</div>
+</div>
+<ul>
+<li>Observe that we delete to the <code>repr</code> of <code>x</code> and <code>y</code> to ensure they are also properly represented</li>
+<li>Above implicitly <code>print</code> is calling <code>str</code> which resolves to a call on <code>__repr__</code> due to the missing <code>__str__</code> method
+<ul>
+<li>We could add a <code>__str__</code> method
+<ul>
+<li>e.g.&nbsp;If we wanted output suitable for a UI element</li>
+</ul></li>
+</ul></li>
+</ul>
+<div id="2ff967d2" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BetterClassWithStr:</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, x, y):</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x <span class="op">=</span> x</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y <span class="op">=</span> y</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__repr__</span>(<span class="va">self</span>):</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"BetterClass(x=</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>x<span class="sc">!r}</span><span class="ss">, y=</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>y<span class="sc">!r}</span><span class="ss">)"</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"(</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>x<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>y<span class="sc">}</span><span class="ss">)"</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> BetterClassWithStr(<span class="dv">1</span>, <span class="st">"foo"</span>)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Human readable:"</span>, obj)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Representation:"</span>, <span class="bu">repr</span>(obj))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Human readable: (1, foo)
+Representation: BetterClass(x=1, y='foo')</code></pre>
+</div>
+</div>
+<ul>
+<li>Note here we don’t use <code>!r</code> on the <code>x</code> and <code>y</code> attributes so they are formatted via <code>str</code> not <code>repr</code></li>
 </ul>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
 <ul>
-<li>Python detects most errors at run time</li>
-<li>Community projects like linters and type checkers can help catch some types of errors</li>
+<li>Calling <code>print</code> returns the <code>str</code> representation of a variable
+<ul>
+<li>Implicitly human-readable and hides type information</li>
+</ul></li>
+<li>Calling <code>repr</code> on python built-ins produces the canonical representation of a value
+<ul>
+<li><code>repr</code> strings are typically designed such that <code>eval(repr(obj)) == obj</code>
+<ul>
+<li>i.e.&nbsp;We can reconstruct an object via it’s representation</li>
+</ul></li>
+</ul></li>
+<li><code>%s</code> in <code>%</code> operator format strings produces human readable strings via <code>str</code></li>
+<li><code>%r</code> in <code>%</code> operator format strings produces representative strings via <code>repr</code></li>
+<li>F strings default to human-readable strings, but can instead use representative strings via the <code>!r</code> conversion suffix</li>
+<li>You can define the <code>__str__</code> and <code>__repr__</code> methods on your classes to control how they are printed when <code>str</code> and <code>repr</code> is called respectively
+<ul>
+<li>If there is no <code>__str__</code> method, <code>str</code> will use the <code>__repr__</code> method</li>
+<li>The default <code>__repr__</code> on an object only provides the type and memory address of an object</li>
+</ul></li>
 </ul>
 
 
@@ -895,13 +946,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../Chapter_01/Item_002/item_002.html" class="pagination-link" aria-label="Item 2: Follow the PEP Style Guide">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Item 2: Follow the PEP Style Guide</span>
+      <a href="../../Chapter_02/Item_011/item_011.html" class="pagination-link" aria-label="Item 11: Prefer Interpolated F-strings over C-Style Format Strings and `str.format`">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Item 11: Prefer Interpolated F-strings over C-Style Format Strings and <code>str.format</code></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../Chapter_01/Item_004/item_004.html" class="pagination-link" aria-label="Item 4: Write Helper Functions instead of Complex Expressions">
-        <span class="nav-page-text">Item 4: Write Helper Functions instead of Complex Expressions</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../Chapter_02/Item_013/item_013.html" class="pagination-link" aria-label="Item 13: Prefer Explicit String Concatenation over Implicit, Especially in Lists">
+        <span class="nav-page-text">Item 13: Prefer Explicit String Concatenation over Implicit, Especially in Lists</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
