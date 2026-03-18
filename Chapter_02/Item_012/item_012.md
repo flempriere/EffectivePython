@@ -1,6 +1,6 @@
-# Understand the Difference Between `repr` and `str` when Printing
+# Item 12: Understand the Difference Between `repr` and `str` when
 
-Objects
+Printing Objects
 
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
@@ -135,7 +135,7 @@ obj = OpaqueClass(1, "foo")
 print(obj)
 ```
 
-    <__main__.OpaqueClass object at 0x7f533f300590>
+    <__main__.OpaqueClass object at 0x7fb041bb0590>
 
 - A lightweight `repr` implementation may be,
 
