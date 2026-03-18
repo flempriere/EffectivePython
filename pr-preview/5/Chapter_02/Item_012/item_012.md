@@ -34,7 +34,7 @@ print("foo bar")
   2.  Using the `%s` format specifier with the `%` operator
   3.  The default f-string formatting i.e. `f"{"foo bar"}"`
   4.  Calling the `format` built-in
-  5.  Calling the `__format__` dunder method
+  5.  Calling the `__format__("s")` dunder method
   6.  Calling the `__str__` dunder method
 
 ``` python
@@ -43,7 +43,7 @@ print(str(foo))
 print("%s" % foo)
 print(f"{foo}")
 print(format(foo))
-print(foo.__format__())
+print(foo.__format__("s"))
 print(foo.__str__())
 ```
 
@@ -51,17 +51,8 @@ print(foo.__str__())
     foo bar
     foo bar
     foo bar
-
-    TypeError: str.__format__() takes exactly one argument (0 given)
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    Cell In[2], line 6
-          4 print(f"{foo}")
-          5 print(format(foo))
-    ----> 6 print(foo.__format__())
-          7 print(foo.__str__())
-
-    TypeError: str.__format__() takes exactly one argument (0 given)
+    foo bar
+    foo bar
 
 - Human readable string doesn’t strictly mean the most expressive about
   what the actual variable *is*
@@ -94,12 +85,12 @@ a = "\x07"
 print(repr(a))
 
 b = eval(repr(a))
-print(b)
+print(repr(b))
 assert a == b
 ```
 
     '\x07'
-    
+    '\x07'
 
 - When debugging explicitly call `repr` to ensure type information is
   conveyed
@@ -115,22 +106,13 @@ print(repr(str_five))
 # using repr format specifiers
 
 print("Is %r == %r?" % (int_five, str_five))
-print(f"Is {int_value!r} == {str_value!r}?")
+print(f"Is {int_five!r} == {str_five!r}?")
 ```
 
     5
     '5'
     Is 5 == '5'?
-
-    NameError: name 'int_value' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[5], line 9
-          6 # using repr format specifiers
-          8 print("Is %r == %r?" % (int_five, str_five))
-    ----> 9 print(f"Is {int_value!r} == {str_value!r}?")
-
-    NameError: name 'int_value' is not defined
+    Is 5 == '5'?
 
 - When `str` is called on an argument
   1.  First tries to call `__str__` on the argument
@@ -153,7 +135,7 @@ obj = OpaqueClass(1, "foo")
 print(obj)
 ```
 
-    <__main__.OpaqueClass object at 0x7fa7b07b63c0>
+    <__main__.OpaqueClass object at 0x7f3dc7fac590>
 
 - A lightweight `repr` implementation may be,
 
