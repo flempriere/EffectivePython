@@ -1,6 +1,6 @@
 # Understand the Difference Between `repr` and `str` when Printing
-Objects
 
+Objects
 
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
@@ -30,12 +30,12 @@ print("foo bar")
 
 - Here all the following are equivalent to the above
 
-  1.  Calling `str` on the variable, then `print` on the result
-  2.  Using the `%s` format specifier with the `%` operator
-  3.  The default f-string formatting i.e. `f"{"foo bar"}"`
-  4.  Calling the `format` built-in
-  5.  Calling the `__format__` dunder method
-  6.  Calling the `__str__` dunder method
+  1. Calling `str` on the variable, then `print` on the result
+  2. Using the `%s` format specifier with the `%` operator
+  3. The default f-string formatting i.e. `f"{"foo bar"}"`
+  4. Calling the `format` built-in
+  5. Calling the `__format__` dunder method
+  6. Calling the `__str__` dunder method
 
 ``` python
 foo = "foo bar"
@@ -133,9 +133,9 @@ print(f"Is {int_value!r} == {str_value!r}?")
     NameError: name 'int_value' is not defined
 
 - When `str` is called on an argument
-  1.  First tries to call `__str__` on the argument
-  2.  If no `__str__` falls back to `__repr__`
-  3.  If neither exists, goes through method resolution
+  1. First tries to call `__str__` on the argument
+  2. If no `__str__` falls back to `__repr__`
+  3. If neither exists, goes through method resolution
       - Calls the default object `repr`
       - The default is not very useful, just object type and memory
         address

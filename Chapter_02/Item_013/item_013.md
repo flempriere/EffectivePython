@@ -1,6 +1,6 @@
-# Item 13: Prefer Explicit String Concatenation over Implicit,
-Especially in Lists
+# Item 13: Prefer Explicit String Concatenation over Implicit
 
+Especially in Lists
 
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)

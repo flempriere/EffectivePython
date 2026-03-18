@@ -1,6 +1,5 @@
 # Item 15: Avoid Striding and Slicing in a Single Expression
 
-
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
 
@@ -70,19 +69,19 @@ print(z)
     UnicodeDecodeError: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte
 
 - Consider the following other strides
-  1.  Here `[::2]` means select every 2nd element starting at the
+  1. Here `[::2]` means select every 2nd element starting at the
       beginning
-  2.  What does `[::-2]` mean?
+  2. What does `[::-2]` mean?
       - Take every second element, starting at the end, moving backwards
-  3.  What does `[2::2]` mean?
+  3. What does `[2::2]` mean?
       - Every second item, starting at the third
-  4.  What does `[-2::-2]` mean?
+  4. What does `[-2::-2]` mean?
       - Select every second item, starting two from the end and moving
         backwards
-  5.  What does `[-2:2:-2]` mean?
+  5. What does `[-2:2:-2]` mean?
       - Select every second item, starting two from the end, moving
         backwards to the third index
-  6.  What does `[2:2:-2]` mean?
+  6. What does `[2:2:-2]` mean?
       - Select every second element from the third element to the third
         element, moving backwards
       - So select nothing because `[2:2]` is empty
@@ -110,8 +109,8 @@ print("x[2:2:-2]:", x[2:2:-2])
   expressions
   - Especially when the stride is negative
 - Consider splitting into two steps
-  1.  Stride first
-  2.  Then slice
+  1. Stride first
+  2. Then slice
 
 ``` python
 x = ["a", "b", "c", "d", "e", "f", "g", "h"]

@@ -1,6 +1,5 @@
 # Item 16: Prefer Catch-All Unpacking over Slicing
 
-
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
 

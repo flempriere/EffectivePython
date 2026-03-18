@@ -1,6 +1,5 @@
 # Item 14: Know how to Slice Sequences
 
-
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
 
