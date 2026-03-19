@@ -14,6 +14,7 @@ my_dict = {"red": 1, "blue": 2, "green": 3}
 for key in my_dict:
     if key == "blue":
         my_dict["yellow"] = 4
+print(my_dict)
 ```
 
 - Similar thing happens if we call delete
@@ -25,6 +26,7 @@ my_dict = {"red": 1, "blue": 2, "green": 3}
 for key in my_dict:
     if key == search_key:
         del my_dict[search_key]
+print(my_dict)
 ```
 
 - You can modify the values associated with a key
@@ -50,12 +52,17 @@ print(my_dict)
 search_key = "red"
 my_set = {"red", "green", "blue"}
 
-
-
+# modifying existing element
 for colour in my_set:
     if colour == search_key:
-        my_set.add("green") # add existing element - no problem
-        my_set.add("yellow") # error occurs here
+        my_set.add("green")
+print(my_set)
+
+# adding new element
+for colour in my_set:
+    if colour == search_key:
+        my_set.add("yellow")
+print(my_set)
 ```
 
 - Lists also have odd behaviour

@@ -42,6 +42,8 @@ def flip_is_heads():
 
 flips = [flip_is_heads() for _ in range(20)]
 all_heads = False not in flips
+
+print(all_heads)
 ```
 
 - The above approach performs all twenty coin flips even once a tails has been seen
@@ -68,6 +70,8 @@ for _ in range(20):
     if not flip_is_heads():
         all_heads = False
         break
+
+print(all_heads)
 ```
 
 - Code is now much longer and less clear
@@ -105,6 +109,7 @@ def flip_is_heads():
 
 
 all_heads = all(flip_is_heads() for _ in range(20))
+print(all_heads)
 ```
 
 - Stops doing coin flips as soon as a `False` value is met
@@ -131,6 +136,7 @@ def flip_is_heads():
 
 
 all_heads = all([flip_is_heads() for _ in range(20)])  # list comprehension - Wrong
+print(all_heads)
 
 
 def repeated_is_heads(count):
@@ -139,6 +145,7 @@ def repeated_is_heads(count):
 
 
 all_heads = all(repeated_is_heads(20))  # generator expression is good
+print(all_heads)
 ```
 
 - When a `False` is found,
@@ -157,7 +164,7 @@ all_heads = all(repeated_is_heads(20))  # generator expression is good
 
 ```{python}
 print("All falsey")
-print(any[0, False, None])
+print(any([0, False, None]))
 print(0 or False or None)
 
 print("One truthy")
@@ -183,14 +190,16 @@ def flip_is_tails():
 
 
 all_heads = not any(flip_is_tails() for _ in range(20))  # iterator directly
+print(all_heads)
 
 
-def repeated_is tails(count):
+def repeated_is_tails(count):
     for _ in range(count):
         yield flip_is_tails()  # Generator
 
 
-all_heads = not any(repeated_is_heads(20))  # generator expression is good
+all_heads = not any(repeated_is_tails(20))  # generator expression is good
+print(all_heads)
 ```
 
 - When to use `any` vs `all`?
