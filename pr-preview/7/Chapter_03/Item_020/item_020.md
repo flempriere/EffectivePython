@@ -62,7 +62,10 @@ categories = []
 for i, name in enumerate(categories):
     if name == "Lithium":
         break
+print(i)
 ```
+
+    3
 
 - We can find a solution for this specific example
   - But general point, no way to guarantee a loop variable is bound

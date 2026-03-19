@@ -45,10 +45,10 @@ Generators
 import itertools
 
 it = itertools.chain([1, 2, 3], [4, 5, 6])
-print(list[it])
+print(list(it))
 ```
 
-    list[<itertools.chain object at 0x7f0cb660ca60>]
+    [1, 2, 3, 4, 5, 6]
 
 - An alternative version is `chain.from_iterable()`
   - Consumes an iterator of iterators
@@ -98,8 +98,9 @@ print(result)
 
 #### `tee`
 
-- Split a single iterator into $n$ parallel iterators
+- Turn a single *iterable* into $n$ parallel iterators
   - Memory usage grows if iterators don’t progress at the same speed
+  - Useful if we have a generator we want to use $n$ times
 
 ``` python
 import itertools
@@ -118,7 +119,8 @@ print(list(it3))
 #### `zip_longest`
 
 - `zip` variant that iterates until the longest iterator is exhausted
-- Missing values are replaced with a user-specified default or `None`
+- Missing values are replaced with a user-specified default `fillvalue`
+  or `None`
 
 ``` python
 import itertools
@@ -129,24 +131,13 @@ values = [1, 2]
 normal = list(zip(keys, values))
 print("zip:     ", normal)
 
-it = itertools.zip_longest(keys, values, fill_value="nope")
+it = itertools.zip_longest(keys, values, fillvalue="nope")
 longest = list(it)
 print("zip_longest: ", longest)
 ```
 
     zip:      [('one', 1), ('two', 2)]
-
-    TypeError: zip_longest() got an unexpected keyword argument
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    Cell In[6], line 9
-          6 normal = list(zip(keys, values))
-          7 print("zip:     ", normal)
-    ----> 9 it = itertools.zip_longest(keys, values, fill_value="nope")
-         10 longest = list(it)
-         11 print("zip_longest: ", longest)
-
-    TypeError: zip_longest() got an unexpected keyword argument
+    zip_longest:  [('one', 1), ('two', 2), ('three', 'nope')]
 
 ### Filtering Items from an Iterator
 
@@ -217,26 +208,17 @@ less_than_seven = lambda x : x < 7
 import itertools
 
 values = [i for i in range(1, 11)]
-evens = lambda x : x % 2 == 0
+evens = lambda x: x % 2 == 0
 
-filter_result = filter(evens, values)
+filter_results = filter(evens, values)
 print("Filter:      ", list(filter_results))
 
-filter_false_result = itertools.filterfalse(evens, values)
-print("Filter false:    ", list(filter_false_result))
+filter_false_results = itertools.filterfalse(evens, values)
+print("Filter false:    ", list(filter_false_results))
 ```
 
-    NameError: name 'filter_results' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[10], line 7
-          4 evens = lambda x : x % 2 == 0
-          6 filter_result = filter(evens, values)
-    ----> 7 print("Filter:      ", list(filter_results))
-          9 filter_false_result = itertools.filterfalse(evens, values)
-         10 print("Filter false:    ", list(filter_false_result))
-
-    NameError: name 'filter_results' is not defined
+    Filter:       [2, 4, 6, 8, 10]
+    Filter false:     [1, 3, 5, 7, 9]
 
 ### Producing Combinations of Items from Iterators
 
@@ -297,26 +279,19 @@ values = [i for i in range(1, 11)]
 sum_reduce = itertools.accumulate(values)
 print("Sum:     ", list(sum_reduce))
 
+
 # advanced example, specifying our own function
 def sum_modulo_20(first, second):
     output = first + second
     return output % 20
 
+
 modulo_reduce = itertools.accumulate(values, sum_modulo_20)
-print("Sum Modulo 20:   ", list(module_reduce))
+print("Sum Modulo 20:   ", list(modulo_reduce))
 ```
 
     Sum:      [1, 3, 6, 10, 15, 21, 28, 36, 45, 55]
-
-    NameError: name 'module_reduce' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[13], line 14
-         11     return output % 20
-         13 modulo_reduce = itertools.accumulate(values, sum_modulo_20)
-    ---> 14 print("Sum Modulo 20:   ", list(module_reduce))
-
-    NameError: name 'module_reduce' is not defined
+    Sum Modulo 20:    [1, 3, 6, 10, 15, 1, 8, 16, 5, 15]
 
 - Effectively the same as the `functools` `reduce` function
   - But outputs are yielded one at a time

@@ -19,6 +19,7 @@ my_dict = {"red": 1, "blue": 2, "green": 3}
 for key in my_dict:
     if key == "blue":
         my_dict["yellow"] = 4
+print(my_dict)
 ```
 
     RuntimeError: dictionary changed size during iteration
@@ -42,6 +43,7 @@ my_dict = {"red": 1, "blue": 2, "green": 3}
 for key in my_dict:
     if key == search_key:
         del my_dict[search_key]
+print(my_dict)
 ```
 
     RuntimeError: dictionary changed size during iteration
@@ -81,23 +83,30 @@ print(my_dict)
 search_key = "red"
 my_set = {"red", "green", "blue"}
 
-
-
+# modifying existing element
 for colour in my_set:
     if colour == search_key:
-        my_set.add("green") # add existing element - no problem
-        my_set.add("yellow") # error occurs here
+        my_set.add("green")
+print(my_set)
+
+# adding new element
+for colour in my_set:
+    if colour == search_key:
+        my_set.add("yellow")
+print(my_set)
 ```
+
+    {'green', 'red', 'blue'}
 
     RuntimeError: Set changed size during iteration
     ---------------------------------------------------------------------------
     RuntimeError                              Traceback (most recent call last)
-    Cell In[4], line 6
-          1 search_key = "red"
-          2 my_set = {"red", "green", "blue"}
-    ----> 6 for colour in my_set:
-          7     if colour == search_key:
-          8         my_set.add("green") # add existing element - no problem
+    Cell In[4], line 11
+          8 print(my_set)
+         10 # adding new element
+    ---> 11 for colour in my_set:
+         12     if colour == search_key:
+         13         my_set.add("yellow")
 
     RuntimeError: Set changed size during iteration
 
@@ -200,7 +209,7 @@ print(my_set)
     2
     3
     [4, 1, 2, 3]
-    {'red', 'blue', 'green', 'yellow'}
+    {'green', 'red', 'yellow', 'blue'}
 
 - Copying can be slow for large containers
 - Alternative is to stage modifications in a container
