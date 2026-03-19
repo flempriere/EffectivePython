@@ -8,8 +8,9 @@ This repository contains code fragments and notes from the book, Effective Pytho
 
 ## Contents
 
-- [Chapter 1: Pythonic Thinking](./Chapter_01/Chapter_01.qmd)
-- [Chapter 2: Strings and Slicing](./Chapter_02/Chapter_02.qmd)
+- [Chapter 1: Pythonic Thinking](./Chapter_01/Chapter_01.md)
+- [Chapter 2: Strings and Slicing](./Chapter_02/Chapter_02.md)
+- [Chapter 3: Loops and Iterators](./Chapter_03/Chapter_03.md)
 
 ## Attribution
 
