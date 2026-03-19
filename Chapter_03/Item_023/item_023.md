@@ -46,7 +46,11 @@ def flip_is_heads():
 
 flips = [flip_is_heads() for _ in range(20)]
 all_heads = False not in flips
+
+print(all_heads)
 ```
+
+    False
 
 - The above approach performs all twenty coin flips even once a tails
   has been seen
@@ -74,7 +78,11 @@ for _ in range(20):
     if not flip_is_heads():
         all_heads = False
         break
+
+print(all_heads)
 ```
+
+    False
 
 - Code is now much longer and less clear
 - We can use the `all` built-in to combine the short-circuiting
@@ -120,7 +128,10 @@ def flip_is_heads():
 
 
 all_heads = all(flip_is_heads() for _ in range(20))
+print(all_heads)
 ```
+
+    False
 
 - Stops doing coin flips as soon as a `False` value is met
 - If we pass a list comprehension the list is generated first
@@ -145,6 +156,7 @@ def flip_is_heads():
 
 
 all_heads = all([flip_is_heads() for _ in range(20)])  # list comprehension - Wrong
+print(all_heads)
 
 
 def repeated_is_heads(count):
@@ -153,7 +165,11 @@ def repeated_is_heads(count):
 
 
 all_heads = all(repeated_is_heads(20))  # generator expression is good
+print(all_heads)
 ```
+
+    False
+    False
 
 - When a `False` is found,
   - `all` stops calling the iterator and the result is returned
@@ -171,7 +187,7 @@ all_heads = all(repeated_is_heads(20))  # generator expression is good
 
 ``` python
 print("All falsey")
-print(any[0, False, None])
+print(any([0, False, None]))
 print(0 or False or None)
 
 print("One truthy")
@@ -180,17 +196,11 @@ print(None or 3 or 0)
 ```
 
     All falsey
-
-    TypeError: 'builtin_function_or_method' object is not subscriptable
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    Cell In[7], line 2
-          1 print("All falsey")
-    ----> 2 print(any[0, False, None])
-          3 print(0 or False or None)
-          5 print("One truthy")
-
-    TypeError: 'builtin_function_or_method' object is not subscriptable
+    False
+    None
+    One truthy
+    True
+    3
 
 - We can then rewrite our test for consecutive heads
 
@@ -210,21 +220,20 @@ def flip_is_tails():
 
 
 all_heads = not any(flip_is_tails() for _ in range(20))  # iterator directly
+print(all_heads)
 
 
-def repeated_is tails(count):
+def repeated_is_tails(count):
     for _ in range(count):
         yield flip_is_tails()  # Generator
 
 
-all_heads = not any(repeated_is_heads(20))  # generator expression is good
+all_heads = not any(repeated_is_tails(20))  # generator expression is good
+print(all_heads)
 ```
 
-    SyntaxError: expected '(' (334870671.py, line 18)
-      Cell In[8], line 18
-        def repeated_is tails(count):
-                        ^
-    SyntaxError: expected '('
+    False
+    False
 
 - When to use `any` vs `all`?
   - Depends on the use case and which condition is more difficult to
