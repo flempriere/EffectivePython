@@ -167,11 +167,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../../Chapter_01/Chapter_01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 1: Pythonic Thinking</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Chapter_01/Item_001/item_001.html" class="sidebar-item-text sidebar-link">
@@ -232,11 +232,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../../Chapter_02/Chapter_02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 2: Strings and Slicing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Chapter_02/Item_010/item_010.html" class="sidebar-item-text sidebar-link">
@@ -385,11 +385,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Denote heads as <code>True</code>, tails as <code>False</code></li>
 </ul></li>
 </ul>
-<div id="bcbb3bf5" class="cell" data-execution_count="1">
+<div id="ec9168c5" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> coin_flip():</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flip_coin():</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> random.randint(<span class="dv">0</span>, <span class="dv">1</span>):</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Heads"</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
@@ -403,11 +403,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Want to flip a coin a fixed number of times, and see if every result is heads</li>
 <li>Can perform with a comprehension and an <code>in</code> query</li>
 </ul>
-<div id="fde80a5b" class="cell" data-execution_count="2">
+<div id="6ac74d6a" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> coin_flip():</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flip_coin():</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> random.randint(<span class="dv">0</span>, <span class="dv">1</span>):</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Heads"</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
@@ -420,34 +420,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>flips <span class="op">=</span> [flip_is_heads() <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>)]</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>all_heads <span class="op">=</span> <span class="va">False</span> <span class="kw">not</span> <span class="kw">in</span> flips</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 15</span>
-<span class="ansi-green-fg">     11</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">flip_is_heads</span>():
-<span class="ansi-green-fg">     12</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> flip_coin() == <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Heads</span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">15</span> flips = [<span class="ansi-yellow-bg">flip_is_heads</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span> <span style="font-weight:bold;color:rgb(0,135,0)">for</span> _ <span style="font-weight:bold;color:rgb(175,0,255)">in</span> <span style="color:rgb(0,135,0)">range</span>(<span class="ansi-green-fg">20</span>)]
-<span class="ansi-green-fg">     16</span> all_heads = <span style="font-weight:bold;color:rgb(0,135,0)">False</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> <span style="font-weight:bold;color:rgb(175,0,255)">in</span> flips
-
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 12</span>, in <span class="ansi-cyan-fg">flip_is_heads</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg">     11</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">flip_is_heads</span>():
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">12</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">flip_coin</span>() == <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Heads</span><span class="ansi-yellow-fg">"</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'flip_coin' is not defined</pre>
-</div>
-</div>
 </div>
 <ul>
 <li>The above approach performs all twenty coin flips even once a tails has been seen</li>
 <li>If coin flips were instead a more expensive operation this would represent a lot of wasted computation</li>
 <li>We could write a terminating <code>for</code> loop</li>
 </ul>
-<div id="e67a30db" class="cell" data-execution_count="3">
+<div id="52d060b3" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> coin_flip():</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flip_coin():</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> random.randint(<span class="dv">0</span>, <span class="dv">1</span>):</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Heads"</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
@@ -463,24 +446,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> flip_is_heads():</span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        all_heads <span class="op">=</span> <span class="va">False</span></span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 17</span>
-<span class="ansi-green-fg">     15</span> all_heads = <span style="font-weight:bold;color:rgb(0,135,0)">True</span>
-<span class="ansi-green-fg">     16</span> <span style="font-weight:bold;color:rgb(0,135,0)">for</span> _ <span style="font-weight:bold;color:rgb(175,0,255)">in</span> <span style="color:rgb(0,135,0)">range</span>(<span class="ansi-green-fg">20</span>):
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">17</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> <span class="ansi-yellow-bg">flip_is_heads</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>:
-<span class="ansi-green-fg">     18</span>         all_heads = <span style="font-weight:bold;color:rgb(0,135,0)">False</span>
-<span class="ansi-green-fg">     19</span>         <span style="font-weight:bold;color:rgb(0,135,0)">break</span>
-
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 12</span>, in <span class="ansi-cyan-fg">flip_is_heads</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg">     11</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">flip_is_heads</span>():
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">12</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">flip_coin</span>() == <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Heads</span><span class="ansi-yellow-fg">"</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'flip_coin' is not defined</pre>
-</div>
-</div>
 </div>
 <ul>
 <li>Code is now much longer and less clear</li>
@@ -492,7 +457,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>This is different to <code>and</code> which returns the value that determines truthyness</li>
 </ul>
-<div id="a5e63031" class="cell" data-execution_count="4">
+<div id="38c7f2c8" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All truthy"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">all</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span> <span class="kw">and</span> <span class="dv">2</span> <span class="kw">and</span> <span class="dv">3</span>)</span>
@@ -512,11 +477,11 @@ False
 <ul>
 <li>Rewriting our <code>all_heads</code> calculation</li>
 </ul>
-<div id="43d9e45a" class="cell" data-execution_count="5">
+<div id="f1d6511e" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> coin_flip():</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flip_coin():</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> random.randint(<span class="dv">0</span>, <span class="dv">1</span>):</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Heads"</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
@@ -528,27 +493,6 @@ False
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>all_heads <span class="op">=</span> <span class="bu">all</span>(flip_is_heads() <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 15</span>
-<span class="ansi-green-fg">     11</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">flip_is_heads</span>():
-<span class="ansi-green-fg">     12</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> flip_coin() == <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Heads</span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">15</span> all_heads = <span style="color:rgb(0,135,0)">all</span>(flip_is_heads() <span style="font-weight:bold;color:rgb(0,135,0)">for</span> _ <span style="font-weight:bold;color:rgb(175,0,255)">in</span> <span style="color:rgb(0,135,0)">range</span>(<span class="ansi-green-fg">20</span>))
-
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 15</span>, in <span class="ansi-cyan-fg">&lt;genexpr&gt;</span><span class="ansi-blue-fg">(.0)</span>
-<span class="ansi-green-fg">     11</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">flip_is_heads</span>():
-<span class="ansi-green-fg">     12</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> flip_coin() == <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Heads</span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">15</span> all_heads = <span style="color:rgb(0,135,0)">all</span>(<span class="ansi-yellow-bg">flip_is_heads</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span> <span style="font-weight:bold;color:rgb(0,135,0)">for</span> _ <span style="font-weight:bold;color:rgb(175,0,255)">in</span> <span style="color:rgb(0,135,0)">range</span>(<span class="ansi-green-fg">20</span>))
-
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 12</span>, in <span class="ansi-cyan-fg">flip_is_heads</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg">     11</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">flip_is_heads</span>():
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">12</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">flip_coin</span>() == <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Heads</span><span class="ansi-yellow-fg">"</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'flip_coin' is not defined</pre>
-</div>
-</div>
 </div>
 <ul>
 <li>Stops doing coin flips as soon as a <code>False</code> value is met</li>
@@ -562,11 +506,11 @@ False
 <li>So it’s only called as required</li>
 </ul></li>
 </ul>
-<div id="018e1caa" class="cell" data-execution_count="6">
+<div id="33fe308a" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> coin_flip():</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flip_coin():</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> random.randint(<span class="dv">0</span>, <span class="dv">1</span>):</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Heads"</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
@@ -586,24 +530,6 @@ False
 <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>all_heads <span class="op">=</span> <span class="bu">all</span>(repeated_is_heads(<span class="dv">20</span>))  <span class="co"># generator expression is good</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 15</span>
-<span class="ansi-green-fg">     11</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">flip_is_heads</span>():
-<span class="ansi-green-fg">     12</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> flip_coin() == <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Heads</span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">15</span> all_heads = <span style="color:rgb(0,135,0)">all</span>([<span class="ansi-yellow-bg">flip_is_heads</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span> <span style="font-weight:bold;color:rgb(0,135,0)">for</span> _ <span style="font-weight:bold;color:rgb(175,0,255)">in</span> <span style="color:rgb(0,135,0)">range</span>(<span class="ansi-green-fg">20</span>)])  <span style="font-style:italic;color:rgb(95,135,135)"># list comprehension - Wrong</span>
-<span class="ansi-green-fg">     18</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">repeated_is_heads</span>(count):
-<span class="ansi-green-fg">     19</span>     <span style="font-weight:bold;color:rgb(0,135,0)">for</span> _ <span style="font-weight:bold;color:rgb(175,0,255)">in</span> <span style="color:rgb(0,135,0)">range</span>(count):
-
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 12</span>, in <span class="ansi-cyan-fg">flip_is_heads</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg">     11</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">flip_is_heads</span>():
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">12</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">flip_coin</span>() == <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Heads</span><span class="ansi-yellow-fg">"</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'flip_coin' is not defined</pre>
-</div>
-</div>
 </div>
 <ul>
 <li>When a <code>False</code> is found,
@@ -625,7 +551,7 @@ False
 <li>Like <code>any</code> always returns <code>True</code> or <code>False</code></li>
 </ul></li>
 </ul>
-<div id="eeba544a" class="cell" data-execution_count="7">
+<div id="beeee244" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All falsey"</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">any</span>[<span class="dv">0</span>, <span class="va">False</span>, <span class="va">None</span>])</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">0</span> <span class="kw">or</span> <span class="va">False</span> <span class="kw">or</span> <span class="va">None</span>)</span>
@@ -653,11 +579,11 @@ False
 <ul>
 <li>We can then rewrite our test for consecutive heads</li>
 </ul>
-<div id="97231e83" class="cell" data-execution_count="8">
+<div id="3650ef5c" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> coin_flip():</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flip_coin():</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> random.randint(<span class="dv">0</span>, <span class="dv">1</span>):</span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Heads"</span></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
@@ -696,7 +622,7 @@ False
 </ul></li>
 <li>They are equivalent via De Morgan’s laws for Boolean logic</li>
 </ul>
-<div id="43ac0c43" class="cell" data-execution_count="9">
+<div id="cdc2d01b" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a <span class="kw">in</span> (<span class="va">True</span>, <span class="va">False</span>):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> b <span class="kw">in</span> (<span class="va">True</span>, <span class="va">False</span>):</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> <span class="bu">any</span>([a, b]) <span class="op">==</span> (<span class="kw">not</span> <span class="bu">all</span> ([<span class="kw">not</span> a, <span class="kw">not</span> b]))</span>

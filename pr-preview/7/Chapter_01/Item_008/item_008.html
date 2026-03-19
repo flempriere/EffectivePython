@@ -232,11 +232,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../../Chapter_02/Chapter_02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 2: Strings and Slicing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Chapter_02/Item_010/item_010.html" class="sidebar-item-text sidebar-link">
@@ -285,11 +285,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../../Chapter_03/Chapter_03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 3: Loops and Iterators</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Chapter_03/Item_017/item_017.html" class="sidebar-item-text sidebar-link">
@@ -388,7 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Evaluates to whatever was assigned to the left side of the operator</p></li>
 <li><p>Consider a basket of fresh fruit being managed by a juice bar</p></li>
 </ul>
-<div id="5f2d5026" class="cell" data-execution_count="1">
+<div id="0faf7bef" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>fresh_fruit <span class="op">=</span> {</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"apple"</span>: <span class="dv">10</span>,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"banana"</span>: <span class="dv">8</span>,</span>
@@ -399,7 +399,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>To serve lemonade needs to be at least one lemon available</li>
 <li>Standard <code>if</code> construction might look like,</li>
 </ul>
-<div id="80b7f276" class="cell" data-execution_count="2">
+<div id="086b4a46" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_lemonade(count):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Making </span><span class="sc">{</span>count<span class="sc">}</span><span class="ss"> lemons into lemonade"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -426,7 +426,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>We can rewrite the above using the walrus operator</li>
 </ul>
-<div id="4b1eb60d" class="cell" data-execution_count="3">
+<div id="0b4411bb" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> count <span class="op">:=</span> fresh_fruit.get(<span class="st">"lemon"</span>, <span class="dv">0</span>):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    make_lemonade(count)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
@@ -440,7 +440,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>You can combine assignment expressions in larger expressions</li>
 <li>For example if making cider requires four apples</li>
 </ul>
-<div id="696c233d" class="cell" data-execution_count="4">
+<div id="3f5576c3" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_cider(count):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Turned </span><span class="sc">{</span>count<span class="sc">}</span><span class="ss"> apples into cider"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -456,7 +456,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>We can make this clearer using assignment expressions</li>
 </ul>
-<div id="6dd49229" class="cell" data-execution_count="5">
+<div id="04b1c346" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (count <span class="op">:=</span> fresh_fruit.get(<span class="st">"apple"</span>, <span class="dv">0</span>)) <span class="op">&gt;=</span> <span class="dv">4</span>:</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    make_cider(count)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
@@ -473,7 +473,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p>For example, in our fruit shop example, to make a banana smoothie we need sliced banana</p></li>
 </ul>
-<div id="5ae6f0d6" class="cell" data-execution_count="6">
+<div id="e7c1c310" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> slice_bananas(count):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Slicing </span><span class="sc">{</span>count<span class="sc">}</span><span class="ss"> bananas"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> count <span class="op">*</span> <span class="dv">4</span></span>
@@ -510,7 +510,7 @@ Making smoothies with 32 banana slices</code></pre>
 </ul></li>
 <li>We can instead use the walrus operator</li>
 </ul>
-<div id="59af60b2" class="cell" data-execution_count="7">
+<div id="77b635f0" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (count <span class="op">:=</span> fresh_fruit.get(<span class="st">"banana"</span>, <span class="dv">0</span>)) <span class="op">&gt;=</span> <span class="dv">2</span>:</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    pieces <span class="op">=</span> slice_bananas(count)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -530,7 +530,7 @@ Making smoothies with 32 banana slices</code></pre>
 </ul></li>
 <li>Suppose we want a priority hierarchy for our juice</li>
 </ul>
-<div id="8a5e2f86" class="cell" data-execution_count="8">
+<div id="ebf40f50" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> fresh_fruit.get(<span class="st">"banana"</span>, <span class="dv">0</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> count <span class="op">&gt;=</span> <span class="dv">2</span>:</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    pieces <span class="op">=</span> slice_bananas(count)</span>
@@ -553,7 +553,7 @@ Making smoothies with 32 banana slices</code></pre>
 <ul>
 <li>We can use the walrus operator to flatten this structure</li>
 </ul>
-<div id="ce33afa2" class="cell" data-execution_count="9">
+<div id="800e540a" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (count <span class="op">:=</span> fresh_fruit.get(<span class="st">"banana"</span>, <span class="dv">0</span>)) <span class="op">&gt;=</span> <span class="dv">2</span>:</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    pieces <span class="op">=</span> slice_bananas(count)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    to_enjoy <span class="op">=</span> make_smoothies(pieces)</span>
@@ -573,7 +573,7 @@ Making smoothies with 32 banana slices</code></pre>
 <li>For example, lets say we want to bottle juice while we have fruit available</li>
 <li>A traditional approach:</li>
 </ul>
-<div id="502dbf63" class="cell" data-execution_count="10">
+<div id="a3401b02" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>FRUIT_TO_PICK <span class="op">=</span> [</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"apple"</span>: <span class="dv">1</span>, <span class="st">"banana"</span>: <span class="dv">3</span>},</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"lemon"</span>: <span class="dv">2</span>, <span class="st">"lime"</span>: <span class="dv">5</span>},</span>
@@ -616,7 +616,7 @@ Making smoothies with 32 banana slices</code></pre>
 <li>Use a <code>while True</code> and <code>break</code> combination</li>
 </ul></li>
 </ul>
-<div id="8c3f8ef2" class="cell" data-execution_count="11">
+<div id="f08291ad" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>FRUIT_TO_PICK <span class="op">=</span> [</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"apple"</span>: <span class="dv">1</span>, <span class="st">"banana"</span>: <span class="dv">3</span>},</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"lemon"</span>: <span class="dv">2</span>, <span class="st">"lime"</span>: <span class="dv">5</span>},</span>
@@ -641,7 +641,7 @@ Making smoothies with 32 banana slices</code></pre>
 <li>Downside is that the <code>break</code> (i.e.&nbsp;loop termination condition) is hidden in the loop itself</li>
 <li>Instead we can use the walrus operator to put the assignment and test in one statement</li>
 </ul>
-<div id="0067f269" class="cell" data-execution_count="12">
+<div id="2dcf725a" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>FRUIT_TO_PICK <span class="op">=</span> [</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"apple"</span>: <span class="dv">1</span>, <span class="st">"banana"</span>: <span class="dv">3</span>},</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"lemon"</span>: <span class="dv">2</span>, <span class="st">"lime"</span>: <span class="dv">5</span>},</span>

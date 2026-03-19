@@ -196,11 +196,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../Chapter_01/Chapter_01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 1: Pythonic Thinking</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Chapter_01/Item_001/item_001.html" class="sidebar-item-text sidebar-link">
@@ -261,11 +261,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../Chapter_02/Chapter_02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 2: Strings and Slicing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Chapter_02/Item_010/item_010.html" class="sidebar-item-text sidebar-link">
@@ -415,7 +415,7 @@ window.Quarto = {
 <li>Below, we take a list of names and convert it to a list of name lengths</li>
 </ul></li>
 </ul>
-<div id="481c00b1" class="cell" data-execution_count="1">
+<div id="050d6557" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(n) <span class="cf">for</span> n <span class="kw">in</span> names]</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(counts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -434,7 +434,7 @@ window.Quarto = {
 <li>e.g.&nbsp;to find the longest name</li>
 </ul></li>
 </ul>
-<div id="32a41287" class="cell" data-execution_count="2">
+<div id="9c924318" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(n) <span class="cf">for</span> n <span class="kw">in</span> names]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -482,31 +482,17 @@ Longest name (enumerate-based approach): Charlie</code></pre>
 <li>Can unpack them as for <code>enumerate</code></li>
 </ul></li>
 </ul>
-<div id="20ccc136" class="cell" data-execution_count="3">
+<div id="7df3252d" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(n) <span class="cf">for</span> n <span class="kw">in</span> names]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>longest_name <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, count <span class="kw">in</span> <span class="bu">zip</span>(names, counts):</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> count <span class="op">&gt;</span> max_count:</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        longest_name <span class="op">=</span> name</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        max_count <span class="op">=</span> count</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 7</span>
-<span class="ansi-green-fg">      4</span> longest_name = <span style="font-weight:bold;color:rgb(0,135,0)">None</span>
-<span class="ansi-green-fg">      5</span> counts = <span class="ansi-green-fg">0</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">7</span> <span style="font-weight:bold;color:rgb(0,135,0)">for</span> name, count <span style="font-weight:bold;color:rgb(175,0,255)">in</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">zip</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">names</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">counts</span><span class="ansi-yellow-bg">)</span>:
-<span class="ansi-green-fg">      8</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> count &gt; max_count:
-<span class="ansi-green-fg">      9</span>         longest_name = name
-
-<span class="ansi-red-fg">TypeError</span>: 'int' object is not iterable</pre>
-</div>
-</div>
 </div>
 <ul>
 <li><code>zip</code> consumes elements one at a time from each iterator</li>
@@ -519,7 +505,7 @@ Longest name (enumerate-based approach): Charlie</code></pre>
 <li>Means that if iterators of different size are combined the shortest determines the length of the loop</li>
 </ul></li>
 </ul>
-<div id="497e9140" class="cell" data-execution_count="4">
+<div id="01fd7fbf" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(n) <span class="cf">for</span> n <span class="kw">in</span> names]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -540,7 +526,7 @@ Charlie: 7</code></pre>
 <li>If <code>True</code> a <code>ValueError</code> is raised if <code>zip</code> exhausts one of the iterators</li>
 </ul></li>
 </ul>
-<div id="4079a914" class="cell" data-execution_count="5">
+<div id="0c82a42c" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(n) <span class="cf">for</span> n <span class="kw">in</span> names]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -577,7 +563,7 @@ Charlie: 7</code></pre>
 <li>Let’s you pad exhausted iterators with a default value (by default this is <code>None</code>)</li>
 </ul></li>
 </ul>
-<div id="8b3d9160" class="cell" data-execution_count="6">
+<div id="39a20376" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>

@@ -143,24 +143,16 @@ my_list = [1, 2, 3]
 for number in my_list:
     print(number)
     if number == 2:
-        my_list.insert(4)  # okay
+        my_list.append(4)  # okay
 
 print(my_list)
 ```
 
     1
     2
-
-    TypeError: insert expected 2 arguments, got 1
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    Cell In[6], line 6
-          4     print(number)
-          5     if number == 2:
-    ----> 6         my_list.insert(4)  # okay
-          8 print(my_list)
-
-    TypeError: insert expected 2 arguments, got 1
+    3
+    4
+    [1, 2, 3, 4]
 
 - End result is that it’s hard to codify a set of rules for when it’s
   safe to modify a container while looping
@@ -208,7 +200,7 @@ print(my_set)
     2
     3
     [4, 1, 2, 3]
-    {'red', 'green', 'yellow', 'blue'}
+    {'yellow', 'green', 'red', 'blue'}
 
 - Copying can be slow for large containers
 - Alternative is to stage modifications in a container

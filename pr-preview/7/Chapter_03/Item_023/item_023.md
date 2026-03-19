@@ -14,7 +14,7 @@ Short-Circuiting Logic
 import random
 
 
-def coin_flip():
+def flip_coin():
     if random.randint(0, 1):
         return "Heads"
     else:
@@ -33,7 +33,7 @@ def flip_is_heads():
 import random
 
 
-def coin_flip():
+def flip_coin():
     if random.randint(0, 1):
         return "Heads"
     else:
@@ -48,21 +48,6 @@ flips = [flip_is_heads() for _ in range(20)]
 all_heads = False not in flips
 ```
 
-    NameError: name 'flip_coin' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[2], line 15
-         11 def flip_is_heads():
-         12     return flip_coin() == "Heads"
-    ---> 15 flips = [flip_is_heads() for _ in range(20)]
-         16 all_heads = False not in flips
-
-    Cell In[2], line 12, in flip_is_heads()
-         11 def flip_is_heads():
-    ---> 12     return flip_coin() == "Heads"
-
-    NameError: name 'flip_coin' is not defined
-
 - The above approach performs all twenty coin flips even once a tails
   has been seen
 - If coin flips were instead a more expensive operation this would
@@ -73,7 +58,7 @@ all_heads = False not in flips
 import random
 
 
-def coin_flip():
+def flip_coin():
     if random.randint(0, 1):
         return "Heads"
     else:
@@ -90,22 +75,6 @@ for _ in range(20):
         all_heads = False
         break
 ```
-
-    NameError: name 'flip_coin' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[3], line 17
-         15 all_heads = True
-         16 for _ in range(20):
-    ---> 17     if not flip_is_heads():
-         18         all_heads = False
-         19         break
-
-    Cell In[3], line 12, in flip_is_heads()
-         11 def flip_is_heads():
-    ---> 12     return flip_coin() == "Heads"
-
-    NameError: name 'flip_coin' is not defined
 
 - Code is now much longer and less clear
 - We can use the `all` built-in to combine the short-circuiting
@@ -139,7 +108,7 @@ print(1 and 0 and 3)
 import random
 
 
-def coin_flip():
+def flip_coin():
     if random.randint(0, 1):
         return "Heads"
     else:
@@ -153,25 +122,6 @@ def flip_is_heads():
 all_heads = all(flip_is_heads() for _ in range(20))
 ```
 
-    NameError: name 'flip_coin' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[5], line 15
-         11 def flip_is_heads():
-         12     return flip_coin() == "Heads"
-    ---> 15 all_heads = all(flip_is_heads() for _ in range(20))
-
-    Cell In[5], line 15, in <genexpr>(.0)
-         11 def flip_is_heads():
-         12     return flip_coin() == "Heads"
-    ---> 15 all_heads = all(flip_is_heads() for _ in range(20))
-
-    Cell In[5], line 12, in flip_is_heads()
-         11 def flip_is_heads():
-    ---> 12     return flip_coin() == "Heads"
-
-    NameError: name 'flip_coin' is not defined
-
 - Stops doing coin flips as soon as a `False` value is met
 - If we pass a list comprehension the list is generated first
   - Which defeats the whole point of using `all`
@@ -183,7 +133,7 @@ all_heads = all(flip_is_heads() for _ in range(20))
 import random
 
 
-def coin_flip():
+def flip_coin():
     if random.randint(0, 1):
         return "Heads"
     else:
@@ -204,22 +154,6 @@ def repeated_is_heads(count):
 
 all_heads = all(repeated_is_heads(20))  # generator expression is good
 ```
-
-    NameError: name 'flip_coin' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[6], line 15
-         11 def flip_is_heads():
-         12     return flip_coin() == "Heads"
-    ---> 15 all_heads = all([flip_is_heads() for _ in range(20)])  # list comprehension - Wrong
-         18 def repeated_is_heads(count):
-         19     for _ in range(count):
-
-    Cell In[6], line 12, in flip_is_heads()
-         11 def flip_is_heads():
-    ---> 12     return flip_coin() == "Heads"
-
-    NameError: name 'flip_coin' is not defined
 
 - When a `False` is found,
   - `all` stops calling the iterator and the result is returned
@@ -264,7 +198,7 @@ print(None or 3 or 0)
 import random
 
 
-def coin_flip():
+def flip_coin():
     if random.randint(0, 1):
         return "Heads"
     else:
@@ -286,7 +220,7 @@ def repeated_is tails(count):
 all_heads = not any(repeated_is_heads(20))  # generator expression is good
 ```
 
-    SyntaxError: expected '(' (3973706096.py, line 18)
+    SyntaxError: expected '(' (334870671.py, line 18)
       Cell In[8], line 18
         def repeated_is tails(count):
                         ^

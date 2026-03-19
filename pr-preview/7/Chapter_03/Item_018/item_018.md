@@ -74,25 +74,13 @@ names = ["Alice", "Bob", "Charlie"]
 counts = [len(n) for n in names]
 
 longest_name = None
-counts = 0
+count = 0
 
 for name, count in zip(names, counts):
     if count > max_count:
         longest_name = name
         max_count = count
 ```
-
-    TypeError: 'int' object is not iterable
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    Cell In[3], line 7
-          4 longest_name = None
-          5 counts = 0
-    ----> 7 for name, count in zip(names, counts):
-          8     if count > max_count:
-          9         longest_name = name
-
-    TypeError: 'int' object is not iterable
 
 - `zip` consumes elements one at a time from each iterator
 - Provides memory efficient access to long generators
