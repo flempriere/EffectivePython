@@ -1,6 +1,5 @@
 # Item 19: Avoid `else` Blocks After `for` and `while` Loops
 
-
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
 

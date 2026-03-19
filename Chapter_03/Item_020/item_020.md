@@ -1,6 +1,5 @@
 # Item 20: Never use `for` Loop Variables after the Loop Ends
 
-
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
 

@@ -1,6 +1,6 @@
 # Item 22: Never Modify Containers While Iterating over Them; Use Copies
-or Caches Instead
 
+or Caches Instead
 
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)

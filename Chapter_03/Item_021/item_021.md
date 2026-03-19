@@ -1,6 +1,5 @@
 # Item 21: Be Defensive when Iterating Over Arguments
 
-
 - [Notes](#notes)
   - [Example: American Tourism
     Numbers](#example-american-tourism-numbers)

@@ -1,6 +1,6 @@
 # Item 24: Consider `itertools` for Working with Iterators and
-Generators
 
+Generators
 
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)

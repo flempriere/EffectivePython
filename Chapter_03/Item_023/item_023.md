@@ -1,6 +1,6 @@
 # Item 23: Pass Iterators to `any` and `all` for Efficient
-Short-Circuiting Logic
 
+Short-Circuiting Logic
 
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)

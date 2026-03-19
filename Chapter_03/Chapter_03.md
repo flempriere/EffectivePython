@@ -9,9 +9,9 @@
   - Rather than directly interfacing with data storage iterators provide
     an abstraction
   - Iterators can
-    1.  Make programs more efficient
-    2.  Easier to refactor
-    3.  Capable of handling arbitrary sized data
+    1. Make programs more efficient
+    2. Easier to refactor
+    3. Capable of handling arbitrary sized data
   - Python provides tools to compose iterators and customise their
     behaviours
     - Generators provide an advanced way to interface with iterators

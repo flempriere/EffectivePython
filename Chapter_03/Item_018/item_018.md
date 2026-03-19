@@ -1,6 +1,5 @@
 # Item 18: Use `zip` to Process Iterators in Parallel
 
-
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
 

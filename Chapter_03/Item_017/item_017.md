@@ -1,6 +1,5 @@
 # Item 17: Prefer `enumerate` over `range`
 
-
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
 
