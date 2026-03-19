@@ -448,13 +448,13 @@ window.Quarto = {
 <li>Iterators are processed in the order they are passed to <code>chain</code></li>
 </ul></li>
 </ul>
-<div id="38040d5e" class="cell" data-execution_count="1">
+<div id="1240ef63" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> itertools.chain([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>])</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>[it])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>list[&lt;itertools.chain object at 0x7fa50842a2c0&gt;]</code></pre>
+<pre><code>list[&lt;itertools.chain object at 0x7f260cbc4a30&gt;]</code></pre>
 </div>
 </div>
 <ul>
@@ -464,7 +464,7 @@ window.Quarto = {
 <li>Produces a single flat output iterator</li>
 </ul></li>
 </ul>
-<div id="136b0746" class="cell" data-execution_count="2">
+<div id="25c2966e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>it1 <span class="op">=</span> [i <span class="op">*</span> <span class="dv">3</span> <span class="cf">for</span> i <span class="kw">in</span> (<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>)]</span>
@@ -486,7 +486,7 @@ window.Quarto = {
 <li>By default, repeats infinitely, else provide the second argument</li>
 </ul></li>
 </ul>
-<div id="8db0b064" class="cell" data-execution_count="3">
+<div id="bd210e09" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> itertools.repeat(<span class="st">"hello"</span>, <span class="dv">3</span>)</span>
@@ -501,7 +501,7 @@ window.Quarto = {
 <ul>
 <li>Repeat an iterators items forever</li>
 </ul>
-<div id="dec798a6" class="cell" data-execution_count="4">
+<div id="0e712c1d" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> itertools.cycle([<span class="dv">1</span>, <span class="dv">2</span>])</span>
@@ -521,7 +521,7 @@ window.Quarto = {
 <li>Memory usage grows if iterators don’t progress at the same speed</li>
 </ul></li>
 </ul>
-<div id="4111194a" class="cell" data-execution_count="5">
+<div id="625ef093" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>it1, it2, it3 <span class="op">=</span> itertools.tee([<span class="st">"first"</span>, <span class="st">"second"</span>], <span class="dv">3</span>)</span>
@@ -542,7 +542,7 @@ window.Quarto = {
 <li><code>zip</code> variant that iterates until the longest iterator is exhausted</li>
 <li>Missing values are replaced with a user-specified default or <code>None</code></li>
 </ul>
-<div id="f9222345" class="cell" data-execution_count="6">
+<div id="4606d4da" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>keys <span class="op">=</span> [<span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span>]</span>
@@ -591,7 +591,7 @@ window.Quarto = {
 </ol></li>
 <li>Similar logic to that of standard slicing and striding</li>
 </ul>
-<div id="4cd6e917" class="cell" data-execution_count="7">
+<div id="819cf05d" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>)]</span>
@@ -615,7 +615,7 @@ Middle odds: [3, 5, 7]</code></pre>
 <li>All remaining items consumed (but not returned)</li>
 </ul></li>
 </ul>
-<div id="77876652" class="cell" data-execution_count="8">
+<div id="75cd21b3" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>)]</span>
@@ -637,7 +637,7 @@ Middle odds: [3, 5, 7]</code></pre>
 <li>All remaining items are returned</li>
 </ul></li>
 </ul>
-<div id="80323144" class="cell" data-execution_count="9">
+<div id="e59fc3e8" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>)]</span>
@@ -651,7 +651,7 @@ Middle odds: [3, 5, 7]</code></pre>
 <li>Opposite of the built-in <code>filter</code> function</li>
 <li>Returns all items for which a predicate is <code>False</code></li>
 </ul>
-<div id="7e6b5d84" class="cell" data-execution_count="10">
+<div id="53e8e1ec" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>)]</span>
@@ -695,7 +695,7 @@ Middle odds: [3, 5, 7]</code></pre>
 <li>Or constraint satisfaction</li>
 </ul></li>
 </ul>
-<div id="c59e4941" class="cell" data-execution_count="11">
+<div id="00c8c279" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> itertools.batched([i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>)], <span class="dv">3</span>)</span>
@@ -718,7 +718,7 @@ Middle odds: [3, 5, 7]</code></pre>
 </ul></li>
 <li>Can be useful for graph-traversal algorithms that need to traverse sequential sets of vertices or endpoints</li>
 </ul>
-<div id="16be3f0d" class="cell" data-execution_count="12">
+<div id="9c0300ab" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>route <span class="op">=</span> [<span class="st">"Los Angeles"</span>, <span class="st">"Bakersfield"</span>, <span class="st">"Modesto"</span>, <span class="st">"Sacramento"</span>]</span>
@@ -736,7 +736,7 @@ Middle odds: [3, 5, 7]</code></pre>
 <li>Works by applying a two parameter function (first is the current value, second is the next item from the iterator)</li>
 <li>By default, sums the elements</li>
 </ul>
-<div id="61f77c9c" class="cell" data-execution_count="13">
+<div id="a71dbacd" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># basic example, defaults to sum</span></span>
@@ -783,7 +783,7 @@ Middle odds: [3, 5, 7]</code></pre>
 </ul></li>
 <li>Provides a good alternative to deeply nested comprehensions</li>
 </ul>
-<div id="b58a1943" class="cell" data-execution_count="14">
+<div id="8376221b" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># product of A, with itself</span></span>
@@ -807,7 +807,7 @@ Multiple: [(1, 'a'), (1, 'b'), (1, 'c'), (2, 'a'), (2, 'b'), (2, 'c')]</code></p
 <li><span class="math inline">\(n\)</span> is the second argument</li>
 </ul></li>
 </ul>
-<div id="7b459112" class="cell" data-execution_count="15">
+<div id="5d162238" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> itertools.permutations([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>], <span class="dv">2</span>)</span>
@@ -825,7 +825,7 @@ Multiple: [(1, 'a'), (1, 'b'), (1, 'c'), (2, 'a'), (2, 'b'), (2, 'c')]</code></p
 <li>Items are not repeated</li>
 </ul></li>
 </ul>
-<div id="fc0e782f" class="cell" data-execution_count="16">
+<div id="f55897a6" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> itertools.combinations([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>], <span class="dv">2</span>)</span>

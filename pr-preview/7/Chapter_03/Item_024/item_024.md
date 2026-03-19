@@ -48,7 +48,7 @@ it = itertools.chain([1, 2, 3], [4, 5, 6])
 print(list[it])
 ```
 
-    list[<itertools.chain object at 0x7f4224f17fa0>]
+    list[<itertools.chain object at 0x7f0cb660ca60>]
 
 - An alternative version is `chain.from_iterable()`
   - Consumes an iterator of iterators
