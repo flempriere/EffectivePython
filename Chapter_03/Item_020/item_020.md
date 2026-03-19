@@ -58,13 +58,21 @@ print(i)
 
 ``` python
 categories = []
-for i, name in enumerate(categories):
+for j, name in enumerate(categories):
     if name == "Lithium":
         break
-print(i)
+print(j)
 ```
 
-    3
+    NameError: name 'j' is not defined
+    ---------------------------------------------------------------------------
+    NameError                                 Traceback (most recent call last)
+    Cell In[4], line 5
+          3     if name == "Lithium":
+          4         break
+    ----> 5 print(j)
+
+    NameError: name 'j' is not defined
 
 - We can find a solution for this specific example
   - But general point, no way to guarantee a loop variable is bound
@@ -75,11 +83,19 @@ print(i)
 
 ``` python
 foo = [37, 13, 128, 21]
-even = [i for i in foo if i % 2 == 0]
-print(i) # always raises an error
+even = [k for k in foo if k % 2 == 0]
+print(k)  # always raises an error
 ```
 
-    3
+    NameError: name 'k' is not defined
+    ---------------------------------------------------------------------------
+    NameError                                 Traceback (most recent call last)
+    Cell In[5], line 3
+          1 foo = [37, 13, 128, 21]
+          2 even = [k for k in foo if k % 2 == 0]
+    ----> 3 print(k)  # always raises an error
+
+    NameError: name 'k' is not defined
 
 - Assignment expressions in comprehensions can change this
 - Exception variables also don’t leak
