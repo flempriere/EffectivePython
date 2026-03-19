@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Chapter 1: Pythonic Thinking – Effective Python: Notes</title>
+<title>Item 18: Use zip to Process Iterators in Parallel – Effective Python: Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,25 +58,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../Chapter_01/Item_001/item_001.html" rel="next">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-007a8609411f977ffbfe52380a417f90.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../Chapter_03/Item_019/item_019.html" rel="next">
+<link href="../../Chapter_03/Item_017/item_017.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-007a8609411f977ffbfe52380a417f90.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -105,8 +106,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<meta property="og:title" content="Chapter 1: Pythonic Thinking – Effective Python: Notes">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Item 18: Use zip to Process Iterators in Parallel – Effective Python: Notes">
 <meta property="og:site_name" content="Effective Python: Notes">
 </head>
 
@@ -117,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Effective Python: Notes</span>
     </a>
   </div>
@@ -128,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
 </ul>
@@ -142,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Chapter_01/Chapter_01.html">Chapter 1: Pythonic Thinking</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_03/Chapter_03.html">Chapter 3: Loops and Iterators</a></li><li class="breadcrumb-item"><a href="../../Chapter_03/Item_018/item_018.html">Item 18: Use <code>zip</code> to Process Iterators in Parallel</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -164,64 +194,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../Chapter_01/Chapter_01.html" class="sidebar-item-text sidebar-link active">
+            <a href="../../Chapter_01/Chapter_01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 1: Pythonic Thinking</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_01/Item_001/item_001.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_01/Item_001/item_001.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 1: Know which version of Python you’re using</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_01/Item_002/item_002.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_01/Item_002/item_002.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 2: Follow the PEP Style Guide</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_01/Item_003/item_003.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_01/Item_003/item_003.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 3: Never Expect Python to Detect Errors at Compile Time</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_01/Item_004/item_004.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_01/Item_004/item_004.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 4: Write Helper Functions instead of Complex Expressions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_01/Item_005/item_005.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_01/Item_005/item_005.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 5: Prefer Multiple-Assignment Unpacking over Indexing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_01/Item_006/item_006.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_01/Item_006/item_006.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 6: Always surround single-element tuples with Parentheses</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_01/Item_007/item_007.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_01/Item_007/item_007.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 7: Consider Conditional Expressions for Simple Inline Logic</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_01/Item_008/item_008.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_01/Item_008/item_008.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 8: Prevent Repetition with Assignment Expressions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_01/Item_009/item_009.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_01/Item_009/item_009.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 9: Consider <code>match</code> for Destructuring in Flow Control; Avoid When <code>if</code> Statements are Sufficient</span></a>
   </div>
 </li>
@@ -229,7 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../Chapter_02/Chapter_02.html" class="sidebar-item-text sidebar-link">
+            <a href="../../Chapter_02/Chapter_02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 2: Strings and Slicing</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -238,43 +268,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_02/Item_010/item_010.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_02/Item_010/item_010.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 10: Know the difference between <code>bytes</code> and <code>str</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_02/Item_011/item_011.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_02/Item_011/item_011.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 11: Prefer Interpolated F-strings over C-Style Format Strings and <code>str.format</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_02/Item_012/item_012.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_02/Item_012/item_012.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 12: Understand the Difference Between <code>repr</code> and <code>str</code> when Printing Objects</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_02/Item_013/item_013.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_02/Item_013/item_013.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 13: Prefer Explicit String Concatenation over Implicit, Especially in Lists</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_02/Item_014/item_014.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_02/Item_014/item_014.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 14: Know how to Slice Sequences</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_02/Item_015/item_015.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_02/Item_015/item_015.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 15: Avoid Striding and Slicing in a Single Expression</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_02/Item_016/item_016.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_02/Item_016/item_016.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 16: Prefer Catch-All Unpacking over Slicing</span></a>
   </div>
 </li>
@@ -282,58 +312,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../Chapter_03/Chapter_03.html" class="sidebar-item-text sidebar-link">
+            <a href="../../Chapter_03/Chapter_03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 3: Loops and Iterators</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_03/Item_017/item_017.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_03/Item_017/item_017.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 17: Prefer <code>enumerate</code> over <code>range</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_03/Item_018/item_018.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_03/Item_018/item_018.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Item 18: Use <code>zip</code> to Process Iterators in Parallel</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_03/Item_019/item_019.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_03/Item_019/item_019.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 19: Avoid <code>else</code> Blocks After <code>for</code> and <code>while</code> Loops</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_03/Item_020/item_020.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_03/Item_020/item_020.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 20: Never use <code>for</code> Loop Variables after the Loop Ends</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_03/Item_021/item_021.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_03/Item_021/item_021.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 21: Be Defensive when Iterating Over Arguments</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_03/Item_022/item_022.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_03/Item_022/item_022.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 22: Never Modify Containers While Iterating over Them; Use Copies or Caches Instead</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_03/Item_023/item_023.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_03/Item_023/item_023.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 23: Pass Iterators to <code>any</code> and <code>all</code> for Efficient Short-Circuiting Logic</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_03/Item_024/item_024.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_03/Item_024/item_024.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 24: Consider <code>itertools</code> for Working with Iterators and Generators</span></a>
   </div>
 </li>
@@ -345,14 +375,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/flempriere/EffectivePython/" target="_blank"><i class="bi bi-github"></i>GitHub Repo</a></li><li><a href="https://mybinder.org/v2/gh/flempriere/EffectivePython/HEAD?urlpath=vscode" target="_blank"><i class="bi bi-journals"></i>Launch Binder</a></li></ul></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a></li>
+  <li><a href="#things-to-remember" id="toc-things-to-remember" class="nav-link" data-scroll-target="#things-to-remember">Things to Remember</a></li>
+  </ul>
+<div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/flempriere/EffectivePython/" target="_blank"><i class="bi bi-github"></i>GitHub Repo</a></li><li><a href="https://mybinder.org/v2/gh/flempriere/EffectivePython/HEAD?urlpath=vscode" target="_blank"><i class="bi bi-journals"></i>Launch Binder</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_03/Chapter_03.html">Chapter 3: Loops and Iterators</a></li><li class="breadcrumb-item"><a href="../../Chapter_03/Item_018/item_018.html">Item 18: Use <code>zip</code> to Process Iterators in Parallel</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Chapter 1: Pythonic Thinking</h1>
+<h1 class="title">Item 18: Use <code>zip</code> to Process Iterators in Parallel</h1>
 </div>
 
 
@@ -369,48 +406,199 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
-<li><em>Pythonic</em> is a loose term in the python community to describe code that follows community best practice style</li>
-<li>Python’s style isn’t enforced by a compiler</li>
-<li>Some basic tenants are:
-<ol type="1">
-<li>Explicit over implicit</li>
-<li>Simple over complex</li>
-<li>Maximise readability</li>
-</ol></li>
-<li><em>The Zen of Python</em> is a document that outlines some of these principles
+<li>It is common to end up with lists or sequences of related objects
 <ul>
-<li>You can read it by calling <code>import this</code> from the interpreter</li>
+<li>For example, list comprehensions allow us to derive a new list from a source list via an expression</li>
+<li>Below, we take a list of names and convert it to a list of name lengths</li>
 </ul></li>
 </ul>
-<div id="43b09dc9" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> this</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="342c31b3" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(n) <span class="cf">for</span> n <span class="kw">in</span> names]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(counts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>The Zen of Python, by Tim Peters
-
-Beautiful is better than ugly.
-Explicit is better than implicit.
-Simple is better than complex.
-Complex is better than complicated.
-Flat is better than nested.
-Sparse is better than dense.
-Readability counts.
-Special cases aren't special enough to break the rules.
-Although practicality beats purity.
-Errors should never pass silently.
-Unless explicitly silenced.
-In the face of ambiguity, refuse the temptation to guess.
-There should be one-- and preferably only one --obvious way to do it.
-Although that way may not be obvious at first unless you're Dutch.
-Now is better than never.
-Although never is often better than *right* now.
-If the implementation is hard to explain, it's a bad idea.
-If the implementation is easy to explain, it may be a good idea.
-Namespaces are one honking great idea -- let's do more of those!</code></pre>
+<pre><code>[5, 3, 7]</code></pre>
 </div>
 </div>
+<ul>
+<li>This technique leads to a concept called <em>parallel arrays</em>
+<ul>
+<li>Here the items in the <em>same</em> index in each list are related</li>
+<li>e.g.&nbsp;the length of the <span class="math inline">\(i\)</span>-th name, is the <span class="math inline">\(i\)</span>-th value in <code>counts</code></li>
+</ul></li>
+<li>If we wanted to iterate over both bits of data at the same time the naive approach would be to use <code>enumerate</code> or <code>range</code> to perform an index-based lookup
+<ul>
+<li>e.g.&nbsp;to find the longest name</li>
+</ul></li>
+</ul>
+<div id="e35d6661" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(n) <span class="cf">for</span> n <span class="kw">in</span> names]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Range-based loop</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>longest_name <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>max_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(names)):</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> counts[i]</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> count <span class="op">&gt;</span> max_count:</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        longest_name <span class="op">=</span> names[i]</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        max_count <span class="op">=</span> count</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Longest name (range-based loop): </span><span class="sc">{</span>longest_name<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>longest_name <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>max_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, name <span class="kw">in</span> <span class="bu">enumerate</span>(names):</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> counts[i]</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> count <span class="op">&gt;</span> max_count:</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        longest_name <span class="op">=</span> name</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        max_count <span class="op">=</span> count</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Longest name (enumerate-based approach): </span><span class="sc">{</span>longest_name<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Longest name (range-based loop): Charlie
+Longest name (enumerate-based approach): Charlie</code></pre>
+</div>
+</div>
+<ul>
+<li>The <code>enumerate</code> method is cleaner
+<ul>
+<li>Don’t need to index into the <code>names</code> list</li>
+</ul></li>
+<li>In someway though it breaks the symmetry
+<ul>
+<li>We have to index <code>counts</code> but <em>not</em> <code>names</code></li>
+</ul></li>
+<li>Doesn’t save any lines of code</li>
+<li>Instead we should use the <code>zip</code> operator
+<ul>
+<li><code>zip</code> wraps multiple iterators in a lazy generator</li>
+<li>Yields tuples containing the <em>next</em> element from <em>each</em> iterator</li>
+<li>Can unpack them as for <code>enumerate</code></li>
+</ul></li>
+</ul>
+<div id="2edd3e98" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(n) <span class="cf">for</span> n <span class="kw">in</span> names]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>longest_name <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, count <span class="kw">in</span> <span class="bu">zip</span>(names, counts):</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> count <span class="op">&gt;</span> max_count:</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        longest_name <span class="op">=</span> name</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        max_count <span class="op">=</span> count</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li><code>zip</code> consumes elements one at a time from each iterator</li>
+<li>Provides memory efficient access to long generators
+<ul>
+<li>Or infinite generators</li>
+</ul></li>
+<li><code>zip</code> stops yielding when <em>any</em> of the wrapped iterators are exhausted
+<ul>
+<li>Means that if iterators of different size are combined the shortest determines the length of the loop</li>
+</ul></li>
+</ul>
+<div id="764deb7e" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(n) <span class="cf">for</span> n <span class="kw">in</span> names]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>names.append(<span class="st">"Danielle"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, count <span class="kw">in</span> <span class="bu">zip</span>(names, counts):</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>count<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Alice: 5
+Bob: 3
+Charlie: 7</code></pre>
+</div>
+</div>
+<ul>
+<li>Since Python 3.10, <code>zip</code> supports the <code>strict</code> keyword argument
+<ul>
+<li>If <code>False</code> default behaviour is assumed</li>
+<li>If <code>True</code> a <code>ValueError</code> is raised if <code>zip</code> exhausts one of the iterators</li>
+</ul></li>
+</ul>
+<div id="958c982e" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(n) <span class="cf">for</span> n <span class="kw">in</span> names]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>names.append(<span class="st">"Danielle"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, count <span class="kw">in</span> <span class="bu">zip</span>(names, counts, strict<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f" </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>count<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Alice: 5
+ Bob: 3
+ Charlie: 7</code></pre>
+</div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 6</span>
+<span class="ansi-green-fg">      2</span> counts = [<span style="color:rgb(0,135,0)">len</span>(n) <span style="font-weight:bold;color:rgb(0,135,0)">for</span> n <span style="font-weight:bold;color:rgb(175,0,255)">in</span> names]
+<span class="ansi-green-fg">      4</span> names.append(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Danielle</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">6</span> <span style="font-weight:bold;color:rgb(0,135,0)" class="ansi-yellow-bg">for</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">name</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">count</span><span class="ansi-yellow-bg"> </span><span style="font-weight:bold;color:rgb(175,0,255)" class="ansi-yellow-bg">in</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">zip</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">names</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">counts</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">strict</span><span class="ansi-yellow-bg">=</span><span style="font-weight:bold;color:rgb(0,135,0)" class="ansi-yellow-bg">True</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">:</span>
+<span class="ansi-green-fg">      7</span> <span class="ansi-yellow-bg">    </span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">print</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-fg ansi-yellow-bg">f</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg"> </span><span style="font-weight:bold;color:rgb(175,95,135)" class="ansi-yellow-bg">{</span><span class="ansi-yellow-bg">name</span><span style="font-weight:bold;color:rgb(175,95,135)" class="ansi-yellow-bg">}</span><span class="ansi-yellow-fg ansi-yellow-bg">: </span><span style="font-weight:bold;color:rgb(175,95,135)" class="ansi-yellow-bg">{</span><span class="ansi-yellow-bg">count</span><span style="font-weight:bold;color:rgb(175,95,135)" class="ansi-yellow-bg">}</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-red-fg">ValueError</span>: zip() argument 2 is shorter than argument 1</pre>
+</div>
+</div>
+</div>
+<ul>
+<li><code>strict</code> is designed for providing a run time check that the iterators are of the same length
+<ul>
+<li>It’s not designed to allow you to continue to iterate until all iterators are exhausted</li>
+</ul></li>
+<li>If you want to continue until the <em>end</em> of the <em>longest</em> iterator, use <code>zip_longest</code> from the <code>itertools</code> built-in module
+<ul>
+<li>Let’s you pad exhausted iterators with a default value (by default this is <code>None</code>)</li>
+</ul></li>
+</ul>
+<div id="83a8e076" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(n) <span class="cf">for</span> n <span class="kw">in</span> names]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>names.append(<span class="st">"Danielle"</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, count <span class="kw">in</span> itertools.zip_longest(names, counts, fillvalue<span class="op">=</span><span class="st">"Missing"</span>):</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f" </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>count<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Alice: 5
+ Bob: 3
+ Charlie: 7
+ Danielle: Missing</code></pre>
+</div>
+</div>
+</section>
+<section id="things-to-remember" class="level2">
+<h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li><code>zip</code> is a built-in function for iterating over multiple iterators in parallel</li>
+<li><code>zip</code> creates a lazy generator returning tuples
+<ul>
+<li>One element from each wrapped iterator is returned in each tuple</li>
+<li>As a lazy generator arbitrary large generators can be used</li>
+</ul></li>
+<li><code>zip</code> silently truncates the length of the shortest wrapped iterator</li>
+<li>The <code>strict</code> keyword is introduced in python 3.10
+<ul>
+<li>Rather than silently truncating mismatched iterator lengths will raise a <code>ValueError</code></li>
+</ul></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -815,10 +1003,13 @@ Namespaces are one honking great idea -- let's do more of those!</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../Chapter_03/Item_017/item_017.html" class="pagination-link" aria-label="Item 17: Prefer `enumerate` over `range`">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Item 17: Prefer <code>enumerate</code> over <code>range</code></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Chapter_01/Item_001/item_001.html" class="pagination-link" aria-label="Item 1: Know which version of Python you're using">
-        <span class="nav-page-text">Item 1: Know which version of Python you’re using</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../Chapter_03/Item_019/item_019.html" class="pagination-link" aria-label="Item 19: Avoid `else` Blocks After `for` and `while` Loops">
+        <span class="nav-page-text">Item 19: Avoid <code>else</code> Blocks After <code>for</code> and <code>while</code> Loops</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

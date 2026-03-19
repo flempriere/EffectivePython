@@ -16,6 +16,7 @@ Effective Python by Brett Slatkin
 
 - [Chapter 1: Pythonic Thinking](./Chapter_01/Chapter_01.qmd)
 - [Chapter 2: Strings and Slicing](./Chapter_02/Chapter_02.qmd)
+- [Chapter 3: Loops and Iterators](./Chapter_03/Chapter_03.qmd)
 
 ## Attribution
 
@@ -38,3 +39,6 @@ distributed under the following license
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ```
+
+You can find the Author’s original supplied code at the provided
+[submodule](./effectivepython/).

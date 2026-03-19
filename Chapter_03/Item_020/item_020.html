@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Chapter 2: Strings and Slicing – Effective Python: Notes</title>
+<title>Item 20: Never use for Loop Variables after the Loop Ends – Effective Python: Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,29 +20,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../Chapter_02/Item_010/item_010.html" rel="next">
-<link href="../Chapter_01/Item_009/item_009.html" rel="prev">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-007a8609411f977ffbfe52380a417f90.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../Chapter_03/Item_021/item_021.html" rel="next">
+<link href="../../Chapter_03/Item_019/item_019.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-007a8609411f977ffbfe52380a417f90.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta property="og:title" content="Chapter 2: Strings and Slicing – Effective Python: Notes">
+<meta property="og:title" content="Item 20: Never use for Loop Variables after the Loop Ends – Effective Python: Notes">
 <meta property="og:site_name" content="Effective Python: Notes">
 </head>
 
@@ -83,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Effective Python: Notes</span>
     </a>
   </div>
@@ -94,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
 </ul>
@@ -108,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Chapter_02/Chapter_02.html">Chapter 2: Strings and Slicing</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_03/Chapter_03.html">Chapter 3: Loops and Iterators</a></li><li class="breadcrumb-item"><a href="../../Chapter_03/Item_020/item_020.html">Item 20: Never use <code>for</code> Loop Variables after the Loop Ends</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -130,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../Chapter_01/Chapter_01.html" class="sidebar-item-text sidebar-link">
+            <a href="../../Chapter_01/Chapter_01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 1: Pythonic Thinking</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -139,55 +174,55 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_01/Item_001/item_001.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_01/Item_001/item_001.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 1: Know which version of Python you’re using</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_01/Item_002/item_002.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_01/Item_002/item_002.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 2: Follow the PEP Style Guide</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_01/Item_003/item_003.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_01/Item_003/item_003.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 3: Never Expect Python to Detect Errors at Compile Time</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_01/Item_004/item_004.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_01/Item_004/item_004.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 4: Write Helper Functions instead of Complex Expressions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_01/Item_005/item_005.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_01/Item_005/item_005.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 5: Prefer Multiple-Assignment Unpacking over Indexing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_01/Item_006/item_006.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_01/Item_006/item_006.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 6: Always surround single-element tuples with Parentheses</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_01/Item_007/item_007.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_01/Item_007/item_007.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 7: Consider Conditional Expressions for Simple Inline Logic</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_01/Item_008/item_008.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_01/Item_008/item_008.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 8: Prevent Repetition with Assignment Expressions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_01/Item_009/item_009.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_01/Item_009/item_009.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 9: Consider <code>match</code> for Destructuring in Flow Control; Avoid When <code>if</code> Statements are Sufficient</span></a>
   </div>
 </li>
@@ -195,52 +230,52 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../Chapter_02/Chapter_02.html" class="sidebar-item-text sidebar-link active">
+            <a href="../../Chapter_02/Chapter_02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 2: Strings and Slicing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_02/Item_010/item_010.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_02/Item_010/item_010.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 10: Know the difference between <code>bytes</code> and <code>str</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_02/Item_011/item_011.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_02/Item_011/item_011.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 11: Prefer Interpolated F-strings over C-Style Format Strings and <code>str.format</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_02/Item_012/item_012.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_02/Item_012/item_012.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 12: Understand the Difference Between <code>repr</code> and <code>str</code> when Printing Objects</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_02/Item_013/item_013.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_02/Item_013/item_013.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 13: Prefer Explicit String Concatenation over Implicit, Especially in Lists</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_02/Item_014/item_014.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_02/Item_014/item_014.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 14: Know how to Slice Sequences</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_02/Item_015/item_015.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_02/Item_015/item_015.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 15: Avoid Striding and Slicing in a Single Expression</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_02/Item_016/item_016.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_02/Item_016/item_016.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 16: Prefer Catch-All Unpacking over Slicing</span></a>
   </div>
 </li>
@@ -248,58 +283,58 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../Chapter_03/Chapter_03.html" class="sidebar-item-text sidebar-link">
+            <a href="../../Chapter_03/Chapter_03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 3: Loops and Iterators</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_03/Item_017/item_017.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_03/Item_017/item_017.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 17: Prefer <code>enumerate</code> over <code>range</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_03/Item_018/item_018.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_03/Item_018/item_018.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 18: Use <code>zip</code> to Process Iterators in Parallel</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_03/Item_019/item_019.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_03/Item_019/item_019.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 19: Avoid <code>else</code> Blocks After <code>for</code> and <code>while</code> Loops</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_03/Item_020/item_020.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_03/Item_020/item_020.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Item 20: Never use <code>for</code> Loop Variables after the Loop Ends</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_03/Item_021/item_021.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_03/Item_021/item_021.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 21: Be Defensive when Iterating Over Arguments</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_03/Item_022/item_022.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_03/Item_022/item_022.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 22: Never Modify Containers While Iterating over Them; Use Copies or Caches Instead</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_03/Item_023/item_023.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_03/Item_023/item_023.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 23: Pass Iterators to <code>any</code> and <code>all</code> for Efficient Short-Circuiting Logic</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Chapter_03/Item_024/item_024.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_03/Item_024/item_024.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 24: Consider <code>itertools</code> for Working with Iterators and Generators</span></a>
   </div>
 </li>
@@ -311,14 +346,21 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/flempriere/EffectivePython/" target="_blank"><i class="bi bi-github"></i>GitHub Repo</a></li><li><a href="https://mybinder.org/v2/gh/flempriere/EffectivePython/HEAD?urlpath=vscode" target="_blank"><i class="bi bi-journals"></i>Launch Binder</a></li></ul></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a></li>
+  <li><a href="#things-to-remember" id="toc-things-to-remember" class="nav-link" data-scroll-target="#things-to-remember">Things to Remember</a></li>
+  </ul>
+<div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/flempriere/EffectivePython/" target="_blank"><i class="bi bi-github"></i>GitHub Repo</a></li><li><a href="https://mybinder.org/v2/gh/flempriere/EffectivePython/HEAD?urlpath=vscode" target="_blank"><i class="bi bi-journals"></i>Launch Binder</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_03/Chapter_03.html">Chapter 3: Loops and Iterators</a></li><li class="breadcrumb-item"><a href="../../Chapter_03/Item_020/item_020.html">Item 20: Never use <code>for</code> Loop Variables after the Loop Ends</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Chapter 2: Strings and Slicing</h1>
+<h1 class="title">Item 20: Never use <code>for</code> Loop Variables after the Loop Ends</h1>
 </div>
 
 
@@ -335,35 +377,118 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
-<li>Python found initial popularity as a scripting language</li>
-<li>Key factor was it’s inbuilt syntax, methods and modules for string and sequence manipulation
+<li>Variables created in a python <code>for</code> loop persist after the loop ends
 <ul>
-<li>More ergonomic than Perl</li>
+<li>Python does not have loops as independent block scopes as in a language like C</li>
 </ul></li>
-<li>Python has found broader use for
-<ol type="1">
-<li>parsing text</li>
-<li>generating structured data</li>
-<li>inspecting file formats</li>
-<li>analysing logs</li>
-<li>etc.</li>
-</ol></li>
-<li><code>bytes</code> and <code>str</code> are python types for
-<ol type="1">
-<li>Interfacing with natural language text</li>
-<li>Manipulating low-level binary data formats</li>
-<li>Perform I/O and communicate with the outside world</li>
-</ol></li>
-<li>Python abstracts over character types, lists and other sequences to provide a common interface for
-<ol type="1">
-<li>Indexing</li>
-<li>Sub-sequencing</li>
-<li>more…</li>
-</ol></li>
+</ul>
+<div id="ffb0e53c" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Inside </span><span class="sc">{</span>i<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After </span><span class="sc">{</span>i<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Inside i=0
+Inside i=1
+Inside i=2
+After i=2</code></pre>
+</div>
+</div>
+<ul>
+<li>Loop variable persists with the value last assigned to it</li>
+<li>Can manipulate this behaviour
+<ul>
+<li>Here we group periodic elements by looking for their indices in a list</li>
+</ul></li>
+</ul>
+<div id="76e805ca" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> [<span class="st">"Hydrogen"</span>, <span class="st">"Uranium"</span>, <span class="st">"Iron"</span>, <span class="st">"Other"</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, name <span class="kw">in</span> <span class="bu">enumerate</span>(categories):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> name <span class="op">==</span> <span class="st">"Iron"</span>:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2</code></pre>
+</div>
+</div>
+<ul>
+<li>If an element isn’t found in the list, last index is bound to <code>i</code>
+<ul>
+<li>Here that’s the <code>"Other"</code> category</li>
+</ul></li>
+<li>Assumption is we either find a match and end early, or iterate over all elements and fall through</li>
+</ul>
+<div id="e46e9edd" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> [<span class="st">"Hydrogen"</span>, <span class="st">"Uranium"</span>, <span class="st">"Iron"</span>, <span class="st">"Other"</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, name <span class="kw">in</span> <span class="bu">enumerate</span>(categories):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> name <span class="op">==</span> <span class="st">"Lithium"</span>:</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3</code></pre>
+</div>
+</div>
+<ul>
+<li>The approach above breaks if the initial list is empty</li>
+<li>Then the loop never runs and <code>i</code> is never bound
+<ul>
+<li>Leads to a runtime error</li>
+</ul></li>
+</ul>
+<div id="cb9bf6c3" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> []</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, name <span class="kw">in</span> <span class="bu">enumerate</span>(categories):</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> name <span class="op">==</span> <span class="st">"Lithium"</span>:</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3</code></pre>
+</div>
+</div>
+<ul>
+<li>We can find a solution for this specific example
+<ul>
+<li>But general point, no way to guarantee a loop variable is bound after the loop completes</li>
+</ul></li>
+<li>Comprehensions and generator expressions do not leak their variables after execution
+<ul>
+<li>Trying to access them will lead to an error</li>
+</ul></li>
+</ul>
+<div id="8c4c12ff" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>foo <span class="op">=</span> [<span class="dv">37</span>, <span class="dv">13</span>, <span class="dv">128</span>, <span class="dv">21</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>even <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> foo <span class="cf">if</span> i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(i) <span class="co"># always raises an error</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3</code></pre>
+</div>
+</div>
+<ul>
+<li>Assignment expressions in comprehensions can change this</li>
+<li>Exception variables also don’t leak
+<ul>
+<li>But have their own quirks</li>
+</ul></li>
+</ul>
+</section>
+<section id="things-to-remember" class="level2">
+<h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li><code>for</code> loop variables are still in scope after the loop exits</li>
+<li><code>for</code> loop variables are not assigned if the loop never executes an iteration
+<ul>
+<li>Cannot thus guarantee a loop variable exists after the loop</li>
+</ul></li>
+<li>Comprehensions and generator expression variables do not leak by default</li>
+<li>Exception handlers do not leak exception instance variables</li>
 </ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -768,13 +893,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Chapter_01/Item_009/item_009.html" class="pagination-link" aria-label="Item 9: Consider `match` for Destructuring in Flow Control; Avoid When `if` Statements are Sufficient">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Item 9: Consider <code>match</code> for Destructuring in Flow Control; Avoid When <code>if</code> Statements are Sufficient</span>
+      <a href="../../Chapter_03/Item_019/item_019.html" class="pagination-link" aria-label="Item 19: Avoid `else` Blocks After `for` and `while` Loops">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Item 19: Avoid <code>else</code> Blocks After <code>for</code> and <code>while</code> Loops</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Chapter_02/Item_010/item_010.html" class="pagination-link" aria-label="Item 10: Know the difference between `bytes` and `str`">
-        <span class="nav-page-text">Item 10: Know the difference between <code>bytes</code> and <code>str</code></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../Chapter_03/Item_021/item_021.html" class="pagination-link" aria-label="Item 21: Be Defensive when Iterating Over Arguments">
+        <span class="nav-page-text">Item 21: Be Defensive when Iterating Over Arguments</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

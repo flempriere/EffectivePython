@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../Chapter_03/Chapter_03.html" rel="next">
 <link href="../../Chapter_02/Item_015/item_015.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -281,7 +282,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Chapter_02/Item_012/item_012.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Understand the Difference Between <code>repr</code> and <code>str</code> when Printing Objects</span></a>
+ <span class="menu-text">Item 12: Understand the Difference Between <code>repr</code> and <code>str</code> when Printing Objects</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -306,6 +307,65 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../Chapter_02/Item_016/item_016.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Item 16: Prefer Catch-All Unpacking over Slicing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_03/Chapter_03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3: Loops and Iterators</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_03/Item_017/item_017.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 17: Prefer <code>enumerate</code> over <code>range</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_03/Item_018/item_018.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 18: Use <code>zip</code> to Process Iterators in Parallel</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_03/Item_019/item_019.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 19: Avoid <code>else</code> Blocks After <code>for</code> and <code>while</code> Loops</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_03/Item_020/item_020.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 20: Never use <code>for</code> Loop Variables after the Loop Ends</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_03/Item_021/item_021.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 21: Be Defensive when Iterating Over Arguments</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_03/Item_022/item_022.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 22: Never Modify Containers While Iterating over Them; Use Copies or Caches Instead</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_03/Item_023/item_023.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 23: Pass Iterators to <code>any</code> and <code>all</code> for Efficient Short-Circuiting Logic</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_03/Item_024/item_024.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 24: Consider <code>itertools</code> for Working with Iterators and Generators</span></a>
   </div>
 </li>
       </ul>
@@ -356,7 +416,7 @@ window.Quarto = {
 <li>Below fails because it expects two items but encounters more than two</li>
 </ul></li>
 </ul>
-<div id="8f743129" class="cell" data-execution_count="1">
+<div id="256f7824" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>car_ages <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">15</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>car_ages_descending <span class="op">=</span> <span class="bu">sorted</span>(car_ages, reverse<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>oldest, second_oldest <span class="op">=</span> car_ages_descending</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -376,7 +436,7 @@ window.Quarto = {
 <ul>
 <li>It seems natural to attempt to resolve the above with indices and slicing (see <a href="../../Chapter_02/Item_014/item_014.html">Item 14</a>)</li>
 </ul>
-<div id="d4cab440" class="cell" data-execution_count="2">
+<div id="f4abda23" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>car_ages <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">15</span>]</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>car_ages_descending <span class="op">=</span> <span class="bu">sorted</span>(car_ages, reverse<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>oldest <span class="op">=</span> car_ages_descending[<span class="dv">0</span>]</span>
@@ -401,7 +461,7 @@ window.Quarto = {
 <li>Let’s part of an unpacking expression receive all other values that aren’t matched</li>
 </ul></li>
 </ul>
-<div id="70d3de11" class="cell" data-execution_count="3">
+<div id="7eca7a24" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>car_ages <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">15</span>]</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>car_ages_descending <span class="op">=</span> <span class="bu">sorted</span>(car_ages, reverse<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>oldest, second_oldest, <span class="op">*</span>others <span class="op">=</span> car_ages_descending</span>
@@ -419,7 +479,7 @@ window.Quarto = {
 <li>E.g. if we instead wanted to extract the oldest and the youngest car</li>
 </ul></li>
 </ul>
-<div id="12512e86" class="cell" data-execution_count="4">
+<div id="0112c4c2" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>car_ages <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">15</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>car_ages_descending <span class="op">=</span> <span class="bu">sorted</span>(car_ages, reverse<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>oldest, <span class="op">*</span>others, youngest <span class="op">=</span> car_ages_descending</span>
@@ -435,7 +495,7 @@ window.Quarto = {
 <li>e.g.&nbsp;Below generates a syntax error</li>
 </ul></li>
 </ul>
-<div id="109c2152" class="cell" data-execution_count="5">
+<div id="83bcb129" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>car_ages <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">15</span>]</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>car_ages_descending <span class="op">=</span> <span class="bu">sorted</span>(car_ages, reverse<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">*</span>others <span class="op">=</span> car_ages_descending</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -455,7 +515,7 @@ window.Quarto = {
 <li>e.g.&nbsp;Below fails too</li>
 </ul></li>
 </ul>
-<div id="07b5d6e7" class="cell" data-execution_count="6">
+<div id="e495cff0" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>first, <span class="op">*</span>middle, <span class="op">*</span>second_middle, last <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -474,7 +534,7 @@ window.Quarto = {
 <li>It can make things hard to read</li>
 </ul></li>
 </ul>
-<div id="80d29858" class="cell" data-execution_count="7">
+<div id="c48428b4" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>car_inventory <span class="op">=</span> {</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Downtown"</span>: (<span class="st">"Silver Shadow"</span>, <span class="st">"Pinto"</span>, <span class="st">"DMC"</span>),</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Airport"</span> : (<span class="st">"Skyline"</span>, <span class="st">"Viper"</span>, <span class="st">"Gremlin"</span>, <span class="st">"Nova"</span>),</span>
@@ -497,7 +557,7 @@ Best at Airport is Skyline, others are ['Viper', 'Gremlin', 'Nova']</code></pre>
 <li>Very useful when working with lists of at least <span class="math inline">\(N\)</span> elements</li>
 </ul></li>
 </ul>
-<div id="2bc4b454" class="cell" data-execution_count="8">
+<div id="dc10ad26" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>short_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>first, second, <span class="op">*</span>rest <span class="op">=</span> short_list</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -514,7 +574,7 @@ Best at Airport is Skyline, others are ['Viper', 'Gremlin', 'Nova']</code></pre>
 <li>In this case probably more useful to assign to a list matching the unpacking pattern</li>
 </ul></li>
 </ul>
-<div id="39222987" class="cell" data-execution_count="9">
+<div id="5e554acc" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> <span class="bu">iter</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>first, second <span class="op">=</span> it</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>first<span class="sc">}</span><span class="ss"> and </span><span class="sc">{</span>second<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -530,7 +590,7 @@ Best at Airport is Skyline, others are ['Viper', 'Gremlin', 'Nova']</code></pre>
 </ul></li>
 </ul>
 <p>We could process this using indices and slices</p>
-<div id="99c8ee6e" class="cell" data-execution_count="10">
+<div id="b7c999a9" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_csv():</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">yield</span> (<span class="st">"Date"</span>, <span class="st">"Make"</span>, <span class="st">"Model"</span>, <span class="st">"Year"</span>, <span class="st">"Price"</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
@@ -550,7 +610,7 @@ Row count: 200</code></pre>
 <ul>
 <li>But we can also easily unpack using a starred expression</li>
 </ul>
-<div id="8b0fd7e7" class="cell" data-execution_count="11">
+<div id="26457829" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_csv():</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">yield</span> (<span class="st">"Date"</span>, <span class="st">"Make"</span>, <span class="st">"Model"</span>, <span class="st">"Year"</span>, <span class="st">"Price"</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
@@ -1002,6 +1062,9 @@ Row count: 200</code></pre>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../Chapter_03/Chapter_03.html" class="pagination-link" aria-label="Chapter 3: Loops and Iterators">
+        <span class="nav-page-text">Chapter 3: Loops and Iterators</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
