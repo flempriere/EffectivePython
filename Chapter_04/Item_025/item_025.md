@@ -1,6 +1,5 @@
 # Item 25: Be Cautious when Relying on Dictionary Insertion Ordering
 
-
 - [Why did this occur and why did it
   change?](#why-did-this-occur-and-why-did-it-change)
 - [Implications of Non-Insertion
@@ -67,13 +66,13 @@ print(baby_names)
 
 - Methods that rely on iteration order also become random
 - This impacts, for example,
-  1.  `keys`
+  1. `keys`
       - Getting an iterator over the keys
-  2.  `values`
+  2. `values`
       - Getting an iterator over the values
-  3.  `popitem`
+  3. `popitem`
       - Pop an item from the dictionary
-  4.  etc.
+  4. etc.
 - These methods are now guaranteed to also have a consistent ordering
 
 ``` python
@@ -597,7 +596,7 @@ info: rule `invalid-argument-type` is enabled by default
   but aren’t `dict`
   - These might not enforce insertion ordering
 - There are three techniques for handling dict-like object instances
-  1.  Write code that doesn’t assume insertion ordering
-  2.  Use `isinstance` to perform runtime type checks for the `dict`
+  1. Write code that doesn’t assume insertion ordering
+  2. Use `isinstance` to perform runtime type checks for the `dict`
       type
-  3.  Use type annotations to perform static type checking
+  3. Use type annotations to perform static type checking

@@ -9,9 +9,9 @@
   - Good first tool to reach for before implementing more sophisticated
     data structures
 - Dictionaries provide constant (amortised) time for,
-  1.  Accessing elements
-  2.  Adding new elements
-  3.  Deleting elements
+  1. Accessing elements
+  2. Adding new elements
+  3. Deleting elements
 - Python uses dictionaries to implement object-oriented features
 - Python implements special syntax and modules to support dictionaries
   - Enhance them with additional properties
