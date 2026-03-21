@@ -1,24 +1,27 @@
 # Item 25: Be Cautious when Relying on Dictionary Insertion Ordering
 
 
-- [Why did this occur and why did it
-  change?](#why-did-this-occur-and-why-did-it-change)
-- [Implications of Non-Insertion
-  Orderings](#implications-of-non-insertion-orderings)
-  - [Method Behaviours](#method-behaviours)
-  - [Keyword Arguments to Functions](#keyword-arguments-to-functions)
-  - [Class Instance Attribute
-    Orderings](#class-instance-attribute-orderings)
-  - [APIs](#apis)
-- [Custom Containers and Caution](#custom-containers-and-caution)
-  - [Example: Animal Ranking](#example-animal-ranking)
-    - [Solution 1: Reimplement `get_winner` to assume no Iteration
-      Order](#solution-1-reimplement-get_winner-to-assume-no-iteration-order)
-    - [Solution 2: Add an Explicit Check for the Type of the `rank`
-      Object](#solution-2-add-an-explicit-check-for-the-type-of-the-rank-object)
-    - [Solution 3: Adding Type Annotations for Static
-      Analysis](#solution-3-adding-type-annotations-for-static-analysis)
+- [Notes](#notes)
+  - [Why did this occur and why did it
+    change?](#why-did-this-occur-and-why-did-it-change)
+  - [Implications of Non-Insertion
+    Orderings](#implications-of-non-insertion-orderings)
+    - [Method Behaviours](#method-behaviours)
+    - [Keyword Arguments to Functions](#keyword-arguments-to-functions)
+    - [Class Instance Attribute
+      Orderings](#class-instance-attribute-orderings)
+    - [APIs](#apis)
+  - [Custom Containers and Caution](#custom-containers-and-caution)
+    - [Example: Animal Ranking](#example-animal-ranking)
+      - [Solution 1: Reimplement `get_winner` to assume no Iteration
+        Order](#solution-1-reimplement-get_winner-to-assume-no-iteration-order)
+      - [Solution 2: Add an Explicit Check for the Type of the `rank`
+        Object](#solution-2-add-an-explicit-check-for-the-type-of-the-rank-object)
+      - [Solution 3: Adding Type Annotations for Static
+        Analysis](#solution-3-adding-type-annotations-for-static-analysis)
 - [Things to Remember](#things-to-remember)
+
+## Notes
 
 - Pre-Python 3.6 iterating over a dictionary returned the keys in
   arbitrary order
@@ -28,17 +31,12 @@
 ``` python
 baby_names = {
     "cat": "kitten",
-from jupyter_lsp.specs import r
     "dog": "puppy",
 }
 print(baby_names)
 ```
 
-    SyntaxError: invalid syntax (3969480897.py, line 3)
-      Cell In[1], line 3
-        from jupyter_lsp.specs import r
-        ^
-    SyntaxError: invalid syntax
+    {'cat': 'kitten', 'dog': 'puppy'}
 
 - Pre-Python 3.6 the output may have looked like,
   - i.e. The keys are printed in the opposite ordering

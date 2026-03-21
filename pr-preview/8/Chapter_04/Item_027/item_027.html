@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -385,9 +420,114 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li>We’ve seen that in general <code>get</code> is preferable to <code>setdefault</code> (<a href="../../Chapter_04/Item_026/item_026.html">Item 26</a>)</li>
+<li>However, we’ve seen that <code>get</code> isn’t the cleanest interface when the type stored in the dictionary is complex</li>
+<li>For example,
+<ul>
+<li>Let’s keep track of cities, visited in countries around the world</li>
+</ul></li>
+</ul>
+<div id="d7a8facd" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>visits <span class="op">=</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mexico"</span>: {<span class="st">"Tulum"</span>, <span class="st">"Puerto Vallarta"</span>},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Japan"</span>: {<span class="st">"Hakone"</span>}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Here <code>setdefault</code> let’s us add new cities regardless of if the country key exists</li>
+</ul>
+<div id="3dc54976" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>visits <span class="op">=</span> {<span class="st">"Mexico"</span>: {<span class="st">"Tulum"</span>, <span class="st">"Puerto Vallarta"</span>}, <span class="st">"Japan"</span>: {<span class="st">"Hakone"</span>}}</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Short</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>visits.setdefault(<span class="st">"France"</span>, <span class="bu">set</span>()).add(<span class="st">"Arles"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Long</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (japan <span class="op">:=</span> visits.get(<span class="st">"Japan"</span>)) <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    visits[<span class="st">"Japan"</span>] <span class="op">=</span> japan <span class="op">=</span> <span class="bu">set</span>()</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>japan.add(<span class="st">"Kyoto"</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(visits)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'Mexico': {'Tulum', 'Puerto Vallarta'}, 'Japan': {'Hakone', 'Kyoto'}, 'France': {'Arles'}}</code></pre>
+</div>
+</div>
+<ul>
+<li>Here the <code>get</code> code is clearly longer and less clear</li>
+<li>One might be tempted to wrap the code above in a class to hide the complexity from the user</li>
+</ul>
+<div id="ef6fb430" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Visits:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.data <span class="op">=</span> {}</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> add(<span class="va">self</span>, country, city):</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        city_set <span class="op">=</span> <span class="va">self</span>.data.setdefault(country, <span class="bu">set</span>())</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        city_set.add(city)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>visits <span class="op">=</span> Visits()</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>visits.add(<span class="st">"Russia"</span>, <span class="st">"Yekaterinburg"</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>visits.add(<span class="st">"Tanzania"</span>, <span class="st">"Zanzibar"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(visits.data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'Russia': {'Yekaterinburg'}, 'Tanzania': {'Zanzibar'}}</code></pre>
+</div>
+</div>
+<ul>
+<li>This hides the <code>setdefault</code> call</li>
+<li><code>add</code> provides a clean interface and more meaningful interface</li>
+<li>There are still downsides
+<ul>
+<li>The complexity is still present in the internals of the <code>add</code> method</li>
+<li><code>setdefault</code> constructs a <code>set</code> object on every call (even if it isn’t assigned in the end)</li>
+</ul></li>
+<li><code>defaultdict</code> simplifies this use case
+<ul>
+<li>Provided in the <code>collections</code> built-in module</li>
+<li>Accepts a function that returns a default value whenever a key is missing</li>
+</ul></li>
+<li>We can rewrite our <code>Visits</code> class as before</li>
+</ul>
+<div id="a2a65b8b" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Visits:</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.data <span class="op">=</span> defaultdict(<span class="bu">set</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> add(<span class="va">self</span>, country, city):</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.data[country].add(city)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>visits <span class="op">=</span> Visits()</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>visits.add(<span class="st">"Russia"</span>, <span class="st">"Yekaterinburg"</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>visits.add(<span class="st">"Tanzania"</span>, <span class="st">"Zanzibar"</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(visits.data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>defaultdict(&lt;class 'set'&gt;, {'Russia': {'Yekaterinburg'}, 'Tanzania': {'Zanzibar'}})</code></pre>
+</div>
+</div>
+<ul>
+<li><code>add</code> is now succinct</li>
+<li>Code can assume that accessing any key in the data will return a <code>set</code> instance</li>
+<li>Only allocates a <code>set</code> when required</li>
+<li>Using <code>defaultdict</code> is better than using <code>setdefault</code>
+<ul>
+<li><code>defaultdict</code> doesn’t solve every problem, but it is useful to know about</li>
+</ul></li>
+</ul>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li>If creating a dictionary to manage an arbitrary set of potential keys prefer a <code>defaultdict</code> instance from <code>collections</code> if you need complex types as default values</li>
+<li>If a dictionary of arbitrary keys is passed to you (i.e.&nbsp;you don’t control it’s creation), then prefer <code>get</code>
+<ul>
+<li>Consider <code>setdefault</code> if it leads to shorter code and the default objection allocation cost is low</li>
+</ul></li>
+</ul>
 
 
 </section>
