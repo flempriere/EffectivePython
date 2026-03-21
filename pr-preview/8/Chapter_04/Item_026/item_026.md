@@ -145,18 +145,14 @@ voter = "Danielle"
 
 try:
     names = bread_voters[key]
-except KeyError
+except KeyError:
     bread_voters[key] = names = []
 
 names.append(voter)
 print(bread_voters)
 ```
 
-    SyntaxError: expected ':' (2936407258.py, line 11)
-      Cell In[6], line 11
-        except KeyError
-                       ^
-    SyntaxError: expected ':'
+    {'pumpernickel': ['Alice', 'Bob'], 'sourdough': ['Charlie'], 'wheat': ['Danielle']}
 
 - We could use `get` again
   - Combine with an assignment expression for brevity
