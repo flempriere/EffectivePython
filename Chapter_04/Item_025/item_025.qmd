@@ -1,0 +1,507 @@
+---
+title: "Item 25: Be Cautious when Relying on Dictionary Insertion Ordering"
+---
+
+## Notes
+
+- Pre-Python 3.6 iterating over a dictionary returned the keys in arbitrary order
+- Newer versions guarantee the keys are returned in order of insertion
+- For example the code below,
+
+```{python}
+baby_names = {
+    "cat": "kitten",
+    "dog": "puppy",
+}
+print(baby_names)
+```
+
+- Pre-Python 3.6 the output may have looked like,
+    - i.e. The keys are printed in the opposite ordering
+
+```{python}
+#| echo: False
+
+print("{'dog': 'puppy', 'cat', 'kitten'}")
+```
+
+### Why did this occur and why did it change?
+
+- Occurred because the original implementation used a hash function and a random seed
+- Random behaviour makes it harder to test
+    - Can't hard code simple expected output strings
+- More confusing and difficult to debug
+
+:::{.callout-caution}
+While Insertion ordering was introduced in Python 3.6, it only formally became part of the specification in Python 3.7. If using Python 3.6 check that your interpreter supports insertion ordering
+:::
+
+### Implications of Non-Insertion Orderings
+
+#### Method Behaviours
+
+- Methods that rely on iteration order also become random
+- This impacts, for example,
+    1. `keys`
+        - Getting an iterator over the keys
+    2. `values`
+        - Getting an iterator over the values
+    3. `popitem`
+        - Pop an item from the dictionary
+    4. etc.
+- These methods are now guaranteed to also have a consistent ordering
+
+
+```{python}
+baby_names = {
+    "cat": "kitten",
+    "dog": "puppy",
+}
+
+keys = list(baby_names.keys())
+values = list(baby_names.values())
+items = list(baby_names.items())
+print(f"last_item: {baby_names.popitem()}")  # Last item inserted like a stack
+
+assert keys == ["cat", "dog"]
+assert values == ["kitten", "puppy"]
+assert items == [("cat", "kitten"), ("dog", "puppy")]
+```
+
+#### Keyword Arguments to Functions
+
+- Keyword arguments supplied via `**kwargs` would be randomly ordered
+- This is now preserved
+
+```{python}
+def my_func(**kwargs):
+    for key, value in kwargs.items():
+        print(f"{key} = {value}")
+
+
+# kwargs ordering preserved
+my_func(goose="goosling", kangaroo="joey")
+```
+
+#### Class Instance Attribute Orderings
+
+- Classes use a `dict` to keep track of their instance attributes
+- Pre Python 3.6 this would result in fields being randomly ordered
+    - Now the ordering is reflected in the `__dict__` attribute
+
+```{python}
+class MyClass:
+    def __init__(self):
+        self.alligator = "hatchling"
+        self.elephant = "calf"
+
+
+a = MyClass()
+for key, value in a.__dict__.items():
+    print(f"{key} = {value}")
+```
+
+#### APIs
+
+- When creating new classes and functions you can count on the insertion ordering of dictionaries (for Python 3.6 and up)
+- This means you can include and use this guarantee as part of your API design
+
+:::{.callout-note}
+`OrderedDict`
+
+The `collections` built-in module provides the `OrderedDict` class which preserves the insertion order. This can be used in python versions that predate 3.6 / 3.7. However, while the behaviour is similar the under the hood implementation differs and the two have different performance characteristics. For high rates of key insertion and `popitem` calls (e.g. When implementing a  least-recently-used cache), `OrderedDict` may provide better performance than a standard `dict`
+:::
+
+
+### Custom Containers and Caution
+
+- Don't always assume that insertion ordering behaviour exists
+- Python lets you define custom container types
+    - These can behave like the standard containers by implementing their *protocols*
+        - e.g. the *list* protocol, the *iterator* protocol, *dictionary* protocol
+    - Due to *Duck-typing*, i.e. the presence of an attribute or behaviour matching a type implies this object *is* that type can lead to discrepencies across API boundaries
+
+#### Example: Animal Ranking
+
+- Consider the following
+    - A program that tracks the results in a cutest animal contest
+    - Start by storing votes in a dictionary
+
+```{python}
+votes = {
+    "otter" : 1281,
+    "polar bear" : 587,
+    "fox" : 863,
+}
+```
+
+- We write functions to process the data and rank the results
+    - e.g. To provide a data model for a UI component
+- Plus a function which provides the actual winner
+
+```{python}
+def populate_ranks(votes, ranks):
+    names = list(votes.keys())
+    names.sort(key=votes.get, reverse=True)
+    for i, name in enumerate(names, start=1):
+        ranks[name] = i
+
+
+def get_winner(ranks):
+    return next(iter(ranks))
+
+
+votes = {
+    "otter": 1281,
+    "polar bear": 587,
+    "fox": 863,
+}
+
+ranks = {}
+populate_ranks(votes, ranks)
+print(ranks)
+winner = get_winner(ranks)
+print(winner)
+```
+
+- This implementation looks good, but observe that we're starting to have functions separated from the data we want them to operate on
+    - High degree of coupling
+
+- Now say we want to provide the results in alphabetical order
+    - Perhaps because of feedback about the UI
+    - Could write a new function that perhaps converts the rank dictionary into a list of $\left(name, rank \right)$ tuples ordered alphabetically
+    - But we probably want to start aggregating all this functionality into a class
+- Can use `collections.abc` (built-in module for abstract collections) to define a class with a dictionary-like interface
+    - The interface is provided by the `MutableMapping` class
+    - More specifically `dict` is called a  `Mapping`, effectively the generic term for a key-value lookup container
+    - `Mutable` means the container can be modified
+
+- We'll keep the implementation generic
+    - i.e. A dictionary-like class providing alphabetical iteration over it's keys
+```{python}
+from collections.abc import MutableMapping
+
+class SortedDict(MutableMapping):
+
+    def __init__(self):
+        self.data = {}
+
+    def __getitem__(self, key):
+        return self.data[key]
+
+    def __setitem__(self, key, value):
+        self.data[key] = value
+
+    def __delitem__(self, key):
+        del self.data[key]
+
+    def __iter__(self):
+        keys = list(self.data.keys())
+        keys.sort()
+        for key in keys:
+            yield key
+
+    def __len__(self):
+        return len(self.data)
+```
+
+- `SortedDict` conforms to the `dict` protocol
+    - Can therefore use it anywhere we would use a `dict`
+    - Including our previous functions
+
+```{python}
+from collections.abc import MutableMapping
+
+
+class SortedDict(MutableMapping):
+    def __init__(self):
+        self.data = {}
+
+    def __getitem__(self, key):
+        return self.data[key]
+
+    def __setitem__(self, key, value):
+        self.data[key] = value
+
+    def __delitem__(self, key):
+        del self.data[key]
+
+    def __iter__(self):
+        keys = list(self.data.keys())
+        keys.sort()
+        for key in keys:
+            yield key
+
+    def __len__(self):
+        return len(self.data)
+
+
+def populate_ranks(votes, ranks):
+    names = list(votes.keys())
+    names.sort(key=votes.get, reverse=True)
+    for i, name in enumerate(names, start=1):
+        ranks[name] = i
+
+
+def get_winner(ranks):
+    return next(iter(ranks))
+
+
+votes = {
+    "otter": 1281,
+    "polar bear": 587,
+    "fox": 863,
+}
+
+sorted_ranks = SortedDict()
+populate_ranks(votes, sorted_ranks)
+print(sorted_ranks.data)
+winner = get_winner(sorted_ranks)
+print(winner)
+```
+
+- But the code above now breaks and declares `fox` the winner
+    - This is because `get_winner` is relying on the dictionary being insertion-ordered in decreasing rank
+    - `fox` is alphabetically first and so is returned by overloaded `SortedDict` class
+- Three solutions
+
+##### Solution 1: Reimplement `get_winner` to assume no Iteration Order
+
+- Most robust solution
+- But most conservative
+
+```{python}
+from collections.abc import MutableMapping
+
+
+class SortedDict(MutableMapping):
+    def __init__(self):
+        self.data = {}
+
+    def __getitem__(self, key):
+        return self.data[key]
+
+    def __setitem__(self, key, value):
+        self.data[key] = value
+
+    def __delitem__(self, key):
+        del self.data[key]
+
+    def __iter__(self):
+        keys = list(self.data.keys())
+        keys.sort()
+        for key in keys:
+            yield key
+
+    def __len__(self):
+        return len(self.data)
+
+
+def populate_ranks(votes, ranks):
+    names = list(votes.keys())
+    names.sort(key=votes.get, reverse=True)
+    for i, name in enumerate(names, start=1):
+        ranks[name] = i
+
+
+# Reimplemented without assumed ordering
+def get_winner(ranks):
+    for name, rank in ranks.items():
+        if rank == 1:
+            return name
+
+
+votes = {
+    "otter": 1281,
+    "polar bear": 587,
+    "fox": 863,
+}
+
+sorted_ranks = SortedDict()
+populate_ranks(votes, sorted_ranks)
+print(sorted_ranks.data)
+winner = get_winner(sorted_ranks)
+print(winner)
+```
+
+##### Solution 2: Add an Explicit Check for the Type of the `rank` Object
+
+- Use `isinstance` to enforce that we have the expected type
+- Raise an exception if not
+- Solution trades off flexibility of input for better performance (no longer need to search through the dictionary)
+
+```{python}
+from collections.abc import MutableMapping
+
+
+class SortedDict(MutableMapping):
+    def __init__(self):
+        self.data = {}
+
+    def __getitem__(self, key):
+        return self.data[key]
+
+    def __setitem__(self, key, value):
+        self.data[key] = value
+
+    def __delitem__(self, key):
+        del self.data[key]
+
+    def __iter__(self):
+        keys = list(self.data.keys())
+        keys.sort()
+        for key in keys:
+            yield key
+
+    def __len__(self):
+        return len(self.data)
+
+
+def populate_ranks(votes, ranks):
+    names = list(votes.keys())
+    names.sort(key=votes.get, reverse=True)
+    for i, name in enumerate(names, start=1):
+        ranks[name] = i
+
+
+# Reimplemented without assumed ordering
+def get_winner(ranks):
+    if not isinstance(ranks, dict):
+        raise TypeError("must provide a dict instance")
+    return next(iter(ranks))
+
+
+votes = {
+    "otter": 1281,
+    "polar bear": 587,
+    "fox": 863,
+}
+
+sorted_ranks = SortedDict()
+populate_ranks(votes, sorted_ranks)
+print(sorted_ranks.data)
+
+print("Passing the underlying dict from the sorted_ranks SortedDict")
+winner = get_winner(sorted_ranks.data)
+print(winner)
+
+print("Passing the sorted_ranks SortedDict directly...")
+winner = get_winner(sorted_ranks)
+print(winner)
+```
+
+##### Solution 3: Adding Type Annotations for Static Analysis
+
+- We can use type annotations to ensure that the `rank` parameter is a `dict` instance *not* a `MutableMapping` (that behaves like a dictionary)
+- A static analysis tool should then catch the problem
+
+```{python}
+from collections.abc import MutableMapping
+from typing import Dict, MutableMapping
+
+
+class SortedDict(MutableMapping[str, int]):
+    def __init__(self):
+        self.data = {}
+
+    def __getitem__(self, key):
+        return self.data[key]
+
+    def __setitem__(self, key, value):
+        self.data[key] = value
+
+    def __delitem__(self, key):
+        del self.data[key]
+
+    def __iter__(self):
+        keys = list(self.data.keys())
+        keys.sort()
+        for key in keys:
+            yield key
+
+    def __len__(self):
+        return len(self.data)
+
+
+def populate_ranks(votes: Dict[str, int], ranks: Dict[str, int]) -> None:
+    names = list(votes.keys())
+    names.sort(key=votes.get, reverse=True)
+    for i, name in enumerate(names, start=1):
+        ranks[name] = i
+
+
+# Reimplemented without assumed ordering
+def get_winner(ranks: Dict[str, int]) -> str:
+    return next(iter(ranks))
+
+
+votes = {
+    "otter": 1281,
+    "polar bear": 587,
+    "fox": 863,
+}
+
+sorted_ranks = SortedDict()
+populate_ranks(votes, sorted_ranks)
+print(sorted_ranks.data)
+
+print("Passing the underlying dict from the sorted_ranks SortedDict")
+winner = get_winner(sorted_ranks.data)
+print(winner)
+
+print("Passing the sorted_ranks SortedDict directly...")
+winner = get_winner(sorted_ranks)
+print(winner)
+```
+
+- Running the above through the *ty* typechecker, leads to
+
+```shell
+   |
+46 | sorted_ranks = SortedDict()
+47 | populate_ranks(votes, sorted_ranks)
+   |                       ^^^^^^^^^^^^ Expected `dict[str, int]`, found `SortedDict`
+48 | print(sorted_ranks.data)
+   |
+info: Function defined here
+  --> type_checking.py:28:5
+   |
+28 | def populate_ranks(votes: Dict[str, int], ranks: Dict[str, int]) -> None:
+   |     ^^^^^^^^^^^^^^                        --------------------- Parameter declared here
+29 |     names = list(votes.keys())
+30 |     names.sort(key=votes.__getitem__, reverse=True)
+   |
+info: rule `invalid-argument-type` is enabled by default
+
+error[invalid-argument-type]: Argument to function `get_winner` is incorrect
+  --> type_checking.py:55:21
+   |
+54 | print("Passing the sorted_ranks SortedDict directly...")
+55 | winner = get_winner(sorted_ranks)
+   |                     ^^^^^^^^^^^^ Expected `dict[str, int]`, found `SortedDict`
+56 | print(winner)
+   |
+info: Function defined here
+  --> type_checking.py:36:5
+   |
+35 | # Reimplemented without assumed ordering
+36 | def get_winner(ranks: Dict[str, int]) -> str:
+   |     ^^^^^^^^^^ --------------------- Parameter declared here
+37 |     return next(iter(ranks))
+   |
+info: rule `invalid-argument-type` is enabled by default
+```
+
+- i.e. The typechecker identifies and warns about the mismatch
+- Flags this as an error
+- This solution mixes in type-safety via the static typing and performance
+
+## Things to Remember
+
+- Since Python 3.7 (formally), 3.6 realistically, iterating a dictionary is guaranteed to return the keys in insertion order
+- Python makes it easy to define objects that behave like dictionaries but aren't `dict`
+    - These might not enforce insertion ordering
+- There are three techniques for handling dict-like object instances
+    1. Write code that doesn't assume insertion ordering
+    2. Use `isinstance` to perform runtime type checks for the `dict` type
+    3. Use type annotations to perform static type checking
