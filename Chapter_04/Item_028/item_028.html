@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Item 20: Never use for Loop Variables after the Loop Ends – Effective Python: Notes</title>
+<title>Item 28: Know how to Construct Key-Dependent Default Values with __missing__ – Effective Python: Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../Chapter_03/Item_021/item_021.html" rel="next">
-<link href="../../Chapter_03/Item_019/item_019.html" rel="prev">
+<link href="../../Chapter_04/Item_029/item_029.html" rel="next">
+<link href="../../Chapter_04/Item_027/item_027.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="Item 20: Never use for Loop Variables after the Loop Ends – Effective Python: Notes">
+<meta property="og:title" content="Item 28: Know how to Construct Key-Dependent Default Values with __missing__ – Effective Python: Notes">
 <meta property="og:site_name" content="Effective Python: Notes">
 </head>
 
@@ -143,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_03/Chapter_03.html">Chapter 3: Loops and Iterators</a></li><li class="breadcrumb-item"><a href="../../Chapter_03/Item_020/item_020.html">Item 20: Never use <code>for</code> Loop Variables after the Loop Ends</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_04/Chapter_04.html">Chapter 4: Dictionaries</a></li><li class="breadcrumb-item"><a href="../../Chapter_04/Item_028/item_028.html">Item 28: Know how to Construct Key-Dependent Default Values with <code>__missing__</code></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -285,11 +285,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../../Chapter_03/Chapter_03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 3: Loops and Iterators</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Chapter_03/Item_017/item_017.html" class="sidebar-item-text sidebar-link">
@@ -310,7 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Chapter_03/Item_020/item_020.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../Chapter_03/Item_020/item_020.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 20: Never use <code>for</code> Loop Variables after the Loop Ends</span></a>
   </div>
 </li>
@@ -344,11 +344,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../../Chapter_04/Chapter_04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 4: Dictionaries</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Chapter_04/Item_025/item_025.html" class="sidebar-item-text sidebar-link">
@@ -369,7 +369,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Chapter_04/Item_028/item_028.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_04/Item_028/item_028.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Item 28: Know how to Construct Key-Dependent Default Values with <code>__missing__</code></span></a>
   </div>
 </li>
@@ -399,9 +399,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_03/Chapter_03.html">Chapter 3: Loops and Iterators</a></li><li class="breadcrumb-item"><a href="../../Chapter_03/Item_020/item_020.html">Item 20: Never use <code>for</code> Loop Variables after the Loop Ends</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_04/Chapter_04.html">Chapter 4: Dictionaries</a></li><li class="breadcrumb-item"><a href="../../Chapter_04/Item_028/item_028.html">Item 28: Know how to Construct Key-Dependent Default Values with <code>__missing__</code></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Item 20: Never use <code>for</code> Loop Variables after the Loop Ends</h1>
+<h1 class="title">Item 28: Know how to Construct Key-Dependent Default Values with <code>__missing__</code></h1>
 </div>
 
 
@@ -421,129 +421,186 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
-<li>Variables created in a python <code>for</code> loop persist after the loop ends
+<li><code>setdefault</code> can be used to set a default value when a key is missing (<a href="../../Chapter_04/Item_026/item_026.html">Item 26</a>)</li>
+<li><code>defaultdict</code> allows the default value to be generated by a instance specific function (<a href="../../Chapter_04/Item_027/item_027.html">Item 27</a>)</li>
+<li>Both have limitations in the full general case</li>
+<li>Consider, managing social media profile pictures
 <ul>
-<li>Python does not have loops as independent block scopes as in a language like C</li>
+<li>Dictionary needs to map profile picture path names to file handles to read/write as required</li>
 </ul></li>
+<li>An approach using a normal dictionary might be implemented as below</li>
 </ul>
-<div id="27ab4b4f" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Inside </span><span class="sc">{</span>i<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After </span><span class="sc">{</span>i<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Inside i=0
-Inside i=1
-Inside i=2
-After i=2</code></pre>
-</div>
+<div id="46e2431b" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>pictures <span class="op">=</span> {}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">"foo_image.png"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (handle <span class="op">:=</span> pictures.get(path)) <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        handle <span class="op">=</span> <span class="bu">open</span>(path, <span class="st">"a+b"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">OSError</span>:</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Failed to open file </span><span class="sc">{</span>path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        pictures[path] <span class="op">=</span> handle</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>handle.seek(<span class="dv">0</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>image_data <span class="op">=</span> handle.read()</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> os.path.exists(path):</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    os.remove(path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
-<li>Loop variable persists with the value last assigned to it</li>
-<li>Can manipulate this behaviour
+<li><p>If the file exists</p>
 <ul>
-<li>Here we group periodic elements by looking for their indices in a list</li>
+<li>One access is performed</li>
 </ul></li>
-</ul>
-<div id="ff11c250" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> [<span class="st">"Hydrogen"</span>, <span class="st">"Uranium"</span>, <span class="st">"Iron"</span>, <span class="st">"Other"</span>]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, name <span class="kw">in</span> <span class="bu">enumerate</span>(categories):</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> name <span class="op">==</span> <span class="st">"Iron"</span>:</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>2</code></pre>
-</div>
-</div>
+<li><p>If the file doesn’t exist</p>
 <ul>
-<li>If an element isn’t found in the list, last index is bound to <code>i</code>
-<ul>
-<li>Here that’s the <code>"Other"</code> category</li>
+<li>One access is performed by get</li>
+<li>Then an assignment is performed in the <code>else</code> case</li>
 </ul></li>
-<li>Assumption is we either find a match and end early, or iterate over all elements and fall through</li>
-</ul>
-<div id="0e974b7c" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> [<span class="st">"Hydrogen"</span>, <span class="st">"Uranium"</span>, <span class="st">"Iron"</span>, <span class="st">"Other"</span>]</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, name <span class="kw">in</span> <span class="bu">enumerate</span>(categories):</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> name <span class="op">==</span> <span class="st">"Lithium"</span>:</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>3</code></pre>
-</div>
-</div>
+<li><p>Reading is then separated from the access</p></li>
+<li><p>We could also use the <code>in</code> operator, or handle a <code>KeyError</code></p>
 <ul>
-<li>The approach above breaks if the initial list is empty</li>
-<li>Then the loop never runs and <code>i</code> is never bound
-<ul>
-<li>Leads to a runtime error</li>
+<li>They don’t reduce the readability or the number of accesses</li>
 </ul></li>
+<li><p>One could also try a <code>setdefault</code> approach</p></li>
 </ul>
-<div id="af7e31a5" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> []</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j, name <span class="kw">in</span> <span class="bu">enumerate</span>(categories):</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> name <span class="op">==</span> <span class="st">"Lithium"</span>:</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(j)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="6af6cd04" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>pictures <span class="op">=</span> {}</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">"foo_image.png"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    handle <span class="op">=</span> pictures.setdefault(path, <span class="bu">open</span>(path, <span class="st">"a+b"</span>))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">OSError</span>:</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Failed to open path"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    handle.seek(<span class="dv">0</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    image_data <span class="op">=</span> handle.read()</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> os.path.exists(path):</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    os.remove(path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Above has problems
+<ul>
+<li><code>open</code> is called every time we query the dictionary for <code>path</code>
+<ul>
+<li>Can clause conflicts with existing file handles</li>
+</ul></li>
+<li>Hard to differentiate exceptions raised by <code>open</code> from exceptions raised from <code>setdefault</code></li>
+</ul></li>
+<li>Our third option we’ve already explored is to instead use a <code>defaultdict</code></li>
+</ul>
+<div id="1a1e9693" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> open_picture(profile_path):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">open</span>(profile_path, <span class="st">"a+b"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">OSError</span>:</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"failed to open path"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">"foo_image.png"</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>pictures <span class="op">=</span> defaultdict(open_picture)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>handle <span class="op">=</span> pictures[path]</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>handle.seek(<span class="dv">0</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>image_data <span class="op">=</span> handle.read()</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> os.path.exists(path):</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    os.remove(path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 5</span>
-<span class="ansi-green-fg">      3</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> name == <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Lithium</span><span class="ansi-yellow-fg">"</span>:
-<span class="ansi-green-fg">      4</span>         <span style="font-weight:bold;color:rgb(0,135,0)">break</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">5</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-bg">j</span>)
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 13</span>
+<span class="ansi-green-fg">     11</span> path = <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">foo_image.png</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">     12</span> pictures = defaultdict(open_picture)
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">13</span> handle = <span class="ansi-yellow-bg">pictures</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg">path</span><span class="ansi-yellow-bg">]</span>
+<span class="ansi-green-fg">     14</span> handle.seek(<span class="ansi-green-fg">0</span>)
+<span class="ansi-green-fg">     15</span> image_data = handle.read()
 
-<span class="ansi-red-fg">NameError</span>: name 'j' is not defined</pre>
+<span class="ansi-red-fg">TypeError</span>: open_picture() missing 1 required positional argument: 'profile_path'</pre>
 </div>
 </div>
 </div>
 <ul>
-<li>We can find a solution for this specific example
+<li>However, this doesn’t work
 <ul>
-<li>But general point, no way to guarantee a loop variable is bound after the loop completes</li>
+<li><code>defaultdict</code>’s construction function interface expects that it takes no arguments</li>
+<li>Mean’s we can’t make the default item parameterised by the path</li>
 </ul></li>
-<li>Comprehensions and generator expressions do not leak their variables after execution
+<li>The fourth solution is to overwrite the dictionaries default <code>__missing__</code> method
 <ul>
-<li>Trying to access them will lead to an error</li>
+<li><code>__missing__</code> controls how the dictionary handles missing keys</li>
+<li>Requires us to subclass dictionary</li>
 </ul></li>
 </ul>
-<div id="84c1a499" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>foo <span class="op">=</span> [<span class="dv">37</span>, <span class="dv">13</span>, <span class="dv">128</span>, <span class="dv">21</span>]</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>even <span class="op">=</span> [k <span class="cf">for</span> k <span class="kw">in</span> foo <span class="cf">if</span> k <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>]</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(k)  <span class="co"># always raises an error</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 3</span>
-<span class="ansi-green-fg">      1</span> foo = [<span class="ansi-green-fg">37</span>, <span class="ansi-green-fg">13</span>, <span class="ansi-green-fg">128</span>, <span class="ansi-green-fg">21</span>]
-<span class="ansi-green-fg">      2</span> even = [k <span style="font-weight:bold;color:rgb(0,135,0)">for</span> k <span style="font-weight:bold;color:rgb(175,0,255)">in</span> foo <span style="font-weight:bold;color:rgb(0,135,0)">if</span> k % <span class="ansi-green-fg">2</span> == <span class="ansi-green-fg">0</span>]
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-bg">k</span>)  <span style="font-style:italic;color:rgb(95,135,135)"># always raises an error</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'k' is not defined</pre>
-</div>
-</div>
+<div id="a1971415" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> open_picture(profile_path):</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">open</span>(profile_path, <span class="st">"a+b"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">OSError</span>:</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"failed to open path"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Pictures(<span class="bu">dict</span>):</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__missing__</span>(<span class="va">self</span>, key):</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        value <span class="op">=</span> open_picture(key)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>[key] <span class="op">=</span> value</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> value</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>pictures <span class="op">=</span> Pictures()</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>handle <span class="op">=</span> pictures[path]</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>handle.seek(<span class="dv">0</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>image_data <span class="op">=</span> handle.read()</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> os.path.exists(path):</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    os.remove(path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
-<li>Assignment expressions in comprehensions can change this</li>
-<li>Exception variables also don’t leak
+<li><code>__missing__</code> is called when <code>pictures[path]</code> accesses a non-existent keys
 <ul>
-<li>But have their own quirks</li>
+<li>Delegates this out to the <code>open_picture</code> function
+<ul>
+<li>Creates a new value</li>
 </ul></li>
+<li>Then assigns it to they key</li>
+<li>Then returns the value</li>
+</ul></li>
+<li><code>__missing__</code> is called when a key doesn’t exist and has three requirements
+<ol type="1">
+<li>It must construct the new value</li>
+<li>It must assign that value to the key</li>
+<li>It must return that value</li>
+</ol></li>
+<li>Subsequent accesses will not call <code>__missing__</code> again as they key now exists</li>
 </ul>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
 <ul>
-<li><code>for</code> loop variables are still in scope after the loop exits</li>
-<li><code>for</code> loop variables are not assigned if the loop never executes an iteration
+<li><code>setdefault</code> should be avoided when creating a default value has a high cost or may raise exceptions</li>
+<li>The function for <code>defaultdict</code>’s default value construction cannot accept any arguments
 <ul>
-<li>Cannot thus guarantee a loop variable exists after the loop</li>
+<li>Therefore the default value cannot be parameterised, including by the key value</li>
 </ul></li>
-<li>Comprehensions and generator expression variables do not leak by default</li>
-<li>Exception handlers do not leak exception instance variables</li>
+<li>The <code>__missing__</code> is a <code>dict</code> dunder method that is called when a key is missing
+<ul>
+<li>It accepts an object instance and the missing <code>key</code></li>
+<li>Can be overwritten in a <code>dict</code> subclass to construct default key values parameterised by the key</li>
+<li><code>__missing__</code> must create a new value, set the key to that value and return the value</li>
+</ul></li>
 </ul>
 
 
@@ -952,13 +1009,13 @@ After i=2</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../Chapter_03/Item_019/item_019.html" class="pagination-link" aria-label="Item 19: Avoid `else` Blocks After `for` and `while` Loops">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Item 19: Avoid <code>else</code> Blocks After <code>for</code> and <code>while</code> Loops</span>
+      <a href="../../Chapter_04/Item_027/item_027.html" class="pagination-link" aria-label="Item 27: Prefer `defaultdict` over `setdefault` to Handle Missing Items in Internal State">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Item 27: Prefer <code>defaultdict</code> over <code>setdefault</code> to Handle Missing Items in Internal State</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../Chapter_03/Item_021/item_021.html" class="pagination-link" aria-label="Item 21: Be Defensive when Iterating Over Arguments">
-        <span class="nav-page-text">Item 21: Be Defensive when Iterating Over Arguments</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../Chapter_04/Item_029/item_029.html" class="pagination-link" aria-label="Item 29: Compose Classes Instead of Deeply Nesting Dictionaries, Lists and Tuples">
+        <span class="nav-page-text">Item 29: Compose Classes Instead of Deeply Nesting Dictionaries, Lists and Tuples</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

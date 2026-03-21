@@ -17,6 +17,7 @@ Effective Python by Brett Slatkin
 - [Chapter 1: Pythonic Thinking](./Chapter_01/Chapter_01.qmd)
 - [Chapter 2: Strings and Slicing](./Chapter_02/Chapter_02.qmd)
 - [Chapter 3: Loops and Iterators](./Chapter_03/Chapter_03.qmd)
+- [Chapter 4: Dictionaries](./Chapter_04/Chapter_04.qmd)
 
 ## Attribution
 

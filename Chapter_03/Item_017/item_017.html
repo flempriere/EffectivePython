@@ -340,6 +340,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_04/Chapter_04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4: Dictionaries</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_04/Item_025/item_025.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 25: Be Cautious when Relying on Dictionary Insertion Ordering</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_04/Item_026/item_026.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 26: Prefer <code>get</code> over <code>in</code> and <code>KeyError</code> to Handle Missing Dictionary Keys</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_04/Item_027/item_027.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 27: Prefer <code>defaultdict</code> over <code>setdefault</code> to Handle Missing Items in Internal State</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_04/Item_028/item_028.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 28: Know how to Construct Key-Dependent Default Values with <code>__missing__</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_04/Item_029/item_029.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 29: Compose Classes Instead of Deeply Nesting Dictionaries, Lists and Tuples</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -385,7 +426,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>e.g.&nbsp;Generating a 32-bit random number by coin-flipping each bit position</li>
 </ul></li>
 </ul>
-<div id="10e456f1" class="cell" data-execution_count="1">
+<div id="c0c68e4e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> randint</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>random_bits <span class="op">=</span> <span class="dv">0</span></span>
@@ -395,13 +436,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Randomly generated: </span><span class="sc">{</span><span class="bu">bin</span>(random_bits)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Randomly generated: 0b11010011011100111001011100000100</code></pre>
+<pre><code>Randomly generated: 0b111111001011000100101011000010</code></pre>
 </div>
 </div>
 <ul>
 <li>We can directly loop over an data structure</li>
 </ul>
-<div id="23f18558" class="cell" data-execution_count="2">
+<div id="7ebadaaf" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ice_cream_flavours <span class="op">=</span> [<span class="st">"vanilla"</span>, <span class="st">"chocolate"</span>, <span class="st">"pecan"</span>, <span class="st">"strawberry"</span>]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> flavour <span class="kw">in</span> ice_cream_flavours:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>flavour<span class="sc">}</span><span class="ss"> is delicious"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -419,7 +460,7 @@ strawberry is delicious</code></pre>
 </ul></li>
 <li>You could do this with <code>range</code></li>
 </ul>
-<div id="17c4d243" class="cell" data-execution_count="3">
+<div id="650d8a76" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ice_cream_flavours <span class="op">=</span> [<span class="st">"vanilla"</span>, <span class="st">"chocolate"</span>, <span class="st">"pecan"</span>, <span class="st">"strawberry"</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(ice_cream_flavours)):</span>
@@ -446,7 +487,7 @@ strawberry is delicious</code></pre>
 </ul></li>
 <li>Demonstrating the behaviour manually,</li>
 </ul>
-<div id="17899fac" class="cell" data-execution_count="4">
+<div id="ef7b5d67" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ice_cream_flavours <span class="op">=</span> [<span class="st">"vanilla"</span>, <span class="st">"chocolate"</span>, <span class="st">"pecan"</span>, <span class="st">"strawberry"</span>]</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> <span class="bu">enumerate</span>(ice_cream_flavours)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">next</span>(it))</span>
@@ -459,7 +500,7 @@ strawberry is delicious</code></pre>
 <ul>
 <li>We can then use unpacking to easily separate the components of the <code>enumerate</code> pair</li>
 </ul>
-<div id="4f32f6fd" class="cell" data-execution_count="5">
+<div id="1d0287cb" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ice_cream_flavours <span class="op">=</span> [<span class="st">"vanilla"</span>, <span class="st">"chocolate"</span>, <span class="st">"pecan"</span>, <span class="st">"strawberry"</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, flavour <span class="kw">in</span> <span class="bu">enumerate</span>(ice_cream_flavours):</span>
@@ -478,7 +519,7 @@ strawberry is delicious</code></pre>
 <li>Does mean that the counter no longer directly aligns with the index in a sequence</li>
 </ul></li>
 </ul>
-<div id="4e91ee50" class="cell" data-execution_count="6">
+<div id="de46f463" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ice_cream_flavours <span class="op">=</span> [<span class="st">"vanilla"</span>, <span class="st">"chocolate"</span>, <span class="st">"pecan"</span>, <span class="st">"strawberry"</span>]</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, flavour <span class="kw">in</span> <span class="bu">enumerate</span>(ice_cream_flavours, start<span class="op">=</span><span class="dv">1</span>):</span>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Item 20: Never use for Loop Variables after the Loop Ends – Effective Python: Notes</title>
+<title>Item 27: Prefer defaultdict over setdefault to Handle Missing Items in Internal State – Effective Python: Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../Chapter_03/Item_021/item_021.html" rel="next">
-<link href="../../Chapter_03/Item_019/item_019.html" rel="prev">
+<link href="../../Chapter_04/Item_028/item_028.html" rel="next">
+<link href="../../Chapter_04/Item_026/item_026.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="Item 20: Never use for Loop Variables after the Loop Ends – Effective Python: Notes">
+<meta property="og:title" content="Item 27: Prefer defaultdict over setdefault to Handle Missing Items in Internal State – Effective Python: Notes">
 <meta property="og:site_name" content="Effective Python: Notes">
 </head>
 
@@ -143,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_03/Chapter_03.html">Chapter 3: Loops and Iterators</a></li><li class="breadcrumb-item"><a href="../../Chapter_03/Item_020/item_020.html">Item 20: Never use <code>for</code> Loop Variables after the Loop Ends</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_04/Chapter_04.html">Chapter 4: Dictionaries</a></li><li class="breadcrumb-item"><a href="../../Chapter_04/Item_027/item_027.html">Item 27: Prefer <code>defaultdict</code> over <code>setdefault</code> to Handle Missing Items in Internal State</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -285,11 +285,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../../Chapter_03/Chapter_03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 3: Loops and Iterators</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Chapter_03/Item_017/item_017.html" class="sidebar-item-text sidebar-link">
@@ -310,7 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Chapter_03/Item_020/item_020.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../Chapter_03/Item_020/item_020.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Item 20: Never use <code>for</code> Loop Variables after the Loop Ends</span></a>
   </div>
 </li>
@@ -344,11 +344,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../../Chapter_04/Chapter_04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 4: Dictionaries</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Chapter_04/Item_025/item_025.html" class="sidebar-item-text sidebar-link">
@@ -363,7 +363,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Chapter_04/Item_027/item_027.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Chapter_04/Item_027/item_027.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Item 27: Prefer <code>defaultdict</code> over <code>setdefault</code> to Handle Missing Items in Internal State</span></a>
   </div>
 </li>
@@ -399,9 +399,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_03/Chapter_03.html">Chapter 3: Loops and Iterators</a></li><li class="breadcrumb-item"><a href="../../Chapter_03/Item_020/item_020.html">Item 20: Never use <code>for</code> Loop Variables after the Loop Ends</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_04/Chapter_04.html">Chapter 4: Dictionaries</a></li><li class="breadcrumb-item"><a href="../../Chapter_04/Item_027/item_027.html">Item 27: Prefer <code>defaultdict</code> over <code>setdefault</code> to Handle Missing Items in Internal State</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Item 20: Never use <code>for</code> Loop Variables after the Loop Ends</h1>
+<h1 class="title">Item 27: Prefer <code>defaultdict</code> over <code>setdefault</code> to Handle Missing Items in Internal State</h1>
 </div>
 
 
@@ -421,129 +421,112 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
-<li>Variables created in a python <code>for</code> loop persist after the loop ends
+<li>We’ve seen that in general <code>get</code> is preferable to <code>setdefault</code> (<a href="../../Chapter_04/Item_026/item_026.html">Item 26</a>)</li>
+<li>However, we’ve seen that <code>get</code> isn’t the cleanest interface when the type stored in the dictionary is complex</li>
+<li>For example,
 <ul>
-<li>Python does not have loops as independent block scopes as in a language like C</li>
+<li>Let’s keep track of cities, visited in countries around the world</li>
 </ul></li>
 </ul>
-<div id="27ab4b4f" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Inside </span><span class="sc">{</span>i<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After </span><span class="sc">{</span>i<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="b9dc3dc0" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>visits <span class="op">=</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mexico"</span>: {<span class="st">"Tulum"</span>, <span class="st">"Puerto Vallarta"</span>},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Japan"</span>: {<span class="st">"Hakone"</span>}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Here <code>setdefault</code> let’s us add new cities regardless of if the country key exists</li>
+</ul>
+<div id="fc365f40" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>visits <span class="op">=</span> {<span class="st">"Mexico"</span>: {<span class="st">"Tulum"</span>, <span class="st">"Puerto Vallarta"</span>}, <span class="st">"Japan"</span>: {<span class="st">"Hakone"</span>}}</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Short</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>visits.setdefault(<span class="st">"France"</span>, <span class="bu">set</span>()).add(<span class="st">"Arles"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Long</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (japan <span class="op">:=</span> visits.get(<span class="st">"Japan"</span>)) <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    visits[<span class="st">"Japan"</span>] <span class="op">=</span> japan <span class="op">=</span> <span class="bu">set</span>()</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>japan.add(<span class="st">"Kyoto"</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(visits)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Inside i=0
-Inside i=1
-Inside i=2
-After i=2</code></pre>
+<pre><code>{'Mexico': {'Tulum', 'Puerto Vallarta'}, 'Japan': {'Hakone', 'Kyoto'}, 'France': {'Arles'}}</code></pre>
 </div>
 </div>
 <ul>
-<li>Loop variable persists with the value last assigned to it</li>
-<li>Can manipulate this behaviour
-<ul>
-<li>Here we group periodic elements by looking for their indices in a list</li>
-</ul></li>
+<li>Here the <code>get</code> code is clearly longer and less clear</li>
+<li>One might be tempted to wrap the code above in a class to hide the complexity from the user</li>
 </ul>
-<div id="ff11c250" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> [<span class="st">"Hydrogen"</span>, <span class="st">"Uranium"</span>, <span class="st">"Iron"</span>, <span class="st">"Other"</span>]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, name <span class="kw">in</span> <span class="bu">enumerate</span>(categories):</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> name <span class="op">==</span> <span class="st">"Iron"</span>:</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="c0f6b374" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Visits:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.data <span class="op">=</span> {}</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> add(<span class="va">self</span>, country, city):</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        city_set <span class="op">=</span> <span class="va">self</span>.data.setdefault(country, <span class="bu">set</span>())</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        city_set.add(city)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>visits <span class="op">=</span> Visits()</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>visits.add(<span class="st">"Russia"</span>, <span class="st">"Yekaterinburg"</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>visits.add(<span class="st">"Tanzania"</span>, <span class="st">"Zanzibar"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(visits.data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>2</code></pre>
+<pre><code>{'Russia': {'Yekaterinburg'}, 'Tanzania': {'Zanzibar'}}</code></pre>
 </div>
 </div>
 <ul>
-<li>If an element isn’t found in the list, last index is bound to <code>i</code>
+<li>This hides the <code>setdefault</code> call</li>
+<li><code>add</code> provides a clean interface and more meaningful interface</li>
+<li>There are still downsides
 <ul>
-<li>Here that’s the <code>"Other"</code> category</li>
+<li>The complexity is still present in the internals of the <code>add</code> method</li>
+<li><code>setdefault</code> constructs a <code>set</code> object on every call (even if it isn’t assigned in the end)</li>
 </ul></li>
-<li>Assumption is we either find a match and end early, or iterate over all elements and fall through</li>
+<li><code>defaultdict</code> simplifies this use case
+<ul>
+<li>Provided in the <code>collections</code> built-in module</li>
+<li>Accepts a function that returns a default value whenever a key is missing</li>
+</ul></li>
+<li>We can rewrite our <code>Visits</code> class as before</li>
 </ul>
-<div id="0e974b7c" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> [<span class="st">"Hydrogen"</span>, <span class="st">"Uranium"</span>, <span class="st">"Iron"</span>, <span class="st">"Other"</span>]</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, name <span class="kw">in</span> <span class="bu">enumerate</span>(categories):</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> name <span class="op">==</span> <span class="st">"Lithium"</span>:</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="adbb6a95" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Visits:</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.data <span class="op">=</span> defaultdict(<span class="bu">set</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> add(<span class="va">self</span>, country, city):</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.data[country].add(city)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>visits <span class="op">=</span> Visits()</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>visits.add(<span class="st">"Russia"</span>, <span class="st">"Yekaterinburg"</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>visits.add(<span class="st">"Tanzania"</span>, <span class="st">"Zanzibar"</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(visits.data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>3</code></pre>
+<pre><code>defaultdict(&lt;class 'set'&gt;, {'Russia': {'Yekaterinburg'}, 'Tanzania': {'Zanzibar'}})</code></pre>
 </div>
 </div>
 <ul>
-<li>The approach above breaks if the initial list is empty</li>
-<li>Then the loop never runs and <code>i</code> is never bound
+<li><code>add</code> is now succinct</li>
+<li>Code can assume that accessing any key in the data will return a <code>set</code> instance</li>
+<li>Only allocates a <code>set</code> when required</li>
+<li>Using <code>defaultdict</code> is better than using <code>setdefault</code>
 <ul>
-<li>Leads to a runtime error</li>
-</ul></li>
-</ul>
-<div id="af7e31a5" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> []</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j, name <span class="kw">in</span> <span class="bu">enumerate</span>(categories):</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> name <span class="op">==</span> <span class="st">"Lithium"</span>:</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(j)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 5</span>
-<span class="ansi-green-fg">      3</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> name == <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Lithium</span><span class="ansi-yellow-fg">"</span>:
-<span class="ansi-green-fg">      4</span>         <span style="font-weight:bold;color:rgb(0,135,0)">break</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">5</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-bg">j</span>)
-
-<span class="ansi-red-fg">NameError</span>: name 'j' is not defined</pre>
-</div>
-</div>
-</div>
-<ul>
-<li>We can find a solution for this specific example
-<ul>
-<li>But general point, no way to guarantee a loop variable is bound after the loop completes</li>
-</ul></li>
-<li>Comprehensions and generator expressions do not leak their variables after execution
-<ul>
-<li>Trying to access them will lead to an error</li>
-</ul></li>
-</ul>
-<div id="84c1a499" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>foo <span class="op">=</span> [<span class="dv">37</span>, <span class="dv">13</span>, <span class="dv">128</span>, <span class="dv">21</span>]</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>even <span class="op">=</span> [k <span class="cf">for</span> k <span class="kw">in</span> foo <span class="cf">if</span> k <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>]</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(k)  <span class="co"># always raises an error</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 3</span>
-<span class="ansi-green-fg">      1</span> foo = [<span class="ansi-green-fg">37</span>, <span class="ansi-green-fg">13</span>, <span class="ansi-green-fg">128</span>, <span class="ansi-green-fg">21</span>]
-<span class="ansi-green-fg">      2</span> even = [k <span style="font-weight:bold;color:rgb(0,135,0)">for</span> k <span style="font-weight:bold;color:rgb(175,0,255)">in</span> foo <span style="font-weight:bold;color:rgb(0,135,0)">if</span> k % <span class="ansi-green-fg">2</span> == <span class="ansi-green-fg">0</span>]
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-bg">k</span>)  <span style="font-style:italic;color:rgb(95,135,135)"># always raises an error</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'k' is not defined</pre>
-</div>
-</div>
-</div>
-<ul>
-<li>Assignment expressions in comprehensions can change this</li>
-<li>Exception variables also don’t leak
-<ul>
-<li>But have their own quirks</li>
+<li><code>defaultdict</code> doesn’t solve every problem, but it is useful to know about</li>
 </ul></li>
 </ul>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
 <ul>
-<li><code>for</code> loop variables are still in scope after the loop exits</li>
-<li><code>for</code> loop variables are not assigned if the loop never executes an iteration
+<li>If creating a dictionary to manage an arbitrary set of potential keys prefer a <code>defaultdict</code> instance from <code>collections</code> if you need complex types as default values</li>
+<li>If a dictionary of arbitrary keys is passed to you (i.e.&nbsp;you don’t control it’s creation), then prefer <code>get</code>
 <ul>
-<li>Cannot thus guarantee a loop variable exists after the loop</li>
+<li>Consider <code>setdefault</code> if it leads to shorter code and the default objection allocation cost is low</li>
 </ul></li>
-<li>Comprehensions and generator expression variables do not leak by default</li>
-<li>Exception handlers do not leak exception instance variables</li>
 </ul>
 
 
@@ -952,13 +935,13 @@ After i=2</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../Chapter_03/Item_019/item_019.html" class="pagination-link" aria-label="Item 19: Avoid `else` Blocks After `for` and `while` Loops">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Item 19: Avoid <code>else</code> Blocks After <code>for</code> and <code>while</code> Loops</span>
+      <a href="../../Chapter_04/Item_026/item_026.html" class="pagination-link" aria-label="Item 26: Prefer `get` over `in` and `KeyError` to Handle Missing Dictionary Keys">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Item 26: Prefer <code>get</code> over <code>in</code> and <code>KeyError</code> to Handle Missing Dictionary Keys</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../Chapter_03/Item_021/item_021.html" class="pagination-link" aria-label="Item 21: Be Defensive when Iterating Over Arguments">
-        <span class="nav-page-text">Item 21: Be Defensive when Iterating Over Arguments</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../Chapter_04/Item_028/item_028.html" class="pagination-link" aria-label="Item 28: Know how to Construct Key-Dependent Default Values with `__missing__`">
+        <span class="nav-page-text">Item 28: Know how to Construct Key-Dependent Default Values with <code>__missing__</code></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

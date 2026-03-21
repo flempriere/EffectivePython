@@ -369,6 +369,47 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_04/Chapter_04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4: Dictionaries</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_04/Item_025/item_025.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 25: Be Cautious when Relying on Dictionary Insertion Ordering</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_04/Item_026/item_026.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 26: Prefer <code>get</code> over <code>in</code> and <code>KeyError</code> to Handle Missing Dictionary Keys</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_04/Item_027/item_027.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 27: Prefer <code>defaultdict</code> over <code>setdefault</code> to Handle Missing Items in Internal State</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_04/Item_028/item_028.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 28: Know how to Construct Key-Dependent Default Values with <code>__missing__</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_04/Item_029/item_029.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 29: Compose Classes Instead of Deeply Nesting Dictionaries, Lists and Tuples</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -415,7 +456,7 @@ window.Quarto = {
 <li>Below, we take a list of names and convert it to a list of name lengths</li>
 </ul></li>
 </ul>
-<div id="342c31b3" class="cell" data-execution_count="1">
+<div id="fe7a93e6" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(n) <span class="cf">for</span> n <span class="kw">in</span> names]</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(counts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -434,7 +475,7 @@ window.Quarto = {
 <li>e.g.&nbsp;to find the longest name</li>
 </ul></li>
 </ul>
-<div id="e35d6661" class="cell" data-execution_count="2">
+<div id="4451c5b4" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(n) <span class="cf">for</span> n <span class="kw">in</span> names]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -482,7 +523,7 @@ Longest name (enumerate-based approach): Charlie</code></pre>
 <li>Can unpack them as for <code>enumerate</code></li>
 </ul></li>
 </ul>
-<div id="2edd3e98" class="cell" data-execution_count="3">
+<div id="8d75bd1a" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(n) <span class="cf">for</span> n <span class="kw">in</span> names]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -505,7 +546,7 @@ Longest name (enumerate-based approach): Charlie</code></pre>
 <li>Means that if iterators of different size are combined the shortest determines the length of the loop</li>
 </ul></li>
 </ul>
-<div id="764deb7e" class="cell" data-execution_count="4">
+<div id="fc5cc3d3" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(n) <span class="cf">for</span> n <span class="kw">in</span> names]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -526,7 +567,7 @@ Charlie: 7</code></pre>
 <li>If <code>True</code> a <code>ValueError</code> is raised if <code>zip</code> exhausts one of the iterators</li>
 </ul></li>
 </ul>
-<div id="958c982e" class="cell" data-execution_count="5">
+<div id="3738541e" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(n) <span class="cf">for</span> n <span class="kw">in</span> names]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -563,7 +604,7 @@ Charlie: 7</code></pre>
 <li>Let’s you pad exhausted iterators with a default value (by default this is <code>None</code>)</li>
 </ul></li>
 </ul>
-<div id="83a8e076" class="cell" data-execution_count="6">
+<div id="081d4f11" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>

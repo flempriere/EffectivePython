@@ -340,6 +340,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_04/Chapter_04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4: Dictionaries</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_04/Item_025/item_025.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 25: Be Cautious when Relying on Dictionary Insertion Ordering</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_04/Item_026/item_026.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 26: Prefer <code>get</code> over <code>in</code> and <code>KeyError</code> to Handle Missing Dictionary Keys</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_04/Item_027/item_027.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 27: Prefer <code>defaultdict</code> over <code>setdefault</code> to Handle Missing Items in Internal State</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_04/Item_028/item_028.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 28: Know how to Construct Key-Dependent Default Values with <code>__missing__</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_04/Item_029/item_029.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 29: Compose Classes Instead of Deeply Nesting Dictionaries, Lists and Tuples</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -398,7 +439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ol></li>
 </ul>
-<div id="316b60e0" class="cell" data-execution_count="1">
+<div id="df6f591b" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A demonstration of bytes</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="st">b"h</span><span class="ch">\x65</span><span class="st">llo"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(a))</span>
@@ -410,7 +451,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 b'hello'</code></pre>
 </div>
 </div>
-<div id="d04a7cfc" class="cell" data-execution_count="2">
+<div id="27555fa6" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="st">"a</span><span class="ch">\u0300</span><span class="st"> propos"</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(a))</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(a))</span>
@@ -464,7 +505,7 @@ à propos</code></pre>
 </ul></li>
 <li>First to enforce that we have a unicode string</li>
 </ul>
-<div id="6558b796" class="cell" data-execution_count="3">
+<div id="c8ab1e6e" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> to_str(bytes_or_str):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(bytes_or_str, <span class="bu">bytes</span>):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        value <span class="op">=</span> bytes_or_str.decode(<span class="st">"utf-8"</span>) <span class="co">#decode bytes using UTF-8</span></span>
@@ -482,7 +523,7 @@ à propos</code></pre>
 <ul>
 <li>Second that we have a raw UTF-8 string</li>
 </ul>
-<div id="72331d6f" class="cell" data-execution_count="4">
+<div id="bc1dad7a" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> to_bytes(bytes_or_str):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(bytes_or_str, <span class="bu">str</span>):</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        value <span class="op">=</span> bytes_or_str.encode(<span class="st">"utf-8"</span>)</span>
@@ -509,7 +550,7 @@ à propos</code></pre>
 <li>Cannot concatenate <code>bytes</code> to <code>str</code> or vice-versa</li>
 </ul></li>
 </ul>
-<div id="78f387f1" class="cell" data-execution_count="5">
+<div id="930a717f" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">b"one"</span> <span class="op">+</span> <span class="st">b"two"</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"one"</span> <span class="op">+</span> <span class="st">"two"</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">b"one"</span> <span class="op">+</span> <span class="st">"two"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -536,7 +577,7 @@ onetwo</code></pre>
 <li>But again, not across the types</li>
 </ul></li>
 </ul>
-<div id="9775be54" class="cell" data-execution_count="6">
+<div id="c454eb57" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">b"red"</span> <span class="op">&gt;</span> <span class="st">b"blue"</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">"red"</span> <span class="op">&gt;</span> <span class="st">"blue"</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">"red"</span> <span class="op">&gt;</span> <span class="st">b"blue"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -556,7 +597,7 @@ onetwo</code></pre>
 <ul>
 <li>Comparing <code>bytes</code> to <code>str</code> for equality always evaluates to <code>False</code></li>
 </ul>
-<div id="9a5bc86e" class="cell" data-execution_count="7">
+<div id="e6f0bc60" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">"foo"</span> <span class="op">==</span> <span class="st">"foo"</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">b"foo"</span> <span class="op">==</span> <span class="st">b"foo"</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">b"foo"</span> <span class="op">==</span> <span class="st">"foo"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -567,7 +608,7 @@ onetwo</code></pre>
 <ul>
 <li>The <code>%</code> operator works with format strings for both</li>
 </ul>
-<div id="16d6248b" class="cell" data-execution_count="8">
+<div id="a307f196" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>blue_bytes <span class="op">=</span> <span class="st">b"blue"</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>blue_str <span class="op">=</span> <span class="st">"blue"</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -582,7 +623,7 @@ red blue</code></pre>
 <ul>
 <li>Can’t pass a <code>str</code> to a <code>bytes</code> format string</li>
 </ul>
-<div id="ad3c6424" class="cell" data-execution_count="9">
+<div id="48186b3a" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>blue_str <span class="op">=</span> <span class="st">"blue"</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">b"red %s"</span> <span class="op">%</span> blue_str)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
@@ -608,7 +649,7 @@ red blue</code></pre>
 <li>This is then injected into the string</li>
 </ul></li>
 </ul>
-<div id="cac71275" class="cell" data-execution_count="10">
+<div id="23343469" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>blue_bytes <span class="op">=</span> <span class="st">b"blue"</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"red </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> blue_bytes)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"red </span><span class="sc">{</span>blue_bytes<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -624,7 +665,7 @@ red b'blue'</code></pre>
 <li>Operations involving file handles (the result of the <code>open</code> built-in) expect Unicode strings by default</li>
 <li>The code below which attempts to write some binary data will break</li>
 </ul>
-<div id="876e889c" class="cell" data-execution_count="11">
+<div id="ca8720d3" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os  <span class="co"># so we can clean up the file</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
@@ -647,7 +688,7 @@ red b'blue'</code></pre>
 </ul></li>
 <li>This problem is mirrored for reading</li>
 </ul>
-<div id="7a69dcb3" class="cell" data-execution_count="12">
+<div id="a3131755" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># corrected write</span></span>
@@ -679,7 +720,7 @@ red b'blue'</code></pre>
 </ul></li>
 <li>The fixed version is</li>
 </ul>
-<div id="1a9b6344" class="cell" data-execution_count="13">
+<div id="1c157db2" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
@@ -706,7 +747,7 @@ red b'blue'</code></pre>
 <li>We get an error if we use <code>"rb"</code></li>
 </ul></li>
 </ul>
-<div id="068bf9c1" class="cell" data-execution_count="14">
+<div id="89951b01" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
