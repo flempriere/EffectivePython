@@ -135,7 +135,7 @@ obj = OpaqueClass(1, "foo")
 print(obj)
 ```
 
-    <__main__.OpaqueClass object at 0x7f8d04ea0590>
+    <__main__.OpaqueClass object at 0x7efe733f4590>
 
 - A lightweight `repr` implementation may be,
 
