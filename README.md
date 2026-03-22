@@ -11,6 +11,8 @@ This repository contains code fragments and notes from the book, Effective Pytho
 - [Chapter 1: Pythonic Thinking](./Chapter_01/Chapter_01.md)
 - [Chapter 2: Strings and Slicing](./Chapter_02/Chapter_02.md)
 - [Chapter 3: Loops and Iterators](./Chapter_03/Chapter_03.md)
+- [Chapter 4: Dictionaries](./Chapter_04/Chapter_04.qmd)
+- Chapter 5: Functions
 
 ## Attribution
 
