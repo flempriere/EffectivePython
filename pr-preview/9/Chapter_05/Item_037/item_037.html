@@ -492,7 +492,7 @@ window.Quarto = {
 <li>We’ve already seen that keyword arguments help improve the clarify of python functions (See <a href="../../Chapter_05/Item_035/item_035.html">Item 35</a>)</li>
 <li>For example, the following division function supports optional flags for treating zero division as infinity and ignoring overflow</li>
 </ul>
-<div id="aa4b3a68" class="cell" data-execution_count="1">
+<div id="42485840" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> safe_division(number, divisor, ignore_overflow, ignore_zero_division):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> number <span class="op">/</span> divisor</span>
@@ -526,7 +526,7 @@ inf</code></pre>
 </ul></li>
 <li>Can improve by using defaults and keyword arguments</li>
 </ul>
-<div id="bb3b8056" class="cell" data-execution_count="2">
+<div id="5a21d6cc" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> safe_division(number, divisor, ignore_overflow<span class="op">=</span><span class="va">False</span>, ignore_zero_division<span class="op">=</span><span class="va">False</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> number <span class="op">/</span> divisor</span>
@@ -569,7 +569,7 @@ inf</code></pre>
 <li>Note using <code>*args</code> does the same thing but captures all remaining positional arguments into the <code>args</code> tuple</li>
 </ul></li>
 </ul>
-<div id="19d91a22" class="cell" data-execution_count="3">
+<div id="c7491c01" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> safe_division(number, divisor, <span class="op">*</span>, ignore_overflow<span class="op">=</span><span class="va">False</span>, ignore_zero_division<span class="op">=</span><span class="va">False</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> number <span class="op">/</span> divisor</span>
@@ -624,7 +624,7 @@ inf</code></pre>
 <li>The <code>/</code> parameter in a function denotes that all arguments <em>before</em> it are positional only</li>
 </ul></li>
 </ul>
-<div id="0a6b10b5" class="cell" data-execution_count="4">
+<div id="9720d117" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> safe_division(number, divisor,<span class="op">/</span>, <span class="op">*</span>, ignore_overflow<span class="op">=</span><span class="va">False</span>, ignore_zero_division<span class="op">=</span><span class="va">False</span>):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> number <span class="op">/</span> divisor</span>
@@ -678,7 +678,7 @@ inf</code></pre>
 <li>For example adding an optional parameter to our division which gives the number of digits for rounding (default <span class="math inline">\(10\)</span>)</li>
 </ul></li>
 </ul>
-<div id="9d8a9926" class="cell" data-execution_count="5">
+<div id="00373bf1" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> safe_division(number, divisor,<span class="op">/</span>, n_digits<span class="op">=</span><span class="dv">10</span> <span class="op">*</span>, ignore_overflow<span class="op">=</span><span class="va">False</span>, ignore_zero_division<span class="op">=</span><span class="va">False</span>):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        fraction <span class="op">=</span> number <span class="op">/</span> divisor</span>
