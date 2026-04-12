@@ -18,6 +18,7 @@ Effective Python by Brett Slatkin
 - [Chapter 2: Strings and Slicing](./Chapter_02/Chapter_02.qmd)
 - [Chapter 3: Loops and Iterators](./Chapter_03/Chapter_03.qmd)
 - [Chapter 4: Dictionaries](./Chapter_04/Chapter_04.qmd)
+- [Chapter 5: Functions](./Chapter_05/Chapter_05.qmd)
 
 ## Attribution
 

@@ -391,35 +391,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
- <span class="menu-text">Chapter_05/Item_30/item_030.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_05/Item_030/item_030.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 30: Know that Function Arguments can be Mutated</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_05/Item_31/item_031.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_05/Item_031/item_031.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 31: Return Dedicated Result Objects instead of Requiring Function Callers to Unpack more than Three Variables</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_05/Item_32/item_032.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_05/Item_032/item_032.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 32: Prefer Raising Exceptions to Returning <code>None</code></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_05/Item_33/item_033.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_05/Item_033/item_033.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 33: Know How Closures Interact with Variable Scope and <code>nonlocal</code></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_05/Item_34/item_034.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_05/Item_034/item_034.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 34: Reduce Visual Noise with Variable Positional Arguments</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_05/Item_35/item_035.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_05/Item_035/item_035.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 35: Provide Optional Behaviour with Keyword Arguments</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_05/Item_36/item_036.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_05/Item_036/item_036.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 36: Use <code>None</code> and Docstrings to Specify Dynamic Default Arguments</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_05/Item_37/item_037.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_05/Item_037/item_037.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 37: Enforce Clarify with Keyword-Ony and Positional-Only Arguments</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_05/Item_38/item_038.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_05/Item_038/item_038.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 38: Define Function Decorators with <code>functools.wrap</code></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_05/Item_39/item_039.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_05/Item_039/item_039.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 39: Prefer <code>functools.partial</code> over <code>lambda</code> Expressions for Glue Functions</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -469,7 +499,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Let’s keep track of cities, visited in countries around the world</li>
 </ul></li>
 </ul>
-<div id="0e2c9eda" class="cell" data-execution_count="1">
+<div id="e8a8cdc4" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>visits <span class="op">=</span> {</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mexico"</span>: {<span class="st">"Tulum"</span>, <span class="st">"Puerto Vallarta"</span>},</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Japan"</span>: {<span class="st">"Hakone"</span>}</span>
@@ -478,7 +508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Here <code>setdefault</code> let’s us add new cities regardless of if the country key exists</li>
 </ul>
-<div id="89628cae" class="cell" data-execution_count="2">
+<div id="d08cab00" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>visits <span class="op">=</span> {<span class="st">"Mexico"</span>: {<span class="st">"Tulum"</span>, <span class="st">"Puerto Vallarta"</span>}, <span class="st">"Japan"</span>: {<span class="st">"Hakone"</span>}}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Short</span></span>
@@ -498,7 +528,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Here the <code>get</code> code is clearly longer and less clear</li>
 <li>One might be tempted to wrap the code above in a class to hide the complexity from the user</li>
 </ul>
-<div id="5cd69ea4" class="cell" data-execution_count="3">
+<div id="04280dc4" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Visits:</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.data <span class="op">=</span> {}</span>
@@ -530,7 +560,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>We can rewrite our <code>Visits</code> class as before</li>
 </ul>
-<div id="293c1320" class="cell" data-execution_count="4">
+<div id="4cf4ed33" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>

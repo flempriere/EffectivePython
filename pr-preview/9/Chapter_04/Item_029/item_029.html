@@ -391,35 +391,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
- <span class="menu-text">Chapter_05/Item_30/item_030.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_05/Item_030/item_030.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 30: Know that Function Arguments can be Mutated</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_05/Item_31/item_031.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_05/Item_031/item_031.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 31: Return Dedicated Result Objects instead of Requiring Function Callers to Unpack more than Three Variables</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_05/Item_32/item_032.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_05/Item_032/item_032.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 32: Prefer Raising Exceptions to Returning <code>None</code></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_05/Item_33/item_033.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_05/Item_033/item_033.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 33: Know How Closures Interact with Variable Scope and <code>nonlocal</code></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_05/Item_34/item_034.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_05/Item_034/item_034.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 34: Reduce Visual Noise with Variable Positional Arguments</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_05/Item_35/item_035.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_05/Item_035/item_035.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 35: Provide Optional Behaviour with Keyword Arguments</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_05/Item_36/item_036.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_05/Item_036/item_036.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 36: Use <code>None</code> and Docstrings to Specify Dynamic Default Arguments</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_05/Item_37/item_037.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_05/Item_037/item_037.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 37: Enforce Clarify with Keyword-Ony and Positional-Only Arguments</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_05/Item_38/item_038.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_05/Item_038/item_038.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 38: Define Function Decorators with <code>functools.wrap</code></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">Chapter_05/Item_39/item_039.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_05/Item_039/item_039.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 39: Prefer <code>functools.partial</code> over <code>lambda</code> Expressions for Glue Functions</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -476,7 +506,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>We can use a lightweight class wrapper</li>
 </ul></li>
 </ul>
-<div id="4210febe" class="cell" data-execution_count="1">
+<div id="e65ab3c5" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SimpleGradebook:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._grades <span class="op">=</span> {}</span>
@@ -512,7 +542,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Use <code>defaultdict</code> to handle missing subjects in the inner dictionary</li>
 </ul></li>
 </ul>
-<div id="287dd7e0" class="cell" data-execution_count="2">
+<div id="1474ede6" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -562,7 +592,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>And increasingly nested</li>
 </ul></li>
 </ul>
-<div id="ca91cd20" class="cell" data-execution_count="3">
+<div id="d50bfe50" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -626,7 +656,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Probably overkill to wrap this in a class, so these can stay as tuples</li>
 </ul></li>
 </ul>
-<div id="746ce582" class="cell" data-execution_count="4">
+<div id="99e090f3" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>grades <span class="op">=</span> []</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>grades.append((<span class="dv">95</span>, <span class="fl">0.45</span>))</span>
@@ -647,7 +677,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>If we were to extend the tuple further, e.g.&nbsp;adding teacher notes, everywhere that we unpack the tuple would need to be updated to handle a three-element tuple</li>
 </ul></li>
 </ul>
-<div id="2c571eeb" class="cell" data-execution_count="5">
+<div id="f2adbc97" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>grades <span class="op">=</span> []</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>grades.append((<span class="dv">95</span>, <span class="fl">0.45</span>, <span class="st">"Great job"</span>))</span>
@@ -665,7 +695,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>You can additionally make them immutable (like a tuple) via the <code>frozen</code> attribute</li>
 </ul></li>
 </ul>
-<div id="4862dc48" class="cell" data-execution_count="6">
+<div id="4eb803ab" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span>(frozen<span class="op">=</span><span class="va">True</span>)</span>
@@ -684,7 +714,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Subjects group assignments together</li>
 </ul></li>
 </ul>
-<div id="750bbdd3" class="cell" data-execution_count="7">
+<div id="40bd5daa" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -713,7 +743,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Still have the mapping of a student’s name to a dictionary of all their subjects (here a class)</li>
 <li>We could then implement a <code>Student</code> class to handle to association of subjects to a student</li>
 </ul>
-<div id="23bfcf61" class="cell" data-execution_count="8">
+<div id="ac6a1ebf" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -756,7 +786,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Last thing to do is update our grade book</li>
 </ul>
-<div id="f230a8f8" class="cell" data-execution_count="9">
+<div id="c6566c79" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
