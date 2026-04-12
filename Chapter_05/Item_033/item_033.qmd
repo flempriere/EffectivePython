@@ -1,0 +1,139 @@
+---
+title: "Item 33: Know How Closures Interact with Variable Scope and `nonlocal`"
+---
+
+## Notes
+
+- Consider sorting a list of numbers but with a prioritised group
+    - Might correspond to a message log (certain message ID's should be shown first)
+- A useful technique is passing a helper function as the `key` argument to `sort`
+    - Helper function return value is used as the sorting key value
+
+```{python}
+def sort_priority(values, group):
+    def helper(x):
+        if x in group:
+            return (0, x)
+        return (1, x)
+
+    values.sort(key=helper)
+
+numbers = [8, 3, 1, 2, 5, 4, 7, 6]
+group = {2, 3, 5, 7}
+sort_priority(numbers, group)
+print(numbers)
+```
+
+- Why does this function work?
+
+    1. Python supports *closures*
+        - Functions referring to variables from the scope in which they are defined
+        - i.e. above `helper` can access the `group` variable because both are in the `sort_priority` function's scope
+    2. Python treats functions as *first-class* objects
+        - You can refer to functions directly, assign them, pass them as arguments etc.
+    3. Python has rules for comparing sequences
+        - First compare items at first index
+        - While equal continue comparing second index, third index etc.
+        - Allows `helper` return to create distinct ordering between prioritised and non-prioritised
+
+- What if we want to update the program to now indicate if any high priority messages were seen at all?
+    - Intuitively might seem like we could use the closure to flip a flag
+
+```{python}
+def sort_priority2(numbers, groups):
+    found = False # Initial flag value
+
+    def helper(x):
+        if x in group:
+            found = True # flip the flag
+            return (0, x)
+        return (1, x)
+
+    numbers.sort(key=helper)
+    return found
+
+numbers = [8, 3, 1, 2, 5, 4, 7, 6]
+group = {2, 3, 5, 7}
+found = sort_priority2(numbers, group)
+print("Found:", found)
+print(numbers)
+```
+
+- Numbers are correctly sorted, but `found` is not set to  `True` as intended
+    - Seems that python did not correctly associate the `found = True` statement to the `found` variable in the enclosing scope
+- Python resolves variable references and assignments differently
+    - References are referred by searching (in-order)
+        1. The current scope
+        2. Enclosing scopes
+        3. global module scope
+        4. built-in scope
+    - If no match found then a `NameError` is raised
+
+```{python}
+foo = fake * 5
+```
+
+- Assignments works as follows
+    - If variable exists in current scope, name is reassigned the value
+    - If variable doesn't exist, treat the assignment as a definition
+- Means that in our previous example `found = True` creates a new variable `found` in the scope of the `helper` function
+- Can define a variable as `nonlocal` to tell python to search in enclosing scopes
+    - Similarly `global` lets us look for variables in the global scope
+
+```{python}
+def sort_priority3(numbers, groups):
+    found = False # Initial flag value
+
+    def helper(x):
+        nonlocal found # connect to found in the enclosing scope
+        if x in group:
+            found = True # flip the flag
+            return (0, x)
+        return (1, x)
+
+    numbers.sort(key=helper)
+    return found
+
+numbers = [8, 3, 1, 2, 5, 4, 7, 6]
+group = {2, 3, 5, 7}
+found = sort_priority3(numbers, group)
+print("Found:", found)
+print(numbers)
+```
+
+- Avoid using `nonlocal` outside of simple functions
+    - Side effects can be hard to reason about
+- Rather than use complicated `nonlocal` bindings prefer wrapping state in a helper class
+- Here we reimplement the above using a class that can be called like a function
+    - More complicated implementation
+    - But easier to read and reason about (and extend)
+
+```{python}
+class Sorter:
+
+    def __init__(self, group):
+        self.group = group
+        self.found = False
+
+    def __call__(self, x):
+        if x in self.group:
+            self.found = True
+            return (0, x)
+        return (1, x)
+
+numbers = [8, 3, 1, 2, 5, 4, 7, 6]
+group = {2, 3, 5, 7}
+sorter = Sorter(group)
+numbers.sort(key=sorter)
+print("Found:", sorter.found)
+print(numbers)
+```
+
+
+## Things to Remember
+
+- Closure functions can refer to variables in the enclosing scopes
+- By default, closures can't assign to variables in enclosing scopes
+- `nonlocal` let's a function connect to and assign to variables in the enclosing scope
+    - `global` does the same for global / module scope
+- Avoid using `nonlocal` for all but the simplest functions
