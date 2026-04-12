@@ -75,8 +75,8 @@ def logn_sum(base, logn_total, value):
 import functools
 import math
 
-def logn_sum(base, logn_total, value):
-    logn_total = math.log(value, base)
+def logn_sum(base, logn_total, value):s
+    logn_value = math.log(value, base)
     return logn_total + logn_value
 
 result = functools.reduce(lambda total, value: logn_sum(10, total, value), [10, 20, 40], 0)
@@ -92,9 +92,11 @@ print(math.pow(10, result))
 import functools
 import math
 
+
 def logn_sum(base, logn_total, value):
-    logn_total = math.log(value, base)
+    logn_value = math.log(value, base)
     return logn_total + logn_value
+
 
 result = functools.reduce(functools.partial(logn_sum, 10), [10, 20, 40], 0)
 print(math.pow(10, result))

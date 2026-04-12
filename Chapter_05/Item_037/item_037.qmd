@@ -69,7 +69,9 @@ print(result)
     - Note using `*args` does the same thing but captures all remaining positional arguments into the `args` tuple
 
 ```{python}
-def safe_division(number, divisor, *, ignore_overflow=False, ignore_zero_division=False):
+def safe_division(
+    number, divisor, *, ignore_overflow=False, ignore_zero_division=False
+):
     try:
         return number / divisor
     except OverflowError:
@@ -83,12 +85,13 @@ def safe_division(number, divisor, *, ignore_overflow=False, ignore_zero_divisio
         else:
             False
 
+
 # ignoring overflow
 result = safe_division(1.0, 10**500, ignore_overflow=True)
 print(result)
 
 # ignoring divide by zero
-result = safe_division(1.0, 0, False, ignore_zero_division=True)
+result = safe_division(1.0, 0, ignore_zero_division=True)
 print(result)
 
 # invalid call using positional structure
@@ -136,7 +139,15 @@ print(result)
     - For example adding an optional parameter to our division which gives the number of digits for rounding (default $10$)
 
 ```{python}
-def safe_division(number, divisor,/, n_digits=10 *, ignore_overflow=False, ignore_zero_division=False):
+def safe_division(
+    number,
+    divisor,
+    /,
+    n_digits=10,
+    *,
+    ignore_overflow=False,
+    ignore_zero_division=False,
+):
     try:
         fraction = number / divisor
         return round(fraction, n_digits)
@@ -150,6 +161,7 @@ def safe_division(number, divisor,/, n_digits=10 *, ignore_overflow=False, ignor
             return float("inf")
         else:
             False
+
 
 result = safe_division(22, 7)
 print(result)
