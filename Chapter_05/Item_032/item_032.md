@@ -89,11 +89,13 @@ if not result:
 ``` python
 # Second approach - Raising an exception for the caller to handle
 
-def careful_divide(x, y):
+
+def careful_divide(a, b):
     try:
         return a / b
     except ZeroDivisionError:
         raise ValueError("invalid inputs")
+
 
 x, y = 0, 5
 try:
@@ -104,24 +106,7 @@ else:
     print(f"Result is {result:.1f}")
 ```
 
-    NameError: name 'a' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[4], line 11
-          9 x, y = 0, 5
-         10 try:
-    ---> 11     result = careful_divide(x, y)
-         12 except ValueError:
-         13     print("Invalid Inputs")
-
-    Cell In[4], line 5, in careful_divide(x, y)
-          3 def careful_divide(x, y):
-          4     try:
-    ----> 5         return a / b
-          6     except ZeroDivisionError:
-          7         raise ValueError("invalid inputs")
-
-    NameError: name 'a' is not defined
+    Result is 0.0
 
 - Using exceptions also helps with type checking
 - We can write more specific return signatures if we don’t also have
@@ -132,6 +117,7 @@ else:
 
 ``` python
 # Complete example using exceptions and type signatures
+
 
 def careful_divide(a: float, b: float) -> float:
     """
@@ -154,6 +140,11 @@ def careful_divide(a: float, b: float) -> float:
     ValueError
         Raised if `a` cannot be divided by `b`
     """
+    try:
+        return a / b
+    except ZeroDivisionError:
+        raise ValueError("Invalid inputs")
+
 
 try:
     result = careful_divide(1, 0)
@@ -163,15 +154,7 @@ else:
     print(f"Result is {result:.1f}")
 ```
 
-    TypeError: unsupported format string passed to NoneType.__format__
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    Cell In[5], line 30
-         28     print("Invalid inputs")
-         29 else:
-    ---> 30     print(f"Result is {result:.1f}")
-
-    TypeError: unsupported format string passed to NoneType.__format__
+    Invalid inputs
 
 ## Things to Remember
 

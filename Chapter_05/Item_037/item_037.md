@@ -84,7 +84,9 @@ print(result)
     positional arguments into the `args` tuple
 
 ``` python
-def safe_division(number, divisor, *, ignore_overflow=False, ignore_zero_division=False):
+def safe_division(
+    number, divisor, *, ignore_overflow=False, ignore_zero_division=False
+):
     try:
         return number / divisor
     except OverflowError:
@@ -98,12 +100,13 @@ def safe_division(number, divisor, *, ignore_overflow=False, ignore_zero_divisio
         else:
             False
 
+
 # ignoring overflow
 result = safe_division(1.0, 10**500, ignore_overflow=True)
 print(result)
 
 # ignoring divide by zero
-result = safe_division(1.0, 0, False, ignore_zero_division=True)
+result = safe_division(1.0, 0, ignore_zero_division=True)
 print(result)
 
 # invalid call using positional structure
@@ -112,18 +115,18 @@ print(result)
 ```
 
     0
+    inf
 
-    TypeError: safe_division() takes 2 positional arguments but 3 positional arguments (and 1 keyword-only argument) were given
+    TypeError: safe_division() takes 2 positional arguments but 4 were given
     ---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
-    Cell In[3], line 20
-         17 print(result)
-         19 # ignoring divide by zero
-    ---> 20 result = safe_division(1.0, 0, False, ignore_zero_division=True)
-         21 print(result)
-         23 # invalid call using positional structure
+    Cell In[3], line 27
+         24 print(result)
+         26 # invalid call using positional structure
+    ---> 27 result = safe_division(1.0, 10**500, True, False)
+         28 print(result)
 
-    TypeError: safe_division() takes 2 positional arguments but 3 positional arguments (and 1 keyword-only argument) were given
+    TypeError: safe_division() takes 2 positional arguments but 4 were given
 
 - What if we wanted to define arguments that can only be passed by
   position?
@@ -185,7 +188,15 @@ print(result)
     the number of digits for rounding (default $10$)
 
 ``` python
-def safe_division(number, divisor,/, n_digits=10 *, ignore_overflow=False, ignore_zero_division=False):
+def safe_division(
+    number,
+    divisor,
+    /,
+    n_digits=10,
+    *,
+    ignore_overflow=False,
+    ignore_zero_division=False,
+):
     try:
         fraction = number / divisor
         return round(fraction, n_digits)
@@ -200,6 +211,7 @@ def safe_division(number, divisor,/, n_digits=10 *, ignore_overflow=False, ignor
         else:
             False
 
+
 result = safe_division(22, 7)
 print(result)
 
@@ -210,11 +222,9 @@ result = safe_division(22, 7, n_digits=2)
 print(result)
 ```
 
-    SyntaxError: invalid syntax (2888756051.py, line 1)
-      Cell In[5], line 1
-        def safe_division(number, divisor,/, n_digits=10 *, ignore_overflow=False, ignore_zero_division=False):
-                                                          ^
-    SyntaxError: invalid syntax
+    3.1428571429
+    3.14286
+    3.14
 
 ## Things to Remember
 

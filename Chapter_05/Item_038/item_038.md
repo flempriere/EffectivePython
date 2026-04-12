@@ -132,7 +132,7 @@ print(fibonacci)
 help(fibonacci)
 ```
 
-    <function trace.<locals>.wrapper at 0x7f07509c8eb0>
+    <function trace.<locals>.wrapper at 0x7f4153022350>
     Help on function wrapper in module __main__:
 
     wrapper(*args, **kwargs)
@@ -175,7 +175,7 @@ def fibonacci(n):
 pickle.dumps(fibonacci)
 ```
 
-    PicklingError: Can't pickle local object <function trace.<locals>.wrapper at 0x7f074d77b690>
+    PicklingError: Can't pickle local object <function trace.<locals>.wrapper at 0x7f4152eff530>
     ---------------------------------------------------------------------------
     PicklingError                             Traceback (most recent call last)
     Cell In[4], line 32
@@ -183,7 +183,7 @@ pickle.dumps(fibonacci)
          30     return fibonacci(n - 2) + fibonacci(n - 1)
     ---> 32 pickle.dumps(fibonacci)
 
-    PicklingError: Can't pickle local object <function trace.<locals>.wrapper at 0x7f074d77b690>
+    PicklingError: Can't pickle local object <function trace.<locals>.wrapper at 0x7f4152eff530>
 
 - `functools` provides the `wraps` helper function
 - Acts as a decorator for writing decorators

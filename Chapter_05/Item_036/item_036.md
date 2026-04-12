@@ -26,8 +26,8 @@ sleep(0.1)
 log("Hello again")
 ```
 
-    2026-04-12 06:18:00.555119: Hi there
-    2026-04-12 06:18:00.555119: Hello again
+    2026-04-12 06:45:46.486758: Hi there
+    2026-04-12 06:45:46.486758: Hello again
 
 - Erroneously assumes that `datetime.now` is called whenever `log` is
   called with the default `when` value
@@ -67,8 +67,8 @@ sleep(0.1)
 log("Hello again")
 ```
 
-    2026-04-12 06:18:00.662955: Hi there
-    2026-04-12 06:18:00.763262: Hello again
+    2026-04-12 06:45:46.594875: Hi there
+    2026-04-12 06:45:46.695213: Hello again
 
 - Again, suppose we tried to write function that loads json data,
 
@@ -102,7 +102,8 @@ assert foo is bar
 ``` python
 import json
 
-def decode(data, default={}):
+
+def decode(data, default=None):
     """
     Load json data from a string
 
@@ -127,6 +128,7 @@ def decode(data, default={}):
             default = {}
         return default
 
+
 foo = decode("Bad data")
 foo["stuff"] = 5
 bar = decode("also bad")
@@ -137,18 +139,8 @@ print("Bar:", bar)
 assert foo is not bar
 ```
 
-    Foo: {'stuff': 5, 'meep': 1}
-    Bar: {'stuff': 5, 'meep': 1}
-
-    AssertionError:
-    ---------------------------------------------------------------------------
-    AssertionError                            Traceback (most recent call last)
-    Cell In[4], line 35
-         32 print("Foo:", foo)
-         33 print("Bar:", bar)
-    ---> 35 assert foo is not bar
-
-    AssertionError:
+    Foo: {'stuff': 5}
+    Bar: {'meep': 1}
 
 - We can extend this further via typing
 
@@ -181,8 +173,8 @@ sleep(0.1)
 log("Hello again")
 ```
 
-    2026-04-12 06:18:00.950028: Hi there
-    2026-04-12 06:18:01.050328: Hello again
+    2026-04-12 06:45:46.718356: Hi there
+    2026-04-12 06:45:46.818687: Hello again
 
 ## Things to Remember
 
