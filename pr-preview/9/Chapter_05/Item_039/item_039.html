@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -40,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-007a8609411f977ffbfe52380a417f90.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-24da7f4be05b02085a818207cdcb569d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -424,9 +459,246 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li>Many Python API’s accept simple functions as part of their interfaces</li>
+<li>Interfaces can be a friction point when their required convention doesn’t exactly match your function structure</li>
+<li>e.g.&nbsp;<code>reduce</code>
+<ul>
+<li>Contained in <code>functools</code></li>
+<li>Allows for calculating a value from an iterable</li>
+</ul></li>
+<li>For example, calculating the sum of logarithms of numbers</li>
+</ul>
+<div id="b31292e2" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log_sum(log_total, value):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    log_value <span class="op">=</span> math.log(value)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> log_total <span class="op">+</span> log_value</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> functools.<span class="bu">reduce</span>(log_sum, [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">40</span>], <span class="dv">0</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(math.exp(result))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>8000.0</code></pre>
+</div>
+</div>
+<ul>
+<li>However, sometimes the function we might want to pass to <code>reduce</code> may not match the signature as cleanly as <code>log_sum</code></li>
+<li>For example we might have the order of the next value and the running total switched e.g.&nbsp;<code>log_sum(value, log_total): ...</code></li>
+<li>Could define a lambda function to adapt the interface</li>
+</ul>
+<div id="f64dc6a1" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log_sum_alt(value, log_total):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    log_value <span class="op">=</span> math.log(value)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> log_total <span class="op">+</span> log_value</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> functools.<span class="bu">reduce</span>(<span class="kw">lambda</span> total, value: log_sum_alt(value, total), [<span class="dv">10</span> , <span class="dv">20</span>, <span class="dv">40</span>], <span class="dv">0</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(math.exp(result))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>8000.0</code></pre>
+</div>
+</div>
+<ul>
+<li>Lambda works fine for one-offs
+<ul>
+<li>If the call is repeated we might instead want to define a helper function</li>
+</ul></li>
+</ul>
+<div id="321eea21" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log_sum_alt(value, log_total):</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    log_value <span class="op">=</span> math.log(value)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> log_total <span class="op">+</span> log_value</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log_sum_for_reduce(total, value):</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> log_sum_alt(value, total)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(math.exp(functools.<span class="bu">reduce</span>(log_sum_for_reduce, [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">40</span>], <span class="dv">0</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>8000.0</code></pre>
+</div>
+</div>
+<ul>
+<li>Another situation is when the interface requires extra arguments
+<ul>
+<li>e.g.&nbsp;our <code>log_sum</code> might let you define the base of the logarithm</li>
+</ul></li>
+</ul>
+<div id="f017208c" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> logn_sum(base, logn_total, value):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    logn_sum <span class="op">=</span> math.log(value, base)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> logn_total <span class="op">+</span> logn_value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Now to pass to <code>reduce</code> need to somehow <em>predefine</em> the value of <code>base</code>
+<ul>
+<li>Called partial application in functional paradigms (or <em>currying</em>)</li>
+</ul></li>
+<li>We could do so using a <code>lambda</code> approach</li>
+</ul>
+<div id="b5765645" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> logn_sum(base, logn_total, value):</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    logn_total <span class="op">=</span> math.log(value, base)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> logn_total <span class="op">+</span> logn_value</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> functools.<span class="bu">reduce</span>(<span class="kw">lambda</span> total, value: logn_sum(<span class="dv">10</span>, total, value), [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">40</span>], <span class="dv">0</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(math.<span class="bu">pow</span>(<span class="dv">10</span>, result))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 8</span>
+<span class="ansi-green-fg">      5</span>     logn_total = math.log(value, base)
+<span class="ansi-green-fg">      6</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> logn_total + logn_value
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">8</span> result = <span class="ansi-yellow-bg">functools</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">reduce</span><span class="ansi-yellow-bg">(</span><span style="font-weight:bold;color:rgb(0,135,0)" class="ansi-yellow-bg">lambda</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">total</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">value</span><span class="ansi-yellow-bg">:</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">logn_sum</span><span class="ansi-yellow-bg">(</span><span class="ansi-green-fg ansi-yellow-bg">10</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">total</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">value</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">[</span><span class="ansi-green-fg ansi-yellow-bg">10</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-green-fg ansi-yellow-bg">20</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-green-fg ansi-yellow-bg">40</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-green-fg ansi-yellow-bg">0</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">      9</span> <span style="color:rgb(0,135,0)">print</span>(math.pow(<span class="ansi-green-fg">10</span>, result))
+
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 8</span>, in <span class="ansi-cyan-fg">&lt;lambda&gt;</span><span class="ansi-blue-fg">(total, value)</span>
+<span class="ansi-green-fg">      5</span>     logn_total = math.log(value, base)
+<span class="ansi-green-fg">      6</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> logn_total + logn_value
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">8</span> result = functools.reduce(<span style="font-weight:bold;color:rgb(0,135,0)">lambda</span> total, value: <span class="ansi-yellow-bg">logn_sum</span><span class="ansi-yellow-bg">(</span><span class="ansi-green-fg ansi-yellow-bg">10</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">total</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">value</span><span class="ansi-yellow-bg">)</span>, [<span class="ansi-green-fg">10</span>, <span class="ansi-green-fg">20</span>, <span class="ansi-green-fg">40</span>], <span class="ansi-green-fg">0</span>)
+<span class="ansi-green-fg">      9</span> <span style="color:rgb(0,135,0)">print</span>(math.pow(<span class="ansi-green-fg">10</span>, result))
+
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 6</span>, in <span class="ansi-cyan-fg">logn_sum</span><span class="ansi-blue-fg">(base, logn_total, value)</span>
+<span class="ansi-green-fg">      4</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">logn_sum</span>(base, logn_total, value):
+<span class="ansi-green-fg">      5</span>     logn_total = math.log(value, base)
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">6</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> logn_total + <span class="ansi-yellow-bg">logn_value</span>
+
+<span class="ansi-red-fg">NameError</span>: name 'logn_value' is not defined</pre>
+</div>
+</div>
+</div>
+<ul>
+<li><code>functools</code> provides the <code>partial</code> function
+<ul>
+<li>Makes performing partial application / currying easy to read</li>
+</ul></li>
+<li>Takes function to partially apply as first argument</li>
+<li>Followed by pinned positional arguments</li>
+</ul>
+<div id="141dbf77" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> logn_sum(base, logn_total, value):</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    logn_total <span class="op">=</span> math.log(value, base)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> logn_total <span class="op">+</span> logn_value</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> functools.<span class="bu">reduce</span>(functools.partial(logn_sum, <span class="dv">10</span>), [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">40</span>], <span class="dv">0</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(math.<span class="bu">pow</span>(<span class="dv">10</span>, result))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 8</span>
+<span class="ansi-green-fg">      5</span>     logn_total = math.log(value, base)
+<span class="ansi-green-fg">      6</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> logn_total + logn_value
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">8</span> result = <span class="ansi-yellow-bg">functools</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">reduce</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">functools</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">partial</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">logn_sum</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-green-fg ansi-yellow-bg">10</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">[</span><span class="ansi-green-fg ansi-yellow-bg">10</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-green-fg ansi-yellow-bg">20</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-green-fg ansi-yellow-bg">40</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-green-fg ansi-yellow-bg">0</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">      9</span> <span style="color:rgb(0,135,0)">print</span>(math.pow(<span class="ansi-green-fg">10</span>, result))
+
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 6</span>, in <span class="ansi-cyan-fg">logn_sum</span><span class="ansi-blue-fg">(base, logn_total, value)</span>
+<span class="ansi-green-fg">      4</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">logn_sum</span>(base, logn_total, value):
+<span class="ansi-green-fg">      5</span>     logn_total = math.log(value, base)
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">6</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> logn_total + <span class="ansi-yellow-bg">logn_value</span>
+
+<span class="ansi-red-fg">NameError</span>: name 'logn_value' is not defined</pre>
+</div>
+</div>
+</div>
+<ul>
+<li><code>partial</code> also lets you pin keyword arguments (See <a href="../../Chapter_05/Item_035/item_035.html">item 35</a> and <a href="../../Chapter_05/Item_037/item_037.html">item 37</a>)</li>
+</ul>
+<div id="36d6808d" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> logn_sum(logn_total, value, <span class="op">*</span>, base<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    logn_value <span class="op">=</span> math.log(value, base)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> logn_total <span class="op">+</span> logn_value</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>log_sum_e <span class="op">=</span> functools.partial(logn_sum, base<span class="op">=</span>math.e)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(log_sum_e(<span class="dv">3</span>, math.e<span class="op">**</span><span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>13.0</code></pre>
+</div>
+</div>
+<ul>
+<li>The equivalent <code>lambda</code> expression is complicated</li>
+</ul>
+<div id="977e74bb" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> logn_sum(logn_total, value, <span class="op">*</span>, base<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    logn_value <span class="op">=</span> math.log(value, base)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> logn_total <span class="op">+</span> logn_value</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>log_sum_e <span class="op">=</span> <span class="kw">lambda</span> <span class="op">*</span>a, base<span class="op">=</span>math.e, <span class="op">**</span>kw: logn_sum(<span class="op">*</span>a, base<span class="op">=</span>base, <span class="op">**</span>kw)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(log_sum_e(<span class="dv">3</span>, math.e<span class="op">**</span><span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>13.0</code></pre>
+</div>
+</div>
+<ul>
+<li><code>partial</code> lets you inspect which arguments have been supplied already</li>
+</ul>
+<div id="e90b9a57" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> logn_sum(logn_total, value, <span class="op">*</span>, base<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    logn_value <span class="op">=</span> math.log(value, base)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> logn_total <span class="op">+</span> logn_value</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>log_sum_e <span class="op">=</span> functools.partial(logn_sum, base<span class="op">=</span>math.e)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(log_sum_e.args, log_sum_e.keywords, log_sum_e.func)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>() {'base': 2.718281828459045} &lt;function logn_sum at 0x7f3364b25430&gt;</code></pre>
+</div>
+</div>
+<ul>
+<li>Prefer <code>partial</code> over <code>lambda</code>
+<ul>
+<li>More ergonomic interface</li>
+<li>Provides extra niceties</li>
+</ul></li>
+<li><code>partial</code> can’t be used to reorder parameters
+<ul>
+<li>Here we have to use a <code>lambda</code></li>
+</ul></li>
+<li>If we need more complicated function composition two techniques are
+<ul>
+<li>Using closures (See <a href="../../Chapter_05/Item_033/item_033.html">item 33</a>)</li>
+<li>Accepting functions as part of an interface</li>
+</ul></li>
+</ul>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li><code>lambda</code> expressions can succinctly adapt two functions interfaces for compatibility
+<ul>
+<li>Enable argument reordering</li>
+<li>Pinning parameter values</li>
+</ul></li>
+<li><code>functools.partial</code> is a generic tool for pinning positional and keyword arguments
+<ul>
+<li>Prefer over <code>lambda</code> for improved ergonomics</li>
+</ul></li>
+<li>Use <code>lambda</code> instead of <code>partial</code> for reordering arguments</li>
+</ul>
 
 
 </section>

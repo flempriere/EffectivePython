@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -40,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-007a8609411f977ffbfe52380a417f90.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-24da7f4be05b02085a818207cdcb569d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -424,9 +459,132 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li>Accepting a variable number of position arguments can make a function call cleaner
+<ul>
+<li>Sometimes called <em>varargs</em> or <em>star args</em></li>
+<li>By convention they are denoted <code>*args</code> in the function signature</li>
+</ul></li>
+<li>For example a logging function might have the signature</li>
+</ul>
+<div id="2f9bc6e9" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log(message, values):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> values:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(message)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        values_str <span class="op">=</span> <span class="st">", "</span>.join(<span class="bu">str</span>(x) <span class="cf">for</span> x <span class="kw">in</span>  values)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>message<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>values_str<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>log(<span class="st">"My numbers are"</span>, [<span class="dv">1</span>, <span class="dv">2</span>])</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>log(<span class="st">"Hi there"</span>, [])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>My numbers are: 1, 2
+Hi there</code></pre>
+</div>
+</div>
+<ul>
+<li>Since the variable number of values are passed as a list we have to provide an empty list if no values are passed
+<ul>
+<li>Not the cleanest signature</li>
+</ul></li>
+<li>Instead write using variable positional arguments</li>
+</ul>
+<div id="e2df2b1b" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log(message, <span class="op">*</span>values):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> values:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(message)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        values_str <span class="op">=</span> <span class="st">", "</span>.join(<span class="bu">str</span>(x) <span class="cf">for</span> x <span class="kw">in</span> values)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>message<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>values_str<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>log(<span class="st">"My numbers are"</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>log(<span class="st">"Hi there!"</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Using unpacking of a list</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>favourites <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">33</span>, <span class="dv">99</span>]</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>log(<span class="st">"Favourite colours"</span>, <span class="op">*</span>favourites)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>My numbers are: 1, 2
+Hi there!
+Favourite colours: 7, 33, 99</code></pre>
+</div>
+</div>
+<ul>
+<li>The variadic arguments are packed into a list referenced by <code>values</code></li>
+<li>If we already have a list that we want to <em>unpack</em> into the call to <code>log</code> we use the unpack operator <code>*</code></li>
+<li>There are problems with passing a variable number of arguments
+<ul>
+<li>Optional arguments are always packaged into a tuple before being passed</li>
+<li>Using <code>*</code> to unpack a generator results in it being unpacked until exhausted
+<ul>
+<li>This may consume too much memory and crash</li>
+</ul></li>
+</ul></li>
+</ul>
+<div id="0b6d15dd" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_generator():</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> i</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_func(<span class="op">*</span>args):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(args)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> my_generator()</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>my_func(<span class="op">*</span>it)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)</code></pre>
+</div>
+</div>
+<ul>
+<li>Thus should limit using <code>*args</code> type functions to cases where the number of values in <code>args</code> will be small</li>
+<li>Good example is a function signature that accepts many literals or variable names
+<ul>
+<li>Makes the call more readable and ergonomic</li>
+</ul></li>
+<li>Second issue
+<ul>
+<li>Can’t add new positional arguments without breaking the signature</li>
+<li>All new positional arguments must <em>preceed</em> the variable arguments
+<ul>
+<li>Means that every call relying on the old structure will implicitly break</li>
+</ul></li>
+<li>e.g.&nbsp;If we updated our <code>log</code> function</li>
+</ul></li>
+</ul>
+<div id="b6e738b7" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log_seq(sequence, message, <span class="op">*</span>values):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> values:</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>sequence<span class="sc">}</span><span class="ss"> - </span><span class="sc">{</span>message<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        values_str <span class="op">=</span> <span class="st">", "</span>.join(<span class="bu">str</span>(x) <span class="cf">for</span> x <span class="kw">in</span> values)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>sequence<span class="sc">}</span><span class="ss"> - </span><span class="sc">{</span>message<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>values_str<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>log_seq(<span class="dv">1</span>, <span class="st">"Favourites"</span>, <span class="dv">7</span>, <span class="dv">33</span>) <span class="co"># new call, works fine</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>log_seq(<span class="dv">1</span>, <span class="st">"Hi there"</span>) <span class="co"># new call with only message</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>log_seq(<span class="st">"Favourite numbers"</span>, <span class="dv">7</span>, <span class="dv">33</span>) <span class="co"># old usage breaks</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1 - Favourites: 7, 33
+1 - Hi there
+Favourite numbers - 7: 33</code></pre>
+</div>
+</div>
+<ul>
+<li>Above the old call results in the message being passed as the sequence value, and the variadic list leaking into the message parameter</li>
+<li>To avoid this use <em>keyword-only arguments</em> to extend functions that accept a variable number of positional arguments</li>
+<li>Also consider type annotations for an additional layer of defence</li>
+</ul>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li>Functions can accept a variable number of positional arguments via the <code>*args</code> parameter</li>
+<li>Items from a sequence can be unpacked into a function call using the <code>*</code> operator</li>
+<li>Using the <code>*</code> operator converts generators to tuples
+<ul>
+<li>This may cause out of memory errors</li>
+</ul></li>
+<li>Adding new positional arguments to <code>*args</code> functions can introduce bugs due to old calls relying on incorrectly aligned arguments</li>
+</ul>
 
 
 </section>
