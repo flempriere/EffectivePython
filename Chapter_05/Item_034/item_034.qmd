@@ -4,4 +4,94 @@ title: "Item 34: Reduce Visual Noise with Variable Positional Arguments"
 
 ## Notes
 
+- Accepting a variable number of position arguments can make a function call cleaner
+    - Sometimes called *varargs* or *star args*
+    - By convention they are denoted `*args` in the function signature
+- For example a logging function might have the signature
+
+```{python}
+def log(message, values):
+    if not values:
+        print(message)
+    else:
+        values_str = ", ".join(str(x) for x in  values)
+        print(f"{message}: {values_str}")
+
+log("My numbers are", [1, 2])
+log("Hi there", [])
+```
+
+- Since the variable number of values are passed as a list we have to provide an empty list if no values are passed
+    - Not the cleanest signature
+- Instead write using variable positional arguments
+
+```{python}
+def log(message, *values):
+    if not values:
+        print(message)
+    else:
+        values_str = ", ".join(str(x) for x in values)
+        print(f"{message}: {values_str}")
+
+log("My numbers are", 1, 2)
+log("Hi there!")
+
+# Using unpacking of a list
+favourites = [7, 33, 99]
+log("Favourite colours", *favourites)
+```
+
+- The variadic arguments are packed into a list referenced by `values`
+- If we already have a list that we want to *unpack* into the call to `log` we use the unpack operator `*`
+- There are problems with passing a variable number of arguments
+    - Optional arguments are always packaged into a tuple before being passed
+    - Using `*` to unpack a generator results in it being unpacked until exhausted
+        - This may consume too much memory and crash
+
+```{python}
+def my_generator():
+    for i in range(10):
+        yield i
+
+def my_func(*args):
+    print(args)
+
+it = my_generator()
+my_func(*it)
+```
+
+
+- Thus should limit using `*args` type functions to cases where the number of values in `args` will be small
+- Good example is a function signature that accepts many literals or variable names
+    - Makes the call more readable and ergonomic
+
+- Second issue
+    - Can't add new positional arguments without breaking the signature
+    - All new positional arguments must *preceed* the variable arguments
+        - Means that every call relying on the old structure will implicitly break
+    - e.g. If we updated our `log` function
+
+```{python}
+def log_seq(sequence, message, *values):
+    if not values:
+        print(f"{sequence} - {message}")
+    else:
+        values_str = ", ".join(str(x) for x in values)
+        print(f"{sequence} - {message}: {values_str}")
+
+log_seq(1, "Favourites", 7, 33) # new call, works fine
+log_seq(1, "Hi there") # new call with only message
+log_seq("Favourite numbers", 7, 33) # old usage breaks
+```
+
+- Above the old call results in the message being passed as the sequence value, and the variadic list leaking into the message parameter
+- To avoid this use *keyword-only arguments* to extend functions that accept a variable number of positional arguments
+- Also consider type annotations for an additional layer of defence
+
 ## Things to Remember
+
+- Functions can accept a variable number of positional arguments via the `*args` parameter
+- Items from a  sequence can be unpacked into a function call using the `*` operator
+- Using the `*` operator converts generators to tuples
+    - This may cause out of memory errors
+- Adding new positional arguments to `*args` functions can introduce bugs due to old calls relying on incorrectly aligned arguments
