@@ -1,6 +1,5 @@
 # Item 30: Know that Function Arguments can be Mutated
 
-
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
 
@@ -115,10 +114,10 @@ print(x.value)
 - When implementing a function to be used by others,
   - don’t modify mutable values except where documented explicitly in
     the function interface (in order of priority):
-    1.  The function name (make clear what’s being modified)
-    2.  Function argument names (make clear which argument is being
+    1. The function name (make clear what’s being modified)
+    2. Function argument names (make clear which argument is being
         modified)
-    3.  Documentation (Provide detailed explanation)
+    3. Documentation (Provide detailed explanation)
 - You should also consider creating a defensive copy of received
   arguments to prevent confusion
   - Especially when iteration is involved (see [Item

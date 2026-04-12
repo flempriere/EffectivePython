@@ -1,6 +1,6 @@
 # Item 39: Prefer `functools.partial` over `lambda` Expressions for Glue
-Functions
 
+Functions
 
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)

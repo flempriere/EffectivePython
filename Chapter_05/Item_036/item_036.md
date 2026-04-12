@@ -1,6 +1,6 @@
 # Item 36: Use `None` and Docstrings to Specify Dynamic Default
-Arguments
 
+Arguments
 
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)

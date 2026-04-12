@@ -1,6 +1,6 @@
 # Item 37: Enforce Clarify with Keyword-Ony and Positional-Only
-Arguments
 
+Arguments
 
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
