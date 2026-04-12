@@ -89,35 +89,19 @@ def logn_sum(base, logn_total, value):
 import functools
 import math
 
-def logn_sum(base, logn_total, value):
-    logn_total = math.log(value, base)
+def logn_sum(base, logn_total, value):s
+    logn_value = math.log(value, base)
     return logn_total + logn_value
 
 result = functools.reduce(lambda total, value: logn_sum(10, total, value), [10, 20, 40], 0)
 print(math.pow(10, result))
 ```
 
-    NameError: name 'logn_value' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[5], line 8
-          5     logn_total = math.log(value, base)
-          6     return logn_total + logn_value
-    ----> 8 result = functools.reduce(lambda total, value: logn_sum(10, total, value), [10, 20, 40], 0)
-          9 print(math.pow(10, result))
-
-    Cell In[5], line 8, in <lambda>(total, value)
-          5     logn_total = math.log(value, base)
-          6     return logn_total + logn_value
-    ----> 8 result = functools.reduce(lambda total, value: logn_sum(10, total, value), [10, 20, 40], 0)
-          9 print(math.pow(10, result))
-
-    Cell In[5], line 6, in logn_sum(base, logn_total, value)
-          4 def logn_sum(base, logn_total, value):
-          5     logn_total = math.log(value, base)
-    ----> 6     return logn_total + logn_value
-
-    NameError: name 'logn_value' is not defined
+    IndentationError: unexpected indent (2689181780.py, line 5)
+      Cell In[5], line 5
+        logn_value = math.log(value, base)
+        ^
+    IndentationError: unexpected indent
 
 - `functools` provides the `partial` function
   - Makes performing partial application / currying easy to read
@@ -128,29 +112,17 @@ print(math.pow(10, result))
 import functools
 import math
 
+
 def logn_sum(base, logn_total, value):
-    logn_total = math.log(value, base)
+    logn_value = math.log(value, base)
     return logn_total + logn_value
+
 
 result = functools.reduce(functools.partial(logn_sum, 10), [10, 20, 40], 0)
 print(math.pow(10, result))
 ```
 
-    NameError: name 'logn_value' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[6], line 8
-          5     logn_total = math.log(value, base)
-          6     return logn_total + logn_value
-    ----> 8 result = functools.reduce(functools.partial(logn_sum, 10), [10, 20, 40], 0)
-          9 print(math.pow(10, result))
-
-    Cell In[6], line 6, in logn_sum(base, logn_total, value)
-          4 def logn_sum(base, logn_total, value):
-          5     logn_total = math.log(value, base)
-    ----> 6     return logn_total + logn_value
-
-    NameError: name 'logn_value' is not defined
+    8000.000000000004
 
 - `partial` also lets you pin keyword arguments (See [item
   35](../Item_035/item_035.qmd) and [item 37](../Item_037/item_037.qmd))
@@ -200,7 +172,7 @@ log_sum_e = functools.partial(logn_sum, base=math.e)
 print(log_sum_e.args, log_sum_e.keywords, log_sum_e.func)
 ```
 
-    () {'base': 2.718281828459045} <function logn_sum at 0x7ff020e21640>
+    () {'base': 2.718281828459045} <function logn_sum at 0x7efd84e5e350>
 
 - Prefer `partial` over `lambda`
   - More ergonomic interface

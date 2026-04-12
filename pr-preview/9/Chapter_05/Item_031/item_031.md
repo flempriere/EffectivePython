@@ -37,19 +37,15 @@ first, second = 1, 2
 assert first == 1
 assert second == 2
 
+
 def my_function():
     return 1, 2
 
-first, second = my_function():
+
+first, second = my_function()
 assert first == 1
 assert second == 2
 ```
-
-    SyntaxError: invalid syntax (2377384983.py, line 9)
-      Cell In[2], line 9
-        first, second = my_function():
-                                     ^
-    SyntaxError: invalid syntax
 
 - We can use catch-all unpacking even with function returns (See [Item
   16](../../Chapter_02/Item_016/item_016.qmd))

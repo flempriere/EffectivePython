@@ -498,7 +498,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Here just the minimum and maximum values encountered</li>
 </ul></li>
 </ul>
-<div id="dbff0ba4" class="cell" data-execution_count="1">
+<div id="c00417a7" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_stats(numbers):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    minimum <span class="op">=</span> <span class="bu">min</span>(numbers)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    maximum <span class="op">=</span> <span class="bu">max</span>(numbers)</span>
@@ -520,27 +520,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The tuple is then unpacked into the separate variable names</li>
 </ul></li>
 </ul>
-<div id="acbe7cce" class="cell" data-execution_count="2">
+<div id="2452731a" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>first, second <span class="op">=</span> <span class="dv">1</span>, <span class="dv">2</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> first <span class="op">==</span> <span class="dv">1</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> second <span class="op">==</span> <span class="dv">2</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function():</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span>, <span class="dv">2</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>first, second <span class="op">=</span> my_function():</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> first <span class="op">==</span> <span class="dv">1</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> second <span class="op">==</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 9</span>
-<span class="ansi-red-fg">    </span><span class="ansi-red-fg">first, second = my_function():</span>
-                                 ^
-<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid syntax
-</pre>
-</div>
-</div>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function():</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span>, <span class="dv">2</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>first, second <span class="op">=</span> my_function()</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> first <span class="op">==</span> <span class="dv">1</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> second <span class="op">==</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>We can use catch-all unpacking even with function returns (See <a href="../../Chapter_02/Item_016/item_016.html">Item 16</a>)
@@ -548,7 +541,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>E.g. Say we have a function that computes the ordered ratio of the size of values in a list to the average of that list</li>
 </ul></li>
 </ul>
-<div id="e6935f85" class="cell" data-execution_count="3">
+<div id="bb95c3d8" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_avg_ratio(numbers):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    average <span class="op">=</span> <span class="bu">sum</span>(numbers) <span class="op">/</span> <span class="bu">len</span>(numbers)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    scaled <span class="op">=</span> [x <span class="op">/</span> average <span class="cf">for</span> x <span class="kw">in</span> numbers]</span>
@@ -574,7 +567,7 @@ Shortest:  89%</code></pre>
 </ul></li>
 <li>We could stick with the unpacking approach,</li>
 </ul>
-<div id="0914faf8" class="cell" data-execution_count="4">
+<div id="b1d24015" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_median(numbers):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="bu">len</span>(numbers)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    sorted_numbers <span class="op">=</span> <span class="bu">sorted</span>(numbers)</span>
@@ -630,7 +623,7 @@ Average: 67.5, Median: 68.5, Count: 10</code></pre>
 <li>Return an instance of that class</li>
 </ul></li>
 </ul>
-<div id="588c8457" class="cell" data-execution_count="5">
+<div id="f0dd77c3" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>

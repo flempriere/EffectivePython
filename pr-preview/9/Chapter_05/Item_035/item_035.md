@@ -35,57 +35,41 @@ remainder(number=20, 7)
   `**` operator
 
 ``` python
+def remainder(number, divisor):
+    return number % divisor
+
+
 kwargs = {"number": 20, "divisor": 7}
 
-assert(remainder(**kwargs) == 6)
+assert remainder(**kwargs) == 6
 ```
-
-    NameError: name 'remainder' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[2], line 3
-          1 kwargs = {"number": 20, "divisor": 7}
-    ----> 3 assert(remainder(**kwargs) == 6)
-
-    NameError: name 'remainder' is not defined
 
 - You can mix the unpacking operator with standard keyword definitions
   (so long as no key is included more than once)
 
 ``` python
+def remainder(number, divisor):
+    return number % divisor
+
+
 kwargs = {"divisor": 7}
 
-assert(remainder(number=20, **kwargs) == 6)
+assert remainder(number=20, **kwargs) == 6
 ```
-
-    NameError: name 'remainder' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[3], line 3
-          1 kwargs = {"divisor": 7}
-    ----> 3 assert(remainder(number=20, **kwargs) == 6)
-
-    NameError: name 'remainder' is not defined
 
 - You can also unpack multiple dictionaries using `**`
   - Dictionaries must have mutually exclusive keys
 
 ``` python
+def remainder(number, divisor):
+    return number % divisor
+
+
 kwargs_1 = {"divisor": 7}
 kwargs_2 = {"number": 20}
 
-assert(remainder(**kwargs_1, **kwargs_2))
+assert remainder(**kwargs_1, **kwargs_2)
 ```
-
-    NameError: name 'remainder' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[4], line 4
-          1 kwargs_1 = {"divisor": 7}
-          2 kwargs_2 = {"number": 20}
-    ----> 4 assert(remainder(**kwargs_1, **kwargs_2))
-
-    NameError: name 'remainder' is not defined
 
 - Similarly to how `*args` lets a function accept a variable number of
   positional arguments, `**kwargs` lets you accept a variable number of
