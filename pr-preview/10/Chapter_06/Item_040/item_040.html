@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -515,9 +550,150 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li><em>Comprehensions</em> are a compact syntax for deriving a new sequence from another
+<ul>
+<li>When the resulting object is a list we call it a <em>list comprehension</em></li>
+</ul></li>
+<li>For example, if we want to create a list containing the squares of the numbers in another list
+<ul>
+<li>Our first approach might be to use a standard iterative loop approach</li>
+</ul></li>
+</ul>
+<div id="badd8c09" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> , <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>squares <span class="op">=</span> []</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> a:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    squares.append(x<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(squares)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]</code></pre>
+</div>
+</div>
+<ul>
+<li>The equivalent list comprehension is a simple one-liner</li>
+</ul>
+<div id="9acab7ca" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>squares <span class="op">=</span> [x<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> a]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(squares)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]</code></pre>
+</div>
+</div>
+<ul>
+<li>An alternative would be to use the python in-built <code>map</code>
+<ul>
+<li><code>map</code> applies a single argument function to each element of a list to generate a new list</li>
+</ul></li>
+</ul>
+<div id="a9506de7" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>squares <span class="op">=</span> <span class="bu">map</span>(<span class="kw">lambda</span> x : x<span class="op">**</span><span class="dv">2</span>, a)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(squares)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;map object at 0x7f6d28a71240&gt;</code></pre>
+</div>
+</div>
+<ul>
+<li>Since <code>map</code> only accepts a single argument function, using it in more complicated scenarios can get hard to read
+<ul>
+<li>Requires complex <code>lambda</code> expressions or <code>functools.partial</code> usage to massage the interface (See <a href="../../Chapter_05/Item_039/item_039.html">Item 39</a>)</li>
+</ul></li>
+<li>List comprehensions can also easily combine the conversion of list elements into new values, with filters to only include a certain subset
+<ul>
+<li>For example if we wanted to only consider the even squares</li>
+</ul></li>
+</ul>
+<div id="3e2c08d0" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>even_squares <span class="op">=</span> [x<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> a <span class="cf">if</span> x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(even_squares)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[4, 16, 36, 64, 100]</code></pre>
+</div>
+</div>
+<ul>
+<li>The equivalent <code>map</code> expression requires us to use nested calls to <code>filter</code>
+<ul>
+<li>More verbose and the logic is less clear</li>
+<li>Also makes the computation multi-step</li>
+</ul></li>
+</ul>
+<div id="579d2cc7" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>even_squares <span class="op">=</span> <span class="bu">map</span>(<span class="kw">lambda</span> x : x<span class="op">**</span><span class="dv">2</span>, <span class="bu">filter</span>(<span class="kw">lambda</span> x : x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>, a))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(even_squares)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;map object at 0x7f6d28a72d00&gt;</code></pre>
+</div>
+</div>
+<ul>
+<li>Dictionaries and sets also support a comprehension syntax
+<ul>
+<li>Observe both use <code>{}</code> as with their standard initialisation syntax</li>
+<li>Dictionary uses the <code>key: value</code> syntax vs `just providing a list of values as for a set</li>
+</ul></li>
+</ul>
+<div id="3c6ce1c1" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>even_squares_dictionary <span class="op">=</span> {x: x<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> a <span class="cf">if</span> x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>}</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>threes_cubed_set <span class="op">=</span> {x<span class="op">**</span><span class="dv">3</span> <span class="cf">for</span> x <span class="kw">in</span>  a <span class="cf">if</span> x <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span>}</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(even_squares_dictionary)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(threes_cubed_set)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{2: 4, 4: 16, 6: 36, 8: 64, 10: 100}
+{216, 729, 27}</code></pre>
+</div>
+</div>
+<ul>
+<li>We could again recreate above using <code>map</code> and <code>filter</code> combined with explicit calls to the <code>dict</code> and <code>set</code> constructors
+<ul>
+<li>This is clearly noisier</li>
+</ul></li>
+</ul>
+<div id="5f099454" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>even_squares_dictionary <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x : (x, x<span class="op">**</span><span class="dv">2</span>), <span class="bu">filter</span>(<span class="kw">lambda</span> x: x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>, a)))</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>threes_cubed_set <span class="op">=</span> <span class="bu">set</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x : x<span class="op">**</span><span class="dv">3</span>, <span class="bu">filter</span>(<span class="kw">lambda</span> x : x <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span>, a)))</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(even_squares_dictionary)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(threes_cubed_set)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{2: 4, 4: 16, 6: 36, 8: 64, 10: 100}
+{216, 729, 27}</code></pre>
+</div>
+</div>
+<ul>
+<li>When should we then use <code>map</code> and <code>filter</code>?
+<ul>
+<li>They have the advantage that they return iterators rather than collections</li>
+<li>Means they produce their output one at a time</li>
+<li>This saves memory (See <a href="../../Chapter_03/Item_024/item_024.html">Item 24</a>)</li>
+</ul></li>
+<li>Comprehensions create and assign the full collection at declaration
+<ul>
+<li>This can consume a lot of memory for large lists</li>
+</ul></li>
+<li>An alternative approach that keeps the syntactical simplicity of list comprehensions with the memory footprint of <code>map</code> and <code>filter</code> is to use <em>generator expressions</em> (See <a href="../../Chapter_06/Item_044/item_044.html">Item 44</a>)</li>
+</ul>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li>List comprehensions are cleaner than <code>map</code> and <code>filter</code> since they require less nesting and <code>lambda</code> or <code>functools.partial</code> boilerplate</li>
+<li>List comprehensions can easily filter elements out from the input list using <code>if</code> clauses
+<ul>
+<li>This behaviour can be emulated through a combination of <code>map</code> and <code>filter</code></li>
+</ul></li>
+<li>Dictionaries and sets also support a comprehension syntax</li>
+<li>List comprehensions create the complete object in memory when defined / evaluated, this can use a significant amount of memory compared to an iterator or generator that returns each value incrementally</li>
+</ul>
 
 
 </section>
