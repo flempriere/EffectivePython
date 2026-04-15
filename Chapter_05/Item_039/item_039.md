@@ -89,19 +89,19 @@ def logn_sum(base, logn_total, value):
 import functools
 import math
 
-def logn_sum(base, logn_total, value):s
+
+def logn_sum(base, logn_total, value):
     logn_value = math.log(value, base)
     return logn_total + logn_value
 
-result = functools.reduce(lambda total, value: logn_sum(10, total, value), [10, 20, 40], 0)
+
+result = functools.reduce(
+    lambda total, value: logn_sum(10, total, value), [10, 20, 40], 0
+)
 print(math.pow(10, result))
 ```
 
-    IndentationError: unexpected indent (2689181780.py, line 5)
-      Cell In[5], line 5
-        logn_value = math.log(value, base)
-        ^
-    IndentationError: unexpected indent
+    8000.000000000004
 
 - `functools` provides the `partial` function
   - Makes performing partial application / currying easy to read
@@ -172,7 +172,7 @@ log_sum_e = functools.partial(logn_sum, base=math.e)
 print(log_sum_e.args, log_sum_e.keywords, log_sum_e.func)
 ```
 
-    () {'base': 2.718281828459045} <function logn_sum at 0x7f4dd44d64b0>
+    () {'base': 2.718281828459045} <function logn_sum at 0x7fa654033530>
 
 - Prefer `partial` over `lambda`
   - More ergonomic interface
