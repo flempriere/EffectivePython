@@ -48,7 +48,7 @@ squares = map(lambda x : x**2, a)
 print(squares)
 ```
 
-    <map object at 0x7fca64184c00>
+    <map object at 0x7f39381cd000>
 
 - Since `map` only accepts a single argument function, using it in more
   complicated scenarios can get hard to read
@@ -79,7 +79,7 @@ even_squares = map(lambda x : x**2, filter(lambda x : x % 2 == 0, a))
 print(even_squares)
 ```
 
-    <map object at 0x7fca64184840>
+    <map object at 0x7f39381cc940>
 
 - Dictionaries and sets also support a comprehension syntax
   - Observe both use `{}` as with their standard initialisation syntax
