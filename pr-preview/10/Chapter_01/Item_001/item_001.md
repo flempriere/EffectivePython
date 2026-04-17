@@ -68,8 +68,8 @@ print(sys.version)
 
     linux
     cpython
-    sys.version_info(major=3, minor=14, micro=3, releaselevel='final', serial=0)
-    3.14.3 (main, Feb  4 2026, 13:50:59) [GCC 13.3.0]
+    sys.version_info(major=3, minor=14, micro=4, releaselevel='final', serial=0)
+    3.14.4 (main, Apr  8 2026, 02:27:22) [GCC 13.3.0]
 
 - Python 3’s minor versions update relatively often
   - These add new features, deprecate or remove old ones

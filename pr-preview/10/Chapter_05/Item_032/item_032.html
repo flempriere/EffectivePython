@@ -586,7 +586,7 @@ window.Quarto = {
 <li>e.g.&nbsp;when attempting to divide by zero</li>
 </ul></li>
 </ul>
-<div id="ef673d27" class="cell" data-execution_count="1">
+<div id="0c2ec5bb" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> careful_divide(a, b):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> a <span class="op">/</span> b</span>
@@ -605,7 +605,7 @@ window.Quarto = {
 <li>Above has the issue that if the numerator is zero, but the denominator is not then it returns zero</li>
 <li>This means that if someone tries to check for <code>None</code> by using a falsely comparison then valid results which return <span class="math inline">\(0\)</span> are erroneously flagged as errors</li>
 </ul>
-<div id="5bd7de9e" class="cell" data-execution_count="2">
+<div id="8fb1bf19" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> careful_divide(a, b):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> a <span class="op">/</span> b</span>
@@ -640,7 +640,7 @@ window.Quarto = {
 </ul></li>
 </ol></li>
 </ul>
-<div id="d5800329" class="cell" data-execution_count="3">
+<div id="bd055199" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First approach - error tuple</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> careful_divide(a, b):</span>
@@ -666,7 +666,7 @@ window.Quarto = {
 <pre><code>Invalid inputs</code></pre>
 </div>
 </div>
-<div id="68000149" class="cell" data-execution_count="4">
+<div id="2326badd" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Second approach - Raising an exception for the caller to handle</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -696,7 +696,7 @@ window.Quarto = {
 <li>So we have to document them</li>
 </ul></li>
 </ul>
-<div id="f17b1df2" class="cell" data-execution_count="5">
+<div id="b6f58776" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Complete example using exceptions and type signatures</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
