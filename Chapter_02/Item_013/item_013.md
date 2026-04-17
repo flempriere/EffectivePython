@@ -163,9 +163,9 @@ print(value)
 ```
 
     With implicit concatenation
-    MyData((123, 'foo', 'my_format_string 1another value 2', 'and here is more text', 'bar'), {'stream': <ipykernel.iostream.OutStream object at 0x7f09687bd990>})
+    MyData((123, 'foo', 'my_format_string 1another value 2', 'and here is more text', 'bar'), {'stream': <ipykernel.iostream.OutStream object at 0x7f148e2fdcc0>})
     With explicit concatenation
-    MyData((123, 'foo', 'my_format string 1another value 2', 'and here is more text', 'bar'), {'stream': <ipykernel.iostream.OutStream object at 0x7f09687bd990>})
+    MyData((123, 'foo', 'my_format string 1another value 2', 'and here is more text', 'bar'), {'stream': <ipykernel.iostream.OutStream object at 0x7f148e2fdcc0>})
 
 - Always prefer explicit concatenation when a function has multiple
   positional arguments
