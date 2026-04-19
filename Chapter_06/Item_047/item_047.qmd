@@ -4,4 +4,194 @@ title: "Item 47: Manage Iterative State Transitions with a Class Instead of the 
 
 ## Notes
 
+- Generators can use the `throw` method to re-raise `Exception` instances in generator functions
+- When the method is called the next `yield` re-raises the provided `Exception`
+    - The raise occurs after the output is received
+
+```{python}
+class MyError(Exception):
+    pass
+
+
+def my_generator():
+    yield 1
+    yield 2
+    yield 3
+
+
+it = my_generator()
+print(next(it))  # yields 1
+print(next(it))  # yields 2
+print(it.throw(MyError("test error")))  # yield 3
+```
+
+- The generator may catch the injected exception via `try/except` statements
+    - Need to surround the last executed `yield`
+
+```{python}
+class MyError(Exception):
+    pass
+
+
+def my_generator():
+    yield 1
+
+    try:
+        yield 2
+    except MyError:
+        print("Got MyError!")
+    else:
+        yield 3
+    yield 4
+
+
+it = my_generator()
+print(next(it))  # yield 1
+print(next(it))  # yield 2
+print(it.throw(MyError("test error")))  # yield 4
+```
+
+- This is another mechanism for two-way communication with a generator (See [item 46](../Item_046/item_046.qmd))
+- For example, we might have a timer program that occasionally needs to be interrupted and reset
+
+```{python}
+class Reset(Exception):
+    pass
+
+
+def timer(period):
+    current = period
+    while current:
+        try:
+            yield current
+        except Reset:
+            print("Resetting")
+            current = period
+        else:
+            current -= 1
+
+
+RESETS = [
+    False,
+    False,
+    False,
+    True,
+    False,
+    True,
+    False,
+    False,
+    False,
+    False,
+    False,
+    False,
+    False,
+    False,
+]
+
+
+def check_for_reset():
+    return RESETS.pop(0)
+
+
+def announce(remaining):
+    print(f"{remaining} ticks remaining")
+
+
+def run():
+    it = timer(4)
+    while True:
+        try:
+            if check_for_reset():
+                current = it.throw(Reset())
+            else:
+                current = next(it)
+
+        except StopIteration:
+            break
+        else:
+            announce(current)
+
+
+run()
+```
+
+- Calling `throw` on the generator with a `Reset` exception restarts the counter via the `except` block
+- The rest of the program is just a driver that simulates interrupts
+    - e.g. a button click
+- This code has the downside that we are using exceptions to manage expected control flow
+- We end up with scattered nesting in both the driver and the generator
+- A simpler interface is achieved by using a class
+    - We manage internal state and transitions
+    - e.g. via a `tick` method to step the timer
+    - `reset` to restart the clock
+    - Override the `__bool__` dunder method to check if a timer has elapsed
+
+```{python}
+class Timer:
+    def __init__(self, period):
+        self.current = period
+        self.period = period
+
+    def reset(self):
+        print("Resetting")
+        self.current = self.period
+
+    def tick(self):
+        before = self.current
+        self.current -= 1
+        return before
+
+    def __bool__(self):
+        return self.current > 0
+
+
+RESETS = [
+    False,
+    False,
+    False,
+    True,
+    False,
+    True,
+    False,
+    False,
+    False,
+    False,
+    False,
+    False,
+    False,
+    False,
+]
+
+
+def check_for_reset():
+    return RESETS.pop(0)
+
+
+def announce(remaining):
+    print(f"{remaining} ticks remaining")
+
+
+def run():
+    timer = Timer(4)
+    while timer:
+        if check_for_reset():
+            timer.reset()
+
+        announce(timer.tick())
+
+
+run()
+```
+
+- `run` can then use the `Timer` object as the test condition directly
+    - The logic is now much cleaner
+- In general try to avoid the `throw` approach and use the class technique
+- For more advanced inter-generator communication consider using `async` programming
+
 ## Things to Remember
+
+- `throw` lets generators re-raise an exception within a generator
+    - The exception is raised at the site of the most recent `yield` (after the value is returned)
+- Using `throw` hurts readability
+    - Requires extra nesting and boilerplate to handle the exceptions
+- Defining a stateful class with methods for iteration and state transitions is typically simpler and clearer
