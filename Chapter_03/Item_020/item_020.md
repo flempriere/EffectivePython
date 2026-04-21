@@ -53,7 +53,7 @@ print(i)
     3
 
 - The approach above breaks if the initial list is empty
-- Then the loop never runs and `i` is never bound
+- Then the loop never runs and `j` is never bound
   - Leads to a runtime error
 
 ``` python

@@ -1,0 +1,143 @@
+# Item 40: Use Comprehensions instead of `map` and `filter`
+
+- [Notes](#notes)
+- [Things to Remember](#things-to-remember)
+
+## Notes
+
+- *Comprehensions* are a compact syntax for deriving a new sequence from
+  another
+  - When the resulting object is a list we call it a *list
+    comprehension*
+- For example, if we want to create a list containing the squares of the
+  numbers in another list
+  - Our first approach might be to use a standard iterative loop
+    approach
+
+``` python
+a = [1, 2, 3 , 4, 5, 6, 7, 8, 9, 10]
+squares = []
+
+for x in a:
+    squares.append(x**2)
+
+print(squares)
+```
+
+    [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+- The equivalent list comprehension is a simple one-liner
+
+``` python
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+squares = [x**2 for x in a]
+
+print(squares)
+```
+
+    [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+- An alternative would be to use the python in-built `map`
+  - `map` applies a single argument function to each element of a list
+    to generate a new list
+  - returns a lazy iterator so need to use `list` to convert back to a
+    list
+
+``` python
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+squares = list(map(lambda x : x**2, a))
+print(squares)
+```
+
+    [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+- Since `map` only accepts a single argument function, using it in more
+  complicated scenarios can get hard to read
+  - Requires complex `lambda` expressions or `functools.partial` usage
+    to massage the interface (See [Item
+    39](../../Chapter_05/Item_039/item_039.qmd))
+- List comprehensions can also easily combine the conversion of list
+  elements into new values, with filters to only include a certain
+  subset
+  - For example if we wanted to only consider the even squares
+
+``` python
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+even_squares = [x**2 for x in a if x % 2 == 0]
+print(even_squares)
+```
+
+    [4, 16, 36, 64, 100]
+
+- The equivalent `map` expression requires us to use nested calls to
+  `filter`
+  - More verbose and the logic is less clear
+  - Also makes the computation multi-step
+
+``` python
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+even_squares = list(map(lambda x: x**2, filter(lambda x: x % 2 == 0, a)))
+print(even_squares)
+```
+
+    [4, 16, 36, 64, 100]
+
+- Dictionaries and sets also support a comprehension syntax
+  - Observe both use `{}` as with their standard initialisation syntax
+  - Dictionary uses the `key: value` syntax vs \`just providing a list
+    of values as for a set
+
+``` python
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+even_squares_dictionary = {x: x**2 for x in a if x % 2 == 0}
+threes_cubed_set = {x**3 for x in  a if x % 3 == 0}
+print(even_squares_dictionary)
+print(threes_cubed_set)
+```
+
+    {2: 4, 4: 16, 6: 36, 8: 64, 10: 100}
+    {216, 729, 27}
+
+- We could again recreate above using `map` and `filter` combined with
+  explicit calls to the `dict` and `set` constructors
+  - This is clearly noisier
+
+``` python
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+even_squares_dictionary = dict(map(lambda x : (x, x**2), filter(lambda x: x % 2 == 0, a)))
+threes_cubed_set = set(map(lambda x : x**3, filter(lambda x : x % 3 == 0, a)))
+
+print(even_squares_dictionary)
+print(threes_cubed_set)
+```
+
+    {2: 4, 4: 16, 6: 36, 8: 64, 10: 100}
+    {216, 729, 27}
+
+- When should we then use `map` and `filter`?
+  - They have the advantage that they return iterators rather than
+    collections
+  - Means they produce their output one at a time
+  - This saves memory (See [Item
+    24](../../Chapter_03/Item_024/item_024.qmd))
+- Comprehensions create and assign the full collection at declaration
+  - This can consume a lot of memory for large lists
+- An alternative approach that keeps the syntactical simplicity of list
+  comprehensions with the memory footprint of `map` and `filter` is to
+  use *generator expressions* (See [Item
+  44](../../Chapter_06/Item_044/item_044.qmd))
+
+## Things to Remember
+
+- List comprehensions are cleaner than `map` and `filter` since they
+  require less nesting and `lambda` or `functools.partial` boilerplate
+- List comprehensions can easily filter elements out from the input list
+  using `if` clauses
+  - This behaviour can be emulated through a combination of `map` and
+    `filter`
+- Dictionaries and sets also support a comprehension syntax
+- List comprehensions create the complete object in memory when defined
+  / evaluated, this can use a significant amount of memory compared to
+  an iterator or generator that returns each value incrementally

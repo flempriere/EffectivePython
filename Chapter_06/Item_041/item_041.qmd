@@ -1,0 +1,107 @@
+---
+title: "Item 41: Avoid more than Two Control Subexpressions in Comprehensions"
+---
+
+## Notes
+
+- Comprehensions support multiple levels of looping
+- E.g. consider unpacking a 2d matrix into a flat list
+
+```{python}
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+]
+
+flat = [x for row in matrix for x in row]
+print(flat)
+```
+
+- This example is pretty clean and straight forward
+    - However, observe there is a slight awkwardness in that we introduce `x` *first* but it is defined in the *second* `for` component of the loop
+    - i.e we have to define our elements as the leftmost part of the statement
+        - But we *unpack* the nested loops as `outermost -> inner -> innermost` etc
+- Another use case, is replicating the structure of an existing nested list
+- For example, squaring the elements of the matrix above
+
+```{python}
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+]
+
+squared = [[x**2 for x in row] for row in matrix]
+print(squared)
+```
+
+- If we wanted to have a triple-nested loop, then the comprehension becomes
+
+```{python}
+my_lists = [[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]]
+
+flat = [x for sublist1 in my_lists for sublist2 in sublist1 for x in sublist2]
+
+print(flat)
+```
+
+- This is hard to read
+    - High amount of separation between use of each intermediate variable `x, sublist1, sublist2` and their actual point of definition in the comprehension
+- The multi-line traditional loop starts to become cleaner
+
+```{python}
+my_lists = [[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]]
+
+flat = []
+for sublist1 in my_lists:
+    for sublist2 in sublist1:
+        flat.extend(sublist2)
+```
+
+- Comprehensions also support multiple `if` conditions
+    - Combining conditions at the same loop level results in implicit `and`'s to join them
+- Example, filtering a list to only even numbers greater than four
+    - The two comprehensions below are equivalent
+
+```{python}
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+b = [x for x in a if x > 4 if x % 2 == 0]
+c = [x for x in a if x > 4 and x % 2 == 0]
+
+assert b == c
+```
+
+- Conditions are specified for each loop level *after* the corresponding `for` invocation
+- For example, filtering a matrix to keep only values divisible by four in rows summing to ten or higher
+
+```{python}
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+]
+
+filtered = [[x for x in row if x % 4 == 0] for row in matrix if sum(row) >= 10]
+print(filtered)
+```
+
+- In general avoid using this kind of heavy filtering and deeply nested structure for comprehensions
+- The code is difficult to read without already understanding what the intent of the code is
+- Especially problematic with dictionary comprehensions due to the need to include the `key` and `value` in the comprehension
+- **Rule of Thumb:** Avoid using more than two control subexpressions, i.e.
+
+    1. Two conditions
+    2. Two loops
+    3. One condition and one loop
+
+- Else, favour traditional `if`, `for` and helper function based approaches (See [Item 43](../Item_043/item_043.qmd))
+
+## Things to Remember
+
+- Comprehensions support multiple levels of looping
+- Multiple conditions can be applied to each loop level
+    - These are implicitly treated as an `and` expression
+- Comprehensions with more than two control subexpressions are difficult to read and reason about
+    - In general avoid using them
