@@ -1,0 +1,241 @@
+# Item 37: Enforce Clarify with Keyword-Ony and Positional-Only
+Arguments
+
+
+- [Notes](#notes)
+- [Things to Remember](#things-to-remember)
+
+## Notes
+
+- We’ve already seen that keyword arguments help improve the clarify of
+  python functions (See [Item 35](../Item_035/item_035.qmd))
+- For example, the following division function supports optional flags
+  for treating zero division as infinity and ignoring overflow
+
+``` python
+def safe_division(number, divisor, ignore_overflow, ignore_zero_division):
+    try:
+        return number / divisor
+    except OverflowError:
+        if ignore_overflow:
+            return 0
+        else:
+            raise
+    except ZeroDivisionError:
+        if ignore_zero_division:
+            return float("inf")
+        else:
+            False
+
+# ignoring overflow
+result = safe_division(1.0, 10**500, True, False)
+print(result)
+
+# ignoring divide by zero
+result = safe_division(1.0, 0, False, True)
+print(result)
+```
+
+    0
+    inf
+
+- Above has a problem
+  - Not explicitly clear with boolean argument corresponds to which
+    parameter
+- Can improve by using defaults and keyword arguments
+
+``` python
+def safe_division(number, divisor, ignore_overflow=False, ignore_zero_division=False):
+    try:
+        return number / divisor
+    except OverflowError:
+        if ignore_overflow:
+            return 0
+        else:
+            raise
+    except ZeroDivisionError:
+        if ignore_zero_division:
+            return float("inf")
+        else:
+            False
+
+# ignoring overflow
+result = safe_division(1.0, 10**500, ignore_overflow=True)
+print(result)
+
+# ignoring divide by zero
+result = safe_division(1.0, 0, False, ignore_zero_division=True)
+print(result)
+```
+
+    0
+    inf
+
+- Here keyword arguments improve clarity
+  - Also no need to provide explicit values for the default parameters
+- However, a caller is not mandated to use the keyword call structure
+- For complicated functions or tunable behaviour we might want to force
+  the caller to use the keyword calling structure
+- To do this we define *keyword-only arguments*
+  - Can never be passed positionally
+- To do so separate the positional arguments and the keyword arguments
+  by the `*` symbol
+  - Note using `*args` does the same thing but captures all remaining
+    positional arguments into the `args` tuple
+
+``` python
+def safe_division(
+    number, divisor, *, ignore_overflow=False, ignore_zero_division=False
+):
+    try:
+        return number / divisor
+    except OverflowError:
+        if ignore_overflow:
+            return 0
+        else:
+            raise
+    except ZeroDivisionError:
+        if ignore_zero_division:
+            return float("inf")
+        else:
+            False
+
+
+# ignoring overflow
+result = safe_division(1.0, 10**500, ignore_overflow=True)
+print(result)
+
+# ignoring divide by zero
+result = safe_division(1.0, 0, ignore_zero_division=True)
+print(result)
+
+# invalid call using positional structure
+result = safe_division(1.0, 10**500, True, False)
+print(result)
+```
+
+    0
+    inf
+
+    TypeError: safe_division() takes 2 positional arguments but 4 were given
+    ---------------------------------------------------------------------------
+    TypeError                                 Traceback (most recent call last)
+    Cell In[3], line 27
+         24 print(result)
+         26 # invalid call using positional structure
+    ---> 27 result = safe_division(1.0, 10**500, True, False)
+         28 print(result)
+
+    TypeError: safe_division() takes 2 positional arguments but 4 were given
+
+- What if we wanted to define arguments that can only be passed by
+  position?
+- E.g. in division we would typically want `divide(a, b)` to represent
+  `a / b` regardless of `a` was called number, or numerator etc.
+  - But if the caller uses the current label `number` we can’t change it
+    to `numerator` without breaking the API
+- Python 3.8 lets us define position only parameters
+  - The `/` parameter in a function denotes that all arguments *before*
+    it are positional only
+
+``` python
+def safe_division(number, divisor,/, *, ignore_overflow=False, ignore_zero_division=False):
+    try:
+        return number / divisor
+    except OverflowError:
+        if ignore_overflow:
+            return 0
+        else:
+            raise
+    except ZeroDivisionError:
+        if ignore_zero_division:
+            return float("inf")
+        else:
+            False
+
+# ignoring overflow
+result = safe_division(1.0, 10**500, ignore_overflow=True)
+print(result)
+
+# ignoring divide by zero
+result = safe_division(1.0, 0, False, ignore_zero_division=True)
+print(result)
+
+# invalid call using keywords for first two args
+result = safe_division(number=1.0, divisor=10**500, ignore_overflow=True)
+print(result)
+```
+
+    0
+
+    TypeError: safe_division() takes 2 positional arguments but 3 positional arguments (and 1 keyword-only argument) were given
+    ---------------------------------------------------------------------------
+    TypeError                                 Traceback (most recent call last)
+    Cell In[4], line 20
+         17 print(result)
+         19 # ignoring divide by zero
+    ---> 20 result = safe_division(1.0, 0, False, ignore_zero_division=True)
+         21 print(result)
+         23 # invalid call using keywords for first two args
+
+    TypeError: safe_division() takes 2 positional arguments but 3 positional arguments (and 1 keyword-only argument) were given
+
+- Any parameter that comes after `/` but before `*` can be specified by
+  either position or keyword
+  - This the python default
+- In general (depending on the API) this makes the most sense
+  - For example adding an optional parameter to our division which gives
+    the number of digits for rounding (default $10$)
+
+``` python
+def safe_division(
+    number,
+    divisor,
+    /,
+    n_digits=10,
+    *,
+    ignore_overflow=False,
+    ignore_zero_division=False,
+):
+    try:
+        fraction = number / divisor
+        return round(fraction, n_digits)
+    except OverflowError:
+        if ignore_overflow:
+            return 0
+        else:
+            raise
+    except ZeroDivisionError:
+        if ignore_zero_division:
+            return float("inf")
+        else:
+            False
+
+
+result = safe_division(22, 7)
+print(result)
+
+result = safe_division(22, 7, 5)
+print(result)
+
+result = safe_division(22, 7, n_digits=2)
+print(result)
+```
+
+    3.1428571429
+    3.14286
+    3.14
+
+## Things to Remember
+
+- Keyword-only arguments force the caller to supply arguments by keyword
+  - Improves the intent of a function
+  - They are defined after the `*` in a function definition to catch all
+    positional arguments
+- Positional-only arguments mean the user cannot refer to them by
+  keyword
+  - Reduces coupling of argument to parameter label
+  - Defined before the `/` in a function definition
+- Parameters between the `/` and `*` can be defined by position or
+  keyword
+  - This is the default behaviour
