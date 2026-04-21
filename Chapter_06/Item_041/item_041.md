@@ -70,19 +70,9 @@ my_lists = [[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]]
 
 flat = []
 for sublist1 in my_lists:
-    for sublist_2 in sublist1:
+    for sublist2 in sublist1:
         flat.extend(sublist2)
 ```
-
-    NameError: name 'sublist2' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[4], line 6
-          4 for sublist1 in my_lists:
-          5     for sublist_2 in sublist1:
-    ----> 6         flat.extend(sublist2)
-
-    NameError: name 'sublist2' is not defined
 
 - Comprehensions also support multiple `if` conditions
   - Combining conditions at the same loop level results in implicit

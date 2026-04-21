@@ -40,14 +40,16 @@ print(squares)
 - An alternative would be to use the python in-built `map`
   - `map` applies a single argument function to each element of a list
     to generate a new list
+  - returns a lazy iterator so need to use `list` to convert back to a
+    list
 
 ``` python
 a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-squares = map(lambda x : x**2, a)
+squares = list(map(lambda x : x**2, a))
 print(squares)
 ```
 
-    <map object at 0x7f12cc41bb00>
+    [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 
 - Since `map` only accepts a single argument function, using it in more
   complicated scenarios can get hard to read
@@ -74,11 +76,11 @@ print(even_squares)
 
 ``` python
 a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-even_squares = map(lambda x : x**2, filter(lambda x : x % 2 == 0, a))
+even_squares = list(map(lambda x: x**2, filter(lambda x: x % 2 == 0, a)))
 print(even_squares)
 ```
 
-    <map object at 0x7f12cc409180>
+    [4, 16, 36, 64, 100]
 
 - Dictionaries and sets also support a comprehension syntax
   - Observe both use `{}` as with their standard initialisation syntax
