@@ -556,7 +556,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The raise occurs after the output is received</li>
 </ul></li>
 </ul>
-<div id="59589c3d" class="cell" data-execution_count="1">
+<div id="832fe53f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyError(<span class="pp">Exception</span>):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -570,7 +570,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> my_generator()</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">next</span>(it))  <span class="co"># yields 1</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">next</span>(it))  <span class="co"># yields 2</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(it.throw(MyError(<span class="st">"test error"</span>)))  <span class="co"># yield 3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(it.throw(MyError(<span class="st">"test error"</span>)))  <span class="co"># throw's a MyError</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1
 2</code></pre>
@@ -582,7 +582,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 14</span>
 <span class="ansi-green-fg">     12</span> <span style="color:rgb(0,135,0)">print</span>(<span style="color:rgb(0,135,0)">next</span>(it))  <span style="font-style:italic;color:rgb(95,135,135)"># yields 1</span>
 <span class="ansi-green-fg">     13</span> <span style="color:rgb(0,135,0)">print</span>(<span style="color:rgb(0,135,0)">next</span>(it))  <span style="font-style:italic;color:rgb(95,135,135)"># yields 2</span>
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">14</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-bg">it</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">throw</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">MyError</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">test error</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">)</span>)  <span style="font-style:italic;color:rgb(95,135,135)"># yield 3</span>
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">14</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-bg">it</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">throw</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">MyError</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">test error</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">)</span>)  <span style="font-style:italic;color:rgb(95,135,135)"># throw's a MyError</span>
 
 <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 7</span>, in <span class="ansi-cyan-fg">my_generator</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">      5</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">my_generator</span>():
@@ -600,7 +600,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Need to surround the last executed <code>yield</code></li>
 </ul></li>
 </ul>
-<div id="91b33d54" class="cell" data-execution_count="2">
+<div id="ca8b1268" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyError(<span class="pp">Exception</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -632,7 +632,7 @@ Got MyError!
 <li>This is another mechanism for two-way communication with a generator (See <a href="../../Chapter_06/Item_046/item_046.html">item 46</a>)</li>
 <li>For example, we might have a timer program that occasionally needs to be interrupted and reset</li>
 </ul>
-<div id="9fecc924" class="cell" data-execution_count="3">
+<div id="410fde8a" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Reset(<span class="pp">Exception</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -721,7 +721,7 @@ Resetting
 <li>Override the <code>__bool__</code> dunder method to check if a timer has elapsed</li>
 </ul></li>
 </ul>
-<div id="466b1edd" class="cell" data-execution_count="4">
+<div id="49fbf131" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Timer:</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, period):</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.current <span class="op">=</span> period</span>

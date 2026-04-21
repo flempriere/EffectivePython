@@ -557,7 +557,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>For example, reading and counting the number of characters on each line</li>
 </ul>
-<div id="cfb02f90" class="cell" data-execution_count="1">
+<div id="e819809f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>value <span class="op">=</span> [<span class="bu">len</span>(x) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">open</span>(<span class="st">"my_file.txt"</span>)]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(value)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -577,17 +577,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Generator expressions are created like a list comprehension using <code>()</code> instead of <code>[]</code></li>
 <li>For example, (Naively) converting our program above to use a generator expression</li>
 </ul>
-<div id="5b2762bc" class="cell" data-execution_count="2">
+<div id="af590b0b" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> (<span class="bu">len</span>(x) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">open</span>(<span class="st">"my_file.txt"</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(it)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;generator object &lt;genexpr&gt; at 0x7f4fd0365460&gt;</code></pre>
+<pre><code>&lt;generator object &lt;genexpr&gt; at 0x7fd4408d92a0&gt;</code></pre>
 </div>
 </div>
 <ul>
 <li>To actually get values out of the returned iterator we have to call the <code>next</code> method (either explicitly or implicitly via a loop)</li>
 </ul>
-<div id="9dc647d4" class="cell" data-execution_count="3">
+<div id="4fe6e791" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> (<span class="bu">len</span>(x) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">open</span>(<span class="st">"my_file.txt"</span>))</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">next</span>(it))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">next</span>(it))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -600,7 +600,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Generator expressions can also be composed together</li>
 <li>We could combine the above generator with a second that also includes the square root</li>
 </ul>
-<div id="6cc9cca6" class="cell" data-execution_count="4">
+<div id="cafcd795" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> (<span class="bu">len</span>(x) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">open</span>(<span class="st">"my_file.txt"</span>))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>roots <span class="op">=</span> ((x, x<span class="op">**</span><span class="fl">0.5</span>) <span class="cf">for</span> x <span class="kw">in</span> it)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>

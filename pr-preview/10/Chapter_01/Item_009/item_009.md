@@ -100,7 +100,13 @@ take_constant_action("green")
 - If we have the same `match` above, but with only the `RED` branch and
   pass `GREEN`:
 
-``` ahwigvgp:
+``` python
+# module level constants
+RED = "red"
+YELLOW = "yellow"
+GREEN = "green"
+
+
 def truncated_action(light):
     match light:
         case RED:
@@ -109,6 +115,8 @@ def truncated_action(light):
 
 truncated_action(GREEN)
 ```
+
+    RED='green', light='green': Stop
 
 - Naively we would expect this to resolve to `case "red" != "green"`
 - However, the first case *is* executed
@@ -127,6 +135,12 @@ truncated_action(GREEN)
   - We could write this in longform
 
 ``` python
+# module level constants
+RED = "red"
+YELLOW = "yellow"
+GREEN = "green"
+
+
 def take_unpacking_action(light):
     try:
         (RED,) = (light,)
@@ -149,16 +163,29 @@ take_unpacking_action(GREEN)
   - Python determines that these cases are thus unreachable and throws a
     syntax error
 
-  ``` python
-    def match_light(light):
-        match light:
-            case RED:
-                ...
-            case YELLOW:
-                ...
-            case GREEN:
-                ...
-  ```
+``` python
+# module level constants
+RED = "red"
+YELLOW = "yellow"
+GREEN = "green"
+
+
+def match_light(light):
+    match light:
+        case RED:
+            ...
+        case YELLOW:
+            ...
+        case GREEN:
+            ...
+```
+
+    SyntaxError: name capture 'RED' makes remaining patterns unreachable (628078245.py, line 9)
+      Cell In[6], line 9
+        case RED:
+             ^
+    SyntaxError: name capture 'RED' makes remaining patterns unreachable
+
 - A workaround is to ensure the case label has a `.` operator
   - Causes python to do an attribute look up
   - This means to emulate standard switch behaviour we can use an `Enum`
@@ -243,6 +270,9 @@ my_tree = (10, (7, None, 9), (13, 11, None))
   below
 
 ``` python
+my_tree = (10, (7, None, 9), (13, 11, None))
+
+
 def contains(tree, value):
     if not isinstance(tree, tuple):
         return tree == value
@@ -255,6 +285,7 @@ def contains(tree, value):
         return contains(right, value)
     else:
         return value == pivot
+
 
 assert contains(my_tree, 9)
 assert not contains(my_tree, 14)

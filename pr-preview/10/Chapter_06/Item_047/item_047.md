@@ -27,7 +27,7 @@ def my_generator():
 it = my_generator()
 print(next(it))  # yields 1
 print(next(it))  # yields 2
-print(it.throw(MyError("test error")))  # yield 3
+print(it.throw(MyError("test error")))  # throw's a MyError
 ```
 
     1
@@ -39,7 +39,7 @@ print(it.throw(MyError("test error")))  # yield 3
     Cell In[1], line 14
          12 print(next(it))  # yields 1
          13 print(next(it))  # yields 2
-    ---> 14 print(it.throw(MyError("test error")))  # yield 3
+    ---> 14 print(it.throw(MyError("test error")))  # throw's a MyError
 
     Cell In[1], line 7, in my_generator()
           5 def my_generator():

@@ -53,34 +53,6 @@ def index_words_iter(text):
 
 
 address = "Four score and seven years ago..."
-result = index_words_iter(address)
-print(result[:10])
-```
-
-    TypeError: 'generator' object is not subscriptable
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    Cell In[2], line 11
-          9 address = "Four score and seven years ago..."
-         10 result = index_words_iter(address)
-    ---> 11 print(result[:10])
-
-    TypeError: 'generator' object is not subscriptable
-
-- A generator function does not return a result, but instead returns an
-  *iterator*
-- Each call to `next` on that iterator the generator advances to the
-  next `yield`
-  - The corresponding value is returned as the result of the `next` call
-
-``` python
-def index_words_iter(text):
-    if text:
-        yield 0
-    for index, letter in enumerate(text):
-        if letter == " ":
-            yield index + 1
-
 it = index_words_iter(address)
 print(next(it))
 print(next(it))
@@ -89,6 +61,11 @@ print(next(it))
     0
     5
 
+- A generator function does not return a result, but instead returns an
+  *iterator*
+- Each call to `next` on that iterator the generator advances to the
+  next `yield`
+  - The corresponding value is returned as the result of the `next` call
 - The code is easier to read because the emphasis is on the *what* of
   the code
   - In this case returning the starting index of the next word
