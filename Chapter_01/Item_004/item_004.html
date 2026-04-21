@@ -481,6 +481,65 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_06/Chapter_06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 6: Comprehensions and Generators</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_040/item_040.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 40: Use Comprehensions instead of <code>map</code> and <code>filter</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_041/item_041.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 41: Avoid more than Two Control Subexpressions in Comprehensions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_042/item_042.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 42: Reduce Repetition in Comprehensions with Assignment Expressions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_043/item_043.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 43: Consider Generators Instead of Returning Lists</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_044/item_044.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 44: Consider Generator Expressions for Large List Comprehensions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_045/item_045.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 45: Compose Multiple Generators with <code>yield from</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_046/item_046.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 46: Pass Iterators into Generators as Arguments Instead of Calling the <code>send</code> Method</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_047/item_047.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 47: Manage Iterative State Transitions with a Class Instead of the Generator <code>throw</code> Method</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -524,7 +583,7 @@ window.Quarto = {
 <li>Python’s high level syntax lets you write very compact expressions</li>
 <li>e.g.&nbsp;To decode a website query string,</li>
 </ul>
-<div id="8c8f7eec" class="cell" data-execution_count="1">
+<div id="a1aaab67" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib.parse <span class="im">import</span> parse_qs</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>my_values <span class="op">=</span> parse_qs(<span class="st">"red=5&amp;blue=0&amp;green="</span>, keep_blank_values<span class="op">=</span><span class="va">True</span>)</span>
@@ -543,7 +602,7 @@ window.Quarto = {
 </ol></li>
 <li>If we try and access them using a dictionary, we get different results</li>
 </ul>
-<div id="ebb80c43" class="cell" data-execution_count="2">
+<div id="228d0fc7" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Red: </span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>(my_values.get(<span class="st">"red"</span>)))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Green: </span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>(my_values.get(<span class="st">"green"</span>)))</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Opacity: </span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>(my_values.get(<span class="st">"opacity"</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -564,7 +623,7 @@ Opacity: None</code></pre>
 </ul></li>
 </ul></li>
 </ul>
-<div id="f654f30a" class="cell" data-execution_count="3">
+<div id="e2ed5247" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>red <span class="op">=</span> my_values.get(<span class="st">"red"</span>, [<span class="st">""</span>])[<span class="dv">0</span>] <span class="kw">or</span> <span class="dv">0</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>green <span class="op">=</span> my_values.get(<span class="st">"green"</span>, [<span class="st">""</span>])[<span class="dv">0</span>] <span class="kw">or</span> <span class="dv">0</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>opacity <span class="op">=</span> my_values.get(<span class="st">"opacity"</span>, [<span class="st">""</span>])[<span class="dv">0</span>] <span class="kw">or</span> <span class="dv">0</span></span>
@@ -605,7 +664,7 @@ Opacity:    0</code></pre>
 <li>So we need to add an extra layer to do a conversion to integer, e.g.</li>
 </ul></li>
 </ul>
-<div id="cd0486aa" class="cell" data-execution_count="4">
+<div id="0677140c" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>red <span class="op">=</span> <span class="bu">int</span>(my_values.get(<span class="st">"red"</span>, [<span class="st">""</span>])[<span class="dv">0</span>] <span class="kw">or</span> <span class="dv">0</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Red:        </span><span class="sc">{</span>red<span class="sc">!r}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -616,7 +675,7 @@ Opacity:    0</code></pre>
 <li>At this the code while functional is too obscure to be easily understood</li>
 <li>Instead we could write a simple function</li>
 </ul>
-<div id="cefd1453" class="cell" data-execution_count="5">
+<div id="8e78cb75" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_first_int(values, key, default<span class="op">=</span><span class="dv">0</span>):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    found <span class="op">=</span> values.get(key, [<span class="st">""</span>])</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> found[<span class="dv">0</span>]:</span>
@@ -630,7 +689,7 @@ Opacity:    0</code></pre>
 </ul></li>
 <li>We can rewrite our initial parse as</li>
 </ul>
-<div id="7a9341f0" class="cell" data-execution_count="6">
+<div id="74d16f8a" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>red <span class="op">=</span> get_first_int(my_values, <span class="st">"red"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>green <span class="op">=</span> get_first_int(my_values, <span class="st">"green"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>opacity <span class="op">=</span> get_first_int(my_values, <span class="st">"opacity"</span>)</span>

@@ -19,6 +19,8 @@ Effective Python by Brett Slatkin
 - [Chapter 3: Loops and Iterators](./Chapter_03/Chapter_03.qmd)
 - [Chapter 4: Dictionaries](./Chapter_04/Chapter_04.qmd)
 - [Chapter 5: Functions](./Chapter_05/Chapter_05.qmd)
+- [Chapter 6: Comprehensions and
+  Generators](./Chapter_06/Chapter_06.qmd)
 
 ## Attribution
 

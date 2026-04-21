@@ -452,6 +452,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_06/Chapter_06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 6: Comprehensions and Generators</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_040/item_040.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 40: Use Comprehensions instead of <code>map</code> and <code>filter</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_041/item_041.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 41: Avoid more than Two Control Subexpressions in Comprehensions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_042/item_042.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 42: Reduce Repetition in Comprehensions with Assignment Expressions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_043/item_043.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 43: Consider Generators Instead of Returning Lists</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_044/item_044.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 44: Consider Generator Expressions for Large List Comprehensions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_045/item_045.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 45: Compose Multiple Generators with <code>yield from</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_046/item_046.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 46: Pass Iterators into Generators as Arguments Instead of Calling the <code>send</code> Method</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_047/item_047.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 47: Manage Iterative State Transitions with a Class Instead of the Generator <code>throw</code> Method</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -497,7 +556,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Python does not have loops as independent block scopes as in a language like C</li>
 </ul></li>
 </ul>
-<div id="c92a3d2f" class="cell" data-execution_count="1">
+<div id="62250374" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Inside </span><span class="sc">{</span>i<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After </span><span class="sc">{</span>i<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -515,7 +574,7 @@ After i=2</code></pre>
 <li>Here we group periodic elements by looking for their indices in a list</li>
 </ul></li>
 </ul>
-<div id="774a7c2d" class="cell" data-execution_count="2">
+<div id="13d4b316" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> [<span class="st">"Hydrogen"</span>, <span class="st">"Uranium"</span>, <span class="st">"Iron"</span>, <span class="st">"Other"</span>]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, name <span class="kw">in</span> <span class="bu">enumerate</span>(categories):</span>
@@ -533,7 +592,7 @@ After i=2</code></pre>
 </ul></li>
 <li>Assumption is we either find a match and end early, or iterate over all elements and fall through</li>
 </ul>
-<div id="2e1f75b9" class="cell" data-execution_count="3">
+<div id="bbc191bc" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> [<span class="st">"Hydrogen"</span>, <span class="st">"Uranium"</span>, <span class="st">"Iron"</span>, <span class="st">"Other"</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, name <span class="kw">in</span> <span class="bu">enumerate</span>(categories):</span>
@@ -546,12 +605,12 @@ After i=2</code></pre>
 </div>
 <ul>
 <li>The approach above breaks if the initial list is empty</li>
-<li>Then the loop never runs and <code>i</code> is never bound
+<li>Then the loop never runs and <code>j</code> is never bound
 <ul>
 <li>Leads to a runtime error</li>
 </ul></li>
 </ul>
-<div id="0de7a5bd" class="cell" data-execution_count="4">
+<div id="2c4df289" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> []</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j, name <span class="kw">in</span> <span class="bu">enumerate</span>(categories):</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> name <span class="op">==</span> <span class="st">"Lithium"</span>:</span>
@@ -580,7 +639,7 @@ After i=2</code></pre>
 <li>Trying to access them will lead to an error</li>
 </ul></li>
 </ul>
-<div id="9ba44508" class="cell" data-execution_count="5">
+<div id="6650c49d" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>foo <span class="op">=</span> [<span class="dv">37</span>, <span class="dv">13</span>, <span class="dv">128</span>, <span class="dv">21</span>]</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>even <span class="op">=</span> [k <span class="cf">for</span> k <span class="kw">in</span> foo <span class="cf">if</span> k <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(k)  <span class="co"># always raises an error</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

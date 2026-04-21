@@ -452,6 +452,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_06/Chapter_06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 6: Comprehensions and Generators</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_040/item_040.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 40: Use Comprehensions instead of <code>map</code> and <code>filter</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_041/item_041.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 41: Avoid more than Two Control Subexpressions in Comprehensions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_042/item_042.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 42: Reduce Repetition in Comprehensions with Assignment Expressions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_043/item_043.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 43: Consider Generators Instead of Returning Lists</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_044/item_044.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 44: Consider Generator Expressions for Large List Comprehensions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_045/item_045.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 45: Compose Multiple Generators with <code>yield from</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_046/item_046.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 46: Pass Iterators into Generators as Arguments Instead of Calling the <code>send</code> Method</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_06/Item_047/item_047.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 47: Manage Iterative State Transitions with a Class Instead of the Generator <code>throw</code> Method</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -501,7 +560,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>But all positional arguments must <em>precede</em> the keyword arguments</li>
 </ul></li>
 </ul>
-<div id="d7288fe8" class="cell" data-execution_count="1">
+<div id="46ae5436" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> remainder(number, divisor):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> number <span class="op">%</span> divisor</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -526,7 +585,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>You can unpack a dictionary object into keyword arguments using the <code>**</code> operator</li>
 </ul>
-<div id="937fc587" class="cell" data-execution_count="2">
+<div id="322a2995" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> remainder(number, divisor):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> number <span class="op">%</span> divisor</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -538,7 +597,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>You can mix the unpacking operator with standard keyword definitions (so long as no key is included more than once)</li>
 </ul>
-<div id="bdc4f115" class="cell" data-execution_count="3">
+<div id="52506c4d" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> remainder(number, divisor):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> number <span class="op">%</span> divisor</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -553,7 +612,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Dictionaries must have mutually exclusive keys</li>
 </ul></li>
 </ul>
-<div id="2487954e" class="cell" data-execution_count="4">
+<div id="27adc600" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> remainder(number, divisor):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> number <span class="op">%</span> divisor</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -569,7 +628,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>keyword arguments are packaged into a dictionary</li>
 </ul></li>
 </ul>
-<div id="58e96e7a" class="cell" data-execution_count="5">
+<div id="c8091afd" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> print_parameters(<span class="op">**</span>kwargs):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> key, value <span class="kw">in</span> kwargs.items():</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>key<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>value<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -589,7 +648,7 @@ gamma = 4</code></pre>
 <li>E.g. consider the below code to calculate fluid flow into a container</li>
 </ul></li>
 </ul>
-<div id="065ce116" class="cell" data-execution_count="6">
+<div id="64dbe6ad" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flow_rate(weight_diff, time_diff):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> weight_diff <span class="op">/</span> time_diff</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -610,7 +669,7 @@ gamma = 4</code></pre>
 <li>Might be useful to use the last reading to predict the rate over a longer period</li>
 <li>Can add an optional <code>period</code> parameter</li>
 </ul>
-<div id="8f30e3b4" class="cell" data-execution_count="7">
+<div id="1d13a414" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flow_rate(weight_diff, time_diff, period):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (weight_diff <span class="op">/</span> time_diff) <span class="op">*</span> period</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -636,7 +695,7 @@ gamma = 4</code></pre>
 <li>Much nicer if we instead specify a default value</li>
 </ul></li>
 </ul>
-<div id="33e154db" class="cell" data-execution_count="8">
+<div id="312d72cc" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flow_rate(weight_diff, time_diff, period<span class="op">=</span><span class="dv">1</span>):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (weight_diff <span class="op">/</span> time_diff) <span class="op">*</span> period</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -669,7 +728,7 @@ gamma = 4</code></pre>
 </ul></li>
 </ul></li>
 </ul>
-<div id="2830dd1b" class="cell" data-execution_count="9">
+<div id="64bfc46a" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flow_rate(weight_diff, time_diff, period<span class="op">=</span><span class="dv">1</span>, units_per_kg<span class="op">=</span><span class="dv">1</span>):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (weight_diff <span class="op">*</span> units_per_kg <span class="op">/</span> time_diff) <span class="op">*</span> period</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -697,7 +756,7 @@ gamma = 4</code></pre>
 </ul></li>
 <li>This approach has the downside that keyword parameters may still be specified via position, e.g.</li>
 </ul>
-<div id="687035ce" class="cell" data-execution_count="10">
+<div id="1fcbf36d" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flow_rate(weight_diff, time_diff, period<span class="op">=</span><span class="dv">1</span>, units_per_kg<span class="op">=</span><span class="dv">1</span>):</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (weight_diff <span class="op">*</span> units_per_kg <span class="op">/</span> time_diff) <span class="op">*</span> period</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>

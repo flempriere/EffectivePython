@@ -172,7 +172,10 @@ total = sum(score * weight for score, weight in grades)
 total_weight = sum(weight for _, weight in grades)
 
 average_grade = total / total_weight
+print(average_grade)
 ```
+
+    89.5
 
 - The `_` in the `total_weight` assignment is a python convention for a
   discarded variable
@@ -193,7 +196,10 @@ total = sum(score * weight for score, weight, _ in grades)
 total_weight = sum(weight for _, weight, _ in grades)
 
 average_grade = total / total_weight
+print(average_grade)
 ```
+
+    89.5
 
 - If you find yourself extending a tuple repeatedly it’s a sign to
   consider a higher level structure like a class
