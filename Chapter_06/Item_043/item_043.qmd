@@ -45,27 +45,14 @@ def index_words_iter(text):
 
 
 address = "Four score and seven years ago..."
-result = index_words_iter(address)
-print(result[:10])
-```
-
-- A generator function does not return a result, but instead returns an *iterator*
-- Each call to `next` on that iterator the generator advances to the next `yield`
-    - The corresponding value is returned as the result of the `next` call
-
-```{python}
-def index_words_iter(text):
-    if text:
-        yield 0
-    for index, letter in enumerate(text):
-        if letter == " ":
-            yield index + 1
-
 it = index_words_iter(address)
 print(next(it))
 print(next(it))
 ```
 
+- A generator function does not return a result, but instead returns an *iterator*
+- Each call to `next` on that iterator the generator advances to the next `yield`
+    - The corresponding value is returned as the result of the `next` call
 - The code is easier to read because the emphasis is on the *what* of the code
     - In this case returning the starting index of the next word
 - Generators also have the advantage that since they return the results one at a time the memory consumption is bounded

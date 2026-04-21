@@ -235,10 +235,9 @@ def wave_cascading(amplitude_it, steps):
     for step in range(steps):
         radians = step * step_size
         fraction = math.sin(radians)
-
-    amplitude = next(amplitude_it)  # get next input
-    output = amplitude * fraction
-    yield output
+        amplitude = next(amplitude_it)  # get next input
+        output = amplitude * fraction
+        yield output
 
 
 def complex_wave_cascading(amplitude_it):
@@ -253,6 +252,13 @@ def run_cascading():
     for amplitude in amplitudes:
         output = next(it)
         transmit(output)
+
+
+def transmit(output):
+    if output is None:
+        print(f"Output is None")
+    else:
+        print(f"Output: {output:>5.1f}")
 
 
 run_cascading()

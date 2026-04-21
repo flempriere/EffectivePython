@@ -31,10 +31,11 @@ print(squares)
 
 - An alternative would be to use the python in-built `map`
     - `map` applies a single argument function to each element of a list to generate a new list
+    - returns a lazy iterator so need to use `list` to convert back to a list
 
 ```{python}
 a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-squares = map(lambda x : x**2, a)
+squares = list(map(lambda x : x**2, a))
 print(squares)
 ```
 
@@ -55,7 +56,7 @@ print(even_squares)
 
 ```{python}
 a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-even_squares = map(lambda x : x**2, filter(lambda x : x % 2 == 0, a))
+even_squares = list(map(lambda x: x**2, filter(lambda x: x % 2 == 0, a)))
 print(even_squares)
 ```
 

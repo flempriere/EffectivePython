@@ -22,7 +22,7 @@ def my_generator():
 it = my_generator()
 print(next(it))  # yields 1
 print(next(it))  # yields 2
-print(it.throw(MyError("test error")))  # yield 3
+print(it.throw(MyError("test error")))  # throw's a MyError
 ```
 
 - The generator may catch the injected exception via `try/except` statements
