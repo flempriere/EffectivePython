@@ -7,4 +7,229 @@
 
 ## Notes
 
+- Consider a pocket calculator
+  - Receives simple input formulas
+  - Computes the solution
+- Normal approach:
+  1. Tokenize
+  2. parse provided input
+  3. Generate *Abstract Syntax Tree* (AST)
+- This is a simplified version of what a python compiler does when
+  loading a program
+- AST classes for our basic operators might look like,
+
+``` python
+class Integer:
+    def __init__(self, value):
+        self.value = value
+
+
+class Add:
+    def __init__(self, left, right):
+        self.left = left
+        self.right = right
+
+
+class Multiply:
+    def __init__(self, left, right):
+        self.left = left
+        self.right = right
+
+
+tree = Add(Integer(2), Integer(9))
+```
+
+- We can then define a recursive function to evaluate the AST
+- Each type of operation is another branch on an `if` statement
+  - Can perform the branching via `isinstance` to determine the type of
+    each AST node (See [Item 9](../../Chapter_01/Item_009/item_009.qmd))
+
+``` python
+class Integer:
+    def __init__(self, value):
+        self.value = value
+
+
+class Add:
+    def __init__(self, left, right):
+        self.left = left
+        self.right = right
+
+
+class Multiply:
+    def __init__(self, left, right):
+        self.left = left
+        self.right = right
+
+
+def evaluate(node):
+    if isinstance(node, Integer):
+        return node.value
+    elif isinstance(node, Add):
+        return evaluate(node.left) + evaluate(node.right)
+    elif isinstance(node, Multiply):
+        return evaluate(node.left) * evaluate(node.right)
+    else:
+        raise NotImplementedError
+
+# simple addition
+tree = Add(Integer(2), Integer(9))
+print(evaluate(tree))
+
+# Nested computation
+tree_2 = Multiply(Add(Integer(3), Integer(5)), Add(Integer(4), Integer(7)))
+print(evaluate(tree_2))
+```
+
+    11
+    88
+
+- This approach is called *tree walking*
+- Calling `evaluate` for each node supports arbitrarily nested
+  expressions
+- As we expand the calculator with more operations e.g. division,
+  subtraction, negation, logarithms the number of node types greatly
+  increases
+  - The `if` chain for this `evaluate` implementation is going to blow
+    out
+- The common *Object-Oriented* solution is to *encapsulate* the
+  functionality on the class implementations
+  - Functionality is paired with the data
+  - *Polymorphism* is used to dynamically dispatch method calls to the
+    appropriate subclasses
+- Polymorphism has the same effect as the `if` compound statement, but
+  doesn’t require defining everything in one gigantic function
+- We start by defining a superclass (See [Item
+  53](../Item_053/item_053.qmd))
+  - Holds the common methods
+  - Here `evaluate` raises a `NotImplementedError` in the superclass to
+    ensure that subclasses must override it
+- Each node then implements the `evaluate` method itself
+
+``` python
+class Node:
+    def evaluate(self):
+        raise NotImplementedError
+
+
+class IntegerNode(Node):
+    def __init__(self, value):
+        self.value = value
+
+    def evaluate(self):
+        return self.value
+
+
+class AddNode(Node):
+    def __init__(self, left, right):
+        self.left = left
+        self.right = right
+
+    def evaluate(self):
+        return self.left.evaluate() + self.right.evaluate()
+
+
+class MultiplyNode(Node):
+    def __init__(self, left, right):
+        self.left = left
+        self.right = right
+
+    def evaluate(self):
+        return self.left.evaluate() * self.right.evaluate()
+
+
+tree = MultiplyNode(
+    AddNode(IntegerNode(3), IntegerNode(5)), AddNode(IntegerNode(4), IntegerNode(7))
+)
+print(tree.evaluate())
+```
+
+    88
+
+- Creating the AST is as straightforward before
+- Evaluation is then performed by calling the `evaluate` method on the
+  root of the tree
+  - `evaluate` is then recursively called on each of the sub nodes
+    - The actual `evaluate` that runs is the one defined on the specific
+      object instance
+- The binding to which `evaluate` is called is determined at *runtime*
+  - Sometimes this is referred to as *runtime polymorphism*
+  - Distinguishes it from *compile time* polymorphism
+- If we want to extend the calculator with more features we have to
+  incorporate that into the class structure
+  - e.g. Supporting the ability to print out a formula
+  - Define a new method on the base class, then have to implement it in
+    each of the subclasses
+
+``` python
+class NodeAlt:
+    def evaluate(self):
+        raise NotImplementedError
+
+    def pretty(self):
+        raise NotImplementedError
+
+
+class IntegerNodeAlt(NodeAlt):
+    def __init__(self, value):
+        self.value = value
+
+    def evaluate(self):
+        return self.value
+
+    def pretty(self):
+        return repr(self.value)
+
+
+class AddNodeAlt(NodeAlt):
+    def __init__(self, left, right):
+        self.left = left
+        self.right = right
+
+    def evaluate(self):
+        return self.left.evaluate() + self.right.evaluate()
+
+    def pretty(self):
+        return f"({self.left.pretty()} + {self.right.pretty()})"
+
+
+class MultiplyNodeAlt(NodeAlt):
+    def __init__(self, left, right):
+        self.left = left
+        self.right = right
+
+    def evaluate(self):
+        return self.left.evaluate() * self.right.evaluate()
+
+    def pretty(self):
+        return f"({self.left.pretty()} * {self.right.pretty()})"
+
+
+tree = MultiplyNodeAlt(
+    AddNodeAlt(IntegerNodeAlt(3), IntegerNodeAlt(5)),
+    AddNodeAlt(IntegerNodeAlt(4), IntegerNodeAlt(7)),
+)
+print(tree.pretty())
+```
+
+    ((3 + 5) * (4 + 7))
+
+- OOP lets us add more AST methods and subclasses as the behaviour
+  requirements expand
+- Each type can have a self-contained implementation
+  - Code is easier to organise, extend and test
+- Python provides additional methods for extending polymorphic code (See
+  [Item 52](../Item_052/item_052.qmd) and [Item
+  57](../Item_057/item_057.qmd))
+- **However**, OOP has limitations
+  - Especially with organisation in large programs (See [Item
+    50](../Item_050/item_050.qmd))
+
 ## Things to Remember
+
+- Python can use the `isinstance` built-in to alter behaviour at runtime
+  based on the type of objects
+- Polymorphism can be used in an object-oriented programming approach to
+  have method dispatch resolve at runtime
+- Code that uses polymorphism among classes instead of `isinstance` is
+  easier to read, maintain, extend and test

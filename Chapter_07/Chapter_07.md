@@ -1,4 +1,4 @@
-# Classes and Interfaces
+# Chapter 7: Classes and Interfaces
 
 - Python supports Object-Oriented Programming
   - Including inheritance, polymorphism and encapsulation
