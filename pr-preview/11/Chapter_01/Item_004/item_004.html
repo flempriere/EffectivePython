@@ -654,7 +654,7 @@ window.Quarto = {
 <li>Python’s high level syntax lets you write very compact expressions</li>
 <li>e.g.&nbsp;To decode a website query string,</li>
 </ul>
-<div id="b57cfb00" class="cell" data-execution_count="1">
+<div id="af08709f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib.parse <span class="im">import</span> parse_qs</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>my_values <span class="op">=</span> parse_qs(<span class="st">"red=5&amp;blue=0&amp;green="</span>, keep_blank_values<span class="op">=</span><span class="va">True</span>)</span>
@@ -673,7 +673,7 @@ window.Quarto = {
 </ol></li>
 <li>If we try and access them using a dictionary, we get different results</li>
 </ul>
-<div id="7f08a963" class="cell" data-execution_count="2">
+<div id="a06e5861" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Red: </span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>(my_values.get(<span class="st">"red"</span>)))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Green: </span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>(my_values.get(<span class="st">"green"</span>)))</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Opacity: </span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>(my_values.get(<span class="st">"opacity"</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -694,7 +694,7 @@ Opacity: None</code></pre>
 </ul></li>
 </ul></li>
 </ul>
-<div id="2f471148" class="cell" data-execution_count="3">
+<div id="c527cbd0" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>red <span class="op">=</span> my_values.get(<span class="st">"red"</span>, [<span class="st">""</span>])[<span class="dv">0</span>] <span class="kw">or</span> <span class="dv">0</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>green <span class="op">=</span> my_values.get(<span class="st">"green"</span>, [<span class="st">""</span>])[<span class="dv">0</span>] <span class="kw">or</span> <span class="dv">0</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>opacity <span class="op">=</span> my_values.get(<span class="st">"opacity"</span>, [<span class="st">""</span>])[<span class="dv">0</span>] <span class="kw">or</span> <span class="dv">0</span></span>
@@ -735,7 +735,7 @@ Opacity:    0</code></pre>
 <li>So we need to add an extra layer to do a conversion to integer, e.g.</li>
 </ul></li>
 </ul>
-<div id="3eaf6b8e" class="cell" data-execution_count="4">
+<div id="26fa1117" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>red <span class="op">=</span> <span class="bu">int</span>(my_values.get(<span class="st">"red"</span>, [<span class="st">""</span>])[<span class="dv">0</span>] <span class="kw">or</span> <span class="dv">0</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Red:        </span><span class="sc">{</span>red<span class="sc">!r}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -746,7 +746,7 @@ Opacity:    0</code></pre>
 <li>At this the code while functional is too obscure to be easily understood</li>
 <li>Instead we could write a simple function</li>
 </ul>
-<div id="84dd86ec" class="cell" data-execution_count="5">
+<div id="6a814adc" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_first_int(values, key, default<span class="op">=</span><span class="dv">0</span>):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    found <span class="op">=</span> values.get(key, [<span class="st">""</span>])</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> found[<span class="dv">0</span>]:</span>
@@ -760,7 +760,7 @@ Opacity:    0</code></pre>
 </ul></li>
 <li>We can rewrite our initial parse as</li>
 </ul>
-<div id="940a6637" class="cell" data-execution_count="6">
+<div id="7e4be770" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>red <span class="op">=</span> get_first_int(my_values, <span class="st">"red"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>green <span class="op">=</span> get_first_int(my_values, <span class="st">"green"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>opacity <span class="op">=</span> get_first_int(my_values, <span class="st">"opacity"</span>)</span>

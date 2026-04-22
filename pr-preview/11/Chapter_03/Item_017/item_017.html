@@ -627,7 +627,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>e.g.&nbsp;Generating a 32-bit random number by coin-flipping each bit position</li>
 </ul></li>
 </ul>
-<div id="c5f1386f" class="cell" data-execution_count="1">
+<div id="bf5af481" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> randint</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>random_bits <span class="op">=</span> <span class="dv">0</span></span>
@@ -637,13 +637,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Randomly generated: </span><span class="sc">{</span><span class="bu">bin</span>(random_bits)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Randomly generated: 0b1010011111001010001100100100</code></pre>
+<pre><code>Randomly generated: 0b11110111100110111011011001100111</code></pre>
 </div>
 </div>
 <ul>
 <li>We can directly loop over an data structure</li>
 </ul>
-<div id="b48ac020" class="cell" data-execution_count="2">
+<div id="5a5c2207" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ice_cream_flavours <span class="op">=</span> [<span class="st">"vanilla"</span>, <span class="st">"chocolate"</span>, <span class="st">"pecan"</span>, <span class="st">"strawberry"</span>]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> flavour <span class="kw">in</span> ice_cream_flavours:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>flavour<span class="sc">}</span><span class="ss"> is delicious"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -661,7 +661,7 @@ strawberry is delicious</code></pre>
 </ul></li>
 <li>You could do this with <code>range</code></li>
 </ul>
-<div id="af59f9e4" class="cell" data-execution_count="3">
+<div id="bfc8f831" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ice_cream_flavours <span class="op">=</span> [<span class="st">"vanilla"</span>, <span class="st">"chocolate"</span>, <span class="st">"pecan"</span>, <span class="st">"strawberry"</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(ice_cream_flavours)):</span>
@@ -688,7 +688,7 @@ strawberry is delicious</code></pre>
 </ul></li>
 <li>Demonstrating the behaviour manually,</li>
 </ul>
-<div id="af007fb9" class="cell" data-execution_count="4">
+<div id="0c4ea951" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ice_cream_flavours <span class="op">=</span> [<span class="st">"vanilla"</span>, <span class="st">"chocolate"</span>, <span class="st">"pecan"</span>, <span class="st">"strawberry"</span>]</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> <span class="bu">enumerate</span>(ice_cream_flavours)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">next</span>(it))</span>
@@ -701,7 +701,7 @@ strawberry is delicious</code></pre>
 <ul>
 <li>We can then use unpacking to easily separate the components of the <code>enumerate</code> pair</li>
 </ul>
-<div id="6be22d1e" class="cell" data-execution_count="5">
+<div id="69147f51" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ice_cream_flavours <span class="op">=</span> [<span class="st">"vanilla"</span>, <span class="st">"chocolate"</span>, <span class="st">"pecan"</span>, <span class="st">"strawberry"</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, flavour <span class="kw">in</span> <span class="bu">enumerate</span>(ice_cream_flavours):</span>
@@ -720,7 +720,7 @@ strawberry is delicious</code></pre>
 <li>Does mean that the counter no longer directly aligns with the index in a sequence</li>
 </ul></li>
 </ul>
-<div id="532522e4" class="cell" data-execution_count="6">
+<div id="7ba960ad" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ice_cream_flavours <span class="op">=</span> [<span class="st">"vanilla"</span>, <span class="st">"chocolate"</span>, <span class="st">"pecan"</span>, <span class="st">"strawberry"</span>]</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, flavour <span class="kw">in</span> <span class="bu">enumerate</span>(ice_cream_flavours, start<span class="op">=</span><span class="dv">1</span>):</span>
