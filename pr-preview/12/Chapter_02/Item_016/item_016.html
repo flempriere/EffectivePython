@@ -723,7 +723,7 @@ window.Quarto = {
 <li>Below fails because it expects two items but encounters more than two</li>
 </ul></li>
 </ul>
-<div id="da506948" class="cell" data-execution_count="1">
+<div id="f4f8b7a7" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>car_ages <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">15</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>car_ages_descending <span class="op">=</span> <span class="bu">sorted</span>(car_ages, reverse<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>oldest, second_oldest <span class="op">=</span> car_ages_descending</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -743,7 +743,7 @@ window.Quarto = {
 <ul>
 <li>It seems natural to attempt to resolve the above with indices and slicing (see <a href="../../Chapter_02/Item_014/item_014.html">Item 14</a>)</li>
 </ul>
-<div id="ae9d5bff" class="cell" data-execution_count="2">
+<div id="3cf27d7e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>car_ages <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">15</span>]</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>car_ages_descending <span class="op">=</span> <span class="bu">sorted</span>(car_ages, reverse<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>oldest <span class="op">=</span> car_ages_descending[<span class="dv">0</span>]</span>
@@ -768,7 +768,7 @@ window.Quarto = {
 <li>Let’s part of an unpacking expression receive all other values that aren’t matched</li>
 </ul></li>
 </ul>
-<div id="75f85d7d" class="cell" data-execution_count="3">
+<div id="f0689f16" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>car_ages <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">15</span>]</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>car_ages_descending <span class="op">=</span> <span class="bu">sorted</span>(car_ages, reverse<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>oldest, second_oldest, <span class="op">*</span>others <span class="op">=</span> car_ages_descending</span>
@@ -786,7 +786,7 @@ window.Quarto = {
 <li>E.g. if we instead wanted to extract the oldest and the youngest car</li>
 </ul></li>
 </ul>
-<div id="c6c20689" class="cell" data-execution_count="4">
+<div id="5058001e" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>car_ages <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">15</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>car_ages_descending <span class="op">=</span> <span class="bu">sorted</span>(car_ages, reverse<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>oldest, <span class="op">*</span>others, youngest <span class="op">=</span> car_ages_descending</span>
@@ -802,7 +802,7 @@ window.Quarto = {
 <li>e.g.&nbsp;Below generates a syntax error</li>
 </ul></li>
 </ul>
-<div id="ca5fe4f3" class="cell" data-execution_count="5">
+<div id="fcb71a07" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>car_ages <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">15</span>]</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>car_ages_descending <span class="op">=</span> <span class="bu">sorted</span>(car_ages, reverse<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">*</span>others <span class="op">=</span> car_ages_descending</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -822,7 +822,7 @@ window.Quarto = {
 <li>e.g.&nbsp;Below fails too</li>
 </ul></li>
 </ul>
-<div id="8eff0ae5" class="cell" data-execution_count="6">
+<div id="8d50d132" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>first, <span class="op">*</span>middle, <span class="op">*</span>second_middle, last <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -841,7 +841,7 @@ window.Quarto = {
 <li>It can make things hard to read</li>
 </ul></li>
 </ul>
-<div id="3e09e58f" class="cell" data-execution_count="7">
+<div id="c4538645" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>car_inventory <span class="op">=</span> {</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Downtown"</span>: (<span class="st">"Silver Shadow"</span>, <span class="st">"Pinto"</span>, <span class="st">"DMC"</span>),</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Airport"</span> : (<span class="st">"Skyline"</span>, <span class="st">"Viper"</span>, <span class="st">"Gremlin"</span>, <span class="st">"Nova"</span>),</span>
@@ -864,7 +864,7 @@ Best at Airport is Skyline, others are ['Viper', 'Gremlin', 'Nova']</code></pre>
 <li>Very useful when working with lists of at least <span class="math inline">\(N\)</span> elements</li>
 </ul></li>
 </ul>
-<div id="8081666b" class="cell" data-execution_count="8">
+<div id="a9dc891a" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>short_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>first, second, <span class="op">*</span>rest <span class="op">=</span> short_list</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -881,7 +881,7 @@ Best at Airport is Skyline, others are ['Viper', 'Gremlin', 'Nova']</code></pre>
 <li>In this case probably more useful to assign to a list matching the unpacking pattern</li>
 </ul></li>
 </ul>
-<div id="dc3874c0" class="cell" data-execution_count="9">
+<div id="cdc5bf2f" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> <span class="bu">iter</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>first, second <span class="op">=</span> it</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>first<span class="sc">}</span><span class="ss"> and </span><span class="sc">{</span>second<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -897,7 +897,7 @@ Best at Airport is Skyline, others are ['Viper', 'Gremlin', 'Nova']</code></pre>
 </ul></li>
 </ul>
 <p>We could process this using indices and slices</p>
-<div id="45700d29" class="cell" data-execution_count="10">
+<div id="c3c6686e" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_csv():</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">yield</span> (<span class="st">"Date"</span>, <span class="st">"Make"</span>, <span class="st">"Model"</span>, <span class="st">"Year"</span>, <span class="st">"Price"</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
@@ -917,7 +917,7 @@ Row count: 200</code></pre>
 <ul>
 <li>But we can also easily unpack using a starred expression</li>
 </ul>
-<div id="684ea717" class="cell" data-execution_count="11">
+<div id="91747ed1" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_csv():</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">yield</span> (<span class="st">"Date"</span>, <span class="st">"Make"</span>, <span class="st">"Model"</span>, <span class="st">"Year"</span>, <span class="st">"Price"</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
