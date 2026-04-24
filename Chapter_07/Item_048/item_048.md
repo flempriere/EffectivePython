@@ -76,6 +76,8 @@ print("After: ", dict(result))
     value hook
 
 ``` python
+from collections import defaultdict
+
 current = {"green": 12, "blue": 3}
 increments = [
     ("red", 5),
@@ -99,24 +101,16 @@ def increment_with_report(current, increments):
     return result, added_count
 
 
-result, current = increment_with_report(current, increments)
+result, count = increment_with_report(current, increments)
 assert count == 2
 ```
-
-    NameError: name 'count' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[3], line 25
-         21     return result, added_count
-         24 result, current = increment_with_report(current, increments)
-    ---> 25 assert count == 2
-
-    NameError: name 'count' is not defined
 
 - Stateful closures are harder to read than a stateless function
   - Could instead encapsulate state in a class
 
 ``` python
+from collections import defaultdict
+
 current = {"green": 12, "blue": 3}
 increments = [
     ("red", 5),
@@ -178,6 +172,8 @@ assert callable(counter)
 - We can then use this class directly as the `defaultdict` hook
 
 ``` python
+from collections import defaultdict
+
 current = {"green": 12, "blue": 3}
 increments = [
     ("red", 5),

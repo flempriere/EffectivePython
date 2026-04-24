@@ -98,7 +98,7 @@ class TimesTwo(BaseClass):
 
 
 class PlusFive(BaseClass):
-    def __init__(self):
+    def __init__(self, value):
         BaseClass.__init__(self, value)
         self.value += 5
 
@@ -113,21 +113,7 @@ foo = ThisWay(5)
 print("Should be (5 * 2) + 5 = 15. Is", foo.value)
 ```
 
-    TypeError: PlusFive.__init__() takes 1 positional argument but 2 were given
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    Cell In[3], line 24
-         20         TimesTwo.__init__(self, value)
-         21         PlusFive.__init__(self, value)
-    ---> 24 foo = ThisWay(5)
-         25 print("Should be (5 * 2) + 5 = 15. Is", foo.value)
-
-    Cell In[3], line 21, in ThisWay.__init__(self, value)
-         19 def __init__(self, value):
-         20     TimesTwo.__init__(self, value)
-    ---> 21     PlusFive.__init__(self, value)
-
-    TypeError: PlusFive.__init__() takes 1 positional argument but 2 were given
+    Should be (5 * 2) + 5 = 15. Is 10
 
 - The above returns $10$ not $15$, why?
   - The call to the second superclass (`PlusFive`) calls the `BaseClass`
