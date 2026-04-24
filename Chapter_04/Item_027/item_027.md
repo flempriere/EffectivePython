@@ -38,7 +38,7 @@ japan.add("Kyoto")
 print(visits)
 ```
 
-    {'Mexico': {'Tulum', 'Puerto Vallarta'}, 'Japan': {'Kyoto', 'Hakone'}, 'France': {'Arles'}}
+    {'Mexico': {'Puerto Vallarta', 'Tulum'}, 'Japan': {'Kyoto', 'Hakone'}, 'France': {'Arles'}}
 
 - Here the `get` code is clearly longer and less clear
 - One might be tempted to wrap the code above in a class to hide the
