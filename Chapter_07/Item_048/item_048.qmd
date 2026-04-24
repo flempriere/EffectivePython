@@ -42,16 +42,17 @@ increments = [
     ("orange", 9),
 ]
 
+
+def log_missing():
+    print("Key added")
+    return 0
+
+
 result = defaultdict(log_missing, current)
 print("Before:", dict(result))
 for key, amount in increments:
     result[key] += amount
 print("After: ", dict(result))
-
-
-def log_missing():
-    print("Key added")
-    return 0
 ```
 
 - API's that accept functions help separate side effects from deterministic behaviour
@@ -69,7 +70,7 @@ increments = [
 
 
 def increment_with_report(current, increments):
-    added_counts = 0
+    added_count = 0
 
     def missing():
         nonlocal added_count  # Stateful closure
@@ -81,6 +82,7 @@ def increment_with_report(current, increments):
         result[key] += amount
 
     return result, added_count
+
 
 result, current = increment_with_report(current, increments)
 assert count == 2
@@ -111,7 +113,7 @@ counter = CountMissing()
 result = defaultdict(counter.missing, current)  # Method ref
 for key, amount in increments:
     result[key] += amount
-assert counter.amount == 2
+assert counter.added == 2
 ```
 
 - Observe that since functions are first class we can pass the method `missing` to the `defaultdict` rather than the entire class
@@ -166,7 +168,7 @@ counter = BetterCountMissing()
 result = defaultdict(counter, current)  # Relies on __call__
 for key, amount in increments:
     result[key] += amount
-assert counter.missing == 2
+assert counter.added == 2
 ```
 
 - By defining `__call__` we indicate the class with be used in a function-like way

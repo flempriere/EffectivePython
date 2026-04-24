@@ -4,4 +4,223 @@ title: "Item 55: Prefer Public Attributes over Private"
 
 ## Notes
 
+- Python has only two visibility settings for attributes
+    - *Public* or *Private* (more accurately name-mangled and denoted by a leading double underscore `__`)
+- Public attributes can be accessed via the dot (`.`) operator
+- Private fields can be accessed via the methods of the containing class
+    - Attempting to access from outside the class leads to an error
+- Class methods can also access private variables on any instance
+    - Since they exist within the class block
+
+```{python}
+class MyObject:
+    def __init__(self):
+        self.public_field = 5
+        self.__private_field = 10
+
+    def get_private_field(self):
+        return self.__private_field
+
+    @classmethod
+    def get_private_field_of_instance(cls, instance):
+        return instance.__private_field
+
+
+foo = MyObject()
+assert foo.public_field == 5
+
+# access private variable via instance method
+assert foo.get_private_field() == 10
+
+# access private variable via class method
+assert MyObject.get_private_field_of_instance(foo) == 5
+
+# Attempting to directly access private field causes an error
+print(foo.__private_field)
+```
+
+- Subclasses cannot access a parent classes private variables
+
+```{python}
+class ParentClass:
+    def __init__(self):
+        self.__private_field = 10
+
+
+class ChildClass(ParentClass):
+    def get_private_field(self):
+        return self.__private_field
+
+
+baz = ChildClass()
+baz.get_private_field()
+```
+
+- Python implements private variables through *name mangling*
+- This means that the attribute is converted to a different name
+- This has a well-defined scheme, i.e. `__private_field` $ \rightarrow $ `_ParentClass__private_field`
+- When python tries to access a private lookup it performs the name-mangling with the current class and tries to find it
+    -  In our previous example `ChildClass` tries to access the `private_field` and results in looking up `_ChildClass__private_field`
+    - Which doesn't exist
+- Since the scheme is well-defined, if you know the scheme you can access *any* private variable
+    - Even outside the class hierarchy entirely
+    - They can be seen in the class's `__dict__` in their name-mangled form
+        - So we can always also find out out *what* private attributes exist
+
+```{python}
+class ParentClass:
+    def __init__(self):
+        self.__private_field = 10
+
+
+class ChildClass(ParentClass):
+    def get_private_field(self):
+        return self._ParentClass__private_field
+
+
+baz = ChildClass()
+assert baz.get_private_field() == 10
+assert baz._ParentClass__private_field == 10
+
+# showing the private variable in the `__dict__`
+print(baz.__dict__)
+```
+
+- Why no strict private attributes?
+    - Language tries not to prevent you from doing what you want to do
+    - Put's responsibility on the programmer for following any API's, contracts or promises
+    - Idea is to support unplanned extension over strict encapsulation
+- Python also provides dynamic hooks to modify objects
+    - e.g `__getattr__`, `__getattribute__` and `__setattr`
+    - Also able to configure object internals irrespective of the class writer's intent
+    - Undermines value of private attributes
+- Instead of explicit private access, python uses *convention* via the PEP8 style guide (See [Item 2](../../Chapter_01/Item_002/item_002.qmd))
+- fields prefixed by a *single underscore* `_` are *protected* by convention
+    - External users should use caution when using these fields
+- Using private variables to lock down a class via `__` prevents subclassing to add behaviour or fix existing methods
+    - Subclassers can (and will) still access the private attributes, but the implementation becomes verbose and brittle
+
+```{python}
+class MyStringClass:
+    def __init__(self, value):
+        self.__value = value
+
+    def get_value(self):
+        return str(self.__value)
+
+
+foo = MyStringClass(5)
+assert foo.get_value() == "5"
+
+# Subclassing via using the name mangling
+
+
+class MyIntegerSubClass(MyStringClass):
+    def get_value(self):
+        return int(self._MyStringClass__value)
+
+
+bar = MyIntegerSubClass(5)
+assert bar.get_value() == 5
+```
+
+- Since we use the explicit class name, the patch above breaks if the class name changes
+    - Likely to not be picked up by an IDE if we perform a global name change because it's embedded in the variable name
+- For example if `MyStringClass` is made into a subclass and replaced with a `MyBaseClass` superclass
+
+```{python}
+class MyBaseClass:
+    def __init__(self, value):
+        self.__value = value
+
+    def get_value(self):
+        return self.__value
+
+
+# Changed to a subclass
+class MyStringClass(MyBaseClass):
+    def get_value(self):
+        return str(super().get_value())  # Updated to work with new base class
+
+
+# still works
+foo = MyStringClass(5)
+assert foo.get_value() == "5"
+
+
+# Breaks since referencing the old class hierarchy
+class MyIntegerSubClass(MyStringClass):
+    def get_value(self):
+        return int(self._MyStringClass__value)  # Not updated and breaks
+
+
+bar = MyIntegerSubClass(5)
+assert bar.get_value() == 5
+```
+
+- Better to support subclassing to do more via protected attributes
+    - Document protected fields and identify:
+        1. Those that can be modified by subclasses
+        2. Which should not be touched at all
+    - Also helps the class maintainer remember their intent
+
+```{python}
+class MyStringClass:
+    def __init__(self, value):
+        """Stores user-supplied value for the object.
+        Should be coercible to a string. Once assigned
+        to the object it should be treated as immutable
+        """
+        self._value = value  # marked as protected
+```
+
+- Only consider private variables when there is a risk of naming conflicts in subclasses
+    - Occurs if a child class overwrites an attribute defined in the parent class
+
+```{python}
+class APIClass:
+    def __init__(self):
+        self._value = 5
+
+    def get(self):
+        return self._value
+
+class Child(APIClass):
+    def __init__(self):
+        super().__init__()
+        self._value = "hello" # Conflicts with the parent attribute
+
+a = Child()
+print(f"{a.get()} and {a._value} should be different!")
+```
+
+- This scenario arises when classes are part of a public API
+    - Here there is no guarantee on what subclasses might be created
+    - Can't refactor the parent class to avoid the conflict
+- Likely to occur with common names (e.g. `value`, `key` etc.)
+- Can reduce the chance of a clash with private attributes to force name mangling
+
+```{python}
+class APIClass:
+    def __init__(self):
+        self.__value = 5 # mark as private
+
+    def get(self):
+        return self.__value # returns the private variable
+
+class Child(APIClass):
+    def __init__(self):
+        super().__init__()
+        self._value = "hello" # doesn't overwrite the parent class attribute
+
+a = Child()
+print(f"{a.get()} and {a._value} are different")
+assert a.get() != a._value
+```
+
 ## Things to Remember
+
+- Private attributes aren't enforced by the python compiler
+- Support subclassing against internal API's and attributes rather than closing down classes
+- Use documentation to guide the usage of protected fields instead of forcing access controls
+- Only use private variables to avoid naming clashes with subclasses that you don't control

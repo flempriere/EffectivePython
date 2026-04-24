@@ -129,9 +129,9 @@ def _(value):
     print("Float!", value)
 
 
-my_print(20)
-my_print(1.23)
-my_print("string")
+my_print(20)  # int
+my_print(1.23)  # float
+my_print("string")  # no string method, throws an error
 ```
 
 - The registered functions are defined with the name `_` which is the python shorthand for a name that doesn't matter
@@ -329,6 +329,7 @@ def _(node):
 
 
 # Adding new types
+# Derived from the existing hierarchy
 
 
 class PositiveInteger(Integer):
@@ -341,13 +342,15 @@ class PositiveInteger(Integer):
 # method resolution matches existing Integer type
 print(my_pretty(PositiveInteger(1234)))
 
+# New class outside the hierarchy
+
 
 class Float:
     def __init__(self, value):
         self.value = value
 
 
-print(my_pretty(Float(5.678)))
+print(my_pretty(Float(5.678)))  # No method to resolve to
 ```
 
 - Since the "methods" are no longer attached to the class it is no longer clear we have to implement them until we try to use them
