@@ -7,4 +7,427 @@ Generically
 
 ## Notes
 
+- Python allows for both object-instance level polymorphism and
+  class-level polymorphism
+- Multiple classes in a hierarchy can implement the same method
+  - Allows multiple classes to match the same interface while offering
+    different behaviour (See [Item 49](../Item_049/item_049.qmd) and
+    [Item 57](../Item_057/item_057.qmd))
+- For example, writing a map-reduce implementation
+  - Common class represents the input data
+  - We’ll write such a class with a `read` method, `InputData`
+  - Then can provide concrete implementations
+    - For example `PathInputData` which reads the input data from a file
+
+``` python
+class InputData:
+    def read(self):
+        raise NotImplementedError
+
+
+class PathInputData(InputData):
+    def __init__(self, path):
+        super().__init__()
+        self.path = path
+
+    def read(self):
+        with open(self.path) as f:
+            return f.read()
+```
+
+- We could have multiple `InputData` subclasses each implementing the
+  `read` interface differently
+  - e.g. we might have a network or socket reader, a decompressing
+    reader, etc.
+- We then want a similar abstract interface for a map-reduce worker
+  - Here we’ll define a basic abstract interface with `map` and `reduce`
+    methods
+  - Then we’ll provide a concrete implementation `LineCountWorker` which
+    simply counts the number of newlines in a file
+
+``` python
+class Worker:
+    def __init__(self, input_data):
+        self.input_data = input_data
+        self.result = None
+
+    def map(self):
+        raise NotImplementedError
+
+    def reduce(self, other):
+        raise NotImplementedError
+
+
+class LineCountWorker(Worker):
+    def map(self):
+        data = self.input_data.read()
+        self.result = data.count("\n")
+
+    def reduce(self, other):
+        self.result += other.result
+```
+
+- These implementations look good
+- But then we have a design hurdle
+  - *How do we connect these pieces?*
+  - *What component builds the objects and orchestrates the map-reduce?*
+- We could of-course construct this manually
+  - Connect the components via helper functions
+- For example, we’ll map the contents of a directory and construct a
+  `PathInputData` worker for each file
+  - Then create `Worker` for each of the returned `InputData` instances
+  - Last step is to then execute the `Worker` instances
+    - Can fan out via `threading`
+    - Then use `reduce` to combine the results into a final value
+      - Lastly connect it all together into one function to run it all
+
+``` python
+import os
+from threading import Thread
+import random
+
+
+# define our input data interface
+class InputData:
+    def read(self):
+        raise NotImplementedError
+
+
+# concrete implementation
+class PathInputData(InputData):
+    def __init__(self, path):
+        super().__init__()
+        self.path = path
+
+    def read(self):
+        with open(self.path) as f:
+            return f.read()
+
+
+# worker interface
+class Worker:
+    def __init__(self, input_data):
+        self.input_data = input_data
+        self.result = None
+
+    def map(self):
+        raise NotImplementedError
+
+    def reduce(self, other):
+        raise NotImplementedError
+
+
+# worker implementation
+class LineCountWorker(Worker):
+    def map(self):
+        data = self.input_data.read()
+        self.result = data.count("\n")
+
+    def reduce(self, other):
+        self.result += other.result
+
+
+# create the input objects
+def generate_inputs(data_dir):
+    for name in os.listdir(data_dir):
+        yield PathInputData(os.path.join(data_dir, name))
+
+
+# create worker objects
+def create_workers(input_list):
+    workers = []
+    for input_data in input_list:
+        workers.append(LineCountWorker(input_data))
+    return workers
+
+
+# execute the workers
+def execute(workers):
+    threads = [Thread(target=w.map) for w in workers]
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join()
+
+    first, *rest = workers
+    for worker in rest:
+        first.reduce(worker)
+    return first.result
+
+
+# put everything together
+def mapreduce(data_dir):
+    inputs = generate_inputs(data_dir)
+    workers = create_workers(inputs)
+    return execute(workers)
+
+
+# test
+def write_test_files(tmpdir):
+    os.makedirs(tmpdir)
+    for i in range(100):
+        with open(os.path.join(tmpdir, str(i)), "w") as f:
+            f.write("\n" * random.randint(0, 100))
+
+
+def remove_test_files(tmpdir):
+    for i in range(100):
+        os.remove(os.path.join(tmpdir, str(i)))
+    os.removedirs(tmpdir)
+
+
+tmpdir = "test_inputs"
+write_test_files(tmpdir)
+
+result = mapreduce(tmpdir)
+print(f"There are {result} lines")
+
+remove_test_files(tmpdir)
+```
+
+    FileExistsError: [Errno 17] File exists: 'test_inputs'
+    ---------------------------------------------------------------------------
+    FileExistsError                           Traceback (most recent call last)
+    Cell In[3], line 96
+         92     os.removedirs(tmpdir)
+         95 tmpdir = "test_inputs"
+    ---> 96 write_test_files(tmpdir)
+         98 result = mapreduce(tmpdir)
+         99 print(f"There are {result} lines")
+
+    Cell In[3], line 83, in write_test_files(tmpdir)
+         82 def write_test_files(tmpdir):
+    ---> 83     os.makedirs(tmpdir)
+         84     for i in range(100):
+         85         with open(os.path.join(tmpdir, str(i)), "w") as f:
+
+    File <frozen os>:236, in makedirs(name, mode, exist_ok)
+        234         return
+        235 try:
+    --> 236     mkdir(name, mode)
+        237 except OSError:
+        238     # Cannot rely on checking for EEXIST, since the operating system
+        239     # could give priority to other errors like EACCES or EROFS
+        240     if not exist_ok or not path.isdir(name):
+
+    FileExistsError: [Errno 17] File exists: 'test_inputs'
+
+- The problem here is our implementation is now very inflexible
+  - `mapreduce` is very specific to our the exact process we want to
+    follow
+- if we add a new `InputData` or `Worker` subclass we have to rewrite
+  1. `generate_inputs`
+  2. `create_workers`
+  3. `mapreduce`
+- We need a generic way to construct objects
+  - Other languages use *constructor polymorphism*
+  - i.e. each subclass provides a constructor that is consumed by the
+    helper functions orchestrating our map-reduce
+  - Python only lets each subclass provide *one* `__init__`
+    - Not every `InputData` subclass may have a compatible constructor
+- The python solution is to use *class method* polymorphism
+  - Works like instance method polymorphism (like with `InputData.read`)
+    but acts at the class level
+- We can rewrite the map-reduce class hierarchy to use this style of
+  interface
+  - Here `generate_inputs` is a class method that takes a dictionary of
+    configuration parameters and returns new `InputData` instances
+    - The concrete subclass needs to interpret these values
+    - For example we could use the config dictionary to get the
+      directory to list for input files
+  - Then need to make a similar change to our `GenericWorker` to
+    incorporate the `create_workers` functionality as a `classmethod`
+    - Here called `create_workers`
+      - Takes a reference to the class for generating input
+        `input_class` and the `config` for that class
+      - Then generates inputs via the `input_class` `generate_inputs`
+        class method and the `config` parameter
+        - i.e. uses class polymorphism to construct the inputs
+      - Then creates a worker for each generated `input_data` object
+  - The concrete `LineCountWorker` then just needs to be updated to
+    inherit from the new `GenericWorker` interface
+  - Lastly then need to rewrite `mapreduce`
+    - Generic
+    - Takes in the worker class, the input class and the configuration
+      dictionary
+    - Then constructs workers via the worker class’ `create_workers`
+      function
+      - This internally constructs the inputs too
+    - The just call and return `execute` on the workers
+
+``` python
+import os
+
+# Define interface for workers with a generate_inputs class method
+
+
+class GenericInputData:
+    def read(self):
+        raise NotImplementedError
+
+    @classmethod
+    def generate_inputs(cls, config):
+        """
+        Generator expression to yield concrete InputData realisations
+
+        Parameters
+        ----------
+        config: Dict
+            dictionary containing configuration parameters to construct
+            an instance of the class
+
+        Yields
+        ------
+        GenericInputData
+        """
+        raise NotImplementedError
+
+
+class PathInputData(GenericInputData):
+    def __init__(self, path):
+        super().__init__()
+        self.path = path
+
+    def read(self):
+        with open(self.path) as f:
+            return f.read()
+
+    @classmethod
+    def generate_inputs(cls, config):
+        """
+        Generator expression to yield concrete PathInputData realisations
+
+        Parameters
+        ----------
+        config: Dict
+            dictionary containing the key:value "data_dir": directory. Where
+            directory is the path to the directory to generate inputs from
+
+        Yields
+        ------
+        PathInputData
+            yields one PathInputData object configured to read a file for
+            each file in the `data_dir`
+        """
+        data_dir = config[
+            "data_dir"
+        ]  # use the config dictionary to extract the init arguments
+        for name in os.listdir(data_dir):
+            yield cls(
+                os.path.join(data_dir, name)
+            )  # construct an instance of the object (here cls(path) -> PathInputData(path))
+
+
+class GenericWorker:
+    def __init__(self, input_data):
+        self.input_data = input_data
+        self.result = None
+
+    def map(self):
+        raise NotImplementedError
+
+    def reduce(self, other):
+        raise NotImplementedError
+
+    @classmethod
+    def create_workers(cls, input_class, config):
+        """
+        Generate workers to consume input from the provided `input_class`
+
+        Parameters
+        ----------
+        input_class: GenericInputData
+            class to use to generate input
+        config: Dict
+            dictionary containing the required arguments to configure
+            the `input_class` to read input
+
+        Returns
+        -------
+        List[GenericWorker]
+            A list of worker objects configured to work on the input
+            returned by the `input_class`
+        """
+        workers = []
+        for input_data in input_class.generate_inputs(
+            config
+        ):  # construct the input classes via the generator expression
+            workers.append(cls(input_data))  # construct the worker
+        return workers
+
+
+class LineCountWorker(GenericWorker):
+    def map(self):
+        data = self.input_data.read()
+        self.result = data.count("\n")
+
+    def reduce(self, other):
+        self.result += other.result
+
+
+# mapreduce now simply defers to the worker class to construct the pipeline
+def mapreduce(worker_class, input_class, config):
+    workers = worker_class.create_workers(input_class, config)
+    return execute(workers)
+
+
+# testing the implementation
+def write_test_files(tmpdir):
+    os.makedirs(tmpdir)
+    for i in range(100):
+        with open(os.path.join(tmpdir, str(i)), "w") as f:
+            f.write("\n" * random.randint(0, 100))
+
+
+def remove_test_files(tmpdir):
+    for i in range(100):
+        os.remove(os.path.join(tmpdir, str(i)))
+    os.removedirs(tmpdir)
+
+
+tmpdir = "test_inputs"
+write_test_files(tmpdir)
+
+result = mapreduce(tmpdir)
+print(f"There are {result} lines")
+
+remove_test_files(tmpdir)
+```
+
+    FileExistsError: [Errno 17] File exists: 'test_inputs'
+    ---------------------------------------------------------------------------
+    FileExistsError                           Traceback (most recent call last)
+    Cell In[4], line 131
+        127     os.removedirs(tmpdir)
+        130 tmpdir = "test_inputs"
+    --> 131 write_test_files(tmpdir)
+        133 result = mapreduce(tmpdir)
+        134 print(f"There are {result} lines")
+
+    Cell In[4], line 118, in write_test_files(tmpdir)
+        117 def write_test_files(tmpdir):
+    --> 118     os.makedirs(tmpdir)
+        119     for i in range(100):
+        120         with open(os.path.join(tmpdir, str(i)), "w") as f:
+
+    File <frozen os>:236, in makedirs(name, mode, exist_ok)
+        234         return
+        235 try:
+    --> 236     mkdir(name, mode)
+        237 except OSError:
+        238     # Cannot rely on checking for EEXIST, since the operating system
+        239     # could give priority to other errors like EACCES or EROFS
+        240     if not exist_ok or not path.isdir(name):
+
+    FileExistsError: [Errno 17] File exists: 'test_inputs'
+
+- We can thus write new `GenericInputData` and `GenericWorker`
+  subclasses without having to rewrite the glue code
+
 ## Things to Remember
+
+- Python only supports a single constructor per class (via the
+  `__init__` method)
+- Use `@classmethod` to define additional constructor-like interfaces
+- Use class method polymorphism to provide generic ways to build and
+  connect concrete subclasses
