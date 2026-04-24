@@ -61,6 +61,8 @@ print("After: ", dict(result))
     - Here we define a helper function to use the closure as the default value hook
 
 ```{python}
+from collections import defaultdict
+
 current = {"green": 12, "blue": 3}
 increments = [
     ("red", 5),
@@ -84,7 +86,7 @@ def increment_with_report(current, increments):
     return result, added_count
 
 
-result, current = increment_with_report(current, increments)
+result, count = increment_with_report(current, increments)
 assert count == 2
 ```
 
@@ -92,6 +94,8 @@ assert count == 2
     - Could instead encapsulate state in a class
 
 ```{python}
+from collections import defaultdict
+
 current = {"green": 12, "blue": 3}
 increments = [
     ("red", 5),
@@ -147,6 +151,8 @@ assert callable(counter)
 - We can then use this class directly as the `defaultdict` hook
 
 ```{python}
+from collections import defaultdict
+
 current = {"green": 12, "blue": 3}
 increments = [
     ("red", 5),

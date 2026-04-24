@@ -25,7 +25,6 @@ title: "Item 51: Prefer `dataclasses` for Defining Lightweight Classes"
 ```{python}
 class RGB:
     def __init__(self, red, green, blue):
-from contextlib import redirect_stderr
         self.red = red
         self.green = green
         self.blue = blue
@@ -34,8 +33,8 @@ from contextlib import redirect_stderr
         return f"({self.red}, {self.green}, {self.blue})"
 
 
-colour = RGB(255, 0, 0)
-print(colour)
+red = RGB(255, 0, 0)
+print(red)
 ```
 
 - The `__init__` here doesn't perform any special logic
@@ -55,8 +54,8 @@ class BadRGB:
         return f"({self.red}, {self.green}, {self.blue})"
 
 
-colour = BadRGB(255, 0, 0)
-print(colour)
+red = BadRGB(255, 0, 0)
+print(red)
 ```
 
 - `dataclasses` provides the `dataclass` decorator
@@ -74,8 +73,8 @@ class DataclassRGB:
     blue: int
 
 
-colour = DataclassRGB(255, 0, 0)
-print(colour)
+red = DataclassRGB(255, 0, 0)
+print(red)
 ```
 
 - To use the decorator define the data attributes as if they were class attributes
@@ -140,7 +139,7 @@ class DataclassRGB_Any:
     blue: Any
 
 
-colour = DataclassRGB_Any(255, 0, 0)
+colour = DataclassRGB_Any(255, "green", 0)
 print(colour)
 ```
 
@@ -153,7 +152,6 @@ print(colour)
 ```{python}
 class RGB:
     def __init__(self, red, green, blue):
-from contextlib import redirect_stderr
         self.red = red
         self.green = green
         self.blue = blue
@@ -164,7 +162,7 @@ from contextlib import redirect_stderr
 
 red = RGB(255, 0, 0)
 green = RGB(red=0, green=255, blue=0)
-blue = RTB(0, 0, blue=255)
+blue = RGB(0, 0, blue=255)
 
 print(f"Red: {red}\nGreen: {green}\nBlue: {blue}")
 ```
@@ -197,18 +195,20 @@ print(green)
 ```{python}
 from dataclasses import dataclass
 
+
 @dataclass(kw_only=True)
 class DataclassRGB:
     red: int
     green: int
     blue: int
 
+
 # keyword only construction
 red = DataclassRGB(red=255, green=0, blue=0)
 print(red)
 
-# positional construction
-green = DataclassRGB(red=0, green=255, blue=0)
+# positional construction fails
+green = DataclassRGB(0, 255, 0)
 print(green)
 ```
 
@@ -228,7 +228,7 @@ class RGBA:
         self.alpha = alpha
 
     def __str__(self):
-        return f"({red}, {green}, {blue}, alpha={alpha})"
+        return f"({self.red}, {self.green}, {self.blue}, alpha={self.alpha})"
 
 
 red = RGBA(red=255, green=0, blue=0)
@@ -266,10 +266,10 @@ class BadContainer:
 obj1 = BadContainer()
 obj2 = BadContainer()
 obj1.values.append(1)
-print(obj.values)  # We want this to be empty, but it's not!
+print(obj2.values)  # We want this to be empty, but it's not!
 ```
 
-- For standard classes we can use the `None` technique and then constructing the default in the body of the `__init__` (See [Item 36](../../Chapter_05/Item_036/item_036.qmd))
+- For standard classes we can use the `None` technique, instead constructing the default in the body of the `__init__` (See [Item 36](../../Chapter_05/Item_036/item_036.qmd))
 
 ```{python}
 class MyContainer:
@@ -320,7 +320,7 @@ class RGB:
 
 
 red = RGB(red=255, green=0, blue=0)
-print(colour)
+print(red)
 ```
 
 - One can implement either `__repr__` or `__str__` (See [Item 12](../../Chapter_02/Item_012/item_012.qmd))
@@ -397,15 +397,18 @@ print(red._astuple())
 
 red_copy = RGB(*red._astuple())
 print(red_copy)
+
+assert red is not red_copy
 ```
 
 - Again, like `__repr__` this can be hard to write correctly and maintain it
 - Dataclasses provides an `astuple` function out of the box that can be used to convert any `dataclass`-decorated character
 
 ```{python}
-from dataclasses import astuple
+from dataclasses import dataclass, astuple
 
 
+@dataclass
 class DataclassRGB:
     red: int
     green: int
@@ -443,16 +446,19 @@ data = json.dumps(red._asdict())
 print(data)
 
 # using _asdict to create a copy via keyword unpacking
-red_copy = RGB(**red.asdict())
+red_copy = RGB(**red._asdict())
 print(red_copy)
+
+assert red is not red_copy
 ```
 
 - We can get the same behaviour directly with a dataclass via the `asdict` method
 
 ```{python}
-from dataclasses import asdict
+from dataclasses import dataclass, asdict
 
 
+@dataclass
 class DataclassRGB:
     red: int
     green: int
@@ -508,8 +514,8 @@ class RGB:
     def _astuple(self):
         return (self.red, self.green, self.blue)
 
-    def __eq__(self):
-        return type(self) == type(other) and self._astuple() == other._astuple()
+    def __eq__(self, other):
+        return type(self) == type(other) and (self._astuple() == other._astuple())
 
 
 red = RGB(255, 0, 0)
@@ -527,9 +533,10 @@ assert red != green
     - The implementation is a tuple-based comparison
 
 ```{python}
-from dataclasses import asdict
+from dataclasses import dataclass, asdict
 
 
+@dataclass
 class DataclassRGB:
     red: int
     green: int

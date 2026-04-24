@@ -208,10 +208,11 @@ remove_test_files(tmpdir)
 
 ```{python}
 import os
+import random
+from threading import Thread
+
 
 # Define interface for workers with a generate_inputs class method
-
-
 class GenericInputData:
     def read(self):
         raise NotImplementedError
@@ -316,6 +317,20 @@ class LineCountWorker(GenericWorker):
         self.result += other.result
 
 
+# execute the workers - no changes here
+def execute(workers):
+    threads = [Thread(target=w.map) for w in workers]
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join()
+
+    first, *rest = workers
+    for worker in rest:
+        first.reduce(worker)
+    return first.result
+
+
 # mapreduce now simply defers to the worker class to construct the pipeline
 def mapreduce(worker_class, input_class, config):
     workers = worker_class.create_workers(input_class, config)
@@ -339,7 +354,7 @@ def remove_test_files(tmpdir):
 tmpdir = "test_inputs"
 write_test_files(tmpdir)
 
-result = mapreduce(tmpdir)
+result = mapreduce(LineCountWorker, PathInputData, {"data_dir": tmpdir})
 print(f"There are {result} lines")
 
 remove_test_files(tmpdir)
