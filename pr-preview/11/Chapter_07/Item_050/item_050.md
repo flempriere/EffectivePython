@@ -145,9 +145,9 @@ def _(value):
     print("Float!", value)
 
 
-my_print(20)
-my_print(1.23)
-my_print("string")
+my_print(20)  # int
+my_print(1.23)  # float
+my_print("string")  # no string method, throws an error
 ```
 
     Integer! 20
@@ -157,9 +157,9 @@ my_print("string")
     ---------------------------------------------------------------------------
     NotImplementedError                       Traceback (most recent call last)
     Cell In[3], line 21
-         19 my_print(20)
-         20 my_print(1.23)
-    ---> 21 my_print("string")
+         19 my_print(20)  # int
+         20 my_print(1.23)  # float
+    ---> 21 my_print("string")  # no string method, throws an error
 
     File /opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/functools.py:982, in singledispatch.<locals>.wrapper(*args, **kw)
         979 if not args:
@@ -381,6 +381,7 @@ def _(node):
 
 
 # Adding new types
+# Derived from the existing hierarchy
 
 
 class PositiveInteger(Integer):
@@ -393,13 +394,15 @@ class PositiveInteger(Integer):
 # method resolution matches existing Integer type
 print(my_pretty(PositiveInteger(1234)))
 
+# New class outside the hierarchy
+
 
 class Float:
     def __init__(self, value):
         self.value = value
 
 
-print(my_pretty(Float(5.678)))
+print(my_pretty(Float(5.678)))  # No method to resolve to
 ```
 
     1234
@@ -407,10 +410,10 @@ print(my_pretty(Float(5.678)))
     NotImplementedError: 
     ---------------------------------------------------------------------------
     NotImplementedError                       Traceback (most recent call last)
-    Cell In[6], line 83
-         79     def __init__(self, value):
-         80         self.value = value
-    ---> 83 print(my_pretty(Float(5.678)))
+    Cell In[6], line 86
+         82     def __init__(self, value):
+         83         self.value = value
+    ---> 86 print(my_pretty(Float(5.678)))  # No method to resolve to
 
     File /opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/functools.py:982, in singledispatch.<locals>.wrapper(*args, **kw)
         979 if not args:

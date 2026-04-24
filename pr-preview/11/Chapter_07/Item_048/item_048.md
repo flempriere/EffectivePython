@@ -49,33 +49,23 @@ increments = [
     ("orange", 9),
 ]
 
+
+def log_missing():
+    print("Key added")
+    return 0
+
+
 result = defaultdict(log_missing, current)
 print("Before:", dict(result))
 for key, amount in increments:
     result[key] += amount
 print("After: ", dict(result))
-
-
-def log_missing():
-    print("Key added")
-    return 0
 ```
 
-    NameError: name 'log_missing' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[2], line 10
-          3 current = {"green": 12, "blue": 3}
-          4 increments = [
-          5     ("red", 5),
-          6     ("blue", 17),
-          7     ("orange", 9),
-          8 ]
-    ---> 10 result = defaultdict(log_missing, current)
-         11 print("Before:", dict(result))
-         12 for key, amount in increments:
-
-    NameError: name 'log_missing' is not defined
+    Before: {'green': 12, 'blue': 3}
+    Key added
+    Key added
+    After:  {'green': 12, 'blue': 20, 'red': 5, 'orange': 9}
 
 - API’s that accept functions help separate side effects from
   deterministic behaviour
@@ -96,7 +86,7 @@ increments = [
 
 
 def increment_with_report(current, increments):
-    added_counts = 0
+    added_count = 0
 
     def missing():
         nonlocal added_count  # Stateful closure
@@ -109,15 +99,20 @@ def increment_with_report(current, increments):
 
     return result, added_count
 
+
 result, current = increment_with_report(current, increments)
 assert count == 2
 ```
 
-    SyntaxError: no binding for nonlocal 'added_count' found (62518744.py, line 13)
-      Cell In[3], line 13
-        nonlocal added_count  # Stateful closure
-        ^
-    SyntaxError: no binding for nonlocal 'added_count' found
+    NameError: name 'count' is not defined
+    ---------------------------------------------------------------------------
+    NameError                                 Traceback (most recent call last)
+    Cell In[3], line 25
+         21     return result, added_count
+         24 result, current = increment_with_report(current, increments)
+    ---> 25 assert count == 2
+
+    NameError: name 'count' is not defined
 
 - Stateful closures are harder to read than a stateless function
   - Could instead encapsulate state in a class
@@ -144,18 +139,8 @@ counter = CountMissing()
 result = defaultdict(counter.missing, current)  # Method ref
 for key, amount in increments:
     result[key] += amount
-assert counter.amount == 2
+assert counter.added == 2
 ```
-
-    AttributeError: 'CountMissing' object has no attribute 'amount'
-    ---------------------------------------------------------------------------
-    AttributeError                            Traceback (most recent call last)
-    Cell In[4], line 22
-         20 for key, amount in increments:
-         21     result[key] += amount
-    ---> 22 assert counter.amount == 2
-
-    AttributeError: 'CountMissing' object has no attribute 'amount'
 
 - Observe that since functions are first class we can pass the method
   `missing` to the `defaultdict` rather than the entire class
@@ -215,18 +200,8 @@ counter = BetterCountMissing()
 result = defaultdict(counter, current)  # Relies on __call__
 for key, amount in increments:
     result[key] += amount
-assert counter.missing == 2
+assert counter.added == 2
 ```
-
-    AttributeError: 'BetterCountMissing' object has no attribute 'missing'
-    ---------------------------------------------------------------------------
-    AttributeError                            Traceback (most recent call last)
-    Cell In[6], line 22
-         20 for key, amount in increments:
-         21     result[key] += amount
-    ---> 22 assert counter.missing == 2
-
-    AttributeError: 'BetterCountMissing' object has no attribute 'missing'
 
 - By defining `__call__` we indicate the class with be used in a
   function-like way
