@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../Chapter_07/Chapter_07.html" rel="next">
 <link href="../../Chapter_06/Item_046/item_046.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -510,6 +511,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_07/Chapter_07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 7: Classes and Interfaces</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_07/Item_048/item_048.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 48: Accept Functions Instead of Classes for Simple Interfaces</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_07/Item_049/item_049.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 49: Prefer Object-Oriented Polymorphism over Functions with <code>isinstance</code> Checks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_07/Item_050/item_050.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 50: Consider <code>functools.singledispatch</code> for Functional-Style Programming Instead of Object-Oriented Polymorphism</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_07/Item_051/item_051.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 51: Prefer <code>dataclasses</code> for Defining Lightweight Classes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_07/Item_052/item_052.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 52: Use <code>@classmethod</code> Polymorphism to Construct Objects Generically</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_07/Item_053/item_053.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 53: Initialise Parent Classes with <code>super</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_07/Item_054/item_054.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 54: Consider Composing Functionality with Mix-in Classes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_07/Item_055/item_055.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 55: Prefer Public Attributes over Private</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_07/Item_056/item_056.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 56: Prefer <code>dataclasses</code> for Creating Immutable Objects</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_07/Item_057/item_057.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 57: Inherit from <code>Collections.abc</code> Classes for Custom Container Types</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -556,7 +628,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The raise occurs after the output is received</li>
 </ul></li>
 </ul>
-<div id="5116eeb1" class="cell" data-execution_count="1">
+<div id="43385971" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyError(<span class="pp">Exception</span>):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -600,7 +672,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Need to surround the last executed <code>yield</code></li>
 </ul></li>
 </ul>
-<div id="f5152b7d" class="cell" data-execution_count="2">
+<div id="4dff8642" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyError(<span class="pp">Exception</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -632,7 +704,7 @@ Got MyError!
 <li>This is another mechanism for two-way communication with a generator (See <a href="../../Chapter_06/Item_046/item_046.html">item 46</a>)</li>
 <li>For example, we might have a timer program that occasionally needs to be interrupted and reset</li>
 </ul>
-<div id="9bbba466" class="cell" data-execution_count="3">
+<div id="d5195e1c" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Reset(<span class="pp">Exception</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -721,7 +793,7 @@ Resetting
 <li>Override the <code>__bool__</code> dunder method to check if a timer has elapsed</li>
 </ul></li>
 </ul>
-<div id="7206248d" class="cell" data-execution_count="4">
+<div id="b1c1f20c" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Timer:</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, period):</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.current <span class="op">=</span> period</span>
@@ -1224,6 +1296,9 @@ Resetting
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../Chapter_07/Chapter_07.html" class="pagination-link" aria-label="Chapter 7: Classes and Interfaces">
+        <span class="nav-page-text">Chapter 7: Classes and Interfaces</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

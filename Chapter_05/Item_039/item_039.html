@@ -511,6 +511,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_07/Chapter_07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 7: Classes and Interfaces</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_07/Item_048/item_048.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 48: Accept Functions Instead of Classes for Simple Interfaces</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_07/Item_049/item_049.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 49: Prefer Object-Oriented Polymorphism over Functions with <code>isinstance</code> Checks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_07/Item_050/item_050.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 50: Consider <code>functools.singledispatch</code> for Functional-Style Programming Instead of Object-Oriented Polymorphism</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_07/Item_051/item_051.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 51: Prefer <code>dataclasses</code> for Defining Lightweight Classes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_07/Item_052/item_052.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 52: Use <code>@classmethod</code> Polymorphism to Construct Objects Generically</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_07/Item_053/item_053.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 53: Initialise Parent Classes with <code>super</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_07/Item_054/item_054.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 54: Consider Composing Functionality with Mix-in Classes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_07/Item_055/item_055.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 55: Prefer Public Attributes over Private</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_07/Item_056/item_056.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 56: Prefer <code>dataclasses</code> for Creating Immutable Objects</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_07/Item_057/item_057.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 57: Inherit from <code>Collections.abc</code> Classes for Custom Container Types</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -560,7 +631,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>For example, calculating the sum of logarithms of numbers</li>
 </ul>
-<div id="f299b1ef" class="cell" data-execution_count="1">
+<div id="387374ad" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -579,7 +650,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>For example we might have the order of the next value and the running total switched e.g.&nbsp;<code>log_sum(value, log_total): ...</code></li>
 <li>Could define a lambda function to adapt the interface</li>
 </ul>
-<div id="2c3efd24" class="cell" data-execution_count="2">
+<div id="0a33665b" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -599,7 +670,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>If the call is repeated we might instead want to define a helper function</li>
 </ul></li>
 </ul>
-<div id="df94f493" class="cell" data-execution_count="3">
+<div id="d7bcc4d1" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -621,7 +692,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>e.g.&nbsp;our <code>log_sum</code> might let you define the base of the logarithm</li>
 </ul></li>
 </ul>
-<div id="4020e28a" class="cell" data-execution_count="4">
+<div id="f8378b42" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> logn_sum(base, logn_total, value):</span>
@@ -635,7 +706,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>We could do so using a <code>lambda</code> approach</li>
 </ul>
-<div id="3d552a29" class="cell" data-execution_count="5">
+<div id="49700074" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -661,7 +732,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Takes function to partially apply as first argument</li>
 <li>Followed by pinned positional arguments</li>
 </ul>
-<div id="d6f14c92" class="cell" data-execution_count="6">
+<div id="08f50d60" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -680,7 +751,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><code>partial</code> also lets you pin keyword arguments (See <a href="../../Chapter_05/Item_035/item_035.html">item 35</a> and <a href="../../Chapter_05/Item_037/item_037.html">item 37</a>)</li>
 </ul>
-<div id="31d30f49" class="cell" data-execution_count="7">
+<div id="0dd65d06" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -697,7 +768,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>The equivalent <code>lambda</code> expression is complicated</li>
 </ul>
-<div id="ed832164" class="cell" data-execution_count="8">
+<div id="e4b6f82e" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> logn_sum(logn_total, value, <span class="op">*</span>, base<span class="op">=</span><span class="dv">10</span>):</span>
@@ -713,7 +784,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><code>partial</code> lets you inspect which arguments have been supplied already</li>
 </ul>
-<div id="5fa5db0e" class="cell" data-execution_count="9">
+<div id="edab730c" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -726,7 +797,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>log_sum_e <span class="op">=</span> functools.partial(logn_sum, base<span class="op">=</span>math.e)</span>
 <span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(log_sum_e.args, log_sum_e.keywords, log_sum_e.func)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>() {'base': 2.718281828459045} &lt;function logn_sum at 0x7f56a19c3950&gt;</code></pre>
+<pre><code>() {'base': 2.718281828459045} &lt;function logn_sum at 0x7ff05099f950&gt;</code></pre>
 </div>
 </div>
 <ul>

@@ -21,6 +21,7 @@ Effective Python by Brett Slatkin
 - [Chapter 5: Functions](./Chapter_05/Chapter_05.qmd)
 - [Chapter 6: Comprehensions and
   Generators](./Chapter_06/Chapter_06.qmd)
+- [Chapter 7: Classes and Interfaces](./Chapter_07/Chapter_07.qmd)
 
 ## Attribution
 
