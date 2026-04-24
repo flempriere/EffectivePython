@@ -540,7 +540,7 @@ print(charges[point_3])  # fails
 
     1.5
 
-    KeyError: <__main__.Point object at 0x7f1d84205f90>
+    KeyError: <__main__.Point object at 0x7f090c101f90>
     ---------------------------------------------------------------------------
     KeyError                                  Traceback (most recent call last)
     Cell In[13], line 18
@@ -548,7 +548,7 @@ print(charges[point_3])  # fails
          17 point_3 = Point("A", 5, 10)
     ---> 18 print(charges[point_3])  # fails
 
-    KeyError: <__main__.Point object at 0x7f1d84205f90>
+    KeyError: <__main__.Point object at 0x7f090c101f90>
 
 - This occurs because we haven’t defined an `__eq__` method
   - Since `point_1` and `point_3` refer to different memory they are not

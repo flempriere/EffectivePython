@@ -708,7 +708,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Then can define any additional methods that we need</li>
 </ul></li>
 </ul>
-<div id="2016f939" class="cell" data-execution_count="1">
+<div id="c4d91730" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FrequencyList(<span class="bu">list</span>):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, members):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(members)</span>
@@ -737,7 +737,7 @@ Frequency: {'a': 3, 'b': 2, 'c': 1}</code></pre>
 <li>e.g.&nbsp;We might want sequence semantics for a binary tree (So we can take slices for example - See <a href="../../Chapter_02/Item_014/item_014.html">Item 14</a>)</li>
 </ul></li>
 </ul>
-<div id="29d86a6e" class="cell" data-execution_count="2">
+<div id="7e466f5c" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># basic binary tree structure</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BinaryNode:</span>
@@ -750,7 +750,7 @@ Frequency: {'a': 3, 'b': 2, 'c': 1}</code></pre>
 <li>We could make this behave as sequence by manually implementing the sequence dunder methods</li>
 <li>For example, to define access by indexing we have to define <code>__getitem__</code> for example the following are equivalent</li>
 </ul>
-<div id="05f69d29" class="cell" data-execution_count="3">
+<div id="799e4755" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>bar <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># access via the indexing operator</span></span>
@@ -773,7 +773,7 @@ Accesing via the __getitem__ method 1</code></pre>
 <li>e.g.&nbsp;<code>len</code> fails (see below)</li>
 </ul></li>
 </ul>
-<div id="af9734cd" class="cell" data-execution_count="4">
+<div id="100cea9d" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BinaryNode:</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, value, left<span class="op">=</span><span class="va">None</span>, right<span class="op">=</span><span class="va">None</span>):</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.value <span class="op">=</span> value</span>
@@ -840,7 +840,7 @@ Tree is [2, 5, 6, 7, 10, 11, 15]</code></pre>
 <ul>
 <li>To support <code>len</code> the sequence object has to provide the <code>__len__</code> dunder method</li>
 </ul>
-<div id="897dbded" class="cell" data-execution_count="5">
+<div id="e1a2c1b8" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BinaryNode:</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, value, left<span class="op">=</span><span class="va">None</span>, right<span class="op">=</span><span class="va">None</span>):</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.value <span class="op">=</span> value</span>
@@ -912,7 +912,7 @@ Tree is [2, 5, 6, 7, 10, 11, 15]</code></pre>
 <li>When subclassing one of these types forgetting to implement a method will lead to a runtime error</li>
 </ul></li>
 </ul>
-<div id="69a55d22" class="cell" data-execution_count="6">
+<div id="5726ce17" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections.abc <span class="im">import</span> Sequence</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -937,7 +937,7 @@ Tree is [2, 5, 6, 7, 10, 11, 15]</code></pre>
 <ul>
 <li>If we implement the required methods of the abstract class, the additional methods are then provided automatically by the base class</li>
 </ul>
-<div id="50c6baf8" class="cell" data-execution_count="7">
+<div id="bf594adf" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections.abc <span class="im">import</span> Sequence</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
