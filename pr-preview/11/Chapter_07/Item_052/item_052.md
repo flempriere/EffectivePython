@@ -185,32 +185,7 @@ print(f"There are {result} lines")
 remove_test_files(tmpdir)
 ```
 
-    FileExistsError: [Errno 17] File exists: 'test_inputs'
-    ---------------------------------------------------------------------------
-    FileExistsError                           Traceback (most recent call last)
-    Cell In[3], line 96
-         92     os.removedirs(tmpdir)
-         95 tmpdir = "test_inputs"
-    ---> 96 write_test_files(tmpdir)
-         98 result = mapreduce(tmpdir)
-         99 print(f"There are {result} lines")
-
-    Cell In[3], line 83, in write_test_files(tmpdir)
-         82 def write_test_files(tmpdir):
-    ---> 83     os.makedirs(tmpdir)
-         84     for i in range(100):
-         85         with open(os.path.join(tmpdir, str(i)), "w") as f:
-
-    File <frozen os>:236, in makedirs(name, mode, exist_ok)
-        234         return
-        235 try:
-    --> 236     mkdir(name, mode)
-        237 except OSError:
-        238     # Cannot rely on checking for EEXIST, since the operating system
-        239     # could give priority to other errors like EACCES or EROFS
-        240     if not exist_ok or not path.isdir(name):
-
-    FileExistsError: [Errno 17] File exists: 'test_inputs'
+    There are 5146 lines
 
 - The problem here is our implementation is now very inflexible
   - `mapreduce` is very specific to our the exact process we want to
@@ -257,10 +232,11 @@ remove_test_files(tmpdir)
 
 ``` python
 import os
+import random
+from threading import Thread
+
 
 # Define interface for workers with a generate_inputs class method
-
-
 class GenericInputData:
     def read(self):
         raise NotImplementedError
@@ -365,6 +341,20 @@ class LineCountWorker(GenericWorker):
         self.result += other.result
 
 
+# execute the workers - no changes here
+def execute(workers):
+    threads = [Thread(target=w.map) for w in workers]
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join()
+
+    first, *rest = workers
+    for worker in rest:
+        first.reduce(worker)
+    return first.result
+
+
 # mapreduce now simply defers to the worker class to construct the pipeline
 def mapreduce(worker_class, input_class, config):
     workers = worker_class.create_workers(input_class, config)
@@ -388,38 +378,13 @@ def remove_test_files(tmpdir):
 tmpdir = "test_inputs"
 write_test_files(tmpdir)
 
-result = mapreduce(tmpdir)
+result = mapreduce(LineCountWorker, PathInputData, {"data_dir": tmpdir})
 print(f"There are {result} lines")
 
 remove_test_files(tmpdir)
 ```
 
-    FileExistsError: [Errno 17] File exists: 'test_inputs'
-    ---------------------------------------------------------------------------
-    FileExistsError                           Traceback (most recent call last)
-    Cell In[4], line 131
-        127     os.removedirs(tmpdir)
-        130 tmpdir = "test_inputs"
-    --> 131 write_test_files(tmpdir)
-        133 result = mapreduce(tmpdir)
-        134 print(f"There are {result} lines")
-
-    Cell In[4], line 118, in write_test_files(tmpdir)
-        117 def write_test_files(tmpdir):
-    --> 118     os.makedirs(tmpdir)
-        119     for i in range(100):
-        120         with open(os.path.join(tmpdir, str(i)), "w") as f:
-
-    File <frozen os>:236, in makedirs(name, mode, exist_ok)
-        234         return
-        235 try:
-    --> 236     mkdir(name, mode)
-        237 except OSError:
-        238     # Cannot rely on checking for EEXIST, since the operating system
-        239     # could give priority to other errors like EACCES or EROFS
-        240     if not exist_ok or not path.isdir(name):
-
-    FileExistsError: [Errno 17] File exists: 'test_inputs'
+    There are 5467 lines
 
 - We can thus write new `GenericInputData` and `GenericWorker`
   subclasses without having to rewrite the glue code

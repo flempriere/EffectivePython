@@ -44,7 +44,6 @@
 ``` python
 class RGB:
     def __init__(self, red, green, blue):
-from contextlib import redirect_stderr
         self.red = red
         self.green = green
         self.blue = blue
@@ -53,15 +52,11 @@ from contextlib import redirect_stderr
         return f"({self.red}, {self.green}, {self.blue})"
 
 
-colour = RGB(255, 0, 0)
-print(colour)
+red = RGB(255, 0, 0)
+print(red)
 ```
 
-    IndentationError: unindent does not match any outer indentation level (<string>, line 8)
-      File <string>:8
-        def __str__(self):
-                          ^
-    IndentationError: unindent does not match any outer indentation level
+    (255, 0, 0)
 
 - The `__init__` here doesn’t perform any special logic
 - It’s otherwise just verbose, the class variables are referenced three
@@ -81,8 +76,8 @@ class BadRGB:
         return f"({self.red}, {self.green}, {self.blue})"
 
 
-colour = BadRGB(255, 0, 0)
-print(colour)
+red = BadRGB(255, 0, 0)
+print(red)
 ```
 
     AttributeError: 'BadRGB' object has no attribute 'blue'
@@ -90,8 +85,8 @@ print(colour)
     AttributeError                            Traceback (most recent call last)
     Cell In[2], line 14
          10         return f"({self.red}, {self.green}, {self.blue})"
-         13 colour = BadRGB(255, 0, 0)
-    ---> 14 print(colour)
+         13 red = BadRGB(255, 0, 0)
+    ---> 14 print(red)
 
     Cell In[2], line 10, in BadRGB.__str__(self)
           9 def __str__(self):
@@ -114,8 +109,8 @@ class DataclassRGB:
     blue: int
 
 
-colour = DataclassRGB(255, 0, 0)
-print(colour)
+red = DataclassRGB(255, 0, 0)
+print(red)
 ```
 
     DataclassRGB(red=255, green=0, blue=0)
@@ -186,11 +181,11 @@ class DataclassRGB_Any:
     blue: Any
 
 
-colour = DataclassRGB_Any(255, 0, 0)
+colour = DataclassRGB_Any(255, "green", 0)
 print(colour)
 ```
 
-    DataclassRGB_Any(red=255, green=0, blue=0)
+    DataclassRGB_Any(red=255, green='green', blue=0)
 
 ### Requiring Initialisation Arguments to Be Passed by Keyword
 
@@ -203,7 +198,6 @@ print(colour)
 ``` python
 class RGB:
     def __init__(self, red, green, blue):
-from contextlib import redirect_stderr
         self.red = red
         self.green = green
         self.blue = blue
@@ -214,16 +208,14 @@ from contextlib import redirect_stderr
 
 red = RGB(255, 0, 0)
 green = RGB(red=0, green=255, blue=0)
-blue = RTB(0, 0, blue=255)
+blue = RGB(0, 0, blue=255)
 
 print(f"Red: {red}\nGreen: {green}\nBlue: {blue}")
 ```
 
-    IndentationError: unindent does not match any outer indentation level (<string>, line 8)
-      File <string>:8
-        def __str__(self):
-                          ^
-    IndentationError: unindent does not match any outer indentation level
+    Red: (255, 0, 0)
+    Green: (0, 255, 0)
+    Blue: (0, 0, 255)
 
 - Still prone to the issues raised earlier of mixing up the parameters
   in the initializer
@@ -269,23 +261,35 @@ print(green)
 ``` python
 from dataclasses import dataclass
 
+
 @dataclass(kw_only=True)
 class DataclassRGB:
     red: int
     green: int
     blue: int
 
+
 # keyword only construction
 red = DataclassRGB(red=255, green=0, blue=0)
 print(red)
 
-# positional construction
-green = DataclassRGB(red=0, green=255, blue=0)
+# positional construction fails
+green = DataclassRGB(0, 255, 0)
 print(green)
 ```
 
     DataclassRGB(red=255, green=0, blue=0)
-    DataclassRGB(red=0, green=255, blue=0)
+
+    TypeError: DataclassRGB.__init__() takes 1 positional argument but 4 were given
+    ---------------------------------------------------------------------------
+    TypeError                                 Traceback (most recent call last)
+    Cell In[9], line 16
+         13 print(red)
+         15 # positional construction fails
+    ---> 16 green = DataclassRGB(0, 255, 0)
+         17 print(green)
+
+    TypeError: DataclassRGB.__init__() takes 1 positional argument but 4 were given
 
 ### Providing Default Attribute Values
 
@@ -305,36 +309,14 @@ class RGBA:
         self.alpha = alpha
 
     def __str__(self):
-        return f"({red}, {green}, {blue}, alpha={alpha})"
+        return f"({self.red}, {self.green}, {self.blue}, alpha={self.alpha})"
 
 
 red = RGBA(red=255, green=0, blue=0)
 print(red)
 ```
 
-    RecursionError: maximum recursion depth exceeded
-    ---------------------------------------------------------------------------
-    RecursionError                            Traceback (most recent call last)
-    Cell In[10], line 13
-          9         return f"({red}, {green}, {blue}, alpha={alpha})"
-         12 red = RGBA(red=255, green=0, blue=0)
-    ---> 13 print(red)
-
-    Cell In[10], line 9, in RGBA.__str__(self)
-          8 def __str__(self):
-    ----> 9     return f"({red}, {green}, {blue}, alpha={alpha})"
-
-    Cell In[10], line 9, in RGBA.__str__(self)
-          8 def __str__(self):
-    ----> 9     return f"({red}, {green}, {blue}, alpha={alpha})"
-
-        [... skipping similar frames: RGBA.__str__ at line 9 (2975 times)]
-
-    Cell In[10], line 9, in RGBA.__str__(self)
-          8 def __str__(self):
-    ----> 9     return f"({red}, {green}, {blue}, alpha={alpha})"
-
-    RecursionError: maximum recursion depth exceeded
+    (255, 0, 0, alpha=1.0)
 
 - To provide a default value for a dataclass, simply define it in the
   class definition
@@ -373,20 +355,12 @@ class BadContainer:
 obj1 = BadContainer()
 obj2 = BadContainer()
 obj1.values.append(1)
-print(obj.values)  # We want this to be empty, but it's not!
+print(obj2.values)  # We want this to be empty, but it's not!
 ```
 
-    NameError: name 'obj' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[12], line 12
-         10 obj2 = BadContainer()
-         11 obj1.values.append(1)
-    ---> 12 print(obj.values)  # We want this to be empty, but it's not!
+    [1]
 
-    NameError: name 'obj' is not defined
-
-- For standard classes we can use the `None` technique and then
+- For standard classes we can use the `None` technique, instead
   constructing the default in the body of the `__init__` (See [Item
   36](../../Chapter_05/Item_036/item_036.qmd))
 
@@ -443,10 +417,10 @@ class RGB:
 
 
 red = RGB(red=255, green=0, blue=0)
-print(colour)
+print(red)
 ```
 
-    DataclassRGB_Any(red=255, green=0, blue=0)
+    <__main__.RGB object at 0x7f3324620590>
 
 - One can implement either `__repr__` or `__str__` (See [Item
   12](../../Chapter_02/Item_012/item_012.qmd))
@@ -534,6 +508,8 @@ print(red._astuple())
 
 red_copy = RGB(*red._astuple())
 print(red_copy)
+
+assert red is not red_copy
 ```
 
     (255, 0, 0)
@@ -545,9 +521,10 @@ print(red_copy)
   used to convert any `dataclass`-decorated character
 
 ``` python
-from dataclasses import astuple
+from dataclasses import dataclass, astuple
 
 
+@dataclass
 class DataclassRGB:
     red: int
     green: int
@@ -558,16 +535,7 @@ red = DataclassRGB(red=255, green=0, blue=0)
 print(astuple(red))
 ```
 
-    TypeError: DataclassRGB() takes no arguments
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    Cell In[19], line 10
-          6     green: int
-          7     blue: int
-    ---> 10 red = DataclassRGB(red=255, green=0, blue=0)
-         11 print(astuple(red))
-
-    TypeError: DataclassRGB() takes no arguments
+    (255, 0, 0)
 
 ### Converting Objects into Dictionaries
 
@@ -597,30 +565,23 @@ data = json.dumps(red._asdict())
 print(data)
 
 # using _asdict to create a copy via keyword unpacking
-red_copy = RGB(**red.asdict())
+red_copy = RGB(**red._asdict())
 print(red_copy)
+
+assert red is not red_copy
 ```
 
     {"red": 255, "green": 0, "blue": 0}
-
-    AttributeError: 'RGB' object has no attribute 'asdict'
-    ---------------------------------------------------------------------------
-    AttributeError                            Traceback (most recent call last)
-    Cell In[20], line 22
-         19 print(data)
-         21 # using _asdict to create a copy via keyword unpacking
-    ---> 22 red_copy = RGB(**red.asdict())
-         23 print(red_copy)
-
-    AttributeError: 'RGB' object has no attribute 'asdict'
+    (255, 0, 0)
 
 - We can get the same behaviour directly with a dataclass via the
   `asdict` method
 
 ``` python
-from dataclasses import asdict
+from dataclasses import dataclass, asdict
 
 
+@dataclass
 class DataclassRGB:
     red: int
     green: int
@@ -631,16 +592,7 @@ red = DataclassRGB(red=255, green=0, blue=0)
 print(asdict(red))
 ```
 
-    TypeError: DataclassRGB() takes no arguments
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    Cell In[21], line 10
-          6     green: int
-          7     blue: int
-    ---> 10 red = DataclassRGB(red=255, green=0, blue=0)
-         11 print(asdict(red))
-
-    TypeError: DataclassRGB() takes no arguments
+    {'red': 255, 'green': 0, 'blue': 0}
 
 ### Checking Whether Objects are Equivalent
 
@@ -692,8 +644,8 @@ class RGB:
     def _astuple(self):
         return (self.red, self.green, self.blue)
 
-    def __eq__(self):
-        return type(self) == type(other) and self._astuple() == other._astuple()
+    def __eq__(self, other):
+        return type(self) == type(other) and (self._astuple() == other._astuple())
 
 
 red = RGB(255, 0, 0)
@@ -706,25 +658,14 @@ assert red is not red_2
 assert red != green
 ```
 
-    TypeError: RGB.__eq__() takes 1 positional argument but 2 were given
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    Cell In[23], line 21
-         18 red_2 = RGB(255, 0, 0)
-         19 green = RGB(0, 255, 0)
-    ---> 21 assert red == red
-         22 assert red == red_2
-         23 assert red is not red_2
-
-    TypeError: RGB.__eq__() takes 1 positional argument but 2 were given
-
 - For dataclasses a default `__eq__` method is generated automatically
   - The implementation is a tuple-based comparison
 
 ``` python
-from dataclasses import asdict
+from dataclasses import dataclass, asdict
 
 
+@dataclass
 class DataclassRGB:
     red: int
     green: int
@@ -740,18 +681,6 @@ assert red == red_2
 assert red is not red_2
 assert red != green
 ```
-
-    TypeError: DataclassRGB() takes no arguments
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    Cell In[24], line 10
-          6     green: int
-          7     blue: int
-    ---> 10 red = DataclassRGB(255, 0, 0)
-         11 green = DataclassRGB(0, 255, 0)
-         12 red_2 = DataclassRGB(255, 0, 0)
-
-    TypeError: DataclassRGB() takes no arguments
 
 ### Enabling Objects to be Compared
 

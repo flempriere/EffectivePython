@@ -627,7 +627,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The behaviour is not very intuitive</li>
 </ul></li>
 </ul>
-<div id="3d054e81" class="cell" data-execution_count="1">
+<div id="1ed4160c" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Loop"</span>, i)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
@@ -652,7 +652,7 @@ Else block!</code></pre>
 <li>But is skipped if we <code>break</code> out of a loop</li>
 </ul></li>
 </ul>
-<div id="e6c77d08" class="cell" data-execution_count="2">
+<div id="ce6c0a81" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Loop"</span>, i)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">==</span> <span class="dv">1</span>:</span>
@@ -667,7 +667,7 @@ Loop 1</code></pre>
 <ul>
 <li><code>else</code> runs immediately if looping over empty sequence</li>
 </ul>
-<div id="a18ca2c1" class="cell" data-execution_count="3">
+<div id="b278fa06" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> []:</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Never runs"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
@@ -679,7 +679,7 @@ Loop 1</code></pre>
 <ul>
 <li><code>else</code> also runs when loop condition is initially <code>False</code></li>
 </ul>
-<div id="3f2372ff" class="cell" data-execution_count="4">
+<div id="2ad996e4" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">False</span>:</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Never runs"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
@@ -701,7 +701,7 @@ Loop 1</code></pre>
 <li>Otherwise the <code>else</code> informs the user that the result is coprime</li>
 </ul></li>
 </ul>
-<div id="8b90639a" class="cell" data-execution_count="5">
+<div id="136ee9ca" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">4</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">9</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -730,7 +730,7 @@ Coprime</code></pre>
 <li>Return default after falling out of the loop</li>
 </ul></li>
 </ul>
-<div id="a9e124eb" class="cell" data-execution_count="6">
+<div id="8d9510ff" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> coprime(a, b):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="bu">min</span>(a, b) <span class="op">+</span> <span class="dv">1</span>):</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> a <span class="op">%</span> i <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> b <span class="op">%</span> i <span class="op">==</span> <span class="dv">0</span>:</span>
@@ -743,7 +743,7 @@ Coprime</code></pre>
 <ul>
 <li>Approach 2: Use a flag variable at the outer scope</li>
 </ul>
-<div id="601cc841" class="cell" data-execution_count="7">
+<div id="b863ea4b" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> coprime(a, b):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    is_coprime <span class="op">=</span> <span class="va">True</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="bu">min</span>(a, b) <span class="op">+</span> <span class="dv">1</span>):</span>

@@ -36,23 +36,21 @@ assert foo.public_field == 5
 assert foo.get_private_field() == 10
 
 # access private variable via class method
-assert MyObject.get_private_field_of_instance(foo) == 5
+assert MyObject.get_private_field_of_instance(foo) == 10
 
 # Attempting to directly access private field causes an error
 print(foo.__private_field)
 ```
 
-    AssertionError: 
+    AttributeError: 'MyObject' object has no attribute '__private_field'
     ---------------------------------------------------------------------------
-    AssertionError                            Traceback (most recent call last)
-    Cell In[1], line 21
-         18 assert foo.get_private_field() == 10
-         20 # access private variable via class method
-    ---> 21 assert MyObject.get_private_field_of_instance(foo) == 5
+    AttributeError                            Traceback (most recent call last)
+    Cell In[1], line 24
+         21 assert MyObject.get_private_field_of_instance(foo) == 10
          23 # Attempting to directly access private field causes an error
-         24 print(foo.__private_field)
+    ---> 24 print(foo.__private_field)
 
-    AssertionError: 
+    AttributeError: 'MyObject' object has no attribute '__private_field'
 
 - Subclasses cannot access a parent classes private variables
 
