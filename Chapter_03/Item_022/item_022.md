@@ -209,7 +209,7 @@ print(my_set)
     2
     3
     [4, 1, 2, 3]
-    {'yellow', 'green', 'red', 'blue'}
+    {'green', 'red', 'yellow', 'blue'}
 
 - Copying can be slow for large containers
 - Alternative is to stage modifications in a container
