@@ -206,7 +206,6 @@ class BrokenDictionaryRecord:
     def __init__(self, data):
         self._data = data
     def __getattribute__(self, name):
-        print(f"* Called __getattribute__({name!r})")
         return self._data[name]
 
 data = BrokenDictionaryRecord({"foo": 3})
