@@ -707,7 +707,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>We define it using <code>*args</code> and <code>**kwargs</code></li>
 </ul></li>
 </ul>
-<div id="9806a314" class="cell" data-execution_count="1">
+<div id="579b1eba" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> trace(func):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> wrapper(<span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        args_repr <span class="op">=</span> <span class="bu">repr</span>(args)</span>
@@ -720,7 +720,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Can then apply the decorator, using the <code>@</code> symbol</li>
 </ul>
-<div id="219bd6ea" class="cell" data-execution_count="2">
+<div id="dc4f9be5" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> trace(func):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> wrapper(<span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        args_repr <span class="op">=</span> <span class="bu">repr</span>(args)</span>
@@ -782,7 +782,7 @@ fibonacci((4,), {}) -&gt; 3</code></pre>
 <li>e.g.&nbsp;<code>help</code> can no longer look up the correct docstring</li>
 </ul></li>
 </ul>
-<div id="15ef4d23" class="cell" data-execution_count="3">
+<div id="a2b099e7" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> trace(func):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> wrapper(<span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        args_repr <span class="op">=</span> <span class="bu">repr</span>(args)</span>
@@ -815,7 +815,7 @@ fibonacci((4,), {}) -&gt; 3</code></pre>
 <span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fibonacci)</span>
 <span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="bu">help</span>(fibonacci)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;function trace.&lt;locals&gt;.wrapper at 0x7ff836bc3950&gt;
+<pre><code>&lt;function trace.&lt;locals&gt;.wrapper at 0x7f0a14b47a00&gt;
 Help on function wrapper in module __main__:
 
 wrapper(*args, **kwargs)
@@ -825,7 +825,7 @@ wrapper(*args, **kwargs)
 <ul>
 <li>Object serializers also break since they can no longer locate the original function</li>
 </ul>
-<div id="519e26e2" class="cell" data-execution_count="4">
+<div id="fa52f9ba" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> trace(func):</span>
@@ -867,7 +867,7 @@ wrapper(*args, **kwargs)
 <span class="ansi-green-fg">     30</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> fibonacci(n - <span class="ansi-green-fg">2</span>) + fibonacci(n - <span class="ansi-green-fg">1</span>)
 <span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">32</span> <span class="ansi-yellow-bg">pickle</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">dumps</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">fibonacci</span><span class="ansi-yellow-bg">)</span>
 
-<span class="ansi-red-fg">PicklingError</span>: Can't pickle local object &lt;function trace.&lt;locals&gt;.wrapper at 0x7ff836bd4a90&gt;</pre>
+<span class="ansi-red-fg">PicklingError</span>: Can't pickle local object &lt;function trace.&lt;locals&gt;.wrapper at 0x7f0a15eef3d0&gt;</pre>
 </div>
 </div>
 </div>
@@ -877,7 +877,7 @@ wrapper(*args, **kwargs)
 <li>Copies all inner metadata from a wrapped function to the other wrapping function</li>
 <li>For example we can rewrite our <code>trace</code> function</li>
 </ul>
-<div id="74a030b8" class="cell" data-execution_count="5">
+<div id="5096eddf" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> wraps</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>

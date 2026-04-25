@@ -695,7 +695,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>An <code>@property</code> approach is a natural solution here</li>
 </ul></li>
 </ul>
-<div id="8a29335b" class="cell" data-execution_count="1">
+<div id="b70a01e2" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Homework:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._grade <span class="op">=</span> <span class="dv">0</span></span>
@@ -726,7 +726,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol></li>
 <li>We can attempt to implement this in an identical way using properties</li>
 </ul>
-<div id="89821b66" class="cell" data-execution_count="2">
+<div id="a5ab09f9" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Exam:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._writing_grade <span class="op">=</span> <span class="dv">0</span></span>
@@ -787,7 +787,7 @@ Math grade: 90</code></pre>
 </ul></li>
 <li>We can reimplement our <code>Exam</code> class by first defining a <code>Grade</code> class to implement the descriptor protocol</li>
 </ul>
-<div id="93a254a7" class="cell" data-execution_count="3">
+<div id="81fb5f22" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Grade:</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__get__</span>(<span class="va">self</span>, instance, instance_type): ...</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -825,7 +825,7 @@ Math grade: 90</code></pre>
 </ul></li>
 <li>Let us have a first attempt at implementing this descriptor</li>
 </ul>
-<div id="4c327f12" class="cell" data-execution_count="4">
+<div id="8606e801" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Grade:</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._value <span class="op">=</span> <span class="dv">0</span></span>
@@ -875,7 +875,7 @@ First 75 is wrong; should be 82</code></pre>
 <li>Save the per-instance state in a dictionary</li>
 </ul></li>
 </ul>
-<div id="801b31a5" class="cell" data-execution_count="5">
+<div id="9fbb94d6" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DictGrade:</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._values <span class="op">=</span> {}</span>
@@ -937,7 +937,7 @@ First is 82; should be 82</code></pre>
 </ul></li>
 <li>Then have to update <code>__get__</code> and <code>__set__</code> to use this internal name to store and retrieve attribute data</li>
 </ul>
-<div id="20be18f8" class="cell" data-execution_count="6">
+<div id="d3118c39" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NamedGrade:</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__set_name__</span>(<span class="va">self</span>, owner, name):</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.internal_name <span class="op">=</span> <span class="st">"_"</span> <span class="op">+</span> name</span>

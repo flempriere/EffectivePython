@@ -28,7 +28,7 @@
     available
 
 ``` python
-from datetime datetime, timedelta
+from datetime import datetime, timedelta
 
 class Bucket:
     def __init__(self, period):
@@ -40,12 +40,6 @@ class Bucket:
         return f"Bucket(quota={self.quota})"
 ```
 
-    SyntaxError: invalid syntax (5411431.py, line 1)
-      Cell In[1], line 1
-        from datetime datetime, timedelta
-                      ^
-    SyntaxError: invalid syntax
-
 - Leaky-bucket algorithm works as follows
   1.  Each quota period is represented as a bucket
   2.  A bucket is *filled* with available quota, and exists for a period
@@ -56,7 +50,7 @@ class Bucket:
 - We can implement this with the `fill` function
 
 ``` python
-from datetime datetime, timedelta
+from datetime import datetime, timedelta
 
 class Bucket:
     def __init__(self, period):
@@ -74,12 +68,6 @@ def fill(bucket, amount):
         bucket.reset_time = now
     bucket.quota += amount
 ```
-
-    SyntaxError: invalid syntax (3534162668.py, line 1)
-      Cell In[2], line 1
-        from datetime datetime, timedelta
-                      ^
-    SyntaxError: invalid syntax
 
 - Now we have to provide a way for a consumer to utilise quota
   - Must first ensure there is sufficient quota available
