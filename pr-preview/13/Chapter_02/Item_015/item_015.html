@@ -812,7 +812,7 @@ window.Quarto = {
 <li>For example slicing even and odd indices in a list</li>
 </ul></li>
 </ul>
-<div id="a01b176a" class="cell" data-execution_count="1">
+<div id="8236dac3" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="st">"red"</span>, <span class="st">"orange"</span>, <span class="st">"yellow"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span>, <span class="st">"purple"</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>odds <span class="op">=</span> x[::<span class="dv">2</span>] <span class="co"># First, third, fifth</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>evens <span class="op">=</span> x[<span class="dv">1</span>::<span class="dv">2</span>] <span class="co"># Second, fourth, sixth</span></span>
@@ -828,7 +828,7 @@ window.Quarto = {
 <li>The stride syntax can cause unexpected behaviour</li>
 <li>e.g.&nbsp;to reverse a string one normally slices with a stride of <code>-1</code></li>
 </ul>
-<div id="28f2beb1" class="cell" data-execution_count="2">
+<div id="f926996e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="st">b"Mongoose"</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x[::<span class="op">-</span><span class="dv">1</span>]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -843,7 +843,7 @@ window.Quarto = {
 <li>The individual bytes are reversed, no longer valid utf-8, so the decoding fails</li>
 </ul></li>
 </ul>
-<div id="4b966f99" class="cell" data-execution_count="3">
+<div id="e2992b07" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Reversing a unicode string"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="st">"☘️🪉"</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x[::<span class="op">-</span><span class="dv">1</span>]</span>
@@ -901,7 +901,7 @@ Reversing the encoded UTF-8 representation</code></pre>
 </ul></li>
 </ol></li>
 </ul>
-<div id="cc11136d" class="cell" data-execution_count="4">
+<div id="0865f450" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span>, <span class="st">"g"</span>, <span class="st">"h"</span>]</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -931,7 +931,7 @@ x[2:2:-2]: []</code></pre>
 <li>Then slice</li>
 </ol></li>
 </ul>
-<div id="8b30d3b8" class="cell" data-execution_count="5">
+<div id="941db740" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span>, <span class="st">"g"</span>, <span class="st">"h"</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x[::<span class="dv">2</span>] <span class="co"># take every second item</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> y[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>] <span class="co"># take every element from the first, to one from the end</span></span>
