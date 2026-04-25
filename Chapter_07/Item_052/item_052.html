@@ -582,6 +582,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_08/Chapter_08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 8: Metaclasses and Attributes</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_058/item_058.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 58: Use Plain Attributes Instead of Setter and Getter Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_059/item_059.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 59: Consider <code>@property</code> Instead of Refactoring Attributes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_060/item_060.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 60: Use Descriptors for Reusable <code>@property</code> Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_061/item_061.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 61: Use <code>__getattr__</code>, <code>__getattribute__</code>, and <code>__setattr__</code> for Lazy Attributes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_062/item_062.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 62: Validate Subclasses with <code>__init_subclasses__</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_063/item_063.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 63: Register Class Existence with <code>__init_subclass__</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_064/item_064.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 64: Annotate Class Attributes with <code>__set_name__</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_065/item_065.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 65: Consider Class Body Definition Order to Between Relationships Attributes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_066/item_066.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 66: Prefer Class Decorators over Metaclasses for Composable Class Extensions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -637,7 +702,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul></li>
 </ul>
-<div id="dfa12369" class="cell" data-execution_count="1">
+<div id="61504f73" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> InputData:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> read(<span class="va">self</span>):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">NotImplementedError</span></span>
@@ -663,7 +728,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Then we’ll provide a concrete implementation <code>LineCountWorker</code> which simply counts the number of newlines in a file</li>
 </ul></li>
 </ul>
-<div id="83775fb7" class="cell" data-execution_count="2">
+<div id="6fb27ad9" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Worker:</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, input_data):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.input_data <span class="op">=</span> input_data</span>
@@ -708,7 +773,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul></li>
 </ul>
-<div id="a44c683e" class="cell" data-execution_count="3">
+<div id="6989c436" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> threading <span class="im">import</span> Thread</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
@@ -811,7 +876,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>remove_test_files(tmpdir)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>There are 5323 lines</code></pre>
+<pre><code>There are 4870 lines</code></pre>
 </div>
 </div>
 <ul>
@@ -870,7 +935,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul></li>
 </ul>
-<div id="28ded2dd" class="cell" data-execution_count="4">
+<div id="c0753859" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> threading <span class="im">import</span> Thread</span>
@@ -1023,7 +1088,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a>remove_test_files(tmpdir)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>There are 5602 lines</code></pre>
+<pre><code>There are 4943 lines</code></pre>
 </div>
 </div>
 <ul>

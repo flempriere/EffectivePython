@@ -582,6 +582,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_08/Chapter_08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 8: Metaclasses and Attributes</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_058/item_058.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 58: Use Plain Attributes Instead of Setter and Getter Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_059/item_059.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 59: Consider <code>@property</code> Instead of Refactoring Attributes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_060/item_060.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 60: Use Descriptors for Reusable <code>@property</code> Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_061/item_061.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 61: Use <code>__getattr__</code>, <code>__getattribute__</code>, and <code>__setattr__</code> for Lazy Attributes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_062/item_062.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 62: Validate Subclasses with <code>__init_subclasses__</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_063/item_063.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 63: Register Class Existence with <code>__init_subclass__</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_064/item_064.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 64: Annotate Class Attributes with <code>__set_name__</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_065/item_065.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 65: Consider Class Body Definition Order to Between Relationships Attributes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_066/item_066.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 66: Prefer Class Decorators over Metaclasses for Composable Class Extensions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -631,7 +696,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Provide <code>if</code>/<code>elif</code>/<code>else</code> behaviour anywhere we can use an expression</li>
 </ul></li>
 </ul>
-<div id="7e85b39e" class="cell" data-execution_count="1">
+<div id="e3af506b" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="st">"even"</span> <span class="cf">if</span> i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">"odd"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -644,7 +709,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>In python the result of a truthful expression comes first</li>
 <li>For example, here the <code>fail()</code> is never called, because the middle expression <code>False</code> is the one controlling the branch</li>
 </ul>
-<div id="3f1e24dd" class="cell" data-execution_count="2">
+<div id="23710b32" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fail():</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Oops"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -658,7 +723,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>if</code> syntax mimics that for filtering</li>
 <li>Here we can use <code>if</code> to control what values are included in a list comprehension</li>
 </ul>
-<div id="7f7ebd72" class="cell" data-execution_count="3">
+<div id="2d5a2911" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> [x<span class="op">/</span><span class="dv">4</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>) <span class="cf">if</span> x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -669,7 +734,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Observe the format is still <em>result</em> precedes the <em>test</em> condition</li>
 <li>Prior to conditional expressions people would emulate them with <em>boolean expressions</em></li>
 </ul>
-<div id="444e61a2" class="cell" data-execution_count="4">
+<div id="9751ef96" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> (i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> <span class="st">"even"</span>) <span class="kw">or</span> <span class="st">"odd"</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -686,7 +751,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>Doesn’t generalise to when you want a falsey result from a truthy condition, e.g.</li>
 </ul>
-<div id="ebdeba79" class="cell" data-execution_count="5">
+<div id="c709ee85" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> (i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> []) <span class="kw">or</span> [<span class="dv">1</span>]</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -699,7 +764,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Avoid using boolean expressions</p></li>
 <li><p>Can instead use a regular <code>if</code>, <code>else</code> statement</p></li>
 </ul>
-<div id="f71287df" class="cell" data-execution_count="6">
+<div id="1b04e248" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>  i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
@@ -718,7 +783,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>e.g.&nbsp;debugging information</li>
 </ul></li>
 </ul>
-<div id="dcb48790" class="cell" data-execution_count="7">
+<div id="473a122a" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="st">"even"</span></span>
@@ -734,7 +799,7 @@ odd</code></pre>
 <ul>
 <li>Can add additional <code>elif</code> blocks</li>
 </ul>
-<div id="d3d08de6" class="cell" data-execution_count="8">
+<div id="c6afc439" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="st">"even"</span></span>
@@ -753,7 +818,7 @@ odd</code></pre>
 <li>Which can also be reused</li>
 </ul></li>
 </ul>
-<div id="ddbbf450" class="cell" data-execution_count="9">
+<div id="95a6fa55" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> number_group(i):</span>
@@ -784,7 +849,7 @@ odd</code></pre>
 </ul></li>
 <li>For example, we could write</li>
 </ul>
-<div id="5984a3cf" class="cell" data-execution_count="10">
+<div id="c484d711" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="kw">and</span> (z <span class="op">:=</span> x <span class="op">&gt;</span> y):</span>
@@ -796,7 +861,7 @@ odd</code></pre>
 <ul>
 <li>But we get a syntax error if we exclude the parenthesis</li>
 </ul>
-<div id="196106fe" class="cell" data-execution_count="11">
+<div id="1279cfb9" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="kw">and</span> z <span class="op">:=</span> x <span class="op">&gt;</span> y:</span>
@@ -821,7 +886,7 @@ odd</code></pre>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> x <span class="op">&gt;</span> (y <span class="cf">if</span> z <span class="cf">else</span> w): <span class="co"># clear</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li>Assignment expressions also need parentheses inside a function call argument list</li>
 </ul>
-<div id="e0d9810d" class="cell" data-execution_count="12">
+<div id="11636a44" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="bu">dict</span>(your_value<span class="op">=</span>(y <span class="op">:=</span> <span class="dv">1</span>))</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -831,7 +896,7 @@ odd</code></pre>
 <ul>
 <li>Omitting them causes a syntax error</li>
 </ul>
-<div id="a817c2dc" class="cell" data-execution_count="13">
+<div id="004ffe75" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> <span class="bu">dict</span>(other_value <span class="op">=</span> y <span class="op">:=</span> <span class="dv">1</span>)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(w)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
@@ -847,7 +912,7 @@ odd</code></pre>
 <ul>
 <li>Conditional expressions don’t but the longer text may make it harder to read</li>
 </ul>
-<div id="d0f2185f" class="cell" data-execution_count="14">
+<div id="efb0079d" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> <span class="bu">dict</span>(my_value <span class="op">=</span> <span class="dv">1</span> <span class="cf">if</span> x <span class="cf">else</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>

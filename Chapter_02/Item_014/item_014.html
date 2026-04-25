@@ -582,6 +582,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_08/Chapter_08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 8: Metaclasses and Attributes</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_058/item_058.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 58: Use Plain Attributes Instead of Setter and Getter Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_059/item_059.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 59: Consider <code>@property</code> Instead of Refactoring Attributes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_060/item_060.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 60: Use Descriptors for Reusable <code>@property</code> Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_061/item_061.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 61: Use <code>__getattr__</code>, <code>__getattribute__</code>, and <code>__setattr__</code> for Lazy Attributes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_062/item_062.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 62: Validate Subclasses with <code>__init_subclasses__</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_063/item_063.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 63: Register Class Existence with <code>__init_subclass__</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_064/item_064.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 64: Annotate Class Attributes with <code>__set_name__</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_065/item_065.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 65: Consider Class Body Definition Order to Between Relationships Attributes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_066/item_066.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 66: Prefer Class Decorators over Metaclasses for Composable Class Extensions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -632,7 +697,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>end</code> is exclusive</li>
 </ul></li>
 </ul>
-<div id="a30b2417" class="cell" data-execution_count="1">
+<div id="0cbf9f0b" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span>, <span class="st">"g"</span>, <span class="st">"h"</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Middle two:  "</span>, a[<span class="dv">3</span>:<span class="dv">5</span>])</span>
@@ -646,7 +711,7 @@ All but ends:  ['b', 'c', 'd', 'e', 'f', 'g']</code></pre>
 <li>When slicing from the start you can exempt the <code>0</code></li>
 <li>When slicing to the end you should omit the last index (last is assumed by default)</li>
 </ul>
-<div id="b046d0d3" class="cell" data-execution_count="2">
+<div id="98f4b18d" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span>, <span class="st">"g"</span>, <span class="st">"h"</span>]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> a[:<span class="dv">5</span>] <span class="op">==</span> a[<span class="dv">0</span>:<span class="dv">5</span>]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> a[<span class="dv">5</span>:] <span class="op">==</span> a[<span class="dv">5</span>:<span class="bu">len</span>(a)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -657,7 +722,7 @@ All but ends:  ['b', 'c', 'd', 'e', 'f', 'g']</code></pre>
 <li>A python reader should be able to understand all of the following slices</li>
 </ul></li>
 </ul>
-<div id="9cf5fdf8" class="cell" data-execution_count="3">
+<div id="659153fb" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span>, <span class="st">"g"</span>, <span class="st">"h"</span>]</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a[:])</span>
@@ -689,7 +754,7 @@ All but ends:  ['b', 'c', 'd', 'e', 'f', 'g']</code></pre>
 <li>Below restricts a sequence to five elements</li>
 </ul></li>
 </ul>
-<div id="c51f475a" class="cell" data-execution_count="4">
+<div id="54827c31" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span>, <span class="st">"g"</span>, <span class="st">"h"</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> [<span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -713,7 +778,7 @@ Slicing backward
 <ul>
 <li>Accessing an invalid index directly will throw an error</li>
 </ul>
-<div id="5824be4b" class="cell" data-execution_count="5">
+<div id="0f163271" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span>, <span class="st">"g"</span>, <span class="st">"h"</span>]</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a[<span class="dv">20</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
@@ -751,7 +816,7 @@ Note
 </ul></li>
 </ul></li>
 </ul>
-<div id="39d96a0d" class="cell" data-execution_count="6">
+<div id="f023bdc1" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span>, <span class="st">"g"</span>, <span class="st">"h"</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> a[<span class="dv">3</span>:]</span>
@@ -775,7 +840,7 @@ No change:    ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']</code></pre>
 <li>This can result in the list size changing</li>
 </ul></li>
 </ul>
-<div id="31d77de4" class="cell" data-execution_count="7">
+<div id="c73f65d8" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Shrinking a list with a slice"</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span>, <span class="st">"g"</span>, <span class="st">"h"</span>]</span>
@@ -801,7 +866,7 @@ After     ['a', 'b', 47, 11, 'd', 'e', 'f', 'g', 'h']</code></pre>
 <ul>
 <li>You can copy a whole list using <code>[:]</code></li>
 </ul>
-<div id="aecfc0ec" class="cell" data-execution_count="8">
+<div id="8ebb845b" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span>, <span class="st">"g"</span>, <span class="st">"h"</span>]</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> a[:]</span>
@@ -811,7 +876,7 @@ After     ['a', 'b', 47, 11, 'd', 'e', 'f', 'g', 'h']</code></pre>
 <ul>
 <li>Assigning with <code>[:]</code> can be used to replace an entire list</li>
 </ul>
-<div id="afedb07e" class="cell" data-execution_count="9">
+<div id="191822f0" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span>, <span class="st">"g"</span>, <span class="st">"h"</span>]</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Before:  "</span>, a)</span>

@@ -582,6 +582,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_08/Chapter_08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 8: Metaclasses and Attributes</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_058/item_058.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 58: Use Plain Attributes Instead of Setter and Getter Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_059/item_059.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 59: Consider <code>@property</code> Instead of Refactoring Attributes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_060/item_060.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 60: Use Descriptors for Reusable <code>@property</code> Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_061/item_061.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 61: Use <code>__getattr__</code>, <code>__getattribute__</code>, and <code>__setattr__</code> for Lazy Attributes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_062/item_062.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 62: Validate Subclasses with <code>__init_subclasses__</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_063/item_063.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 63: Register Class Existence with <code>__init_subclass__</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_064/item_064.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 64: Annotate Class Attributes with <code>__set_name__</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_065/item_065.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 65: Consider Class Body Definition Order to Between Relationships Attributes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_08/Item_066/item_066.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 66: Prefer Class Decorators over Metaclasses for Composable Class Extensions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -634,7 +699,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Originally designed in C to help with splitting long strings over multiple lines</li>
 </ul></li>
 </ul>
-<div id="4e56026f" class="cell" data-execution_count="1">
+<div id="dc1de60b" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The following are equivalent</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>foo <span class="op">=</span> <span class="st">"hello"</span> <span class="op">+</span> <span class="st">"world"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>bar <span class="op">=</span> <span class="st">"hello"</span> <span class="st">"world"</span></span>
@@ -648,7 +713,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Removing operators reduces noise</li>
 </ul></li>
 </ul>
-<div id="c05bc4ed" class="cell" data-execution_count="2">
+<div id="d6b66ebd" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># concatenation a raw string, f-string and single-quote string</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">1</span></span>
@@ -668,7 +733,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Hard to see where one string ends and the next begins</li>
 </ul></li>
 </ul>
-<div id="cb7fa4e5" class="cell" data-execution_count="3">
+<div id="d102b419" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>bar <span class="op">=</span> <span class="vs">r"fir</span><span class="dv">\s</span><span class="vs">t"</span> <span class="ss">f"</span><span class="sc">{</span>y<span class="sc">}</span><span class="ss">"</span> <span class="st">'"third"'</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(bar)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -683,7 +748,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Or in reverse, eliminating a comma means rather than a tuple or an error you get concatenation</li>
 </ul></li>
 </ul>
-<div id="439574a5" class="cell" data-execution_count="4">
+<div id="7c4737ee" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># accidental tuple instead of concatenation</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>foobar <span class="op">=</span> <span class="vs">r"fir</span><span class="dv">\s</span><span class="vs">t"</span>, <span class="ss">f"</span><span class="sc">{</span>z<span class="sc">}</span><span class="ss">"</span> <span class="st">'"third"'</span></span>
@@ -712,7 +777,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Recall the <a href="../../Chapter_01/Chapter_01.html">Zen of Python</a> <em>Prefer Explicit</em></li>
 </ul></li>
 </ul>
-<div id="1e2ede1e" class="cell" data-execution_count="5">
+<div id="87617cd1" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>foo_list_with_explicit_concatenation <span class="op">=</span> [</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"first line</span><span class="ch">\n</span><span class="st">"</span>,</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"second line</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"third line</span><span class="ch">\n</span><span class="st">"</span>,</span>
@@ -732,7 +797,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>With something like <code>print</code> this might even be more readable if we are passing arguments</li>
 </ul></li>
 </ul>
-<div id="0d75cf97" class="cell" data-execution_count="6">
+<div id="5fc23924" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"this is a long message "</span></span>
@@ -746,7 +811,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>For other calls with multiple positional arguments can lead to errors</li>
 </ul>
-<div id="4b063240" class="cell" data-execution_count="7">
+<div id="4fae4216" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyData:</span>
@@ -790,9 +855,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(value)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>With implicit concatenation
-MyData((123, 'foo', 'my_format_string 1another value 2', 'and here is more text', 'bar'), {'stream': &lt;ipykernel.iostream.OutStream object at 0x7f456f4e9c90&gt;})
+MyData((123, 'foo', 'my_format_string 1another value 2', 'and here is more text', 'bar'), {'stream': &lt;ipykernel.iostream.OutStream object at 0x7f9427a65240&gt;})
 With explicit concatenation
-MyData((123, 'foo', 'my_format string 1another value 2', 'and here is more text', 'bar'), {'stream': &lt;ipykernel.iostream.OutStream object at 0x7f456f4e9c90&gt;})</code></pre>
+MyData((123, 'foo', 'my_format string 1another value 2', 'and here is more text', 'bar'), {'stream': &lt;ipykernel.iostream.OutStream object at 0x7f9427a65240&gt;})</code></pre>
 </div>
 </div>
 <ul>
