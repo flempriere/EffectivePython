@@ -1,6 +1,6 @@
 # Item 74: Consider `ThreadPoolExecutor` When Threads Are Necessary for
-Concurrency
 
+Concurrency
 
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
