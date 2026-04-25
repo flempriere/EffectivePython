@@ -57,10 +57,10 @@ class MySubClass(MyClass):
 
     * Running <class '__main__.Meta'>.__new__ for MyClass
     Bases: ()
-    {'__module__': '__main__', '__qualname__': 'MyClass', '__firstlineno__': 11, 'stuff': 123, 'foo': <function MyClass.foo at 0x7fb7560cba00>, '__static_attributes__': (), '__classdictcell__': <cell at 0x7fb750a90cd0: dict object at 0x7fb7508d7c00>}
+    {'__module__': '__main__', '__qualname__': 'MyClass', '__firstlineno__': 11, 'stuff': 123, 'foo': <function MyClass.foo at 0x7f9918f47a00>, '__static_attributes__': (), '__classdictcell__': <cell at 0x7f991a38fe50: dict object at 0x7f991492bac0>}
     * Running <class '__main__.Meta'>.__new__ for MySubClass
     Bases: (<class '__main__.MyClass'>,)
-    {'__module__': '__main__', '__qualname__': 'MySubClass', '__firstlineno__': 17, 'other': 567, 'bar': <function MySubClass.bar at 0x7fb7560cb8a0>, '__static_attributes__': (), '__classdictcell__': <cell at 0x7fb750a90e50: dict object at 0x7fb7508d7cc0>}
+    {'__module__': '__main__', '__qualname__': 'MySubClass', '__firstlineno__': 17, 'other': 567, 'bar': <function MySubClass.bar at 0x7f9918f478a0>, '__static_attributes__': (), '__classdictcell__': <cell at 0x7f9914914820: dict object at 0x7f991492bb80>}
 
 - Metaclass has access to,
   1.  Itself (`meta`)
@@ -348,7 +348,7 @@ class Filled:
         if cls.colour not in ("red", "green", "blue"):
             raise ValueError("Fills need a valid colour")
 
-class BetterPolygon:
+class Polygon:
     sides = None
 
     def __init_subclass__(cls):
@@ -360,7 +360,7 @@ class BetterPolygon:
     def interior_angles(cls):
         return (cls.sides - 2) * 180
 
-class RedTriangle(Filled, BetterPolygon):
+class RedTriangle(Filled, Polygon):
     colour = "red"
     sides = 3
 
@@ -387,17 +387,10 @@ except ValueError as e:
     print("Failed to define BrownSquare. Got exception", e)
 ```
 
-    AssertionError: 
-    ---------------------------------------------------------------------------
-    AssertionError                            Traceback (most recent call last)
-    Cell In[6], line 27
-         25 ruddy = RedTriangle()
-         26 assert isinstance(ruddy, Filled)
-    ---> 27 assert isinstance(ruddy, Polygon)
-         29 try:
-         30     print("Before specifying class with wrong number of sides")
-
-    AssertionError: 
+    Before specifying class with wrong number of sides
+    After class definition
+    Before specifying class with wrong colour
+    After class definition
 
 - `__init_subclass__` also works when dealing with multiple and diamond
   inheritance structures (See [Item
