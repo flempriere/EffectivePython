@@ -790,7 +790,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Start by defining a descriptor</li>
 </ul></li>
 </ul>
-<div id="551f4f04" class="cell" data-execution_count="1">
+<div id="db44d8e8" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Field:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, column_name):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.column_name <span class="op">=</span> column_name</span>
@@ -812,7 +812,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The class has to supply the row names</li>
 </ul></li>
 </ul>
-<div id="6f9ed10a" class="cell" data-execution_count="2">
+<div id="6266ca02" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Field:</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, column_name):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.column_name <span class="op">=</span> column_name</span>
@@ -871,7 +871,7 @@ After: 'Euclid' {'_first_name': 'Euclid'}</code></pre>
 </ul></li>
 <li><code>Customer</code> now no longer needs to define the <code>Field</code> names</li>
 </ul>
-<div id="6358023f" class="cell" data-execution_count="3">
+<div id="6728514c" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Meta(<span class="bu">type</span>):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__new__</span>(meta, name, bases, class_dict):</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> key, value <span class="kw">in</span> class_dict.items():</span>
@@ -917,7 +917,7 @@ After: 'Euclid' {'_first_name': 'Euclid'}</code></pre>
 <li>This approach couples the <code>Field</code> implementation to <code>DatabaseRow</code> (or actually the metaclass)</li>
 <li><code>Field</code> breaks if the metaclass doesn’t exist to properly set it’s values</li>
 </ul>
-<div id="a37d4e11" class="cell" data-execution_count="4">
+<div id="2db3d4e7" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># attempting to use field with the metaclass derivation</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Field:</span>
@@ -972,7 +972,7 @@ After: 'Euclid' {'_first_name': 'Euclid'}</code></pre>
 </ul></li>
 <li>This let’s us avoid the need for a metaclass entirely</li>
 </ul>
-<div id="9656a01e" class="cell" data-execution_count="5">
+<div id="ed1370e7" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># attempting to use field with the metaclass derivation</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Field:</span>
