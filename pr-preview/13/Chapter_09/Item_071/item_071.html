@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -71,6 +106,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <meta property="og:title" content="Item 71: Know How to Recognise When Concurrency Is Necessary – Effective Python: Notes">
 <meta property="og:site_name" content="Effective Python: Notes">
@@ -740,9 +804,470 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li>When scope grows so does program complexity</li>
+<li>The hard part of software development is expanding requirements while maintaining
+<ol type="1">
+<li>clarity</li>
+<li>testable</li>
+<li>efficiency</li>
+</ol></li>
+<li>Moving from single-threaded to multi-threaded can be one of the most challenging design decisions</li>
+<li>A classic example is <a href="https://conwaylife.com/">Conway’s Game of Life</a></li>
+<li>The rules are
+<ul>
+<li><p>The game is represented as an arbitrary <span class="math inline">\(2D\)</span> grid</p></li>
+<li><p>Each cell is either alive or dead</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  ALIVE <span class="op">=</span> <span class="st">"*"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  EMPTY <span class="op">=</span> <span class="st">"-"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Every tick a cell counts it’s neighbours and updates based on the following rules</p>
+<ol type="1">
+<li>If a cell has than two neighbours it dies</li>
+<li>If a cell has more than three neighbours it dies</li>
+<li>If a cell is empty and has three neighbours it becomes alive</li>
+</ol></li>
+</ul></li>
+<li>A <span class="math inline">\(5 \times 5\)</span> board state might look like below
+<ul>
+<li>Over five generations</li>
+</ul></li>
+</ul>
+<pre class="{text}"><code>  0  |  1  |  2  |  3  |  4  |
+_____|_____|_____|_____|_____|
+-----|-----|-----|-----|-----|
+-*---|--*--|--**-|--*--|-----|
+--*--|--**-|-*---|-*---|-**--|
+---*-|--**-|--**-|--*--|-----|
+-----|-----|-----|-----|-----|</code></pre>
+<ul>
+<li>We’ll represent cell states with a simple <code>Grid</code> container class
+<ul>
+<li>Class has methods to set and get the state of any cell</li>
+</ul></li>
+<li>We’ll use a cylindrical topology
+<ul>
+<li>This means that the grid wraps around e.g.
+<ul>
+<li><span class="math inline">\(\left(6, 0\right)  \rightarrow \left(1, 0\right)\)</span></li>
+<li><span class="math inline">\(\left(1, 8\right) \rightarrow \left(1, 3\right)\)</span></li>
+</ul></li>
+</ul></li>
+</ul>
+<div id="41d94741" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ALIVE <span class="op">=</span> <span class="st">"*"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>EMPTY <span class="op">=</span> <span class="st">"-"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Grid:</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, width, height):</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.height <span class="op">=</span> height</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.width <span class="op">=</span> width</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.rows <span class="op">=</span> []</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.height):</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.rows.append([EMPTY] <span class="op">*</span> <span class="va">self</span>.width)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get(<span class="va">self</span>, x, y):</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.rows[y <span class="op">%</span> <span class="va">self</span>.height][x <span class="op">%</span> <span class="va">self</span>.width]</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="bu">set</span>(<span class="va">self</span>, x, y, state):</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.rows[y <span class="op">%</span> <span class="va">self</span>.height][x <span class="op">%</span> <span class="va">self</span>.width] <span class="op">=</span> state</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join([<span class="st">""</span>.join(row) <span class="cf">for</span> row <span class="kw">in</span> <span class="va">self</span>.rows])</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> output</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> Grid(<span class="dv">9</span>, <span class="dv">5</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>grid.<span class="bu">set</span>(<span class="dv">3</span>, <span class="dv">0</span>, ALIVE)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>grid.<span class="bu">set</span>(<span class="dv">4</span>, <span class="dv">1</span>, ALIVE)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>grid.<span class="bu">set</span>(<span class="dv">2</span>, <span class="dv">2</span>, ALIVE)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>grid.<span class="bu">set</span>(<span class="dv">3</span>, <span class="dv">2</span>, ALIVE)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>grid.<span class="bu">set</span>(<span class="dv">4</span>, <span class="dv">2</span>, ALIVE)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grid)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>---*-----
+----*----
+--***----
+---------
+---------</code></pre>
+</div>
+</div>
+<ul>
+<li>The shape above is a classic shape called a <em>glider</em></li>
+<li>Now to determine the next state we need to determine the state of neighbouring cells
+<ul>
+<li>This can be done by adding a helper function</li>
+<li>given a specified grid coordinate, queries the surrounding cells</li>
+<li>To reduce coupling to the <code>Grid</code> class we implement a function interface <code>get_cell</code> parameter (See <a href="../../Chapter_07/Item_048/item_048.html">Item 48</a>)</li>
+</ul></li>
+</ul>
+<div id="7fa7da01" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ALIVE <span class="op">=</span> <span class="st">"*"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>EMPTY <span class="op">=</span> <span class="st">"-"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> count_neighbours(x, y, get_cell):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> get_cell(x, y <span class="op">-</span> <span class="dv">1</span>)  <span class="co"># grid is index x increases left, y increases down</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    ne <span class="op">=</span> get_cell(x <span class="op">+</span> <span class="dv">1</span>, y <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    e <span class="op">=</span> get_cell(x <span class="op">+</span> <span class="dv">1</span>, y)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    se <span class="op">=</span> get_cell(x <span class="op">+</span> <span class="dv">1</span>, y <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> get_cell(x, y <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    sw <span class="op">=</span> get_cell(x <span class="op">-</span> <span class="dv">1</span>, y <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> get_cell(x <span class="op">-</span> <span class="dv">1</span>, y)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    nw <span class="op">=</span> get_cell(x <span class="op">-</span> <span class="dv">1</span>, y <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    neighbour_states <span class="op">=</span> [n, ne, e, se, s, sw, w, nw]</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="bu">sum</span>([cell <span class="op">==</span> ALIVE <span class="cf">for</span> cell <span class="kw">in</span> neighbour_states])</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> count</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrator function</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_cell(x, y):</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    grid <span class="op">=</span> [[ALIVE, EMPTY, ALIVE], [EMPTY, EMPTY, EMPTY], [EMPTY, ALIVE, EMPTY]]</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grid[y][x]</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> count_neighbours(<span class="dv">1</span>, <span class="dv">1</span>, get_cell) <span class="op">==</span> <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Now need to implement the game logic of the rules listed above</li>
+</ul>
+<div id="3cbd4730" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ALIVE <span class="op">=</span> <span class="st">"*"</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>EMPTY <span class="op">=</span> <span class="st">"-"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> game_logic(state, neighbours):</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> state <span class="op">==</span> ALIVE:</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> neighbours <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> EMPTY  <span class="co"># Die: Too few</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> neighbours <span class="op">&gt;</span> <span class="dv">3</span>:</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> EMPTY  <span class="co"># Die: Too many</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> neighbours <span class="op">==</span> <span class="dv">3</span>:</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> ALIVE  <span class="co"># Regenerate</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> state</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Test</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>transition_if_alive_and_n_neighbours <span class="op">=</span> [</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    EMPTY,  <span class="co"># 0</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    EMPTY,  <span class="co"># 1</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    ALIVE,  <span class="co"># 2</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    ALIVE,  <span class="co"># 3</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    EMPTY,  <span class="co"># 4</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    EMPTY,  <span class="co"># 5</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    EMPTY,  <span class="co"># 6</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    EMPTY,  <span class="co"># 7</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    EMPTY,  <span class="co"># 8</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>transition_if_empty_and_n_neighbours <span class="op">=</span> [</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    EMPTY,  <span class="co"># 0</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    EMPTY,  <span class="co"># 1</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    EMPTY,  <span class="co"># 2</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    ALIVE,  <span class="co"># 3</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    EMPTY,  <span class="co"># 4</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    EMPTY,  <span class="co"># 5</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    EMPTY,  <span class="co"># 6</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    EMPTY,  <span class="co"># 7</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    EMPTY,  <span class="co"># 8</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n_neighbours, (alive_result, empty_result) <span class="kw">in</span> <span class="bu">enumerate</span>(</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    <span class="bu">zip</span>(transition_if_alive_and_n_neighbours, transition_if_empty_and_n_neighbours)</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> game_logic(ALIVE, n_neighbours) <span class="op">==</span> alive_result</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> game_logic(EMPTY, n_neighbours) <span class="op">==</span> empty_result</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Then need to connect <code>game_logic</code> and <code>count_neighbours</code></li>
+<li>Can do this with function that manages the state transition for each cell
+<ul>
+<li>Function is called each generation</li>
+<li>Determines the cell’s current state</li>
+<li>Calculates the cell’s next state from neighbouring cells</li>
+<li>Updates grid to the new state</li>
+</ul></li>
+<li>We want to keep the state changes decoupled from the <code>Grid</code> representation
+<ul>
+<li>So we’ll accept a <code>set_cell</code> function handle rather than a <code>Grid</code> instance</li>
+<li>As seen above this let’s us easily mock a test implementation</li>
+</ul></li>
+</ul>
+<div id="ab5a238a" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ALIVE <span class="op">=</span> <span class="st">"*"</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>EMPTY <span class="op">=</span> <span class="st">"-"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> step_cell(x, y, get_cell, set_cell):</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    state <span class="op">=</span> get_cell(x, y)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    neighbours <span class="op">=</span> count_neighbours(x, y, get_cell)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    next_state <span class="op">=</span> game_logic(state, neighbours)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    set_cell(x, y, next_state)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining functions and data for testing</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># simple representation for testing</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># *-* -&gt; ***</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># --- -&gt; ***</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># -*- -&gt; ***</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># empty cells have 3 neighbours, non-empty cells have two neighbours</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> [[ALIVE, EMPTY, ALIVE], [EMPTY, EMPTY, EMPTY], [EMPTY, ALIVE, EMPTY]]</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> game_logic(state, neighbours):</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> state <span class="op">==</span> ALIVE:</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> neighbours <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> EMPTY  <span class="co"># Die: Too few</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> neighbours <span class="op">&gt;</span> <span class="dv">3</span>:</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> EMPTY  <span class="co"># Die: Too many</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> neighbours <span class="op">==</span> <span class="dv">3</span>:</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> ALIVE  <span class="co"># Regenerate</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> state</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> count_neighbours(x, y, get_cell):</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> get_cell(x, y <span class="op">-</span> <span class="dv">1</span>)  <span class="co"># grid is index x increases left, y increases down</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>    ne <span class="op">=</span> get_cell(x <span class="op">+</span> <span class="dv">1</span>, y <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    e <span class="op">=</span> get_cell(x <span class="op">+</span> <span class="dv">1</span>, y)</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    se <span class="op">=</span> get_cell(x <span class="op">+</span> <span class="dv">1</span>, y <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> get_cell(x, y <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    sw <span class="op">=</span> get_cell(x <span class="op">-</span> <span class="dv">1</span>, y <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> get_cell(x <span class="op">-</span> <span class="dv">1</span>, y)</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>    nw <span class="op">=</span> get_cell(x <span class="op">-</span> <span class="dv">1</span>, y <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>    neighbour_states <span class="op">=</span> [n, ne, e, se, s, sw, w, nw]</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="bu">sum</span>([cell <span class="op">==</span> ALIVE <span class="cf">for</span> cell <span class="kw">in</span> neighbour_states])</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> count</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_cell(x, y):</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grid[y <span class="op">%</span> <span class="bu">len</span>(grid)][x <span class="op">%</span> <span class="bu">len</span>(grid[<span class="dv">0</span>])]</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>out_grid <span class="op">=</span> [[EMPTY <span class="cf">for</span> cell <span class="kw">in</span> row] <span class="cf">for</span> row <span class="kw">in</span> grid]  <span class="co"># make copy</span></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> set_cell(x, y, state):</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>    out_grid[y <span class="op">%</span> <span class="bu">len</span>(grid)][x <span class="op">%</span> <span class="bu">len</span>(grid[<span class="dv">0</span>])] <span class="op">=</span> state</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Running the test</span></span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>expected_grid <span class="op">=</span> [[ALIVE, ALIVE, ALIVE], [ALIVE, ALIVE, ALIVE], [ALIVE, ALIVE, ALIVE]]</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y, row <span class="kw">in</span> <span class="bu">enumerate</span>(grid):</span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x, result <span class="kw">in</span> <span class="bu">enumerate</span>(row):</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>        step_cell(x, y, get_cell, set_cell)</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> out_grid[y][x] <span class="op">==</span> expected_grid[y][x]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Last step is to define a wrapper function that performs the state update for all cells in a grid</li>
+<li>We don’t want to inplace mutate the grid because we need to count the neighbours
+<ul>
+<li>If we update a cell in place that may change the count for subsequent neighbouring cells</li>
+<li>So we’ll return a new grid representing the state at the next timestep (See <a href="../../Chapter_07/Item_056/item_056.html">Item 56</a> for a discussion on immutability)</li>
+</ul></li>
+<li>The dependent functions will use the <code>get_cell</code> on the original grid and the <code>set_cell</code> on the new grid
+<ul>
+<li>This is easy due to our interfaces</li>
+</ul></li>
+<li>We’ll also define a simple class <code>ColumnFilter</code>
+<ul>
+<li>Simply runs the game of life for <span class="math inline">\(n\)</span> generations then prints each generation as a column</li>
+</ul></li>
+</ul>
+<div id="810d76e0" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ALIVE <span class="op">=</span> <span class="st">"*"</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>EMPTY <span class="op">=</span> <span class="st">"-"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulate(grid):</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    next_grid <span class="op">=</span> Grid(grid.width, grid.height)  <span class="co"># create a new instance of next grid</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> y <span class="kw">in</span> <span class="bu">range</span>(grid.height):</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(grid.width):</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>            step_cell(x, y, grid.get, next_grid.<span class="bu">set</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> next_grid</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Our already defined interface</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Grid:</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, width, height):</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.height <span class="op">=</span> height</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.width <span class="op">=</span> width</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.rows <span class="op">=</span> [[EMPTY] <span class="op">*</span> <span class="va">self</span>.width <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.height)]</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get(<span class="va">self</span>, x, y):</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.rows[y <span class="op">%</span> <span class="va">self</span>.height][x <span class="op">%</span> <span class="va">self</span>.width]</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="bu">set</span>(<span class="va">self</span>, x, y, state):</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.rows[y <span class="op">%</span> <span class="va">self</span>.height][x <span class="op">%</span> <span class="va">self</span>.width] <span class="op">=</span> state</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join([<span class="st">""</span>.join(row) <span class="cf">for</span> row <span class="kw">in</span> <span class="va">self</span>.rows])</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> output</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> count_neighbours(x, y, get_cell):</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> get_cell(x, y <span class="op">-</span> <span class="dv">1</span>)  <span class="co"># grid is index x increases left, y increases down</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    ne <span class="op">=</span> get_cell(x <span class="op">+</span> <span class="dv">1</span>, y <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    e <span class="op">=</span> get_cell(x <span class="op">+</span> <span class="dv">1</span>, y)</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    se <span class="op">=</span> get_cell(x <span class="op">+</span> <span class="dv">1</span>, y <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> get_cell(x, y <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    sw <span class="op">=</span> get_cell(x <span class="op">-</span> <span class="dv">1</span>, y <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> get_cell(x <span class="op">-</span> <span class="dv">1</span>, y)</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    nw <span class="op">=</span> get_cell(x <span class="op">-</span> <span class="dv">1</span>, y <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>    neighbour_states <span class="op">=</span> [n, ne, e, se, s, sw, w, nw]</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="bu">sum</span>([cell <span class="op">==</span> ALIVE <span class="cf">for</span> cell <span class="kw">in</span> neighbour_states])</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> count</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> game_logic(state, neighbours):</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> state <span class="op">==</span> ALIVE:</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> neighbours <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> EMPTY  <span class="co"># Die: Too few</span></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> neighbours <span class="op">&gt;</span> <span class="dv">3</span>:</span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> EMPTY  <span class="co"># Die: Too many</span></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> neighbours <span class="op">==</span> <span class="dv">3</span>:</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> ALIVE  <span class="co"># Regenerate</span></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> state</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> step_cell(x, y, get_cell, set_cell):</span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>    state <span class="op">=</span> get_cell(x, y)</span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>    neighbours <span class="op">=</span> count_neighbours(x, y, get_cell)</span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>    next_state <span class="op">=</span> game_logic(state, neighbours)</span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>    set_cell(x, y, next_state)</span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Running the program</span></span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ColumnPrinter:</span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.columns <span class="op">=</span> []</span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> append(<span class="va">self</span>, data):</span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.columns.append(data)</span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>        row_count <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> data <span class="kw">in</span> <span class="va">self</span>.columns:</span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a>            row_count <span class="op">=</span> <span class="bu">max</span>(row_count, <span class="bu">len</span>(data.splitlines()) <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>        rows <span class="op">=</span> [<span class="st">""</span>] <span class="op">*</span> row_count</span>
+<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(row_count):</span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i, data <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="va">self</span>.columns):</span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a>                line <span class="op">=</span> data.splitlines()[<span class="bu">max</span>(<span class="dv">0</span>, j <span class="op">-</span> <span class="dv">1</span>)]</span>
+<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> j <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a>                    padding <span class="op">=</span> <span class="st">" "</span> <span class="op">*</span> (<span class="bu">len</span>(line) <span class="op">//</span> <span class="dv">2</span>)</span>
+<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a>                    rows[j] <span class="op">+=</span> padding <span class="op">+</span> <span class="bu">str</span>(i) <span class="op">+</span> padding</span>
+<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a>                <span class="cf">else</span>:</span>
+<span id="cb8-91"><a href="#cb8-91" aria-hidden="true" tabindex="-1"></a>                    rows[j] <span class="op">+=</span> line</span>
+<span id="cb8-92"><a href="#cb8-92" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> (i <span class="op">+</span> <span class="dv">1</span>) <span class="op">&lt;</span> <span class="bu">len</span>(<span class="va">self</span>.columns):</span>
+<span id="cb8-93"><a href="#cb8-93" aria-hidden="true" tabindex="-1"></a>                    rows[j] <span class="op">+=</span> <span class="st">" | "</span></span>
+<span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(rows)</span>
+<span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-96"><a href="#cb8-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-97"><a href="#cb8-97" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> Grid(<span class="dv">9</span>, <span class="dv">5</span>)</span>
+<span id="cb8-98"><a href="#cb8-98" aria-hidden="true" tabindex="-1"></a>grid.<span class="bu">set</span>(<span class="dv">3</span>, <span class="dv">0</span>, ALIVE)</span>
+<span id="cb8-99"><a href="#cb8-99" aria-hidden="true" tabindex="-1"></a>grid.<span class="bu">set</span>(<span class="dv">4</span>, <span class="dv">1</span>, ALIVE)</span>
+<span id="cb8-100"><a href="#cb8-100" aria-hidden="true" tabindex="-1"></a>grid.<span class="bu">set</span>(<span class="dv">2</span>, <span class="dv">2</span>, ALIVE)</span>
+<span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a>grid.<span class="bu">set</span>(<span class="dv">3</span>, <span class="dv">2</span>, ALIVE)</span>
+<span id="cb8-102"><a href="#cb8-102" aria-hidden="true" tabindex="-1"></a>grid.<span class="bu">set</span>(<span class="dv">4</span>, <span class="dv">2</span>, ALIVE)</span>
+<span id="cb8-103"><a href="#cb8-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-104"><a href="#cb8-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-105"><a href="#cb8-105" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> ColumnPrinter()</span>
+<span id="cb8-106"><a href="#cb8-106" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb8-107"><a href="#cb8-107" aria-hidden="true" tabindex="-1"></a>    columns.append(<span class="bu">str</span>(grid))</span>
+<span id="cb8-108"><a href="#cb8-108" aria-hidden="true" tabindex="-1"></a>    grid <span class="op">=</span> simulate(grid)</span>
+<span id="cb8-109"><a href="#cb8-109" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(columns)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    0     |     1     |     2     |     3     |     4    
+---*----- | --------- | --------- | --------- | ---------
+----*---- | --*-*---- | ----*---- | ---*----- | ----*----
+--***---- | ---**---- | --*-*---- | ----**--- | -----*---
+--------- | ---*----- | ---**---- | ---**---- | ---***---
+--------- | --------- | --------- | --------- | ---------</code></pre>
+</div>
+</div>
+<ul>
+<li>Works great as a single-process, single-threaded program</li>
+<li>What if we want to scale up or distribute this program?
+<ul>
+<li>E.g. We might receive the game state over a network socket e.g.&nbsp;in <code>game_logic</code></li>
+</ul></li>
+<li>This has broader applicability outside of this general example
+<ul>
+<li>For example, if we have a multiplayer game a central server might track and update state</li>
+<li>Player’s send “moves” or actions that change their state over the network socket</li>
+<li>Server then updates and sends back the state</li>
+</ul></li>
+<li>The straightforward refactor is to add the blocking I/O into <code>game_logic</code></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> socket</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> game_logic(state, neighbours):</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Do some blocking input/output</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    my_socket <span class="op">=</span> socket()</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> my_socket.recv(<span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>This approach results in a slow-down for the entire program</li>
+<li>Estimates for internet round-trip latency is around <span class="math inline">\(100 \text{ms}\)</span>
+<ul>
+<li>Means for a <span class="math inline">\(5 \times 5\)</span> grid might take <span class="math inline">\(5 \text{s}\)</span> to evaluate</li>
+<li>Each cell is processed sequentially</li>
+<li>Clearly does not scale to larger grids (e.g.&nbsp;<span class="math inline">\(10,000 \text{cells} \approx 17 \text{minutes}\)</span>)</li>
+</ul></li>
+<li>We’ve seen that we can do blocking I/O concurrently via,
+<ol type="1">
+<li>Processes (See <a href="../../Chapter_09/Item_067/item_067.html">Item 67</a>) or preferably,</li>
+<li>Threads (See <a href="../../Chapter_09/Item_068/item_068.html">Item 68</a>)</li>
+</ol></li>
+<li>In general we’ll aim to spawn a concurrent line of execution for each unit of work
+<ul>
+<li>Aim’s to keep the process time roughly equivalent to the latency time</li>
+<li>This process is called <em>fan-out</em></li>
+<li>Here a unit of work is the grid cell</li>
+</ul></li>
+<li>We then have to wait for all those efforts to finish and coordinate the next phase
+<ul>
+<li>This is called <em>fan-in</em></li>
+<li>For us this is completing a generation</li>
+</ul></li>
+<li>Python provides built-in tools for handling fan-out and fan-in
+<ul>
+<li>Each technique has pros and cons</li>
+<li>See <a href="../../Chapter_09/Item_072/item_072.html">Item 72</a>, <a href="../../Chapter_09/Item_073/item_073.html">Item 73</a>, <a href="../../Chapter_09/Item_074/item_074.html">Item 74</a>, <a href="../../Chapter_09/Item_075/item_075.html">Item 75</a></li>
+</ul></li>
+</ul>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li>When program scope and complexity increases, it typically becomes important to support or consider concurrent execution</li>
+<li>Two common types of concurrent execution are
+<ol type="1">
+<li>Fan-out
+<ul>
+<li>Spawning new units of concurrency to undertake work</li>
+</ul></li>
+<li>Fan-in
+<ul>
+<li>Synchronising and waiting on concurrent work to finish</li>
+</ul></li>
+</ol></li>
+<li>Python provides multiple built-ins for achieving fan-out and fan-in</li>
+</ul>
 
 
 </section>

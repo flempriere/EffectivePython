@@ -783,7 +783,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>E.g. We have enough stock and the order meets the minimum threshold (say eight)</li>
 </ul></li>
 </ul>
-<div id="06178892" class="cell" data-execution_count="1">
+<div id="81559379" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>stock <span class="op">=</span> {</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nails"</span>: <span class="dv">125</span>,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"screws"</span>: <span class="dv">35</span>,</span>
@@ -813,7 +813,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>We could instead use a dictionary comprehension to flatten the looping logic (See <a href="../../Chapter_06/Item_040/item_040.html">Item 40</a>)</li>
 </ul>
-<div id="23010414" class="cell" data-execution_count="2">
+<div id="a7a3e5c1" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>stock <span class="op">=</span> {</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nails"</span>: <span class="dv">125</span>,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"screws"</span>: <span class="dv">35</span>,</span>
@@ -847,7 +847,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>For example if we update our minimum order size in one location but not the other…</li>
 </ul>
-<div id="70f32cd1" class="cell" data-execution_count="3">
+<div id="1f41333e" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>has_bug <span class="op">=</span> {</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    name: get_batches(stock.get(name, <span class="dv">0</span>), <span class="dv">4</span>)  <span class="co"># changed this one</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> name <span class="kw">in</span> order</span>
@@ -867,7 +867,7 @@ Found:    {'screws': 8, 'wingnuts': 2}</code></pre>
 <li>Also called the <em>walrus operator</em></li>
 </ul></li>
 </ul>
-<div id="f1448e6c" class="cell" data-execution_count="4">
+<div id="4fbe5ba9" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>stock <span class="op">=</span> {</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nails"</span>: <span class="dv">125</span>,</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"screws"</span>: <span class="dv">35</span>,</span>
@@ -902,7 +902,7 @@ Found:    {'screws': 8, 'wingnuts': 2}</code></pre>
 <li>Same way if we had two nested loops we can’t reference variables defined in the inner loop in the outer loop</li>
 </ul></li>
 </ul>
-<div id="e538414d" class="cell" data-execution_count="5">
+<div id="3a56282d" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>stock <span class="op">=</span> {</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nails"</span>: <span class="dv">125</span>,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"screws"</span>: <span class="dv">35</span>,</span>
@@ -931,7 +931,7 @@ Found:    {'screws': 8, 'wingnuts': 2}</code></pre>
 <ul>
 <li>In the example above we have effectively tried to write the following,</li>
 </ul>
-<div id="c576debd" class="cell" data-execution_count="6">
+<div id="518c7255" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>stock <span class="op">=</span> {</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nails"</span>: <span class="dv">125</span>,</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"screws"</span>: <span class="dv">35</span>,</span>
@@ -963,7 +963,7 @@ Found:    {'screws': 8, 'wingnuts': 2}</code></pre>
 <li>This makes it obvious what is going on, we’re trying to use <code>tenth</code> in the control expression before we’ve even defined the variable!</li>
 <li>The fix here is move the assignment expression into the first place it’s referenced (here the <code>if</code> statement)</li>
 </ul>
-<div id="d845defd" class="cell" data-execution_count="7">
+<div id="264e11b4" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stock <span class="op">=</span> {</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nails"</span>: <span class="dv">125</span>,</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"screws"</span>: <span class="dv">35</span>,</span>
@@ -980,7 +980,7 @@ Found:    {'screws': 8, 'wingnuts': 2}</code></pre>
 <ul>
 <li>Variables assigned using the walrus operator will leak into the containing scope (See <a href="../../Chapter_05/Item_033/item_033.html">Item 33</a>)</li>
 </ul>
-<div id="907b6acf" class="cell" data-execution_count="8">
+<div id="b9e1bcc6" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>stock <span class="op">=</span> {</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nails"</span>: <span class="dv">125</span>,</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"screws"</span>: <span class="dv">35</span>,</span>
@@ -998,7 +998,7 @@ Found:    {'screws': 8, 'wingnuts': 2}</code></pre>
 <ul>
 <li>This is similar to a normal <code>for</code> loop</li>
 </ul>
-<div id="70481c15" class="cell" data-execution_count="9">
+<div id="f2f00242" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>stock <span class="op">=</span> {</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nails"</span>: <span class="dv">125</span>,</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"screws"</span>: <span class="dv">35</span>,</span>
@@ -1019,7 +1019,7 @@ Found:    {'screws': 8, 'wingnuts': 2}</code></pre>
 <li>As with <code>for</code> loops you should avoid using these leaked variables (See <a href="../../Chapter_03/Item_020/item_020.html">Item 20</a>)</li>
 <li>Especially so for comprehensions since they don’t normally leak variables</li>
 </ul>
-<div id="91b0a175" class="cell" data-execution_count="10">
+<div id="67478f3e" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>stock <span class="op">=</span> {</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nails"</span>: <span class="dv">125</span>,</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"screws"</span>: <span class="dv">35</span>,</span>
@@ -1039,7 +1039,7 @@ Found:    {'screws': 8, 'wingnuts': 2}</code></pre>
 <li>Assignment expressions can also be used in generator comprehensions (See <a href="../../Chapter_06/Item_044/item_044.html">Item 44</a>)</li>
 <li>They have the same behaviour such as leakage etc.</li>
 </ul>
-<div id="77bdcc0c" class="cell" data-execution_count="11">
+<div id="d252441b" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>stock <span class="op">=</span> {</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nails"</span>: <span class="dv">125</span>,</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"screws"</span>: <span class="dv">35</span>,</span>

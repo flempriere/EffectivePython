@@ -813,7 +813,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>For example, a simple RGB (Red, Green, Blue) colour value</li>
 </ul>
-<div id="9431926d" class="cell" data-execution_count="1">
+<div id="6f150d2c" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RGB:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, red, green, blue):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.red <span class="op">=</span> red</span>
@@ -837,7 +837,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Many opportunities to insert typos or mis-assign variables</li>
 </ul></li>
 </ul>
-<div id="47758d4a" class="cell" data-execution_count="2">
+<div id="7ec2a501" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BadRGB:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>, green, red, blue</span>
@@ -876,7 +876,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>We can reimplement our class using this decorator</li>
 </ul>
-<div id="13b74021" class="cell" data-execution_count="3">
+<div id="fb471580" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -905,7 +905,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Type annotations give us static type checking tools to detect errors before program execution</li>
 <li>For example, if we try to construct an RGB object with the wrong values</li>
 </ul>
-<div id="a880b411" class="cell" data-execution_count="4">
+<div id="b0fbf03a" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -934,7 +934,7 @@ info: rule `invalid-argument-type` is enabled by default</code></pre>
 <ul>
 <li>You can do the same with a normal <code>__init__</code> method</li>
 </ul>
-<div id="6a9ffbee" class="cell" data-execution_count="5">
+<div id="d7bcf053" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RGB:</span>
@@ -946,7 +946,7 @@ info: rule `invalid-argument-type` is enabled by default</code></pre>
 <ul>
 <li>If you don’t want to deal with type annotations you can always use <code>Any</code></li>
 </ul>
-<div id="a8da85ea" class="cell" data-execution_count="6">
+<div id="017485b4" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Any</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -974,7 +974,7 @@ info: rule `invalid-argument-type` is enabled by default</code></pre>
 </ul></li>
 <li>The following three methods of instantiating an <code>RGB</code> object are all valid</li>
 </ul>
-<div id="31ff0b23" class="cell" data-execution_count="7">
+<div id="73e25bac" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RGB:</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, red, green, blue):</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.red <span class="op">=</span> red</span>
@@ -1000,7 +1000,7 @@ Blue: (0, 0, 255)</code></pre>
 <li>Still prone to the issues raised earlier of mixing up the parameters in the initializer</li>
 <li>We can use <code>*</code> in the argument list to force keyword-only arguments</li>
 </ul>
-<div id="ffaca309" class="cell" data-execution_count="8">
+<div id="90beb831" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RGB_keywordOnly:</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, <span class="op">*</span>, red, green, blue):</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.red <span class="op">=</span> red</span>
@@ -1040,7 +1040,7 @@ Blue: (0, 0, 255)</code></pre>
 <li>Can pass <code>kw_only=True</code> to the decorator to make the <code>__init__</code> only accept keyword arguments</li>
 </ul></li>
 </ul>
-<div id="783c7450" class="cell" data-execution_count="9">
+<div id="3723eca2" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1089,7 +1089,7 @@ Blue: (0, 0, 255)</code></pre>
 </ul></li>
 <li>Can be defined via the <code>__init__</code> as for any default value</li>
 </ul>
-<div id="8c4ade60" class="cell" data-execution_count="10">
+<div id="72e963cc" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RGBA:</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, <span class="op">*</span>, red, green, blue, alpha<span class="op">=</span><span class="fl">1.0</span>):</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.red <span class="op">=</span> red</span>
@@ -1110,7 +1110,7 @@ Blue: (0, 0, 255)</code></pre>
 <ul>
 <li>To provide a default value for a dataclass, simply define it in the class definition</li>
 </ul>
-<div id="3ea1028a" class="cell" data-execution_count="11">
+<div id="9eca2d9c" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span>(kw_only<span class="op">=</span><span class="va">True</span>)</span>
@@ -1132,7 +1132,7 @@ Blue: (0, 0, 255)</code></pre>
 <li>E.g. If we try to pass a <code>list</code> as the default value this is shared across all calls</li>
 </ul></li>
 </ul>
-<div id="8180b047" class="cell" data-execution_count="12">
+<div id="d8e81c31" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1152,7 +1152,7 @@ Blue: (0, 0, 255)</code></pre>
 <ul>
 <li>For standard classes we can use the <code>None</code> technique, instead constructing the default in the body of the <code>__init__</code> (See <a href="../../Chapter_05/Item_036/item_036.html">Item 36</a>)</li>
 </ul>
-<div id="557ebea2" class="cell" data-execution_count="13">
+<div id="b5b892d4" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyContainer:</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, <span class="op">*</span>, value<span class="op">=</span><span class="va">None</span>):</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> value <span class="kw">is</span> <span class="va">None</span>:</span>
@@ -1172,7 +1172,7 @@ Blue: (0, 0, 255)</code></pre>
 <li>This is a function called to create a new default value for an attribute</li>
 </ul></li>
 </ul>
-<div id="0ce940ac" class="cell" data-execution_count="14">
+<div id="9898d58a" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> field</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1196,7 +1196,7 @@ Blue: (0, 0, 255)</code></pre>
 <ul>
 <li>Recall that when we define a class the default string representation simply provides back a memory address</li>
 </ul>
-<div id="acc37e82" class="cell" data-execution_count="15">
+<div id="328f6085" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RGB:</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, red, green, blue):</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.red <span class="op">=</span> red</span>
@@ -1207,14 +1207,14 @@ Blue: (0, 0, 255)</code></pre>
 <span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>red <span class="op">=</span> RGB(red<span class="op">=</span><span class="dv">255</span>, green<span class="op">=</span><span class="dv">0</span>, blue<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(red)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;__main__.RGB object at 0x7f83f7920590&gt;</code></pre>
+<pre><code>&lt;__main__.RGB object at 0x7f59a11b4590&gt;</code></pre>
 </div>
 </div>
 <ul>
 <li>One can implement either <code>__repr__</code> or <code>__str__</code> (See <a href="../../Chapter_02/Item_012/item_012.html">Item 12</a>)</li>
 <li>E.g. one might use a format string to construct a representation (See <a href="../../Chapter_02/Item_011/item_011.html">Item 11</a>)</li>
 </ul>
-<div id="a43e3652" class="cell" data-execution_count="16">
+<div id="f1a7885f" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RGB:</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, red, green, blue):</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.red <span class="op">=</span> red</span>
@@ -1258,7 +1258,7 @@ Blue: (0, 0, 255)</code></pre>
 <li>Often to help with equality testing and sorting it’s useful to convert an object to a tuple</li>
 <li>For a standard python class we can define a conversion method</li>
 </ul>
-<div id="7e3fc5ca" class="cell" data-execution_count="17">
+<div id="e400b6f6" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RGB:</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, red, green, blue):</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.red <span class="op">=</span> red</span>
@@ -1280,7 +1280,7 @@ Blue: (0, 0, 255)</code></pre>
 <ul>
 <li><code>_astuple</code> can be used to construct a copy via unpacking into the <code>__init__</code> method (See <a href="../../Chapter_05/Item_034/item_034.html">Item 34</a> and <a href="../../Chapter_02/Item_016/item_016.html">Item 16</a>)</li>
 </ul>
-<div id="a28a23f6" class="cell" data-execution_count="18">
+<div id="6dc56071" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RGB:</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, red, green, blue):</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.red <span class="op">=</span> red</span>
@@ -1310,7 +1310,7 @@ Blue: (0, 0, 255)</code></pre>
 <li>Again, like <code>__repr__</code> this can be hard to write correctly and maintain it</li>
 <li>Dataclasses provides an <code>astuple</code> function out of the box that can be used to convert any <code>dataclass</code>-decorated character</li>
 </ul>
-<div id="2142723d" class="cell" data-execution_count="19">
+<div id="83216db7" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass, astuple</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1334,7 +1334,7 @@ Blue: (0, 0, 255)</code></pre>
 <li>Data serialisation is often aided by using an intermediate conversion into a dictionary</li>
 <li>We can define the <code>asdict</code> analogy to <code>astuple</code></li>
 </ul>
-<div id="ade7e386" class="cell" data-execution_count="20">
+<div id="dc8b7a71" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1368,7 +1368,7 @@ Blue: (0, 0, 255)</code></pre>
 <ul>
 <li>We can get the same behaviour directly with a dataclass via the <code>asdict</code> method</li>
 </ul>
-<div id="2965a29f" class="cell" data-execution_count="21">
+<div id="f6749150" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass, asdict</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1394,7 +1394,7 @@ Blue: (0, 0, 255)</code></pre>
 <li>Means that two distinct objects with the same attribute values do not compare equal</li>
 </ul></li>
 </ul>
-<div id="55f1d81b" class="cell" data-execution_count="22">
+<div id="08921389" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RGB:</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, red, green, blue):</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.red <span class="op">=</span> red</span>
@@ -1424,7 +1424,7 @@ Blue: (0, 0, 255)</code></pre>
 <li>To overwrite the behaviour we have to define an implementation of the <code>__eq__</code></li>
 <li>For simple objects we typically want to just match the attributes</li>
 </ul>
-<div id="5ff171d9" class="cell" data-execution_count="23">
+<div id="5ac75f56" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RGB:</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, red, green, blue):</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.red <span class="op">=</span> red</span>
@@ -1456,7 +1456,7 @@ Blue: (0, 0, 255)</code></pre>
 <li>The implementation is a tuple-based comparison</li>
 </ul></li>
 </ul>
-<div id="7b92c6c0" class="cell" data-execution_count="24">
+<div id="cc4b5288" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass, asdict</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1486,7 +1486,7 @@ Blue: (0, 0, 255)</code></pre>
 <li>If we try and sort these objects we get an exception because no sort is ordered</li>
 </ul></li>
 </ul>
-<div id="a94d274b" class="cell" data-execution_count="25">
+<div id="b6596cf0" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Planet:</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, distance, size):</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.distance <span class="op">=</span> distance</span>
@@ -1527,7 +1527,7 @@ Blue: (0, 0, 255)</code></pre>
 <li>A natural technique is to pass this over to a comparison on the tuple representation</li>
 </ul></li>
 </ul>
-<div id="8a13b563" class="cell" data-execution_count="26">
+<div id="35525879" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Planet:</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, distance, size):</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.distance <span class="op">=</span> distance</span>
@@ -1592,7 +1592,7 @@ Blue: (0, 0, 255)</code></pre>
 <li>This determines the order by interpreting the attributes as an ordered tuple of values</li>
 </ul></li>
 </ul>
-<div id="30ae3e9b" class="cell" data-execution_count="27">
+<div id="752e1bbe" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>

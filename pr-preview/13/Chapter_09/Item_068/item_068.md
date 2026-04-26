@@ -50,7 +50,7 @@ delta = end - start
 print(f"Took {delta:.3f} seconds")
 ```
 
-    Took 5.353 seconds
+    Took 5.361 seconds
 
 - In another language might seem natural to do this computation using
   multiple threads of execution
@@ -112,11 +112,10 @@ delta = end - start
 print(f"Took {delta:.3f} seconds")
 ```
 
-    Took 5.496 seconds
+    Took 5.511 seconds
 
-- Here the program takes longer to execute than the single-threaded
-  - Presumably because I’m asking for too many threads and it’s causing
-    overhead
+- Here the program shows no significant time difference from the
+  single-thread version
 - There are mechanisms to get true concurrency (See [Item
   79](../Item_079/item_079.qmd))
   - Not the case for `Thread` with older python versions
