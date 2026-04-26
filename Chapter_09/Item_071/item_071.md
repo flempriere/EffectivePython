@@ -38,7 +38,7 @@
 _____|_____|_____|_____|_____|
 -----|-----|-----|-----|-----|
 -*---|--*--|--**-|--*--|-----|
---*--|--**-|-*---|-*---|-**--|
+--**-|--**-|-*---|-*---|-**--|
 ---*-|--**-|--**-|--*--|-----|
 -----|-----|-----|-----|-----|
 ```
@@ -420,11 +420,11 @@ def game_logic(state, neighbours):
 ```
 
 - This approach results in a slow-down for the entire program
-- Estimates for internet round-trip latency is around $100 \text{ms}$
+- Estimates for internet round-trip latency is around $100 \text{ ms}$
   - Means for a $5 \times 5$ grid might take $5 \text{s}$ to evaluate
   - Each cell is processed sequentially
   - Clearly does not scale to larger grids
-    (e.g. $10,000 \text{cells} \approx 17 \text{minutes}$)
+    (e.g. $10,000 \text{ cells} \approx 17 \text{ minutes}$)
 - We’ve seen that we can do blocking I/O concurrently via,
   1. Processes (See [Item 67](../Item_067/item_067.qmd)) or preferably,
   2. Threads (See [Item 68](../Item_068/item_068.qmd))

@@ -172,7 +172,7 @@ log_sum_e = functools.partial(logn_sum, base=math.e)
 print(log_sum_e.args, log_sum_e.keywords, log_sum_e.func)
 ```
 
-    () {'base': 2.718281828459045} <function logn_sum at 0x7f86f8053950>
+    () {'base': 2.718281828459045} <function logn_sum at 0x7f3b2f5c77f0>
 
 - Prefer `partial` over `lambda`
   - More ergonomic interface

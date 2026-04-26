@@ -61,7 +61,7 @@ expected = how_many * sensor_count
 print(f"Counter should be {expected}, got {counter}")
 ```
 
-    Counter should be 4000000, got 3477453
+    Counter should be 4000000, got 3322762
 
 - You should see that the result above seems wrong
 - This is because we still have race conditions
@@ -107,14 +107,14 @@ value_b = counter  # reads old value of counter
 delta_b = get_offset()
 result_b = value_b + delta_b
 counter = result_b
-print(f" Counter after thread B:", counter)
+print(f"Counter after thread B:", counter)
 # Context switch back to thread A
 result_a = value_a + delta_a  # old value of counter used
 counter = result_a
 print(f"Counter after thread A:", counter)
 ```
 
-     Counter after thread B: 1
+    Counter after thread B: 1
     Counter after thread A: 1
 
 - Thread B interrupts A before it can finish setting the counter
