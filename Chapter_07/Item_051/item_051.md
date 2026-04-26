@@ -419,7 +419,7 @@ red = RGB(red=255, green=0, blue=0)
 print(red)
 ```
 
-    <__main__.RGB object at 0x7f5b4ccf0590>
+    <__main__.RGB object at 0x7fd311518590>
 
 - One can implement either `__repr__` or `__str__` (See [Item
   12](../../Chapter_02/Item_012/item_012.qmd))
