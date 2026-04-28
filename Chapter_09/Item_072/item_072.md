@@ -1,0 +1,338 @@
+# Item 72: Avoid Creating New `Thread` Instances for On-Demand Fan-out
+
+- [Notes](#notes)
+- [Things to Remember](#things-to-remember)
+
+## Notes
+
+- Thread’s are the natural first choice for dealing with parallel I/O
+  (See [Item 68](../Item_068/item_068.qmd))
+- However, they are problematic when used for dynamic fan-out
+- We’ll use the Game of Life example, to illustrate the process (See
+  [Item 71](../Item_071/item_071.qmd))
+  - Again, the problem we’re trying to solve is stopping blocking I/O
+    causing a slowdown proportional to latency
+  - Threads will require coordination between locks to maintain data
+    structure consistencies (See [Item 69](../Item_069/item_069.qmd))
+- We can create a subclass of `Grid` that supports threading, including
+  locking behaviour
+
+``` python
+from threading import Lock
+
+ALIVE = "*"
+EMPTY = "-"
+
+
+class Grid:
+    def __init__(self, width, height):
+        self.height = height
+        self.width = width
+        self.rows = []
+        for _ in range(self.height):
+            self.rows.append([EMPTY] * self.width)
+
+    def get(self, x, y):
+        return self.rows[y % self.height][x % self.width]
+
+    def set(self, x, y, state):
+        self.rows[y % self.height][x % self.width] = state
+
+    def __str__(self):
+        output = "\n".join(["".join(row) for row in self.rows])
+        return output
+
+
+class LockingGrid(Grid):
+    def __init__(self, width, height):
+        super().__init__(width, height)
+        self.lock = Lock()
+
+    def __str__(self):
+        return super().__str__()
+
+    def get(self, x, y):
+        with self.lock:
+            return super().get(x, y)
+
+    def set(self, x, y, state):
+        with self.lock:
+            return super().set(x, y, state)
+
+
+grid = LockingGrid(9, 5)
+grid.set(3, 0, ALIVE)
+grid.set(4, 1, ALIVE)
+grid.set(2, 2, ALIVE)
+grid.set(3, 2, ALIVE)
+grid.set(4, 2, ALIVE)
+print(grid)
+```
+
+    ---*-----
+    ----*----
+    --***----
+    ---------
+    ---------
+
+- Now we want to reimplement `simulate` to utilise *fan-out*
+  - Each call to `step_cell` should be answered by a new thread
+  - Threads run in parallel and don’t block each other’s I/O
+- Then *fan-in* by waiting for all threads to complete
+  - Only then can we proceed to the next generation
+- We can use the same driver code as before to run and view the final
+  output
+
+``` python
+from threading import Thread, Lock
+
+ALIVE = "*"
+EMPTY = "-"
+
+
+def simulate_threaded(grid):
+    next_grid = LockingGrid(grid.width, grid.height)
+
+    threads = []
+    for y in range(grid.height):
+        for x in range(grid.width):
+            args = (x, y, grid.get, next_grid.set)
+            thread = Thread(target=step_cell, args=args)
+            thread.start()  # Fan out
+            threads.append(thread)
+
+    for thread in threads:
+        thread.join()  # Fan in
+
+    return next_grid
+
+
+# Helper functions for state transition
+def count_neighbours(x, y, get_cell):
+    n = get_cell(x, y - 1)  # grid is index x increases left, y increases down
+    ne = get_cell(x + 1, y - 1)
+    e = get_cell(x + 1, y)
+    se = get_cell(x + 1, y + 1)
+    s = get_cell(x, y + 1)
+    sw = get_cell(x - 1, y + 1)
+    w = get_cell(x - 1, y)
+    nw = get_cell(x - 1, y - 1)
+    neighbour_states = [n, ne, e, se, s, sw, w, nw]
+
+    count = sum([cell == ALIVE for cell in neighbour_states])
+    return count
+
+
+def step_cell(x, y, get_cell, set_cell):
+    state = get_cell(x, y)
+    neighbours = count_neighbours(x, y, get_cell)
+    next_state = game_logic(state, neighbours)
+    set_cell(x, y, next_state)
+
+
+# In theory this works on some I/O but for this demo is the same as the old code
+def game_logic(state, neighbours):
+    if state == ALIVE:
+        if neighbours < 2:
+            return EMPTY  # Die: Too few
+        elif neighbours > 3:
+            return EMPTY  # Die: Too many
+    else:
+        if neighbours == 3:
+            return ALIVE  # Regenerate
+
+    return state
+
+
+class Grid:
+    def __init__(self, width, height):
+        self.height = height
+        self.width = width
+        self.rows = []
+        for _ in range(self.height):
+            self.rows.append([EMPTY] * self.width)
+
+    def get(self, x, y):
+        return self.rows[y % self.height][x % self.width]
+
+    def set(self, x, y, state):
+        self.rows[y % self.height][x % self.width] = state
+
+    def __str__(self):
+        output = "\n".join(["".join(row) for row in self.rows])
+        return output
+
+
+class LockingGrid(Grid):
+    def __init__(self, width, height):
+        super().__init__(width, height)
+        self.lock = Lock()
+
+    def __str__(self):
+        return super().__str__()
+
+    def get(self, x, y):
+        with self.lock:
+            return super().get(x, y)
+
+    def set(self, x, y, state):
+        with self.lock:
+            return super().set(x, y, state)
+
+
+# Program Driver
+class ColumnPrinter:
+    def __init__(self):
+        self.columns = []
+
+    def append(self, data):
+        self.columns.append(data)
+
+    def __str__(self):
+        row_count = 1
+        for data in self.columns:
+            row_count = max(row_count, len(data.splitlines()) + 1)
+
+        rows = [""] * row_count
+        for j in range(row_count):
+            for i, data in enumerate(self.columns):
+                line = data.splitlines()[max(0, j - 1)]
+                if j == 0:
+                    padding = " " * (len(line) // 2)
+                    rows[j] += padding + str(i) + padding
+                else:
+                    rows[j] += line
+                if (i + 1) < len(self.columns):
+                    rows[j] += " | "
+        return "\n".join(rows)
+
+
+grid = LockingGrid(9, 5)
+grid.set(3, 0, ALIVE)
+grid.set(4, 1, ALIVE)
+grid.set(2, 2, ALIVE)
+grid.set(3, 2, ALIVE)
+grid.set(4, 2, ALIVE)
+
+
+columns = ColumnPrinter()
+for i in range(5):
+    columns.append(str(grid))
+    grid = simulate_threaded(grid)
+print(columns)
+```
+
+        0     |     1     |     2     |     3     |     4
+    ---*----- | --------- | --------- | --------- | ---------
+    ----*---- | --*-*---- | ----*---- | ---*----- | ----*----
+    --***---- | ---**---- | --*-*---- | ----**--- | -----*---
+    --------- | ---*----- | ---**---- | ---**---- | ---***---
+    --------- | --------- | --------- | --------- | ---------
+
+- As visible from above the implementation works
+- However, three issues with the solution
+  1. `Thread` instances need special coordination
+      - i.e `Lock`
+        - Here we had to provide a subclass wrapper
+        - Might be fiddly when dealing with externally defined classes
+      - Introduces challenges reasoning about control flow
+  2. Threads require additional memory
+      - On the order of $8 \text{ MB}$ per thread
+      - Creates a significant cost for large grids with many threads
+        - May be managed by the OS
+      - Running one thread per concurrent activity is thus note reliable
+  3. Starting a thread is costly
+      - Performance overhead from context switching
+      - Especially in this code which creates and cleans up the threads
+        between every iteration
+- Debugging multi-threaded code is also difficult
+  - Consider if there `game_logic` raises an exception
+  - Likely when considering networked I/O
+
+``` python
+ALIVE = "*"
+EMPTY = "-"
+
+
+def game_logic(state, neighbours):
+    # simulate I/O failure
+    raise OSError("Problem with I/O")
+
+
+game_logic(ALIVE, 3)
+```
+
+    OSError: Problem with I/O
+    ---------------------------------------------------------------------------
+    OSError                                   Traceback (most recent call last)
+    Cell In[3], line 10
+          5 def game_logic(state, neighbours):
+          6     # simulate I/O failure
+          7     raise OSError("Problem with I/O")
+    ---> 10 game_logic(ALIVE, 3)
+
+    Cell In[3], line 7, in game_logic(state, neighbours)
+          5 def game_logic(state, neighbours):
+          6     # simulate I/O failure
+    ----> 7     raise OSError("Problem with I/O")
+
+    OSError: Problem with I/O
+
+- We’ll demonstrate by using `contextlib` to reroute the thread’s
+  `sys.stderr` to an in memory `StringIO` buffer
+
+``` python
+import contextlib
+import io
+from threading import Thread
+
+ALIVE = "*"
+EMPTY = "-"
+
+
+def game_logic(state, neighbours):
+    # simulate I/O failure
+    raise OSError("Problem with I/O")
+
+
+redirect_stderr = io.StringIO()
+with contextlib.redirect_stderr(redirect_stderr):
+    thread = Thread(target=game_logic, args=(ALIVE, 3))
+    thread.start()
+    thread.join()
+print(redirect_stderr.getvalue())
+```
+
+    Exception in thread Thread-231 (game_logic):
+    Traceback (most recent call last):
+      File "/opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/threading.py", line 1082, in _bootstrap_inner
+        self._context.run(self.run)
+        ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+      File "/opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/threading.py", line 1024, in run
+        self._target(*self._args, **self._kwargs)
+        ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/tmp/ipykernel_9861/1366009664.py", line 11, in game_logic
+        raise OSError("Problem with I/O")
+    OSError: Problem with I/O
+
+- We can see that an `OSError` was raised
+  - However the calling code continued (Otherwise would not have been
+    able to reach the `print` statement)
+- `Thread` independently handles exceptions raised during it’s execution
+  - Writes the output to `sys.stderr`
+  - But exception is not re-raised in the controlling thread
+- For these reasons avoid raw threads for fan-out / fan-in style
+  concurrent tasks
+  - Instead see [Item 73](../Item_073/item_073.qmd), [Item
+    74](../Item_074/item_074.qmd) and [Item
+    75](../Item_075/item_075.qmd)
+
+## Things to Remember
+
+- Threads have many downsides
+  - Costly to start and run
+  - Consume non-trivial memory
+  - Require `Lock` or other synchronisation primitives
+- `Thread` does not support a built-in way to raise exceptions in the
+  calling code or a waiting thread
+  - Poses challenges for debuggability

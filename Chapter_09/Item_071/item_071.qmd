@@ -1,0 +1,414 @@
+---
+title: "Item 71: Know How to Recognise When Concurrency Is Necessary"
+---
+
+## Notes
+
+- When scope grows so does program complexity
+- The hard part of software development is expanding requirements while maintaining
+    1. clarity
+    2. testable
+    3. efficiency
+- Moving from single-threaded to multi-threaded can be one of the most challenging design decisions
+- A classic example is [Conway's Game of Life](https://conwaylife.com/)
+- The rules are
+    - The game is represented as an arbitrary $2D$ grid
+    - Each cell is either alive or dead
+
+      ```python
+        ALIVE = "*"
+        EMPTY = "-"
+      ```
+
+    - Every tick a cell counts it's neighbours and updates based on the following rules
+        1. If a cell has than two neighbours it dies
+        2. If a cell has more than three neighbours it dies
+        3. If a cell is empty and has three neighbours it becomes alive
+
+- A $5 \times 5$ board state might look like below
+    - Over five generations
+
+```{text}
+  0  |  1  |  2  |  3  |  4  |
+_____|_____|_____|_____|_____|
+-----|-----|-----|-----|-----|
+-*---|--*--|--**-|--*--|-----|
+--**-|--**-|-*---|-*---|-**--|
+---*-|--**-|--**-|--*--|-----|
+-----|-----|-----|-----|-----|
+```
+
+- We'll represent cell states with a simple `Grid` container class
+    - Class has methods to set and get the state of any cell
+- We'll use a cylindrical topology
+    - This means that the grid wraps around e.g.
+        - $\left(6, 0\right)  \rightarrow \left(1, 0\right)$
+        - $\left(1, 8\right) \rightarrow \left(1, 3\right)$
+
+```{python}
+ALIVE = "*"
+EMPTY = "-"
+
+
+class Grid:
+    def __init__(self, width, height):
+        self.height = height
+        self.width = width
+        self.rows = []
+        for _ in range(self.height):
+            self.rows.append([EMPTY] * self.width)
+
+    def get(self, x, y):
+        return self.rows[y % self.height][x % self.width]
+
+    def set(self, x, y, state):
+        self.rows[y % self.height][x % self.width] = state
+
+    def __str__(self):
+        output = "\n".join(["".join(row) for row in self.rows])
+        return output
+
+
+grid = Grid(9, 5)
+grid.set(3, 0, ALIVE)
+grid.set(4, 1, ALIVE)
+grid.set(2, 2, ALIVE)
+grid.set(3, 2, ALIVE)
+grid.set(4, 2, ALIVE)
+print(grid)
+```
+
+- The shape above is a classic shape called a *glider*
+- Now to determine the next state we need to determine the state of neighbouring cells
+    - This can be done by adding a helper function
+    - given a specified grid coordinate, queries the surrounding cells
+    - To reduce coupling to the `Grid` class we implement a function interface `get_cell` parameter (See [Item 48](../../Chapter_07/Item_048/item_048.qmd))
+
+```{python}
+ALIVE = "*"
+EMPTY = "-"
+
+
+def count_neighbours(x, y, get_cell):
+    n = get_cell(x, y - 1)  # grid is index x increases left, y increases down
+    ne = get_cell(x + 1, y - 1)
+    e = get_cell(x + 1, y)
+    se = get_cell(x + 1, y + 1)
+    s = get_cell(x, y + 1)
+    sw = get_cell(x - 1, y + 1)
+    w = get_cell(x - 1, y)
+    nw = get_cell(x - 1, y - 1)
+    neighbour_states = [n, ne, e, se, s, sw, w, nw]
+
+    count = sum([cell == ALIVE for cell in neighbour_states])
+    return count
+
+
+# Demonstrator function
+def get_cell(x, y):
+    grid = [[ALIVE, EMPTY, ALIVE], [EMPTY, EMPTY, EMPTY], [EMPTY, ALIVE, EMPTY]]
+    return grid[y][x]
+
+
+assert count_neighbours(1, 1, get_cell) == 3
+```
+
+- Now need to implement the game logic of the rules listed above
+
+```{python}
+ALIVE = "*"
+EMPTY = "-"
+
+
+def game_logic(state, neighbours):
+    if state == ALIVE:
+        if neighbours < 2:
+            return EMPTY  # Die: Too few
+        elif neighbours > 3:
+            return EMPTY  # Die: Too many
+    else:
+        if neighbours == 3:
+            return ALIVE  # Regenerate
+
+    return state
+
+
+# Test
+transition_if_alive_and_n_neighbours = [
+    EMPTY,  # 0
+    EMPTY,  # 1
+    ALIVE,  # 2
+    ALIVE,  # 3
+    EMPTY,  # 4
+    EMPTY,  # 5
+    EMPTY,  # 6
+    EMPTY,  # 7
+    EMPTY,  # 8
+]
+transition_if_empty_and_n_neighbours = [
+    EMPTY,  # 0
+    EMPTY,  # 1
+    EMPTY,  # 2
+    ALIVE,  # 3
+    EMPTY,  # 4
+    EMPTY,  # 5
+    EMPTY,  # 6
+    EMPTY,  # 7
+    EMPTY,  # 8
+]
+
+for n_neighbours, (alive_result, empty_result) in enumerate(
+    zip(transition_if_alive_and_n_neighbours, transition_if_empty_and_n_neighbours)
+):
+    assert game_logic(ALIVE, n_neighbours) == alive_result
+    assert game_logic(EMPTY, n_neighbours) == empty_result
+```
+
+- Then need to connect `game_logic` and `count_neighbours`
+- Can do this with function that manages the state transition for each cell
+    - Function is called each generation
+    - Determines the cell's current state
+    - Calculates the cell's next state from neighbouring cells
+    - Updates grid to the new state
+- We want to keep the state changes decoupled from the `Grid` representation
+    - So we'll accept a `set_cell` function handle rather than a `Grid` instance
+    - As seen above this let's us easily mock a test implementation
+
+```{python}
+ALIVE = "*"
+EMPTY = "-"
+
+
+def step_cell(x, y, get_cell, set_cell):
+    state = get_cell(x, y)
+    neighbours = count_neighbours(x, y, get_cell)
+    next_state = game_logic(state, neighbours)
+    set_cell(x, y, next_state)
+
+
+# Defining functions and data for testing
+
+# simple representation for testing
+
+# *-* -> ***
+# --- -> ***
+# -*- -> ***
+# empty cells have 3 neighbours, non-empty cells have two neighbours
+
+grid = [[ALIVE, EMPTY, ALIVE], [EMPTY, EMPTY, EMPTY], [EMPTY, ALIVE, EMPTY]]
+
+
+def game_logic(state, neighbours):
+    if state == ALIVE:
+        if neighbours < 2:
+            return EMPTY  # Die: Too few
+        elif neighbours > 3:
+            return EMPTY  # Die: Too many
+    else:
+        if neighbours == 3:
+            return ALIVE  # Regenerate
+
+    return state
+
+
+def count_neighbours(x, y, get_cell):
+    n = get_cell(x, y - 1)  # grid is index x increases left, y increases down
+    ne = get_cell(x + 1, y - 1)
+    e = get_cell(x + 1, y)
+    se = get_cell(x + 1, y + 1)
+    s = get_cell(x, y + 1)
+    sw = get_cell(x - 1, y + 1)
+    w = get_cell(x - 1, y)
+    nw = get_cell(x - 1, y - 1)
+    neighbour_states = [n, ne, e, se, s, sw, w, nw]
+
+    count = sum([cell == ALIVE for cell in neighbour_states])
+    return count
+
+
+def get_cell(x, y):
+    return grid[y % len(grid)][x % len(grid[0])]
+
+
+out_grid = [[EMPTY for cell in row] for row in grid]  # make copy
+
+
+def set_cell(x, y, state):
+    out_grid[y % len(grid)][x % len(grid[0])] = state
+
+
+# Running the test
+expected_grid = [[ALIVE, ALIVE, ALIVE], [ALIVE, ALIVE, ALIVE], [ALIVE, ALIVE, ALIVE]]
+for y, row in enumerate(grid):
+    for x, result in enumerate(row):
+        step_cell(x, y, get_cell, set_cell)
+        assert out_grid[y][x] == expected_grid[y][x]
+```
+
+- Last step is to define a wrapper function that performs the state update for all cells in a grid
+- We don't want to inplace mutate the grid because we need to count the neighbours
+    - If we update a cell in place that may change the count for subsequent neighbouring cells
+    - So we'll return a new grid representing the state at the next timestep (See [Item 56](../../Chapter_07/Item_056/item_056.qmd) for a discussion on immutability)
+- The dependent functions will use the `get_cell` on the original grid and the `set_cell` on the new grid
+    - This is easy due to our interfaces
+- We'll also define a simple class `ColumnFilter`
+    - Simply runs the game of life for $n$ generations then prints each generation as a column
+
+```{python}
+ALIVE = "*"
+EMPTY = "-"
+
+
+def simulate(grid):
+    next_grid = Grid(grid.width, grid.height)  # create a new instance of next grid
+    for y in range(grid.height):
+        for x in range(grid.width):
+            step_cell(x, y, grid.get, next_grid.set)
+    return next_grid
+
+
+# Our already defined interface
+
+
+class Grid:
+    def __init__(self, width, height):
+        self.height = height
+        self.width = width
+        self.rows = [[EMPTY] * self.width for _ in range(self.height)]
+
+    def get(self, x, y):
+        return self.rows[y % self.height][x % self.width]
+
+    def set(self, x, y, state):
+        self.rows[y % self.height][x % self.width] = state
+
+    def __str__(self):
+        output = "\n".join(["".join(row) for row in self.rows])
+        return output
+
+
+def count_neighbours(x, y, get_cell):
+    n = get_cell(x, y - 1)  # grid is index x increases left, y increases down
+    ne = get_cell(x + 1, y - 1)
+    e = get_cell(x + 1, y)
+    se = get_cell(x + 1, y + 1)
+    s = get_cell(x, y + 1)
+    sw = get_cell(x - 1, y + 1)
+    w = get_cell(x - 1, y)
+    nw = get_cell(x - 1, y - 1)
+    neighbour_states = [n, ne, e, se, s, sw, w, nw]
+
+    count = sum([cell == ALIVE for cell in neighbour_states])
+    return count
+
+
+def game_logic(state, neighbours):
+    if state == ALIVE:
+        if neighbours < 2:
+            return EMPTY  # Die: Too few
+        elif neighbours > 3:
+            return EMPTY  # Die: Too many
+    else:
+        if neighbours == 3:
+            return ALIVE  # Regenerate
+
+    return state
+
+
+def step_cell(x, y, get_cell, set_cell):
+    state = get_cell(x, y)
+    neighbours = count_neighbours(x, y, get_cell)
+    next_state = game_logic(state, neighbours)
+    set_cell(x, y, next_state)
+
+
+# Running the program
+
+
+class ColumnPrinter:
+    def __init__(self):
+        self.columns = []
+
+    def append(self, data):
+        self.columns.append(data)
+
+    def __str__(self):
+        row_count = 1
+        for data in self.columns:
+            row_count = max(row_count, len(data.splitlines()) + 1)
+
+        rows = [""] * row_count
+        for j in range(row_count):
+            for i, data in enumerate(self.columns):
+                line = data.splitlines()[max(0, j - 1)]
+                if j == 0:
+                    padding = " " * (len(line) // 2)
+                    rows[j] += padding + str(i) + padding
+                else:
+                    rows[j] += line
+                if (i + 1) < len(self.columns):
+                    rows[j] += " | "
+        return "\n".join(rows)
+
+
+grid = Grid(9, 5)
+grid.set(3, 0, ALIVE)
+grid.set(4, 1, ALIVE)
+grid.set(2, 2, ALIVE)
+grid.set(3, 2, ALIVE)
+grid.set(4, 2, ALIVE)
+
+
+columns = ColumnPrinter()
+for i in range(5):
+    columns.append(str(grid))
+    grid = simulate(grid)
+print(columns)
+```
+
+- Works great as a single-process, single-threaded program
+- What if we want to scale up or distribute this program?
+    - E.g. We might receive the game state over a network socket e.g. in `game_logic`
+- This has broader applicability outside of this general example
+    - For example, if we have a multiplayer game a central server might track and update state
+    - Player's send "moves" or actions that change their state over the network socket
+    - Server then updates and sends back the state
+- The straightforward refactor is to add the blocking I/O into `game_logic`
+
+```python
+import socket
+
+def game_logic(state, neighbours):
+    # Do some blocking input/output
+    my_socket = socket()
+    data = my_socket.recv(100)
+```
+
+- This approach results in a slow-down for the entire program
+- Estimates for internet round-trip latency is around $100 \text{ ms}$
+    - Means for a $5 \times 5$ grid might take $5 \text{s}$ to evaluate
+    - Each cell is processed sequentially
+    - Clearly does not scale to larger grids (e.g. $10,000 \text{ cells} \approx 17 \text{ minutes}$)
+- We've seen that we can do blocking I/O concurrently via,
+    1. Processes (See [Item 67](../Item_067/item_067.qmd)) or preferably,
+    2. Threads (See [Item 68](../Item_068/item_068.qmd))
+- In general we'll aim to spawn a concurrent line of execution for each unit of work
+    - Aim's to keep the process time roughly equivalent to the latency time
+    - This process is called *fan-out*
+    - Here a unit of work is the grid cell
+- We then have to wait for all those efforts to finish and coordinate the next phase
+    - This is called *fan-in*
+    - For us this is completing a generation
+- Python provides built-in tools for handling fan-out and fan-in
+    - Each technique has pros and cons
+    - See [Item 72](../Item_072/item_072.qmd), [Item 73](../Item_073/item_073.qmd), [Item 74](../Item_074/item_074.qmd), [Item 75](../Item_075/item_075.qmd)
+
+## Things to Remember
+
+- When program scope and complexity increases, it typically becomes important to support or consider concurrent execution
+- Two common types of concurrent execution are
+    1. Fan-out
+        - Spawning new units of concurrency to undertake work
+    2. Fan-in
+        - Synchronising and waiting on concurrent work to finish
+- Python provides multiple built-ins for achieving fan-out and fan-in

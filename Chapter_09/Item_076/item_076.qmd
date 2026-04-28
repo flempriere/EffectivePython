@@ -1,0 +1,1113 @@
+---
+title: "Item 76: Know how to Port Threaded I/O to `asyncio`"
+---
+
+## Notes
+
+- Given the cleanliness of coroutines, how does one port existing *threaded* concurrency to use `aysnc`?
+- Since `async` is a language feature, not a library one conversion is usually straightforward
+- For example, consider a simple TCP server hosting the "guess the number" game
+    - Server takes a `lower` and `upper` parameter
+        - Generates number in this range
+    - Server returns guesses as for values as requested by a client
+    - Collects report if guess was closer (warmer) or further (colder)
+
+:::{.callout-note}
+This section deals with a slightly larger example and uses network communications. For that reason, rather than trying to make every step of the process an executable cell to demonstrate, we'll instead only provide the complete final example as an executable jupyter-cell.
+:::
+
+### Thread Implementation
+
+- Standard implementation for a client/server is to use threads to handle blocking I/O
+
+```python
+import random
+
+
+class EOFError(Exception):
+    pass
+
+
+class Connection:
+    def __init__(self, connection):
+        self.connection = connection
+        self.file = connection.makefile("rb")
+
+    def send(self, command):
+        line = command + "\n"
+        data = line.encode()
+        self.connection.send(data)
+
+    def receive(self):
+        line = self.file.readline()
+        if not line:
+            raise EOFError("Connection closed")
+        return line[:-1].decode()
+
+
+WARMER = "warmer"
+COLDER = "colder"
+SAME = "same"
+UNSURE = "unsure"
+CORRECT = "correct"
+
+
+class UnknownCommandError(Exception):
+    pass
+
+
+class ServerSession(Connection):
+    def __init__(self, *args):
+        super().__init__(*args)
+        self.clear_state()
+
+    def loop(self):
+        while command := self.receive():
+            match command.split(" "):
+                case "PARAMS", lower, upper:
+                    self.set_params(lower, upper)
+                case ["NUMBER"]:
+                    self.send_number()
+                case "REPORT", decision:
+                    self.receive_report(decision)
+                case ["CLEAR"]:
+                    self.clear_state()
+                case _:
+                    raise UnknownCommandError(command)
+
+    def set_params(self, lower, upper):
+        self.clear_state()
+        self.lower = int(lower)
+        self.upper = int(upper)
+
+    def next_guess(self):
+        if self.secret is not None:
+            return self.secret
+
+        while True:
+            guess = random.randint(self.lower, self.upper)
+            if guess not in self.guesses:
+                return guess
+
+    def send_number(self):
+        guess = self.next_guess()
+        self.guesses.append(guess)
+        self.send(format(guess))
+
+    def receive_report(self):
+        last = self.guesses[-1]
+        if decision == CORRECT:
+            self.secret = last
+
+        print(f"Server: {last} is {decision}")
+
+    def clear_state(self):
+        self.lower = None
+        self.upper = None
+        self.secret = None
+        self.guesses = []
+```
+
+- We define a basic helper class `Connection` that can handle sending and receiving messages
+    - We define a line to represent a command to be processed
+- Server is then implemented as a class that handles a connection
+    - Maintains some internal state
+    - `loop` handles incoming commands and dispatches them to the required internal function
+        - Use a `match` statement to destructure the commands (See [Item 9](../../Chapter_01/Item_009/item_009.qmd))
+    - First command `set_params`
+        - Bounds the `lower` and `upper` numbers the server will try to guess
+    - Second command `send_number`
+        - Makes a guess based on the current state
+        - Defers to `next_guess`
+            - Ensures that the server never guesses a number it's already guessed
+    - Third command `receive_report`
+        - Receives decision from client noting if guess is warmer, colder, the same or correct
+        - Then updates it's internal state
+    - Last command clears the state and ends a game
+- We then run a game using a context manager via a `with` statement
+    - Ensures the server state is managed correctly (See [Item 78](../Item_078/item_078.qmd))
+    - We do this with a function `new_game`
+        - Sends first and last commands to the server
+        - Provides a context object
+            - Can be used for the duration of the game
+
+```python
+import contextlib
+
+
+@contextlib.contextmanager
+def new_game(connection, lower, upper, secret):
+    print(f"Guess between {lower} and {upper}! Shhhhh, it's {secret}")
+    connection.send(f"PARAMS {lower} {upper}")
+    try:
+        yield ClientSession(connection.send, connection.receive, secret)
+    finally:
+        connection.send("CLEAR")
+```
+
+- Now need to describe our `ClientSession` class
+    - Maintains internal state via helper methods
+    - Uses external function references to communicate (See [Item 48](../../Chapter_07/Item_048/))
+    - Guesses are requested from the server via the `request_number` method
+        - Uses the provided `send` and `receive` references to communicate with the server
+- We want to be able to call the game and repeatedly make new guesses until the correct answer is received
+    - We could do this explicitly with a loop construct
+    - Or incorporate it into the class via the `__iter__` method (See [Item 21](../../Chapter_03/Item_021/item_021.qmd))
+
+```python
+import math
+
+WARMER = "warmer"
+COLDER = "colder"
+SAME = "same"
+UNSURE = "unsure"
+CORRECT = "correct"
+
+
+class ClientSession:
+    def __init__(self, send, receive, secret):
+        self.send = send
+        self.receive = receive
+        self.secret = secret
+        self.last_distance = None
+
+    def __iter__(self):
+        while True:
+            number = self.request_number()
+            decision = self.report_outcome(number)
+            yield number, decision
+            if decision == CORRECT:
+                return
+
+    def request_number(self):
+        self.send("NUMBER")
+        data = self.receive()
+        return int(data)
+
+    def report_outcome(self, number):
+        new_distance = math.fabs(number - self.secret)
+
+        if new_distance == 0:
+            decision = CORRECT
+        elif self.last_distance is None:
+            decision = UNSURE
+        elif new_distance < self.last_distance:
+            decision = WARMER
+        elif new_distance > self.last_distance:
+            decision = COLDER
+        else:
+            decision = SAME
+
+        self.last_distance = new_distance
+
+        self.send(f"REPORT {decision}")
+        return decision
+
+
+WARMER = "warmer"
+COLDER = "colder"
+SAME = "same"
+UNSURE = "unsure"
+CORRECT = "correct"
+
+
+class UnknownCommandError(Exception):
+    pass
+
+
+class ServerSession(Connection):
+    def __init__(self, *args):
+        super().__init__(*args)
+        self.clear_state()
+
+    def loop(self):
+        while command := self.receive():
+            match command.split(" "):
+                case "PARAMS", lower, upper:
+                    self.set_params(lower, upper)
+                case ["NUMBER"]:
+                    self.send_number()
+                case "REPORT", decision:
+                    self.receive_report(decision)
+                case ["CLEAR"]:
+                    self.clear_state()
+                case _:
+                    raise UnknownCommandError(command)
+
+    def set_params(self, lower, upper):
+        self.clear_state()
+        self.lower = int(lower)
+        self.upper = int(upper)
+
+    def next_guess(self):
+        if self.secret is not None:
+            return self.secret
+
+        while True:
+            guess = random.randint(self.lower, self.upper)
+            if guess not in self.guesses:
+                return guess
+
+    def send_number(self):
+        guess = self.next_guess()
+        self.guesses.append(guess)
+        self.send(format(guess))
+
+    def receive_report(self):
+        last = self.guesses[-1]
+        if decision == CORRECT:
+            self.secret = last
+
+        print(f"Server: {last} is {decision}")
+
+    def clear_state(self):
+        self.lower = None
+        self.upper = None
+        self.secret = None
+        self.guesses = []
+```
+
+- To run the game we can spawn a server on one thread to listen on a socket
+    - Then spawn additional threads for each client connection
+    - `handle_connection` accepts a connection
+        - Then uses that connection to start a `ServerSession`
+        - Will then attempt to run the session via `loop`
+    - `run_server` takes in an address
+        - Uses a context manager to setup a socket on that address
+        - This socket is then bound to the address and listens for connections
+        - The server runs endlessly accepting and responding to connections
+- `run_server` wil run on a separate thread
+- We then have `run_client` on the main thread
+    - This initiates connections to the client and plays the game
+    - It has been written using a mix of syntax
+        - i.e. `for`, `with`, list comprehension, generators, direct iterator protocol calls etc.
+        - This is not for good style, but to demonstrate how to convert each style to coroutines
+- Finally `main` glues everything together
+    - Uses a hard-coded address
+    - Starts up a thread to run the server
+    - Then runs the client
+
+```python
+import socket
+from threading import Thread
+import random
+
+# Previous Connection and Server Code
+
+
+class EOFError(Exception):
+    pass
+
+
+class Connection:
+    def __init__(self, connection):
+        self.connection = connection
+        self.file = connection.makefile("rb")
+
+    def send(self, command):
+        line = command + "\n"
+        data = line.encode()
+        self.connection.send(data)
+
+    def receive(self):
+        line = self.file.readline()
+        if not line:
+            raise EOFError("Connection closed")
+        return line[:-1].decode()
+
+
+def handle_connection(connection):
+    with connection:
+        session = ServerSession(connection)
+        try:
+            session.loop()
+        except EOFError:
+            pass
+
+
+def run_server(address):
+    with socket.socket() as listener:
+        listener.bind(address)
+        listener.listen()
+        while True:
+            connection, _ = listener.accept()
+            thread = Thread(target=handle_connection, args=(connection,), daemon=True)
+            thread.start()
+
+
+def run_client(address):
+    with socket.create_connection(address) as server_sock:
+        server = Connection(server_sock)
+
+        with new_game(server, 1, 5, 3) as session:
+            results = [outcome for outcome in session]
+
+        with new_game(server, 10, 15, 12) as session:
+            for outcome in session:
+                results.append(outcome)
+
+        with new_game(server, 1, 3, 2) as session:
+            it = iter(session)
+            while True:
+                try:
+                    outcome = next(it)
+                except StopIteration:
+                    break
+                else:
+                    results.append(outcome)
+
+    return results
+
+
+def main():
+    address = ("127.0.0.1", 1234)
+    server_thread = Thread(target=run_server, args=(address,), daemon=True)
+    server_thread.start()
+
+    results = run_client(address)
+    for number, outcome in results:
+        print(f"Client: {number} is {outcome}")
+```
+
+- Putting everything together in the one cell,
+
+```{python}
+import contextlib
+import math
+import socket
+from threading import Thread
+import random
+
+# Connection Interface
+
+
+class EOFError(Exception):
+    pass
+
+
+class Connection:
+    def __init__(self, connection):
+        self.connection = connection
+        self.file = connection.makefile("rb")
+
+    def send(self, command):
+        line = command + "\n"
+        data = line.encode()
+        self.connection.send(data)
+
+    def receive(self):
+        line = self.file.readline()
+        if not line:
+            raise EOFError("Connection closed")
+        return line[:-1].decode()
+
+
+# Server Response Constants
+
+WARMER = "warmer"
+COLDER = "colder"
+SAME = "same"
+UNSURE = "unsure"
+CORRECT = "correct"
+
+# Server Interface
+
+
+class UnknownCommandError(Exception):
+    pass
+
+
+class ServerSession(Connection):
+    def __init__(self, *args):
+        super().__init__(*args)
+        self.clear_state()
+
+    def loop(self):
+        while command := self.receive():
+            match command.split(" "):
+                case "PARAMS", lower, upper:
+                    self.set_params(lower, upper)
+                case ["NUMBER"]:
+                    self.send_number()
+                case "REPORT", decision:
+                    self.receive_report(decision)
+                case ["CLEAR"]:
+                    self.clear_state()
+                case _:
+                    raise UnknownCommandError(command)
+
+    def set_params(self, lower, upper):
+        self.clear_state()
+        self.lower = int(lower)
+        self.upper = int(upper)
+
+    def next_guess(self):
+        if self.secret is not None:
+            return self.secret
+
+        while True:
+            guess = random.randint(self.lower, self.upper)
+            if guess not in self.guesses:
+                return guess
+
+    def send_number(self):
+        guess = self.next_guess()
+        self.guesses.append(guess)
+        self.send(format(guess))
+
+    def receive_report(self, decision):
+        last = self.guesses[-1]
+        if decision == CORRECT:
+            self.secret = last
+
+        print(f"Server: {last} is {decision}")
+
+    def clear_state(self):
+        self.lower = None
+        self.upper = None
+        self.secret = None
+        self.guesses = []
+
+
+# Game state management
+
+
+@contextlib.contextmanager
+def new_game(connection, lower, upper, secret):
+    print(f"Guess between {lower} and {upper}! Shhhhh, it's {secret}")
+    connection.send(f"PARAMS {lower} {upper}")
+    try:
+        yield ClientSession(connection.send, connection.receive, secret)
+    finally:
+        connection.send("CLEAR")
+
+
+# Client Interface
+
+
+class ClientSession:
+    def __init__(self, send, receive, secret):
+        self.send = send
+        self.receive = receive
+        self.secret = secret
+        self.last_distance = None
+
+    def __iter__(self):
+        while True:
+            number = self.request_number()
+            decision = self.report_outcome(number)
+            yield number, decision
+            if decision == CORRECT:
+                return
+
+    def request_number(self):
+        self.send("NUMBER")
+        data = self.receive()
+        return int(data)
+
+    def report_outcome(self, number):
+        new_distance = math.fabs(number - self.secret)
+
+        if new_distance == 0:
+            decision = CORRECT
+        elif self.last_distance is None:
+            decision = UNSURE
+        elif new_distance < self.last_distance:
+            decision = WARMER
+        elif new_distance > self.last_distance:
+            decision = COLDER
+        else:
+            decision = SAME
+
+        self.last_distance = new_distance
+
+        self.send(f"REPORT {decision}")
+        return decision
+
+
+# Glue Code
+
+
+def handle_connection(connection):
+    with connection:
+        session = ServerSession(connection)
+        try:
+            session.loop()
+        except EOFError:
+            pass
+
+
+def run_server(address):
+    with socket.socket() as listener:
+        listener.bind(address)
+        listener.listen()
+        while True:
+            connection, _ = listener.accept()
+            thread = Thread(target=handle_connection, args=(connection,), daemon=True)
+            thread.start()
+
+
+def run_client(address):
+    with socket.create_connection(address) as server_sock:
+        server = Connection(server_sock)
+
+        with new_game(server, 1, 5, 3) as session:
+            results = [outcome for outcome in session]
+
+        with new_game(server, 10, 15, 12) as session:
+            for outcome in session:
+                results.append(outcome)
+
+        with new_game(server, 1, 3, 2) as session:
+            it = iter(session)
+            while True:
+                try:
+                    outcome = next(it)
+                except StopIteration:
+                    break
+                else:
+                    results.append(outcome)
+
+    return results
+
+
+def main():
+    address = ("127.0.0.1", 1234)
+    server_thread = Thread(target=run_server, args=(address,), daemon=True)
+    server_thread.start()
+
+    results = run_client(address)
+    for number, outcome in results:
+        print(f"Client: {number} is {outcome}")
+
+main()
+```
+
+- Now we want to refactor this design to instead use `async` and `await` via the `asyncio` built-in module
+
+### Porting to `async`
+
+- First, we need to modify the `Connection` class to support asynchronous coroutine methods for `send` and `receive`
+    - The constructor no longer accepts a `connection` (implicitly a socket)
+        - Instead takes in a `reader` (something to read input from)
+        - and a `writer` (somewhere to put input)
+        - No longer have a hidden file creation on the connection either
+    - `send` is updated to use the `writer` interface
+        - Assumes that we have a `write` method
+        - Some asynchronous `drain` method (Presumably a flush type operation)
+    - `receive` is updated for the `reader` interface
+        - asynchronously waits to receive a line from the reader
+        - Otherwise works as before
+
+```python
+class AsyncConnection:
+    def __init__(self, reader, writer): # constructor method no longer relies on a connection + hidden file creation
+        self.reader = reader
+        self.writer = writer
+
+    async def send(self, command):
+        line = command + "\n"
+        data = line.encode()
+        self.writer.write(data) # changed
+        await self.writer.drain() # changed
+
+    async def receive(self):
+        line = await self.reader.readline() # changed
+        if not line:
+            raise EOFError("Connection closed")
+        return line[:-1].decode()
+```
+
+- We'll again use a stateful class to maintain the server state, but we need to update this to be `async`
+    - First step is to make `AsyncServerSession` inherit from `AsyncConnection`
+    - The constructor is unchanged
+    - `loop` needs to become `async` to handle the asynchronous methods
+        - We `await` the `async` call to `receive` to get a command
+            - This function is described in the `AsyncConnection`
+        - We `await` the `async` call to `send_numbers` which is the server sending a response
+            - This just involves making `send_numbers` `async` and using an `await` call to `self.send`
+        - The other methods do not touch I/O and are unchanged
+
+```python
+import random
+
+class UnknownCommandError(Exception):  # No changes from before
+    pass
+
+class AsyncServerSession(AsyncConnection): # Changed from Connection to AsyncConnection
+    def __init__(self, *args):
+        super().__init__(*args)
+        self.clear_state()
+
+    async def loop(self): # Updated to an async method
+        while command := await self.receive(): # Updated to asynchronously receive
+            match command.split(" "):
+                case "PARAMS", lower, upper:
+                    self.set_params(lower, upper)
+                case ["NUMBER"]:
+                    await self.send_number() # Changed to async method
+                case "REPORT", decision:
+                    self.receive_report(decision)
+                case ["CLEAR"]:
+                    self.clear_state()
+                case _:
+                    raise UnknownCommandError(command)
+
+    def set_params(self, lower, upper):
+        self.clear_state()
+        self.lower = int(lower)
+        self.upper = int(upper)
+
+    def next_guess(self):
+        if self.secret is not None:
+            return self.secret
+
+        while True:
+            guess = random.randint(self.lower, self.upper)
+            if guess not in self.guesses:
+                return guess
+
+    async def send_number(self): # Changed to async
+        guess = self.next_guess()
+        self.guesses.append(guess)
+        await self.send(format(guess)) # Changed to use await
+
+    def receive_report(self, decision):
+        last = self.guesses[-1]
+        if decision == CORRECT:
+            self.secret = last
+
+        print(f"Server: {last} is {decision}")
+
+    def clear_state(self):
+        self.lower = None
+        self.upper = None
+        self.secret = None
+        self.guesses = []
+```
+
+- We then need to update our `new_game` function to handle async
+    - Most of the code changes are pretty straightforward
+    - However, we have to update the context manager to a special version that can handle `async`
+        - This is the `asynccontextmanager`
+        - Also comes from `contextlib`
+
+```python
+import contextlib
+
+@contextlib.asynccontextmanager #Changed
+async def new_async_game(connection, lower, upper, secret): # We've changed the name to emphasis this is an async function
+    print(f"Guess a number between {lower} and {upper}! Shhhh, it's {secret}")
+    await connection.send(f"PARAMS {lower} {upper}") # Changed to async
+    try:
+        yield AsyncClientSession(connection.send, connection.receive, secret)
+    finally:
+        await connection.send("CLEAR") # changed to async
+```
+
+- Probably the most involved class to change is `ClientSession`
+    - We'll call the new implementation `AsyncClientSession`
+    - `__init__` only sets data values so doesn't need to change
+    - `request_number` becomes `async`
+        - Calls `await` on the call to `send` and `recieve` data
+    - `report_outcome` also becomes `async`
+        - Calls `await` on the call to `send` the report
+    - Instead of using `__iter__` to perform asynchronous iteration we have to use `__aiter__`
+        - Again the internal changes are replacing the naked calls to `request_number` and `report_outcome` with `await` calls
+
+```python
+import math
+
+WARMER = "warmer"
+COLDER = "colder"
+SAME = "same"
+UNSURE = "unsure"
+CORRECT = "correct"
+
+class AsyncClientSession:
+    def __init__(self, send, receive, secret):
+        self.send = send
+        self.receive = receive
+        self.secret = secret
+        self.last_distance = None
+
+    async def __aiter__(self): # using __aiter__ instead of __iter__ for async
+        while True:
+            number = await self.request_number() # Changed
+            decision = await self.report_outcome(number) # Changed
+            yield number,  decision
+            if decision == CORRECT:
+                return
+
+    async def request_number(self):
+        await self.send("NUMBER") # changed to use await
+        data = await self.receive() # changed to use await
+        return int(data)
+
+    async def report_outcome(self, number): # changed
+        new_distance = math.fabs(number - self.secret)
+
+        if new_distance == 0:
+            decision = CORRECT
+        elif self.last_distance is None:
+            decision = UNSURE
+        elif new_distance < self.last_distance:
+            decision = WARMER
+        elif new_distance > self.last_distance:
+            decision = COLDER
+        else:
+            decision = SAME
+
+        self.last_distance = new_distance
+
+        await self.send(f"REPORT {decision}") # Changed to use await
+        return decision
+```
+
+- The glue code we wrote all worked under the model of using threads to handle the server and connections
+    - Means we have to completely rewrite to the new paradigm (`async` + `asyncio`  built-in)
+- `handle_async_connection` now accepts a reader and a writer rather than connection
+    - Uses that to create an `AsyncServerSession` instead of a `ServerSession`
+    - Then calls `await` on `session.loop`
+- `run_async_server` takes an address as before
+    - But the internals are completely rewritten
+    - We no longer explicitly create and bind a socket to the address
+    - No longer loop, listening to the socket and then running the connection on a new thread
+    - Instead use `asyncio` to `start_server` on the provided address via the `handle_async_connection` function
+    - Then *serve* the server via an `async with` context
+        - Then `await` on `serve_forever` to run the server
+
+```python
+import asyncio
+
+async def handle_async_connection(reader, writer):
+    session = AsyncServerSession(reader, writer)
+    try:
+        await session.loop()
+    except EOFError:
+        pass
+
+async def run_async_server(address):
+    server = await asyncio.start_server(handle_async_connection, *address)
+    async with server:
+        await server.serve_forever()
+
+```
+
+- The `run_client` function is almost entirely rewritten to support an `async` implementation
+    - This new function is `run_async_client`
+    - the initial socket connection code is replaced with an asynchronous equivalent
+        - `asyncio.open_connection`
+            - This returns a reader and writer stream rather than a connection socket
+        - We use this to create a client
+    - Then have to replace most of the body of the code for the various methods of running a game session with their `async` equivalents
+        - Use of `async` on the `with` statements
+        - Use of `await` on the `for` loops
+        - Use of `aiter` and `anext` instead  of `iter` and `next`
+        - use of `StopAsyncIteration` instead of `StopIteration`
+    - We then have to do some different clean-up at the end
+        - Since we no longer have the connection being managed as a context
+        - We have to close the `writer` then wait for it to be closed via `writer.wait_closed`
+    - Observe that overall we didn't have to make any significant *structural* changes to the code
+
+:::{.callout-warning}
+The event loop can result in a race condition where `run_async_client` attempts to connect to the server before it has been set-up to listen. This is an example of a race condition. There are more idiomatic techniques to fix this, such as using events to make sure the main function waits for the server to confirm it's listening before proceeding, but a quick fix can be to use `asyncio.sleep` to add a delay to the start of the `run_async_client` function and ensure the server has time to set-up.
+
+For this simple case we'll use the second approach.
+:::
+
+```python
+import asyncio
+
+async def run_async_client(address):
+    await asyncio.sleep(delay=0.1)  # Sleep to ensure server has time to listen
+
+    streams = await asyncio.open_connection(*address) # New
+    client = AsyncConnection(*streams) # New
+
+    async with new_async_game(client, 1, 5, 3) as session: # Addition of `async`
+        results = [outcome async for outcome in session] # Addition of `async`
+
+    async with new_async_game(client, 10, 15, 12) as session: # Addition of `async`
+        async for outcome in session: # Addition of `async`
+            results.append(outcome)
+
+    async with new_async_game(client, 1, 3, 2) as session: # Addition of `async`
+        it = aiter(session) # replacing `iter` with `aiter`
+        while True:
+            try:
+                outcome = await anext(it) # replace `next` with `anext`
+            except StopAsyncIteration: # StopAsyncIteration not StopIteration
+                break
+            else:
+                results.append(outcome)
+
+    _, writer = streams # New
+    writer.close() # New
+    await writer.wait_closed() # New
+
+    return results
+```
+
+- Not always as straightforward to convert
+    - E.g. No `async` equivalent for `itertools` functions (See [Item 24](../../Chapter_03/Item_024/item_024.qmd))
+    - No `async` equivalent of `yield from` (See [Item 45](../../Chapter_06/Item_045/item_045.qmd))
+        - Composing generators thus becomes less clean
+    - Worth considering looking for third party libraries where friction occurs
+- Last step is to update the driver code
+    - Start by using `asyncio.create_task` to queue server onto the event loop
+        - Ensures that it runs alongside the client
+        - Alternative approach to fan-out rather than `asyncio.gather`
+
+```python
+import asyncio
+
+async def main_async():
+    address = ("127.0.0.1", 4321)
+
+    server = run_async_server(address)
+    asyncio.create_task(server)
+
+    results = await run_async_client(address)
+    for number, outcome in results:
+        print(f"Client: {number} is {outcome}")
+
+# asyncio.run(main_async()) # Need this outside the jupyter notebook
+await main_async()
+```
+
+- Putting it all together and running the code,
+
+```{python}
+import asyncio
+import contextlib
+import math
+import random
+
+
+# Async Connection Interface
+class AsyncConnection:
+    def __init__(
+        self, reader, writer
+    ):  # constructor method no longer relies on a connection + hidden file creation
+        self.reader = reader
+        self.writer = writer
+
+    async def send(self, command):
+        line = command + "\n"
+        data = line.encode()
+        self.writer.write(data)  # changed
+        await self.writer.drain()  # changed
+
+    async def receive(self):
+        line = await self.reader.readline()  # changed
+        if not line:
+            raise EOFError("Connection closed")
+        return line[:-1].decode()
+
+
+# Setting up the Server Interface
+
+
+class UnknownCommandError(Exception):  # No changes from before
+    pass
+
+
+class AsyncServerSession(AsyncConnection):  # Changed from Connection to AsyncConnection
+    def __init__(self, *args):
+        super().__init__(*args)
+        self.clear_state()
+
+    async def loop(self):  # Updated to an async method
+        while command := await self.receive():  # Updated to asynchronously receive
+            match command.split(" "):
+                case "PARAMS", lower, upper:
+                    self.set_params(lower, upper)
+                case ["NUMBER"]:
+                    await self.send_number()  # Changed to async method
+                case "REPORT", decision:
+                    self.receive_report(decision)
+                case ["CLEAR"]:
+                    self.clear_state()
+                case _:
+                    raise UnknownCommandError(command)
+
+    def next_guess(self):
+        if self.secret is not None:
+            return self.secret
+
+        while True:
+            guess = random.randint(self.lower, self.upper)
+            if guess not in self.guesses:
+                return guess
+
+    def set_params(self, lower, upper):
+        self.clear_state()
+        self.lower = int(lower)
+        self.upper = int(upper)
+
+    async def send_number(self):  # Changed to async
+        guess = self.next_guess()
+        self.guesses.append(guess)
+        await self.send(format(guess))  # Changed to use await
+
+    def receive_report(self, decision):
+        last = self.guesses[-1]
+        if decision == CORRECT:
+            self.secret = last
+
+        print(f"Server: {last} is {decision}")
+
+    def clear_state(self):
+        self.lower = None
+        self.upper = None
+        self.secret = None
+        self.guesses = []
+
+
+# Running a game
+
+
+@contextlib.asynccontextmanager  # Changed
+async def new_async_game(
+    connection, lower, upper, secret
+):  # We've changed the name to emphasis this is an async function
+    print(f"Guess a number between {lower} and {upper}! Shhhh, it's {secret}")
+    await connection.send(f"PARAMS {lower} {upper}")  # Changed to async
+    try:
+        yield AsyncClientSession(connection.send, connection.receive, secret)
+    finally:
+        await connection.send("CLEAR")  # changed to async
+
+
+# Client interface
+
+WARMER = "warmer"
+COLDER = "colder"
+SAME = "same"
+UNSURE = "unsure"
+CORRECT = "correct"
+
+
+class AsyncClientSession:
+    def __init__(self, send, receive, secret):
+        self.send = send
+        self.receive = receive
+        self.secret = secret
+        self.last_distance = None
+
+    async def __aiter__(self):  # using __aiter__ instead of __iter__ for async
+        while True:
+            number = await self.request_number()  # Changed
+            decision = await self.report_outcome(number)  # Changed
+            yield number, decision
+            if decision == CORRECT:
+                return
+
+    async def request_number(self):
+        await self.send("NUMBER")  # changed to use await
+        data = await self.receive()  # changed to use await
+        return int(data)
+
+    async def report_outcome(self, number):  # changed
+        new_distance = math.fabs(number - self.secret)
+
+        if new_distance == 0:
+            decision = CORRECT
+        elif self.last_distance is None:
+            decision = UNSURE
+        elif new_distance < self.last_distance:
+            decision = WARMER
+        elif new_distance > self.last_distance:
+            decision = COLDER
+        else:
+            decision = SAME
+
+        self.last_distance = new_distance
+
+        await self.send(f"REPORT {decision}")  # Changed to use await
+        return decision
+
+
+# Glue code
+async def handle_async_connection(reader, writer):
+    session = AsyncServerSession(reader, writer)
+    try:
+        await session.loop()
+    except EOFError:
+        pass
+
+
+async def run_async_server(address):
+    server = await asyncio.start_server(handle_async_connection, *address)
+    async with server:
+        await server.serve_forever()
+
+
+async def run_async_client(address):
+    await asyncio.sleep(delay=0.1)  # Sleep to ensure server has time to listen
+
+    streams = await asyncio.open_connection(*address)  # New
+    client = AsyncConnection(*streams)  # New
+
+    async with new_async_game(client, 1, 5, 3) as session:  # Addition of `async`
+        results = [outcome async for outcome in session]  # Addition of `async`
+
+    async with new_async_game(client, 10, 15, 12) as session:  # Addition of `async`
+        async for outcome in session:  # Addition of `async`
+            results.append(outcome)
+
+    async with new_async_game(client, 1, 3, 2) as session:  # Addition of `async`
+        it = aiter(session)  # replacing `iter` with `aiter`
+        while True:
+            try:
+                outcome = await anext(it)  # replace `next` with `anext`
+            except StopAsyncIteration:  # StopAsyncIteration not StopIteration
+                break
+            else:
+                results.append(outcome)
+
+    _, writer = streams  # New
+    writer.close()  # New
+    await writer.wait_closed()  # New
+
+    return results
+
+
+# Driver Code
+
+import asyncio
+
+
+async def main_async():
+    address = ("127.0.0.1", 8765)
+
+    server = run_async_server(address)
+    asyncio.create_task(server)
+
+    results = await run_async_client(address)
+    for number, outcome in results:
+        print(f"Client: {number} is {outcome}")
+
+
+# asyncio.run(main_async())  # Need this outside the jupyter notebook
+await main_async()  # Comment out in favour of the line above if running as a script
+```
+
+- Works as expected
+- Coroutine version is easier to read
+    - The logic of handling concurrent execution has largely been hidden
+    - The constant need to write `async` and `await` is the downside
+- `asyncio` also provides helper functions that hide the socket boilerplate
+- For more difficult use cases `asyncio` offers a broader selection of features including (see [Item 77](../Item_077/item_077.qmd) and [Item 78](../Item_078/item_078.qmd)),
+    1. I/O
+    2. Synchronisation
+    3. Task Management
+- Read the [documentation](https://docs.python.org/3/library/asyncio.html#module-asyncio)
+
+## Things to Remember
+
+- Python provides asynchronous equivalents of standard language constructs
+    - e.g. `for`, `with`, generators, comprehensions, iterators, library helper functions
+    - Act as drop-in replacements for coroutines
+- `asyncio` built-in module simplifies porting existing threaded code / blocking I/O to coroutines and asynchronous I/O
