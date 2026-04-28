@@ -26,8 +26,8 @@ sleep(0.1)
 log("Hello again")
 ```
 
-    2026-04-28 06:43:04.883718: Hi there
-    2026-04-28 06:43:04.883718: Hello again
+    2026-04-28 12:48:33.726034: Hi there
+    2026-04-28 12:48:33.726034: Hello again
 
 - Erroneously assumes that `datetime.now` is called whenever `log` is
   called with the default `when` value
@@ -67,8 +67,8 @@ sleep(0.1)
 log("Hello again")
 ```
 
-    2026-04-28 06:43:04.992034: Hi there
-    2026-04-28 06:43:05.092440: Hello again
+    2026-04-28 12:48:33.833866: Hi there
+    2026-04-28 12:48:33.934148: Hello again
 
 - Again, suppose we tried to write function that loads json data,
 
@@ -173,8 +173,8 @@ sleep(0.1)
 log("Hello again")
 ```
 
-    2026-04-28 06:43:05.116068: Hi there
-    2026-04-28 06:43:05.216450: Hello again
+    2026-04-28 12:48:33.958134: Hi there
+    2026-04-28 12:48:34.058393: Hello again
 
 ## Things to Remember
 

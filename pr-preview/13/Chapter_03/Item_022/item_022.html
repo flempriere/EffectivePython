@@ -779,7 +779,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Modifying containers while iterating over them can lead to many gotchas</li>
 <li>For example, adding a key to a dictionary while iterating will raise a runtime error</li>
 </ul>
-<div id="14e5ef39" class="cell" data-execution_count="1">
+<div id="3e5074d3" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>search_key <span class="op">=</span> <span class="st">"red"</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>my_dict <span class="op">=</span> {<span class="st">"red"</span>: <span class="dv">1</span>, <span class="st">"blue"</span>: <span class="dv">2</span>, <span class="st">"green"</span>: <span class="dv">3</span>}</span>
@@ -805,7 +805,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Similar thing happens if we call delete</li>
 </ul>
-<div id="510d849f" class="cell" data-execution_count="2">
+<div id="fffd733b" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>search_key <span class="op">=</span> <span class="st">"red"</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>my_dict <span class="op">=</span> {<span class="st">"red"</span>: <span class="dv">1</span>, <span class="st">"blue"</span>: <span class="dv">2</span>, <span class="st">"green"</span>: <span class="dv">3</span>}</span>
@@ -834,7 +834,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Just cannot modify the set of keys</li>
 </ul></li>
 </ul>
-<div id="abd65dca" class="cell" data-execution_count="3">
+<div id="c76deaf4" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>search_key <span class="op">=</span> <span class="st">"red"</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>my_dict <span class="op">=</span> {<span class="st">"red"</span>: <span class="dv">1</span>, <span class="st">"blue"</span>: <span class="dv">2</span>, <span class="st">"green"</span>: <span class="dv">3</span>}</span>
@@ -857,7 +857,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul></li>
 </ul>
-<div id="b24b9d11" class="cell" data-execution_count="4">
+<div id="e2d9b21e" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>search_key <span class="op">=</span> <span class="st">"red"</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>my_set <span class="op">=</span> {<span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span>}</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -873,7 +873,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        my_set.add(<span class="st">"yellow"</span>)</span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_set)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>{'blue', 'green', 'red'}</code></pre>
+<pre><code>{'green', 'blue', 'red'}</code></pre>
 </div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -896,7 +896,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Can overwrite indices during iteration</li>
 </ul></li>
 </ul>
-<div id="2aa574af" class="cell" data-execution_count="5">
+<div id="b2a886fc" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> number <span class="kw">in</span> my_list:</span>
@@ -917,7 +917,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Be careful running the cell below</li>
 </ul></li>
 </ul>
-<div id="28be592e" class="cell" data-execution_count="6">
+<div id="66115988" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> number <span class="kw">in</span> my_list:</span>
@@ -930,7 +930,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Appending to a list at a position <em>after</em> the current iterator is not a problem</li>
 </ul>
-<div id="8e4157c4" class="cell" data-execution_count="7">
+<div id="4cb5e880" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> number <span class="kw">in</span> my_list:</span>
@@ -960,7 +960,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>For example,</li>
 </ul>
-<div id="245d8dc7" class="cell" data-execution_count="8">
+<div id="6735fa42" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copying and modifying a dictionary</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>search_key <span class="op">=</span> <span class="st">"red"</span></span>
@@ -995,7 +995,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 2
 3
 [4, 1, 2, 3]
-{'blue', 'green', 'yellow', 'red'}</code></pre>
+{'green', 'blue', 'red', 'yellow'}</code></pre>
 </div>
 </div>
 <ul>
@@ -1003,7 +1003,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Alternative is to stage modifications in a container</li>
 <li>Then merge the changes into the main container post-iteration</li>
 </ul>
-<div id="bb681cc9" class="cell" data-execution_count="9">
+<div id="fb91ab68" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>search_key <span class="op">=</span> <span class="st">"red"</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>my_dict <span class="op">=</span> {<span class="st">"red"</span>: <span class="dv">1</span>, <span class="st">"blue"</span>: <span class="dv">2</span>, <span class="st">"green"</span>: <span class="dv">3</span>}</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1024,7 +1024,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Logic relying on the modifications being immediately visible is liable to break</li>
 <li>E.g. the following code might have expected <code>"yellow"</code> to be added during iteration</li>
 </ul>
-<div id="7b0df8a0" class="cell" data-execution_count="10">
+<div id="7d0e6fe6" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>search_key <span class="op">=</span> <span class="st">"red"</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>my_dict <span class="op">=</span> {<span class="st">"red"</span> : <span class="dv">1</span>, <span class="st">"blue"</span> : <span class="dv">2</span>, <span class="st">"green"</span> : <span class="dv">3</span>}</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>modifications <span class="op">=</span> {}</span>
@@ -1048,7 +1048,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Modifications effectively acts as a cache</li>
 </ul></li>
 </ul>
-<div id="fcd00f69" class="cell" data-execution_count="11">
+<div id="23d95361" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>search_key <span class="op">=</span> <span class="st">"red"</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>my_dict <span class="op">=</span> {<span class="st">"red"</span>: <span class="dv">1</span>, <span class="st">"blue"</span>: <span class="dv">2</span>, <span class="st">"green"</span>: <span class="dv">3</span>}</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>modifications <span class="op">=</span> {}</span>

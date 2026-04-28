@@ -790,7 +790,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>This is a simplified version of what a python compiler does when loading a program</li>
 <li>AST classes for our basic operators might look like,</li>
 </ul>
-<div id="380c9873" class="cell" data-execution_count="1">
+<div id="ee54be2e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Integer:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, value):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.value <span class="op">=</span> value</span>
@@ -817,7 +817,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Can perform the branching via <code>isinstance</code> to determine the type of each AST node (See <a href="../../Chapter_01/Item_009/item_009.html">Item 9</a>)</li>
 </ul></li>
 </ul>
-<div id="fe21baf2" class="cell" data-execution_count="2">
+<div id="62954b40" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Integer:</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, value):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.value <span class="op">=</span> value</span>
@@ -877,7 +877,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>Each node then implements the <code>evaluate</code> method itself</li>
 </ul>
-<div id="a74b8e76" class="cell" data-execution_count="3">
+<div id="ce622eba" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Node:</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> evaluate(<span class="va">self</span>):</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">NotImplementedError</span></span>
@@ -937,7 +937,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Define a new method on the base class, then have to implement it in each of the subclasses</li>
 </ul></li>
 </ul>
-<div id="de48eb1a" class="cell" data-execution_count="4">
+<div id="f920544f" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NodeAlt:</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> evaluate(<span class="va">self</span>):</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">NotImplementedError</span></span>

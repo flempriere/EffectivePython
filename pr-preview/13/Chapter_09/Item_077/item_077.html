@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -711,7 +746,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a>
+  <ul>
+  <li><a href="#top-down-approach" id="toc-top-down-approach" class="nav-link" data-scroll-target="#top-down-approach">Top-Down Approach</a></li>
+  <li><a href="#bottom-up-approach" id="toc-bottom-up-approach" class="nav-link" data-scroll-target="#bottom-up-approach">Bottom-up Approach</a></li>
+  </ul></li>
   <li><a href="#things-to-remember" id="toc-things-to-remember" class="nav-link" data-scroll-target="#things-to-remember">Things to Remember</a></li>
   </ul>
 <div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/flempriere/EffectivePython/" target="_blank"><i class="bi bi-github"></i>GitHub Repo</a></li><li><a href="https://mybinder.org/v2/gh/flempriere/EffectivePython/HEAD?urlpath=vscode" target="_blank"><i class="bi bi-journals"></i>Launch Binder</a></li></ul></div></nav>
@@ -740,9 +779,930 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li>The previous <a href="../../Chapter_09/Item_076/item_076.html">item</a> demonstrated how to port a relatively small self-contained program from threading to asynchronous programming</li>
+<li>With larger programs, they generally have to be ported incrementally
+<ul>
+<li>Often have to update tests along the way and verify preserved behaviour</li>
+</ul></li>
+<li>The issue with doing so is having intermediate code that has to intermix both blocking I/O and asynchronous I/O (See <a href="../../Chapter_09/Item_068/item_068.html">Item 68</a> and <a href="../../Chapter_09/Item_075/item_075.html">Item 75</a>)
+<ul>
+<li>Means we have to threads that can run coroutines and,</li>
+<li>Coroutines that can run thread</li>
+</ul></li>
+<li><code>asyncio</code> provides built-in support for interoperability</li>
+<li>For example, consider a program that merges log files into a single output stream
+<ul>
+<li>Useful for aiding with debugging</li>
+</ul></li>
+<li>Given an input file handle
+<ul>
+<li>Need to detect if new data is available</li>
+<li>Then read that input</li>
+<li>The <code>tell</code> method checks where a file handle is in a file
+<ul>
+<li>Can use to check if this matches the length of the file</li>
+</ul></li>
+<li>When no data is present, we raise an exception (See <a href="../../Chapter_05/Item_032/item_032.html">Item 32</a>)</li>
+</ul></li>
+</ul>
+<div id="d612a294" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NoNewData(<span class="pp">Exception</span>):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> readline(handle):</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    offset <span class="op">=</span> handle.tell()  <span class="co"># Get the current handle offset</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    handle.seek(<span class="dv">0</span>, <span class="dv">2</span>)  <span class="co"># move forward to end of file</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    length <span class="op">=</span> handle.tell()  <span class="co"># get the length of the file</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> length <span class="op">==</span> offset:</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> NoNewData</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    handle.seek(offset, <span class="dv">0</span>)  <span class="co"># move the handle back to where it was</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> handle.readline()  <span class="co"># read the line</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># demonstrate via reading from a single line file</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"input_line.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"First line:"</span>, readline(f))</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Trying to read a second line:"</span>, readline(f))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>First line: This is a line
+</code></pre>
+</div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NoNewData</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 20</span>
+<span class="ansi-green-fg">     18</span> <span style="font-weight:bold;color:rgb(0,135,0)">with</span> <span style="color:rgb(0,135,0)">open</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">input_line.txt</span><span class="ansi-yellow-fg">"</span>, <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">r</span><span class="ansi-yellow-fg">"</span>) <span style="font-weight:bold;color:rgb(0,135,0)">as</span> f:
+<span class="ansi-green-fg">     19</span>     <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">First line:</span><span class="ansi-yellow-fg">"</span>, readline(f))
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">20</span>     <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Trying to read a second line:</span><span class="ansi-yellow-fg">"</span>, <span class="ansi-yellow-bg">readline</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">f</span><span class="ansi-yellow-bg">)</span>)
+
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 11</span>, in <span class="ansi-cyan-fg">readline</span><span class="ansi-blue-fg">(handle)</span>
+<span class="ansi-green-fg">      8</span> length = handle.tell()  <span style="font-style:italic;color:rgb(95,135,135)"># get the length of the file</span>
+<span class="ansi-green-fg">     10</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> length == offset:
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">11</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> NoNewData
+<span class="ansi-green-fg">     13</span> handle.seek(offset, <span class="ansi-green-fg">0</span>)  <span style="font-style:italic;color:rgb(95,135,135)"># move the handle back to where it was</span>
+<span class="ansi-green-fg">     14</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> handle.readline()
+
+<span class="ansi-red-fg">NoNewData</span>: </pre>
+</div>
+</div>
+</div>
+<ul>
+<li>We want to provide a loop construct around the above function so that we can offload the work to a thread</li>
+<li>This construct needs to
+<ol type="1">
+<li>Accept an input file
+<ul>
+<li>Specifically a file handle</li>
+</ul></li>
+<li>loop to be able to wait on input
+<ul>
+<li>We’ll use a simple <code>while</code> loop</li>
+<li>Run as long as the file is open</li>
+</ul></li>
+<li>Need to be able to write to an output file
+<ul>
+<li>Could hardcode this
+<ul>
+<li>Would then take an output file</li>
+</ul></li>
+<li>Instead, we’ll use a callback function that controls how to write the line (See <a href="../../Chapter_07/Item_048/item_048.html">Item 48</a>)</li>
+</ul></li>
+</ol></li>
+<li>We’ll also accept a sleep <code>interval</code> parameter to limit the amount of busy waiting</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tail_file(handle, interval, write_func):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="kw">not</span> handle.closed:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            line <span class="op">=</span> readline(handle)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> NoNewData:</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            time.sleep(interval)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            write_func(line)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Traditional fan-out would be to listen to each input file on a distinct worker thread
+<ul>
+<li>fan-in into a single output file</li>
+</ul></li>
+<li>We can do this with a closure (See <a href="../../Chapter_05/Item_033/item_033.html">Item 33</a>)
+<ul>
+<li>Need to take care to use a lock on the output file for data integrity (See <a href="../../Chapter_09/Item_069/item_069.html">Item 69</a>)</li>
+<li>Can then serialise writes to the output file</li>
+<li>Then simply have to spin up the threads and then wait on them via <code>join</code></li>
+</ul></li>
+<li><code>run_threads</code> keeps running while any worker thread is still active
+<ul>
+<li>Threads stay alive until their input file is closed</li>
+<li>Closing the file is controlled by the external environment</li>
+</ul></li>
+<li>The basic test framework is based on that provided in the <a href="../../effectivepython/example_code/item_077.py">original example code</a>
+<ul>
+<li><code>write_random_data</code> is a simple function to generate test data
+<ul>
+<li>Uses a weighted coin toss to determine the number of lines to write</li>
+<li>Then simply,
+<ol type="1">
+<li>Sleeps for an <code>interval</code></li>
+<li>Writes a line containing the file path, the line number and a random ascii string</li>
+<li>Ensures the data is encoded and flushed</li>
+</ol></li>
+</ul></li>
+<li><code>start_write_threads</code> sets up threads to write a number of random files
+<ul>
+<li>Takes a directory to write them to</li>
+<li>Takes the number of files to write
+<ul>
+<li>Ensures the files exist</li>
+</ul></li>
+<li>Starts a thread to write the random data to each file</li>
+<li>Returns a list containing the names of the written files</li>
+</ul></li>
+<li><code>close_all</code> takes a list of file handles and after a pre-determined wait period, closes them all
+<ul>
+<li>Here one second</li>
+<li>Performs the external handle shut down for <code>run_threads</code></li>
+</ul></li>
+<li><code>setup</code> configures a temporary directory to generate and run the tests in
+<ul>
+<li>Temporary directory ensures that all the test data is cleaned up after execution</li>
+<li>Then calls <code>start_write_threads</code> to start writing the test data</li>
+<li>Then for each written file, opens a new handle
+<ul>
+<li>These are to be used by the <code>run_thread</code> function to delegate files to worker threads</li>
+</ul></li>
+<li>Then calls <code>close_all</code> to ensure after a certain period of time the file handles are closed
+<ul>
+<li>Sufficiently long that the files should all have been completely written too</li>
+<li>We run this in a separate thread so that other work can continue</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>The actual test code is <code>confirm_merge</code>
+<ul>
+<li>Takes in a list of the input file paths</li>
+<li>We then use two defaultdict’s using the <code>list</code> function to build an <code>expected</code> and <code>found</code> dictionary
+<ul>
+<li>The <code>found</code> dictionary is constructed by reading the generated output file
+<ul>
+<li>For each line in the output we try and see if it matches any lines in any of the input files</li>
+<li>We then append it to the dictionary such that the structure means that each input path is a key to the list of its lines that are found in the output</li>
+</ul></li>
+<li>The <code>expected</code> dictionary works similarly
+<ul>
+<li>For each input file, we create a list of it’s line</li>
+</ul></li>
+</ul></li>
+<li>We then confirm that the <code>found</code> dictionary matches the <code>expected</code> dictionary</li>
+</ul></li>
+<li>To execute the test we do the following,
+<ol type="1">
+<li>run <code>setup</code></li>
+<li>run <code>run_threads</code> (this is the code we’re testing)</li>
+<li>run <code>confirm_merge</code> to confirm that <code>run_threads</code> correctly merged into the merge file</li>
+<li>Cleanup the temporary directory</li>
+</ol></li>
+</ul>
+<div id="7d7fe1b4" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections <span class="co"># for testing</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co"># for testing</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="co"># for testing</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string <span class="co"># for testing</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tempfile <span class="im">import</span> TemporaryDirectory <span class="co"># for testing</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># For actual implementation</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> threading <span class="im">import</span> Thread, Lock</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#  Run the threads</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_threads(handles, interval, output_path):</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(output_path, <span class="st">"wb"</span>) <span class="im">as</span> output:</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        lock <span class="op">=</span> Lock()</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># closure function</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> write(data):</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">with</span> lock:</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                output.write(data)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        threads <span class="op">=</span> []</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> handle <span class="kw">in</span> handles:</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>            args <span class="op">=</span> (handle, interval, write)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>            thread <span class="op">=</span> Thread(target<span class="op">=</span>tail_file, args<span class="op">=</span>args)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>            thread.start()</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>            threads.append(thread)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> thread <span class="kw">in</span> threads:</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>            thread.join()</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Previous API</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NoNewData(<span class="pp">Exception</span>):</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> readline(handle):</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    offset <span class="op">=</span> handle.tell()  <span class="co"># Get the current handle offset</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    handle.seek(<span class="dv">0</span>, <span class="dv">2</span>)  <span class="co"># move forward to end of file</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    length <span class="op">=</span> handle.tell()  <span class="co"># get the length of the file</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> length <span class="op">==</span> offset:</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> NoNewData</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    handle.seek(offset, <span class="dv">0</span>)  <span class="co"># move the handle back to where it was</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> handle.readline()  <span class="co"># read the line</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tail_file(handle, interval, write_func):</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="kw">not</span> handle.closed:</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>            line <span class="op">=</span> readline(handle)</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> NoNewData:</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>            time.sleep(interval)</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>            write_func(line)</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Testing the implementation</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> write_random_data(path, interval):</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(path, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>        i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> random.random() <span class="op">&lt;</span> <span class="fl">0.25</span>:</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>            time.sleep(random.random() <span class="op">*</span> interval)</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>            letters <span class="op">=</span> random.choices(string.ascii_lowercase, k<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>            data <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>path<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>i<span class="sc">:02}</span><span class="ss">-</span><span class="sc">{</span><span class="st">""</span><span class="sc">.</span>join(letters)<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>            f.write(data.encode())</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>            f.flush()</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> start_write_threads(directory, file_count):</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>    paths <span class="op">=</span> []</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(file_count):</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>        path <span class="op">=</span> os.path.join(directory, <span class="bu">str</span>(i))</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(path, <span class="st">"w"</span>):</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>            <span class="cf">pass</span> <span class="co"># ensures file created</span></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>        paths.append(path)</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>        args <span class="op">=</span> (path, <span class="fl">0.1</span>)</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>        thread <span class="op">=</span> Thread(target<span class="op">=</span>write_random_data, args<span class="op">=</span>args)</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>        thread.start()</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> paths</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> close_all(handles):</span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="dv">1</span>)</span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> handle <span class="kw">in</span> handles:</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>        handle.close()</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> setup():</span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>    tmpdir <span class="op">=</span> TemporaryDirectory()</span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>    input_paths <span class="op">=</span> start_write_threads(tmpdir.name, <span class="dv">5</span>)</span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>    handles <span class="op">=</span> []</span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> path <span class="kw">in</span> input_paths:</span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>        handle <span class="op">=</span> <span class="bu">open</span>(path, <span class="st">"rb"</span>)</span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>        handles.append(handle)</span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>    Thread(target<span class="op">=</span>close_all, args<span class="op">=</span>(handles,)).start()</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>    output_path <span class="op">=</span> os.path.join(tmpdir.name, <span class="st">"merged"</span>)</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tmpdir, input_paths, handles, output_path</span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> confirm_merge(input_paths, output_path):</span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>    found <span class="op">=</span> collections.defaultdict(<span class="bu">list</span>)</span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(output_path, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> line <span class="kw">in</span> f:</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> path <span class="kw">in</span> input_paths:</span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> line.find(path.encode()) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>                    found[path].append(line)</span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>    expected <span class="op">=</span> collections.defaultdict(<span class="bu">list</span>)</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> path <span class="kw">in</span> input_paths:</span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(path, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>            expected[path].extend(f.readlines())</span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> key, expected_lines <span class="kw">in</span> expected.items():</span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>        found_lines <span class="op">=</span> found[key]</span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> (</span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>            expected_lines <span class="op">==</span> found_lines</span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>        ), <span class="ss">f"</span><span class="sc">{</span>expected_lines<span class="sc">!r}</span><span class="ss"> == </span><span class="sc">{</span>found_lines<span class="sc">!r}</span><span class="ss">"</span></span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>tmpdir, input_paths, handles, output_path <span class="op">=</span> setup()</span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>run_threads(handles, <span class="fl">0.1</span>, output_path)</span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>confirm_merge(input_paths, output_path)</span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>tmpdir.cleanup()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>The goal is again to convert this code over to use an <code>async</code> framework</li>
+<li>Can do this either,
+<ol type="1">
+<li>top-down</li>
+<li>bottom-up</li>
+</ol></li>
+</ul>
+<section id="top-down-approach" class="level3">
+<h3 class="anchored" data-anchor-id="top-down-approach">Top-Down Approach</h3>
+<ul>
+<li>Here we start at the high level architecture of the code
+<ul>
+<li>Work down from <code>main</code> and other entry points</li>
+<li>Finish with the leaf classes and functions</li>
+</ul></li>
+<li>Approach useful when maintaining common modules used across multiple programs
+<ul>
+<li>Porting the entry points minimises the breaking changes associated with migrating the common
+<ul>
+<li>Rather than breaking all programs immediately, we prime programs so we can change the common</li>
+</ul></li>
+</ul></li>
+<li>Concrete steps
+<ol type="1">
+<li>Change top level function to use <code>async def</code></li>
+<li>Wrap all I/O calls to use <code>asyncio.run_in_executor</code>
+<ul>
+<li>These I/O calls may block the event loop</li>
+</ul></li>
+<li>Ensure synchronisation of resources used in <code>run_in_executor</code>
+<ul>
+<li>Either via <code>Lock</code> or <code>asyncio.run_coroutine_threadsafe</code></li>
+<li>Use a fan-in event instance</li>
+</ul></li>
+<li>Aim to eliminate <code>get_event_loop</code> and <code>run_in_executor</code> calls
+<ul>
+<li>Move down the hierarchy</li>
+<li>Convert intermediate functions and methods to coroutines
+<ul>
+<li>Where they consume or perform I/O</li>
+</ul></li>
+</ul></li>
+</ol></li>
+<li>For Example, to rewrite <code>run_threads</code></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> asyncio</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> run_tasks_mixed(handles, interval, output_path):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    loop <span class="op">=</span> asyncio.get_event_loop()</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> <span class="cf">await</span> loop.run_in_executor(<span class="va">None</span>, <span class="bu">open</span>, output_path, <span class="st">"wb"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">async</span> <span class="kw">def</span> write_async(data):</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">await</span> loop.run_in_executor(<span class="va">None</span>, output.write, data)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> write(data):</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>            coro <span class="op">=</span> write_async(data)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            future <span class="op">=</span> asyncio.run_coroutine_threadsafe(coro, loop)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>            future.result()</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        tasks <span class="op">=</span> []</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> handle <span class="kw">in</span> handles:</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>            task <span class="op">=</span> loop.run_in_executor(<span class="va">None</span>, tail_file, handle, interval, write)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>            tasks.append(task)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">await</span> asyncio.gather(<span class="op">*</span>tasks)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">finally</span>:</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">await</span> loop.run_in_executor(<span class="va">None</span>, output.close)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>run_in_executor</code> places a function call on the event loop
+<ul>
+<li>Function is run via a <code>ThreadPoolExecutor</code> (See <a href="../../Chapter_09/Item_074/item_074.html">Item 74</a>)</li>
+<li>This makes sure that it doesn’t contaminate the event loop thread</li>
+</ul></li>
+<li>Multiple calls to <code>run_in_executor</code> without an <code>await</code> result in <code>run_tasks_mixed</code> fanning-out the execution
+<ul>
+<li>Leads to concurrent lines of work</li>
+<li>Up to one for each input file</li>
+</ul></li>
+<li><code>asyncio.gather</code> fans in <code>tail_file</code>threads (See <a href="../../Chapter_09/Item_071/item_071.html">Item 71</a>)</li>
+<li>No longer have a need for a <code>Lock</code> in the write
+<ul>
+<li>Instead we use <code>asyncio.run_coroutine_threadsafe</code></li>
+<li>Let’s a thread call a coroutine
+<ul>
+<li>Here <code>write_async</code></li>
+<li>Coroutine executes in the supplied event loop
+<ul>
+<li>Here of the main routine</li>
+<li>All coroutines executing in the same event loop effectively synchronises them</li>
+<li>Writes occur one at a time</li>
+</ul></li>
+</ul></li>
+<li>Once the <code>asyncio.TaskGroup</code> awaitable is resolved can assume all output files have also completed
+<ul>
+<li>Can then close the output file handle</li>
+<li>No need to worry about race conditions</li>
+</ul></li>
+</ul></li>
+<li>Then need to verify that the program still works as expected
+<ul>
+<li>We can reuse our existing test harness</li>
+</ul></li>
+</ul>
+<div id="dcfdc9e4" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections <span class="co"># for testing</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co"># for testing</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="co"># for testing</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string <span class="co"># for testing</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tempfile <span class="im">import</span> TemporaryDirectory <span class="co"># for testing</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> threading <span class="im">import</span> Thread <span class="co"># for testing</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># For actual implementation</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> asyncio</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#  Top Down async refactor</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> run_tasks_mixed(handles, interval, output_path):</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    loop <span class="op">=</span> asyncio.get_event_loop() <span class="co"># gets the event loop to pass to run_coroutine_threadsafe</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> <span class="cf">await</span> loop.run_in_executor(<span class="va">None</span>, <span class="bu">open</span>, output_path, <span class="st">"wb"</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">async</span> <span class="kw">def</span> write_async(data):</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">await</span> loop.run_in_executor(<span class="va">None</span>, output.write, data) <span class="co"># asunc write implementation</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> write(data): <span class="co"># tail file still expects a normal function so have to create a wrapper</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>            coro <span class="op">=</span> write_async(data)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>            future <span class="op">=</span> asyncio.run_coroutine_threadsafe(coro, loop)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>            future.result()</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>        tasks <span class="op">=</span> []</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> handle <span class="kw">in</span> handles:</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>            task <span class="op">=</span> loop.run_in_executor(<span class="va">None</span>, tail_file, handle, interval, write)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>            tasks.append(task) <span class="co"># async run tail_file</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">await</span> asyncio.gather(<span class="op">*</span>tasks) <span class="co"># join the results</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">finally</span>:</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">await</span> loop.run_in_executor(<span class="va">None</span>, output.close) <span class="co"># no longer context managed so have to close manually</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Previous API</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NoNewData(<span class="pp">Exception</span>):</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> readline(handle):</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    offset <span class="op">=</span> handle.tell()  <span class="co"># Get the current handle offset</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    handle.seek(<span class="dv">0</span>, <span class="dv">2</span>)  <span class="co"># move forward to end of file</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    length <span class="op">=</span> handle.tell()  <span class="co"># get the length of the file</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> length <span class="op">==</span> offset:</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> NoNewData</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>    handle.seek(offset, <span class="dv">0</span>)  <span class="co"># move the handle back to where it was</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> handle.readline()  <span class="co"># read the line</span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tail_file(handle, interval, write_func):</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="kw">not</span> handle.closed:</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>            line <span class="op">=</span> readline(handle)</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> NoNewData:</span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>            time.sleep(interval)</span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>            write_func(line)</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Testing the implementation</span></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> write_random_data(path, interval):</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(path, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>        i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> random.random() <span class="op">&lt;</span> <span class="fl">0.25</span>:</span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>            time.sleep(random.random() <span class="op">*</span> interval)</span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>            letters <span class="op">=</span> random.choices(string.ascii_lowercase, k<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>            data <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>path<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>i<span class="sc">:02}</span><span class="ss">-</span><span class="sc">{</span><span class="st">""</span><span class="sc">.</span>join(letters)<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span></span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>            f.write(data.encode())</span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>            f.flush()</span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> start_write_threads(directory, file_count):</span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>    paths <span class="op">=</span> []</span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(file_count):</span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>        path <span class="op">=</span> os.path.join(directory, <span class="bu">str</span>(i))</span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(path, <span class="st">"w"</span>):</span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>            <span class="cf">pass</span> <span class="co"># ensures file created</span></span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>        paths.append(path)</span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>        args <span class="op">=</span> (path, <span class="fl">0.1</span>)</span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>        thread <span class="op">=</span> Thread(target<span class="op">=</span>write_random_data, args<span class="op">=</span>args)</span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>        thread.start()</span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> paths</span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> close_all(handles):</span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="dv">1</span>)</span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> handle <span class="kw">in</span> handles:</span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>        handle.close()</span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> setup():</span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>    tmpdir <span class="op">=</span> TemporaryDirectory()</span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>    input_paths <span class="op">=</span> start_write_threads(tmpdir.name, <span class="dv">5</span>)</span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>    handles <span class="op">=</span> []</span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> path <span class="kw">in</span> input_paths:</span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>        handle <span class="op">=</span> <span class="bu">open</span>(path, <span class="st">"rb"</span>)</span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>        handles.append(handle)</span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>    Thread(target<span class="op">=</span>close_all, args<span class="op">=</span>(handles,)).start()</span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>    output_path <span class="op">=</span> os.path.join(tmpdir.name, <span class="st">"merged"</span>)</span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tmpdir, input_paths, handles, output_path</span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> confirm_merge(input_paths, output_path):</span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>    found <span class="op">=</span> collections.defaultdict(<span class="bu">list</span>)</span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(output_path, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> line <span class="kw">in</span> f:</span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> path <span class="kw">in</span> input_paths:</span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> line.find(path.encode()) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>                    found[path].append(line)</span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>    expected <span class="op">=</span> collections.defaultdict(<span class="bu">list</span>)</span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> path <span class="kw">in</span> input_paths:</span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(path, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>            expected[path].extend(f.readlines())</span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> key, expected_lines <span class="kw">in</span> expected.items():</span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>        found_lines <span class="op">=</span> found[key]</span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> (</span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>            expected_lines <span class="op">==</span> found_lines</span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>        ), <span class="ss">f"</span><span class="sc">{</span>expected_lines<span class="sc">!r}</span><span class="ss"> == </span><span class="sc">{</span>found_lines<span class="sc">!r}</span><span class="ss">"</span></span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>tmpdir, input_paths, handles, output_path <span class="op">=</span> setup()</span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a><span class="co"># outside of jupyter note book replace await with asyncio.run()</span></span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> run_tasks_mixed(handles, <span class="fl">0.1</span>, output_path)</span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>confirm_merge(input_paths, output_path)</span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>tmpdir.cleanup()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Now we want to repeat the process, moving further down the tech stack</li>
+<li>Next functions to modify is <code>tail_file</code>
+<ul>
+<li>We write a new <code>tail_file_async</code>
+<ul>
+<li>Changes are
+<ol type="1">
+<li>Now call <code>readline</code> asynchronously via <code>run_in_executor</code></li>
+<li>Replace <code>time.sleep</code> with the async, <code>asyncio.sleep</code></li>
+<li><code>await</code> on the call to <code>write_func</code>
+<ul>
+<li>i.e.&nbsp;promote the received function handle to a coroutine handle</li>
+</ul></li>
+</ol></li>
+</ul></li>
+</ul></li>
+<li>With those changes can then update <code>run_tasks_mixed</code>
+<ul>
+<li>No longer a need to use <code>run_coroutine_threadsafe</code></li>
+<li>No longer need to use the <code>write</code> wrapper
+<ul>
+<li>Can pass the coroutine directly</li>
+</ul></li>
+<li>Now use <code>asyncio.TaskGroup</code> to handle fan-out/in of <code>tail_async</code> (available since Python 3.11)</li>
+</ul></li>
+</ul>
+<div id="db0572f9" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections <span class="co"># for testing</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co"># for testing</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="co"># for testing</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string <span class="co"># for testing</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tempfile <span class="im">import</span> TemporaryDirectory <span class="co"># for testing</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> threading <span class="im">import</span> Thread <span class="co"># for testing</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># For actual implementation</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> asyncio</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#  Top Down async refactor stage 2</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> run_tasks(handles, interval, output_path):</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    loop <span class="op">=</span> asyncio.get_event_loop()</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> <span class="cf">await</span> loop.run_in_executor(<span class="va">None</span>, <span class="bu">open</span>, output_path, <span class="st">"wb"</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">async</span> <span class="kw">def</span> write_async(data):</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">await</span> loop.run_in_executor(<span class="va">None</span>, output.write, data)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">async</span> <span class="cf">with</span> asyncio.TaskGroup() <span class="im">as</span> group:</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> handle <span class="kw">in</span> handles:</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                group.create_task(tail_async(handle, interval, write_async))</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">finally</span>:</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">await</span> loop.run_in_executor(<span class="va">None</span>, output.close)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Previous API</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NoNewData(<span class="pp">Exception</span>):</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> readline(handle):</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    offset <span class="op">=</span> handle.tell()  <span class="co"># Get the current handle offset</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    handle.seek(<span class="dv">0</span>, <span class="dv">2</span>)  <span class="co"># move forward to end of file</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    length <span class="op">=</span> handle.tell()  <span class="co"># get the length of the file</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> length <span class="op">==</span> offset:</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> NoNewData</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    handle.seek(offset, <span class="dv">0</span>)  <span class="co"># move the handle back to where it was</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> handle.readline()  <span class="co"># read the line</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> tail_async(handle, interval, write_func): <span class="co"># change to async def</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>    loop <span class="op">=</span> asyncio.get_event_loop() <span class="co"># get the event loop</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="kw">not</span> handle.closed:</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>            line <span class="op">=</span> <span class="cf">await</span> loop.run_in_executor(<span class="va">None</span>, readline, handle)</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> NoNewData:</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>            <span class="cf">await</span> asyncio.sleep(interval)</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>            <span class="cf">await</span> write_func(line)</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Testing the implementation</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> write_random_data(path, interval):</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(path, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>        i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> random.random() <span class="op">&lt;</span> <span class="fl">0.25</span>:</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>            time.sleep(random.random() <span class="op">*</span> interval)</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>            letters <span class="op">=</span> random.choices(string.ascii_lowercase, k<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>            data <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>path<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>i<span class="sc">:02}</span><span class="ss">-</span><span class="sc">{</span><span class="st">""</span><span class="sc">.</span>join(letters)<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span></span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>            f.write(data.encode())</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>            f.flush()</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> start_write_threads(directory, file_count):</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>    paths <span class="op">=</span> []</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(file_count):</span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>        path <span class="op">=</span> os.path.join(directory, <span class="bu">str</span>(i))</span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(path, <span class="st">"w"</span>):</span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>            <span class="cf">pass</span> <span class="co"># ensures file created</span></span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>        paths.append(path)</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>        args <span class="op">=</span> (path, <span class="fl">0.1</span>)</span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>        thread <span class="op">=</span> Thread(target<span class="op">=</span>write_random_data, args<span class="op">=</span>args)</span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>        thread.start()</span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> paths</span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> close_all(handles):</span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="dv">1</span>)</span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> handle <span class="kw">in</span> handles:</span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>        handle.close()</span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> setup():</span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>    tmpdir <span class="op">=</span> TemporaryDirectory()</span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>    input_paths <span class="op">=</span> start_write_threads(tmpdir.name, <span class="dv">5</span>)</span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>    handles <span class="op">=</span> []</span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> path <span class="kw">in</span> input_paths:</span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>        handle <span class="op">=</span> <span class="bu">open</span>(path, <span class="st">"rb"</span>)</span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>        handles.append(handle)</span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>    Thread(target<span class="op">=</span>close_all, args<span class="op">=</span>(handles,)).start()</span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>    output_path <span class="op">=</span> os.path.join(tmpdir.name, <span class="st">"merged"</span>)</span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tmpdir, input_paths, handles, output_path</span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> confirm_merge(input_paths, output_path):</span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a>    found <span class="op">=</span> collections.defaultdict(<span class="bu">list</span>)</span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(output_path, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> line <span class="kw">in</span> f:</span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> path <span class="kw">in</span> input_paths:</span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> line.find(path.encode()) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a>                    found[path].append(line)</span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a>    expected <span class="op">=</span> collections.defaultdict(<span class="bu">list</span>)</span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> path <span class="kw">in</span> input_paths:</span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(path, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>            expected[path].extend(f.readlines())</span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> key, expected_lines <span class="kw">in</span> expected.items():</span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a>        found_lines <span class="op">=</span> found[key]</span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> (</span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a>            expected_lines <span class="op">==</span> found_lines</span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a>        ), <span class="ss">f"</span><span class="sc">{</span>expected_lines<span class="sc">!r}</span><span class="ss"> == </span><span class="sc">{</span>found_lines<span class="sc">!r}</span><span class="ss">"</span></span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a>tmpdir, input_paths, handles, output_path <span class="op">=</span> setup()</span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a><span class="co"># outside of jupyter note book replace await with asyncio.run()</span></span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> run_tasks(handles, <span class="fl">0.1</span>, output_path)</span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a>confirm_merge(input_paths, output_path)</span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a>tmpdir.cleanup()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>The next step if one was to continue would be to port <code>readline</code></li>
+<li>Almost every step in <code>readline</code> is blocking I/O
+<ul>
+<li>Not clear doing so would be an improvement</li>
+<li>Likely loss of clarity</li>
+</ul></li>
+</ul>
+</section>
+<section id="bottom-up-approach" class="level3">
+<h3 class="anchored" data-anchor-id="bottom-up-approach">Bottom-up Approach</h3>
+<ul>
+<li>Alternative approach is bottom-up</li>
+<li>We again have four steps but reverse the direction
+<ul>
+<li>Go from leaves up</li>
+</ul></li>
+</ul>
+<ol type="1">
+<li>Create asynchronous version of each leaf function being ported</li>
+<li>Change synchronous functions to be able to call coroutine versions and run event loop
+<ul>
+<li>Does not implement real asynchronous behaviour at this time</li>
+</ul></li>
+<li>Move up the hierarchy
+<ul>
+<li>Make this layer coroutines</li>
+<li>Again replace synchronous functions</li>
+</ul></li>
+<li>Delete synchronous wrappers around coroutines at the previous layer</li>
+</ol>
+<ul>
+<li>If as above we decide that we don’t want to rewrite <code>readline</code> we would start at <code>tail_file</code>
+<ul>
+<li><code>tail_file</code> now acts as a wrapper around <code>tail_async</code> hiding the coroutine</li>
+<li><code>write_func</code> which must be a function not a coroutine can then be run by <code>write_async</code> via <code>run_in_executor</code></li>
+<li>We create an event loop for each <code>tail_file</code> thead to ensure worker coroutine runs until completion
+<ul>
+<li>Do so via the <code>run_until_complete</code></li>
+<li>blocks the current thread and drives event loop until the coroutine exits
+<ul>
+<li>Acts like the equivalent threaded, blocking I/O version</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> asyncio</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tail_file(handle, interval, write_func):</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    loop <span class="op">=</span> asyncio.new_event_loop()</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    asyncio.set_event_loop(loop)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">async</span> <span class="kw">def</span> write_async(data):</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">await</span> loop.run_in_executor(<span class="va">None</span>, write_func, data)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    coro <span class="op">=</span> tail_async(handle, interval, write_async)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    loop.run_until_complete(coro)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>We can plug this in and run our test harness</li>
+</ul>
+<div id="85a98abb" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections <span class="co"># for testing</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co"># for testing</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="co"># for testing</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string <span class="co"># for testing</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tempfile <span class="im">import</span> TemporaryDirectory <span class="co"># for testing</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># For actual implementation</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> asyncio</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> threading <span class="im">import</span> Thread, Lock</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Rewritten with bottom-up refactor to async</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#  Run the threads</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_threads(handles, interval, output_path):</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(output_path, <span class="st">"wb"</span>) <span class="im">as</span> output:</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        lock <span class="op">=</span> Lock()</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># closure function</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> write(data):</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">with</span> lock:</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>                output.write(data)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        threads <span class="op">=</span> []</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> handle <span class="kw">in</span> handles:</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>            args <span class="op">=</span> (handle, interval, write)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>            thread <span class="op">=</span> Thread(target<span class="op">=</span>tail_file, args<span class="op">=</span>args)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>            thread.start()</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>            threads.append(thread)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> thread <span class="kw">in</span> threads:</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>            thread.join()</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Previous API</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NoNewData(<span class="pp">Exception</span>):</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> readline(handle):</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    offset <span class="op">=</span> handle.tell()  <span class="co"># Get the current handle offset</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    handle.seek(<span class="dv">0</span>, <span class="dv">2</span>)  <span class="co"># move forward to end of file</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    length <span class="op">=</span> handle.tell()  <span class="co"># get the length of the file</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> length <span class="op">==</span> offset:</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> NoNewData</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>    handle.seek(offset, <span class="dv">0</span>)  <span class="co"># move the handle back to where it was</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> handle.readline()  <span class="co"># read the line</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Changed to wrap async implementation</span></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tail_file(handle, interval, write_func):</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>    loop <span class="op">=</span> asyncio.new_event_loop()</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    asyncio.set_event_loop(loop)</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">async</span> <span class="kw">def</span> write_async(data):</span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">await</span> loop.run_in_executor(<span class="va">None</span>, write_func, data)</span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>    coro <span class="op">=</span> tail_async(handle, interval, write_async)</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>    loop.run_until_complete(coro)</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a><span class="co"># async tail_file iimplementation</span></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> tail_async(handle, interval, write_func): <span class="co"># change to async def</span></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>    loop <span class="op">=</span> asyncio.get_event_loop() <span class="co"># get the event loop</span></span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="kw">not</span> handle.closed:</span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>            line <span class="op">=</span> <span class="cf">await</span> loop.run_in_executor(<span class="va">None</span>, readline, handle)</span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> NoNewData:</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>            <span class="cf">await</span> asyncio.sleep(interval)</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>            <span class="cf">await</span> write_func(line)</span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a><span class="co"># Testing the implementation</span></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> write_random_data(path, interval):</span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(path, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>        i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> random.random() <span class="op">&lt;</span> <span class="fl">0.25</span>:</span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>            time.sleep(random.random() <span class="op">*</span> interval)</span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>            letters <span class="op">=</span> random.choices(string.ascii_lowercase, k<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>            data <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>path<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>i<span class="sc">:02}</span><span class="ss">-</span><span class="sc">{</span><span class="st">""</span><span class="sc">.</span>join(letters)<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span></span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>            f.write(data.encode())</span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a>            f.flush()</span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> start_write_threads(directory, file_count):</span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>    paths <span class="op">=</span> []</span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(file_count):</span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a>        path <span class="op">=</span> os.path.join(directory, <span class="bu">str</span>(i))</span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(path, <span class="st">"w"</span>):</span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>            <span class="cf">pass</span> <span class="co"># ensures file created</span></span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>        paths.append(path)</span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a>        args <span class="op">=</span> (path, <span class="fl">0.1</span>)</span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a>        thread <span class="op">=</span> Thread(target<span class="op">=</span>write_random_data, args<span class="op">=</span>args)</span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a>        thread.start()</span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> paths</span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> close_all(handles):</span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="dv">1</span>)</span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> handle <span class="kw">in</span> handles:</span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a>        handle.close()</span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> setup():</span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a>    tmpdir <span class="op">=</span> TemporaryDirectory()</span>
+<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a>    input_paths <span class="op">=</span> start_write_threads(tmpdir.name, <span class="dv">5</span>)</span>
+<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a>    handles <span class="op">=</span> []</span>
+<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> path <span class="kw">in</span> input_paths:</span>
+<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a>        handle <span class="op">=</span> <span class="bu">open</span>(path, <span class="st">"rb"</span>)</span>
+<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a>        handles.append(handle)</span>
+<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a>    Thread(target<span class="op">=</span>close_all, args<span class="op">=</span>(handles,)).start()</span>
+<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a>    output_path <span class="op">=</span> os.path.join(tmpdir.name, <span class="st">"merged"</span>)</span>
+<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tmpdir, input_paths, handles, output_path</span>
+<span id="cb9-111"><a href="#cb9-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-112"><a href="#cb9-112" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> confirm_merge(input_paths, output_path):</span>
+<span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a>    found <span class="op">=</span> collections.defaultdict(<span class="bu">list</span>)</span>
+<span id="cb9-114"><a href="#cb9-114" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(output_path, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb9-115"><a href="#cb9-115" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> line <span class="kw">in</span> f:</span>
+<span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> path <span class="kw">in</span> input_paths:</span>
+<span id="cb9-117"><a href="#cb9-117" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> line.find(path.encode()) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb9-118"><a href="#cb9-118" aria-hidden="true" tabindex="-1"></a>                    found[path].append(line)</span>
+<span id="cb9-119"><a href="#cb9-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-120"><a href="#cb9-120" aria-hidden="true" tabindex="-1"></a>    expected <span class="op">=</span> collections.defaultdict(<span class="bu">list</span>)</span>
+<span id="cb9-121"><a href="#cb9-121" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> path <span class="kw">in</span> input_paths:</span>
+<span id="cb9-122"><a href="#cb9-122" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(path, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a>            expected[path].extend(f.readlines())</span>
+<span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-125"><a href="#cb9-125" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> key, expected_lines <span class="kw">in</span> expected.items():</span>
+<span id="cb9-126"><a href="#cb9-126" aria-hidden="true" tabindex="-1"></a>        found_lines <span class="op">=</span> found[key]</span>
+<span id="cb9-127"><a href="#cb9-127" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> (</span>
+<span id="cb9-128"><a href="#cb9-128" aria-hidden="true" tabindex="-1"></a>            expected_lines <span class="op">==</span> found_lines</span>
+<span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a>        ), <span class="ss">f"</span><span class="sc">{</span>expected_lines<span class="sc">!r}</span><span class="ss"> == </span><span class="sc">{</span>found_lines<span class="sc">!r}</span><span class="ss">"</span></span>
+<span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a>tmpdir, input_paths, handles, output_path <span class="op">=</span> setup()</span>
+<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-133"><a href="#cb9-133" aria-hidden="true" tabindex="-1"></a>run_threads(handles, <span class="fl">0.1</span>, output_path)</span>
+<span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-135"><a href="#cb9-135" aria-hidden="true" tabindex="-1"></a>confirm_merge(input_paths, output_path)</span>
+<span id="cb9-136"><a href="#cb9-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-137"><a href="#cb9-137" aria-hidden="true" tabindex="-1"></a>tmpdir.cleanup()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Having converted <code>tail_file</code> the next step is to convert <code>run_threads</code>
+<ul>
+<li>Here the implementations converge (since that’s the whole program)</li>
+</ul></li>
+<li>This gives a great starting point for <code>asyncio</code> implementation</li>
+<li>From this point we can consider more advanced uses of <code>asyncio</code> (See <a href="../../Chapter_09/Item_078/item_078.html">Item 78</a>)</li>
+</ul>
+</section>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li><code>run_in_executor</code> is an awaitable method
+<ul>
+<li>Attached to the <code>asyncio</code> event loop</li>
+<li>Enables coroutines to run synchronous functions via a <code>ThreadPoolExecutor</code> worker thread</li>
+<li>Supports top-down migration to <code>asyncio</code></li>
+</ul></li>
+<li><code>run_until_complete</code> is a method of the <code>asyncio</code> event loop
+<ul>
+<li>Enables synchronous code to run a coroutine to completion</li>
+</ul></li>
+</ul>
 
 
 </section>
