@@ -311,7 +311,7 @@ print(redirect_stderr.getvalue())
       File "/opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/threading.py", line 1024, in run
         self._target(*self._args, **self._kwargs)
         ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      File "/tmp/ipykernel_9887/1366009664.py", line 11, in game_logic
+      File "/tmp/ipykernel_9915/1366009664.py", line 11, in game_logic
         raise OSError("Problem with I/O")
     OSError: Problem with I/O
 
