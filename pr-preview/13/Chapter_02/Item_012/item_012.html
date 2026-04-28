@@ -788,7 +788,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>For example <code>print</code> called with a string displays the string without quotes</li>
 </ul></li>
 </ul>
-<div id="fadf3c28" class="cell" data-execution_count="1">
+<div id="430902c8" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"foo bar"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>foo bar</code></pre>
@@ -806,7 +806,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Calling the <code>__str__</code> dunder method</li>
 </ol></li>
 </ul>
-<div id="35ec8431" class="cell" data-execution_count="2">
+<div id="7a4f38bb" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>foo <span class="op">=</span> <span class="st">"foo bar"</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">str</span>(foo))</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> foo)</span>
@@ -827,7 +827,7 @@ foo bar</code></pre>
 <li>Human readable string doesn’t strictly mean the most expressive about what the actual variable <em>is</em></li>
 <li>e.g.&nbsp;The integer <code>5</code> and the string <code>"5"</code> have the same output, despite being incompatible types</li>
 </ul>
-<div id="c2a09524" class="cell" data-execution_count="3">
+<div id="1b75265c" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>int_five <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>str_five <span class="op">=</span> <span class="st">"5"</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -851,7 +851,7 @@ Is 5 == 5? False</code></pre>
 <li>i.e we can <code>eval</code> it to get the object back</li>
 </ul></li>
 </ul>
-<div id="622629e1" class="cell" data-execution_count="4">
+<div id="76bc2a91" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># repr of a byte string</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="st">"</span><span class="ch">\x07</span><span class="st">"</span></span>
@@ -871,7 +871,7 @@ Is 5 == 5? False</code></pre>
 <li><code>%r</code> format specifier (<code>%</code> operator) or <code>!r</code> format specifier (<code>format</code> / F-string) is a shorthand for <code>repr</code></li>
 </ul></li>
 </ul>
-<div id="8372ebd9" class="cell" data-execution_count="5">
+<div id="e1521a76" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>int_five <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>str_five <span class="op">=</span> <span class="st">"5"</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(int_five))</span>
@@ -903,7 +903,7 @@ Is 5 == '5'?</code></pre>
 </ul></li>
 </ol></li>
 </ul>
-<div id="c6904c72" class="cell" data-execution_count="6">
+<div id="5832fbbb" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resolving the default object repr</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> OpaqueClass:</span>
@@ -914,13 +914,13 @@ Is 5 == '5'?</code></pre>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> OpaqueClass(<span class="dv">1</span>, <span class="st">"foo"</span>)</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(obj)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;__main__.OpaqueClass object at 0x7fdedf0ec590&gt;</code></pre>
+<pre><code>&lt;__main__.OpaqueClass object at 0x7f57d867c590&gt;</code></pre>
 </div>
 </div>
 <ul>
 <li>A lightweight <code>repr</code> implementation may be,</li>
 </ul>
-<div id="8444a41f" class="cell" data-execution_count="7">
+<div id="54c79181" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BetterClass:</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, x, y):</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x <span class="op">=</span> x</span>
@@ -946,7 +946,7 @@ Is 5 == '5'?</code></pre>
 </ul></li>
 </ul></li>
 </ul>
-<div id="6a421fd5" class="cell" data-execution_count="8">
+<div id="c142a1b7" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BetterClassWithStr:</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, x, y):</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x <span class="op">=</span> x</span>

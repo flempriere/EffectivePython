@@ -806,7 +806,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Classes indicate a metaclass via the <code>metaclass</code> keyword in the inheritance argument list</li>
 <li>Metaclass’ <code>__new__</code> is called with any associated <code>class</code> statements when they occur</li>
 </ul>
-<div id="7ece9d56" class="cell" data-execution_count="1">
+<div id="32d19204" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Meta(<span class="bu">type</span>):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__new__</span>(meta, name, bases, class_dict):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="co"># meta is equivalent of cls or self</span></span>
@@ -831,10 +831,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>* Running &lt;class '__main__.Meta'&gt;.__new__ for MyClass
 Bases: ()
-{'__module__': '__main__', '__qualname__': 'MyClass', '__firstlineno__': 11, 'stuff': 123, 'foo': &lt;function MyClass.foo at 0x7f65d76a8930&gt;, '__static_attributes__': (), '__classdictcell__': &lt;cell at 0x7f65ccf78fa0: dict object at 0x7f65ccfc3a00&gt;}
+{'__module__': '__main__', '__qualname__': 'MyClass', '__firstlineno__': 11, 'stuff': 123, 'foo': &lt;function MyClass.foo at 0x7eff7d9d4930&gt;, '__static_attributes__': (), '__classdictcell__': &lt;cell at 0x7eff7d919c60: dict object at 0x7eff783a3c00&gt;}
 * Running &lt;class '__main__.Meta'&gt;.__new__ for MySubClass
 Bases: (&lt;class '__main__.MyClass'&gt;,)
-{'__module__': '__main__', '__qualname__': 'MySubClass', '__firstlineno__': 17, 'other': 567, 'bar': &lt;function MySubClass.bar at 0x7f65d7697a00&gt;, '__static_attributes__': (), '__classdictcell__': &lt;cell at 0x7f65ccf78f40: dict object at 0x7f65ccfc3a80&gt;}</code></pre>
+{'__module__': '__main__', '__qualname__': 'MySubClass', '__firstlineno__': 17, 'other': 567, 'bar': &lt;function MySubClass.bar at 0x7eff7d9c3a00&gt;, '__static_attributes__': (), '__classdictcell__': &lt;cell at 0x7eff783888b0: dict object at 0x7eff783a3cc0&gt;}</code></pre>
 </div>
 </div>
 <ul>
@@ -852,7 +852,7 @@ Bases: (&lt;class '__main__.MyClass'&gt;,)
 <li>Attempting to define an polygon with less than three sides causes the class statement to fail as soon as the program attempts to define the object</li>
 </ul></li>
 </ul>
-<div id="31bdf2f6" class="cell" data-execution_count="2">
+<div id="3962db62" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># defining the metaclass</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ValidatePolygon(<span class="bu">type</span>):</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__new__</span>(meta, name, bases, class_dict):</span>
@@ -922,7 +922,7 @@ Defining an invalid Polygon</code></pre>
 <li>Allows the same behaviour without the need for a metaclass</li>
 </ul></li>
 </ul>
-<div id="2d477b10" class="cell" data-execution_count="3">
+<div id="a5e24c3b" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BetterPolygon:</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    sides <span class="op">=</span> <span class="va">None</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -993,7 +993,7 @@ Defining an invalid Polygon</code></pre>
 </ul></li>
 <li>The concept is that you can’t inherit from multiple disjoint metaclasses</li>
 </ul>
-<div id="72abcb3d" class="cell" data-execution_count="4">
+<div id="e025a784" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ValidateFilled(<span class="bu">type</span>):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__new__</span>(meta, name, bases, class_dict):</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Only validate subclasses of the filled class</span></span>
@@ -1062,7 +1062,7 @@ Before BluePentagon definition, should fail because blue is not a valid colour</
 <li>Use this to layer validation</li>
 </ul></li>
 </ul>
-<div id="cceca3d4" class="cell" data-execution_count="5">
+<div id="94b5fe04" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ValidatePolygon(<span class="bu">type</span>):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__new__</span>(meta, name, bases, class_dict):</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Only validate subclasses of the Polygon class</span></span>
@@ -1129,7 +1129,7 @@ Failed to define RedLine. Got exception: Polygons need 3+ sides</code></pre>
 <li>Validation logic runs via the <code>super().__init_subclass__</code> call</li>
 </ul></li>
 </ul>
-<div id="03ec3a17" class="cell" data-execution_count="6">
+<div id="08c0a5ec" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Filled:</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    colour <span class="op">=</span> <span class="va">None</span> <span class="co"># Must be specified by subclasses</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1185,7 +1185,7 @@ After class definition</code></pre>
 <ul>
 <li><code>__init_subclass__</code> also works when dealing with multiple and diamond inheritance structures (See <a href="../../Chapter_07/Item_053/item_053.html">Item 53</a>)</li>
 </ul>
-<div id="0aadb766" class="cell" data-execution_count="7">
+<div id="c0d5d33c" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A basic diamond hierarchy</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Top:</span>

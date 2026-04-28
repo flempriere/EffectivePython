@@ -779,7 +779,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Other languages with tighter access controls tend to use the <code>getter</code> and <code>setter</code> idiom for configuring attributes</li>
 <li>Natural for people to try and repeat this pattern in python</li>
 </ul>
-<div id="22d40f9d" class="cell" data-execution_count="1">
+<div id="3639a3a9" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> OldResistor:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, ohms):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._ohms <span class="op">=</span> ohms</span>
@@ -816,7 +816,7 @@ After: 10000.0</code></pre>
 <li>These are important when we consider the evolution and maintenance of a class and/or interface</li>
 <li>In python always start with simple public attributes</li>
 </ul>
-<div id="7005cc08" class="cell" data-execution_count="2">
+<div id="f93bfca6" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Resistor:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, ohms):</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ohms <span class="op">=</span> ohms</span>
@@ -845,7 +845,7 @@ After: 15000.0</code></pre>
 </ul></li>
 <li>To use a <code>@property</code> decorator properly, the getter and setter function being decorated must match the name of the attribute (here <code>voltage</code>)</li>
 </ul>
-<div id="9d2c0be9" class="cell" data-execution_count="3">
+<div id="298c5241" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Resistor:</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, ohms):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ohms <span class="op">=</span> ohms</span>
@@ -885,7 +885,7 @@ After: 0.10 amps</code></pre>
 <li>Specifying a setter for a property also allows you to run type-checking and value validation</li>
 <li>For example, we can ensure a value is positive such as the <code>ohms</code> for our <code>Resistor</code></li>
 </ul>
-<div id="dc37d762" class="cell" data-execution_count="4">
+<div id="145664a4" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Resistor:</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, ohms):</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ohms <span class="op">=</span> ohms</span>
@@ -945,7 +945,7 @@ After: 0.10 amps</code></pre>
 <li>Say if we only want to have certain attributes fixed</li>
 </ul></li>
 </ul>
-<div id="841dab6e" class="cell" data-execution_count="5">
+<div id="55a89a52" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Resistor:</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, ohms):</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ohms <span class="op">=</span> ohms</span>
@@ -1002,7 +1002,7 @@ After: 0.10 amps</code></pre>
 <li>Hard to reason about</li>
 </ul></li>
 </ul>
-<div id="e2e201f1" class="cell" data-execution_count="6">
+<div id="ac289b71" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Resistor:</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, ohms):</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.voltage <span class="op">=</span> <span class="dv">0</span></span>
