@@ -47,7 +47,7 @@ _____|_____|_____|_____|_____|
 - We’ll represent cell states with a simple `Grid` container class
   - Class has methods to set and get the state of any cell
 - We’ll use a cylindrical topology
-  - This means that the grid wraps around e.g.
+  - This means that the grid wraps around e.g for the $5 \times 5$ grid,
     - $\left(6, 0\right)  \rightarrow \left(1, 0\right)$
     - $\left(1, 8\right) \rightarrow \left(1, 3\right)$
 
@@ -126,7 +126,10 @@ def get_cell(x, y):
 
 
 assert count_neighbours(1, 1, get_cell) == 3
+print("count_neighbours(1, 1, get_cell) =", count_neighbours(1,1, get_cell))
 ```
+
+    count_neighbours(1, 1, get_cell) = 3
 
 - Now need to implement the game logic of the rules listed above
 
@@ -176,8 +179,31 @@ for n_neighbours, (alive_result, empty_result) in enumerate(
     zip(transition_if_alive_and_n_neighbours, transition_if_empty_and_n_neighbours)
 ):
     assert game_logic(ALIVE, n_neighbours) == alive_result
+    print(f"game logic(ALIVE, {n_neighbours}) =", game_logic(ALIVE, n_neighbours))
     assert game_logic(EMPTY, n_neighbours) == empty_result
+    print(f"game logic(EMPTY, {n_neighbours}) =", game_logic(EMPTY, n_neighbours))
+print("Tests passed!")
 ```
+
+    game logic(ALIVE, 0) = -
+    game logic(EMPTY, 0) = -
+    game logic(ALIVE, 1) = -
+    game logic(EMPTY, 1) = -
+    game logic(ALIVE, 2) = *
+    game logic(EMPTY, 2) = -
+    game logic(ALIVE, 3) = *
+    game logic(EMPTY, 3) = *
+    game logic(ALIVE, 4) = -
+    game logic(EMPTY, 4) = -
+    game logic(ALIVE, 5) = -
+    game logic(EMPTY, 5) = -
+    game logic(ALIVE, 6) = -
+    game logic(EMPTY, 6) = -
+    game logic(ALIVE, 7) = -
+    game logic(EMPTY, 7) = -
+    game logic(ALIVE, 8) = -
+    game logic(EMPTY, 8) = -
+    Tests passed!
 
 - Then need to connect `game_logic` and `count_neighbours`
 - Can do this with function that manages the state transition for each
@@ -260,8 +286,24 @@ expected_grid = [[ALIVE, ALIVE, ALIVE], [ALIVE, ALIVE, ALIVE], [ALIVE, ALIVE, AL
 for y, row in enumerate(grid):
     for x, result in enumerate(row):
         step_cell(x, y, get_cell, set_cell)
+
+        print(f"step_cell({x}, {y}, get_cell, set_cell) =", out_grid[y][x], ".Expected:", expected_grid[y][x])
+
         assert out_grid[y][x] == expected_grid[y][x]
+
+print("Tests passed!")
 ```
+
+    step_cell(0, 0, get_cell, set_cell) = * .Expected: *
+    step_cell(1, 0, get_cell, set_cell) = * .Expected: *
+    step_cell(2, 0, get_cell, set_cell) = * .Expected: *
+    step_cell(0, 1, get_cell, set_cell) = * .Expected: *
+    step_cell(1, 1, get_cell, set_cell) = * .Expected: *
+    step_cell(2, 1, get_cell, set_cell) = * .Expected: *
+    step_cell(0, 2, get_cell, set_cell) = * .Expected: *
+    step_cell(1, 2, get_cell, set_cell) = * .Expected: *
+    step_cell(2, 2, get_cell, set_cell) = * .Expected: *
+    Tests passed!
 
 - Last step is to define a wrapper function that performs the state
   update for all cells in a grid

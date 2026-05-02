@@ -57,7 +57,7 @@ if __name__ == "__main__":
     main()
 ```
 
-    Took 9.437 seconds
+    Took 7.932 seconds
 
 - Can’t speed this up via threads due to the GIL
   - Only one CPU can be executing in the interpreter at a time
@@ -105,18 +105,21 @@ if __name__ == "__main__":
     main()
 ```
 
-    Took 9.448 seconds
+    Took 7.213 seconds
 
 - This may or may not be slower due to the overhead of managing the
   threads
 - We can instead distribute this over *Processes*
   - Instead of using a `ThreadPoolExecutor` we use `ProcessPoolExecutor`
 
-``` callout-info
-We can't execute the code below in a notebook, because this attempts to parse the entire notebook as a python script.
-
-You should still run the example yourself by copying it into a script and executing that file. For this purposes we have provided [ProcessPoolExecutorExample.py](./ProcessPoolExecutorExample.py)
-```
+> [!NOTE]
+>
+> We can’t execute the code below in a notebook, because this attempts
+> to parse the entire notebook as a python script.
+>
+> You should still run the example yourself by copying it into a script
+> and executing that file. For this purposes we have provided
+> [ProcessPoolExecutorExample.py](./ProcessPoolExecutorExample.py)
 
 ``` python
 from concurrent.futures import ProcessPoolExecutor  # Change the import

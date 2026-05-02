@@ -221,9 +221,11 @@ with ThreadPoolExecutor(max_workers=4) as pool:
     out_grid = simulate_pool(pool, grid)
     print(out_grid)
     assert out_grid == expected_grid
+print("All tests passed")
 ```
 
     [['*', '*', '*'], ['*', '*', '*'], ['*', '*', '*']]
+    All tests passed
 
 - Threads can be allocated to the pool in advance
   - Don’t have to pay the creation cost each iteration

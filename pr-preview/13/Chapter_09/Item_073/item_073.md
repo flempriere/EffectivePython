@@ -105,8 +105,21 @@ count = out_queue.qsize()
 
 expected_grid = [[ALIVE, ALIVE, ALIVE], [ALIVE, ALIVE, ALIVE], [ALIVE, ALIVE, ALIVE]]
 for x, y, state in out_queue.queue:
+    print(f"queue output: ({x}, {y}, {state})")
     assert expected_grid[x][y] == state
+print("All tests passed!")
 ```
+
+    queue output: (0, 0, *)
+    queue output: (1, 0, *)
+    queue output: (2, 0, *)
+    queue output: (0, 1, *)
+    queue output: (1, 1, *)
+    queue output: (2, 1, *)
+    queue output: (0, 2, *)
+    queue output: (1, 2, *)
+    queue output: (2, 2, *)
+    All tests passed!
 
 - Now need to update `simulate` to use the queues to request state
   transitions

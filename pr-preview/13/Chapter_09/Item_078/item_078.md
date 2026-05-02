@@ -155,6 +155,7 @@ def confirm_merge(input_paths, output_path):
 
     for key, expected_lines in expected.items():
         found_lines = found[key]
+        print(f"File: {key}. Expected {expected_lines} lines, found {found_lines}")
         assert expected_lines == found_lines, f"{expected_lines!r} == {found_lines!r}"
 
 
@@ -166,7 +167,15 @@ await run_tasks(handles, 0.1, output_path)
 confirm_merge(input_paths, output_path)
 
 tmpdir.cleanup()
+print("All tests passed!")
 ```
+
+    File: /tmp/tmpltonrzpi/0. Expected [] lines, found []
+    File: /tmp/tmpltonrzpi/1. Expected [] lines, found []
+    File: /tmp/tmpltonrzpi/2. Expected [] lines, found []
+    File: /tmp/tmpltonrzpi/3. Expected [] lines, found []
+    File: /tmp/tmpltonrzpi/4. Expected [] lines, found []
+    All tests passed!
 
 - Now the code looks better but we now have blocking system calls
   - This can prevent other coroutines from making progress
@@ -176,7 +185,8 @@ tmpdir.cleanup()
   - The `debug` parameter in `asyncio.run` can be set to `True`
   - Will then print out additional debug information
     - I have not been able to replicate this in jupyter notebooks, so
-      recommend running the below as a script (minus the jupyter bits)
+      recommend running the below as a script (minus the jupyter bits
+      See [slow_coroutine.py](./slow_coroutine.py))
 
 ``` python
 import asyncio
@@ -421,6 +431,7 @@ def confirm_merge(input_paths, output_path):
 
     for key, expected_lines in expected.items():
         found_lines = found[key]
+        print(f"File: {key}. Expected {expected_lines} lines, found {found_lines}")
         assert expected_lines == found_lines, f"{expected_lines!r} == {found_lines!r}"
 
 
@@ -432,7 +443,16 @@ await run_fully_async(handles, 0.1, output_path)
 confirm_merge(input_paths, output_path)
 
 tmpdir.cleanup()
+
+print("All tests passed!")
 ```
+
+    File: /tmp/tmpu536swx7/0. Expected [] lines, found []
+    File: /tmp/tmpu536swx7/1. Expected [b'/tmp/tmpu536swx7/1-01-rmggajpptd\n'] lines, found [b'/tmp/tmpu536swx7/1-01-rmggajpptd\n']
+    File: /tmp/tmpu536swx7/2. Expected [b'/tmp/tmpu536swx7/2-01-lictsmpypd\n', b'/tmp/tmpu536swx7/2-02-vteppgmpgx\n'] lines, found [b'/tmp/tmpu536swx7/2-01-lictsmpypd\n', b'/tmp/tmpu536swx7/2-02-vteppgmpgx\n']
+    File: /tmp/tmpu536swx7/3. Expected [] lines, found []
+    File: /tmp/tmpu536swx7/4. Expected [] lines, found []
+    All tests passed!
 
 ## Things to Remember
 

@@ -96,8 +96,14 @@ async def game_logic(state, neighbours):
     return state
 
 
-assert await game_logic(ALIVE, 0) == EMPTY
+result = await game_logic(ALIVE, 0)
+print("game_logic(ALIVE, 0) =", result)
+assert result == EMPTY
+print("Test passed!")
 ```
+
+    game_logic(ALIVE, 0) = -
+    Test passed!
 
 - We have two functions that consume `game_logic` namely
   1.  `step_cell`
