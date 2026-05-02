@@ -231,7 +231,7 @@ def tail_file(handle, interval, write_func):
 def write_random_data(path, interval):
     with open(path, "wb") as f:
         i = 0
-        while random.random() < 0.25:
+        while random.random() < 0.5:
             i += 1
             time.sleep(random.random() * interval)
             letters = random.choices(string.ascii_lowercase, k=10)
@@ -284,6 +284,7 @@ def confirm_merge(input_paths, output_path):
 
     for key, expected_lines in expected.items():
         found_lines = found[key]
+        print(f"File: {key}. Expected {expected_lines} lines, found {found_lines}")
         assert (
             expected_lines == found_lines
         ), f"{expected_lines!r} == {found_lines!r}"
@@ -295,7 +296,15 @@ run_threads(handles, 0.1, output_path)
 confirm_merge(input_paths, output_path)
 
 tmpdir.cleanup()
+print("All tests passed!")
 ```
+
+    File: /tmp/tmp4p4ij896/0. Expected [b'/tmp/tmp4p4ij896/0-01-tpnvovyeym\n'] lines, found [b'/tmp/tmp4p4ij896/0-01-tpnvovyeym\n']
+    File: /tmp/tmp4p4ij896/1. Expected [] lines, found []
+    File: /tmp/tmp4p4ij896/2. Expected [b'/tmp/tmp4p4ij896/2-01-eaxpuounhf\n', b'/tmp/tmp4p4ij896/2-02-fufnvvhwte\n'] lines, found [b'/tmp/tmp4p4ij896/2-01-eaxpuounhf\n', b'/tmp/tmp4p4ij896/2-02-fufnvvhwte\n']
+    File: /tmp/tmp4p4ij896/3. Expected [] lines, found []
+    File: /tmp/tmp4p4ij896/4. Expected [b'/tmp/tmp4p4ij896/4-01-wozfqswppz\n', b'/tmp/tmp4p4ij896/4-02-vwplfxtmlp\n', b'/tmp/tmp4p4ij896/4-03-eihzqgijrh\n'] lines, found [b'/tmp/tmp4p4ij896/4-01-wozfqswppz\n', b'/tmp/tmp4p4ij896/4-02-vwplfxtmlp\n', b'/tmp/tmp4p4ij896/4-03-eihzqgijrh\n']
+    All tests passed!
 
 - The goal is again to convert this code over to use an `async`
   framework
@@ -499,6 +508,7 @@ def confirm_merge(input_paths, output_path):
 
     for key, expected_lines in expected.items():
         found_lines = found[key]
+        print(f"File: {key}. Expected {expected_lines} lines, found {found_lines}")
         assert (
             expected_lines == found_lines
         ), f"{expected_lines!r} == {found_lines!r}"
@@ -511,7 +521,15 @@ await run_tasks_mixed(handles, 0.1, output_path)
 confirm_merge(input_paths, output_path)
 
 tmpdir.cleanup()
+print("All tests passed!")
 ```
+
+    File: /tmp/tmp7qtkiegc/0. Expected [] lines, found []
+    File: /tmp/tmp7qtkiegc/1. Expected [b'/tmp/tmp7qtkiegc/1-01-stkmhvcjoy\n'] lines, found [b'/tmp/tmp7qtkiegc/1-01-stkmhvcjoy\n']
+    File: /tmp/tmp7qtkiegc/2. Expected [] lines, found []
+    File: /tmp/tmp7qtkiegc/3. Expected [b'/tmp/tmp7qtkiegc/3-01-vyffiqcqrc\n'] lines, found [b'/tmp/tmp7qtkiegc/3-01-vyffiqcqrc\n']
+    File: /tmp/tmp7qtkiegc/4. Expected [] lines, found []
+    All tests passed!
 
 - Now we want to repeat the process, moving further down the tech stack
 - Next functions to modify is `tail_file`
@@ -640,6 +658,7 @@ def confirm_merge(input_paths, output_path):
 
     for key, expected_lines in expected.items():
         found_lines = found[key]
+        print(f"File: {key}. Expected {expected_lines} lines, found {found_lines}")
         assert (
             expected_lines == found_lines
         ), f"{expected_lines!r} == {found_lines!r}"
@@ -652,7 +671,15 @@ await run_tasks(handles, 0.1, output_path)
 confirm_merge(input_paths, output_path)
 
 tmpdir.cleanup()
+print("All tests passed!")
 ```
+
+    File: /tmp/tmplumgqcy0/0. Expected [] lines, found []
+    File: /tmp/tmplumgqcy0/1. Expected [] lines, found []
+    File: /tmp/tmplumgqcy0/2. Expected [] lines, found []
+    File: /tmp/tmplumgqcy0/3. Expected [] lines, found []
+    File: /tmp/tmplumgqcy0/4. Expected [] lines, found []
+    All tests passed!
 
 - The next step if one was to continue would be to port `readline`
 - Almost every step in `readline` is blocking I/O
@@ -830,6 +857,7 @@ def confirm_merge(input_paths, output_path):
 
     for key, expected_lines in expected.items():
         found_lines = found[key]
+        print(f"File: {key}. Expected {expected_lines} lines, found {found_lines}")
         assert (
             expected_lines == found_lines
         ), f"{expected_lines!r} == {found_lines!r}"
@@ -841,7 +869,15 @@ run_threads(handles, 0.1, output_path)
 confirm_merge(input_paths, output_path)
 
 tmpdir.cleanup()
+print("All tests passed")
 ```
+
+    File: /tmp/tmpw71a2baw/0. Expected [] lines, found []
+    File: /tmp/tmpw71a2baw/1. Expected [] lines, found []
+    File: /tmp/tmpw71a2baw/2. Expected [] lines, found []
+    File: /tmp/tmpw71a2baw/3. Expected [b'/tmp/tmpw71a2baw/3-01-xqueptsrjg\n'] lines, found [b'/tmp/tmpw71a2baw/3-01-xqueptsrjg\n']
+    File: /tmp/tmpw71a2baw/4. Expected [b'/tmp/tmpw71a2baw/4-01-kxsjsnhjnx\n'] lines, found [b'/tmp/tmpw71a2baw/4-01-kxsjsnhjnx\n']
+    All tests passed
 
 - Having converted `tail_file` the next step is to convert `run_threads`
   - Here the implementations converge (since that’s the whole program)

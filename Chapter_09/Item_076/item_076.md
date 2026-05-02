@@ -610,23 +610,26 @@ main()
 ```
 
     Guess between 1 and 5! Shhhhh, it's 3
-    Server: 2 is unsure
-    Guess between 10 and 15! Shhhhh, it's 12
-    Server: 3 is correct
-    Server: 13 is unsure
-    Server: 10 is colder
-    Server: 14 is same
-    Server: 15 is colder
-    Guess between 1 and 3! Shhhhh, it's 2
+    Server: 5 is unsure
+    Server: 2 is warmer
+    Server: 4 is same
+    Server: 1 is colder
+    Guess between 10 and 15! Shhhhh, it's 12Server: 3 is correct
+
+    Server: 15 is unsure
+    Server: 13 is warmer
     Server: 12 is correct
-    Server: 2 is correct
-    Client: 2 is unsure
+    Guess between 1 and 3! Shhhhh, it's 2
+    Server: 1 is unsure
+    Server: 2 is correctClient: 5 is unsure
+    Client: 2 is warmer
+    Client: 4 is same
+    Client: 1 is colder
     Client: 3 is correct
-    Client: 13 is unsure
-    Client: 10 is colder
-    Client: 14 is same
-    Client: 15 is colder
+    Client: 15 is unsure
+    Client: 13 is warmer
     Client: 12 is correct
+    Client: 1 is unsure
     Client: 2 is correct
 
 - Now we want to refactor this design to instead use `async` and `await`
@@ -1174,18 +1177,20 @@ await main_async()  # Comment out in favour of the line above if running as a sc
 ```
 
     Guess a number between 1 and 5! Shhhh, it's 3
-    Server: 1 is unsure
+    Server: 4 is unsure
     Guess a number between 10 and 15! Shhhh, it's 12
     Server: 3 is correct
-    Server: 13 is unsure
+    Server: 10 is unsure
+    Server: 13 is warmer
+    Server: 15 is colder
     Guess a number between 1 and 3! Shhhh, it's 2
     Server: 12 is correct
-    Server: 3 is unsure
-    Client: 1 is unsure
+    Client: 4 is unsure
     Client: 3 is correct
-    Client: 13 is unsure
+    Client: 10 is unsure
+    Client: 13 is warmer
+    Client: 15 is colder
     Client: 12 is correct
-    Client: 3 is unsure
     Client: 2 is correct
     Server: 2 is correct
 
