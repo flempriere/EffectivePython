@@ -90,7 +90,7 @@ async def tail_async(handle, interval, write_func):  # change to async def
 def write_random_data(path, interval):
     with open(path, "wb") as f:
         i = 0
-        while random.random() < 0.25:
+        while random.random() < 0.5:
             i += 1
             time.sleep(random.random() * interval)
             letters = random.choices(string.ascii_lowercase, k=10)
@@ -349,7 +349,7 @@ async def tail_async(handle, interval, write_func):  # change to async def
 def write_random_data(path, interval):
     with open(path, "wb") as f:
         i = 0
-        while random.random() < 0.25:
+        while random.random() < 0.5:
             i += 1
             time.sleep(random.random() * interval)
             letters = random.choices(string.ascii_lowercase, k=10)

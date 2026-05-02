@@ -83,7 +83,7 @@ def tail_file(handle, interval, write_func):
         - Uses a weighted coin toss to determine the number of lines to write
         - Then simply,
             1. Sleeps for an `interval`
-            2. Writes a line containing the file path, the line number and a random ascii string
+            2. Writes a line containing the file path, the line number and a random ascii string converted to binary
             3. Ensures the data is encoded and flushed
     - `start_write_threads` sets up threads to write a number of random files
         - Takes a directory to write them to
@@ -383,7 +383,7 @@ def tail_file(handle, interval, write_func):
 def write_random_data(path, interval):
     with open(path, "wb") as f:
         i = 0
-        while random.random() < 0.25:
+        while random.random() < 0.5:
             i += 1
             time.sleep(random.random() * interval)
             letters = random.choices(string.ascii_lowercase, k=10)
@@ -524,7 +524,7 @@ async def tail_async(handle, interval, write_func): # change to async def
 def write_random_data(path, interval):
     with open(path, "wb") as f:
         i = 0
-        while random.random() < 0.25:
+        while random.random() < 0.5:
             i += 1
             time.sleep(random.random() * interval)
             letters = random.choices(string.ascii_lowercase, k=10)
@@ -710,7 +710,7 @@ async def tail_async(handle, interval, write_func): # change to async def
 def write_random_data(path, interval):
     with open(path, "wb") as f:
         i = 0
-        while random.random() < 0.25:
+        while random.random() < 0.5:
             i += 1
             time.sleep(random.random() * interval)
             letters = random.choices(string.ascii_lowercase, k=10)
