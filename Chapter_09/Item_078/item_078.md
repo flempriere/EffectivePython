@@ -98,7 +98,7 @@ async def tail_async(handle, interval, write_func):  # change to async def
 def write_random_data(path, interval):
     with open(path, "wb") as f:
         i = 0
-        while random.random() < 0.25:
+        while random.random() < 0.5:
             i += 1
             time.sleep(random.random() * interval)
             letters = random.choices(string.ascii_lowercase, k=10)
@@ -170,11 +170,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmpltonrzpi/0. Expected [] lines, found []
-    File: /tmp/tmpltonrzpi/1. Expected [] lines, found []
-    File: /tmp/tmpltonrzpi/2. Expected [] lines, found []
-    File: /tmp/tmpltonrzpi/3. Expected [] lines, found []
-    File: /tmp/tmpltonrzpi/4. Expected [] lines, found []
+    File: /tmp/tmp54j4_9kv/0. Expected [b'/tmp/tmp54j4_9kv/0-01-yiboijjnzs\n', b'/tmp/tmp54j4_9kv/0-02-cbqnxvbyiy\n', b'/tmp/tmp54j4_9kv/0-03-slguxoqsie\n', b'/tmp/tmp54j4_9kv/0-04-boopymjnax\n'] lines, found [b'/tmp/tmp54j4_9kv/0-01-yiboijjnzs\n', b'/tmp/tmp54j4_9kv/0-02-cbqnxvbyiy\n', b'/tmp/tmp54j4_9kv/0-03-slguxoqsie\n', b'/tmp/tmp54j4_9kv/0-04-boopymjnax\n']
+    File: /tmp/tmp54j4_9kv/1. Expected [b'/tmp/tmp54j4_9kv/1-01-adnfcqhvbt\n', b'/tmp/tmp54j4_9kv/1-02-njgcoiwkiy\n', b'/tmp/tmp54j4_9kv/1-03-wleldskbvv\n', b'/tmp/tmp54j4_9kv/1-04-bkopzngots\n'] lines, found [b'/tmp/tmp54j4_9kv/1-01-adnfcqhvbt\n', b'/tmp/tmp54j4_9kv/1-02-njgcoiwkiy\n', b'/tmp/tmp54j4_9kv/1-03-wleldskbvv\n', b'/tmp/tmp54j4_9kv/1-04-bkopzngots\n']
+    File: /tmp/tmp54j4_9kv/2. Expected [] lines, found []
+    File: /tmp/tmp54j4_9kv/3. Expected [] lines, found []
+    File: /tmp/tmp54j4_9kv/4. Expected [b'/tmp/tmp54j4_9kv/4-01-xcjwnxktek\n'] lines, found [b'/tmp/tmp54j4_9kv/4-01-xcjwnxktek\n']
     All tests passed!
 
 - Now the code looks better but we now have blocking system calls
@@ -374,7 +374,7 @@ async def tail_async(handle, interval, write_func):  # change to async def
 def write_random_data(path, interval):
     with open(path, "wb") as f:
         i = 0
-        while random.random() < 0.25:
+        while random.random() < 0.5:
             i += 1
             time.sleep(random.random() * interval)
             letters = random.choices(string.ascii_lowercase, k=10)
@@ -447,11 +447,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmpu536swx7/0. Expected [] lines, found []
-    File: /tmp/tmpu536swx7/1. Expected [b'/tmp/tmpu536swx7/1-01-rmggajpptd\n'] lines, found [b'/tmp/tmpu536swx7/1-01-rmggajpptd\n']
-    File: /tmp/tmpu536swx7/2. Expected [b'/tmp/tmpu536swx7/2-01-lictsmpypd\n', b'/tmp/tmpu536swx7/2-02-vteppgmpgx\n'] lines, found [b'/tmp/tmpu536swx7/2-01-lictsmpypd\n', b'/tmp/tmpu536swx7/2-02-vteppgmpgx\n']
-    File: /tmp/tmpu536swx7/3. Expected [] lines, found []
-    File: /tmp/tmpu536swx7/4. Expected [] lines, found []
+    File: /tmp/tmpeh6hwvu9/0. Expected [] lines, found []
+    File: /tmp/tmpeh6hwvu9/1. Expected [] lines, found []
+    File: /tmp/tmpeh6hwvu9/2. Expected [] lines, found []
+    File: /tmp/tmpeh6hwvu9/3. Expected [] lines, found []
+    File: /tmp/tmpeh6hwvu9/4. Expected [] lines, found []
     All tests passed!
 
 ## Things to Remember
