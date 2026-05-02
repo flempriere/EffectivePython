@@ -676,6 +676,95 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_09/Chapter_09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 9: Concurrency and Parallelism</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_067/item_067.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 67: Use <code>subprocess</code> to Manage Child Processes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_068/item_068.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 68: Use Threads for Blocking I/O; Avoid for Parallelism</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_069/item_069.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 69: Use Lock to Prevent Data Races in Threads</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_070/item_070.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 70: Use <code>Queue</code> to Coordinate Work Between Threads</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_071/item_071.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 71: Know How to Recognise When Concurrency Is Necessary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_072/item_072.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 72: Avoid Creating New <code>Thread</code> Instances for On-Demand Fan-out</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_073/item_073.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 73: Understand how Using Queue for Concurrency Requires Refactoring</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_074/item_074.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 74: Consider <code>ThreadPoolExecutor</code> When Threads Are Necessary for Concurrency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_075/item_075.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 75: Achieve Highly Concurrent I/O with Coroutines</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_076/item_076.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 76: Know how to Port Threaded I/O to <code>asyncio</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_077/item_077.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 77: Mix Threads and Coroutines to Ease the Transition to <code>asyncio</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_078/item_078.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 78: Maximise Responsiveness of <code>asyncio</code> Event Loops with <code>async</code>-Friendly Worker Threads</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_079/item_079.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 79: Consider <code>concurrent.futures</code> for True Parallelism</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -728,7 +817,7 @@ window.Quarto = {
 </ul></li>
 <li>Consider a dictionary acting as a counter for people’s favourite bread type</li>
 </ul>
-<div id="1b210158" class="cell" data-execution_count="1">
+<div id="029c289e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>bread_votes <span class="op">=</span> {</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pumpernickel"</span> : <span class="dv">2</span>,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sourdough"</span> : <span class="dv">1</span>,</span>
@@ -739,7 +828,7 @@ window.Quarto = {
 <li>Insert with default value of <span class="math inline">\(0\)</span> if missing</li>
 <li>Else increment by <span class="math inline">\(1\)</span></li>
 </ul>
-<div id="2a63db66" class="cell" data-execution_count="2">
+<div id="00bf7bcd" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bread_votes <span class="op">=</span> {</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pumpernickel"</span>: <span class="dv">2</span>,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sourdough"</span>: <span class="dv">1</span>,</span>
@@ -761,7 +850,7 @@ window.Quarto = {
 <li>The key is accessed twice and assigned once</li>
 <li>Instead of explicitly checking, we can use the fact that dictionaries raise a <code>KeyError</code> when attempting to access a non-existent key</li>
 </ul>
-<div id="aba639a5" class="cell" data-execution_count="3">
+<div id="c05b9981" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>bread_votes <span class="op">=</span> {</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pumpernickel"</span>: <span class="dv">2</span>,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sourdough"</span>: <span class="dv">1</span>,</span>
@@ -789,7 +878,7 @@ window.Quarto = {
 </ul></li>
 <li>The <code>get</code> approach is not strictly more efficient than the exception handling method but it is a more encapsulated interface</li>
 </ul>
-<div id="a3df21d4" class="cell" data-execution_count="4">
+<div id="69361d47" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>bread_votes <span class="op">=</span> {</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pumpernickel"</span>: <span class="dv">2</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sourdough"</span>: <span class="dv">1</span>,</span>
@@ -825,7 +914,7 @@ Tip
 <li>e.g.&nbsp;If instead of a counter we tracked votes by a list of names</li>
 </ul></li>
 </ul>
-<div id="1b2fd8f5" class="cell" data-execution_count="5">
+<div id="5b4e4f65" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bread_voters <span class="op">=</span> {</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pumpernickel"</span>: [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>],</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sourdough"</span>: [<span class="st">"Charlie"</span>],</span>
@@ -859,7 +948,7 @@ Tip
 <li>This requires fewer key lookup’s (at the cost of the exception handling overhead)</li>
 </ul></li>
 </ul>
-<div id="171aa8bf" class="cell" data-execution_count="6">
+<div id="0261f990" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bread_voters <span class="op">=</span> {</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pumpernickel"</span>: [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>],</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sourdough"</span>: [<span class="st">"Charlie"</span>],</span>
@@ -885,7 +974,7 @@ Tip
 <li>Combine with an assignment expression for brevity</li>
 </ul></li>
 </ul>
-<div id="861568fe" class="cell" data-execution_count="7">
+<div id="727f2c67" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>bread_voters <span class="op">=</span> {</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pumpernickel"</span>: [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>],</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sourdough"</span>: [<span class="st">"Charlie"</span>],</span>
@@ -912,7 +1001,7 @@ Tip
 </ul></li>
 <li>We can reimplement the previous code as below</li>
 </ul>
-<div id="3646ea78" class="cell" data-execution_count="8">
+<div id="3908dfb4" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>bread_voters <span class="op">=</span> {</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pumpernickel"</span>: [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>],</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sourdough"</span>: [<span class="st">"Charlie"</span>],</span>
@@ -939,7 +1028,7 @@ Tip
 <li>See below</li>
 </ul></li>
 </ul>
-<div id="2a8fa2de" class="cell" data-execution_count="9">
+<div id="3ecc61e3" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {}</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> <span class="st">"foo"</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>value <span class="op">=</span> []</span>
@@ -962,7 +1051,7 @@ After: {'foo': ['hello']}</code></pre>
 </ul></li>
 <li>We could also use <code>setdefault</code> for our original counter based approach</li>
 </ul>
-<div id="f6d355e2" class="cell" data-execution_count="10">
+<div id="ca3a3c2e" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>bread_votes <span class="op">=</span> {</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pumpernickel"</span>: <span class="dv">2</span>,</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sourdough"</span>: <span class="dv">1</span>,</span>

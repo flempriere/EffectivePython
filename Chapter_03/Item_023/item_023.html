@@ -647,6 +647,95 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_09/Chapter_09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 9: Concurrency and Parallelism</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_067/item_067.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 67: Use <code>subprocess</code> to Manage Child Processes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_068/item_068.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 68: Use Threads for Blocking I/O; Avoid for Parallelism</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_069/item_069.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 69: Use Lock to Prevent Data Races in Threads</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_070/item_070.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 70: Use <code>Queue</code> to Coordinate Work Between Threads</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_071/item_071.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 71: Know How to Recognise When Concurrency Is Necessary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_072/item_072.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 72: Avoid Creating New <code>Thread</code> Instances for On-Demand Fan-out</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_073/item_073.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 73: Understand how Using Queue for Concurrency Requires Refactoring</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_074/item_074.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 74: Consider <code>ThreadPoolExecutor</code> When Threads Are Necessary for Concurrency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_075/item_075.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 75: Achieve Highly Concurrent I/O with Coroutines</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_076/item_076.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 76: Know how to Port Threaded I/O to <code>asyncio</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_077/item_077.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 77: Mix Threads and Coroutines to Ease the Transition to <code>asyncio</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_078/item_078.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 78: Maximise Responsiveness of <code>asyncio</code> Event Loops with <code>async</code>-Friendly Worker Threads</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_079/item_079.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 79: Consider <code>concurrent.futures</code> for True Parallelism</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -692,7 +781,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Denote heads as <code>True</code>, tails as <code>False</code></li>
 </ul></li>
 </ul>
-<div id="932ab100" class="cell" data-execution_count="1">
+<div id="5903fe93" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -710,7 +799,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Want to flip a coin a fixed number of times, and see if every result is heads</li>
 <li>Can perform with a comprehension and an <code>in</code> query</li>
 </ul>
-<div id="6c1f34ae" class="cell" data-execution_count="2">
+<div id="d20e2329" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -738,7 +827,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>If coin flips were instead a more expensive operation this would represent a lot of wasted computation</li>
 <li>We could write a terminating <code>for</code> loop</li>
 </ul>
-<div id="490f14bb" class="cell" data-execution_count="3">
+<div id="a7ec4208" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -774,7 +863,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>This is different to <code>and</code> which returns the value that determines truthyness</li>
 </ul>
-<div id="15a1039b" class="cell" data-execution_count="4">
+<div id="f9053929" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All truthy"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">all</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]))</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span> <span class="kw">and</span> <span class="dv">2</span> <span class="kw">and</span> <span class="dv">3</span>)</span>
@@ -794,7 +883,7 @@ False
 <ul>
 <li>Rewriting our <code>all_heads</code> calculation</li>
 </ul>
-<div id="cbabd7ab" class="cell" data-execution_count="5">
+<div id="b236f476" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -827,7 +916,7 @@ False
 <li>So it’s only called as required</li>
 </ul></li>
 </ul>
-<div id="96ae3baa" class="cell" data-execution_count="6">
+<div id="45d2fb1b" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -878,7 +967,7 @@ False</code></pre>
 <li>Like <code>any</code> always returns <code>True</code> or <code>False</code></li>
 </ul></li>
 </ul>
-<div id="e9b46d7d" class="cell" data-execution_count="7">
+<div id="acf6ac7d" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All falsey"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">any</span>([<span class="dv">0</span>, <span class="va">False</span>, <span class="va">None</span>]))</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">0</span> <span class="kw">or</span> <span class="va">False</span> <span class="kw">or</span> <span class="va">None</span>)</span>
@@ -898,7 +987,7 @@ True
 <ul>
 <li>We can then rewrite our test for consecutive heads</li>
 </ul>
-<div id="b5a8dc83" class="cell" data-execution_count="8">
+<div id="c809e782" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -938,7 +1027,7 @@ False</code></pre>
 </ul></li>
 <li>They are equivalent via De Morgan’s laws for Boolean logic</li>
 </ul>
-<div id="2225c06c" class="cell" data-execution_count="9">
+<div id="a16090a1" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a <span class="kw">in</span> (<span class="va">True</span>, <span class="va">False</span>):</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> b <span class="kw">in</span> (<span class="va">True</span>, <span class="va">False</span>):</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> <span class="bu">any</span>([a, b]) <span class="op">==</span> (<span class="kw">not</span> <span class="bu">all</span> ([<span class="kw">not</span> a, <span class="kw">not</span> b]))</span>

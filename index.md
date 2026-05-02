@@ -23,6 +23,7 @@ Effective Python by Brett Slatkin
   Generators](./Chapter_06/Chapter_06.qmd)
 - [Chapter 7: Classes and Interfaces](./Chapter_07/Chapter_07.qmd)
 - [Chapter 8: Metaclasses and Attributes](./Chapter_08/Chapter_08.qmd)
+- [Chapter 9: Concurrency and Parallelism](./Chapter_09/Chapter_09.qmd)
 
 ## Attribution
 

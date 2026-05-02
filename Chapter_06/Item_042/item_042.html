@@ -647,6 +647,95 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_09/Chapter_09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 9: Concurrency and Parallelism</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_067/item_067.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 67: Use <code>subprocess</code> to Manage Child Processes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_068/item_068.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 68: Use Threads for Blocking I/O; Avoid for Parallelism</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_069/item_069.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 69: Use Lock to Prevent Data Races in Threads</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_070/item_070.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 70: Use <code>Queue</code> to Coordinate Work Between Threads</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_071/item_071.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 71: Know How to Recognise When Concurrency Is Necessary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_072/item_072.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 72: Avoid Creating New <code>Thread</code> Instances for On-Demand Fan-out</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_073/item_073.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 73: Understand how Using Queue for Concurrency Requires Refactoring</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_074/item_074.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 74: Consider <code>ThreadPoolExecutor</code> When Threads Are Necessary for Concurrency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_075/item_075.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 75: Achieve Highly Concurrent I/O with Coroutines</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_076/item_076.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 76: Know how to Port Threaded I/O to <code>asyncio</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_077/item_077.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 77: Mix Threads and Coroutines to Ease the Transition to <code>asyncio</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_078/item_078.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 78: Maximise Responsiveness of <code>asyncio</code> Event Loops with <code>async</code>-Friendly Worker Threads</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_079/item_079.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 79: Consider <code>concurrent.futures</code> for True Parallelism</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -694,7 +783,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>E.g. We have enough stock and the order meets the minimum threshold (say eight)</li>
 </ul></li>
 </ul>
-<div id="58b80e57" class="cell" data-execution_count="1">
+<div id="fd1a0a86" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>stock <span class="op">=</span> {</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nails"</span>: <span class="dv">125</span>,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"screws"</span>: <span class="dv">35</span>,</span>
@@ -724,7 +813,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>We could instead use a dictionary comprehension to flatten the looping logic (See <a href="../../Chapter_06/Item_040/item_040.html">Item 40</a>)</li>
 </ul>
-<div id="712dfc9e" class="cell" data-execution_count="2">
+<div id="9989539a" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>stock <span class="op">=</span> {</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nails"</span>: <span class="dv">125</span>,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"screws"</span>: <span class="dv">35</span>,</span>
@@ -758,7 +847,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>For example if we update our minimum order size in one location but not the other…</li>
 </ul>
-<div id="f83b8c86" class="cell" data-execution_count="3">
+<div id="cfa661ed" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>has_bug <span class="op">=</span> {</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    name: get_batches(stock.get(name, <span class="dv">0</span>), <span class="dv">4</span>)  <span class="co"># changed this one</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> name <span class="kw">in</span> order</span>
@@ -778,7 +867,7 @@ Found:    {'screws': 8, 'wingnuts': 2}</code></pre>
 <li>Also called the <em>walrus operator</em></li>
 </ul></li>
 </ul>
-<div id="555b289f" class="cell" data-execution_count="4">
+<div id="cbea3f10" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>stock <span class="op">=</span> {</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nails"</span>: <span class="dv">125</span>,</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"screws"</span>: <span class="dv">35</span>,</span>
@@ -813,7 +902,7 @@ Found:    {'screws': 8, 'wingnuts': 2}</code></pre>
 <li>Same way if we had two nested loops we can’t reference variables defined in the inner loop in the outer loop</li>
 </ul></li>
 </ul>
-<div id="5524f552" class="cell" data-execution_count="5">
+<div id="4d3ad5d3" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>stock <span class="op">=</span> {</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nails"</span>: <span class="dv">125</span>,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"screws"</span>: <span class="dv">35</span>,</span>
@@ -842,7 +931,7 @@ Found:    {'screws': 8, 'wingnuts': 2}</code></pre>
 <ul>
 <li>In the example above we have effectively tried to write the following,</li>
 </ul>
-<div id="b124dc43" class="cell" data-execution_count="6">
+<div id="a582aa26" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>stock <span class="op">=</span> {</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nails"</span>: <span class="dv">125</span>,</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"screws"</span>: <span class="dv">35</span>,</span>
@@ -874,7 +963,7 @@ Found:    {'screws': 8, 'wingnuts': 2}</code></pre>
 <li>This makes it obvious what is going on, we’re trying to use <code>tenth</code> in the control expression before we’ve even defined the variable!</li>
 <li>The fix here is move the assignment expression into the first place it’s referenced (here the <code>if</code> statement)</li>
 </ul>
-<div id="cb92de74" class="cell" data-execution_count="7">
+<div id="f504113b" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stock <span class="op">=</span> {</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nails"</span>: <span class="dv">125</span>,</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"screws"</span>: <span class="dv">35</span>,</span>
@@ -891,7 +980,7 @@ Found:    {'screws': 8, 'wingnuts': 2}</code></pre>
 <ul>
 <li>Variables assigned using the walrus operator will leak into the containing scope (See <a href="../../Chapter_05/Item_033/item_033.html">Item 33</a>)</li>
 </ul>
-<div id="4a83d9a8" class="cell" data-execution_count="8">
+<div id="cb3b3eef" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>stock <span class="op">=</span> {</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nails"</span>: <span class="dv">125</span>,</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"screws"</span>: <span class="dv">35</span>,</span>
@@ -909,7 +998,7 @@ Found:    {'screws': 8, 'wingnuts': 2}</code></pre>
 <ul>
 <li>This is similar to a normal <code>for</code> loop</li>
 </ul>
-<div id="baf4aff4" class="cell" data-execution_count="9">
+<div id="24690746" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>stock <span class="op">=</span> {</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nails"</span>: <span class="dv">125</span>,</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"screws"</span>: <span class="dv">35</span>,</span>
@@ -930,7 +1019,7 @@ Found:    {'screws': 8, 'wingnuts': 2}</code></pre>
 <li>As with <code>for</code> loops you should avoid using these leaked variables (See <a href="../../Chapter_03/Item_020/item_020.html">Item 20</a>)</li>
 <li>Especially so for comprehensions since they don’t normally leak variables</li>
 </ul>
-<div id="7a65b2c8" class="cell" data-execution_count="10">
+<div id="d972bb04" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>stock <span class="op">=</span> {</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nails"</span>: <span class="dv">125</span>,</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"screws"</span>: <span class="dv">35</span>,</span>
@@ -950,7 +1039,7 @@ Found:    {'screws': 8, 'wingnuts': 2}</code></pre>
 <li>Assignment expressions can also be used in generator comprehensions (See <a href="../../Chapter_06/Item_044/item_044.html">Item 44</a>)</li>
 <li>They have the same behaviour such as leakage etc.</li>
 </ul>
-<div id="d2d45949" class="cell" data-execution_count="11">
+<div id="9c1cf09b" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>stock <span class="op">=</span> {</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nails"</span>: <span class="dv">125</span>,</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"screws"</span>: <span class="dv">35</span>,</span>

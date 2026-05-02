@@ -647,6 +647,95 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_09/Chapter_09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 9: Concurrency and Parallelism</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_067/item_067.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 67: Use <code>subprocess</code> to Manage Child Processes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_068/item_068.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 68: Use Threads for Blocking I/O; Avoid for Parallelism</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_069/item_069.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 69: Use Lock to Prevent Data Races in Threads</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_070/item_070.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 70: Use <code>Queue</code> to Coordinate Work Between Threads</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_071/item_071.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 71: Know How to Recognise When Concurrency Is Necessary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_072/item_072.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 72: Avoid Creating New <code>Thread</code> Instances for On-Demand Fan-out</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_073/item_073.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 73: Understand how Using Queue for Concurrency Requires Refactoring</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_074/item_074.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 74: Consider <code>ThreadPoolExecutor</code> When Threads Are Necessary for Concurrency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_075/item_075.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 75: Achieve Highly Concurrent I/O with Coroutines</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_076/item_076.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 76: Know how to Port Threaded I/O to <code>asyncio</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_077/item_077.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 77: Mix Threads and Coroutines to Ease the Transition to <code>asyncio</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_078/item_078.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 78: Maximise Responsiveness of <code>asyncio</code> Event Loops with <code>async</code>-Friendly Worker Threads</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_079/item_079.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 79: Consider <code>concurrent.futures</code> for True Parallelism</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -701,7 +790,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Since they exist within the class block</li>
 </ul></li>
 </ul>
-<div id="a05f2365" class="cell" data-execution_count="1">
+<div id="cdaaceb9" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyObject:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.public_field <span class="op">=</span> <span class="dv">5</span></span>
@@ -742,7 +831,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Subclasses cannot access a parent classes private variables</li>
 </ul>
-<div id="9945a11a" class="cell" data-execution_count="2">
+<div id="6388b9ee" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ParentClass:</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__private_field <span class="op">=</span> <span class="dv">10</span></span>
@@ -790,7 +879,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul></li>
 </ul>
-<div id="9c4ec180" class="cell" data-execution_count="3">
+<div id="06d1df4c" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ParentClass:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__private_field <span class="op">=</span> <span class="dv">10</span></span>
@@ -834,7 +923,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Subclassers can (and will) still access the private attributes, but the implementation becomes verbose and brittle</li>
 </ul></li>
 </ul>
-<div id="3236c612" class="cell" data-execution_count="4">
+<div id="f6510667" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyStringClass:</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, value):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__value <span class="op">=</span> value</span>
@@ -864,7 +953,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>For example if <code>MyStringClass</code> is made into a subclass and replaced with a <code>MyBaseClass</code> superclass</li>
 </ul>
-<div id="cfe84cb7" class="cell" data-execution_count="5">
+<div id="86244789" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyBaseClass:</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, value):</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__value <span class="op">=</span> value</span>
@@ -920,7 +1009,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Also helps the class maintainer remember their intent</li>
 </ul></li>
 </ul>
-<div id="21f4bfc5" class="cell" data-execution_count="6">
+<div id="9408ed5f" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyStringClass:</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, value):</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Stores user-supplied value for the object.</span></span>
@@ -935,7 +1024,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Occurs if a child class overwrites an attribute defined in the parent class</li>
 </ul></li>
 </ul>
-<div id="b8f95281" class="cell" data-execution_count="7">
+<div id="b1b62d3b" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> APIClass:</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._value <span class="op">=</span> <span class="dv">5</span></span>
@@ -963,7 +1052,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Likely to occur with common names (e.g.&nbsp;<code>value</code>, <code>key</code> etc.)</li>
 <li>Can reduce the chance of a clash with private attributes to force name mangling</li>
 </ul>
-<div id="6fbda958" class="cell" data-execution_count="8">
+<div id="5191be99" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> APIClass:</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__value <span class="op">=</span> <span class="dv">5</span> <span class="co"># mark as private</span></span>

@@ -647,6 +647,95 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_09/Chapter_09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 9: Concurrency and Parallelism</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_067/item_067.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 67: Use <code>subprocess</code> to Manage Child Processes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_068/item_068.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 68: Use Threads for Blocking I/O; Avoid for Parallelism</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_069/item_069.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 69: Use Lock to Prevent Data Races in Threads</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_070/item_070.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 70: Use <code>Queue</code> to Coordinate Work Between Threads</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_071/item_071.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 71: Know How to Recognise When Concurrency Is Necessary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_072/item_072.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 72: Avoid Creating New <code>Thread</code> Instances for On-Demand Fan-out</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_073/item_073.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 73: Understand how Using Queue for Concurrency Requires Refactoring</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_074/item_074.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 74: Consider <code>ThreadPoolExecutor</code> When Threads Are Necessary for Concurrency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_075/item_075.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 75: Achieve Highly Concurrent I/O with Coroutines</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_076/item_076.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 76: Know how to Port Threaded I/O to <code>asyncio</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_077/item_077.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 77: Mix Threads and Coroutines to Ease the Transition to <code>asyncio</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_078/item_078.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 78: Maximise Responsiveness of <code>asyncio</code> Event Loops with <code>async</code>-Friendly Worker Threads</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_09/Item_079/item_079.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 79: Consider <code>concurrent.futures</code> for True Parallelism</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -692,7 +781,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>e.g.&nbsp;Generating a 32-bit random number by coin-flipping each bit position</li>
 </ul></li>
 </ul>
-<div id="bebec543" class="cell" data-execution_count="1">
+<div id="8dc45073" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> randint</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>random_bits <span class="op">=</span> <span class="dv">0</span></span>
@@ -702,13 +791,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Randomly generated: </span><span class="sc">{</span><span class="bu">bin</span>(random_bits)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Randomly generated: 0b1000000010101111011001101111111</code></pre>
+<pre><code>Randomly generated: 0b11110110101000100110000100001101</code></pre>
 </div>
 </div>
 <ul>
 <li>We can directly loop over an data structure</li>
 </ul>
-<div id="83507228" class="cell" data-execution_count="2">
+<div id="a390ae19" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ice_cream_flavours <span class="op">=</span> [<span class="st">"vanilla"</span>, <span class="st">"chocolate"</span>, <span class="st">"pecan"</span>, <span class="st">"strawberry"</span>]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> flavour <span class="kw">in</span> ice_cream_flavours:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>flavour<span class="sc">}</span><span class="ss"> is delicious"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -726,7 +815,7 @@ strawberry is delicious</code></pre>
 </ul></li>
 <li>You could do this with <code>range</code></li>
 </ul>
-<div id="5e181f3b" class="cell" data-execution_count="3">
+<div id="9fd80580" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ice_cream_flavours <span class="op">=</span> [<span class="st">"vanilla"</span>, <span class="st">"chocolate"</span>, <span class="st">"pecan"</span>, <span class="st">"strawberry"</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(ice_cream_flavours)):</span>
@@ -753,7 +842,7 @@ strawberry is delicious</code></pre>
 </ul></li>
 <li>Demonstrating the behaviour manually,</li>
 </ul>
-<div id="b853e0c7" class="cell" data-execution_count="4">
+<div id="b40d9dae" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ice_cream_flavours <span class="op">=</span> [<span class="st">"vanilla"</span>, <span class="st">"chocolate"</span>, <span class="st">"pecan"</span>, <span class="st">"strawberry"</span>]</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> <span class="bu">enumerate</span>(ice_cream_flavours)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">next</span>(it))</span>
@@ -766,7 +855,7 @@ strawberry is delicious</code></pre>
 <ul>
 <li>We can then use unpacking to easily separate the components of the <code>enumerate</code> pair</li>
 </ul>
-<div id="81b94ec2" class="cell" data-execution_count="5">
+<div id="81ac13a1" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ice_cream_flavours <span class="op">=</span> [<span class="st">"vanilla"</span>, <span class="st">"chocolate"</span>, <span class="st">"pecan"</span>, <span class="st">"strawberry"</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, flavour <span class="kw">in</span> <span class="bu">enumerate</span>(ice_cream_flavours):</span>
@@ -785,7 +874,7 @@ strawberry is delicious</code></pre>
 <li>Does mean that the counter no longer directly aligns with the index in a sequence</li>
 </ul></li>
 </ul>
-<div id="d19e36d4" class="cell" data-execution_count="6">
+<div id="05803b86" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ice_cream_flavours <span class="op">=</span> [<span class="st">"vanilla"</span>, <span class="st">"chocolate"</span>, <span class="st">"pecan"</span>, <span class="st">"strawberry"</span>]</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, flavour <span class="kw">in</span> <span class="bu">enumerate</span>(ice_cream_flavours, start<span class="op">=</span><span class="dv">1</span>):</span>
