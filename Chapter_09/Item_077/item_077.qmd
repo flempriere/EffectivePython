@@ -175,7 +175,7 @@ def tail_file(handle, interval, write_func):
 def write_random_data(path, interval):
     with open(path, "wb") as f:
         i = 0
-        while random.random() < 0.25:
+        while random.random() < 0.5:
             i += 1
             time.sleep(random.random() * interval)
             letters = random.choices(string.ascii_lowercase, k=10)
@@ -228,6 +228,7 @@ def confirm_merge(input_paths, output_path):
 
     for key, expected_lines in expected.items():
         found_lines = found[key]
+        print(f"File: {key}. Expected {expected_lines} lines, found {found_lines}")
         assert (
             expected_lines == found_lines
         ), f"{expected_lines!r} == {found_lines!r}"
@@ -239,6 +240,7 @@ run_threads(handles, 0.1, output_path)
 confirm_merge(input_paths, output_path)
 
 tmpdir.cleanup()
+print("All tests passed!")
 ```
 
 - The goal is again to convert this code over to use an `async` framework
@@ -434,6 +436,7 @@ def confirm_merge(input_paths, output_path):
 
     for key, expected_lines in expected.items():
         found_lines = found[key]
+        print(f"File: {key}. Expected {expected_lines} lines, found {found_lines}")
         assert (
             expected_lines == found_lines
         ), f"{expected_lines!r} == {found_lines!r}"
@@ -446,6 +449,7 @@ await run_tasks_mixed(handles, 0.1, output_path)
 confirm_merge(input_paths, output_path)
 
 tmpdir.cleanup()
+print("All tests passed!")
 ```
 
 - Now we want to repeat the process, moving further down the tech stack
@@ -573,6 +577,7 @@ def confirm_merge(input_paths, output_path):
 
     for key, expected_lines in expected.items():
         found_lines = found[key]
+        print(f"File: {key}. Expected {expected_lines} lines, found {found_lines}")
         assert (
             expected_lines == found_lines
         ), f"{expected_lines!r} == {found_lines!r}"
@@ -585,6 +590,7 @@ await run_tasks(handles, 0.1, output_path)
 confirm_merge(input_paths, output_path)
 
 tmpdir.cleanup()
+print("All tests passed!")
 ```
 
 - The next step if one was to continue would be to port `readline`
@@ -757,6 +763,7 @@ def confirm_merge(input_paths, output_path):
 
     for key, expected_lines in expected.items():
         found_lines = found[key]
+        print(f"File: {key}. Expected {expected_lines} lines, found {found_lines}")
         assert (
             expected_lines == found_lines
         ), f"{expected_lines!r} == {found_lines!r}"
@@ -768,6 +775,7 @@ run_threads(handles, 0.1, output_path)
 confirm_merge(input_paths, output_path)
 
 tmpdir.cleanup()
+print("All tests passed")
 ```
 
 - Having converted `tail_file` the next step is to convert `run_threads`
