@@ -806,7 +806,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>When no data is present, we raise an exception (See <a href="../../Chapter_05/Item_032/item_032.html">Item 32</a>)</li>
 </ul></li>
 </ul>
-<div id="f506f0a5" class="cell" data-execution_count="1">
+<div id="2e176a27" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NoNewData(<span class="pp">Exception</span>):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -909,7 +909,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Then simply,
 <ol type="1">
 <li>Sleeps for an <code>interval</code></li>
-<li>Writes a line containing the file path, the line number and a random ascii string</li>
+<li>Writes a line containing the file path, the line number and a random ascii string converted to binary</li>
 <li>Ensures the data is encoded and flushed</li>
 </ol></li>
 </ul></li>
@@ -968,7 +968,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Cleanup the temporary directory</li>
 </ol></li>
 </ul>
-<div id="aab94ead" class="cell" data-execution_count="2">
+<div id="6c6d413d" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections <span class="co"># for testing</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co"># for testing</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="co"># for testing</span></span>
@@ -1093,11 +1093,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>tmpdir.cleanup()</span>
 <span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All tests passed!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>File: /tmp/tmpl3g7czcv/0. Expected [b'/tmp/tmpl3g7czcv/0-01-fvmjoofwct\n', b'/tmp/tmpl3g7czcv/0-02-ummjbpcbgx\n'] lines, found [b'/tmp/tmpl3g7czcv/0-01-fvmjoofwct\n', b'/tmp/tmpl3g7czcv/0-02-ummjbpcbgx\n']
-File: /tmp/tmpl3g7czcv/1. Expected [b'/tmp/tmpl3g7czcv/1-01-rgopippdhr\n', b'/tmp/tmpl3g7czcv/1-02-xeqefxejyn\n', b'/tmp/tmpl3g7czcv/1-03-rtfpbsdlfs\n', b'/tmp/tmpl3g7czcv/1-04-gnajoqxnbx\n'] lines, found [b'/tmp/tmpl3g7czcv/1-01-rgopippdhr\n', b'/tmp/tmpl3g7czcv/1-02-xeqefxejyn\n', b'/tmp/tmpl3g7czcv/1-03-rtfpbsdlfs\n', b'/tmp/tmpl3g7czcv/1-04-gnajoqxnbx\n']
-File: /tmp/tmpl3g7czcv/2. Expected [] lines, found []
-File: /tmp/tmpl3g7czcv/3. Expected [b'/tmp/tmpl3g7czcv/3-01-wvrfecbovl\n', b'/tmp/tmpl3g7czcv/3-02-ippikfqgrv\n', b'/tmp/tmpl3g7czcv/3-03-qkjsiepwgo\n'] lines, found [b'/tmp/tmpl3g7czcv/3-01-wvrfecbovl\n', b'/tmp/tmpl3g7czcv/3-02-ippikfqgrv\n', b'/tmp/tmpl3g7czcv/3-03-qkjsiepwgo\n']
-File: /tmp/tmpl3g7czcv/4. Expected [b'/tmp/tmpl3g7czcv/4-01-pwyvtctyye\n', b'/tmp/tmpl3g7czcv/4-02-udxtqhudhr\n', b'/tmp/tmpl3g7czcv/4-03-elpwjoouhq\n'] lines, found [b'/tmp/tmpl3g7czcv/4-01-pwyvtctyye\n', b'/tmp/tmpl3g7czcv/4-02-udxtqhudhr\n', b'/tmp/tmpl3g7czcv/4-03-elpwjoouhq\n']
+<pre><code>File: /tmp/tmpvptsr_17/0. Expected [] lines, found []
+File: /tmp/tmpvptsr_17/1. Expected [b'/tmp/tmpvptsr_17/1-01-zohdnyafqz\n', b'/tmp/tmpvptsr_17/1-02-gpzhzbmlss\n', b'/tmp/tmpvptsr_17/1-03-pclituasgc\n', b'/tmp/tmpvptsr_17/1-04-zoadpofexs\n', b'/tmp/tmpvptsr_17/1-05-gzupaskfyn\n', b'/tmp/tmpvptsr_17/1-06-xmuzodnedi\n'] lines, found [b'/tmp/tmpvptsr_17/1-01-zohdnyafqz\n', b'/tmp/tmpvptsr_17/1-02-gpzhzbmlss\n', b'/tmp/tmpvptsr_17/1-03-pclituasgc\n', b'/tmp/tmpvptsr_17/1-04-zoadpofexs\n', b'/tmp/tmpvptsr_17/1-05-gzupaskfyn\n', b'/tmp/tmpvptsr_17/1-06-xmuzodnedi\n']
+File: /tmp/tmpvptsr_17/2. Expected [b'/tmp/tmpvptsr_17/2-01-ntpndlragm\n'] lines, found [b'/tmp/tmpvptsr_17/2-01-ntpndlragm\n']
+File: /tmp/tmpvptsr_17/3. Expected [b'/tmp/tmpvptsr_17/3-01-rtdukwibur\n'] lines, found [b'/tmp/tmpvptsr_17/3-01-rtdukwibur\n']
+File: /tmp/tmpvptsr_17/4. Expected [] lines, found []
 All tests passed!</code></pre>
 </div>
 </div>
@@ -1207,7 +1207,7 @@ All tests passed!</code></pre>
 <li>We can reuse our existing test harness</li>
 </ul></li>
 </ul>
-<div id="9f4f3835" class="cell" data-execution_count="3">
+<div id="50828da3" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections <span class="co"># for testing</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co"># for testing</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="co"># for testing</span></span>
@@ -1273,7 +1273,7 @@ All tests passed!</code></pre>
 <span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> write_random_data(path, interval):</span>
 <span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(path, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
 <span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>        i <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> random.random() <span class="op">&lt;</span> <span class="fl">0.25</span>:</span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> random.random() <span class="op">&lt;</span> <span class="fl">0.5</span>:</span>
 <span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
 <span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>            time.sleep(random.random() <span class="op">*</span> interval)</span>
 <span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>            letters <span class="op">=</span> random.choices(string.ascii_lowercase, k<span class="op">=</span><span class="dv">10</span>)</span>
@@ -1341,11 +1341,11 @@ All tests passed!</code></pre>
 <span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a>tmpdir.cleanup()</span>
 <span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All tests passed!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>File: /tmp/tmpcxl4zyr7/0. Expected [] lines, found []
-File: /tmp/tmpcxl4zyr7/1. Expected [b'/tmp/tmpcxl4zyr7/1-01-nenguyicwi\n'] lines, found [b'/tmp/tmpcxl4zyr7/1-01-nenguyicwi\n']
-File: /tmp/tmpcxl4zyr7/2. Expected [] lines, found []
-File: /tmp/tmpcxl4zyr7/3. Expected [] lines, found []
-File: /tmp/tmpcxl4zyr7/4. Expected [] lines, found []
+<pre><code>File: /tmp/tmpjsuhhocf/0. Expected [b'/tmp/tmpjsuhhocf/0-01-tiooeeybwi\n'] lines, found [b'/tmp/tmpjsuhhocf/0-01-tiooeeybwi\n']
+File: /tmp/tmpjsuhhocf/1. Expected [b'/tmp/tmpjsuhhocf/1-01-ayusoogpmd\n', b'/tmp/tmpjsuhhocf/1-02-isjjtrftkl\n', b'/tmp/tmpjsuhhocf/1-03-epxwkebaya\n'] lines, found [b'/tmp/tmpjsuhhocf/1-01-ayusoogpmd\n', b'/tmp/tmpjsuhhocf/1-02-isjjtrftkl\n', b'/tmp/tmpjsuhhocf/1-03-epxwkebaya\n']
+File: /tmp/tmpjsuhhocf/2. Expected [b'/tmp/tmpjsuhhocf/2-01-iswhkubwgp\n'] lines, found [b'/tmp/tmpjsuhhocf/2-01-iswhkubwgp\n']
+File: /tmp/tmpjsuhhocf/3. Expected [] lines, found []
+File: /tmp/tmpjsuhhocf/4. Expected [] lines, found []
 All tests passed!</code></pre>
 </div>
 </div>
@@ -1376,7 +1376,7 @@ All tests passed!</code></pre>
 <li>Now use <code>asyncio.TaskGroup</code> to handle fan-out/in of <code>tail_async</code> (available since Python 3.11)</li>
 </ul></li>
 </ul>
-<div id="47675345" class="cell" data-execution_count="4">
+<div id="85274f73" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections <span class="co"># for testing</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co"># for testing</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="co"># for testing</span></span>
@@ -1434,7 +1434,7 @@ All tests passed!</code></pre>
 <span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> write_random_data(path, interval):</span>
 <span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(path, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
 <span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>        i <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> random.random() <span class="op">&lt;</span> <span class="fl">0.25</span>:</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> random.random() <span class="op">&lt;</span> <span class="fl">0.5</span>:</span>
 <span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
 <span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>            time.sleep(random.random() <span class="op">*</span> interval)</span>
 <span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>            letters <span class="op">=</span> random.choices(string.ascii_lowercase, k<span class="op">=</span><span class="dv">10</span>)</span>
@@ -1502,11 +1502,11 @@ All tests passed!</code></pre>
 <span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a>tmpdir.cleanup()</span>
 <span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All tests passed!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>File: /tmp/tmpz9jvincq/0. Expected [] lines, found []
-File: /tmp/tmpz9jvincq/1. Expected [] lines, found []
-File: /tmp/tmpz9jvincq/2. Expected [] lines, found []
-File: /tmp/tmpz9jvincq/3. Expected [b'/tmp/tmpz9jvincq/3-01-enunshslas\n'] lines, found [b'/tmp/tmpz9jvincq/3-01-enunshslas\n']
-File: /tmp/tmpz9jvincq/4. Expected [] lines, found []
+<pre><code>File: /tmp/tmpo9dwqq6k/0. Expected [b'/tmp/tmpo9dwqq6k/0-01-aoilepxvcl\n'] lines, found [b'/tmp/tmpo9dwqq6k/0-01-aoilepxvcl\n']
+File: /tmp/tmpo9dwqq6k/1. Expected [b'/tmp/tmpo9dwqq6k/1-01-bxufedvpyr\n'] lines, found [b'/tmp/tmpo9dwqq6k/1-01-bxufedvpyr\n']
+File: /tmp/tmpo9dwqq6k/2. Expected [] lines, found []
+File: /tmp/tmpo9dwqq6k/3. Expected [] lines, found []
+File: /tmp/tmpo9dwqq6k/4. Expected [b'/tmp/tmpo9dwqq6k/4-01-lkvwprkgbs\n', b'/tmp/tmpo9dwqq6k/4-02-arpfxtrfue\n'] lines, found [b'/tmp/tmpo9dwqq6k/4-01-lkvwprkgbs\n', b'/tmp/tmpo9dwqq6k/4-02-arpfxtrfue\n']
 All tests passed!</code></pre>
 </div>
 </div>
@@ -1570,7 +1570,7 @@ All tests passed!</code></pre>
 <ul>
 <li>We can plug this in and run our test harness</li>
 </ul>
-<div id="7d884973" class="cell" data-execution_count="5">
+<div id="50b29b5d" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections <span class="co"># for testing</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co"># for testing</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="co"># for testing</span></span>
@@ -1644,7 +1644,7 @@ All tests passed!</code></pre>
 <span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> write_random_data(path, interval):</span>
 <span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(path, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
 <span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>        i <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> random.random() <span class="op">&lt;</span> <span class="fl">0.25</span>:</span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> random.random() <span class="op">&lt;</span> <span class="fl">0.5</span>:</span>
 <span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
 <span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>            time.sleep(random.random() <span class="op">*</span> interval)</span>
 <span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>            letters <span class="op">=</span> random.choices(string.ascii_lowercase, k<span class="op">=</span><span class="dv">10</span>)</span>
@@ -1711,11 +1711,11 @@ All tests passed!</code></pre>
 <span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a>tmpdir.cleanup()</span>
 <span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All tests passed"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>File: /tmp/tmp7kr3kv0k/0. Expected [] lines, found []
-File: /tmp/tmp7kr3kv0k/1. Expected [] lines, found []
-File: /tmp/tmp7kr3kv0k/2. Expected [] lines, found []
-File: /tmp/tmp7kr3kv0k/3. Expected [] lines, found []
-File: /tmp/tmp7kr3kv0k/4. Expected [] lines, found []
+<pre><code>File: /tmp/tmp81nk0rwp/0. Expected [] lines, found []
+File: /tmp/tmp81nk0rwp/1. Expected [] lines, found []
+File: /tmp/tmp81nk0rwp/2. Expected [] lines, found []
+File: /tmp/tmp81nk0rwp/3. Expected [] lines, found []
+File: /tmp/tmp81nk0rwp/4. Expected [b'/tmp/tmp81nk0rwp/4-01-kbvirkjamx\n', b'/tmp/tmp81nk0rwp/4-02-dgzsrenfof\n'] lines, found [b'/tmp/tmp81nk0rwp/4-01-kbvirkjamx\n', b'/tmp/tmp81nk0rwp/4-02-dgzsrenfof\n']
 All tests passed</code></pre>
 </div>
 </div>

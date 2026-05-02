@@ -125,7 +125,7 @@ def tail_file(handle, interval, write_func):
     - Then simply,
       1.  Sleeps for an `interval`
       2.  Writes a line containing the file path, the line number and a
-          random ascii string
+          random ascii string converted to binary
       3.  Ensures the data is encoded and flushed
   - `start_write_threads` sets up threads to write a number of random
     files
@@ -299,11 +299,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmp4p4ij896/0. Expected [b'/tmp/tmp4p4ij896/0-01-tpnvovyeym\n'] lines, found [b'/tmp/tmp4p4ij896/0-01-tpnvovyeym\n']
-    File: /tmp/tmp4p4ij896/1. Expected [] lines, found []
-    File: /tmp/tmp4p4ij896/2. Expected [b'/tmp/tmp4p4ij896/2-01-eaxpuounhf\n', b'/tmp/tmp4p4ij896/2-02-fufnvvhwte\n'] lines, found [b'/tmp/tmp4p4ij896/2-01-eaxpuounhf\n', b'/tmp/tmp4p4ij896/2-02-fufnvvhwte\n']
-    File: /tmp/tmp4p4ij896/3. Expected [] lines, found []
-    File: /tmp/tmp4p4ij896/4. Expected [b'/tmp/tmp4p4ij896/4-01-wozfqswppz\n', b'/tmp/tmp4p4ij896/4-02-vwplfxtmlp\n', b'/tmp/tmp4p4ij896/4-03-eihzqgijrh\n'] lines, found [b'/tmp/tmp4p4ij896/4-01-wozfqswppz\n', b'/tmp/tmp4p4ij896/4-02-vwplfxtmlp\n', b'/tmp/tmp4p4ij896/4-03-eihzqgijrh\n']
+    File: /tmp/tmposkfd0u8/0. Expected [] lines, found []
+    File: /tmp/tmposkfd0u8/1. Expected [b'/tmp/tmposkfd0u8/1-01-fojypphodw\n', b'/tmp/tmposkfd0u8/1-02-crkxrdiibp\n'] lines, found [b'/tmp/tmposkfd0u8/1-01-fojypphodw\n', b'/tmp/tmposkfd0u8/1-02-crkxrdiibp\n']
+    File: /tmp/tmposkfd0u8/2. Expected [] lines, found []
+    File: /tmp/tmposkfd0u8/3. Expected [] lines, found []
+    File: /tmp/tmposkfd0u8/4. Expected [b'/tmp/tmposkfd0u8/4-01-phciazuhyp\n'] lines, found [b'/tmp/tmposkfd0u8/4-01-phciazuhyp\n']
     All tests passed!
 
 - The goal is again to convert this code over to use an `async`
@@ -455,7 +455,7 @@ def tail_file(handle, interval, write_func):
 def write_random_data(path, interval):
     with open(path, "wb") as f:
         i = 0
-        while random.random() < 0.25:
+        while random.random() < 0.5:
             i += 1
             time.sleep(random.random() * interval)
             letters = random.choices(string.ascii_lowercase, k=10)
@@ -524,11 +524,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmp7qtkiegc/0. Expected [] lines, found []
-    File: /tmp/tmp7qtkiegc/1. Expected [b'/tmp/tmp7qtkiegc/1-01-stkmhvcjoy\n'] lines, found [b'/tmp/tmp7qtkiegc/1-01-stkmhvcjoy\n']
-    File: /tmp/tmp7qtkiegc/2. Expected [] lines, found []
-    File: /tmp/tmp7qtkiegc/3. Expected [b'/tmp/tmp7qtkiegc/3-01-vyffiqcqrc\n'] lines, found [b'/tmp/tmp7qtkiegc/3-01-vyffiqcqrc\n']
-    File: /tmp/tmp7qtkiegc/4. Expected [] lines, found []
+    File: /tmp/tmpteamt2ul/0. Expected [] lines, found []
+    File: /tmp/tmpteamt2ul/1. Expected [b'/tmp/tmpteamt2ul/1-01-hibpheoqku\n', b'/tmp/tmpteamt2ul/1-02-jtmoahpeca\n', b'/tmp/tmpteamt2ul/1-03-kucuvbtysm\n', b'/tmp/tmpteamt2ul/1-04-hmghmbzfyd\n'] lines, found [b'/tmp/tmpteamt2ul/1-01-hibpheoqku\n', b'/tmp/tmpteamt2ul/1-02-jtmoahpeca\n', b'/tmp/tmpteamt2ul/1-03-kucuvbtysm\n', b'/tmp/tmpteamt2ul/1-04-hmghmbzfyd\n']
+    File: /tmp/tmpteamt2ul/2. Expected [] lines, found []
+    File: /tmp/tmpteamt2ul/3. Expected [] lines, found []
+    File: /tmp/tmpteamt2ul/4. Expected [] lines, found []
     All tests passed!
 
 - Now we want to repeat the process, moving further down the tech stack
@@ -605,7 +605,7 @@ async def tail_async(handle, interval, write_func): # change to async def
 def write_random_data(path, interval):
     with open(path, "wb") as f:
         i = 0
-        while random.random() < 0.25:
+        while random.random() < 0.5:
             i += 1
             time.sleep(random.random() * interval)
             letters = random.choices(string.ascii_lowercase, k=10)
@@ -674,11 +674,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmplumgqcy0/0. Expected [] lines, found []
-    File: /tmp/tmplumgqcy0/1. Expected [] lines, found []
-    File: /tmp/tmplumgqcy0/2. Expected [] lines, found []
-    File: /tmp/tmplumgqcy0/3. Expected [] lines, found []
-    File: /tmp/tmplumgqcy0/4. Expected [] lines, found []
+    File: /tmp/tmpkd67jy0r/0. Expected [b'/tmp/tmpkd67jy0r/0-01-zkepzclgaq\n', b'/tmp/tmpkd67jy0r/0-02-llbsvwrxox\n'] lines, found [b'/tmp/tmpkd67jy0r/0-01-zkepzclgaq\n', b'/tmp/tmpkd67jy0r/0-02-llbsvwrxox\n']
+    File: /tmp/tmpkd67jy0r/1. Expected [b'/tmp/tmpkd67jy0r/1-01-zcrjyugsrt\n'] lines, found [b'/tmp/tmpkd67jy0r/1-01-zcrjyugsrt\n']
+    File: /tmp/tmpkd67jy0r/2. Expected [b'/tmp/tmpkd67jy0r/2-01-lciqeioupd\n'] lines, found [b'/tmp/tmpkd67jy0r/2-01-lciqeioupd\n']
+    File: /tmp/tmpkd67jy0r/3. Expected [] lines, found []
+    File: /tmp/tmpkd67jy0r/4. Expected [] lines, found []
     All tests passed!
 
 - The next step if one was to continue would be to port `readline`
@@ -804,7 +804,7 @@ async def tail_async(handle, interval, write_func): # change to async def
 def write_random_data(path, interval):
     with open(path, "wb") as f:
         i = 0
-        while random.random() < 0.25:
+        while random.random() < 0.5:
             i += 1
             time.sleep(random.random() * interval)
             letters = random.choices(string.ascii_lowercase, k=10)
@@ -872,11 +872,11 @@ tmpdir.cleanup()
 print("All tests passed")
 ```
 
-    File: /tmp/tmpw71a2baw/0. Expected [] lines, found []
-    File: /tmp/tmpw71a2baw/1. Expected [] lines, found []
-    File: /tmp/tmpw71a2baw/2. Expected [] lines, found []
-    File: /tmp/tmpw71a2baw/3. Expected [b'/tmp/tmpw71a2baw/3-01-xqueptsrjg\n'] lines, found [b'/tmp/tmpw71a2baw/3-01-xqueptsrjg\n']
-    File: /tmp/tmpw71a2baw/4. Expected [b'/tmp/tmpw71a2baw/4-01-kxsjsnhjnx\n'] lines, found [b'/tmp/tmpw71a2baw/4-01-kxsjsnhjnx\n']
+    File: /tmp/tmpgde3azq6/0. Expected [b'/tmp/tmpgde3azq6/0-01-jngkxohboo\n', b'/tmp/tmpgde3azq6/0-02-xkhdzddzeo\n'] lines, found [b'/tmp/tmpgde3azq6/0-01-jngkxohboo\n', b'/tmp/tmpgde3azq6/0-02-xkhdzddzeo\n']
+    File: /tmp/tmpgde3azq6/1. Expected [] lines, found []
+    File: /tmp/tmpgde3azq6/2. Expected [] lines, found []
+    File: /tmp/tmpgde3azq6/3. Expected [b'/tmp/tmpgde3azq6/3-01-frhnayheen\n', b'/tmp/tmpgde3azq6/3-02-rycrcrawsg\n'] lines, found [b'/tmp/tmpgde3azq6/3-01-frhnayheen\n', b'/tmp/tmpgde3azq6/3-02-rycrcrawsg\n']
+    File: /tmp/tmpgde3azq6/4. Expected [b'/tmp/tmpgde3azq6/4-01-hbkafqwtet\n', b'/tmp/tmpgde3azq6/4-02-kqudyllcun\n'] lines, found [b'/tmp/tmpgde3azq6/4-01-hbkafqwtet\n', b'/tmp/tmpgde3azq6/4-02-kqudyllcun\n']
     All tests passed
 
 - Having converted `tail_file` the next step is to convert `run_threads`
