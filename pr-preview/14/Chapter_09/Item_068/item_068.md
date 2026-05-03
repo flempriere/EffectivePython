@@ -50,7 +50,7 @@ delta = end - start
 print(f"Took {delta:.3f} seconds")
 ```
 
-    Took 4.949 seconds
+    Took 5.435 seconds
 
 - In another language might seem natural to do this computation using
   multiple threads of execution
@@ -112,7 +112,7 @@ delta = end - start
 print(f"Took {delta:.3f} seconds")
 ```
 
-    Took 5.224 seconds
+    Took 5.519 seconds
 
 - Here the program shows no significant time difference from the
   single-thread version
@@ -223,7 +223,7 @@ delta = end - start
 print(f"Took {delta:.3f} seconds")
 ```
 
-    Took 0.101 seconds
+    Took 0.102 seconds
 
 - All the system calls are now able to run in parallel
   - Since the system calls do not interact with the GIL they can take
