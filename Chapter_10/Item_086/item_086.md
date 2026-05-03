@@ -1,6 +1,6 @@
 # Item 86: Understand the Difference between `Exception` and
-`BaseException`
 
+`BaseException`
 
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
