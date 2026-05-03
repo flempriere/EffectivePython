@@ -299,11 +299,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmp2v5iinhe/0. Expected [b'/tmp/tmp2v5iinhe/0-01-oyqdzallcu\n', b'/tmp/tmp2v5iinhe/0-02-hmnhckjbbp\n', b'/tmp/tmp2v5iinhe/0-03-nihgwcdowl\n'] lines, found [b'/tmp/tmp2v5iinhe/0-01-oyqdzallcu\n', b'/tmp/tmp2v5iinhe/0-02-hmnhckjbbp\n', b'/tmp/tmp2v5iinhe/0-03-nihgwcdowl\n']
-    File: /tmp/tmp2v5iinhe/1. Expected [b'/tmp/tmp2v5iinhe/1-01-ruzqmawney\n'] lines, found [b'/tmp/tmp2v5iinhe/1-01-ruzqmawney\n']
-    File: /tmp/tmp2v5iinhe/2. Expected [b'/tmp/tmp2v5iinhe/2-01-plkjzntgxd\n'] lines, found [b'/tmp/tmp2v5iinhe/2-01-plkjzntgxd\n']
-    File: /tmp/tmp2v5iinhe/3. Expected [] lines, found []
-    File: /tmp/tmp2v5iinhe/4. Expected [] lines, found []
+    File: /tmp/tmpbguwvcda/0. Expected [] lines, found []
+    File: /tmp/tmpbguwvcda/1. Expected [] lines, found []
+    File: /tmp/tmpbguwvcda/2. Expected [] lines, found []
+    File: /tmp/tmpbguwvcda/3. Expected [] lines, found []
+    File: /tmp/tmpbguwvcda/4. Expected [] lines, found []
     All tests passed!
 
 - The goal is again to convert this code over to use an `async`
@@ -524,11 +524,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmpzptwuwtq/0. Expected [] lines, found []
-    File: /tmp/tmpzptwuwtq/1. Expected [] lines, found []
-    File: /tmp/tmpzptwuwtq/2. Expected [b'/tmp/tmpzptwuwtq/2-01-yntopcezws\n', b'/tmp/tmpzptwuwtq/2-02-wsmzbujyvr\n'] lines, found [b'/tmp/tmpzptwuwtq/2-01-yntopcezws\n', b'/tmp/tmpzptwuwtq/2-02-wsmzbujyvr\n']
-    File: /tmp/tmpzptwuwtq/3. Expected [] lines, found []
-    File: /tmp/tmpzptwuwtq/4. Expected [b'/tmp/tmpzptwuwtq/4-01-nuzdjiuqcz\n', b'/tmp/tmpzptwuwtq/4-02-headnihhvk\n', b'/tmp/tmpzptwuwtq/4-03-scpcxjwvzb\n'] lines, found [b'/tmp/tmpzptwuwtq/4-01-nuzdjiuqcz\n', b'/tmp/tmpzptwuwtq/4-02-headnihhvk\n', b'/tmp/tmpzptwuwtq/4-03-scpcxjwvzb\n']
+    File: /tmp/tmpozustgpl/0. Expected [b'/tmp/tmpozustgpl/0-01-bpnlhbnpre\n'] lines, found [b'/tmp/tmpozustgpl/0-01-bpnlhbnpre\n']
+    File: /tmp/tmpozustgpl/1. Expected [b'/tmp/tmpozustgpl/1-01-lvoahqeoeg\n', b'/tmp/tmpozustgpl/1-02-ttbrkdbazu\n', b'/tmp/tmpozustgpl/1-03-yfehhfpnpg\n'] lines, found [b'/tmp/tmpozustgpl/1-01-lvoahqeoeg\n', b'/tmp/tmpozustgpl/1-02-ttbrkdbazu\n', b'/tmp/tmpozustgpl/1-03-yfehhfpnpg\n']
+    File: /tmp/tmpozustgpl/2. Expected [] lines, found []
+    File: /tmp/tmpozustgpl/3. Expected [] lines, found []
+    File: /tmp/tmpozustgpl/4. Expected [] lines, found []
     All tests passed!
 
 - Now we want to repeat the process, moving further down the tech stack
@@ -674,11 +674,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmptz0z9syp/0. Expected [b'/tmp/tmptz0z9syp/0-01-kzbntymxfg\n', b'/tmp/tmptz0z9syp/0-02-dopcrtcasw\n', b'/tmp/tmptz0z9syp/0-03-rkwqdkdkrs\n', b'/tmp/tmptz0z9syp/0-04-dtmqpxxtiu\n'] lines, found [b'/tmp/tmptz0z9syp/0-01-kzbntymxfg\n', b'/tmp/tmptz0z9syp/0-02-dopcrtcasw\n', b'/tmp/tmptz0z9syp/0-03-rkwqdkdkrs\n', b'/tmp/tmptz0z9syp/0-04-dtmqpxxtiu\n']
-    File: /tmp/tmptz0z9syp/1. Expected [b'/tmp/tmptz0z9syp/1-01-aqqyarqegx\n'] lines, found [b'/tmp/tmptz0z9syp/1-01-aqqyarqegx\n']
-    File: /tmp/tmptz0z9syp/2. Expected [b'/tmp/tmptz0z9syp/2-01-xqmbemszsa\n'] lines, found [b'/tmp/tmptz0z9syp/2-01-xqmbemszsa\n']
-    File: /tmp/tmptz0z9syp/3. Expected [] lines, found []
-    File: /tmp/tmptz0z9syp/4. Expected [b'/tmp/tmptz0z9syp/4-01-lrwfhilsuw\n', b'/tmp/tmptz0z9syp/4-02-bblhjopftq\n', b'/tmp/tmptz0z9syp/4-03-zrupgqphdj\n'] lines, found [b'/tmp/tmptz0z9syp/4-01-lrwfhilsuw\n', b'/tmp/tmptz0z9syp/4-02-bblhjopftq\n', b'/tmp/tmptz0z9syp/4-03-zrupgqphdj\n']
+    File: /tmp/tmp5q48qkg2/0. Expected [] lines, found []
+    File: /tmp/tmp5q48qkg2/1. Expected [] lines, found []
+    File: /tmp/tmp5q48qkg2/2. Expected [] lines, found []
+    File: /tmp/tmp5q48qkg2/3. Expected [b'/tmp/tmp5q48qkg2/3-01-ppctgqswmu\n'] lines, found [b'/tmp/tmp5q48qkg2/3-01-ppctgqswmu\n']
+    File: /tmp/tmp5q48qkg2/4. Expected [b'/tmp/tmp5q48qkg2/4-01-gmipondsza\n', b'/tmp/tmp5q48qkg2/4-02-slvklclstk\n', b'/tmp/tmp5q48qkg2/4-03-nxrildgyby\n', b'/tmp/tmp5q48qkg2/4-04-htqsyegcnx\n', b'/tmp/tmp5q48qkg2/4-05-nyuctbknvw\n'] lines, found [b'/tmp/tmp5q48qkg2/4-01-gmipondsza\n', b'/tmp/tmp5q48qkg2/4-02-slvklclstk\n', b'/tmp/tmp5q48qkg2/4-03-nxrildgyby\n', b'/tmp/tmp5q48qkg2/4-04-htqsyegcnx\n', b'/tmp/tmp5q48qkg2/4-05-nyuctbknvw\n']
     All tests passed!
 
 - The next step if one was to continue would be to port `readline`
@@ -872,11 +872,11 @@ tmpdir.cleanup()
 print("All tests passed")
 ```
 
-    File: /tmp/tmp_xvalnag/0. Expected [b'/tmp/tmp_xvalnag/0-01-kpkgnzytkr\n', b'/tmp/tmp_xvalnag/0-02-ryejbixtps\n'] lines, found [b'/tmp/tmp_xvalnag/0-01-kpkgnzytkr\n', b'/tmp/tmp_xvalnag/0-02-ryejbixtps\n']
-    File: /tmp/tmp_xvalnag/1. Expected [b'/tmp/tmp_xvalnag/1-01-cpmknijaae\n'] lines, found [b'/tmp/tmp_xvalnag/1-01-cpmknijaae\n']
-    File: /tmp/tmp_xvalnag/2. Expected [b'/tmp/tmp_xvalnag/2-01-zimfqfclcg\n'] lines, found [b'/tmp/tmp_xvalnag/2-01-zimfqfclcg\n']
-    File: /tmp/tmp_xvalnag/3. Expected [] lines, found []
-    File: /tmp/tmp_xvalnag/4. Expected [] lines, found []
+    File: /tmp/tmp85gfz_ck/0. Expected [] lines, found []
+    File: /tmp/tmp85gfz_ck/1. Expected [b'/tmp/tmp85gfz_ck/1-01-slmcnyvidz\n'] lines, found [b'/tmp/tmp85gfz_ck/1-01-slmcnyvidz\n']
+    File: /tmp/tmp85gfz_ck/2. Expected [b'/tmp/tmp85gfz_ck/2-01-kmexbpsjlg\n', b'/tmp/tmp85gfz_ck/2-02-cuaolufwsf\n', b'/tmp/tmp85gfz_ck/2-03-ekbnpujpdz\n'] lines, found [b'/tmp/tmp85gfz_ck/2-01-kmexbpsjlg\n', b'/tmp/tmp85gfz_ck/2-02-cuaolufwsf\n', b'/tmp/tmp85gfz_ck/2-03-ekbnpujpdz\n']
+    File: /tmp/tmp85gfz_ck/3. Expected [] lines, found []
+    File: /tmp/tmp85gfz_ck/4. Expected [b'/tmp/tmp85gfz_ck/4-01-qtegahokpr\n', b'/tmp/tmp85gfz_ck/4-02-sffqfdhqwx\n', b'/tmp/tmp85gfz_ck/4-03-zosqnftyxq\n'] lines, found [b'/tmp/tmp85gfz_ck/4-01-qtegahokpr\n', b'/tmp/tmp85gfz_ck/4-02-sffqfdhqwx\n', b'/tmp/tmp85gfz_ck/4-03-zosqnftyxq\n']
     All tests passed
 
 - Having converted `tail_file` the next step is to convert `run_threads`
