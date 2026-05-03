@@ -737,8 +737,87 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Chapter_10/Chapter_10.qmd - Chapter_10/Item_080/item_080.qmd - Chapter_10/Item_081/item_081.qmd - Chapter_10/Item_082/item_082.qmd - Chapter_10/Item_083/item_083.qmd - Chapter_10/Item_084/item_084.qmd - Chapter_10/Item_085/item_085.qmd - Chapter_10/Item_086/item_086.qmd - Chapter_10/Item_087/item_087.qmd - Chapter_10/Item_088/item_088.qmd - Chapter_10/Item_089/item_089.qmd - Chapter_10/Item_090/item_090.qmd - Chapter_10/Item_091/item_091.qmd</span></span>
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_10/Chapter_10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10: Robustness</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_080/item_080.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 80: Take Advantage of Each Block in <code>try/except/else/finally</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_081/item_081.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 81: <code>assert</code> Internal Assumptions and <code>raise</code> Missed Expectations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_082/item_082.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 82: Consider <code>contextlib</code> and <code>with</code> Statements for Reusable <code>try/finally</code> behaviour</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_083/item_083.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 83: Always make <code>try</code> Blocks as Short as Possible</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_084/item_084.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 84: Beware of Exception Variables Disappearing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_085/item_085.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 85: Beware of Catching the <code>Exception</code> Class</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_086/item_086.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 86: Understand the Difference between <code>Exception</code> and <code>BaseException</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_087/item_087.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 87: Use <code>traceback</code> for Enhanced Exception Reporting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_088/item_088.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 88: Consider Explicitly Chaining Exceptions to Clarify Tracebacks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_089/item_089.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 89: Always Pass Resources into Generators and have Callers Clean them up Outside</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_090/item_090.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 90: Never set <code>__debug__</code> to <code>False</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_091/item_091.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 91: Avoid <code>exec</code> and <code>eval</code> Unless you’re Building a Developer Tool</span></a>
+  </div>
+</li>
+      </ul>
   </li>
     </ul>
     </div>
@@ -1197,7 +1276,7 @@ Note
 <ul>
 <li>Putting everything together in the one cell,</li>
 </ul>
-<div id="0c4a65ff" class="cell" data-execution_count="1">
+<div id="9fa1768f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> contextlib</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> socket</span>
@@ -1409,18 +1488,20 @@ Note
 <span id="cb5-209"><a href="#cb5-209" aria-hidden="true" tabindex="-1"></a>main()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Guess between 1 and 5! Shhhhh, it's 3
-Guess between 10 and 15! Shhhhh, it's 12
+Server: 1 is unsure
+Server: 5 is same
+Server: 4 is warmer
 Server: 3 is correct
-Server: 15 is unsure
-Server: 10 is warmer
-Guess between 1 and 3! Shhhhh, it's 2
-Server: 12 is correct
-Server: 2 is correct
+Guess between 10 and 15! Shhhhh, it's 12
+Server: 12 is correctGuess between 1 and 3! Shhhhh, it's 2
+
+Server: 2 is correctClient: 1 is unsure
+Client: 5 is same
+Client: 4 is warmer
 Client: 3 is correct
-Client: 15 is unsure
-Client: 10 is warmer
 Client: 12 is correct
-Client: 2 is correct</code></pre>
+Client: 2 is correct
+</code></pre>
 </div>
 </div>
 <ul>
@@ -1768,7 +1849,7 @@ Warning
 <ul>
 <li>Putting it all together and running the code,</li>
 </ul>
-<div id="1b6dda7d" class="cell" data-execution_count="2">
+<div id="f70e06f0" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> asyncio</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> contextlib</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
@@ -1984,28 +2065,24 @@ Warning
 <span id="cb14-213"><a href="#cb14-213" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> main_async()  <span class="co"># Comment out in favour of the line above if running as a script</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Guess a number between 1 and 5! Shhhh, it's 3
-Server: 1 is unsure
-Server: 2 is warmer
-Server: 4 is same
+Server: 5 is unsure
+Server: 4 is warmer
 Guess a number between 10 and 15! Shhhh, it's 12
 Server: 3 is correct
-Server: 11 is unsure
+Server: 13 is unsure
 Server: 10 is colder
-Server: 13 is warmer
-Server: 14 is colder
-Server: 15 is colder
 Guess a number between 1 and 3! Shhhh, it's 2
 Server: 12 is correct
-Client: 1 is unsure
-Client: 2 is warmer
-Client: 4 is same
+Server: 3 is unsure
+Server: 1 is same
+Client: 5 is unsure
+Client: 4 is warmer
 Client: 3 is correct
-Client: 11 is unsure
+Client: 13 is unsure
 Client: 10 is colder
-Client: 13 is warmer
-Client: 14 is colder
-Client: 15 is colder
 Client: 12 is correct
+Client: 3 is unsure
+Client: 1 is same
 Client: 2 is correct
 Server: 2 is correct</code></pre>
 </div>

@@ -737,8 +737,87 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Chapter_10/Chapter_10.qmd - Chapter_10/Item_080/item_080.qmd - Chapter_10/Item_081/item_081.qmd - Chapter_10/Item_082/item_082.qmd - Chapter_10/Item_083/item_083.qmd - Chapter_10/Item_084/item_084.qmd - Chapter_10/Item_085/item_085.qmd - Chapter_10/Item_086/item_086.qmd - Chapter_10/Item_087/item_087.qmd - Chapter_10/Item_088/item_088.qmd - Chapter_10/Item_089/item_089.qmd - Chapter_10/Item_090/item_090.qmd - Chapter_10/Item_091/item_091.qmd</span></span>
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_10/Chapter_10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10: Robustness</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_080/item_080.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 80: Take Advantage of Each Block in <code>try/except/else/finally</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_081/item_081.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 81: <code>assert</code> Internal Assumptions and <code>raise</code> Missed Expectations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_082/item_082.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 82: Consider <code>contextlib</code> and <code>with</code> Statements for Reusable <code>try/finally</code> behaviour</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_083/item_083.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 83: Always make <code>try</code> Blocks as Short as Possible</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_084/item_084.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 84: Beware of Exception Variables Disappearing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_085/item_085.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 85: Beware of Catching the <code>Exception</code> Class</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_086/item_086.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 86: Understand the Difference between <code>Exception</code> and <code>BaseException</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_087/item_087.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 87: Use <code>traceback</code> for Enhanced Exception Reporting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_088/item_088.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 88: Consider Explicitly Chaining Exceptions to Clarify Tracebacks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_089/item_089.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 89: Always Pass Resources into Generators and have Callers Clean them up Outside</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_090/item_090.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 90: Never set <code>__debug__</code> to <code>False</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_091/item_091.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 91: Avoid <code>exec</code> and <code>eval</code> Unless you’re Building a Developer Tool</span></a>
+  </div>
+</li>
+      </ul>
   </li>
     </ul>
     </div>
@@ -810,7 +889,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>When no data is present, we raise an exception (See <a href="../../Chapter_05/Item_032/item_032.html">Item 32</a>)</li>
 </ul></li>
 </ul>
-<div id="ad0d1660" class="cell" data-execution_count="1">
+<div id="60780f87" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NoNewData(<span class="pp">Exception</span>):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -972,7 +1051,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Cleanup the temporary directory</li>
 </ol></li>
 </ul>
-<div id="99e6a814" class="cell" data-execution_count="2">
+<div id="45cb4206" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections <span class="co"># for testing</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co"># for testing</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="co"># for testing</span></span>
@@ -1097,11 +1176,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>tmpdir.cleanup()</span>
 <span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All tests passed!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>File: /tmp/tmp5vb1_0_y/0. Expected [b'/tmp/tmp5vb1_0_y/0-01-kzymxfohuv\n', b'/tmp/tmp5vb1_0_y/0-02-yytzwrvloh\n'] lines, found [b'/tmp/tmp5vb1_0_y/0-01-kzymxfohuv\n', b'/tmp/tmp5vb1_0_y/0-02-yytzwrvloh\n']
-File: /tmp/tmp5vb1_0_y/1. Expected [] lines, found []
-File: /tmp/tmp5vb1_0_y/2. Expected [b'/tmp/tmp5vb1_0_y/2-01-dmuxerqeoq\n', b'/tmp/tmp5vb1_0_y/2-02-rigpntiubh\n'] lines, found [b'/tmp/tmp5vb1_0_y/2-01-dmuxerqeoq\n', b'/tmp/tmp5vb1_0_y/2-02-rigpntiubh\n']
-File: /tmp/tmp5vb1_0_y/3. Expected [b'/tmp/tmp5vb1_0_y/3-01-cwmdafbsrr\n', b'/tmp/tmp5vb1_0_y/3-02-wvxgxpepbp\n', b'/tmp/tmp5vb1_0_y/3-03-buhhbocdtm\n', b'/tmp/tmp5vb1_0_y/3-04-zdklnqynjn\n'] lines, found [b'/tmp/tmp5vb1_0_y/3-01-cwmdafbsrr\n', b'/tmp/tmp5vb1_0_y/3-02-wvxgxpepbp\n', b'/tmp/tmp5vb1_0_y/3-03-buhhbocdtm\n', b'/tmp/tmp5vb1_0_y/3-04-zdklnqynjn\n']
-File: /tmp/tmp5vb1_0_y/4. Expected [b'/tmp/tmp5vb1_0_y/4-01-icdthcgqiy\n', b'/tmp/tmp5vb1_0_y/4-02-cwismqvccb\n', b'/tmp/tmp5vb1_0_y/4-03-jioptowsrt\n', b'/tmp/tmp5vb1_0_y/4-04-iomlwviqep\n', b'/tmp/tmp5vb1_0_y/4-05-ylxexdpqaj\n'] lines, found [b'/tmp/tmp5vb1_0_y/4-01-icdthcgqiy\n', b'/tmp/tmp5vb1_0_y/4-02-cwismqvccb\n', b'/tmp/tmp5vb1_0_y/4-03-jioptowsrt\n', b'/tmp/tmp5vb1_0_y/4-04-iomlwviqep\n', b'/tmp/tmp5vb1_0_y/4-05-ylxexdpqaj\n']
+<pre><code>File: /tmp/tmpjiijlpnc/0. Expected [b'/tmp/tmpjiijlpnc/0-01-rzwunwbnfz\n'] lines, found [b'/tmp/tmpjiijlpnc/0-01-rzwunwbnfz\n']
+File: /tmp/tmpjiijlpnc/1. Expected [] lines, found []
+File: /tmp/tmpjiijlpnc/2. Expected [b'/tmp/tmpjiijlpnc/2-01-coxrwcqurl\n', b'/tmp/tmpjiijlpnc/2-02-amrmieyspp\n'] lines, found [b'/tmp/tmpjiijlpnc/2-01-coxrwcqurl\n', b'/tmp/tmpjiijlpnc/2-02-amrmieyspp\n']
+File: /tmp/tmpjiijlpnc/3. Expected [b'/tmp/tmpjiijlpnc/3-01-tcsbefveek\n', b'/tmp/tmpjiijlpnc/3-02-ypppexvuew\n', b'/tmp/tmpjiijlpnc/3-03-iyhptoafll\n'] lines, found [b'/tmp/tmpjiijlpnc/3-01-tcsbefveek\n', b'/tmp/tmpjiijlpnc/3-02-ypppexvuew\n', b'/tmp/tmpjiijlpnc/3-03-iyhptoafll\n']
+File: /tmp/tmpjiijlpnc/4. Expected [] lines, found []
 All tests passed!</code></pre>
 </div>
 </div>
@@ -1211,7 +1290,7 @@ All tests passed!</code></pre>
 <li>We can reuse our existing test harness</li>
 </ul></li>
 </ul>
-<div id="78419603" class="cell" data-execution_count="3">
+<div id="0ce1ff9f" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections <span class="co"># for testing</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co"># for testing</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="co"># for testing</span></span>
@@ -1345,11 +1424,11 @@ All tests passed!</code></pre>
 <span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a>tmpdir.cleanup()</span>
 <span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All tests passed!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>File: /tmp/tmpk7go4ont/0. Expected [b'/tmp/tmpk7go4ont/0-01-jwefgvejpc\n', b'/tmp/tmpk7go4ont/0-02-vdepcreojh\n', b'/tmp/tmpk7go4ont/0-03-hbghacyjht\n', b'/tmp/tmpk7go4ont/0-04-sxhznntigi\n'] lines, found [b'/tmp/tmpk7go4ont/0-01-jwefgvejpc\n', b'/tmp/tmpk7go4ont/0-02-vdepcreojh\n', b'/tmp/tmpk7go4ont/0-03-hbghacyjht\n', b'/tmp/tmpk7go4ont/0-04-sxhznntigi\n']
-File: /tmp/tmpk7go4ont/1. Expected [b'/tmp/tmpk7go4ont/1-01-juwjcedrul\n', b'/tmp/tmpk7go4ont/1-02-hichwlhymv\n'] lines, found [b'/tmp/tmpk7go4ont/1-01-juwjcedrul\n', b'/tmp/tmpk7go4ont/1-02-hichwlhymv\n']
-File: /tmp/tmpk7go4ont/2. Expected [b'/tmp/tmpk7go4ont/2-01-crutzxalyr\n', b'/tmp/tmpk7go4ont/2-02-fhjblwttiz\n', b'/tmp/tmpk7go4ont/2-03-mgrdegxayf\n'] lines, found [b'/tmp/tmpk7go4ont/2-01-crutzxalyr\n', b'/tmp/tmpk7go4ont/2-02-fhjblwttiz\n', b'/tmp/tmpk7go4ont/2-03-mgrdegxayf\n']
-File: /tmp/tmpk7go4ont/3. Expected [] lines, found []
-File: /tmp/tmpk7go4ont/4. Expected [] lines, found []
+<pre><code>File: /tmp/tmp0ukglajy/0. Expected [b'/tmp/tmp0ukglajy/0-01-qpgqhnblqi\n', b'/tmp/tmp0ukglajy/0-02-qwtgyvyvmn\n', b'/tmp/tmp0ukglajy/0-03-myrulzhmws\n'] lines, found [b'/tmp/tmp0ukglajy/0-01-qpgqhnblqi\n', b'/tmp/tmp0ukglajy/0-02-qwtgyvyvmn\n', b'/tmp/tmp0ukglajy/0-03-myrulzhmws\n']
+File: /tmp/tmp0ukglajy/1. Expected [] lines, found []
+File: /tmp/tmp0ukglajy/2. Expected [] lines, found []
+File: /tmp/tmp0ukglajy/3. Expected [] lines, found []
+File: /tmp/tmp0ukglajy/4. Expected [] lines, found []
 All tests passed!</code></pre>
 </div>
 </div>
@@ -1380,7 +1459,7 @@ All tests passed!</code></pre>
 <li>Now use <code>asyncio.TaskGroup</code> to handle fan-out/in of <code>tail_async</code> (available since Python 3.11)</li>
 </ul></li>
 </ul>
-<div id="23d6d501" class="cell" data-execution_count="4">
+<div id="0e5773b3" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections <span class="co"># for testing</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co"># for testing</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="co"># for testing</span></span>
@@ -1506,11 +1585,11 @@ All tests passed!</code></pre>
 <span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a>tmpdir.cleanup()</span>
 <span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All tests passed!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>File: /tmp/tmpxsiz1q3w/0. Expected [b'/tmp/tmpxsiz1q3w/0-01-kzotqtmgir\n', b'/tmp/tmpxsiz1q3w/0-02-zblzthjsrv\n', b'/tmp/tmpxsiz1q3w/0-03-ifdcqjzozy\n', b'/tmp/tmpxsiz1q3w/0-04-kjhvqtkhle\n'] lines, found [b'/tmp/tmpxsiz1q3w/0-01-kzotqtmgir\n', b'/tmp/tmpxsiz1q3w/0-02-zblzthjsrv\n', b'/tmp/tmpxsiz1q3w/0-03-ifdcqjzozy\n', b'/tmp/tmpxsiz1q3w/0-04-kjhvqtkhle\n']
-File: /tmp/tmpxsiz1q3w/1. Expected [] lines, found []
-File: /tmp/tmpxsiz1q3w/2. Expected [] lines, found []
-File: /tmp/tmpxsiz1q3w/3. Expected [] lines, found []
-File: /tmp/tmpxsiz1q3w/4. Expected [] lines, found []
+<pre><code>File: /tmp/tmpmcqgpuq2/0. Expected [b'/tmp/tmpmcqgpuq2/0-01-mhmxbffkzh\n', b'/tmp/tmpmcqgpuq2/0-02-hybwlvuvmz\n', b'/tmp/tmpmcqgpuq2/0-03-cjcbcrudox\n'] lines, found [b'/tmp/tmpmcqgpuq2/0-01-mhmxbffkzh\n', b'/tmp/tmpmcqgpuq2/0-02-hybwlvuvmz\n', b'/tmp/tmpmcqgpuq2/0-03-cjcbcrudox\n']
+File: /tmp/tmpmcqgpuq2/1. Expected [b'/tmp/tmpmcqgpuq2/1-01-jfvfvdcfbr\n'] lines, found [b'/tmp/tmpmcqgpuq2/1-01-jfvfvdcfbr\n']
+File: /tmp/tmpmcqgpuq2/2. Expected [b'/tmp/tmpmcqgpuq2/2-01-zbeubraisc\n'] lines, found [b'/tmp/tmpmcqgpuq2/2-01-zbeubraisc\n']
+File: /tmp/tmpmcqgpuq2/3. Expected [b'/tmp/tmpmcqgpuq2/3-01-cmdrlbzjts\n', b'/tmp/tmpmcqgpuq2/3-02-baeksjckvs\n'] lines, found [b'/tmp/tmpmcqgpuq2/3-01-cmdrlbzjts\n', b'/tmp/tmpmcqgpuq2/3-02-baeksjckvs\n']
+File: /tmp/tmpmcqgpuq2/4. Expected [b'/tmp/tmpmcqgpuq2/4-01-okacfvbbxw\n'] lines, found [b'/tmp/tmpmcqgpuq2/4-01-okacfvbbxw\n']
 All tests passed!</code></pre>
 </div>
 </div>
@@ -1574,7 +1653,7 @@ All tests passed!</code></pre>
 <ul>
 <li>We can plug this in and run our test harness</li>
 </ul>
-<div id="7509a984" class="cell" data-execution_count="5">
+<div id="524dd0bd" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections <span class="co"># for testing</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co"># for testing</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="co"># for testing</span></span>
@@ -1715,11 +1794,11 @@ All tests passed!</code></pre>
 <span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a>tmpdir.cleanup()</span>
 <span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All tests passed"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>File: /tmp/tmp9yb0v93n/0. Expected [b'/tmp/tmp9yb0v93n/0-01-ytavxqihkg\n'] lines, found [b'/tmp/tmp9yb0v93n/0-01-ytavxqihkg\n']
-File: /tmp/tmp9yb0v93n/1. Expected [b'/tmp/tmp9yb0v93n/1-01-bjbncperoi\n', b'/tmp/tmp9yb0v93n/1-02-pilcnqaapj\n', b'/tmp/tmp9yb0v93n/1-03-aqzlxsmaye\n'] lines, found [b'/tmp/tmp9yb0v93n/1-01-bjbncperoi\n', b'/tmp/tmp9yb0v93n/1-02-pilcnqaapj\n', b'/tmp/tmp9yb0v93n/1-03-aqzlxsmaye\n']
-File: /tmp/tmp9yb0v93n/2. Expected [] lines, found []
-File: /tmp/tmp9yb0v93n/3. Expected [] lines, found []
-File: /tmp/tmp9yb0v93n/4. Expected [] lines, found []
+<pre><code>File: /tmp/tmp4t8s2yk9/0. Expected [] lines, found []
+File: /tmp/tmp4t8s2yk9/1. Expected [] lines, found []
+File: /tmp/tmp4t8s2yk9/2. Expected [b'/tmp/tmp4t8s2yk9/2-01-qoofvhtdab\n', b'/tmp/tmp4t8s2yk9/2-02-vmsqofmqis\n', b'/tmp/tmp4t8s2yk9/2-03-zfwdogqfkb\n'] lines, found [b'/tmp/tmp4t8s2yk9/2-01-qoofvhtdab\n', b'/tmp/tmp4t8s2yk9/2-02-vmsqofmqis\n', b'/tmp/tmp4t8s2yk9/2-03-zfwdogqfkb\n']
+File: /tmp/tmp4t8s2yk9/3. Expected [] lines, found []
+File: /tmp/tmp4t8s2yk9/4. Expected [b'/tmp/tmp4t8s2yk9/4-01-uftysgrxii\n', b'/tmp/tmp4t8s2yk9/4-02-vafzzhxrhh\n'] lines, found [b'/tmp/tmp4t8s2yk9/4-01-uftysgrxii\n', b'/tmp/tmp4t8s2yk9/4-02-vafzzhxrhh\n']
 All tests passed</code></pre>
 </div>
 </div>
