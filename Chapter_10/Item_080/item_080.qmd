@@ -4,4 +4,158 @@ title: "Item 80: Take Advantage of Each Block in `try/except/else/finally`"
 
 ## Notes
 
+- Exception handling comprises four time blocks in which action might want to be taken
+    - `try`, `except`, `else`, `finally`
+
+### `finally` Blocks
+
+- `finally` lets you run cleanup code while allowing exceptions to propagate up
+- This is useful for cleaning up contextual objects like file handles (See [Item 82](../Item_082/item_082.qmd))
+- Any exception raised propagates up to the calling code
+    - But `finally` block runs first
+
+```{python}
+def try_finally_example(filename):
+    print("* Opening a file")
+from jinja2 import Undefined
+from requests.exceptions import JSONDecodeError
+
+    handle = open(filename, encoding="utf-8")  # May Raise OSError
+    try:
+        print("* Reading data")
+        return handle.read()  # May raise UnicodeDecodeError
+    finally:
+        print("* Calling close()")
+        handle.close()  # Always run after try block
+        os.remove(filename)  # Clean up - purely here for the example
+
+
+filename = "random_data.txt"
+
+with open(filename, "wb") as f:
+    f.write(b"\xf1\xf2\xf3\xf4\xf5")  # Invalid utf-8
+
+data = try_finally_example(filename)
+```
+
+- In the above example, we call `open` before the `try` block to prevent exceptions during `open` from triggering the `finally` block
+    - This would lead to `close()` being called on an unopened file handle
+
+
+### `else` Blocks
+
+- `try/except/else` makes it clear which exceptions are handled
+- When no exception is raised by a `try` then the `else` block runs
+- `else` block allows minimising the code in the `try` block
+    - Can isolate the `try` to the specific exception-raising code
+    - Improves readability (See [Item 83](../Item_083/item_083.qmd))
+- For example, consider loading JSON dictionary data
+
+```{python}
+import json
+
+
+def load_json_key(data, key):
+    try:
+        print("* Loading JSON data")
+        result_dict = json.loads(data)  # May raise ValueError
+    except ValueError:
+        print("* Handling ValueError")
+        raise KeyError(key)
+    else:
+        print("* Looking up key")
+        return result_dict[key]  # May raise KeyError
+
+
+# Successful case
+assert load_json_key('{"foo": "bar"}', "foo") == "bar"
+
+# Except block catch
+load_json_key('{"foo": bad payload', "foo")
+```
+
+- On success, decode the json in the `try` block
+    - Then perform lookup in the `else` block
+- If input can't be decoded as JSON
+    - Then the `except` catches the `ValueError` and handles the exception
+- If the JSON is decoded successfully, but the lookup then raises an exception
+    - Outside the `try` block
+    - Propagates to the caller
+
+### Everything Together
+
+- Use `try/except/else/finally` all together to combine behaviours
+- For example we might want to
+    1. Read from a file
+    2. Process the file
+    3. Update the file
+- Use `try` to read and process
+- `except` handles exceptions
+- `else`  performs the update
+- `finally` ensures the file handle is cleaned up
+
+```{python}
+import json
+
+UNDEFINED = object()
+
+
+def divide_json(path):
+    print("* Opening file")
+    handle = open(path, "r+")  # May raise OSError
+    try:
+        print("* Reading data")
+        data = handle.read()
+        print("* Loading JSON data")  # May raise UnicodeDecodeError
+        op = json.loads(data)  # May raise ValueError
+        print("* Performing calculation")
+        value = op["numerator"] / op["denominator"]  # May raise ZeroDivideError
+    except ZeroDivisionError:
+        print("* Handling ZeroDivisionError")
+        return UNDEFINED
+    else:
+        print("* Writing Calculation")
+        op["result"] = value
+        result = json.dumps(op)
+        handle.seek(0)  # May raise OSError
+        handle.write(result)  # May raise OSError
+        return value
+    finally:
+        print("* Calling close()")
+        handle.close()
+
+
+temp_path = "random_data.json"
+
+with open(temp_path, "w") as f:
+    f.write('{"numerator": 1, "denominator": 10}')
+
+# valid, try, else, finally runs
+assert divide_json(temp_path) == 0.1
+
+# invalid, but handled, try, except, finally runs
+with open(temp_path, "w") as f:
+    f.write('{"numerator": 1, "denominator": 0}')
+
+assert divide_json(temp_path) is UNDEFINED
+
+# invalid json, try, finally runs
+with open(temp_path, "w") as f:
+    f.write('{"numerator": 1 bad data}')
+
+divide_json(temp_path)
+```
+
+- On success, the `try`, `else` then `finally` block runs
+- On a handled exception the `try`, `except`, `finally` block runs
+- On an unhandled exception the `try`, `finally` block runs
+- Has the advantage that blocks intuitively work together
+    - Exceptions raised in the `else` are those clearly not expected to be handled
+
 ## Things to Remember
+
+- The `try/finally` block lets you run code after a `try` block regardless of if an exception was raised
+- The `else` block minimises code in a `try` block
+    - Distinguishes a successful case from a `try/except`
+- An `else` lets you perform additional actions after a successful `try` block
+    - Runs before a common cleanup in a `finally` block

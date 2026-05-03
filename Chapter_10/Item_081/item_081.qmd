@@ -4,4 +4,130 @@ title: "Item 81: `assert` Internal Assumptions and `raise` Missed Expectations"
 
 ## Notes
 
+- The python `assert` command raises an `AssertionError` at runtime if given a false value (See [Item 7](../../Chapter_01/Item_007/item_007.qmd))
+- E.g. asserting that two lists are not empty
+
+```{python}
+list_a = [1, 2, 3]
+assert list_a, "a empty"  # Does not raise
+
+list_b = []
+assert list_b, "b empty"  # Raises
+```
+
+- The `raise` statement also allows for manually raising exceptions to callers (See [Item 32](../../Chapter_05/Item_032/item_032.qmd))
+- Using this paradigm for our empty list problem
+
+```{python}
+class EmptyError(Exception):
+    pass
+
+
+list_c = []
+if not list_c:
+    raise EmptyError("c empty")
+```
+
+- We can of course catch exceptions via `try/except` blocks (See [Item 80](../Item_080/item_080.qmd))
+- Indeed using `raise` to force control flow is it's primary purpose
+    - Similarly one can catch the `AssertionError` from an `assert`
+
+```{python}
+class EmptyError(Exception):
+    pass
+
+
+# Catching an exception from raise
+try:
+    raise EmptyError("From raise statement")
+except EmptyError as e:
+    print(f"Caught: {e}")
+
+# Catching an exception from assert
+try:
+    assert False, "From assert statement"
+except AssertionError as e:
+    print(f"Caught: {e}")
+```
+
+- Why should we choose `assert` over `raise`?
+    - They have different use cases
+- Exceptions from `raise` are considered part of a function's interface
+    - Same importance as arguments and return values
+    - Should be documented as part of the docstring
+    - Expected to be caught and handled by calling code
+    - Behaviour should be verified in testing
+- Exceptions from `assert` are considered part of the internal implementation
+    - Not meant to be caught by caller or function
+    - Validate implementation assumptions
+    - Self documenting
+        - Second expression after the comma is evaluated to create a debugging method
+    - Can combine with higher level tools for debug analysis (See [Item 87](../Item_087/item_087.qmd))
+        e.g. reporting and logging
+- Code may use a mixture of `raise` and `assert`
+- For example, consider a simple class aggregating movie ratings
+    - Provides a robust API
+        - Validates input
+        - Reports problems via `raise`
+
+```{python}
+class RatingError(Exception):
+    pass
+
+
+class Rating:
+    def __init__(self, max_rating):
+        if not (max_rating > 0):
+            raise RatingError("Invalid max_rating")
+        self.max_rating = max_rating
+        self.ratings = []
+
+    def rate(self, rating):
+        if not (0 < rating <= self.max_rating):
+            raise RatingError("Invalid rating")
+        self.ratings.append(rating)
+
+
+movie = Rating(5)
+movie.rate(5)  # Succeeds
+movie.rate(7)  # Raises
+```
+
+- This code uses `raise`
+    - Indicates the caller should be caught and reported back to the end user or API caller
+- If we instead take the view that the caller should not know about these errors we could instead write the class as
+    - Here we're assuming that other parts of the codebase have already validated `max_rating` and `rating`
+
+```{python}
+class RatingInternal:
+    def __init__(self, max_rating):
+        assert max_rating > 0, f"Invalid {max_rating=}"
+        self.max_rating = max_rating
+        self.ratings = []
+
+    def rate(self, rating):
+        assert not (0 < rating <= self.max_rating), f"Invalid {rating=}"
+        self.ratings.append(rating)
+
+
+movie = RatingInternal(5)
+movie.rate(5)
+movie.rate(7)  # Raises
+```
+
+- An `assert` raising an exception is an indicator for a bug in the code
+    - The reported message should assist in trying to identify and solve the programmatic problem
+- For assertions to work, they must not be caught and silenced by an outer `try/except` block (See [Item 85](../Item_085/item_085.qmd))
+- Generally when trying to decide between `assert` or `raise` consider the following,
+    - For external facing API's consider `raise`
+    - For internal facing code use `assert` to ensure consistency and boundaries between components
+
 ## Things to Remember
+
+- `raise` can be used to report error conditions back to the caller
+- Exceptions that a function directly raises are part of its interface
+    - Need to be documented
+- The `assert` statement should be used to verify assumptions in code
+    - Convey them to other readers of the implementation
+- Failed assertions are not part of the interface
+    - Should not be caught by callers
