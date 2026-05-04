@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -823,9 +858,228 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li>The python <code>assert</code> command raises an <code>AssertionError</code> at runtime if given a false value (See <a href="../../Chapter_01/Item_007/item_007.html">Item 7</a>)</li>
+<li>E.g. asserting that two lists are not empty</li>
+</ul>
+<div id="96351985" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>list_a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> list_a, <span class="st">"a empty"</span>  <span class="co"># Does not raise</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>list_b <span class="op">=</span> []</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> list_b, <span class="st">"b empty"</span>  <span class="co"># Raises</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 5</span>
+<span class="ansi-green-fg">      2</span> <span style="font-weight:bold;color:rgb(0,135,0)">assert</span> list_a, <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">a empty</span><span class="ansi-yellow-fg">"</span>  <span style="font-style:italic;color:rgb(95,135,135)"># Does not raise</span>
+<span class="ansi-green-fg">      4</span> list_b = []
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">5</span> <span style="font-weight:bold;color:rgb(0,135,0)">assert</span> list_b, <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">b empty</span><span class="ansi-yellow-fg">"</span>  <span style="font-style:italic;color:rgb(95,135,135)"># Raises</span>
+
+<span class="ansi-red-fg">AssertionError</span>: b empty</pre>
+</div>
+</div>
+</div>
+<ul>
+<li>The <code>raise</code> statement also allows for manually raising exceptions to callers (See <a href="../../Chapter_05/Item_032/item_032.html">Item 32</a>)</li>
+<li>Using this paradigm for our empty list problem</li>
+</ul>
+<div id="4f033bf2" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> EmptyError(<span class="pp">Exception</span>):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>list_c <span class="op">=</span> []</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> list_c:</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> EmptyError(<span class="st">"c empty"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">EmptyError</span>                                Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 7</span>
+<span class="ansi-green-fg">      5</span> list_c = []
+<span class="ansi-green-fg">      6</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> list_c:
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">7</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> EmptyError(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">c empty</span><span class="ansi-yellow-fg">"</span>)
+
+<span class="ansi-red-fg">EmptyError</span>: c empty</pre>
+</div>
+</div>
+</div>
+<ul>
+<li>We can of course catch exceptions via <code>try/except</code> blocks (See <a href="../../Chapter_10/Item_080/item_080.html">Item 80</a>)</li>
+<li>Indeed using <code>raise</code> to force control flow is it’s primary purpose
+<ul>
+<li>Similarly one can catch the <code>AssertionError</code> from an <code>assert</code></li>
+</ul></li>
+</ul>
+<div id="a48e063c" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> EmptyError(<span class="pp">Exception</span>):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Catching an exception from raise</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> EmptyError(<span class="st">"From raise statement"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> EmptyError <span class="im">as</span> e:</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Caught: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Catching an exception from assert</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="va">False</span>, <span class="st">"From assert statement"</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">AssertionError</span> <span class="im">as</span> e:</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Caught: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Caught: From raise statement
+Caught: From assert statement</code></pre>
+</div>
+</div>
+<ul>
+<li>Why should we choose <code>assert</code> over <code>raise</code>?
+<ul>
+<li>They have different use cases</li>
+</ul></li>
+<li>Exceptions from <code>raise</code> are considered part of a function’s interface
+<ul>
+<li>Same importance as arguments and return values</li>
+<li>Should be documented as part of the docstring</li>
+<li>Expected to be caught and handled by calling code</li>
+<li>Behaviour should be verified in testing</li>
+</ul></li>
+<li>Exceptions from <code>assert</code> are considered part of the internal implementation
+<ul>
+<li>Not meant to be caught by caller or function</li>
+<li>Validate implementation assumptions</li>
+<li>Self documenting
+<ul>
+<li>Second expression after the comma is evaluated to create a debugging method</li>
+</ul></li>
+<li>Can combine with higher level tools for debug analysis (See <a href="../../Chapter_10/Item_087/item_087.html">Item 87</a>) e.g.&nbsp;reporting and logging</li>
+</ul></li>
+<li>Code may use a mixture of <code>raise</code> and <code>assert</code></li>
+<li>For example, consider a simple class aggregating movie ratings
+<ul>
+<li>Provides a robust API
+<ul>
+<li>Validates input</li>
+<li>Reports problems via <code>raise</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<div id="6d1ac106" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RatingError(<span class="pp">Exception</span>):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Rating:</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, max_rating):</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> (max_rating <span class="op">&gt;</span> <span class="dv">0</span>):</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> RatingError(<span class="st">"Invalid max_rating"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.max_rating <span class="op">=</span> max_rating</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ratings <span class="op">=</span> []</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> rate(<span class="va">self</span>, rating):</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> (<span class="dv">0</span> <span class="op">&lt;</span> rating <span class="op">&lt;=</span> <span class="va">self</span>.max_rating):</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> RatingError(<span class="st">"Invalid rating"</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ratings.append(rating)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>movie <span class="op">=</span> Rating(<span class="dv">5</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>movie.rate(<span class="dv">5</span>)  <span class="co"># Succeeds</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>movie.rate(<span class="dv">7</span>)  <span class="co"># Raises</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">RatingError</span>                               Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 20</span>
+<span class="ansi-green-fg">     18</span> movie = Rating(<span class="ansi-green-fg">5</span>)
+<span class="ansi-green-fg">     19</span> movie.rate(<span class="ansi-green-fg">5</span>)  <span style="font-style:italic;color:rgb(95,135,135)"># Succeeds</span>
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">20</span> <span class="ansi-yellow-bg">movie</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">rate</span><span class="ansi-yellow-bg">(</span><span class="ansi-green-fg ansi-yellow-bg">7</span><span class="ansi-yellow-bg">)</span>  <span style="font-style:italic;color:rgb(95,135,135)"># Raises</span>
+
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 14</span>, in <span class="ansi-cyan-fg">Rating.rate</span><span class="ansi-blue-fg">(self, rating)</span>
+<span class="ansi-green-fg">     12</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">rate</span>(<span style="color:rgb(0,135,0)">self</span>, rating):
+<span class="ansi-green-fg">     13</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> (<span class="ansi-green-fg">0</span> &lt; rating &lt;= <span style="color:rgb(0,135,0)">self</span>.max_rating):
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">14</span>         <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> RatingError(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Invalid rating</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">     15</span>     <span style="color:rgb(0,135,0)">self</span>.ratings.append(rating)
+
+<span class="ansi-red-fg">RatingError</span>: Invalid rating</pre>
+</div>
+</div>
+</div>
+<ul>
+<li>This code uses <code>raise</code>
+<ul>
+<li>Indicates the caller should be caught and reported back to the end user or API caller</li>
+</ul></li>
+<li>If we instead take the view that the caller should not know about these errors we could instead write the class as
+<ul>
+<li>Here we’re assuming that other parts of the codebase have already validated <code>max_rating</code> and <code>rating</code></li>
+</ul></li>
+</ul>
+<div id="d1b9747d" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RatingInternal:</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, max_rating):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> max_rating <span class="op">&gt;</span> <span class="dv">0</span>, <span class="ss">f"Invalid </span><span class="sc">{</span>max_rating<span class="op">=</span><span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.max_rating <span class="op">=</span> max_rating</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ratings <span class="op">=</span> []</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> rate(<span class="va">self</span>, rating):</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> <span class="kw">not</span> (<span class="dv">0</span> <span class="op">&lt;</span> rating <span class="op">&lt;=</span> <span class="va">self</span>.max_rating), <span class="ss">f"Invalid </span><span class="sc">{</span>rating<span class="op">=</span><span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ratings.append(rating)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>movie <span class="op">=</span> RatingInternal(<span class="dv">5</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>movie.rate(<span class="dv">5</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>movie.rate(<span class="dv">7</span>)  <span class="co"># Raises</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 13</span>
+<span class="ansi-green-fg">      9</span>         <span style="color:rgb(0,135,0)">self</span>.ratings.append(rating)
+<span class="ansi-green-fg">     12</span> movie = RatingInternal(<span class="ansi-green-fg">5</span>)
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">13</span> <span class="ansi-yellow-bg">movie</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">rate</span><span class="ansi-yellow-bg">(</span><span class="ansi-green-fg ansi-yellow-bg">5</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">     14</span> movie.rate(<span class="ansi-green-fg">7</span>)  <span style="font-style:italic;color:rgb(95,135,135)"># Raises</span>
+
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 8</span>, in <span class="ansi-cyan-fg">RatingInternal.rate</span><span class="ansi-blue-fg">(self, rating)</span>
+<span class="ansi-green-fg">      7</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">rate</span>(<span style="color:rgb(0,135,0)">self</span>, rating):
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">8</span>     <span style="font-weight:bold;color:rgb(0,135,0)">assert</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> (<span class="ansi-green-fg">0</span> &lt; rating &lt;= <span style="color:rgb(0,135,0)">self</span>.max_rating), <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Invalid </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>rating<span style="font-weight:bold;color:rgb(175,95,135)">=}</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">      9</span>     <span style="color:rgb(0,135,0)">self</span>.ratings.append(rating)
+
+<span class="ansi-red-fg">AssertionError</span>: Invalid rating=5</pre>
+</div>
+</div>
+</div>
+<ul>
+<li>An <code>assert</code> raising an exception is an indicator for a bug in the code
+<ul>
+<li>The reported message should assist in trying to identify and solve the programmatic problem</li>
+</ul></li>
+<li>For assertions to work, they must not be caught and silenced by an outer <code>try/except</code> block (See <a href="../../Chapter_10/Item_085/item_085.html">Item 85</a>)</li>
+<li>Generally when trying to decide between <code>assert</code> or <code>raise</code> consider the following,
+<ul>
+<li>For external facing API’s consider <code>raise</code></li>
+<li>For internal facing code use <code>assert</code> to ensure consistency and boundaries between components</li>
+</ul></li>
+</ul>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li><code>raise</code> can be used to report error conditions back to the caller</li>
+<li>Exceptions that a function directly raises are part of its interface
+<ul>
+<li>Need to be documented</li>
+</ul></li>
+<li>The <code>assert</code> statement should be used to verify assumptions in code
+<ul>
+<li>Convey them to other readers of the implementation</li>
+</ul></li>
+<li>Failed assertions are not part of the interface
+<ul>
+<li>Should not be caught by callers</li>
+</ul></li>
+</ul>
 
 
 </section>

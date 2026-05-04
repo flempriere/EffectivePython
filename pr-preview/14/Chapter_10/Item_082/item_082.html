@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -794,7 +829,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a>
+  <ul>
+  <li><a href="#enabling-as-targets" id="toc-enabling-as-targets" class="nav-link" data-scroll-target="#enabling-as-targets">Enabling <code>as</code> Targets</a></li>
+  </ul></li>
   <li><a href="#things-to-remember" id="toc-things-to-remember" class="nav-link" data-scroll-target="#things-to-remember">Things to Remember</a></li>
   </ul>
 <div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/flempriere/EffectivePython/" target="_blank"><i class="bi bi-github"></i>GitHub Repo</a></li><li><a href="https://mybinder.org/v2/gh/flempriere/EffectivePython/HEAD?urlpath=vscode" target="_blank"><i class="bi bi-journals"></i>Launch Binder</a></li></ul></div></nav>
@@ -823,9 +861,283 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li><code>with</code> statement allows a block of code to be run within a special <em>context</em>
+<ul>
+<li>We’ve seen this before with file handlers and mutex Locks (See <a href="../../Chapter_09/Item_069/item_069.html">Item 69</a>)</li>
+<li>Allows code to be run with a resource, then for that resource to be released</li>
+</ul></li>
+</ul>
+<div id="b4a61598" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Managing a Lock via a context</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> threading <span class="im">import</span> Lock</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>lock <span class="op">=</span> Lock()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> lock:</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Doing something with the lock..."</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"lock released"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Doing something with the lock...
+lock released</code></pre>
+</div>
+</div>
+<ul>
+<li>The above example is equivalent to the following <code>try/finally</code> block (See <a href="../../Chapter_10/Item_080/item_080.html">Item 80</a>)
+<ul>
+<li>Because <code>Lock</code> implements the methods to be used as a <code>with</code> context object</li>
+</ul></li>
+</ul>
+<div id="b8e20e2c" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Managing a lock via try/finally</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> threading <span class="im">import</span> Lock</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>lock <span class="op">=</span> Lock()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>lock.acquire()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Doing something with the lock"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    lock.release()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Doing something with the lock</code></pre>
+</div>
+</div>
+<ul>
+<li><code>with</code> statement version eliminates the <code>try/finally</code> boilerplate</li>
+<li>Automatically ensures each <code>acquire</code> is matched to a <code>release</code></li>
+<li>If we want to make our own objects work as a context object for <code>with</code> we can do so via the <code>contextlib</code> built-in (See <a href="../../Chapter_05/Item_038/item_038.html">Item 38</a> for an example usage)
+<ul>
+<li><code>contextmanager</code> is a decorator for enabling simple functions to be context objects</li>
+</ul></li>
+<li>The other approach is to define <code>__enter__</code> and <code>__exit__</code>
+<ul>
+<li>This is an OOP approach</li>
+</ul></li>
+<li>For example, consider implementing logging
+<ul>
+<li>We might want to wrap a region of code to have a higher level of logging</li>
+<li>By default the program logger will report <code>WARNING</code> and <code>ERROR</code> messages</li>
+</ul></li>
+</ul>
+<div id="cf14fbc9" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function():</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    logging.debug(<span class="st">"Some debug data"</span>)  <span class="co"># low level debug information</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    logging.error(<span class="st">"Error log here"</span>)  <span class="co"># high level error</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    logging.debug(<span class="st">"More debug data"</span>)  <span class="co"># low level debug information</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Only reports the error message</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>my_function()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ERROR:root:Error log here</code></pre>
+</div>
+</div>
+<ul>
+<li>If we want to elevate the logging can now use a <code>contextmanager</code>
+<ul>
+<li>Write a helper function to boost the logging severity</li>
+<li>Then runs the code in the <code>with</code></li>
+<li>Then returns the logging level to previous</li>
+</ul></li>
+</ul>
+<div id="5c8d29d2" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> contextlib <span class="im">import</span> contextmanager</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function():</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    logging.debug(<span class="st">"Some debug data"</span>)  <span class="co"># low level debug information</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    logging.error(<span class="st">"Error log here"</span>)  <span class="co"># high level error</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    logging.debug(<span class="st">"More debug data"</span>)  <span class="co"># low level debug information</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Called with initial default logging config</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"* Before:"</span>, flush<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>my_function()</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="at">@contextmanager</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> debug_logging(level):</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    logger <span class="op">=</span> logging.getLogger()</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    old_level <span class="op">=</span> logger.getEffectiveLevel()</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    logger.setLevel(level)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">finally</span>:</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>        logger.setLevel(old_level)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> debug_logging(logging.DEBUG):</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"* Inside:"</span>, flush<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    my_function()</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"* After:"</span>, flush<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>my_function()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>* Before:</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ERROR:root:Error log here</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>* Inside:</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>DEBUG:root:Some debug data
+ERROR:root:Error log here
+DEBUG:root:More debug data</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>* After:</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ERROR:root:Error log here</code></pre>
+</div>
+</div>
+<ul>
+<li>The <code>yield</code> passes control back from the <code>with</code> context management to the contexts of the block statement (See <a href="../../Chapter_06/Item_043/item_043.html">Item 43</a>)</li>
+<li>Exceptions raised in the <code>with</code> block are re-raised by the <code>yield</code> expression (See <a href="../../Chapter_06/Item_047/item_047.html">Item 47</a>)</li>
+<li>We can then call <code>my_function</code> again
+<ul>
+<li>This time <em>inside</em> the context of <code>debug_logging</code> at the set level</li>
+<li>All debug messages should be printed now</li>
+</ul></li>
+<li>Running the function again, outside the context should show the old level of debugging</li>
+</ul>
+<section id="enabling-as-targets" class="level3">
+<h3 class="anchored" data-anchor-id="enabling-as-targets">Enabling <code>as</code> Targets</h3>
+<ul>
+<li>A context manager in a <code>with</code> statement may also return an object</li>
+<li>Object is assigned to a local object via the <code>as</code> keyword</li>
+<li>Let’s code within a <code>with</code> statement access it’s context (See <a href="../../Chapter_09/Item_076/item_076.html">Item 76</a>)</li>
+<li>For example, a common use case is opening a file, interacting with it, and ensuring it’s closed correctly
+<ul>
+<li>Can do with the <code>open</code> statement in <code>with</code></li>
+<li>Use <code>as</code> to receive the opened file handler</li>
+<li>Closed as part of the context clean up at the end of the <code>with</code></li>
+</ul></li>
+</ul>
+<div id="35941e2b" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"my_output.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> handle:</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    handle.write(<span class="st">"This is some data!"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>os.remove(<span class="st">"my_output.txt"</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Wrote to a file..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Wrote to a file...</code></pre>
+</div>
+</div>
+<ul>
+<li>The equivalent <code>try/finally</code> block is again bulky and less pythonic</li>
+</ul>
+<div id="541b4711" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>handle <span class="op">=</span> <span class="bu">open</span>(<span class="st">"my_output.txt"</span>, <span class="st">"w"</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    handle.write(<span class="st">"This is some data!"</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    handle.close()</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    os.remove(<span class="st">"my_output.txt"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li><code>as</code> also ensures that we don’t have to worry about all the edge cases of making sure the file is closed</li>
+<li>Custom objects can also provide their context object for an <code>as</code>
+<ul>
+<li>Rather than a naked <code>yield</code> instead <code>yield</code> a value</li>
+</ul></li>
+<li>We can do this with our logging function from before
+<ul>
+<li>Let it return a <code>Logger</code> instance as well as setting it’s level</li>
+<li>Let’s us have distinct loggers for the context</li>
+</ul></li>
+</ul>
+<div id="c4807cab" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> contextlib <span class="im">import</span> contextmanager</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function():</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    logging.debug(<span class="st">"Some debug data"</span>)  <span class="co"># low level debug information</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    logging.error(<span class="st">"Error log here"</span>)  <span class="co"># high level error</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    logging.debug(<span class="st">"More debug data"</span>)  <span class="co"># low level debug information</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Called with initial default logging config</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"* Before:"</span>, flush<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>my_function()</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="at">@contextmanager</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log_level(level, name):</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    logger <span class="op">=</span> logging.getLogger(name)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    old_level <span class="op">=</span> logger.getEffectiveLevel()</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    logger.setLevel(level)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> logger</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">finally</span>:</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>        logger.setLevel(old_level)</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> log_level(logging.DEBUG, <span class="st">"my-log"</span>) <span class="im">as</span> my_logger:</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"* Inside context:"</span>, flush<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>    my_logger.debug(<span class="ss">f"This is a message for </span><span class="sc">{</span>my_logger<span class="sc">.</span>name<span class="sc">}</span><span class="ss">!"</span>)</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>    logging.debug(<span class="st">"This will not print - In the global logger"</span>)</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"* After:"</span>, flush<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>logger <span class="op">=</span> logging.getLogger(<span class="st">"my-log"</span>)</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>logger.debug(<span class="st">"Debug will not print"</span>)</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>logger.error(<span class="st">"Error will print"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>* Before:</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ERROR:root:Error log here</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>* Inside context:</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>DEBUG:my-log:This is a message for my-log!</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>* After:</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ERROR:my-log:Error will print</code></pre>
+</div>
+</div>
+<ul>
+<li>In the above example we define a <code>Logger</code>, <code>my-log</code> to use inside the context
+<ul>
+<li>Set it’s level to debug</li>
+<li>Inside the context debug messages sent to <em>this</em> logger are reported</li>
+<li>Inside the context, debug messages in other loggers are not reported</li>
+<li>Outside the context <code>my-log</code> is treated with the same global logging setting
+<ul>
+<li>Debug messages are not reported</li>
+</ul></li>
+</ul></li>
+<li>If we wanted to change the logger’s name, now only need to change the argument supplied to the context</li>
+<li><code>with</code> allows us to decouple context creation, from context interaction</li>
+</ul>
+</section>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li><code>with</code> provides <code>try/finally</code> like logic in a reusable and cleaner interface</li>
+<li><code>contextlib</code> built-in provides the <code>contextmanager</code> decorator for converting simple functions to context objects</li>
+<li>context objects can <code>yield</code> a value to be assigned to a local variable in a <code>with</code> block via the <code>as</code> statement
+<ul>
+<li>Useful for letting code directly interact with a context</li>
+</ul></li>
+</ul>
 
 
 </section>
