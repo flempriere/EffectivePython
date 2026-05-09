@@ -25,8 +25,6 @@
 ``` python
 def try_finally_example(filename):
     print("* Opening a file")
-from jinja2 import Undefined
-from requests.exceptions import JSONDecodeError
 
     handle = open(filename, encoding="utf-8")  # May Raise OSError
     try:
@@ -46,11 +44,39 @@ with open(filename, "wb") as f:
 data = try_finally_example(filename)
 ```
 
-    IndentationError: unexpected indent (3320558842.py, line 6)
-      Cell In[1], line 6
-        handle = open(filename, encoding="utf-8")  # May Raise OSError
-        ^
-    IndentationError: unexpected indent
+    * Opening a file
+    * Reading data
+    * Calling close()
+
+    NameError: name 'os' is not defined
+    ---------------------------------------------------------------------------
+    UnicodeDecodeError                        Traceback (most recent call last)
+    Cell In[1], line 7, in try_finally_example(filename)
+          6     print("* Reading data")
+    ----> 7     return handle.read()  # May raise UnicodeDecodeError
+          8 finally:
+
+    File <frozen codecs>:325, in BufferedIncrementalDecoder.decode(self, input, final)
+        324 data = self.buffer + input
+    --> 325 (result, consumed) = self._buffer_decode(data, self.errors, final)
+        326 # keep undecoded input until the next call
+
+    UnicodeDecodeError: 'utf-8' codec can't decode byte 0xf1 in position 0: invalid continuation byte
+
+    During handling of the above exception, another exception occurred:
+
+    NameError                                 Traceback (most recent call last)
+    Cell In[1], line 19
+         16 with open(filename, "wb") as f:
+         17     f.write(b"\xf1\xf2\xf3\xf4\xf5")  # Invalid utf-8
+    ---> 19 data = try_finally_example(filename)
+
+    Cell In[1], line 11, in try_finally_example(filename)
+          9 print("* Calling close()")
+         10 handle.close()  # Always run after try block
+    ---> 11 os.remove(filename)
+
+    NameError: name 'os' is not defined
 
 - In the above example, we call `open` before the `try` block to prevent
   exceptions during `open` from triggering the `finally` block

@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -822,9 +857,121 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li>As a dynamic program python provide many mechanisms for runtime execution (See <a href="../../Chapter_01/Item_003/item_003.html">Item 3</a>)</li>
+<li>For example,
+<ul>
+<li><code>setattr/getattr/hasattr</code> (See <a href="../../Chapter_08/Item_061/item_061.html">Item 61</a>)</li>
+<li>Metaclasses (See <a href="../../Chapter_08/Item_064/item_064.html">Item 64</a>)</li>
+<li>Descriptors (See <a href="../../Chapter_08/Item_060/item_060.html">Item 60</a>)</li>
+</ul></li>
+<li>Python also allows for <em>arbitrary code execution</em> from an input string
+<ul>
+<li>Works via the <code>exec</code> and <code>eval</code> built-ins</li>
+</ul></li>
+<li><code>eval</code> takes a single python expression as a string and returns the result of it’s evaluation</li>
+</ul>
+<div id="ed4a9164" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">eval</span>(<span class="st">"1 + 2"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3</code></pre>
+</div>
+</div>
+<ul>
+<li>We can’t pass a statement to <code>eval</code>
+<ul>
+<li>Will cause an error</li>
+</ul></li>
+</ul>
+<div id="e8707a01" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span>(<span class="st">"""</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">if True:</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">    print("okay")</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">else:</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">    print("no")</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre>Traceback <span class="ansi-cyan-fg">(most recent call last)</span>:
+
+  File <span class="ansi-bright-green-fg">~/work/EffectivePython/EffectivePython/.venv/lib/python3.14/site-packages/IPython/core/interactiveshell.py:3747</span> in <span class="ansi-bright-magenta-fg">run_code</span>
+    exec(code_obj, self.user_global_ns, self.user_ns)
+
+<span class="ansi-cyan-fg">  </span><span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-red-fg">    </span><span class="ansi-red-fg">eval("""</span>
+
+  <span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">&lt;string&gt;:2</span>
+<span class="ansi-red-fg">    </span><span class="ansi-red-fg">if True:</span>
+    ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid syntax
+</pre>
+</div>
+</div>
+</div>
+<ul>
+<li><code>exec</code> can be used to dynamically evaluate longer python chunks of python code
+<ul>
+<li>Always returns <code>None</code></li>
+<li>To get data need to use <code>global</code> or <code>local</code> scope dictionary arguments</li>
+</ul></li>
+</ul>
+<div id="9e252055" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>global_scope <span class="op">=</span> {<span class="st">"my_condition"</span>: <span class="va">False</span>}</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>local_scope <span class="op">=</span> {}</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">exec</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"""</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="st">if my_condition:</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="st">    x = "yes"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">else:</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="st">    x = "no"</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    global_scope,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    local_scope,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(local_scope)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'x': 'no'}</code></pre>
+</div>
+</div>
+<ul>
+<li>In the section above <code>my_condition</code> bubbles up to the global scope to be evaluated
+<ul>
+<li>The assignment to <code>x</code> is then made in the <code>local_scope</code> (See <a href="../../Chapter_05/Item_033/item_033.html">Item 33</a>)</li>
+</ul></li>
+<li>Use of <code>exec</code> or <code>eval</code> is a red flag in standard application code
+<ul>
+<li>Allowing dynamic and arbitrary code execution is a serious security risk</li>
+<li>There are better techniques even for plugin architectures</li>
+</ul></li>
+<li><code>exec</code> and <code>eval</code> should only be used for developer tools e.g.
+<ul>
+<li>A debugger</li>
+<li>Notebook system</li>
+<li>run-eval-print-loop (REPL)</li>
+<li>performance benchmarking tool</li>
+<li>code generation utility</li>
+<li>etc…</li>
+</ul></li>
+<li>Otherwise use other dynamic tools and meta-programming features</li>
+</ul>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li><code>eval</code> evaluates and returns the result of a string containing a python expression</li>
+<li><code>exec</code> enables execution of a block of python code
+<ul>
+<li>Can be connected to a external variables and the surrounding environment</li>
+</ul></li>
+<li><code>eval</code> and <code>exec</code> are sources of major security risks
+<ul>
+<li>They should be rarely used if at all</li>
+<li>Only to be used for supporting developer tools</li>
+</ul></li>
+</ul>
 
 
 </section>

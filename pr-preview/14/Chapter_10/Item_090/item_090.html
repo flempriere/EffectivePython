@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -823,9 +858,133 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li>Consider the following <code>assert</code> statement</li>
+</ul>
+<div id="3daa7494" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> n <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>, <span class="ss">f"</span><span class="sc">{</span>n<span class="op">=</span><span class="sc">}</span><span class="ss"> not even"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> n = <span class="ansi-green-fg">3</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> <span style="font-weight:bold;color:rgb(0,135,0)">assert</span> n % <span class="ansi-green-fg">2</span> == <span class="ansi-green-fg">0</span>, <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>n<span style="font-weight:bold;color:rgb(175,95,135)">=}</span><span class="ansi-yellow-fg"> not even</span><span class="ansi-yellow-fg">"</span>
+
+<span class="ansi-red-fg">AssertionError</span>: n=3 not even</pre>
+</div>
+</div>
+</div>
+<ul>
+<li>This can be unrolled to the following,</li>
+</ul>
+<div id="1debc04e" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__debug__</span>:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> (n <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">AssertionError</span>(<span class="ss">f"</span><span class="sc">{</span>n<span class="op">=</span><span class="sc">}</span><span class="ss"> not even"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-green-fg">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> __debug__:
+<span class="ansi-green-fg">      2</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> (n % <span class="ansi-green-fg">2</span> == <span class="ansi-green-fg">0</span>):
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span>         <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">AssertionError</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>n<span style="font-weight:bold;color:rgb(175,95,135)">=}</span><span class="ansi-yellow-fg"> not even</span><span class="ansi-yellow-fg">"</span>)
+
+<span class="ansi-red-fg">AssertionError</span>: n=3 not even</pre>
+</div>
+</div>
+</div>
+<ul>
+<li><code>__debug__</code> is a global built-in variable indicating if a program is in debug mode</li>
+<li>You can use this too, to gate the execution of debugging code</li>
+</ul>
+<div id="e9510c4b" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> expensive_check(x):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__debug__</span>:</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> items:</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> expensive_check(i), <span class="ss">f"Failed </span><span class="sc">{</span>i<span class="op">=</span><span class="sc">}</span><span class="ss">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 8</span>
+<span class="ansi-green-fg">      6</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> __debug__:
+<span class="ansi-green-fg">      7</span>     <span style="font-weight:bold;color:rgb(0,135,0)">for</span> i <span style="font-weight:bold;color:rgb(175,0,255)">in</span> items:
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">8</span>         <span style="font-weight:bold;color:rgb(0,135,0)">assert</span> expensive_check(i), <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Failed </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>i<span style="font-weight:bold;color:rgb(175,95,135)">=}</span><span class="ansi-yellow-fg">"</span>
+
+<span class="ansi-red-fg">AssertionError</span>: Failed i=1</pre>
+</div>
+</div>
+</div>
+<ul>
+<li>Setting the value of <code>__debug__</code> is to pass the <code>-O</code> command-line argument at startup</li>
+<li>An invocation with debug set <code>True</code> would look like,</li>
+</ul>
+<pre class="shell"><code>$ python3 -c 'assert False, "FAIL"; print("OK")'
+Traceback ...
+AssertionError: FAIL</code></pre>
+<ul>
+<li>An invocation with the <code>-O</code> option to suppress debug might then look like</li>
+</ul>
+<pre class="shell"><code>$ python3 -O -c 'assert False, "FAIL"; print("OK")'
+OK</code></pre>
+<ul>
+<li><code>__debug__</code> is one of the view python values that cannot be modified at runtime (See <a href="../../Chapter_01/Item_003/item_003.html">Item 3</a>)</li>
+</ul>
+<div id="9ad64cc4" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="va">__debug__</span> <span class="op">=</span> <span class="va">False</span>  <span class="co"># Should fail</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-red-fg">    </span><span class="ansi-red-fg">__debug__ = False  # Should fail</span>
+    ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> cannot assign to __debug__
+</pre>
+</div>
+</div>
+</div>
+<ul>
+<li>Once set, <code>__debug__</code> can’t be changed</li>
+<li><code>__debug__</code> <em>was</em> intended to allow users to optimise code between debug and release profiles</li>
+<li><em>However</em>, many modules, frameworks and libraries depend on <code>assert</code> to validate their runtime (See <a href="../../Chapter_10/Item_081/item_081.html">Item 81</a>)
+<ul>
+<li>This means turning off <code>__debug__</code> <em>can</em> break a program</li>
+<li>The speed up value of turning off debug is also generally questionable</li>
+</ul></li>
+<li>If you have expensive code that should be disabled in some runtimes
+<ul>
+<li>Manually implement it</li>
+<li>Use functions and your own globals</li>
+</ul></li>
+<li><code>assert</code> statements are typically more valuable always being kept on
+<ul>
+<li>Especially in low level code</li>
+<li><code>assert</code>’s help provide guarantees around where a programs assumptions hold</li>
+<li>If an <code>assert</code> is passing, then we know that’s not the source of the problem</li>
+</ul></li>
+<li>Prefer liberal use of <code>assert</code> over spurious micro-optimisation of turning off <code>__debug__</code></li>
+</ul>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li><code>__debug__</code> is a global built-in variable indicating the debug state of a python program
+<ul>
+<li>By default it set to <code>True</code></li>
+</ul></li>
+<li><code>assert</code> statements only execute if <code>__debug__</code> is <code>True</code></li>
+<li>The <code>-O</code> command-line flag can be used to set <code>__debug__</code> to <code>False</code>
+<ul>
+<li>Indicates <code>assert</code> statements are ignored</li>
+</ul></li>
+<li><code>assert</code> statements can be used to narrow the cause of a bug even when they don’t directly fail</li>
+</ul>
 
 
 </section>
