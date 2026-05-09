@@ -52,7 +52,7 @@ print(summary)
           1 def load_data(path):
     ----> 2     return open(path).read()
 
-    File ~/personal_projects/Languages/Python/EffectivePython/.venv/lib/python3.14/site-packages/IPython/core/interactiveshell.py:346, in _modified_open(file, *args, **kwargs)
+    File ~/work/EffectivePython/EffectivePython/.venv/lib/python3.14/site-packages/IPython/core/interactiveshell.py:346, in _modified_open(file, *args, **kwargs)
         339 if file in {0, 1, 2}:
         340     raise ValueError(
         341         f"IPython won't let you open fd={file} by default "

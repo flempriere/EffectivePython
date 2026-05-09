@@ -170,11 +170,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmpj3_3sp_d/0. Expected [] lines, found []
-    File: /tmp/tmpj3_3sp_d/1. Expected [] lines, found []
-    File: /tmp/tmpj3_3sp_d/2. Expected [] lines, found []
-    File: /tmp/tmpj3_3sp_d/3. Expected [b'/tmp/tmpj3_3sp_d/3-01-nqbyiuvsmq\n'] lines, found [b'/tmp/tmpj3_3sp_d/3-01-nqbyiuvsmq\n']
-    File: /tmp/tmpj3_3sp_d/4. Expected [] lines, found []
+    File: /tmp/tmp2xwc3mu3/0. Expected [] lines, found []
+    File: /tmp/tmp2xwc3mu3/1. Expected [b'/tmp/tmp2xwc3mu3/1-01-ybmnaoaweb\n', b'/tmp/tmp2xwc3mu3/1-02-jvqpjwmrxf\n', b'/tmp/tmp2xwc3mu3/1-03-akxudcrynm\n', b'/tmp/tmp2xwc3mu3/1-04-igetkshyxo\n', b'/tmp/tmp2xwc3mu3/1-05-ntglhqwrij\n', b'/tmp/tmp2xwc3mu3/1-06-ahheqngcto\n', b'/tmp/tmp2xwc3mu3/1-07-bdlhjbhwck\n', b'/tmp/tmp2xwc3mu3/1-08-mixlxsdweu\n', b'/tmp/tmp2xwc3mu3/1-09-xdlunzbsyk\n', b'/tmp/tmp2xwc3mu3/1-10-rovkdgefva\n'] lines, found [b'/tmp/tmp2xwc3mu3/1-01-ybmnaoaweb\n', b'/tmp/tmp2xwc3mu3/1-02-jvqpjwmrxf\n', b'/tmp/tmp2xwc3mu3/1-03-akxudcrynm\n', b'/tmp/tmp2xwc3mu3/1-04-igetkshyxo\n', b'/tmp/tmp2xwc3mu3/1-05-ntglhqwrij\n', b'/tmp/tmp2xwc3mu3/1-06-ahheqngcto\n', b'/tmp/tmp2xwc3mu3/1-07-bdlhjbhwck\n', b'/tmp/tmp2xwc3mu3/1-08-mixlxsdweu\n', b'/tmp/tmp2xwc3mu3/1-09-xdlunzbsyk\n', b'/tmp/tmp2xwc3mu3/1-10-rovkdgefva\n']
+    File: /tmp/tmp2xwc3mu3/2. Expected [] lines, found []
+    File: /tmp/tmp2xwc3mu3/3. Expected [b'/tmp/tmp2xwc3mu3/3-01-dqibcsjllv\n', b'/tmp/tmp2xwc3mu3/3-02-cwpkzzdqaa\n'] lines, found [b'/tmp/tmp2xwc3mu3/3-01-dqibcsjllv\n', b'/tmp/tmp2xwc3mu3/3-02-cwpkzzdqaa\n']
+    File: /tmp/tmp2xwc3mu3/4. Expected [b'/tmp/tmp2xwc3mu3/4-01-yilkyuvqkj\n', b'/tmp/tmp2xwc3mu3/4-02-qrumspwzlz\n', b'/tmp/tmp2xwc3mu3/4-03-etnkohdzqy\n'] lines, found [b'/tmp/tmp2xwc3mu3/4-01-yilkyuvqkj\n', b'/tmp/tmp2xwc3mu3/4-02-qrumspwzlz\n', b'/tmp/tmp2xwc3mu3/4-03-etnkohdzqy\n']
     All tests passed!
 
 - Now the code looks better but we now have blocking system calls
@@ -447,11 +447,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmpnzoesagy/0. Expected [] lines, found []
-    File: /tmp/tmpnzoesagy/1. Expected [] lines, found []
-    File: /tmp/tmpnzoesagy/2. Expected [] lines, found []
-    File: /tmp/tmpnzoesagy/3. Expected [] lines, found []
-    File: /tmp/tmpnzoesagy/4. Expected [] lines, found []
+    File: /tmp/tmpxp3gf0o2/0. Expected [] lines, found []
+    File: /tmp/tmpxp3gf0o2/1. Expected [b'/tmp/tmpxp3gf0o2/1-01-lxdqqrzqeh\n'] lines, found [b'/tmp/tmpxp3gf0o2/1-01-lxdqqrzqeh\n']
+    File: /tmp/tmpxp3gf0o2/2. Expected [b'/tmp/tmpxp3gf0o2/2-01-dadadsnqyi\n', b'/tmp/tmpxp3gf0o2/2-02-ccepnrngjw\n'] lines, found [b'/tmp/tmpxp3gf0o2/2-01-dadadsnqyi\n', b'/tmp/tmpxp3gf0o2/2-02-ccepnrngjw\n']
+    File: /tmp/tmpxp3gf0o2/3. Expected [] lines, found []
+    File: /tmp/tmpxp3gf0o2/4. Expected [] lines, found []
     All tests passed!
 
 ## Things to Remember

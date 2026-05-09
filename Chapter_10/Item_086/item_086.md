@@ -114,7 +114,7 @@ if __name__ == "__main__":
 
     SystemExit: 1
 
-    /home/flempriere/personal_projects/Languages/Python/EffectivePython/.venv/lib/python3.14/site-packages/IPython/core/interactiveshell.py:3755: UserWarning: To exit: use 'exit', 'quit', or Ctrl-D.
+    /home/runner/work/EffectivePython/EffectivePython/.venv/lib/python3.14/site-packages/IPython/core/interactiveshell.py:3755: UserWarning: To exit: use 'exit', 'quit', or Ctrl-D.
       warn("To exit: use 'exit', 'quit', or Ctrl-D.", stacklevel=1)
 
 - Other exception types also inherit from `BaseException`

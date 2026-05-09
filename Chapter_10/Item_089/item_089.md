@@ -94,7 +94,7 @@ print("After")
     NameError: name 'it' is not defined
     ---------------------------------------------------------------------------
     NameError                                 Traceback (most recent call last)
-    Cell In[99], line 3
+    Cell In[3], line 3
           1 print("Before")
           2 print("Before")
     ----> 3 print(next(it))
@@ -138,7 +138,7 @@ gc.collect()
     After
     Finally my_generator
 
-    1048
+    1042
 
 - This is powered by the `GeneratorExit`exception
   - This inherits from `BaseException` (See [Item
@@ -211,9 +211,9 @@ gc.collect()
 print("Still going")
 ```
 
-    Exception ignored while closing generator <generator object broken_generator at 0x7c361ebe66b0>:
+    Exception ignored while closing generator <generator object broken_generator at 0x7f732c38e980>:
     Traceback (most recent call last):
-      File "/tmp/ipykernel_7712/416899508.py", line 10, in broken_generator
+      File "/tmp/ipykernel_12071/416899508.py", line 10, in broken_generator
     RuntimeError: Broken
 
     Before
@@ -311,6 +311,7 @@ def lengths_handle(handle):
 
 max_head = 0
 with open("my_file.txt") as handle:
+    # it creation moved into loop to ensure clean-up after loop exits
     for i, length in enumerate(lengths_handle(handle)):
         if i == 5:
             break

@@ -86,7 +86,7 @@ delta = end - start
 print(f"Finished in {delta:.3} seconds")
 ```
 
-    Finished in 1.02 seconds
+    Finished in 1.0 seconds
 
 - If the above processes ran in sequence we would expect the total delay
   to be close to $10$ seconds
@@ -127,9 +127,9 @@ for proc in procs:
     print(out[-10:])
 ```
 
-    b'\xbc\x94\xc7~$c!A\xf7<'
-    b'"\xf7i\xb7\x7f&\x97\rW%'
-    b'>]B{\xe5\x12[\xd6\xf2<'
+    b'\xf8\x11F\x1e_\x94\xd4\x87\x15}'
+    b'\x0c}\xb4\xef\x86\x1d\x9b\xd2\xa3\xb2'
+    b'\x88#!\xaf\xaf\xe6\xadC\xc1\xba'
 
 - Can also chain parallel processes, a-la UNIX pipelines
   - Connect the output of one child process as the input of another
@@ -190,9 +190,9 @@ for proc in hash_procs:
     assert proc.returncode == 0
 ```
 
-    b'\x11p@\xd4\xf6\xe6\r\x85Y\x95'
-    b'fVgq\xab3U\xdb\xde\xd2'
-    b'\x90_\x1c\x83#\x7fI\xf9\xa6e'
+    b'\xde\xbdZ\x9b\xb0\xc3\rK\x08\x93'
+    b'\xae\\\xdacK\x9fe\xc1\x98\xa4'
+    b'\x13\xff/\x95\xe4\xa54@A\xa8'
 
 - `run_hash` defines spawns and returns one process to create the hash
   - It connects the spawned process to a provided input stream

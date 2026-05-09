@@ -111,10 +111,10 @@ handle(request)
 
     AssertionError('My Message')
 
-      File "/tmp/ipykernel_30580/1677808877.py", line 16, in handle
+      File "/tmp/ipykernel_11907/1677808877.py", line 16, in handle
         do_work(request.body)
         ~~~~~~~^^^^^^^^^^^^^^
-      File "/tmp/ipykernel_30580/1677808877.py", line 11, in do_work
+      File "/tmp/ipykernel_11907/1677808877.py", line 11, in do_work
         assert False, data
                ^^^^^
 
@@ -208,6 +208,12 @@ with open(log_file) as f:
         print(line, end="")
 ```
 
+    {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "First error"}
+    {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "Second error"}
+    {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "First error"}
+    {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "Second error"}
+    {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "First error"}
+    {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "Second error"}
     {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "First error"}
     {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "Second error"}
     {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "First error"}
