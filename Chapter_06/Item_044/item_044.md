@@ -34,7 +34,7 @@ it = (len(x) for x in open("my_file.txt"))
 print(it)
 ```
 
-    <generator object <genexpr> at 0x7fd9b03d9460>
+    <generator object <genexpr> at 0x70f6f45a0820>
 
 - To actually get values out of the returned iterator we have to call
   the `next` method (either explicitly or implicitly via a loop)

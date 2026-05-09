@@ -49,7 +49,9 @@ print("After")
     - Thus the `finally` clause itself is not raised
 - We can simulate this below,
 
-```{python}
+```python
+# Note this cell has mocked output, as it cannot run inside the rendering engine
+
 def my_generator():
     try:
         yield 10
@@ -60,6 +62,16 @@ def my_generator():
 
 
 it = my_generator()
+print("Before")
+print(next(it))
+print(next(it))
+print("After")
+```
+
+```{python}
+#| echo: False
+
+print("Before")
 print("Before")
 print(next(it))
 print(next(it))
@@ -188,8 +200,9 @@ for i, length in enumerate(it):
     if i == 5:
         break
     else:
-        max(max_head, length)
+        max_head = max(max_head, length)
 print(max_head)
+
 # Simulate going out of scope and being garbage collected
 del it
 gc.collect()
@@ -208,8 +221,9 @@ gc.collect()
     - We need it to be released as soon as possible otherwise the resource cannot be accessed
     - If not correctly cleaned up the program might deadlock
 - We rework the generator to accept a file handle rather than file path
+
 ```{python}
-def lengths_handle(path):
+def lengths_handle(handle):
     try:
         for i, line in enumerate(handle):
             print(f"Line {i}")
@@ -220,8 +234,8 @@ def lengths_handle(path):
 
 max_head = 0
 with open("my_file.txt") as handle:
-    it = lengths_handle(handle)
-    for i, length in enumerate(it):
+    # it creation moved into loop to ensure clean-up after loop exits
+    for i, length in enumerate(lengths_handle(handle)):
         if i == 5:
             break
         else:
