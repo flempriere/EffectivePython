@@ -90,18 +90,9 @@ print("After")
 
     Before
     Before
-
-    NameError: name 'it' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[3], line 3
-          1 print("Before")
-          2 print("Before")
-    ----> 3 print(next(it))
-          4 print(next(it))
-          5 print("After")
-
-    NameError: name 'it' is not defined
+    10
+    20
+    After
 
 - When will the `finally` be called?
   - Potentially never
@@ -138,7 +129,7 @@ gc.collect()
     After
     Finally my_generator
 
-    1042
+    0
 
 - This is powered by the `GeneratorExit`exception
   - This inherits from `BaseException` (See [Item
@@ -211,9 +202,9 @@ gc.collect()
 print("Still going")
 ```
 
-    Exception ignored while closing generator <generator object broken_generator at 0x7f732c38e980>:
+    Exception ignored while closing generator <generator object broken_generator at 0x7f50b20e7b50>:
     Traceback (most recent call last):
-      File "/tmp/ipykernel_12071/416899508.py", line 10, in broken_generator
+      File "/tmp/ipykernel_12125/416899508.py", line 10, in broken_generator
     RuntimeError: Broken
 
     Before

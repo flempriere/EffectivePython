@@ -23,6 +23,9 @@
   - But `finally` block runs first
 
 ``` python
+import os
+
+
 def try_finally_example(filename):
     print("* Opening a file")
 
@@ -48,35 +51,30 @@ data = try_finally_example(filename)
     * Reading data
     * Calling close()
 
-    NameError: name 'os' is not defined
+    UnicodeDecodeError: 'utf-8' codec can't decode byte 0xf1 in position 0: invalid continuation byte
     ---------------------------------------------------------------------------
     UnicodeDecodeError                        Traceback (most recent call last)
-    Cell In[1], line 7, in try_finally_example(filename)
-          6     print("* Reading data")
-    ----> 7     return handle.read()  # May raise UnicodeDecodeError
-          8 finally:
+    Cell In[1], line 22
+         19 with open(filename, "wb") as f:
+         20     f.write(b"\xf1\xf2\xf3\xf4\xf5")  # Invalid utf-8
+    ---> 22 data = try_finally_example(filename)
+
+    Cell In[1], line 10, in try_finally_example(filename)
+          8 try:
+          9     print("* Reading data")
+    ---> 10     return handle.read()  # May raise UnicodeDecodeError
+         11 finally:
+         12     print("* Calling close()")
 
     File <frozen codecs>:325, in BufferedIncrementalDecoder.decode(self, input, final)
-        324 data = self.buffer + input
-    --> 325 (result, consumed) = self._buffer_decode(data, self.errors, final)
-        326 # keep undecoded input until the next call
+        322 def decode(self, input, final=False):
+        323     # decode input (taking the buffer into account)
+        324     data = self.buffer + input
+    --> 325     (result, consumed) = self._buffer_decode(data, self.errors, final)
+        326     # keep undecoded input until the next call
+        327     self.buffer = data[consumed:]
 
     UnicodeDecodeError: 'utf-8' codec can't decode byte 0xf1 in position 0: invalid continuation byte
-
-    During handling of the above exception, another exception occurred:
-
-    NameError                                 Traceback (most recent call last)
-    Cell In[1], line 19
-         16 with open(filename, "wb") as f:
-         17     f.write(b"\xf1\xf2\xf3\xf4\xf5")  # Invalid utf-8
-    ---> 19 data = try_finally_example(filename)
-
-    Cell In[1], line 11, in try_finally_example(filename)
-          9 print("* Calling close()")
-         10 handle.close()  # Always run after try block
-    ---> 11 os.remove(filename)
-
-    NameError: name 'os' is not defined
 
 - In the above example, we call `open` before the `try` block to prevent
   exceptions during `open` from triggering the `finally` block
@@ -109,6 +107,7 @@ def load_json_key(data, key):
 
 # Successful case
 assert load_json_key('{"foo": "bar"}', "foo") == "bar"
+print("Successfully loaded the key")
 
 # Except block catch
 load_json_key('{"foo": bad payload', "foo")
@@ -116,6 +115,7 @@ load_json_key('{"foo": bad payload', "foo")
 
     * Loading JSON data
     * Looking up key
+    Successfully loaded the key
     * Loading JSON data
     * Handling ValueError
 
@@ -152,10 +152,10 @@ load_json_key('{"foo": bad payload', "foo")
     During handling of the above exception, another exception occurred:
 
     KeyError                                  Traceback (most recent call last)
-    Cell In[2], line 20
-         17 assert load_json_key('{"foo": "bar"}', "foo") == "bar"
-         19 # Except block catch
-    ---> 20 load_json_key('{"foo": bad payload', "foo")
+    Cell In[2], line 21
+         18 print("Successfully loaded the key")
+         20 # Except block catch
+    ---> 21 load_json_key('{"foo": bad payload', "foo")
 
     Cell In[2], line 10, in load_json_key(data, key)
           8 except ValueError:
@@ -224,33 +224,39 @@ with open(temp_path, "w") as f:
     f.write('{"numerator": 1, "denominator": 10}')
 
 # valid, try, else, finally runs
+print("Valid - try, else, finally runs")
 assert divide_json(temp_path) == 0.1
 
 # invalid, but handled, try, except, finally runs
+print("Invalid but handled - try, except, finally runs")
 with open(temp_path, "w") as f:
     f.write('{"numerator": 1, "denominator": 0}')
 
 assert divide_json(temp_path) is UNDEFINED
 
 # invalid json, try, finally runs
+print("Invalid, not handled - try, finally runs")
 with open(temp_path, "w") as f:
     f.write('{"numerator": 1 bad data}')
 
 divide_json(temp_path)
 ```
 
+    Valid - try, else, finally runs
     * Opening file
     * Reading data
     * Loading JSON data
     * Performing calculation
     * Writing Calculation
     * Calling close()
+    Invalid but handled - try, except, finally runs
     * Opening file
     * Reading data
     * Loading JSON data
     * Performing calculation
     * Handling ZeroDivisionError
     * Calling close()
+    Invalid, not handled - try, finally runs
     * Opening file
     * Reading data
     * Loading JSON data
@@ -259,10 +265,10 @@ divide_json(temp_path)
     JSONDecodeError: Expecting ',' delimiter: line 1 column 17 (char 16)
     ---------------------------------------------------------------------------
     JSONDecodeError                           Traceback (most recent call last)
-    Cell In[3], line 49
-         46 with open(temp_path, "w") as f:
-         47     f.write('{"numerator": 1 bad data}')
-    ---> 49 divide_json(temp_path)
+    Cell In[3], line 52
+         49 with open(temp_path, "w") as f:
+         50     f.write('{"numerator": 1 bad data}')
+    ---> 52 divide_json(temp_path)
 
     Cell In[3], line 13, in divide_json(path)
          11 data = handle.read()

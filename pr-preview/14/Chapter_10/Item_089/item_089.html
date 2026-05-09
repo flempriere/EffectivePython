@@ -867,7 +867,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol></li>
 <li>For example, we can use a <code>finally</code> clause from a <code>try</code> to ensure something always executes before a function return</li>
 </ul>
-<div id="4342c268" class="cell" data-execution_count="1">
+<div id="7eb67eec" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_func():</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">123</span></span>
@@ -892,7 +892,7 @@ After</code></pre>
 <li>So <code>finally</code> is executed <em>after</em> the last item is received</li>
 </ul></li>
 </ul>
-<div id="629fd099" class="cell" data-execution_count="2">
+<div id="d7ebc8e0" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_generator():</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> <span class="dv">10</span></span>
@@ -940,24 +940,13 @@ After</code></pre>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">next</span>(it))</span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">next</span>(it))</span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"After"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="3d073f05" class="cell" data-execution_count="3">
+<div id="480e730c" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code>Before
-Before</code></pre>
-</div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 3</span>
-<span class="ansi-green-fg">      1</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Before</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">      2</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Before</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> <span style="color:rgb(0,135,0)">print</span>(<span style="color:rgb(0,135,0)">next</span>(<span class="ansi-yellow-bg">it</span>))
-<span class="ansi-green-fg">      4</span> <span style="color:rgb(0,135,0)">print</span>(<span style="color:rgb(0,135,0)">next</span>(it))
-<span class="ansi-green-fg">      5</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">After</span><span class="ansi-yellow-fg">"</span>)
-
-<span class="ansi-red-fg">NameError</span>: name 'it' is not defined</pre>
-</div>
+Before
+10
+20
+After</code></pre>
 </div>
 </div>
 <ul>
@@ -970,7 +959,7 @@ Before</code></pre>
 </ul></li>
 </ul></li>
 </ul>
-<div id="67420a81" class="cell" data-execution_count="4">
+<div id="96efbfe6" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gc</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -999,7 +988,7 @@ After
 Finally my_generator</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>1042</code></pre>
+<pre><code>0</code></pre>
 </div>
 </div>
 <ul>
@@ -1013,7 +1002,7 @@ Finally my_generator</code></pre>
 <li>Technically this type of exception can be caught</li>
 </ul></li>
 </ul>
-<div id="90f14663" class="cell" data-execution_count="5">
+<div id="886e5cae" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gc</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1057,7 +1046,7 @@ Catching handler &lt;class 'GeneratorExit'&gt; </code></pre>
 </ul></li>
 <li>What if another exception is raised?</li>
 </ul>
-<div id="206e4a1c" class="cell" data-execution_count="6">
+<div id="26005994" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gc</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1080,9 +1069,9 @@ Catching handler &lt;class 'GeneratorExit'&gt; </code></pre>
 <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>gc.collect()</span>
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Still going"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Exception ignored while closing generator &lt;generator object broken_generator at 0x7f2dbc102980&gt;:
+<pre><code>Exception ignored while closing generator &lt;generator object broken_generator at 0x7f0d80cc2f20&gt;:
 Traceback (most recent call last):
-  File "/tmp/ipykernel_12043/416899508.py", line 10, in broken_generator
+  File "/tmp/ipykernel_12098/416899508.py", line 10, in broken_generator
 RuntimeError: Broken</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -1115,7 +1104,7 @@ Still going</code></pre>
 <li>In our initial implementation we might be tempted to simply open the path with the generator</li>
 </ul></li>
 </ul>
-<div id="20bc7ff5" class="cell" data-execution_count="7">
+<div id="65286d03" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gc</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1182,7 +1171,7 @@ Finally lengths_path</code></pre>
 </ul></li>
 <li>We rework the generator to accept a file handle rather than file path</li>
 </ul>
-<div id="2721f968" class="cell" data-execution_count="8">
+<div id="06f68a14" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lengths_handle(handle):</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, line <span class="kw">in</span> <span class="bu">enumerate</span>(handle):</span>

@@ -83,8 +83,8 @@ $ python3 -O -c 'assert False, "FAIL"; print("OK")'
 OK
 ```
 
-- `__debug__` is one of the view python values that cannot be modified
-  at runtime (See [Item 3](../../Chapter_01/Item_003/item_003.qmd))
+- `__debug__` is one of the few python values that cannot be modified at
+  runtime (See [Item 3](../../Chapter_01/Item_003/item_003.qmd))
 
 ``` python
 __debug__ = False  # Should fail

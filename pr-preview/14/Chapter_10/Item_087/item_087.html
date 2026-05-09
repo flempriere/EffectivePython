@@ -869,7 +869,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>E.g. The below assert (See <a href="../../Chapter_10/Item_081/item_081.html">Item 81</a>) demonstrates the trace</li>
 </ul>
-<div id="2ee77278" class="cell" data-execution_count="1">
+<div id="6a9fe07e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> inner_func(message):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="va">False</span>, message</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -909,7 +909,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>One solution is a blanket <code>try/except</code> block (See <a href="../../Chapter_10/Item_085/item_085.html">Item 85</a> and <a href="../../Chapter_10/Item_086/item_086.html">Item 86</a>)</li>
 <li>The following <code>request</code> class mocks this behaviour</li>
 </ul>
-<div id="b5db0e83" class="cell" data-execution_count="2">
+<div id="27d2bef3" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Request:</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, body):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.body <span class="op">=</span> body</span>
@@ -942,7 +942,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>print_tb</code> let’s us print out the stack trace</li>
 </ul></li>
 </ul>
-<div id="c30248da" class="cell" data-execution_count="3">
+<div id="37825611" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> traceback</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -971,10 +971,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>AssertionError('My Message')</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>  File "/tmp/ipykernel_11880/1677808877.py", line 16, in handle
+<pre><code>  File "/tmp/ipykernel_11934/1677808877.py", line 16, in handle
     do_work(request.body)
     ~~~~~~~^^^^^^^^^^^^^^
-  File "/tmp/ipykernel_11880/1677808877.py", line 11, in do_work
+  File "/tmp/ipykernel_11934/1677808877.py", line 11, in do_work
     assert False, data
            ^^^^^</code></pre>
 </div>
@@ -993,7 +993,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>We could make our <code>handle</code> for example list the function names in the stack trace</li>
 </ul>
-<div id="ca603a40" class="cell" data-execution_count="4">
+<div id="7123d9cf" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> traceback</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1034,7 +1034,7 @@ AssertionError('My Message')</code></pre>
 <li>Can be implemented via a wrapper</li>
 </ul></li>
 </ul>
-<div id="f410f454" class="cell" data-execution_count="5">
+<div id="c7be6996" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> traceback</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1072,18 +1072,23 @@ AssertionError('My Message')</code></pre>
 <span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>log_if_error(log_file, do_work, <span class="st">"Second error"</span>)</span>
 <span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(log_file) <span class="im">as</span> f:</span>
 <span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> f:</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(line, end<span class="op">=</span><span class="st">""</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(line, end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>os.remove(log_file)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{"stack": ["do_work"], "error_type": "AssertionError", "error_message": "First error"}
-{"stack": ["do_work"], "error_type": "AssertionError", "error_message": "Second error"}
-{"stack": ["do_work"], "error_type": "AssertionError", "error_message": "First error"}
-{"stack": ["do_work"], "error_type": "AssertionError", "error_message": "Second error"}
-{"stack": ["do_work"], "error_type": "AssertionError", "error_message": "First error"}
-{"stack": ["do_work"], "error_type": "AssertionError", "error_message": "Second error"}
-{"stack": ["do_work"], "error_type": "AssertionError", "error_message": "First error"}
-{"stack": ["do_work"], "error_type": "AssertionError", "error_message": "Second error"}
-{"stack": ["do_work"], "error_type": "AssertionError", "error_message": "First error"}
 {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "Second error"}</code></pre>
+</div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 39</span>
+<span class="ansi-green-fg">     37</span>     <span style="font-weight:bold;color:rgb(0,135,0)">for</span> line <span style="font-weight:bold;color:rgb(175,0,255)">in</span> f:
+<span class="ansi-green-fg">     38</span>         <span style="color:rgb(0,135,0)">print</span>(line, end=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">39</span> <span class="ansi-yellow-bg">os</span>.remove(log_file)
+
+<span class="ansi-red-fg">NameError</span>: name 'os' is not defined</pre>
+</div>
 </div>
 </div>
 <ul>

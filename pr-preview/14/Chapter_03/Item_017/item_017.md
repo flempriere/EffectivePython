@@ -22,7 +22,7 @@ for i in range(32): # 32 bits
 print(f"Randomly generated: {bin(random_bits)}")
 ```
 
-    Randomly generated: 0b10101000000100111111010111100111
+    Randomly generated: 0b1001110101001110100011011101010
 
 - We can directly loop over an data structure
 
