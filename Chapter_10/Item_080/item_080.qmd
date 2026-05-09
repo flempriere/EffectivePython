@@ -15,6 +15,9 @@ title: "Item 80: Take Advantage of Each Block in `try/except/else/finally`"
     - But `finally` block runs first
 
 ```{python}
+import os
+
+
 def try_finally_example(filename):
     print("* Opening a file")
 
@@ -67,6 +70,7 @@ def load_json_key(data, key):
 
 # Successful case
 assert load_json_key('{"foo": "bar"}', "foo") == "bar"
+print("Successfully loaded the key")
 
 # Except block catch
 load_json_key('{"foo": bad payload', "foo")
@@ -129,15 +133,18 @@ with open(temp_path, "w") as f:
     f.write('{"numerator": 1, "denominator": 10}')
 
 # valid, try, else, finally runs
+print("Valid - try, else, finally runs")
 assert divide_json(temp_path) == 0.1
 
 # invalid, but handled, try, except, finally runs
+print("Invalid but handled - try, except, finally runs")
 with open(temp_path, "w") as f:
     f.write('{"numerator": 1, "denominator": 0}')
 
 assert divide_json(temp_path) is UNDEFINED
 
 # invalid json, try, finally runs
+print("Invalid, not handled - try, finally runs")
 with open(temp_path, "w") as f:
     f.write('{"numerator": 1 bad data}')
 

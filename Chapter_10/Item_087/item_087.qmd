@@ -165,6 +165,7 @@ log_if_error(log_file, do_work, "Second error")
 with open(log_file) as f:
     for line in f:
         print(line, end="")
+os.remove(log_file)
 ```
 
 - For more uses of `traceback` including formatting, printing, traversal of stack traces consult the [docs](https://docs.python.org/3/library/traceback.html)
