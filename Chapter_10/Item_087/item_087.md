@@ -111,10 +111,10 @@ handle(request)
 
     AssertionError('My Message')
 
-      File "/tmp/ipykernel_11907/1677808877.py", line 16, in handle
+      File "/tmp/ipykernel_11961/1677808877.py", line 16, in handle
         do_work(request.body)
         ~~~~~~~^^^^^^^^^^^^^^
-      File "/tmp/ipykernel_11907/1677808877.py", line 11, in do_work
+      File "/tmp/ipykernel_11961/1677808877.py", line 11, in do_work
         assert False, data
                ^^^^^
 
@@ -206,20 +206,23 @@ log_if_error(log_file, do_work, "Second error")
 with open(log_file) as f:
     for line in f:
         print(line, end="")
+os.remove(log_file)
 ```
 
     {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "First error"}
     {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "Second error"}
     {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "First error"}
     {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "Second error"}
-    {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "First error"}
-    {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "Second error"}
-    {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "First error"}
-    {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "Second error"}
-    {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "First error"}
-    {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "Second error"}
-    {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "First error"}
-    {"stack": ["do_work"], "error_type": "AssertionError", "error_message": "Second error"}
+
+    NameError: name 'os' is not defined
+    ---------------------------------------------------------------------------
+    NameError                                 Traceback (most recent call last)
+    Cell In[5], line 39
+         37     for line in f:
+         38         print(line, end="")
+    ---> 39 os.remove(log_file)
+
+    NameError: name 'os' is not defined
 
 - For more uses of `traceback` including formatting, printing, traversal
   of stack traces consult the

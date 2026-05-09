@@ -103,7 +103,7 @@ except MissingError as e:
   make the errors clearer
   - This chaining can be achieved via the `from` clause in a `raise`
     statement
-- For example, we could implement this into a dictionary
+- For example, we could implement this into a function `lookup`
 
 ``` python
 class MissingError(Exception):
@@ -664,7 +664,7 @@ print(lookup("my key"))
 
     MissingError:
 
-- We can know see that the `KeyError` is no longer reported in the chain
+- We can now see that the `KeyError` is no longer reported in the chain
 
 ## Things to Remember
 
