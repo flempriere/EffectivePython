@@ -1,0 +1,98 @@
+---
+title: "Item 84: Beware of Exception Variables Disappearing"
+---
+
+## Notes
+
+- Exception variables are not accessible after an `except` block
+    - This is in contrast to `for` loop variables (See [Item 20](../../Chapter_03/Item_020/item_020.qmd))
+
+```{python}
+class MyError(Exception):
+    pass
+
+
+try:
+    raise MyError(123)
+except MyError as e:
+    print(f"Inside {e=}")  # Works
+
+print(f"Outside {e=}")  # Raises
+```
+
+- This includes the scope of a `finally` branch in a `try/except/finally` construct
+
+```{python}
+class MyError(Exception):
+    pass
+
+
+try:
+    raise MyError(123)
+except MyError as e:
+    print(f"Inside {e=}")  # Works
+finally:
+    print(f"Finally {e=}")  # Raises
+```
+
+- If we want to use the result outside the block, have to define another variable
+    - e.g. for logging purposes
+
+```{python}
+result = "Unhandled exception"
+
+
+class MyError(Exception):
+    pass
+
+
+class OtherError(Exception):
+    pass
+
+
+try:
+    raise MyError(123)
+except MyError as e:
+    result = e
+except OtherError as e:
+    result = e
+else:
+    result = "Success"
+finally:
+    print(f"Log {result=}")
+```
+
+- Need the `result` variable to exist and be assigned before the `try/except` block
+    - Prevents an unhandled exception failing to set `result`
+    - Instead of seeing the actual error we get a runtime error
+
+```{python}
+%reset -f
+
+class MyError(Exception):
+    pass
+
+
+class OtherError(Exception):
+    pass
+
+
+try:
+    raise OtherError(123)
+except MyError as e:
+    result = e
+else:
+    result = "Success"
+finally:
+    print(f"Log {result=}")
+```
+
+- As usual with python it's worth remembering that different variable "types" have different scopes and lifetimes e.g.
+    - `for` loop variables
+    - generator expressions variables
+    - List comprehensions variables (See [Item 42](../../Chapter_06/Item_042/item_042.qmd))
+
+## Things to Remember
+
+- Exception variables caught via the `with` in an `except` block only exist within the `except` block
+- To catch an exception and access it in a subsequent block or enclosing scope it must be assigned to an already defined variable in the outer scope

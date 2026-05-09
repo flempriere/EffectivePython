@@ -611,43 +611,23 @@ def main():
 main()
 ```
 
-    ConnectionRefusedError: [Errno 111] Connection refused
-    ---------------------------------------------------------------------------
-    ConnectionRefusedError                    Traceback (most recent call last)
-    Cell In[1], line 209
-        206     for number, outcome in results:
-        207         print(f"Client: {number} is {outcome}")
-    --> 209 main()
+    Guess between 1 and 5! Shhhhh, it's 3
+    Server: 2 is unsure
+    Guess between 10 and 15! Shhhhh, it's 12
+    Server: 3 is correct
+    Server: 11 is unsure
+    Server: 15 is colder
+    Guess between 1 and 3! Shhhhh, it's 2Server: 12 is correct
 
-    Cell In[1], line 205, in main()
-        202 server_thread = Thread(target=run_server, args=(address,), daemon=True)
-        203 server_thread.start()
-    --> 205 results = run_client(address)
-        206 for number, outcome in results:
-        207     print(f"Client: {number} is {outcome}")
-
-    Cell In[1], line 177, in run_client(address)
-        176 def run_client(address):
-    --> 177     with socket.create_connection(address) as server_sock:
-        178         server = Connection(server_sock)
-        180         with new_game(server, 1, 5, 3) as session:
-
-    File /opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/socket.py:870, in create_connection(address, timeout, source_address, all_errors)
-        868 try:
-        869     if not all_errors:
-    --> 870         raise exceptions[0]
-        871     raise ExceptionGroup("create_connection failed", exceptions)
-        872 finally:
-        873     # Break explicitly a reference cycle
-
-    File /opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/socket.py:855, in create_connection(address, timeout, source_address, all_errors)
-        853 if source_address:
-        854     sock.bind(source_address)
-    --> 855 sock.connect(sa)
-        856 # Break explicitly a reference cycle
-        857 exceptions.clear()
-
-    ConnectionRefusedError: [Errno 111] Connection refused
+    Server: 3 is unsure
+    Server: 2 is correct
+    Client: 2 is unsure
+    Client: 3 is correct
+    Client: 11 is unsure
+    Client: 15 is colder
+    Client: 12 is correct
+    Client: 3 is unsure
+    Client: 2 is correct
 
 - Now we want to refactor this design to instead use `async` and `await`
   via the `asyncio` built-in module
@@ -1194,18 +1174,26 @@ await main_async()  # Comment out in favour of the line above if running as a sc
 ```
 
     Guess a number between 1 and 5! Shhhh, it's 3
-    Server: 4 is unsure
+    Server: 1 is unsure
+    Server: 4 is warmer
+    Server: 5 is colder
+    Server: 2 is warmer
     Guess a number between 10 and 15! Shhhh, it's 12
     Server: 3 is correct
+    Server: 10 is unsure
+    Server: 11 is warmer
     Guess a number between 1 and 3! Shhhh, it's 2
     Server: 12 is correct
-    Server: 1 is unsure
-    Server: 3 is same
-    Client: 4 is unsure
-    Client: 3 is correct
-    Client: 12 is correct
+    Server: 3 is unsure
     Client: 1 is unsure
-    Client: 3 is same
+    Client: 4 is warmer
+    Client: 5 is colder
+    Client: 2 is warmer
+    Client: 3 is correct
+    Client: 10 is unsure
+    Client: 11 is warmer
+    Client: 12 is correct
+    Client: 3 is unsure
     Client: 2 is correct
     Server: 2 is correct
 

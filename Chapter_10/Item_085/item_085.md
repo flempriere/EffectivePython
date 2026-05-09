@@ -1,0 +1,215 @@
+# Item 85: Beware of Catching the `Exception` Class
+
+- [Notes](#notes)
+- [Things to Remember](#things-to-remember)
+
+## Notes
+
+- Errors are an expected and natural part of software development
+  - Designing how systems handle and treat those errors is a key part of
+    the process
+- For example, consider a program that performs simple analysis of CSV
+  data
+  - Implemented via a pipeline of functions
+  - This system might encounter errors such as the expected file not
+    existing
+
+``` python
+def load_data(path):
+    return open(path).read()
+
+
+def analyse_data(data):
+    return "Data summarised"
+
+
+def run_report(path):
+    data = load_data(path)
+    summary = analyse_data(data)
+    return summary
+
+
+summary = run_report("missing_data_file.csv")
+print(summary)
+```
+
+    FileNotFoundError: [Errno 2] No such file or directory: 'missing_data_file.csv'
+    ---------------------------------------------------------------------------
+    FileNotFoundError                         Traceback (most recent call last)
+    Cell In[1], line 15
+         11     summary = analyse_data(data)
+         12     return summary
+    ---> 15 summary = run_report("missing_data_file.csv")
+         16 print(summary)
+
+    Cell In[1], line 10, in run_report(path)
+          9 def run_report(path):
+    ---> 10     data = load_data(path)
+         11     summary = analyse_data(data)
+         12     return summary
+
+    Cell In[1], line 2, in load_data(path)
+          1 def load_data(path):
+    ----> 2     return open(path).read()
+
+    File ~/work/EffectivePython/EffectivePython/.venv/lib/python3.14/site-packages/IPython/core/interactiveshell.py:346, in _modified_open(file, *args, **kwargs)
+        339 if file in {0, 1, 2}:
+        340     raise ValueError(
+        341         f"IPython won't let you open fd={file} by default "
+        342         "as it is likely to crash IPython. If you know what you are doing, "
+        343         "you can use builtins' open."
+        344     )
+    --> 346 return io_open(file, *args, **kwargs)
+
+    FileNotFoundError: [Errno 2] No such file or directory: 'missing_data_file.csv'
+
+- We could wrap `run_report` in a `try/except` block
+
+``` python
+def load_data(path):
+    return open(path).read()
+
+
+def analyse_data(data):
+    return "Data summarised"
+
+
+def run_report(path):
+    data = load_data(path)
+    summary = analyse_data(data)
+    return summary
+
+
+try:
+    summary = run_report("missing_data_file.csv")
+except FileNotFoundError:
+    print("File missing...")
+else:
+    print(summary)
+```
+
+    File missing...
+
+- This prevents that specific error type
+  - But there are lots of potential errors with I/O or this pipeline
+- Suppose we want a system to be always up
+  - Then can’t have an unaccounted for error-type causing the system to
+    crash
+  - One solution is to catch the `Exception` base class
+
+``` python
+def load_data(path):
+    return open(path).read()
+
+
+def analyse_data(data):
+    return "Data summarised"
+
+
+def run_report(path):
+    data = load_data(path)
+    summary = analyse_data(data)
+    return summary
+
+
+try:
+    summary = run_report("missing_data_file.csv")
+except Exception:
+    print("File missing...")
+else:
+    print(summary)
+```
+
+    File missing...
+
+- `except` blocks are checked in order
+  - Catch any subclass of the specified error
+  - `except Exception` will catch all exceptions
+- This is like using a nuclear bomb to kill ants
+  - Will now catch all types of errors
+  - Including potentially real ones that indicate flaws in the code
+- For example if we had a typo in the code, that called `analyse` rather
+  than `analyse_data`
+  - The resulting `NameError` is masked
+  - No way to see that an actual logic error has occurred.
+
+``` python
+def load_data(path):
+    return "data"
+
+
+def analyse_data(data):
+    return "Data summarised"
+
+
+def run_report(path):
+    data = load_data(path)
+    summary = analyse(data)  # Throws a NameError
+    return summary
+
+
+try:
+    path = "missing_data_file.csv"
+    summary = run_report(path)
+except (
+    Exception
+):  # Name Error is suppressed, commentary suggests an error with the file
+    print(f"Error accessing {path}")
+else:
+    print(summary)
+```
+
+    Error accessing missing_data_file.csv
+
+- This is partially due to Python’s design
+  - The error occurs when we write the code, but is not evaluated until
+    runtime (See [Item 3](../../Chapter_01/Item_003/item_003.qmd))
+- A mitigation whenever using `Exception` is to at least catch and
+  report the specific exception type
+  - So it can be reviewed in logs
+
+``` python
+def load_data(path):
+    return "data"
+
+
+def analyse_data(data):
+    return "Data summarised"
+
+
+def run_report(path):
+    data = load_data(path)
+    summary = analyse(data)  # Throws a NameError
+    return summary
+
+
+try:
+    path = "missing_data_file.csv"
+    summary = run_report(path)
+except (
+    Exception
+) as e:  # Name Error is suppressed, commentary suggests an error with the file
+    print("Fail:", type(e), e)
+else:
+    print(summary)
+```
+
+    Fail: <class 'NameError'> name 'analyse' is not defined
+
+- There are other pitfalls with overly broad exception handling (See
+  [Item 86](../Item_086/item_086.qmd) and [Item
+  89](../Item_089/item_089.qmd))
+- The main thing with exception handling is to try and be as specific as
+  possible
+  - Avoid potentially catching errors that you don’t expect
+
+## Things to Remember
+
+- Using `Exception` in `except` blocks insulates one part of the code
+  from *all* exceptions created in another part
+- Catching broad exception categories can cause you code to mask
+  unexpected error types
+  - This can hide real problems in a codebase
+- When using a broad exception handler consider reporting or logging and
+  encountered errors
+  - Provides a mechanism to review for potentially unexpected errors
