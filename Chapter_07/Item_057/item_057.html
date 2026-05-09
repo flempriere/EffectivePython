@@ -736,6 +736,89 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_10/Chapter_10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10: Robustness</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_080/item_080.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 80: Take Advantage of Each Block in <code>try/except/else/finally</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_081/item_081.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 81: <code>assert</code> Internal Assumptions and <code>raise</code> Missed Expectations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_082/item_082.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 82: Consider <code>contextlib</code> and <code>with</code> Statements for Reusable <code>try/finally</code> behaviour</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_083/item_083.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 83: Always make <code>try</code> Blocks as Short as Possible</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_084/item_084.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 84: Beware of Exception Variables Disappearing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_085/item_085.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 85: Beware of Catching the <code>Exception</code> Class</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_086/item_086.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 86: Understand the Difference between <code>Exception</code> and <code>BaseException</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_087/item_087.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 87: Use <code>traceback</code> for Enhanced Exception Reporting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_088/item_088.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 88: Consider Explicitly Chaining Exceptions to Clarify Tracebacks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_089/item_089.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 89: Always Pass Resources into Generators and have Callers Clean them up Outside</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_090/item_090.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 90: Never set <code>__debug__</code> to <code>False</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_091/item_091.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 91: Avoid <code>exec</code> and <code>eval</code> Unless you’re Building a Developer Tool</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -797,7 +880,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Then can define any additional methods that we need</li>
 </ul></li>
 </ul>
-<div id="41ee35b4" class="cell" data-execution_count="1">
+<div id="6e1141d4" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FrequencyList(<span class="bu">list</span>):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, members):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(members)</span>
@@ -826,7 +909,7 @@ Frequency: {'a': 3, 'b': 2, 'c': 1}</code></pre>
 <li>e.g.&nbsp;We might want sequence semantics for a binary tree (So we can take slices for example - See <a href="../../Chapter_02/Item_014/item_014.html">Item 14</a>)</li>
 </ul></li>
 </ul>
-<div id="2a2cf588" class="cell" data-execution_count="2">
+<div id="ef3eb600" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># basic binary tree structure</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BinaryNode:</span>
@@ -839,7 +922,7 @@ Frequency: {'a': 3, 'b': 2, 'c': 1}</code></pre>
 <li>We could make this behave as sequence by manually implementing the sequence dunder methods</li>
 <li>For example, to define access by indexing we have to define <code>__getitem__</code> for example the following are equivalent</li>
 </ul>
-<div id="af8b18a6" class="cell" data-execution_count="3">
+<div id="a997506c" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>bar <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># access via the indexing operator</span></span>
@@ -862,7 +945,7 @@ Accesing via the __getitem__ method 1</code></pre>
 <li>e.g.&nbsp;<code>len</code> fails (see below)</li>
 </ul></li>
 </ul>
-<div id="16ed81be" class="cell" data-execution_count="4">
+<div id="968a21b4" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BinaryNode:</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, value, left<span class="op">=</span><span class="va">None</span>, right<span class="op">=</span><span class="va">None</span>):</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.value <span class="op">=</span> value</span>
@@ -929,7 +1012,7 @@ Tree is [2, 5, 6, 7, 10, 11, 15]</code></pre>
 <ul>
 <li>To support <code>len</code> the sequence object has to provide the <code>__len__</code> dunder method</li>
 </ul>
-<div id="bfd2bfb2" class="cell" data-execution_count="5">
+<div id="f28a5b27" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BinaryNode:</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, value, left<span class="op">=</span><span class="va">None</span>, right<span class="op">=</span><span class="va">None</span>):</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.value <span class="op">=</span> value</span>
@@ -1001,7 +1084,7 @@ Tree is [2, 5, 6, 7, 10, 11, 15]</code></pre>
 <li>When subclassing one of these types forgetting to implement a method will lead to a runtime error</li>
 </ul></li>
 </ul>
-<div id="37c08851" class="cell" data-execution_count="6">
+<div id="96804e30" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections.abc <span class="im">import</span> Sequence</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1026,7 +1109,7 @@ Tree is [2, 5, 6, 7, 10, 11, 15]</code></pre>
 <ul>
 <li>If we implement the required methods of the abstract class, the additional methods are then provided automatically by the base class</li>
 </ul>
-<div id="8d219c49" class="cell" data-execution_count="7">
+<div id="35a54e86" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections.abc <span class="im">import</span> Sequence</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>

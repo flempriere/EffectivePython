@@ -736,6 +736,89 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_10/Chapter_10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10: Robustness</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_080/item_080.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 80: Take Advantage of Each Block in <code>try/except/else/finally</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_081/item_081.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 81: <code>assert</code> Internal Assumptions and <code>raise</code> Missed Expectations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_082/item_082.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 82: Consider <code>contextlib</code> and <code>with</code> Statements for Reusable <code>try/finally</code> behaviour</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_083/item_083.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 83: Always make <code>try</code> Blocks as Short as Possible</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_084/item_084.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 84: Beware of Exception Variables Disappearing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_085/item_085.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 85: Beware of Catching the <code>Exception</code> Class</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_086/item_086.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 86: Understand the Difference between <code>Exception</code> and <code>BaseException</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_087/item_087.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 87: Use <code>traceback</code> for Enhanced Exception Reporting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_088/item_088.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 88: Consider Explicitly Chaining Exceptions to Clarify Tracebacks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_089/item_089.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 89: Always Pass Resources into Generators and have Callers Clean them up Outside</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_090/item_090.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 90: Never set <code>__debug__</code> to <code>False</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_091/item_091.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 91: Avoid <code>exec</code> and <code>eval</code> Unless you’re Building a Developer Tool</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -778,7 +861,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>A <code>list</code> is the natural choice for returning a sequence of items</li>
 </ul>
-<div id="bc6ee2b0" class="cell" data-execution_count="1">
+<div id="a6c31cdf" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> index_words(text):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> []</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> text:</span>
@@ -814,7 +897,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Generators use the <code>yield</code> keyword to incrementally produce outputs</p></li>
 <li><p>Rewriting our program to use a generator is straightforward</p></li>
 </ul>
-<div id="7ee8d597" class="cell" data-execution_count="2">
+<div id="b70b9b0f" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> index_words_iter(text):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> text:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> <span class="dv">0</span></span>
@@ -848,7 +931,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>For example, we can write an version of <code>index_words</code> that streams input from a file</li>
 </ul>
-<div id="6c5a1a11" class="cell" data-execution_count="3">
+<div id="2d868ff9" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>

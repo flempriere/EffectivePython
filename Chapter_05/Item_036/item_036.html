@@ -736,6 +736,89 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_10/Chapter_10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10: Robustness</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_080/item_080.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 80: Take Advantage of Each Block in <code>try/except/else/finally</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_081/item_081.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 81: <code>assert</code> Internal Assumptions and <code>raise</code> Missed Expectations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_082/item_082.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 82: Consider <code>contextlib</code> and <code>with</code> Statements for Reusable <code>try/finally</code> behaviour</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_083/item_083.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 83: Always make <code>try</code> Blocks as Short as Possible</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_084/item_084.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 84: Beware of Exception Variables Disappearing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_085/item_085.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 85: Beware of Catching the <code>Exception</code> Class</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_086/item_086.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 86: Understand the Difference between <code>Exception</code> and <code>BaseException</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_087/item_087.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 87: Use <code>traceback</code> for Enhanced Exception Reporting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_088/item_088.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 88: Consider Explicitly Chaining Exceptions to Clarify Tracebacks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_089/item_089.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 89: Always Pass Resources into Generators and have Callers Clean them up Outside</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_090/item_090.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 90: Never set <code>__debug__</code> to <code>False</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_091/item_091.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 91: Avoid <code>exec</code> and <code>eval</code> Unless you’re Building a Developer Tool</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -783,7 +866,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>A naive approach is,</li>
 </ul>
-<div id="8ec96db6" class="cell" data-execution_count="1">
+<div id="e086daef" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> sleep</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -794,8 +877,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>sleep(<span class="fl">0.1</span>)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>log(<span class="st">"Hello again"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>2026-05-02 09:47:46.019113: Hi there
-2026-05-02 09:47:46.019113: Hello again</code></pre>
+<pre><code>2026-05-09 13:43:56.381576: Hi there
+2026-05-09 13:43:56.381576: Hello again</code></pre>
 </div>
 </div>
 <ul>
@@ -812,7 +895,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Actual behaviour is then documented in the function docstring</li>
 </ul></li>
 </ul>
-<div id="c6bd7bdd" class="cell" data-execution_count="2">
+<div id="4145cc62" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> sleep</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -840,14 +923,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>sleep(<span class="fl">0.1</span>)</span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>log(<span class="st">"Hello again"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>2026-05-02 09:47:46.126843: Hi there
-2026-05-02 09:47:46.227084: Hello again</code></pre>
+<pre><code>2026-05-09 13:43:56.489627: Hi there
+2026-05-09 13:43:56.589911: Hello again</code></pre>
 </div>
 </div>
 <ul>
 <li>Again, suppose we tried to write function that loads json data,</li>
 </ul>
-<div id="b0ef86d0" class="cell" data-execution_count="3">
+<div id="412f7491" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> decode(data, default<span class="op">=</span>{}):</span>
@@ -873,7 +956,7 @@ Bar: {'stuff': 5, 'meep': 1}</code></pre>
 <li>Same issue arises, the dictionary created by <code>default</code> is shared by all calls to <code>decode</code></li>
 <li>Have to use <code>None</code> as a placeholder then explicitly create the dictionary</li>
 </ul>
-<div id="a33b9ca8" class="cell" data-execution_count="4">
+<div id="e6732794" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -919,7 +1002,7 @@ Bar: {'meep': 1}</code></pre>
 <ul>
 <li>We can extend this further via typing</li>
 </ul>
-<div id="ed19916c" class="cell" data-execution_count="5">
+<div id="9c6f3762" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> sleep</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -947,8 +1030,8 @@ Bar: {'meep': 1}</code></pre>
 <span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>sleep(<span class="fl">0.1</span>)</span>
 <span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>log(<span class="st">"Hello again"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>2026-05-02 09:47:46.250870: Hi there
-2026-05-02 09:47:46.351170: Hello again</code></pre>
+<pre><code>2026-05-09 13:43:56.613609: Hi there
+2026-05-09 13:43:56.713836: Hello again</code></pre>
 </div>
 </div>
 </section>

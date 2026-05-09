@@ -24,6 +24,7 @@ Effective Python by Brett Slatkin
 - [Chapter 7: Classes and Interfaces](./Chapter_07/Chapter_07.qmd)
 - [Chapter 8: Metaclasses and Attributes](./Chapter_08/Chapter_08.qmd)
 - [Chapter 9: Concurrency and Parallelism](./Chapter_09/Chapter_09.qmd)
+- [Chapter 10: Robustness](./Chapter_10/Chapter_10.qmd)
 
 ## Attribution
 

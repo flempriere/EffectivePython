@@ -736,6 +736,89 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_10/Chapter_10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10: Robustness</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_080/item_080.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 80: Take Advantage of Each Block in <code>try/except/else/finally</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_081/item_081.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 81: <code>assert</code> Internal Assumptions and <code>raise</code> Missed Expectations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_082/item_082.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 82: Consider <code>contextlib</code> and <code>with</code> Statements for Reusable <code>try/finally</code> behaviour</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_083/item_083.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 83: Always make <code>try</code> Blocks as Short as Possible</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_084/item_084.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 84: Beware of Exception Variables Disappearing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_085/item_085.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 85: Beware of Catching the <code>Exception</code> Class</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_086/item_086.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 86: Understand the Difference between <code>Exception</code> and <code>BaseException</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_087/item_087.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 87: Use <code>traceback</code> for Enhanced Exception Reporting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_088/item_088.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 88: Consider Explicitly Chaining Exceptions to Clarify Tracebacks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_089/item_089.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 89: Always Pass Resources into Generators and have Callers Clean them up Outside</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_090/item_090.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 90: Never set <code>__debug__</code> to <code>False</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_10/Item_091/item_091.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 91: Avoid <code>exec</code> and <code>eval</code> Unless you’re Building a Developer Tool</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -806,7 +889,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Classes indicate a metaclass via the <code>metaclass</code> keyword in the inheritance argument list</li>
 <li>Metaclass’ <code>__new__</code> is called with any associated <code>class</code> statements when they occur</li>
 </ul>
-<div id="62e4e899" class="cell" data-execution_count="1">
+<div id="600315b2" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Meta(<span class="bu">type</span>):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__new__</span>(meta, name, bases, class_dict):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="co"># meta is equivalent of cls or self</span></span>
@@ -831,10 +914,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>* Running &lt;class '__main__.Meta'&gt;.__new__ for MyClass
 Bases: ()
-{'__module__': '__main__', '__qualname__': 'MyClass', '__firstlineno__': 11, 'stuff': 123, 'foo': &lt;function MyClass.foo at 0x7f9d86304930&gt;, '__static_attributes__': (), '__classdictcell__': &lt;cell at 0x7f9d6cf818d0: dict object at 0x7f9d6cc43f80&gt;}
+{'__module__': '__main__', '__qualname__': 'MyClass', '__firstlineno__': 11, 'stuff': 123, 'foo': &lt;function MyClass.foo at 0x7fb7f3fb0930&gt;, '__static_attributes__': (), '__classdictcell__': &lt;cell at 0x7fb7f0c83910: dict object at 0x7fb7f098f2c0&gt;}
 * Running &lt;class '__main__.Meta'&gt;.__new__ for MySubClass
 Bases: (&lt;class '__main__.MyClass'&gt;,)
-{'__module__': '__main__', '__qualname__': 'MySubClass', '__firstlineno__': 17, 'other': 567, 'bar': &lt;function MySubClass.bar at 0x7f9d862f3a00&gt;, '__static_attributes__': (), '__classdictcell__': &lt;cell at 0x7f9d8018a920: dict object at 0x7f9d6cc42d80&gt;}</code></pre>
+{'__module__': '__main__', '__qualname__': 'MySubClass', '__firstlineno__': 17, 'other': 567, 'bar': &lt;function MySubClass.bar at 0x7fb7f3f9ba00&gt;, '__static_attributes__': (), '__classdictcell__': &lt;cell at 0x7fb7f3f94ac0: dict object at 0x7fb7f098f100&gt;}</code></pre>
 </div>
 </div>
 <ul>
@@ -852,7 +935,7 @@ Bases: (&lt;class '__main__.MyClass'&gt;,)
 <li>Attempting to define an polygon with less than three sides causes the class statement to fail as soon as the program attempts to define the object</li>
 </ul></li>
 </ul>
-<div id="7539f3d0" class="cell" data-execution_count="2">
+<div id="a9198725" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># defining the metaclass</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ValidatePolygon(<span class="bu">type</span>):</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__new__</span>(meta, name, bases, class_dict):</span>
@@ -922,7 +1005,7 @@ Defining an invalid Polygon</code></pre>
 <li>Allows the same behaviour without the need for a metaclass</li>
 </ul></li>
 </ul>
-<div id="dfd723fc" class="cell" data-execution_count="3">
+<div id="c1433075" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BetterPolygon:</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    sides <span class="op">=</span> <span class="va">None</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -993,7 +1076,7 @@ Defining an invalid Polygon</code></pre>
 </ul></li>
 <li>The concept is that you can’t inherit from multiple disjoint metaclasses</li>
 </ul>
-<div id="c0f87fc6" class="cell" data-execution_count="4">
+<div id="a4179e8d" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ValidateFilled(<span class="bu">type</span>):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__new__</span>(meta, name, bases, class_dict):</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Only validate subclasses of the filled class</span></span>
@@ -1062,7 +1145,7 @@ Before BluePentagon definition, should fail because blue is not a valid colour</
 <li>Use this to layer validation</li>
 </ul></li>
 </ul>
-<div id="64e1c35a" class="cell" data-execution_count="5">
+<div id="1b72aa79" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ValidatePolygon(<span class="bu">type</span>):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__new__</span>(meta, name, bases, class_dict):</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Only validate subclasses of the Polygon class</span></span>
@@ -1129,7 +1212,7 @@ Failed to define RedLine. Got exception: Polygons need 3+ sides</code></pre>
 <li>Validation logic runs via the <code>super().__init_subclass__</code> call</li>
 </ul></li>
 </ul>
-<div id="195e4dd3" class="cell" data-execution_count="6">
+<div id="e7ba213c" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Filled:</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    colour <span class="op">=</span> <span class="va">None</span> <span class="co"># Must be specified by subclasses</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1185,7 +1268,7 @@ After class definition</code></pre>
 <ul>
 <li><code>__init_subclass__</code> also works when dealing with multiple and diamond inheritance structures (See <a href="../../Chapter_07/Item_053/item_053.html">Item 53</a>)</li>
 </ul>
-<div id="d495002e" class="cell" data-execution_count="7">
+<div id="ffce2303" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A basic diamond hierarchy</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Top:</span>

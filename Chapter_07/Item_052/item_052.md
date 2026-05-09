@@ -185,7 +185,7 @@ print(f"There are {result} lines")
 remove_test_files(tmpdir)
 ```
 
-    There are 4813 lines
+    There are 4507 lines
 
 - The problem here is our implementation is now very inflexible
   - `mapreduce` is very specific to our the exact process we want to
@@ -384,7 +384,7 @@ print(f"There are {result} lines")
 remove_test_files(tmpdir)
 ```
 
-    There are 5358 lines
+    There are 4979 lines
 
 - We can thus write new `GenericInputData` and `GenericWorker`
   subclasses without having to rewrite the glue code
