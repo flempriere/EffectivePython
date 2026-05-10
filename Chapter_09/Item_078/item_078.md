@@ -170,11 +170,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmpngq2kg2h/0. Expected [b'/tmp/tmpngq2kg2h/0-01-abtdkpmefq\n'] lines, found [b'/tmp/tmpngq2kg2h/0-01-abtdkpmefq\n']
-    File: /tmp/tmpngq2kg2h/1. Expected [b'/tmp/tmpngq2kg2h/1-01-mnqrawdcaq\n', b'/tmp/tmpngq2kg2h/1-02-vhnlrhvlvi\n'] lines, found [b'/tmp/tmpngq2kg2h/1-01-mnqrawdcaq\n', b'/tmp/tmpngq2kg2h/1-02-vhnlrhvlvi\n']
-    File: /tmp/tmpngq2kg2h/2. Expected [b'/tmp/tmpngq2kg2h/2-01-hcuxhktcju\n'] lines, found [b'/tmp/tmpngq2kg2h/2-01-hcuxhktcju\n']
-    File: /tmp/tmpngq2kg2h/3. Expected [] lines, found []
-    File: /tmp/tmpngq2kg2h/4. Expected [b'/tmp/tmpngq2kg2h/4-01-iphdofchfd\n', b'/tmp/tmpngq2kg2h/4-02-nohlwuxeml\n'] lines, found [b'/tmp/tmpngq2kg2h/4-01-iphdofchfd\n', b'/tmp/tmpngq2kg2h/4-02-nohlwuxeml\n']
+    File: /tmp/tmppmfazzud/0. Expected [] lines, found []
+    File: /tmp/tmppmfazzud/1. Expected [] lines, found []
+    File: /tmp/tmppmfazzud/2. Expected [b'/tmp/tmppmfazzud/2-01-lvhwdbwizx\n'] lines, found [b'/tmp/tmppmfazzud/2-01-lvhwdbwizx\n']
+    File: /tmp/tmppmfazzud/3. Expected [b'/tmp/tmppmfazzud/3-01-fzavcpwujr\n'] lines, found [b'/tmp/tmppmfazzud/3-01-fzavcpwujr\n']
+    File: /tmp/tmppmfazzud/4. Expected [] lines, found []
     All tests passed!
 
 - Now the code looks better but we now have blocking system calls
@@ -447,11 +447,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmpok5ciptb/0. Expected [b'/tmp/tmpok5ciptb/0-01-lvkubmigvy\n', b'/tmp/tmpok5ciptb/0-02-ijrjqgbekt\n', b'/tmp/tmpok5ciptb/0-03-lxqyezkpcy\n', b'/tmp/tmpok5ciptb/0-04-whmqfwtwwr\n', b'/tmp/tmpok5ciptb/0-05-obcaxokmuo\n', b'/tmp/tmpok5ciptb/0-06-jbyncpjmuu\n'] lines, found [b'/tmp/tmpok5ciptb/0-01-lvkubmigvy\n', b'/tmp/tmpok5ciptb/0-02-ijrjqgbekt\n', b'/tmp/tmpok5ciptb/0-03-lxqyezkpcy\n', b'/tmp/tmpok5ciptb/0-04-whmqfwtwwr\n', b'/tmp/tmpok5ciptb/0-05-obcaxokmuo\n', b'/tmp/tmpok5ciptb/0-06-jbyncpjmuu\n']
-    File: /tmp/tmpok5ciptb/1. Expected [b'/tmp/tmpok5ciptb/1-01-fgjpewqrtj\n'] lines, found [b'/tmp/tmpok5ciptb/1-01-fgjpewqrtj\n']
-    File: /tmp/tmpok5ciptb/2. Expected [] lines, found []
-    File: /tmp/tmpok5ciptb/3. Expected [] lines, found []
-    File: /tmp/tmpok5ciptb/4. Expected [] lines, found []
+    File: /tmp/tmpu2l4_9pi/0. Expected [b'/tmp/tmpu2l4_9pi/0-01-fclqcqgrwt\n'] lines, found [b'/tmp/tmpu2l4_9pi/0-01-fclqcqgrwt\n']
+    File: /tmp/tmpu2l4_9pi/1. Expected [b'/tmp/tmpu2l4_9pi/1-01-mbhfmhmlab\n', b'/tmp/tmpu2l4_9pi/1-02-vzaybvzxgn\n'] lines, found [b'/tmp/tmpu2l4_9pi/1-01-mbhfmhmlab\n', b'/tmp/tmpu2l4_9pi/1-02-vzaybvzxgn\n']
+    File: /tmp/tmpu2l4_9pi/2. Expected [] lines, found []
+    File: /tmp/tmpu2l4_9pi/3. Expected [] lines, found []
+    File: /tmp/tmpu2l4_9pi/4. Expected [b'/tmp/tmpu2l4_9pi/4-01-zvbfxrthmp\n', b'/tmp/tmpu2l4_9pi/4-02-tgxpltyojz\n', b'/tmp/tmpu2l4_9pi/4-03-ggwvbnlhou\n'] lines, found [b'/tmp/tmpu2l4_9pi/4-01-zvbfxrthmp\n', b'/tmp/tmpu2l4_9pi/4-02-tgxpltyojz\n', b'/tmp/tmpu2l4_9pi/4-03-ggwvbnlhou\n']
     All tests passed!
 
 ## Things to Remember

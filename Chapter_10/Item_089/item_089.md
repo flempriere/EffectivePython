@@ -202,9 +202,9 @@ gc.collect()
 print("Still going")
 ```
 
-    Exception ignored while closing generator <generator object broken_generator at 0x7f5c832ebb50>:
+    Exception ignored while closing generator <generator object broken_generator at 0x7f5bccb03b50>:
     Traceback (most recent call last):
-      File "/tmp/ipykernel_11960/416899508.py", line 10, in broken_generator
+      File "/tmp/ipykernel_12080/416899508.py", line 10, in broken_generator
     RuntimeError: Broken
 
     Before
