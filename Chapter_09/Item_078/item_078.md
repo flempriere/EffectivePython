@@ -170,11 +170,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmppmfazzud/0. Expected [] lines, found []
-    File: /tmp/tmppmfazzud/1. Expected [] lines, found []
-    File: /tmp/tmppmfazzud/2. Expected [b'/tmp/tmppmfazzud/2-01-lvhwdbwizx\n'] lines, found [b'/tmp/tmppmfazzud/2-01-lvhwdbwizx\n']
-    File: /tmp/tmppmfazzud/3. Expected [b'/tmp/tmppmfazzud/3-01-fzavcpwujr\n'] lines, found [b'/tmp/tmppmfazzud/3-01-fzavcpwujr\n']
-    File: /tmp/tmppmfazzud/4. Expected [] lines, found []
+    File: /tmp/tmp1z2cyg8i/0. Expected [] lines, found []
+    File: /tmp/tmp1z2cyg8i/1. Expected [] lines, found []
+    File: /tmp/tmp1z2cyg8i/2. Expected [] lines, found []
+    File: /tmp/tmp1z2cyg8i/3. Expected [b'/tmp/tmp1z2cyg8i/3-01-hebeoprwjc\n'] lines, found [b'/tmp/tmp1z2cyg8i/3-01-hebeoprwjc\n']
+    File: /tmp/tmp1z2cyg8i/4. Expected [] lines, found []
     All tests passed!
 
 - Now the code looks better but we now have blocking system calls
@@ -447,11 +447,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmpu2l4_9pi/0. Expected [b'/tmp/tmpu2l4_9pi/0-01-fclqcqgrwt\n'] lines, found [b'/tmp/tmpu2l4_9pi/0-01-fclqcqgrwt\n']
-    File: /tmp/tmpu2l4_9pi/1. Expected [b'/tmp/tmpu2l4_9pi/1-01-mbhfmhmlab\n', b'/tmp/tmpu2l4_9pi/1-02-vzaybvzxgn\n'] lines, found [b'/tmp/tmpu2l4_9pi/1-01-mbhfmhmlab\n', b'/tmp/tmpu2l4_9pi/1-02-vzaybvzxgn\n']
-    File: /tmp/tmpu2l4_9pi/2. Expected [] lines, found []
-    File: /tmp/tmpu2l4_9pi/3. Expected [] lines, found []
-    File: /tmp/tmpu2l4_9pi/4. Expected [b'/tmp/tmpu2l4_9pi/4-01-zvbfxrthmp\n', b'/tmp/tmpu2l4_9pi/4-02-tgxpltyojz\n', b'/tmp/tmpu2l4_9pi/4-03-ggwvbnlhou\n'] lines, found [b'/tmp/tmpu2l4_9pi/4-01-zvbfxrthmp\n', b'/tmp/tmpu2l4_9pi/4-02-tgxpltyojz\n', b'/tmp/tmpu2l4_9pi/4-03-ggwvbnlhou\n']
+    File: /tmp/tmps0quz_g3/0. Expected [] lines, found []
+    File: /tmp/tmps0quz_g3/1. Expected [] lines, found []
+    File: /tmp/tmps0quz_g3/2. Expected [] lines, found []
+    File: /tmp/tmps0quz_g3/3. Expected [b'/tmp/tmps0quz_g3/3-01-tmfbulbofj\n'] lines, found [b'/tmp/tmps0quz_g3/3-01-tmfbulbofj\n']
+    File: /tmp/tmps0quz_g3/4. Expected [] lines, found []
     All tests passed!
 
 ## Things to Remember
