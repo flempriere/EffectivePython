@@ -1,6 +1,6 @@
 # Item 96: Consider Extension Modules to Maximise Performance and
-Ergonomics
 
+Ergonomics
 
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)

@@ -2,21 +2,21 @@
 
 - Runtime is not the only metric of performance
 - Some include,
-  1.  CPU utilisation
-  2.  Throughput
-  3.  Latency
-  4.  Response time
-  5.  Memory usage
-  6.  Cache hit rate
+  1. CPU utilisation
+  2. Throughput
+  3. Latency
+  4. Response time
+  5. Memory usage
+  6. Cache hit rate
 - Assessing performance does not also mean just taking one measurement
   such as the average
   - Generally one should also consider the underlying statistical
     distribution
   - E.g. With latency one might consider,
-    1.  Mean latency
-    2.  Median latency
-    3.  99th percentile latency,
-    4.  Worst-case latency
+    1. Mean latency
+    2. Median latency
+    3. 99th percentile latency,
+    4. Worst-case latency
 - *Good Performance* is subjective
   - Depends on the problem domain, environment and number of users
 - *Performance Engineering* is the process of analysing program

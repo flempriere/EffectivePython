@@ -1,6 +1,6 @@
 # Item 97: Rely on Precompiled Bytecode and File System Caching to
-Improve Startup Times
 
+Improve Startup Times
 
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
