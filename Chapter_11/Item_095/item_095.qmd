@@ -58,8 +58,7 @@ import ctypes
 import pathlib
 
 # Set up the library
-run_py = pathlib.Path(__file__)
-library_path = run_py.parent / "library.lib"
+library_path = "./library.lib"
 my_library = ctypes.cdll.LoadLibrary(library_path)
 
 
@@ -106,8 +105,7 @@ import ctypes
 import pathlib
 
 # Set up the library
-run_py = pathlib.Path(__file__)
-library_path = run_py.parent / "library.lib"
+"./library.lib"
 my_library = ctypes.cdll.LoadLibrary(library_path)
 
 # Setup dot product library function
@@ -173,8 +171,7 @@ import ctypes
 import pathlib
 
 # Set up the library
-run_py = pathlib.Path(__file__)
-library_path = run_py.parent / "library.lib"
+"./library.lib"
 my_library = ctypes.cdll.LoadLibrary(library_path)
 
 # Setup dot product library function
@@ -203,7 +200,8 @@ class MyLibraryTest(unittest.TestCase):
         result = dot_product([1.0, 2.5, 3.5], [-7, 4, -12.1])
         self.assertAlmostEqual(-39.35, result)
 
-unittest.main(argv=[''], verbosity=2, exit=False)
+
+unittest.main(argv=[""], verbosity=2, exit=False)
 ```
 
 - `ctypes` provides further functionality, e.g.

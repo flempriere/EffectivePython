@@ -165,6 +165,7 @@ print(f"{delay / count / 10_000 * 1e9:.2f} nanoseconds")
 - `timeit` can also be used as a command-line tool
 - For example we might want to compare dictionary key lookup methods (See [Item 26](../../Chapter_04/Item_026/item_026.qmd))
     1. Using the `in` operator
+
        ```shell
         $ uv run python3.14 -m timeit \
         > --setup='my_dict = {"key":  123}' \
@@ -178,7 +179,7 @@ print(f"{delay / count / 10_000 * 1e9:.2f} nanoseconds")
         > --setup='my_dict = {"key": 123}' \
         > 'if (value := my_dict.get("key")) is not None: value'
         10000000 loops, best of 5: 22.6 nsec per loop
-      ```
+       ```
 
     3. Catching an exception
 
@@ -188,7 +189,7 @@ print(f"{delay / count / 10_000 * 1e9:.2f} nanoseconds")
         > 'try: my_dict["key"]
         > except KeyError: pass'
         20000000 loops, best of 5: 12.2 nsec per loop
-      ```
+       ```
 
 - The command line interface automatically determines the number of loops to run
     - Also repeats the result five times and takes the best
