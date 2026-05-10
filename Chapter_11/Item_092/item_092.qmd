@@ -4,4 +4,268 @@ title: "Item 92: Profile Before Optimising"
 
 ## Notes
 
+- Python's dynamic behaviour means that sometimes the performance cost of operations is not intuitive
+    - Some operations that would seem slow are fast, e.g.
+        1. String manipulation
+        2. Use of Generators
+    - Some basic operations that would seem fast are slow, e.g.
+        1. Attribute access
+        2. Function calls
+- Best way to determine performance and identify bottlenecks is to actually profile
+    - Python provides a built-in *profiler*
+- Profiling lets you focus on the real bottlenecks
+- For example, a classic profiling scenario is a sort
+    - Insertion sort works by inserting the next item in the unsorted part of a list into it's correct position in the sorted part of the list
+    - We'll demo by implementing an inefficient `insert_value` function to determine the insertion point via a linear scan
+
+```{python}
+def insert_value(array, value):
+    for i, existing in enumerate(array):
+        if existing > value:
+            array.insert(i, value)
+            return
+    array.append(value)
+
+
+def insertion_sort(data):
+    result = []
+    for value in data:
+        insert_value(result, value)
+    return result
+```
+
+- We can then profile the code
+    - Generate a list of random numbers and define a `test` function (See [Item 39](../../Chapter_05/Item_039/item_039.qmd))
+- Python provides two profilers
+    - The pure python `profile`
+    - C extension module `cProfile`
+    - Prefer `cProfile` because it has less of a performance overhead
+        - `profile` has an overhead that can skew the results
+- We then instantiate a `Profile` object
+    - Can then run a profile on a function via the `runcall` method
+- To extract the statistics we can use the `pstats` built-in
+    - Then use the `Stats` class
+        - Provides methods to adjust how we display the profiling
+
+```{python}
+from cProfile import Profile
+from pstats import Stats
+from random import randint
+
+max_size = 12**4
+data = [randint(0, max_size) for _ in range(max_size)]
+test = lambda: insertion_sort(data)
+
+
+def insert_value(array, value):
+    for i, existing in enumerate(array):
+        if existing > value:
+            array.insert(i, value)
+            return
+    array.append(value)
+
+
+def insertion_sort(data):
+    result = []
+    for value in data:
+        insert_value(result, value)
+    return result
+
+
+# Run the profile
+profiler = Profile()
+profiler.runcall(test)
+
+stats = Stats(profiler)
+stats.strip_dirs()
+stats.sort_stats("cumulative")
+stats.print_stats()
+```
+
+- The profiler shows a range of statistics, namely
+    1. **ncalls:** The number of times the function is called
+    2. **tottime:** Number of seconds spent executing the function, excluding executing sub-functions
+    3. **tottime percall:** Average number of time spent in a function each time it is called (excluding sub-functions it calls)
+    4. **cumtime:** Cumulative number of seconds spent executing this function, including in sub-functions
+    5. **cumtime percall:** Average number of seconds spent executing this function each call, including in sub-functions
+- As expected the biggest consumer is our `insert_value` function
+    - We can reimplement this with a *binary search*
+    - Provided by the `bisect` built-in module
+
+::: {.callout-note}
+When profiling a program be sure to measure the actual code and not any external systems. Functions that access disk or networks will tend to otherwise dominate the profile because these operations are orders of magnitude slower than the actual CPU. If your program or system provides a cache then improperly warming it may cause subsequent tests to give very different results
+:::
+
+
+```{python}
+from bisect import bisect_left
+from cProfile import Profile
+from pstats import Stats
+from random import randint
+
+max_size = 12**4
+data = [randint(0, max_size) for _ in range(max_size)]
+test = lambda: insertion_sort(data)
+
+
+def insert_value(array, value):
+    i = bisect_left(array, value)
+    array.insert(i, value)
+
+
+def insertion_sort(data):
+    result = []
+    for value in data:
+        insert_value(result, value)
+    return result
+
+
+# Run the profile
+profiler = Profile()
+profiler.runcall(test)
+
+stats = Stats(profiler)
+stats.strip_dirs()
+stats.sort_stats("cumulative")
+stats.print_stats()
+```
+
+- The new implementation runs much faster
+    - The function with the highest **tottime** is now the `insert` method on `list`
+- One scenario that occurs frequently is a common utility function dominating the execution time
+    - Can be difficult to interpret these scenarios because the default profiler display will mix all the different calls together
+        - Would be better to isolate by call site
+- Consider the following example,
+
+```{python}
+from cProfile import Profile
+from pstats import Stats
+
+
+def utility(a, b):
+    c = 1
+    for i in range(100):
+        c += a * b
+
+
+def first_function():
+    for _ in range(1000):
+        utility(4, 5)
+
+
+def second_function():
+    for _ in range(10):
+        utility(1, 3)
+
+
+def program():
+    for _ in range(20):
+        first_function()
+        second_function()
+
+
+profiler = Profile()
+profiler.runcall(program)
+
+stats = Stats(profiler)
+stats.strip_dirs()
+stats.sort_stats("cumulative")
+stats.print_stats()
+```
+
+- We can see that `utility` is called the most
+    - But not obvious why, or which caller is most responsible
+- We can use `print_callers` on the `Stats` object
+    - Show's which caller contributed to each function's profiling information
+
+```{python}
+from cProfile import Profile
+from pstats import Stats
+
+
+def utility(a, b):
+    c = 1
+    for i in range(100):
+        c += a * b
+
+
+def first_function():
+    for _ in range(1000):
+        utility(4, 5)
+
+
+def second_function():
+    for _ in range(10):
+        utility(1, 3)
+
+
+def program():
+    for _ in range(20):
+        first_function()
+        second_function()
+
+
+profiler = Profile()
+profiler.runcall(program)
+
+stats = Stats(profiler)
+stats.strip_dirs()
+stats.sort_stats("cumulative")
+stats.print_callers()
+```
+
+- Functions called are listed on the left
+    - Functions that call that function are listed on the right
+- This lets us see that `first_function` is clearly the main culprit
+- An alternative is the `print_calles` method
+    - Provides a top down view of which functions another function calls
+
+```{python}
+from cProfile import Profile
+from pstats import Stats
+
+
+def utility(a, b):
+    c = 1
+    for i in range(100):
+        c += a * b
+
+
+def first_function():
+    for _ in range(1000):
+        utility(4, 5)
+
+
+def second_function():
+    for _ in range(10):
+        utility(1, 3)
+
+
+def program():
+    for _ in range(20):
+        first_function()
+        second_function()
+
+
+profiler = Profile()
+profiler.runcall(program)
+
+stats = Stats(profiler)
+stats.strip_dirs()
+stats.sort_stats("cumulative")
+stats.print_callees()
+```
+
+- There are further tools for analysing performance once a basic profiling has been conducted (See [Item 93](../Item_093/item_093.qmd) and [Item 98](../Item_098/item_098.qmd))
+- There is also a broader community of profiling tools, e.g.
+    - Line profilers
+    - Sampling profilers
+    - Linux's `perf` tool
+    - Memory usage profilers
+
 ## Things to Remember
+
+- Before attempting to optimise always profile to identify bottlenecks
+- Prefer the `cProfile` profiler over `profile` for less profiling overhead
+- Use `runcall` on a `Profile` object to profile a tree of function calls isolated from a larger program
+- Use `Stats` from the `pstats` module to select and print statistics generated by a profiler
