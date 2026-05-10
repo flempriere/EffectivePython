@@ -170,11 +170,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmp1z2cyg8i/0. Expected [] lines, found []
-    File: /tmp/tmp1z2cyg8i/1. Expected [] lines, found []
-    File: /tmp/tmp1z2cyg8i/2. Expected [] lines, found []
-    File: /tmp/tmp1z2cyg8i/3. Expected [b'/tmp/tmp1z2cyg8i/3-01-hebeoprwjc\n'] lines, found [b'/tmp/tmp1z2cyg8i/3-01-hebeoprwjc\n']
-    File: /tmp/tmp1z2cyg8i/4. Expected [] lines, found []
+    File: /tmp/tmpy3_posvm/0. Expected [b'/tmp/tmpy3_posvm/0-01-xagifhgfis\n', b'/tmp/tmpy3_posvm/0-02-akrmnsjvcp\n', b'/tmp/tmpy3_posvm/0-03-zogycubuku\n'] lines, found [b'/tmp/tmpy3_posvm/0-01-xagifhgfis\n', b'/tmp/tmpy3_posvm/0-02-akrmnsjvcp\n', b'/tmp/tmpy3_posvm/0-03-zogycubuku\n']
+    File: /tmp/tmpy3_posvm/1. Expected [b'/tmp/tmpy3_posvm/1-01-fddszcedlm\n'] lines, found [b'/tmp/tmpy3_posvm/1-01-fddszcedlm\n']
+    File: /tmp/tmpy3_posvm/2. Expected [] lines, found []
+    File: /tmp/tmpy3_posvm/3. Expected [] lines, found []
+    File: /tmp/tmpy3_posvm/4. Expected [] lines, found []
     All tests passed!
 
 - Now the code looks better but we now have blocking system calls
@@ -447,11 +447,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmps0quz_g3/0. Expected [] lines, found []
-    File: /tmp/tmps0quz_g3/1. Expected [] lines, found []
-    File: /tmp/tmps0quz_g3/2. Expected [] lines, found []
-    File: /tmp/tmps0quz_g3/3. Expected [b'/tmp/tmps0quz_g3/3-01-tmfbulbofj\n'] lines, found [b'/tmp/tmps0quz_g3/3-01-tmfbulbofj\n']
-    File: /tmp/tmps0quz_g3/4. Expected [] lines, found []
+    File: /tmp/tmp_q3xuqae/0. Expected [] lines, found []
+    File: /tmp/tmp_q3xuqae/1. Expected [] lines, found []
+    File: /tmp/tmp_q3xuqae/2. Expected [] lines, found []
+    File: /tmp/tmp_q3xuqae/3. Expected [] lines, found []
+    File: /tmp/tmp_q3xuqae/4. Expected [] lines, found []
     All tests passed!
 
 ## Things to Remember

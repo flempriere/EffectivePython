@@ -61,6 +61,7 @@ print("Exit status", proc.poll())
     Working...
     Working...
     Working...
+    Working...
     Exit status 0
 
 - Decoupling the child process from the parent means we can run multiple
@@ -128,9 +129,9 @@ for proc in procs:
     print(out[-10:])
 ```
 
-    b'9\x857\xd6\xca\x0cN\xef\x9d\xf9'
-    b'+]\xc4\x1co\\z\xcd\x142'
-    b'~1\x111f\xc4\x11\x0f\x8bI'
+    b'\xcc\x96FeO \x0b\t5N'
+    b'[4\xd7g\x99N\x81\x8fe\xb6'
+    b'\xcbb0\x0f\\Kd\xe6\xd7c'
 
 - Can also chain parallel processes, a-la UNIX pipelines
   - Connect the output of one child process as the input of another
@@ -191,9 +192,9 @@ for proc in hash_procs:
     assert proc.returncode == 0
 ```
 
-    b'\xb4[\xee\xd6>f\xbe=\xe2D'
-    b'\xd2{kc\x95\x899L\\j'
-    b'\xf8\xa5\x9dd\x1dm\x94\x17L\xdb'
+    b'\xe3\xb6`\xd2\xd4\x8d\xfe4\x08e'
+    b'\x00\rd\x0c\xcc\x8e\xb5\xc4\r\xe0'
+    b'.R\xa7Z\xdcl\xbe\x8f:,'
 
 - `run_hash` defines spawns and returns one process to create the hash
   - It connects the spawned process to a provided input stream
