@@ -920,7 +920,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Consider the following <code>assert</code> statement</li>
 </ul>
-<div id="3a192fd6" class="cell" data-execution_count="1">
+<div id="da20b5d7" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> n <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>, <span class="ss">f"</span><span class="sc">{</span>n<span class="op">=</span><span class="sc">}</span><span class="ss"> not even"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
@@ -938,7 +938,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>This can be unrolled to the following,</li>
 </ul>
-<div id="dd463aef" class="cell" data-execution_count="2">
+<div id="2648414a" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__debug__</span>:</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> (n <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">AssertionError</span>(<span class="ss">f"</span><span class="sc">{</span>n<span class="op">=</span><span class="sc">}</span><span class="ss"> not even"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -959,7 +959,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>__debug__</code> is a global built-in variable indicating if a program is in debug mode</li>
 <li>You can use this too, to gate the execution of debugging code</li>
 </ul>
-<div id="da73ec2f" class="cell" data-execution_count="3">
+<div id="969e25a2" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> expensive_check(x):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -996,7 +996,7 @@ OK</code></pre>
 <ul>
 <li><code>__debug__</code> is one of the few python values that cannot be modified at runtime (See <a href="../../Chapter_01/Item_003/item_003.html">Item 3</a>)</li>
 </ul>
-<div id="cd2360b7" class="cell" data-execution_count="4">
+<div id="5ddb1bcd" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="va">__debug__</span> <span class="op">=</span> <span class="va">False</span>  <span class="co"># Should fail</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">

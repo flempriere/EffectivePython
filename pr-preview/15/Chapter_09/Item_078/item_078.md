@@ -170,11 +170,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmpy3_posvm/0. Expected [b'/tmp/tmpy3_posvm/0-01-xagifhgfis\n', b'/tmp/tmpy3_posvm/0-02-akrmnsjvcp\n', b'/tmp/tmpy3_posvm/0-03-zogycubuku\n'] lines, found [b'/tmp/tmpy3_posvm/0-01-xagifhgfis\n', b'/tmp/tmpy3_posvm/0-02-akrmnsjvcp\n', b'/tmp/tmpy3_posvm/0-03-zogycubuku\n']
-    File: /tmp/tmpy3_posvm/1. Expected [b'/tmp/tmpy3_posvm/1-01-fddszcedlm\n'] lines, found [b'/tmp/tmpy3_posvm/1-01-fddszcedlm\n']
-    File: /tmp/tmpy3_posvm/2. Expected [] lines, found []
-    File: /tmp/tmpy3_posvm/3. Expected [] lines, found []
-    File: /tmp/tmpy3_posvm/4. Expected [] lines, found []
+    File: /tmp/tmps9t0vm96/0. Expected [] lines, found []
+    File: /tmp/tmps9t0vm96/1. Expected [] lines, found []
+    File: /tmp/tmps9t0vm96/2. Expected [b'/tmp/tmps9t0vm96/2-01-ayhrwjopzv\n'] lines, found [b'/tmp/tmps9t0vm96/2-01-ayhrwjopzv\n']
+    File: /tmp/tmps9t0vm96/3. Expected [b'/tmp/tmps9t0vm96/3-01-uqbgdmpwbp\n'] lines, found [b'/tmp/tmps9t0vm96/3-01-uqbgdmpwbp\n']
+    File: /tmp/tmps9t0vm96/4. Expected [b'/tmp/tmps9t0vm96/4-01-epwmyevkuj\n'] lines, found [b'/tmp/tmps9t0vm96/4-01-epwmyevkuj\n']
     All tests passed!
 
 - Now the code looks better but we now have blocking system calls
@@ -447,11 +447,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmp_q3xuqae/0. Expected [] lines, found []
-    File: /tmp/tmp_q3xuqae/1. Expected [] lines, found []
-    File: /tmp/tmp_q3xuqae/2. Expected [] lines, found []
-    File: /tmp/tmp_q3xuqae/3. Expected [] lines, found []
-    File: /tmp/tmp_q3xuqae/4. Expected [] lines, found []
+    File: /tmp/tmpakazny4p/0. Expected [] lines, found []
+    File: /tmp/tmpakazny4p/1. Expected [b'/tmp/tmpakazny4p/1-01-cdxpcyzoes\n', b'/tmp/tmpakazny4p/1-02-tsafjgwibs\n'] lines, found [b'/tmp/tmpakazny4p/1-01-cdxpcyzoes\n', b'/tmp/tmpakazny4p/1-02-tsafjgwibs\n']
+    File: /tmp/tmpakazny4p/2. Expected [b'/tmp/tmpakazny4p/2-01-awbkcteszk\n'] lines, found [b'/tmp/tmpakazny4p/2-01-awbkcteszk\n']
+    File: /tmp/tmpakazny4p/3. Expected [b'/tmp/tmpakazny4p/3-01-kcbsdpqnxn\n', b'/tmp/tmpakazny4p/3-02-bhasljwmwd\n', b'/tmp/tmpakazny4p/3-03-agmifrobrp\n'] lines, found [b'/tmp/tmpakazny4p/3-01-kcbsdpqnxn\n', b'/tmp/tmpakazny4p/3-02-bhasljwmwd\n', b'/tmp/tmpakazny4p/3-03-agmifrobrp\n']
+    File: /tmp/tmpakazny4p/4. Expected [] lines, found []
     All tests passed!
 
 ## Things to Remember

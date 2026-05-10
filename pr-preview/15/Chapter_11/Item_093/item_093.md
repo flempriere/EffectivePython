@@ -29,7 +29,7 @@ delay = timeit.timeit(stmt="1+2")
 print(delay)
 ```
 
-    0.00711584599980597
+    0.007678854999994655
 
 - `timeit.timeit` calculates the time to run one million iterations of
   the provided `stmt` argument
@@ -42,7 +42,7 @@ delay = timeit.timeit(stmt="1+2", number=100)
 print(delay)
 ```
 
-    1.5929999790387228e-06
+    1.7639999896346126e-06
 
 - The risk with smaller iteration numbers is that there is a risk that
   the computer’s noise will obfuscate the test results
@@ -62,7 +62,7 @@ delay = timeit.timeit(stmt="1+2", number=count)
 print(f"{delay / count * 1e9:.2f} nanoseconds")
 ```
 
-    6.20 nanoseconds
+    8.67 nanoseconds
 
 - Often there needs to be some surrounding scaffolding or test harness
   to support a benchmark, e.g.
@@ -98,7 +98,7 @@ probe in numbers
 print(f"{delay / count * 1e9:.2f} nanoseconds")
 ```
 
-    53332.93 nanoseconds
+    70430.24 nanoseconds
 
 - Once a baseline is established we can modify the approach and compare
   the behaviours
@@ -126,7 +126,7 @@ probe in numbers
 print(f"{delay / count * 1e9:.2f} nanoseconds")
 ```
 
-    24.79 nanoseconds
+    26.17 nanoseconds
 
 - We should see that checking for membership in a `set` over our `list`
   takes on the order of nanoseconds as opposed to microseconds
@@ -160,7 +160,7 @@ delay = timeit.timeit(
 print(f"{delay / count * 1e9:.2f} nanoseconds")
 ```
 
-    282110.86 nanoseconds
+    289932.65 nanoseconds
 
 - Above measures how long each call to `loop_sum` takes
   - Meaningless as we are interested in the timing of the inner loop
@@ -190,22 +190,39 @@ delay = timeit.timeit(
 print(f"{delay / count / 10_000 * 1e9:.2f} nanoseconds")
 ```
 
-    28.56 nanoseconds
+    31.26 nanoseconds
 
 - Can see the cost of the function now *per item*
 - `timeit` can also be used as a command-line tool
 - For example we might want to compare dictionary key lookup methods
   (See [Item 26](../../Chapter_04/Item_026/item_026.qmd))
   1.  Using the `in` operator
-      `shell       $ uv run python3.14 -m timeit \       > --setup='my_dict = {"key":  123}' \       > 'if "key" in my_dict: my_dict["key"]'       10000000 loops, best of 5: 21.5 nsec per loop`
+
+      ``` shell
+       $ uv run python3.14 -m timeit \
+       > --setup='my_dict = {"key":  123}' \
+       > 'if "key" in my_dict: my_dict["key"]'
+       10000000 loops, best of 5: 21.5 nsec per loop
+      ```
 
   2.  Using the `get` method
 
-      `shell  $  uv run python 3.14 -m  timeit \  > --setup='my_dict = {"key": 123}' \  > 'if (value := my_dict.get("key")) is not None: value'  10000000 loops, best of 5: 22.6 nsec per loop`
+      ``` shell
+       $  uv run python 3.14 -m  timeit \
+       > --setup='my_dict = {"key": 123}' \
+       > 'if (value := my_dict.get("key")) is not None: value'
+       10000000 loops, best of 5: 22.6 nsec per loop
+      ```
 
   3.  Catching an exception
 
-      `shell  $ uv run python3.14 -m timeit \  > --setup='my_dict = {"key": 123}' \  > 'try: my_dict["key"]  > except KeyError: pass'  20000000 loops, best of 5: 12.2 nsec per loop`
+      ``` shell
+       $ uv run python3.14 -m timeit \
+       > --setup='my_dict = {"key": 123}' \
+       > 'try: my_dict["key"]
+       > except KeyError: pass'
+       20000000 loops, best of 5: 12.2 nsec per loop
+      ```
 - The command line interface automatically determines the number of
   loops to run
   - Also repeats the result five times and takes the best
