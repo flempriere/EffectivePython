@@ -170,11 +170,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmp1z2cyg8i/0. Expected [] lines, found []
-    File: /tmp/tmp1z2cyg8i/1. Expected [] lines, found []
-    File: /tmp/tmp1z2cyg8i/2. Expected [] lines, found []
-    File: /tmp/tmp1z2cyg8i/3. Expected [b'/tmp/tmp1z2cyg8i/3-01-hebeoprwjc\n'] lines, found [b'/tmp/tmp1z2cyg8i/3-01-hebeoprwjc\n']
-    File: /tmp/tmp1z2cyg8i/4. Expected [] lines, found []
+    File: /tmp/tmps9t0vm96/0. Expected [] lines, found []
+    File: /tmp/tmps9t0vm96/1. Expected [] lines, found []
+    File: /tmp/tmps9t0vm96/2. Expected [b'/tmp/tmps9t0vm96/2-01-ayhrwjopzv\n'] lines, found [b'/tmp/tmps9t0vm96/2-01-ayhrwjopzv\n']
+    File: /tmp/tmps9t0vm96/3. Expected [b'/tmp/tmps9t0vm96/3-01-uqbgdmpwbp\n'] lines, found [b'/tmp/tmps9t0vm96/3-01-uqbgdmpwbp\n']
+    File: /tmp/tmps9t0vm96/4. Expected [b'/tmp/tmps9t0vm96/4-01-epwmyevkuj\n'] lines, found [b'/tmp/tmps9t0vm96/4-01-epwmyevkuj\n']
     All tests passed!
 
 - Now the code looks better but we now have blocking system calls
@@ -447,11 +447,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmps0quz_g3/0. Expected [] lines, found []
-    File: /tmp/tmps0quz_g3/1. Expected [] lines, found []
-    File: /tmp/tmps0quz_g3/2. Expected [] lines, found []
-    File: /tmp/tmps0quz_g3/3. Expected [b'/tmp/tmps0quz_g3/3-01-tmfbulbofj\n'] lines, found [b'/tmp/tmps0quz_g3/3-01-tmfbulbofj\n']
-    File: /tmp/tmps0quz_g3/4. Expected [] lines, found []
+    File: /tmp/tmpakazny4p/0. Expected [] lines, found []
+    File: /tmp/tmpakazny4p/1. Expected [b'/tmp/tmpakazny4p/1-01-cdxpcyzoes\n', b'/tmp/tmpakazny4p/1-02-tsafjgwibs\n'] lines, found [b'/tmp/tmpakazny4p/1-01-cdxpcyzoes\n', b'/tmp/tmpakazny4p/1-02-tsafjgwibs\n']
+    File: /tmp/tmpakazny4p/2. Expected [b'/tmp/tmpakazny4p/2-01-awbkcteszk\n'] lines, found [b'/tmp/tmpakazny4p/2-01-awbkcteszk\n']
+    File: /tmp/tmpakazny4p/3. Expected [b'/tmp/tmpakazny4p/3-01-kcbsdpqnxn\n', b'/tmp/tmpakazny4p/3-02-bhasljwmwd\n', b'/tmp/tmpakazny4p/3-03-agmifrobrp\n'] lines, found [b'/tmp/tmpakazny4p/3-01-kcbsdpqnxn\n', b'/tmp/tmpakazny4p/3-02-bhasljwmwd\n', b'/tmp/tmpakazny4p/3-03-agmifrobrp\n']
+    File: /tmp/tmpakazny4p/4. Expected [] lines, found []
     All tests passed!
 
 ## Things to Remember

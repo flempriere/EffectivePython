@@ -612,25 +612,14 @@ main()
 ```
 
     Guess between 1 and 5! Shhhhh, it's 3
-    Server: 5 is unsure
-    Server: 1 is same
     Guess between 10 and 15! Shhhhh, it's 12
     Server: 3 is correct
-    Server: 13 is unsure
-    Server: 11 is same
-    Server: 15 is colder
-    Server: 10 is warmer
-    Server: 14 is same
-    Server: 12 is correct
+    Server: 10 is unsure
     Guess between 1 and 3! Shhhhh, it's 2
-    Server: 2 is correctClient: 5 is unsure
-    Client: 1 is same
+    Server: 12 is correct
+    Server: 2 is correct
     Client: 3 is correct
-    Client: 13 is unsure
-    Client: 11 is same
-    Client: 15 is colder
-    Client: 10 is warmer
-    Client: 14 is same
+    Client: 10 is unsure
     Client: 12 is correct
     Client: 2 is correct
 
@@ -1179,21 +1168,29 @@ await main_async()  # Comment out in favour of the line above if running as a sc
 ```
 
     Guess a number between 1 and 5! Shhhh, it's 3
-    Server: 5 is unsure
-    Server: 2 is warmer
+    Server: 1 is unsure
+    Server: 5 is same
+    Server: 4 is warmer
+    Server: 2 is same
     Guess a number between 10 and 15! Shhhh, it's 12
     Server: 3 is correct
-    Server: 14 is unsure
-    Server: 13 is warmer
+    Server: 13 is unsure
+    Server: 11 is same
+    Server: 15 is colder
+    Server: 14 is warmer
     Guess a number between 1 and 3! Shhhh, it's 2
     Server: 12 is correct
     Server: 3 is unsure
     Server: 1 is same
-    Client: 5 is unsure
-    Client: 2 is warmer
+    Client: 1 is unsure
+    Client: 5 is same
+    Client: 4 is warmer
+    Client: 2 is same
     Client: 3 is correct
-    Client: 14 is unsure
-    Client: 13 is warmer
+    Client: 13 is unsure
+    Client: 11 is same
+    Client: 15 is colder
+    Client: 14 is warmer
     Client: 12 is correct
     Client: 3 is unsure
     Client: 1 is same

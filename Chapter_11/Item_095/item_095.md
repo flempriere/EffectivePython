@@ -69,8 +69,7 @@ import ctypes
 import pathlib
 
 # Set up the library
-run_py = pathlib.Path(__file__)
-library_path = run_py.parent / "library.lib"
+library_path = "./library.lib"
 my_library = ctypes.cdll.LoadLibrary(library_path)
 
 
@@ -91,17 +90,8 @@ result = my_library.dot_product(
 print(result)
 ```
 
-    NameError: name '__file__' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[2], line 5
-          2 import pathlib
-          4 # Set up the library
-    ----> 5 run_py = pathlib.Path(__file__)
-          6 library_path = run_py.parent / "library.lib"
-          7 my_library = ctypes.cdll.LoadLibrary(library_path)
-
-    NameError: name '__file__' is not defined
+    <_FuncPtr object at 0x7fd89c843e30>
+    -39.35
 
 - We can find the `dot_product` function as an attribute of the
   `my_library`
@@ -134,8 +124,7 @@ import ctypes
 import pathlib
 
 # Set up the library
-run_py = pathlib.Path(__file__)
-library_path = run_py.parent / "library.lib"
+"./library.lib"
 my_library = ctypes.cdll.LoadLibrary(library_path)
 
 # Setup dot product library function
@@ -162,17 +151,7 @@ result = dot_product([1.0, 2.5, 3.5], [-7, 4, -12.1])
 print(result)
 ```
 
-    NameError: name '__file__' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[3], line 5
-          2 import pathlib
-          4 # Set up the library
-    ----> 5 run_py = pathlib.Path(__file__)
-          6 library_path = run_py.parent / "library.lib"
-          7 my_library = ctypes.cdll.LoadLibrary(library_path)
-
-    NameError: name '__file__' is not defined
+    -39.35
 
 - Alternatively one can use the Python C Extension API (See [Item
   96](../Item_096/item_096.qmd))
@@ -227,8 +206,7 @@ import ctypes
 import pathlib
 
 # Set up the library
-run_py = pathlib.Path(__file__)
-library_path = run_py.parent / "library.lib"
+"./library.lib"
 my_library = ctypes.cdll.LoadLibrary(library_path)
 
 # Setup dot product library function
@@ -257,20 +235,18 @@ class MyLibraryTest(unittest.TestCase):
         result = dot_product([1.0, 2.5, 3.5], [-7, 4, -12.1])
         self.assertAlmostEqual(-39.35, result)
 
-unittest.main(argv=[''], verbosity=2, exit=False)
+
+unittest.main(argv=[""], verbosity=2, exit=False)
 ```
 
-    NameError: name '__file__' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[4], line 6
-          3 import pathlib
-          5 # Set up the library
-    ----> 6 run_py = pathlib.Path(__file__)
-          7 library_path = run_py.parent / "library.lib"
-          8 my_library = ctypes.cdll.LoadLibrary(library_path)
+    test_dot_product (__main__.MyLibraryTest.test_dot_product) ... ok
 
-    NameError: name '__file__' is not defined
+    ----------------------------------------------------------------------
+    Ran 1 test in 0.001s
+
+    OK
+
+    <unittest.main.TestProgram at 0x7fd89c3327b0>
 
 - `ctypes` provides further functionality, e.g.
   - Mapping python objects to C structs
