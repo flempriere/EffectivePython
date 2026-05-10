@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -882,9 +917,328 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li><code>ctypes</code> is a built-in for calling native libraries from Python
+<ul>
+<li>Native libraries must export their functions using the C ABI / calling convention</li>
+</ul></li>
+<li><code>ctypes</code> has two main benefits
+<ol type="1">
+<li>Can use <code>ctypes</code> to glue different systems together via Python</li>
+<li>Provides a path to optimise a python program by replacing components with a native implementation</li>
+</ol></li>
+<li>Consider again our <code>dot_product</code> function from before (See <a href="../../Chapter_11/Item_094/item_094.html">Item 94</a>)</li>
+</ul>
+<div id="23819ce3" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dot_product(a, b):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, j <span class="kw">in</span> <span class="bu">zip</span>(a, b):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        result <span class="op">+=</span> i <span class="op">*</span> j</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dot_product([<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>11</code></pre>
+</div>
+</div>
+<ul>
+<li>We could provide a simple C implementation, first defining a header interface</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* library.h */</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">double</span> dot_product<span class="op">(</span><span class="dt">int</span> length<span class="op">,</span> <span class="dt">double</span><span class="op">*</span> a<span class="op">,</span> <span class="dt">double</span><span class="op">*</span> b<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Then define our implementation
+<ul>
+<li>And compile the result</li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* library.c */</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">/* Simple Library demonstrating ctypes in python */</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"library.h"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> dot_product<span class="op">(</span><span class="dt">int</span> length<span class="op">,</span> <span class="dt">double</span> <span class="op">*</span>a<span class="op">,</span> <span class="dt">double</span> <span class="op">*</span>b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">double</span> result <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> length<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    result <span class="op">+=</span> a<span class="op">[</span>i<span class="op">]</span> <span class="op">*</span> b<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> result<span class="op">;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Compilation of libraries can be a relatively involved process. There are no guarantees that the provided library will work on your machine. You may have to compile the library yourself and update the program below to work with the new library.</p>
+</div>
+</div>
+<ul>
+<li>Using our library function is relatively involved
+<ul>
+<li>We’ll demonstrate below</li>
+</ul></li>
+</ul>
+<div id="b50bd3ed" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ctypes</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pathlib</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the library</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>run_py <span class="op">=</span> pathlib.Path(<span class="va">__file__</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>library_path <span class="op">=</span> run_py.parent <span class="op">/</span> <span class="st">"library.lib"</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>my_library <span class="op">=</span> ctypes.cdll.LoadLibrary(library_path)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_library.dot_product)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>my_library.dot_product.restype <span class="op">=</span> ctypes.c_double</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>vector_ptr <span class="op">=</span> ctypes.POINTER(ctypes.c_double)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>my_library.dot_product.argtypes <span class="op">=</span> (ctypes.c_int, vector_ptr, vector_ptr)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>size <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>vector3 <span class="op">=</span> ctypes.c_double <span class="op">*</span> size</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> vector3(<span class="fl">1.0</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> vector3(<span class="op">-</span><span class="dv">7</span>, <span class="dv">4</span>, <span class="op">-</span><span class="fl">12.1</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> my_library.dot_product(</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="dv">3</span>, ctypes.cast(a, vector_ptr), ctypes.cast(b, vector_ptr)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 5</span>
+<span class="ansi-green-fg">      2</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg ansi-bold">pathlib</span>
+<span class="ansi-green-fg">      4</span> <span style="font-style:italic;color:rgb(95,135,135)"># Set up the library</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">5</span> run_py = pathlib.Path(<span class="ansi-blue-fg ansi-yellow-bg">__file__</span>)
+<span class="ansi-green-fg">      6</span> library_path = run_py.parent / <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">library.lib</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">      7</span> my_library = ctypes.cdll.LoadLibrary(library_path)
+
+<span class="ansi-red-fg">NameError</span>: name '__file__' is not defined</pre>
+</div>
+</div>
+</div>
+<ul>
+<li>We can find the <code>dot_product</code> function as an attribute of the <code>my_library</code>
+<ul>
+<li>This is the loaded object representing the library</li>
+<li>We can see that it is a function pointer</li>
+</ul></li>
+<li>Wrapping the imported function as a <code>ctypes.CFUNCTYPE</code> object can lead to broken behaviour
+<ul>
+<li>The function will implicitly try and perform type conversions</li>
+<li>Best to directly assign <code>restype</code> and <code>argtypes</code> attributes
+<ul>
+<li>Assign the matching <code>ctype</code> that matches the function signature</li>
+<li>For the <code>dot_product</code> it returns a double and accepts an integer, and two pointers to doubles
+<ul>
+<li>We define <code>vector_ptr</code> to obfuscate the pointer to a double</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Now we have to call our function
+<ul>
+<li>Define a variable <code>vector3</code> which a type that holds three doubles
+<ul>
+<li>i.e.&nbsp;this is an array type</li>
+</ul></li>
+<li>Then create two of these arrays</li>
+<li>Can then finally call our <code>dot_product</code> as a python function
+<ul>
+<li>Have to use <code>ctypes.cast</code> to ensure both arrays are properly passed as pointers to doubles
+<ul>
+<li>Ensures they match the C calling convention</li>
+</ul></li>
+</ul></li>
+<li>The return value is automatically cast back to a python type</li>
+</ul></li>
+<li>The <code>ctypes</code> module obviously has very poor ergonomics
+<ul>
+<li>Not very Pythonic</li>
+</ul></li>
+<li>We can obfuscate a lot of the complexity by using a python wrapper function</li>
+</ul>
+<div id="5aed816c" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ctypes</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pathlib</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the library</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>run_py <span class="op">=</span> pathlib.Path(<span class="va">__file__</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>library_path <span class="op">=</span> run_py.parent <span class="op">/</span> <span class="st">"library.lib"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>my_library <span class="op">=</span> ctypes.cdll.LoadLibrary(library_path)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup dot product library function</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>vector_ptr <span class="op">=</span> ctypes.POINTER(ctypes.c_double)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>my_library.dot_product.restype <span class="op">=</span> ctypes.c_double</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>my_library.dot_product.argtypes <span class="op">=</span> (ctypes.c_int, vector_ptr, vector_ptr)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Provide Python Wrapper</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dot_product(a, b):</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    size <span class="op">=</span> <span class="bu">len</span>(a)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">len</span>(b) <span class="op">==</span> size, <span class="st">"a and b must have the same length"</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    vector <span class="op">=</span> ctypes.c_double <span class="op">*</span> size</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    a_vector <span class="op">=</span> vector(<span class="op">*</span>a)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    b_vector <span class="op">=</span> vector(<span class="op">*</span>b)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> my_library.dot_product(</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        size, ctypes.cast(a_vector, vector_ptr), ctypes.cast(b_vector, vector_ptr)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> dot_product([<span class="fl">1.0</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>], [<span class="op">-</span><span class="dv">7</span>, <span class="dv">4</span>, <span class="op">-</span><span class="fl">12.1</span>])</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 5</span>
+<span class="ansi-green-fg">      2</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg ansi-bold">pathlib</span>
+<span class="ansi-green-fg">      4</span> <span style="font-style:italic;color:rgb(95,135,135)"># Set up the library</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">5</span> run_py = pathlib.Path(<span class="ansi-blue-fg ansi-yellow-bg">__file__</span>)
+<span class="ansi-green-fg">      6</span> library_path = run_py.parent / <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">library.lib</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">      7</span> my_library = ctypes.cdll.LoadLibrary(library_path)
+
+<span class="ansi-red-fg">NameError</span>: name '__file__' is not defined</pre>
+</div>
+</div>
+</div>
+<ul>
+<li>Alternatively one can use the Python C Extension API (See <a href="../../Chapter_11/Item_096/item_096.html">Item 96</a>)
+<ul>
+<li>Provides a more pythonic interface</li>
+<li>Less set-up required at runtime</li>
+</ul></li>
+<li>However, <code>ctypes</code> provides some advantages
+<ul>
+<li>Pointer values held with <code>ctypes</code> will be freed automatically once reference counts go to zero
+<ul>
+<li>C extension modules must manually handle the memory for C pointers and reference count Python objects</li>
+</ul></li>
+<li>Calling a function via <code>ctypes</code> automatically releases the GIL while in the native function
+<ul>
+<li>Other python threads can then progress (See <a href="../../Chapter_09/Item_068/item_068.html">Item 68</a>)</li>
+<li>For C extension modules the GIL must be handled explicitly
+<ul>
+<li>Limited functionality without the lock</li>
+</ul></li>
+</ul></li>
+<li><code>ctypes</code> simply requires a path to a dynamic library or shared object
+<ul>
+<li>Compilation can be done separate to the python runtime execution</li>
+<li>Python C extensions need to leverage the Python build
+<ul>
+<li>Must include the right paths</li>
+<li>Set linker flags</li>
+<li>etc.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>There are some disadvantages to using <code>ctypes</code> over a C Extension module
+<ul>
+<li><code>ctypes</code> restricts you to the data types that C describes
+<ul>
+<li>Lose most of Python’s expressiveness
+<ul>
+<li>No Iterators (See <a href="../../Chapter_03/Item_021/item_021.html">Item 21</a>)</li>
+<li>No Duck typing (See <a href="../../Chapter_04/Item_025/item_025.html">Item 25</a>)</li>
+</ul></li>
+<li>Wrappers can still be confusing and difficult to use correctly</li>
+</ul></li>
+<li>Calling <code>ctypes</code> with the right data requires copies or transformations of function inputs and outputs
+<ul>
+<li>Overhead cost might undermine performance benefits of a native library</li>
+<li>C extensions reduce the need for copies</li>
+</ul></li>
+<li>Using <code>ctypes</code> wrong can corrupt the memory of a program
+<ul>
+<li>Will cause odd behaviour</li>
+<li>Common sources are passing the wrong data type (e.g.&nbsp;<code>ctype.c_double</code> instead of <code>ctype.c_int</code>)</li>
+<li>Can use <code>faulthandler</code> built-in to try and trace these errors</li>
+</ul></li>
+</ul></li>
+<li>When using <code>ctypes</code> you should always write unit tests before implementing into more complex code
+<ul>
+<li>Confirm that the library works as expected for simple use cases</li>
+<li>Help’s ensure that if the library is updated your downstream code isn’t unaware of any breaking changes</li>
+</ul></li>
+</ul>
+<div id="77b94cda" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> unittest</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ctypes</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pathlib</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the library</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>run_py <span class="op">=</span> pathlib.Path(<span class="va">__file__</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>library_path <span class="op">=</span> run_py.parent <span class="op">/</span> <span class="st">"library.lib"</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>my_library <span class="op">=</span> ctypes.cdll.LoadLibrary(library_path)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup dot product library function</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>vector_ptr <span class="op">=</span> ctypes.POINTER(ctypes.c_double)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>my_library.dot_product.restype <span class="op">=</span> ctypes.c_double</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>my_library.dot_product.argtypes <span class="op">=</span> (ctypes.c_int, vector_ptr, vector_ptr)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Provide Python Wrapper</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dot_product(a, b):</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    size <span class="op">=</span> <span class="bu">len</span>(a)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">len</span>(b) <span class="op">==</span> size, <span class="st">"a and b must have the same length"</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    vector <span class="op">=</span> ctypes.c_double <span class="op">*</span> size</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    a_vector <span class="op">=</span> vector(<span class="op">*</span>a)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    b_vector <span class="op">=</span> vector(<span class="op">*</span>b)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> my_library.dot_product(</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>        size, ctypes.cast(a_vector, vector_ptr), ctypes.cast(b_vector, vector_ptr)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Test</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyLibraryTest(unittest.TestCase):</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_dot_product(<span class="va">self</span>):</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> dot_product([<span class="fl">1.0</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>], [<span class="op">-</span><span class="dv">7</span>, <span class="dv">4</span>, <span class="op">-</span><span class="fl">12.1</span>])</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertAlmostEqual(<span class="op">-</span><span class="fl">39.35</span>, result)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>unittest.main(argv<span class="op">=</span>[<span class="st">''</span>], verbosity<span class="op">=</span><span class="dv">2</span>, exit<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 6</span>
+<span class="ansi-green-fg">      3</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg ansi-bold">pathlib</span>
+<span class="ansi-green-fg">      5</span> <span style="font-style:italic;color:rgb(95,135,135)"># Set up the library</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">6</span> run_py = pathlib.Path(<span class="ansi-blue-fg ansi-yellow-bg">__file__</span>)
+<span class="ansi-green-fg">      7</span> library_path = run_py.parent / <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">library.lib</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">      8</span> my_library = ctypes.cdll.LoadLibrary(library_path)
+
+<span class="ansi-red-fg">NameError</span>: name '__file__' is not defined</pre>
+</div>
+</div>
+</div>
+<ul>
+<li><code>ctypes</code> provides further functionality, e.g.
+<ul>
+<li>Mapping python objects to C structs</li>
+<li>Copying memory</li>
+<li>Error checking</li>
+</ul></li>
+<li>Consider reading the <a href="https://docs.python.org/3/library/ctypes.html">docs</a></li>
+</ul>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li><code>ctypes</code> built-in enables integrating existing native libraries written in other languages</li>
+<li>Provides a more rapid development experience over directly using the C Extension API</li>
+<li><code>ctype</code> APIs can often be anti-patterns because of the limited data types and protocols supported</li>
+</ul>
 
 
 </section>

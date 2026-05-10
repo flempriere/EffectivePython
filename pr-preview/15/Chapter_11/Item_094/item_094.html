@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -882,9 +917,187 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li>Python’s limitations can often reach a point that you may consider a different language
+<ul>
+<li>For example, the GIL prevents true parallelism (See <a href="../../Chapter_09/Item_068/item_068.html">Item 68</a>)</li>
+<li>Python tends to have a large memory overhead</li>
+</ul></li>
+<li>Some scenarios in which a rewrite might be considered are,
+<ol type="1">
+<li>Critical path latency or 99th percentile latency optimisation
+<ul>
+<li>Garbage collection pauses or non-deterministic data structure behaviours can challenge these</li>
+</ul></li>
+<li>Reducing program start-up delay
+<ul>
+<li>First look at Python’s provided mechanisms though (See <a href="../../Chapter_11/Item_097/item_097.html">Item 97</a>)</li>
+</ul></li>
+<li>Using libraries that are tightly coupled to implementation language
+<ul>
+<li>Platform specific GUI languages are a common culprit</li>
+<li>First consider using C extension modules</li>
+</ul></li>
+<li>Needing to target uncommon architectures
+<ul>
+<li>Supercomputers</li>
+<li>Embedded</li>
+<li>There are python packages that do target these environments but they may not be practical</li>
+</ul></li>
+<li>You need to distribute the program as an installable executable
+<ul>
+<li>Or bundle tools</li>
+<li>There are python tools that do allow for this, but typically must also bundle a python runtime</li>
+</ul></li>
+<li>Other optimisation techniques and other python runtimes are still not achieving required performance benchmarks</li>
+<li>You’re unable to properly distribute your code over different processes (See <a href="../../Chapter_09/Item_079/item_079.html">Item 79</a>)
+<ul>
+<li>Or across computers via tools like <a href="https://www.dask.org/">Dask</a></li>
+</ul></li>
+</ol></li>
+<li>Rewrites are non-trivial undertakings
+<ul>
+<li>Always work first looking at techniques for optimisation within python</li>
+</ul></li>
+<li>There are always multiple strategies to achieve optimisation
+<ul>
+<li>Obviously come with tradeoffs and balances</li>
+</ul></li>
+<li>As always start by optimising (See <a href="../../Chapter_11/Item_092/item_092.html">Item 92</a> and benchmarking (See <a href="../../Chapter_11/Item_093/item_093.html">Item 93</a>))</li>
+<li>Consider architecture or data structure redesigns
+<ul>
+<li>The appropriate data structure can give orders of magnitude improvements for often a simple drop-in refactor</li>
+</ul></li>
+<li>If you need to migrate then there are multiple techniques to do so
+<ul>
+<li>Most common recurrent bottleneck in python are <em>tight loops</em>
+<ul>
+<li>Common in mathematics</li>
+<li>This is because python’s loop infrastructure is slow</li>
+</ul></li>
+<li>The below function is significantly slower in python than the C equivalent</li>
+</ul></li>
+</ul>
+<div id="34ca41c2" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dot_product(a, b):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, j <span class="kw">in</span> <span class="bu">zip</span>(a, b):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        result <span class="op">+=</span> i <span class="op">*</span> j</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dot_product([<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>11</code></pre>
+</div>
+</div>
+<ul>
+<li>Tight loops or kernel functions are often well-defined interfaces
+<ul>
+<li>Means they can normally serve as a concerns boundary between fast and slow code</li>
+<li>Speed benefit from improving these functions will be experienced by all higher level callers</li>
+<li>No need to rewrite the rest of the codebase</li>
+</ul></li>
+<li>Can use this <em>bottom-up</em> approach to gradually define key boundaries and change larger components</li>
+<li>Standard python provides two tools for improving performance this way
+<ol type="1">
+<li><code>ctypes</code> built-in
+<ul>
+<li>Can describe and export native system libraries</li>
+<li>Can be implemented in any language that supports the C ABI</li>
+<li>Can support
+<ol type="1">
+<li>Native threads</li>
+<li>SIMD</li>
+<li>GPUs</li>
+<li>and more…</li>
+</ol></li>
+<li>Does not change the build process</li>
+</ul></li>
+<li>C Extension API
+<ul>
+<li>Allows the creation of pythonic API’s that are implemented in C</li>
+<li>Still enables python’s traditional dynamic features</li>
+<li>Typically requires more work upfront
+<ul>
+<li>Need to actually write the extension</li>
+</ul></li>
+<li>But integrates the ergonomics of python
+<ul>
+<li>Does introduce the need to build the extension</li>
+</ul></li>
+</ul></li>
+</ol></li>
+<li>The larger python ecosystem also has specialised libraries for new programming paradigms and performance
+<ul>
+<li><a href="https://numpy.org/">Numpy</a> enables array-based programming
+<ul>
+<li>Utilises BLAS (Basic Linear Algebra Subprograms)
+<ul>
+<li>Provides CPU parallelism and high performance</li>
+</ul></li>
+<li>Typically requires some rearchitecture, but provides good speedup</li>
+</ul></li>
+<li><a href="https://numba.pydata.org/">Numba</a> provides a just-in-time compiler (JIT Compiler) for existing functions
+<ul>
+<li>Provides a wrapper that can be applied to existing functions</li>
+<li>Compiles code at runtime into optimised machine instructions</li>
+<li>Code may need to be modified to use simpler data types and less dynamic typing</li>
+<li>Avoids additional build complexity</li>
+</ul></li>
+<li><a href="https://cython.org/">Cython</a> enhances the python language with features to support writing C extension modules
+<ul>
+<li>Avoids the need to actually write C code</li>
+<li>Shares build complexity with the C extension API, but without the difficulty of directly interacting with it</li>
+</ul></li>
+<li><a href="https://github.com/mypyc/mypyc/tree/master">Mypyc</a> like Cpython but tries to integrate with the standard <code>typing</code> annotation
+<ul>
+<li>Can make it easier to apply to existing programs</li>
+<li>Can ahead-of-time (AOT) compile programs to improve start-up time</li>
+<li>Similar build complexity to C extension modules</li>
+<li>Does not seem to be actively updated</li>
+</ul></li>
+<li><a href="https://cffi.readthedocs.io/en/stable/">CFFI</a> similar to the <code>ctypes</code> built-in
+<ul>
+<li>Can read C header files to determine function interfaces</li>
+<li>Reduces the complexity of calling into native libraries</li>
+</ul></li>
+<li><a href="https://www.swig.org/">SWIG</a> a more general tool than for just python
+<ul>
+<li>Allows generation of python interfaces for C and C++ native libraries</li>
+<li>Similar to CFFI</li>
+<li>Translation is explicit rather than runtime</li>
+<li>Has associated build complexity</li>
+</ul></li>
+</ul></li>
+<li>Caveat with these tools and libraries is that they can be big and extensive on their own
+<ul>
+<li>Learning the Numpy ecosystem is similar to learning a new language</li>
+</ul></li>
+<li>Worth considering if learning the tools will be a more effective use of time than just doing the rewrite
+<ul>
+<li>Note, that any rewrite is always a big undertaking</li>
+<li>Especially when using some of the high-level primitives naturally supported by Python</li>
+</ul></li>
+<li>In general rather than rewriting yourself, look to see if someone has already written a C extension module</li>
+</ul>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li>There are many valid reasons to do a language rewrite for a project
+<ul>
+<li>Always investigate all optimisation techniques first</li>
+</ul></li>
+<li>Consider moving CPU bottlenecks to C extension modules or native libraries
+<ul>
+<li>These often minimise the need to modify existing python code</li>
+</ul></li>
+<li>Where possible utilise existing tools and libraries in the broader python ecosystem
+<ul>
+<li>These can often give big speed-ups with minimal performance cost</li>
+</ul></li>
+</ul>
 
 
 </section>
