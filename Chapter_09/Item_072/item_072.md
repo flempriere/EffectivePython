@@ -305,13 +305,13 @@ print(redirect_stderr.getvalue())
 
     Exception in thread Thread-231 (game_logic):
     Traceback (most recent call last):
-      File "/opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/threading.py", line 1082, in _bootstrap_inner
+      File "/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/threading.py", line 1082, in _bootstrap_inner
         self._context.run(self.run)
         ~~~~~~~~~~~~~~~~~^^^^^^^^^^
-      File "/opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/threading.py", line 1024, in run
+      File "/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/threading.py", line 1024, in run
         self._target(*self._args, **self._kwargs)
         ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      File "/tmp/ipykernel_9933/1366009664.py", line 11, in game_logic
+      File "/tmp/ipykernel_9995/1366009664.py", line 11, in game_logic
         raise OSError("Problem with I/O")
     OSError: Problem with I/O
 
