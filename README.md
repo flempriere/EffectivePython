@@ -17,6 +17,8 @@ This repository contains code fragments and notes from the book, Effective Pytho
 - [Chapter 7: Classes and Interfaces](./Chapter_07/Chapter_07.md)
 - [Chapter 8: Metaclasses and Attributes](./Chapter_08/Chapter_08.md)
 - [Chapter 9: Concurrency and Parallelism](./Chapter_09/Chapter_09.md)
+- [Chapter 10: Robustness](./Chapter_10/Chapter_10.md)
+- [Chapter 11: Performance](./Chapter_11/Chapter_11.md)
 
 ## Attribution
 

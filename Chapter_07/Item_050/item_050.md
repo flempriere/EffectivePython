@@ -161,7 +161,7 @@ my_print("string")  # no string method, throws an error
          20 my_print(1.23)  # float
     ---> 21 my_print("string")  # no string method, throws an error
 
-    File /opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/functools.py:982, in singledispatch.<locals>.wrapper(*args, **kw)
+    File /opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/functools.py:982, in singledispatch.<locals>.wrapper(*args, **kw)
         979 if not args:
         980     raise TypeError(f'{funcname} requires at least '
         981                     '1 positional argument')
@@ -415,7 +415,7 @@ print(my_pretty(Float(5.678)))  # No method to resolve to
          83         self.value = value
     ---> 86 print(my_pretty(Float(5.678)))  # No method to resolve to
 
-    File /opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/functools.py:982, in singledispatch.<locals>.wrapper(*args, **kw)
+    File /opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/functools.py:982, in singledispatch.<locals>.wrapper(*args, **kw)
         979 if not args:
         980     raise TypeError(f'{funcname} requires at least '
         981                     '1 positional argument')

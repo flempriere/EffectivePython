@@ -414,14 +414,14 @@ with ThreadPoolExecutor(max_workers=10) as pool:
          12     task = pool.submit(game_logic, ALIVE, 3)
     ---> 13     task.result()
 
-    File /opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/concurrent/futures/_base.py:443, in Future.result(self, timeout)
+    File /opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/concurrent/futures/_base.py:443, in Future.result(self, timeout)
         441     raise CancelledError()
         442 elif self._state == FINISHED:
     --> 443     return self.__get_result()
         445 self._condition.wait(timeout)
         447 if self._state in [CANCELLED, CANCELLED_AND_NOTIFIED]:
 
-    File /opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/concurrent/futures/_base.py:395, in Future.__get_result(self)
+    File /opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/concurrent/futures/_base.py:395, in Future.__get_result(self)
         393 if self._exception is not None:
         394     try:
     --> 395         raise self._exception
@@ -429,14 +429,14 @@ with ThreadPoolExecutor(max_workers=10) as pool:
         397         # Break a reference cycle with the exception in self._exception
         398         self = None
 
-    File /opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/concurrent/futures/thread.py:86, in _WorkItem.run(self, ctx)
+    File /opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/concurrent/futures/thread.py:86, in _WorkItem.run(self, ctx)
          83     return
          85 try:
     ---> 86     result = ctx.run(self.task)
          87 except BaseException as exc:
          88     self.future.set_exception(exc)
 
-    File /opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/concurrent/futures/thread.py:73, in WorkerContext.run(self, task)
+    File /opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/concurrent/futures/thread.py:73, in WorkerContext.run(self, task)
          71 def run(self, task):
          72     fn, args, kwargs = task
     ---> 73     return fn(*args, **kwargs)

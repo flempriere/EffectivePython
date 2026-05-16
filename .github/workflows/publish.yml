@@ -48,6 +48,11 @@ jobs:
       - name: Add venv to PATH
         run: echo "$(pwd)/.venv/bin" >> $GITHUB_PATH
 
+      - name: Install Editable Projects for Item 96
+        run: |
+          uv pip install -e Chapter_11/Item_096/cext
+          uv pip install -e Chapter_11/Item_096/cext2
+
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 

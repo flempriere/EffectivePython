@@ -96,7 +96,7 @@ for colour in my_set:
 print(my_set)
 ```
 
-    {'green', 'red', 'blue'}
+    {'blue', 'green', 'red'}
 
     RuntimeError: Set changed size during iteration
     ---------------------------------------------------------------------------
@@ -209,7 +209,7 @@ print(my_set)
     2
     3
     [4, 1, 2, 3]
-    {'green', 'red', 'yellow', 'blue'}
+    {'blue', 'green', 'red', 'yellow'}
 
 - Copying can be slow for large containers
 - Alternative is to stage modifications in a container
