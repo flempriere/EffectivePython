@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -42,7 +77,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-24da7f4be05b02085a818207cdcb569d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-080b3bd5de75608038d564a47213d8e6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,6 +106,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <meta property="og:title" content="Item 98: Lazy-Load Modules with Dynamic Imports to Reduce Startup Time – Effective Python: Notes">
 <meta property="og:site_name" content="Effective Python: Notes">
@@ -882,9 +946,368 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li><p>For python programs with slow start-up times (See <a href="../../Chapter_11/Item_097/item_097.html">Item 97</a>) an option is to consider <em>dynamic imports</em></p></li>
+<li><p>For example, consider an image processing tool</p>
+<ul>
+<li>Has two features</li>
+</ul></li>
+<li><p>One adjusts brightness and contrast using user supplied parameters (see <a href="./CLI/adjust.py">adjust.py</a>)</p></li>
+</ul>
+<div id="616dab52" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First module</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># adjust.py</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Fast initialisation</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> do_adjust(path, brightness, contrast):</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Adjusting </span><span class="sc">{</span>brightness<span class="op">=</span><span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>contrast<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrative use</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>do_adjust(path<span class="op">=</span><span class="st">""</span>, brightness<span class="op">=</span><span class="fl">1.0</span>, contrast<span class="op">=</span><span class="fl">0.2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Adjusting brightness=1.0, contrast=0.2</code></pre>
+</div>
+</div>
+<ul>
+<li>Second automatically tunes brightness and contrast (See <a href="./CLI/enhance.py">enhance.py</a>)
+<ul>
+<li>Assume requires loading a large native image processing library</li>
+<li>Suppose this then initialises slowly</li>
+</ul></li>
+</ul>
+<div id="9bdccfcc" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Second module</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># enhance.py</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Slow initialisation</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># mimic slow import</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">1</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> do_enhance(path, amount):</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Enhancing! </span><span class="sc">{</span>amount<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># demonstrative use</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>do_enhance(<span class="st">""</span>, <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Enhancing! amount=1</code></pre>
+</div>
+</div>
+<ul>
+<li>To convert these to command line utilities we can use the built-in <code>argparse</code> module
+<ul>
+<li>Automatically handles parsing user-supplied arguments to a command-line program (see <a href="./CLI/parser.py">parser.py</a>)</li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># parser.py</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>PARSER <span class="op">=</span> argparse.ArgumentParser()</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>PARSER.add_argument(<span class="st">"file"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>sub_parsers <span class="op">=</span> PARSER.add_subparsers(dest<span class="op">=</span><span class="st">"command"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>enhance_parser <span class="op">=</span> sub_parsers.add_parser(<span class="st">"enhance"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>enhance_parser.add_argument(<span class="st">"--amount"</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>adjust_parser <span class="op">=</span> sub_parsers.add_parser(<span class="st">"enhance"</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>adjust_parser.add_argument(<span class="st">"--brightness"</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>adjust_parser.add_argument(<span class="st">"--contrast"</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">float</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>add_subparser</code> lets us make different modes require a different set of flags, e.g.
+<ol type="1">
+<li><code>adjust</code> to use the adjust tool
+<ul>
+<li>Which requires <code>brightness</code> and <code>contrast</code></li>
+</ul></li>
+<li><code>enhance</code> to use the enhance tool
+<ul>
+<li>Which requires <code>amount</code></li>
+</ul></li>
+</ol></li>
+<li>We can then put this all together in a main file (See <a href="./CLI/cli.py">cli.py</a>)</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cli.py</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> adjust</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ehance</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> parser</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    args <span class="op">=</span> parser.PARSER.parse_args()</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> args.command <span class="op">==</span> <span class="st">"enhance"</span>:</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        enhance.do_enhance(args.<span class="bu">file</span>, args.amount)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> args.command <span class="op">==</span> <span class="st">"adjust"</span>:</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        adjust.do_adjust(args.<span class="bu">file</span>, args.brightness, args.contrast)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">RuntimeError</span>(<span class="st">"Not reachable!"</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    main()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Running this program is slow,
+<ul>
+<li>Largely due to slow load of the <code>enhance.py</code> module</li>
+</ul></li>
+</ul>
+<pre class="shell"><code>$ time uv run cli.py dummy_file.txt enhance --amount 0.8
+Enhancing! amount=0.8
+
+real    0m1.207s
+user    0m0.133s
+sys     0m0.074s</code></pre>
+<ul>
+<li><em>But</em>, because python will load all modules at the start, we can see this slow down <em>still</em> occurs even if we only use the <code>adjust</code> command</li>
+</ul>
+<pre class="shell"><code>$ time uv run cli.py dummy_file.txt adjust --brightness 0.3 --contrast -0.1
+Adjusting brightness=0.3, contrast=-0.1
+
+real    0m1.321s
+user    0m0.218s
+sys     0m0.101s</code></pre>
+<ul>
+<li>Unfortunately, this is the PEP 8 recommended practice (See <a href="../../Chapter_01/Item_002/item_002.html">Item 2</a>)</li>
+<li>This has the downside that when running a program we’ll load <em>all</em> functionality, even when only using <em>some</em></li>
+<li>We can measure the impact of import time on a program via the <code>-X importtime</code> flag if using CPython (See <a href="../../Chapter_01/Item_001/item_001.html">Item 1</a>)
+<ul>
+<li>Cutting the output to the largest couple of modules, and our modules</li>
+</ul></li>
+</ul>
+<pre class="shell"><code>$ uv run python3.14 -X importtime cli.py
+import time: self [us] | cumulative | imported package
+import time:      6756 |      61837 | site
+import time:       418 |        418 | adjust
+import time:   1000577 |    1000577 | enhance
+import time:      5637 |       7117 |   argparse
+import time:      7987 |      23440 |       inspect
+import time:      9100 |      41394 |   _colorize</code></pre>
+<ul>
+<li>The time reported is in microseconds.</li>
+<li>Shows the time to execute all global statements
+<ul>
+<li>Excludes imports</li>
+</ul></li>
+<li>The cumulative column is the time to load a module and all it’s dependencies</li>
+<li>ideally we want to delay loading the <code>enhance</code> module until (or if) we need it
+<ul>
+<li><code>import</code> statements can be scoped</li>
+<li>e.g.&nbsp;located within functions</li>
+<li>Let’s us explicitly <code>import</code> when and where it’s needed
+<ul>
+<li>At the cost of making it harder to see what all the imports associated with a file are (See <a href="./CLI/cli_faster.py">cli_faster.py</a>)</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cli_faster.py</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Improves the cli load time by using lazy imports</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> parser</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    args <span class="op">=</span> parser.PARSER.parse_args()</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> args.command <span class="op">==</span> <span class="st">"enhance"</span>:</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        <span class="im">import</span> enhance  <span class="co"># lazy import module</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        enhance.do_enhance(args.<span class="bu">file</span>, args.amount)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> args.command <span class="op">==</span> <span class="st">"adjust"</span>:</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        <span class="im">import</span> adjust  <span class="co"># lazy import module</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        adjust.do_adjust(args.<span class="bu">file</span>, args.brightness, args.contrast)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">RuntimeError</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    main()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>The <code>adjust</code> command runs very quickly, since it now only loads the <code>adjust</code> module</li>
+</ul>
+<pre class="shell"><code>$ time uv run ./cli_faster.py dummy_file.txt adjust --brightness .3 --contrast -0.1
+Adjusting brightness=0.3, contrast=-0.1
+
+real    0m0.567s
+user    0m0.078s
+sys     0m0.238s</code></pre>
+<ul>
+<li>The <code>enhance</code> command remains slow</li>
+</ul>
+<pre class="shell"><code> time uv run ./cli_faster.py dummy_file.txt enhance --amount 0.8
+Enhancing! amount=0.8
+
+real    0m1.295s
+user    0m0.185s
+sys     0m0.110s</code></pre>
+<ul>
+<li>We can use <code>-X importtime</code> to confirm that the <code>adjust</code> and <code>enhance</code> modules are only loaded when their respective command is specified</li>
+<li>Using <code>adjust</code></li>
+</ul>
+<pre class="shell"><code>$ uv run python3.14 -X importtime cli_faster.py dummy_file.txt adjust --brightness .3 --contrast -0.1
+import time: self [us] | cumulative | imported package
+import time:      2042 |      42290 | parser
+import time:       784 |        784 | adjust
+Adjusting brightness=0.3, contrast=-0.1</code></pre>
+<ul>
+<li>Then using <code>enhance</code></li>
+</ul>
+<pre class="shell"><code>$ uv run python3.14 -X importtime cli_faster.py dummy_file.txt enhance --amount 0.8
+import time: self [us] | cumulative | imported package
+import time:      2051 |      39437 | parser
+import time:   1000604 |    1000604 | enhance
+Enhancing! amount=0.8</code></pre>
+<ul>
+<li>Lazy loading can also be used in web-applications to reduce cost of <em>cold starts</em></li>
+<li>For example, if we hosted our image processing program on a web server we wouldn’t want it to load <code>enhance</code> until a user called for it</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># server.py</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flask <span class="im">import</span> Flask, render_template, request</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> Flask(<span class="va">__name__</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">"/adjust"</span>, methods<span class="op">=</span>[<span class="st">"GET"</span>, <span class="st">"POST"</span>])</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> do_adjust():</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> request.method <span class="op">==</span> <span class="st">"POST"</span>:</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        the_file <span class="op">=</span> request.files[<span class="st">"the_file"</span>]</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        brightness <span class="op">=</span> request.form[<span class="st">"brightness"</span>]</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>        contrast <span class="op">=</span> request.form[<span class="st">"contrast"</span>]</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>        <span class="im">import</span> adjust <span class="co"># Lazy import</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> adjust.do_adjust(the_file, brightness, contrast)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> render_template(<span class="st">"adjust.html"</span>)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">"/enhance"</span>, methods<span class="op">=</span>[<span class="st">"GET"</span>, <span class="st">"POST"</span>])</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> do_enhance():</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> request.methods <span class="op">==</span> <span class="st">"POST"</span>:</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>        the_file <span class="op">=</span> request.files[<span class="st">"the_file"</span>]</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>        amount <span class="op">=</span> request.form[<span class="st">"amount"</span>]</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>        <span class="im">import</span> enhance <span class="co"># Lazy import</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> enhance.do_enhance(the_file, amount)</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> render_template(<span class="st">"enhance.html"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>When a request is handled by the python process for the first time the module will be imported
+<ul>
+<li>Subsequent calls will access the already loaded module</li>
+</ul></li>
+<li>There is a cost associated with dynamic imports compared to global imports
+<ul>
+<li>Since we have to check if we’ve already loaded a module each time</li>
+<li>But it’s not high</li>
+<li>We can time it using <code>timeit</code> to check the time associated with dynamically importing an already imported module</li>
+</ul></li>
+</ul>
+<div id="50bd6780" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>trials <span class="op">=</span> <span class="dv">10_000_000</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> timeit.timeit(</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    setup<span class="op">=</span><span class="st">"import CLI.enhance"</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    stmt<span class="op">=</span><span class="st">"import CLI.enhance"</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">globals</span><span class="op">=</span><span class="bu">globals</span>(),</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    number<span class="op">=</span>trials,</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>result <span class="op">/</span> trials <span class="op">*</span> <span class="fl">1e9</span><span class="sc">:2.1f}</span><span class="ss"> nanos per call"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>245.5 nanos per call</code></pre>
+</div>
+</div>
+<ul>
+<li>In comparison, consider the approach below of using a lock-protected global variable
+<ul>
+<li>Common way to prevent multiple threads from dog-piling during program initialisation</li>
+</ul></li>
+</ul>
+<div id="59a2c83a" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> threading</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>trials <span class="op">=</span> <span class="dv">100_000_000</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>initialised <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>initialised_lock <span class="op">=</span> threading.Lock()</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> timeit.timeit(</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    stmt<span class="op">=</span><span class="st">"""</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="st">global initialised</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="st"># Speculatively check without the lock</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="st">if not initialised:</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="st">    with initialised_lock:</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="st">        # Double check after holding the lock</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="st">        if not initialised:</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="st">            # Do expensive initialisation</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="st">            initialised = True</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>,</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">globals</span><span class="op">=</span><span class="bu">globals</span>(),</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    number<span class="op">=</span>trials,</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>result <span class="op">/</span> trials <span class="op">*</span> <span class="fl">1e9</span><span class="sc">:2.1f}</span><span class="ss"> nanos per call"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>10.0 nanos per call</code></pre>
+</div>
+</div>
+<ul>
+<li>There should be an order of magnitude difference between the above and the dynamic import (approx. <span class="math inline">\(10\)</span> times)</li>
+<li>Of course the above is assuming no lock contention
+<ul>
+<li>But the speed is about equal to adding two integers in python</li>
+</ul></li>
+<li>However, dynamic import is simple code that doesn’t require boilerplate
+<ul>
+<li>The takeaway is not to <em>not use</em> dynamic imports but rather consider where to put them</li>
+<li>Avoid putting them in hot loops</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Python 3.15 and Lazy Imports</strong></p>
+<p>Python 3.15 is introducing syntax for lazy imports. This lets you achieve the fast start-up of dynamic imports but the readability of having all imports at the top of a file. Simply specifying an <code>import</code> with the <code>lazy</code> keyword like,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>lazy <span class="im">import</span> enhance</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>will defer loading the import until the first time that the module is actually needed.</p>
+</div>
+</div>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li>CPython’s <code>-X importtime</code> flag let’s you interrogate the time a python program spends importing modules
+<ul>
+<li>Help’s diagnose sources of slow start-up times</li>
+</ul></li>
+<li>Modules can be imported from within functions
+<ul>
+<li>This then loads them <em>dynamically</em></li>
+<li>Enables delaying the load of a module until it is actually needed</li>
+</ul></li>
+<li>Overhead of dynamic imports and checking if it has already been loaded is small but non-negligible
+<ul>
+<li>It is worthwhile in general but should be avoided from being called in hot code</li>
+</ul></li>
+<li>If using Python 3.15+ consider using <code>lazy import</code> instead to combine the benefits of both global and dynamic imports</li>
+</ul>
 
 
 </section>
