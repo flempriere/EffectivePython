@@ -127,14 +127,14 @@ load_json_key('{"foo": bad payload', "foo")
     ----> 7     result_dict = json.loads(data)  # May raise ValueError
           8 except ValueError:
 
-    File /opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/json/__init__.py:352, in loads(s, cls, object_hook, parse_float, parse_int, parse_constant, object_pairs_hook, **kw)
+    File /opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/json/__init__.py:352, in loads(s, cls, object_hook, parse_float, parse_int, parse_constant, object_pairs_hook, **kw)
         349 if (cls is None and object_hook is None and
         350         parse_int is None and parse_float is None and
         351         parse_constant is None and object_pairs_hook is None and not kw):
     --> 352     return _default_decoder.decode(s)
         353 if cls is None:
 
-    File /opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/json/decoder.py:345, in JSONDecoder.decode(self, s, _w)
+    File /opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/json/decoder.py:345, in JSONDecoder.decode(self, s, _w)
         341 """Return the Python representation of ``s`` (a ``str`` instance
         342 containing a JSON document).
         343 
@@ -142,7 +142,7 @@ load_json_key('{"foo": bad payload', "foo")
     --> 345 obj, end = self.raw_decode(s, idx=_w(s, 0).end())
         346 end = _w(s, end).end()
 
-    File /opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/json/decoder.py:363, in JSONDecoder.raw_decode(self, s, idx)
+    File /opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/json/decoder.py:363, in JSONDecoder.raw_decode(self, s, idx)
         362 except StopIteration as err:
     --> 363     raise JSONDecodeError("Expecting value", s, err.value) from None
         364 return obj, end
@@ -277,7 +277,7 @@ divide_json(temp_path)
          14 print("* Performing calculation")
          15 value = op["numerator"] / op["denominator"]  # May raise ZeroDivideError
 
-    File /opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/json/__init__.py:352, in loads(s, cls, object_hook, parse_float, parse_int, parse_constant, object_pairs_hook, **kw)
+    File /opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/json/__init__.py:352, in loads(s, cls, object_hook, parse_float, parse_int, parse_constant, object_pairs_hook, **kw)
         347     s = s.decode(detect_encoding(s), 'surrogatepass')
         349 if (cls is None and object_hook is None and
         350         parse_int is None and parse_float is None and
@@ -286,7 +286,7 @@ divide_json(temp_path)
         353 if cls is None:
         354     cls = JSONDecoder
 
-    File /opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/json/decoder.py:345, in JSONDecoder.decode(self, s, _w)
+    File /opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/json/decoder.py:345, in JSONDecoder.decode(self, s, _w)
         340 def decode(self, s, _w=WHITESPACE.match):
         341     """Return the Python representation of ``s`` (a ``str`` instance
         342     containing a JSON document).
@@ -296,7 +296,7 @@ divide_json(temp_path)
         346     end = _w(s, end).end()
         347     if end != len(s):
 
-    File /opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/json/decoder.py:361, in JSONDecoder.raw_decode(self, s, idx)
+    File /opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/json/decoder.py:361, in JSONDecoder.raw_decode(self, s, idx)
         352 """Decode a JSON document from ``s`` (a ``str`` beginning with
         353 a JSON document) and return a 2-tuple of the Python
         354 representation and the index in ``s`` where the document ended.

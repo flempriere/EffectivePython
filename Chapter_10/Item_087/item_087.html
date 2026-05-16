@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-24da7f4be05b02085a818207cdcb569d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-080b3bd5de75608038d564a47213d8e6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -819,6 +819,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_11/Chapter_11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11: Performance</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_092/item_092.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 92: Profile Before Optimising</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_093/item_093.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 93: Optimise Performance-Critical Code Using <code>timeit</code> Micro-benchmarks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_094/item_094.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 94: Know When and How to Replace Python with Another Programming Language</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_095/item_095.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 95: Consider <code>ctypes</code> to Rapidly Integrate with Native Libraries</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_096/item_096.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 96: Consider Extension Modules to Maximise Performance and Ergonomics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_097/item_097.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 97: Rely on Precompiled Bytecode and File System Caching to Improve Startup Times</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_098/item_098.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 98: Lazy-Load Modules with Dynamic Imports to Reduce Startup Time</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_099/item_099.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 99: Consider <code>memoryview</code> and <code>bytearray</code> for Zero-Copy Interactions with <code>bytes</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -869,7 +928,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>E.g. The below assert (See <a href="../../Chapter_10/Item_081/item_081.html">Item 81</a>) demonstrates the trace</li>
 </ul>
-<div id="6bb75281" class="cell" data-execution_count="1">
+<div id="feb02b12" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> inner_func(message):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="va">False</span>, message</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -909,7 +968,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>One solution is a blanket <code>try/except</code> block (See <a href="../../Chapter_10/Item_085/item_085.html">Item 85</a> and <a href="../../Chapter_10/Item_086/item_086.html">Item 86</a>)</li>
 <li>The following <code>request</code> class mocks this behaviour</li>
 </ul>
-<div id="58c28c30" class="cell" data-execution_count="2">
+<div id="63832553" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Request:</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, body):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.body <span class="op">=</span> body</span>
@@ -942,7 +1001,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>print_tb</code> let’s us print out the stack trace</li>
 </ul></li>
 </ul>
-<div id="fc69a533" class="cell" data-execution_count="3">
+<div id="a7a2a396" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> traceback</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -971,10 +1030,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>AssertionError('My Message')</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>  File "/tmp/ipykernel_11770/1677808877.py", line 16, in handle
+<pre><code>  File "/tmp/ipykernel_11813/1677808877.py", line 16, in handle
     do_work(request.body)
     ~~~~~~~^^^^^^^^^^^^^^
-  File "/tmp/ipykernel_11770/1677808877.py", line 11, in do_work
+  File "/tmp/ipykernel_11813/1677808877.py", line 11, in do_work
     assert False, data
            ^^^^^</code></pre>
 </div>
@@ -993,7 +1052,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>We could make our <code>handle</code> for example list the function names in the stack trace</li>
 </ul>
-<div id="6eae2ea1" class="cell" data-execution_count="4">
+<div id="7f9e6d4f" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> traceback</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1034,7 +1093,7 @@ AssertionError('My Message')</code></pre>
 <li>Can be implemented via a wrapper</li>
 </ul></li>
 </ul>
-<div id="cf1fa669" class="cell" data-execution_count="5">
+<div id="9d00853b" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> traceback</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>

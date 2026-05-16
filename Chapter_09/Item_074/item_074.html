@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-24da7f4be05b02085a818207cdcb569d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-080b3bd5de75608038d564a47213d8e6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -819,6 +819,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_11/Chapter_11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11: Performance</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_092/item_092.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 92: Profile Before Optimising</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_093/item_093.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 93: Optimise Performance-Critical Code Using <code>timeit</code> Micro-benchmarks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_094/item_094.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 94: Know When and How to Replace Python with Another Programming Language</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_095/item_095.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 95: Consider <code>ctypes</code> to Rapidly Integrate with Native Libraries</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_096/item_096.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 96: Consider Extension Modules to Maximise Performance and Ergonomics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_097/item_097.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 97: Rely on Precompiled Bytecode and File System Caching to Improve Startup Times</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_098/item_098.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 98: Lazy-Load Modules with Dynamic Imports to Reduce Startup Time</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_099/item_099.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 99: Consider <code>memoryview</code> and <code>bytearray</code> for Zero-Copy Interactions with <code>bytes</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -867,7 +926,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>We’ll again refactor the game of life to use it (See <a href="../../Chapter_09/Item_071/item_071.html">item 71</a>)</li>
 <li>We’ll start with the basic building block implementation below</li>
 </ul>
-<div id="d53adce8" class="cell" data-execution_count="1">
+<div id="a4053973" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> threading <span class="im">import</span> Thread, Lock</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> multiprocessing.pool <span class="im">import</span> ThreadPool</span>
@@ -1018,7 +1077,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>There are some slight changes to make the shim work but they are listed in the comments</li>
 </ul></li>
 </ul>
-<div id="72b41d45" class="cell" data-execution_count="2">
+<div id="0a18ebf4" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> concurrent.futures <span class="im">import</span> ThreadPoolExecutor</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ALIVE <span class="op">=</span> <span class="st">"*"</span></span>
@@ -1091,7 +1150,7 @@ All tests passed</code></pre>
 </ul></li>
 <li>Our complete solution then looks like</li>
 </ul>
-<div id="91ee8d01" class="cell" data-execution_count="3">
+<div id="6ac08c04" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> concurrent.futures <span class="im">import</span> ThreadPoolExecutor</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> threading <span class="im">import</span> Thread, Lock</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1251,7 +1310,7 @@ All tests passed</code></pre>
 <li>Occurs when <code>result</code> method is called on a <code>Future</code> instance</li>
 </ul></li>
 </ul>
-<div id="c1e58056" class="cell" data-execution_count="4">
+<div id="76292caf" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> concurrent.futures <span class="im">import</span> ThreadPoolExecutor</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ALIVE <span class="op">=</span> <span class="st">"*"</span></span>
@@ -1274,14 +1333,14 @@ All tests passed</code></pre>
 <span class="ansi-green-fg">     12</span>     task = pool.submit(game_logic, ALIVE, <span class="ansi-green-fg">3</span>)
 <span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">13</span>     <span class="ansi-yellow-bg">task</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">result</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/concurrent/futures/_base.py:443</span>, in <span class="ansi-cyan-fg">Future.result</span><span class="ansi-blue-fg">(self, timeout)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/concurrent/futures/_base.py:443</span>, in <span class="ansi-cyan-fg">Future.result</span><span class="ansi-blue-fg">(self, timeout)</span>
 <span class="ansi-green-fg">    441</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> CancelledError()
 <span class="ansi-green-fg">    442</span> <span style="font-weight:bold;color:rgb(0,135,0)">elif</span> <span style="color:rgb(0,135,0)">self</span>._state == FINISHED:
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">443</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">__get_result</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
 <span class="ansi-green-fg">    445</span> <span style="color:rgb(0,135,0)">self</span>._condition.wait(timeout)
 <span class="ansi-green-fg">    447</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="color:rgb(0,135,0)">self</span>._state <span style="font-weight:bold;color:rgb(175,0,255)">in</span> [CANCELLED, CANCELLED_AND_NOTIFIED]:
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/concurrent/futures/_base.py:395</span>, in <span class="ansi-cyan-fg">Future.__get_result</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/concurrent/futures/_base.py:395</span>, in <span class="ansi-cyan-fg">Future.__get_result</span><span class="ansi-blue-fg">(self)</span>
 <span class="ansi-green-fg">    393</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="color:rgb(0,135,0)">self</span>._exception <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span>:
 <span class="ansi-green-fg">    394</span>     <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">395</span>         <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="color:rgb(0,135,0)">self</span>._exception
@@ -1289,14 +1348,14 @@ All tests passed</code></pre>
 <span class="ansi-green-fg">    397</span>         <span style="font-style:italic;color:rgb(95,135,135)"># Break a reference cycle with the exception in self._exception</span>
 <span class="ansi-green-fg">    398</span>         <span style="color:rgb(0,135,0)">self</span> = <span style="font-weight:bold;color:rgb(0,135,0)">None</span>
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/concurrent/futures/thread.py:86</span>, in <span class="ansi-cyan-fg">_WorkItem.run</span><span class="ansi-blue-fg">(self, ctx)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/concurrent/futures/thread.py:86</span>, in <span class="ansi-cyan-fg">_WorkItem.run</span><span class="ansi-blue-fg">(self, ctx)</span>
 <span class="ansi-green-fg">     83</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span>
 <span class="ansi-green-fg">     85</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
 <span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">86</span>     result = <span class="ansi-yellow-bg">ctx</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">run</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">task</span><span class="ansi-yellow-bg">)</span>
 <span class="ansi-green-fg">     87</span> <span style="font-weight:bold;color:rgb(0,135,0)">except</span> <span style="font-weight:bold;color:rgb(215,95,95)">BaseException</span> <span style="font-weight:bold;color:rgb(0,135,0)">as</span> exc:
 <span class="ansi-green-fg">     88</span>     <span style="color:rgb(0,135,0)">self</span>.future.set_exception(exc)
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/concurrent/futures/thread.py:73</span>, in <span class="ansi-cyan-fg">WorkerContext.run</span><span class="ansi-blue-fg">(self, task)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/concurrent/futures/thread.py:73</span>, in <span class="ansi-cyan-fg">WorkerContext.run</span><span class="ansi-blue-fg">(self, task)</span>
 <span class="ansi-green-fg">     71</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">run</span>(<span style="color:rgb(0,135,0)">self</span>, task):
 <span class="ansi-green-fg">     72</span>     fn, args, kwargs = task
 <span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">73</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">fn</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>

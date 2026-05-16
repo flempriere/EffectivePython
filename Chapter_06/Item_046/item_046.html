@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-24da7f4be05b02085a818207cdcb569d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-080b3bd5de75608038d564a47213d8e6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -819,6 +819,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_11/Chapter_11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11: Performance</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_092/item_092.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 92: Profile Before Optimising</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_093/item_093.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 93: Optimise Performance-Critical Code Using <code>timeit</code> Micro-benchmarks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_094/item_094.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 94: Know When and How to Replace Python with Another Programming Language</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_095/item_095.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 95: Consider <code>ctypes</code> to Rapidly Integrate with Native Libraries</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_096/item_096.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 96: Consider Extension Modules to Maximise Performance and Ergonomics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_097/item_097.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 97: Rely on Precompiled Bytecode and File System Caching to Improve Startup Times</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_098/item_098.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 98: Lazy-Load Modules with Dynamic Imports to Reduce Startup Time</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_099/item_099.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 99: Consider <code>memoryview</code> and <code>bytearray</code> for Zero-Copy Interactions with <code>bytes</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -870,7 +929,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>We’ll add a function to <code>transmit</code> the wave</li>
 </ul></li>
 </ul>
-<div id="f44521df" class="cell" data-execution_count="1">
+<div id="1cd64572" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -921,7 +980,7 @@ Output:  -2.1</code></pre>
 </ul></li>
 <li>Normally, a <code>yield</code> expression returns <code>None</code></li>
 </ul>
-<div id="0c13c06d" class="cell" data-execution_count="2">
+<div id="c30d1f69" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_generator():</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    received <span class="op">=</span> <span class="cf">yield</span> <span class="dv">1</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>received<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)</span>
@@ -948,7 +1007,7 @@ received=None</code></pre>
 </ul></li>
 <li>For example using the above generators but with <code>send</code></li>
 </ul>
-<div id="36825865" class="cell" data-execution_count="3">
+<div id="0409433f" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_generator():</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    received <span class="op">=</span> <span class="cf">yield</span> <span class="dv">1</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>received<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)</span>
@@ -973,7 +1032,7 @@ received='hello'</code></pre>
 <li>We save the amplitude returned by the generator and use that in a calculation to feed in the next value</li>
 </ul></li>
 </ul>
-<div id="5355bc23" class="cell" data-execution_count="4">
+<div id="8e276087" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1032,7 +1091,7 @@ Output:  -5.0</code></pre>
 <li>We could compose multiple generators (See <a href="../../Chapter_06/Item_045/item_045.html">Item 45</a>)</li>
 </ul></li>
 </ul>
-<div id="ac8b5a33" class="cell" data-execution_count="5">
+<div id="e8589ddc" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1085,7 +1144,7 @@ Output:  -9.5</code></pre>
 <li>One would hope to be able to merge <code>yield from</code> and <code>send</code></li>
 <li>However results might be unintuitive</li>
 </ul>
-<div id="d23973c6" class="cell" data-execution_count="6">
+<div id="06d0303a" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1175,7 +1234,7 @@ Output:   5.9</code></pre>
 <li>In such cases instead consider <code>async</code> functions</li>
 </ul></li>
 </ul>
-<div id="5b43ac0e" class="cell" data-execution_count="7">
+<div id="feae6895" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>

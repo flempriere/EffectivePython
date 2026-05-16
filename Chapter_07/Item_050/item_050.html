@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-24da7f4be05b02085a818207cdcb569d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-080b3bd5de75608038d564a47213d8e6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -819,6 +819,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_11/Chapter_11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11: Performance</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_092/item_092.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 92: Profile Before Optimising</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_093/item_093.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 93: Optimise Performance-Critical Code Using <code>timeit</code> Micro-benchmarks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_094/item_094.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 94: Know When and How to Replace Python with Another Programming Language</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_095/item_095.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 95: Consider <code>ctypes</code> to Rapidly Integrate with Native Libraries</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_096/item_096.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 96: Consider Extension Modules to Maximise Performance and Ergonomics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_097/item_097.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 97: Rely on Precompiled Bytecode and File System Caching to Improve Startup Times</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_098/item_098.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 98: Lazy-Load Modules with Dynamic Imports to Reduce Startup Time</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_099/item_099.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 99: Consider <code>memoryview</code> and <code>bytearray</code> for Zero-Copy Interactions with <code>bytes</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -865,7 +924,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>Results in a hierarchy like,</li>
 </ul>
-<div id="f32986ab" class="cell" data-execution_count="1">
+<div id="50d35257" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NodeAlt:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> evaluate(<span class="va">self</span>):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">NotImplementedError</span></span>
@@ -939,7 +998,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>e.g.&nbsp;one file per node type</li>
 </ul></li>
 </ul>
-<div id="2ca8487a" class="cell" data-execution_count="2">
+<div id="644d8c71" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NodeAlt2:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> evaluate(<span class="va">self</span>): ...</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -990,7 +1049,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>e.g.&nbsp;We might start by defining <code>int</code> and <code>float</code></li>
 </ul></li>
 </ul>
-<div id="b5c31628" class="cell" data-execution_count="3">
+<div id="27b4c48b" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1025,7 +1084,7 @@ Float! 1.23</code></pre>
 <span class="ansi-green-fg">     20</span> my_print(<span class="ansi-green-fg">1.23</span>)  <span style="font-style:italic;color:rgb(95,135,135)"># float</span>
 <span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">21</span> <span class="ansi-yellow-bg">my_print</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">string</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">)</span>  <span style="font-style:italic;color:rgb(95,135,135)"># no string method, throws an error</span>
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/functools.py:982</span>, in <span class="ansi-cyan-fg">singledispatch.&lt;locals&gt;.wrapper</span><span class="ansi-blue-fg">(*args, **kw)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/functools.py:982</span>, in <span class="ansi-cyan-fg">singledispatch.&lt;locals&gt;.wrapper</span><span class="ansi-blue-fg">(*args, **kw)</span>
 <span class="ansi-green-fg">    979</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> args:
 <span class="ansi-green-fg">    980</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">TypeError</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">'</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>funcname<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> requires at least </span><span class="ansi-yellow-fg">'</span>
 <span class="ansi-green-fg">    981</span>                     <span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">1 positional argument</span><span class="ansi-yellow-fg">'</span>)
@@ -1048,7 +1107,7 @@ Float! 1.23</code></pre>
 <li>Dispatching occurs through <code>my_print</code></li>
 <li>We could reimplement the pocket calculator using a <code>singledispatch</code> approach</li>
 </ul>
-<div id="e821072c" class="cell" data-execution_count="4">
+<div id="3dcfe4ae" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1098,7 +1157,7 @@ Float! 1.23</code></pre>
 <ul>
 <li>Now if we want to add a new method like pretty printing (See <a href="../../Chapter_07/Item_049/item_049.html">Item 49</a>) we can do so via another <code>singledispatch</code> function</li>
 </ul>
-<div id="5d6808fa" class="cell" data-execution_count="5">
+<div id="c7b57290" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1185,7 +1244,7 @@ Float! 1.23</code></pre>
 </ul></li>
 </ul></li>
 </ul>
-<div id="5bc62862" class="cell" data-execution_count="6">
+<div id="6460527d" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1284,7 +1343,7 @@ Float! 1.23</code></pre>
 <span class="ansi-green-fg">     83</span>         <span style="color:rgb(0,135,0)">self</span>.value = value
 <span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">86</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-bg">my_pretty</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">Float</span><span class="ansi-yellow-bg">(</span><span class="ansi-green-fg ansi-yellow-bg">5.678</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">)</span>)  <span style="font-style:italic;color:rgb(95,135,135)"># No method to resolve to</span>
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/functools.py:982</span>, in <span class="ansi-cyan-fg">singledispatch.&lt;locals&gt;.wrapper</span><span class="ansi-blue-fg">(*args, **kw)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/functools.py:982</span>, in <span class="ansi-cyan-fg">singledispatch.&lt;locals&gt;.wrapper</span><span class="ansi-blue-fg">(*args, **kw)</span>
 <span class="ansi-green-fg">    979</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> args:
 <span class="ansi-green-fg">    980</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">TypeError</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">'</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>funcname<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> requires at least </span><span class="ansi-yellow-fg">'</span>
 <span class="ansi-green-fg">    981</span>                     <span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">1 positional argument</span><span class="ansi-yellow-fg">'</span>)

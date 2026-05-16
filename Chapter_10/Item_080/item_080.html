@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-24da7f4be05b02085a818207cdcb569d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-080b3bd5de75608038d564a47213d8e6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -819,6 +819,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_11/Chapter_11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11: Performance</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_092/item_092.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 92: Profile Before Optimising</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_093/item_093.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 93: Optimise Performance-Critical Code Using <code>timeit</code> Micro-benchmarks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_094/item_094.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 94: Know When and How to Replace Python with Another Programming Language</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_095/item_095.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 95: Consider <code>ctypes</code> to Rapidly Integrate with Native Libraries</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_096/item_096.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 96: Consider Extension Modules to Maximise Performance and Ergonomics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_097/item_097.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 97: Rely on Precompiled Bytecode and File System Caching to Improve Startup Times</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_098/item_098.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 98: Lazy-Load Modules with Dynamic Imports to Reduce Startup Time</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_11/Item_099/item_099.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 99: Consider <code>memoryview</code> and <code>bytearray</code> for Zero-Copy Interactions with <code>bytes</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -879,7 +938,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>But <code>finally</code> block runs first</li>
 </ul></li>
 </ul>
-<div id="070f4dc1" class="cell" data-execution_count="1">
+<div id="03da9336" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -954,7 +1013,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>For example, consider loading JSON dictionary data</li>
 </ul>
-<div id="2d4da53d" class="cell" data-execution_count="2">
+<div id="27780c54" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -992,14 +1051,14 @@ Successfully loaded the key
 <span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">7</span>     result_dict = <span class="ansi-yellow-bg">json</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">loads</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">data</span><span class="ansi-yellow-bg">)</span>  <span style="font-style:italic;color:rgb(95,135,135)"># May raise ValueError</span>
 <span class="ansi-green-fg">      8</span> <span style="font-weight:bold;color:rgb(0,135,0)">except</span> <span style="font-weight:bold;color:rgb(215,95,95)">ValueError</span>:
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/json/__init__.py:352</span>, in <span class="ansi-cyan-fg">loads</span><span class="ansi-blue-fg">(s, cls, object_hook, parse_float, parse_int, parse_constant, object_pairs_hook, **kw)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/json/__init__.py:352</span>, in <span class="ansi-cyan-fg">loads</span><span class="ansi-blue-fg">(s, cls, object_hook, parse_float, parse_int, parse_constant, object_pairs_hook, **kw)</span>
 <span class="ansi-green-fg">    349</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> (<span style="color:rgb(0,135,0)">cls</span> <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span> <span style="font-weight:bold;color:rgb(175,0,255)">and</span> object_hook <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span> <span style="font-weight:bold;color:rgb(175,0,255)">and</span>
 <span class="ansi-green-fg">    350</span>         parse_int <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span> <span style="font-weight:bold;color:rgb(175,0,255)">and</span> parse_float <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span> <span style="font-weight:bold;color:rgb(175,0,255)">and</span>
 <span class="ansi-green-fg">    351</span>         parse_constant <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span> <span style="font-weight:bold;color:rgb(175,0,255)">and</span> object_pairs_hook <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span> <span style="font-weight:bold;color:rgb(175,0,255)">and</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> kw):
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">352</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">_default_decoder</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">decode</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">s</span><span class="ansi-yellow-bg">)</span>
 <span class="ansi-green-fg">    353</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="color:rgb(0,135,0)">cls</span> <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span>:
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/json/decoder.py:345</span>, in <span class="ansi-cyan-fg">JSONDecoder.decode</span><span class="ansi-blue-fg">(self, s, _w)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/json/decoder.py:345</span>, in <span class="ansi-cyan-fg">JSONDecoder.decode</span><span class="ansi-blue-fg">(self, s, _w)</span>
 <span class="ansi-green-fg">    341</span> <span style="font-style:italic" class="ansi-yellow-fg">"""Return the Python representation of ``s`` (a ``str`` instance</span>
 <span class="ansi-green-fg">    342</span> <span style="font-style:italic" class="ansi-yellow-fg">containing a JSON document).</span>
 <span class="ansi-green-fg">    343</span> 
@@ -1007,7 +1066,7 @@ Successfully loaded the key
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">345</span> obj, end = <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">raw_decode</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">s</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">idx</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">_w</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">s</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-green-fg ansi-yellow-bg">0</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">end</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">)</span>
 <span class="ansi-green-fg">    346</span> end = _w(s, end).end()
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/json/decoder.py:363</span>, in <span class="ansi-cyan-fg">JSONDecoder.raw_decode</span><span class="ansi-blue-fg">(self, s, idx)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/json/decoder.py:363</span>, in <span class="ansi-cyan-fg">JSONDecoder.raw_decode</span><span class="ansi-blue-fg">(self, s, idx)</span>
 <span class="ansi-green-fg">    362</span> <span style="font-weight:bold;color:rgb(0,135,0)">except</span> <span style="font-weight:bold;color:rgb(215,95,95)">StopIteration</span> <span style="font-weight:bold;color:rgb(0,135,0)">as</span> err:
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">363</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> JSONDecodeError(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Expecting value</span><span class="ansi-yellow-fg">"</span>, s, err.value) <span style="font-weight:bold;color:rgb(0,135,0)">from</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">None</span>
 <span class="ansi-green-fg">    364</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> obj, end
@@ -1064,7 +1123,7 @@ During handling of the above exception, another exception occurred:
 <li><code>else</code> performs the update</li>
 <li><code>finally</code> ensures the file handle is cleaned up</li>
 </ul>
-<div id="eb883fef" class="cell" data-execution_count="3">
+<div id="6611c612" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>UNDEFINED <span class="op">=</span> <span class="bu">object</span>()</span>
@@ -1154,7 +1213,7 @@ Invalid, not handled - try, finally runs
 <span class="ansi-green-fg">     14</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">* Performing calculation</span><span class="ansi-yellow-fg">"</span>)
 <span class="ansi-green-fg">     15</span> value = op[<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">numerator</span><span class="ansi-yellow-fg">"</span>] / op[<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">denominator</span><span class="ansi-yellow-fg">"</span>]  <span style="font-style:italic;color:rgb(95,135,135)"># May raise ZeroDivideError</span>
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/json/__init__.py:352</span>, in <span class="ansi-cyan-fg">loads</span><span class="ansi-blue-fg">(s, cls, object_hook, parse_float, parse_int, parse_constant, object_pairs_hook, **kw)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/json/__init__.py:352</span>, in <span class="ansi-cyan-fg">loads</span><span class="ansi-blue-fg">(s, cls, object_hook, parse_float, parse_int, parse_constant, object_pairs_hook, **kw)</span>
 <span class="ansi-green-fg">    347</span>     s = s.decode(detect_encoding(s), <span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">surrogatepass</span><span class="ansi-yellow-fg">'</span>)
 <span class="ansi-green-fg">    349</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> (<span style="color:rgb(0,135,0)">cls</span> <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span> <span style="font-weight:bold;color:rgb(175,0,255)">and</span> object_hook <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span> <span style="font-weight:bold;color:rgb(175,0,255)">and</span>
 <span class="ansi-green-fg">    350</span>         parse_int <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span> <span style="font-weight:bold;color:rgb(175,0,255)">and</span> parse_float <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span> <span style="font-weight:bold;color:rgb(175,0,255)">and</span>
@@ -1163,7 +1222,7 @@ Invalid, not handled - try, finally runs
 <span class="ansi-green-fg">    353</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="color:rgb(0,135,0)">cls</span> <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span>:
 <span class="ansi-green-fg">    354</span>     <span style="color:rgb(0,135,0)">cls</span> = JSONDecoder
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/json/decoder.py:345</span>, in <span class="ansi-cyan-fg">JSONDecoder.decode</span><span class="ansi-blue-fg">(self, s, _w)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/json/decoder.py:345</span>, in <span class="ansi-cyan-fg">JSONDecoder.decode</span><span class="ansi-blue-fg">(self, s, _w)</span>
 <span class="ansi-green-fg">    340</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">decode</span>(<span style="color:rgb(0,135,0)">self</span>, s, _w=WHITESPACE.match):
 <span class="ansi-green-fg">    341</span> <span style="color:rgb(188,188,188)">    </span><span style="font-style:italic" class="ansi-yellow-fg">"""Return the Python representation of ``s`` (a ``str`` instance</span>
 <span class="ansi-green-fg">    342</span> <span style="font-style:italic" class="ansi-yellow-fg">    containing a JSON document).</span>
@@ -1173,7 +1232,7 @@ Invalid, not handled - try, finally runs
 <span class="ansi-green-fg">    346</span>     end = _w(s, end).end()
 <span class="ansi-green-fg">    347</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> end != <span style="color:rgb(0,135,0)">len</span>(s):
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.4/x64/lib/python3.14/json/decoder.py:361</span>, in <span class="ansi-cyan-fg">JSONDecoder.raw_decode</span><span class="ansi-blue-fg">(self, s, idx)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/json/decoder.py:361</span>, in <span class="ansi-cyan-fg">JSONDecoder.raw_decode</span><span class="ansi-blue-fg">(self, s, idx)</span>
 <span class="ansi-green-fg">    352</span> <span style="font-style:italic" class="ansi-yellow-fg">"""Decode a JSON document from ``s`` (a ``str`` beginning with</span>
 <span class="ansi-green-fg">    353</span> <span style="font-style:italic" class="ansi-yellow-fg">a JSON document) and return a 2-tuple of the Python</span>
 <span class="ansi-green-fg">    354</span> <span style="font-style:italic" class="ansi-yellow-fg">representation and the index in ``s`` where the document ended.</span>
