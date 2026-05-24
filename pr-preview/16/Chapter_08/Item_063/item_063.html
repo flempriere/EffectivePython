@@ -992,7 +992,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Creates a JSON dictionary (See <a href="../../Chapter_07/Item_054/item_054.html">Item 54</a> for a mix-in approach)</li>
 </ul></li>
 </ul>
-<div id="79dd03a7" class="cell" data-execution_count="1">
+<div id="9b3cc8ca" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Serialisable:</span>
@@ -1005,7 +1005,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Can then inherit to create serializable classes</li>
 </ul>
-<div id="08a11439" class="cell" data-execution_count="2">
+<div id="086bccda" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Serializable:</span>
@@ -1038,7 +1038,7 @@ Serialized:   {"args": [5, 3]}</code></pre>
 <li>Define a class that can deserialize a given parent class</li>
 </ul></li>
 </ul>
-<div id="efe8b0fe" class="cell" data-execution_count="3">
+<div id="16d9384f" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Serializable:</span>
@@ -1089,7 +1089,7 @@ After:    Point2D(5, 3)</code></pre>
 <li>If we forget, then attempting to deserialize the class will break</li>
 </ul></li>
 </ul>
-<div id="cc9014b9" class="cell" data-execution_count="4">
+<div id="5008fc4e" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Serializable:</span>
@@ -1199,7 +1199,7 @@ Serialized:   {"class": "Point3D", "args": [5, -9, 4]}</code></pre>
 </ul></li>
 <li>For example, below defines a new metaclass to automatically register a class for deserialization</li>
 </ul>
-<div id="0e7726a9" class="cell" data-execution_count="5">
+<div id="96952338" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>REGISTRY <span class="op">=</span> {}</span>
@@ -1286,7 +1286,7 @@ After:    Point3D(5, -9, 4)</code></pre>
 <li>Reduces the boilerplate associated with metaclasses</li>
 </ul></li>
 </ul>
-<div id="a9afce71" class="cell" data-execution_count="6">
+<div id="4314788d" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>REGISTRY <span class="op">=</span> {}</span>

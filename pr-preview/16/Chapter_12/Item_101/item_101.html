@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -941,9 +976,112 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li><code>sort</code> performs an in-place sort (See <a href="../../Chapter_12/Item_100/item_100.html">Item 100</a>)
+<ul>
+<li>Results in original list being modified</li>
+</ul></li>
+</ul>
+<div id="cc5fd8ca" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>butterflies <span class="op">=</span> [<span class="st">"Swallowtail"</span>, <span class="st">"Monarch"</span>, <span class="st">"Red Admiral"</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Before sort: </span><span class="sc">{</span>butterflies<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>butterflies.sort()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After sort: </span><span class="sc">{</span>butterflies<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Before sort: ['Swallowtail', 'Monarch', 'Red Admiral']
+After sort: ['Monarch', 'Red Admiral', 'Swallowtail']</code></pre>
+</div>
+</div>
+<ul>
+<li>The <code>sorted</code> built-in also can used to perform sorts
+<ul>
+<li>Contents are sorted and returned as a list</li>
+<li>Original is left intact</li>
+</ul></li>
+</ul>
+<div id="b38c48bb" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>original <span class="op">=</span> [<span class="st">"Swallowtail"</span>, <span class="st">"Monarch"</span>, <span class="st">"Red Admiral"</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>alphabetical <span class="op">=</span> <span class="bu">sorted</span>(original)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Original </span><span class="sc">{</span>original<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sorted </span><span class="sc">{</span>alphabetical<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Original ['Swallowtail', 'Monarch', 'Red Admiral']
+Sorted ['Monarch', 'Red Admiral', 'Swallowtail']</code></pre>
+</div>
+</div>
+<ul>
+<li><code>sorted</code> can be used with any <em>iterable</em> object (See <a href="../../Chapter_03/Item_021/item_021.html">Item 21</a>)
+<ul>
+<li>Works on dictionaries, tuples and sets</li>
+</ul></li>
+</ul>
+<div id="ea2256aa" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sorting a dictionary"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dictionary <span class="op">=</span> {<span class="st">"foo"</span>: <span class="dv">4568</span>, <span class="st">"bar"</span>: <span class="dv">1234</span>}</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sorted: </span><span class="sc">{</span><span class="bu">sorted</span>(dictionary)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sorting a tuple"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>a_tuple <span class="op">=</span> (<span class="st">"foo"</span>, <span class="st">"bar"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sorted: </span><span class="sc">{</span><span class="bu">sorted</span>(a_tuple)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sorting a set"</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>patterns <span class="op">=</span> {<span class="st">"solid"</span>, <span class="st">"spotted"</span>, <span class="st">"cells"</span>}</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sorted: </span><span class="sc">{</span><span class="bu">sorted</span>(patterns)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sorting a dictionary
+Sorted: ['bar', 'foo']
+Sorting a tuple
+Sorted: ['bar', 'foo']
+Sorting a set
+Sorted: ['cells', 'solid', 'spotted']</code></pre>
+</div>
+</div>
+<ul>
+<li>Supports the <code>reverse</code> and <code>key</code> parameters like <code>sort</code> (See <a href="../../Chapter_12/Item_100/item_100.html">Item 100</a>)</li>
+</ul>
+<div id="acaaf6cf" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>legs <span class="op">=</span> {<span class="st">"insects"</span>: <span class="dv">6</span>, <span class="st">"spiders"</span>: <span class="dv">8</span>, <span class="st">"lizards"</span>: <span class="dv">4</span>}</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sorted_legs <span class="op">=</span> <span class="bu">sorted</span>(legs, key<span class="op">=</span><span class="kw">lambda</span> x: legs[x], reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sorted_legs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['spiders', 'insects', 'lizards']</code></pre>
+</div>
+</div>
+<ul>
+<li>When to use <code>sort</code> or <code>sorted</code>
+<ul>
+<li><code>sort</code> is in-place so has a smaller memory overhead
+<ul>
+<li>No need to create a duplicate copy</li>
+<li>Might be faster since restricted to a fixed size, <code>list</code> type, as opposed to an arbitrary iterable type</li>
+</ul></li>
+<li><code>sorted</code> creates a duplicate and so,
+<ul>
+<li>Preserves the original object
+<ul>
+<li>Avoids accidentally modifying objects or attributes (See <a href="../../Chapter_05/Item_030/item_030.html">Item 30</a> and <a href="../../Chapter_07/Item_056/item_056.html">Item 56</a>)</li>
+</ul></li>
+<li>Works for any Iterator
+<ul>
+<li>Can be used in functions to support <em>duck-typing</em> interfaces (See <a href="../../Chapter_04/Item_025/item_025.html">Item 25</a>)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li><code>sort</code> performs in-place on <code>list</code> types
+<ul>
+<li>Maximises speed and minimises memory overhead</li>
+</ul></li>
+<li><code>sorted</code> returns a sorted copy of any Iterator
+<ul>
+<li>Maximises flexibility</li>
+<li>Preserves original data</li>
+</ul></li>
+</ul>
 
 
 </section>

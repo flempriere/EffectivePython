@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -941,9 +976,182 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li>Searching an already sorted list of data is a common task, e.g.
+<ul>
+<li>Searching a dictionary for a word</li>
+<li>Looking through a list of financial transactions</li>
+</ul></li>
+<li>Using the <code>index</code> method to search for a value takes linear time
+<ul>
+<li>Designed for arbitrarily organised data</li>
+</ul></li>
+</ul>
+<div id="fa70b28d" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span><span class="op">**</span><span class="dv">5</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> data.index(<span class="dv">91234</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> index <span class="op">==</span> <span class="dv">91234</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Found item!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Found item!</code></pre>
+</div>
+</div>
+<ul>
+<li>If we have a sorted list and want to check if it contains a value we can search until we reach an upper bound or lower bound
+<ul>
+<li>Depending on the order of the search</li>
+<li>The below computes the index of the smallest value greater than or equal to the given goal</li>
+<li>Still linear though</li>
+</ul></li>
+</ul>
+<div id="0416d6e2" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span><span class="op">**</span><span class="dv">5</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_closest(sequence, goal):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> index, value <span class="kw">in</span> <span class="bu">enumerate</span>(sequence):</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> goal <span class="op">&lt;</span> value:</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> index</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"</span><span class="sc">{</span>goal<span class="sc">}</span><span class="ss"> is out of bounds"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> find_closest(data, <span class="fl">91234.56</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> index <span class="op">==</span> <span class="dv">91235</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Found an upper bound"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Found an upper bound</code></pre>
+</div>
+</div>
+<ul>
+<li>The built-in <code>bisect</code> module provides binary-search style methods for searching through ordered lists
+<ul>
+<li><code>bisect_left</code> returns an index such that,
+<ul>
+<li>If the item exists, the item is already there</li>
+<li>If the item doesn’t, this is where the item should be inserted to maintain sorted order (relative to the list start)</li>
+</ul></li>
+</ul></li>
+</ul>
+<div id="5bd1defb" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bisect <span class="im">import</span> bisect_left</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span><span class="op">**</span><span class="dv">5</span>))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> bisect_left(data, <span class="dv">91234</span>)  <span class="co"># Exact match</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> index <span class="op">==</span> <span class="dv">91234</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Found exact match"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> bisect_left(data, <span class="fl">91234.56</span>)  <span class="co"># Closest match</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> index <span class="op">==</span> <span class="dv">91235</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Found insertion point"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Found exact match
+Found insertion point</code></pre>
+</div>
+</div>
+<ul>
+<li>Binary search has logarithmic complexity
+<ul>
+<li>Scales much better as list size grows</li>
+</ul></li>
+<li>We can compare <code>bisect_left</code> vs <code>index</code> via <code>timeit</code> (See <a href="../../Chapter_11/Item_093/item_093.html">Item 93</a>)</li>
+</ul>
+<div id="264792ad" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bisect <span class="im">import</span> bisect_left</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>size <span class="op">=</span> <span class="dv">10</span><span class="op">**</span><span class="dv">5</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>iterations <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(size))</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>to_lookup <span class="op">=</span> [random.randint(<span class="dv">0</span>, size) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(iterations)]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_linear(data, to_lookup):</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> index <span class="kw">in</span> to_lookup:</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        data.index(data)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_bisect(data, to_lookup):</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> index <span class="kw">in</span> to_lookup:</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        bisect_left(data, index)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>baseline <span class="op">=</span> (</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    timeit.timeit(stmt<span class="op">=</span><span class="st">"run_linear(data, to_lookup)"</span>, <span class="bu">globals</span><span class="op">=</span><span class="bu">globals</span>(), number<span class="op">=</span><span class="dv">10</span>) <span class="op">/</span> <span class="dv">10</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Linear search takes </span><span class="sc">{</span>baseline<span class="sc">:.6f}</span><span class="ss">s"</span>)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>comparison <span class="op">=</span> (</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    timeit.timeit(stmt<span class="op">=</span><span class="st">"run_bisect(data, to_lookup)"</span>, <span class="bu">globals</span><span class="op">=</span><span class="bu">globals</span>(), number<span class="op">=</span><span class="dv">10</span>) <span class="op">/</span> <span class="dv">10</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Bisect search takes </span><span class="sc">{</span>comparison<span class="sc">:.6f}</span><span class="ss">s"</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>slowdown <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> ((baseline <span class="op">-</span> comparison) <span class="op">/</span> comparison)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>slowdown<span class="sc">:.1f}</span><span class="ss">x slower"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 23</span>
+<span class="ansi-green-fg">     18</span>     <span style="font-weight:bold;color:rgb(0,135,0)">for</span> index <span style="font-weight:bold;color:rgb(175,0,255)">in</span> to_lookup:
+<span class="ansi-green-fg">     19</span>         bisect_left(data, index)
+<span class="ansi-green-fg">     22</span> baseline = (
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">23</span>     <span class="ansi-yellow-bg">timeit</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">timeit</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">stmt</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">run_linear(data, to_lookup)</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">globals</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">globals</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">number</span><span class="ansi-yellow-bg">=</span><span class="ansi-green-fg ansi-yellow-bg">10</span><span class="ansi-yellow-bg">)</span> / <span class="ansi-green-fg">10</span>
+<span class="ansi-green-fg">     24</span> )
+<span class="ansi-green-fg">     25</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Linear search takes </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>baseline<span style="font-weight:bold;color:rgb(175,95,135)">:</span><span class="ansi-yellow-fg">.6f</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">s</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">     27</span> comparison = (
+<span class="ansi-green-fg">     28</span>     timeit.timeit(stmt=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">run_bisect(data, to_lookup)</span><span class="ansi-yellow-fg">"</span>, <span style="color:rgb(0,135,0)">globals</span>=<span style="color:rgb(0,135,0)">globals</span>(), number=<span class="ansi-green-fg">10</span>) / <span class="ansi-green-fg">10</span>
+<span class="ansi-green-fg">     29</span> )
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/timeit.py:234</span>, in <span class="ansi-cyan-fg">timeit</span><span class="ansi-blue-fg">(stmt, setup, timer, number, globals)</span>
+<span class="ansi-green-fg">    231</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">timeit</span>(stmt=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">pass</span><span class="ansi-yellow-fg">"</span>, setup=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">pass</span><span class="ansi-yellow-fg">"</span>, timer=default_timer,
+<span class="ansi-green-fg">    232</span>            number=default_number, <span style="color:rgb(0,135,0)">globals</span>=<span style="font-weight:bold;color:rgb(0,135,0)">None</span>):
+<span class="ansi-green-fg">    233</span> <span style="color:rgb(188,188,188)">    </span><span style="font-style:italic" class="ansi-yellow-fg">"""Convenience function to create Timer object and call timeit method."""</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">234</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">Timer</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">stmt</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">setup</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">timer</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">globals</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">timeit</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">number</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/timeit.py:177</span>, in <span class="ansi-cyan-fg">Timer.timeit</span><span class="ansi-blue-fg">(self, number)</span>
+<span class="ansi-green-fg">    175</span> gc.disable()
+<span class="ansi-green-fg">    176</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">177</span>     timing = <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">inner</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">it</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">timer</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    178</span> <span style="font-weight:bold;color:rgb(0,135,0)">finally</span>:
+<span class="ansi-green-fg">    179</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> gcold:
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">&lt;timeit-src&gt;:6</span>, in <span class="ansi-cyan-fg">inner</span><span class="ansi-blue-fg">(_it, _timer)</span>
+
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 14</span>, in <span class="ansi-cyan-fg">run_linear</span><span class="ansi-blue-fg">(data, to_lookup)</span>
+<span class="ansi-green-fg">     12</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">run_linear</span>(data, to_lookup):
+<span class="ansi-green-fg">     13</span>     <span style="font-weight:bold;color:rgb(0,135,0)">for</span> index <span style="font-weight:bold;color:rgb(175,0,255)">in</span> to_lookup:
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">14</span>         <span class="ansi-yellow-bg">data</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">index</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">data</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-red-fg">ValueError</span>: list.index(x): x not in list</pre>
+</div>
+</div>
+</div>
+<ul>
+<li><code>bisect</code> works on any sequence type (See <a href="../../Chapter_07/Item_057/item_057.html">Item 57</a>)
+<ul>
+<li>As long as the underlying elements support a natural ordering (See <a href="../../Chapter_12/Item_104/item_104.html">Item 104</a>)</li>
+</ul></li>
+<li><code>bisect</code> also provides additional functionality (e.g.&nbsp;<code>bisect_right</code>)
+<ul>
+<li>As per usual, <a href="https://docs.python.org/3/library/bisect.html">read the docs</a></li>
+</ul></li>
+</ul>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li>Using index to search a list for a value takes linear time
+<ul>
+<li>But can work on unsorted data</li>
+</ul></li>
+<li>The <code>bisect</code> uses binary-search algorithms to provide fast range-queries for values in a sorted list
+<ul>
+<li>Can also work on generic sequence types</li>
+</ul></li>
+</ul>
 
 
 </section>

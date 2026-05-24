@@ -1013,7 +1013,7 @@ window.Quarto = {
 </ul></li>
 <li><p>One adjusts brightness and contrast using user supplied parameters (see <a href="./CLI/adjust.py">adjust.py</a>)</p></li>
 </ul>
-<div id="2b23c3a9" class="cell" data-execution_count="1">
+<div id="b4556452" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First module</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># adjust.py</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Fast initialisation</span></span>
@@ -1036,7 +1036,7 @@ window.Quarto = {
 <li>Suppose this then initialises slowly</li>
 </ul></li>
 </ul>
-<div id="ccfbe849" class="cell" data-execution_count="2">
+<div id="4d94b6cc" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Second module</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># enhance.py</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Slow initialisation</span></span>
@@ -1268,7 +1268,7 @@ Enhancing! amount=0.8</code></pre>
 <li>We can time it using <code>timeit</code> to check the time associated with dynamically importing an already imported module</li>
 </ul></li>
 </ul>
-<div id="efd82b24" class="cell" data-execution_count="3">
+<div id="99187291" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>trials <span class="op">=</span> <span class="dv">10_000_000</span></span>
@@ -1282,7 +1282,7 @@ Enhancing! amount=0.8</code></pre>
 <span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>result <span class="op">/</span> trials <span class="op">*</span> <span class="fl">1e9</span><span class="sc">:2.1f}</span><span class="ss"> nanos per call"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>248.6 nanos per call</code></pre>
+<pre><code>246.3 nanos per call</code></pre>
 </div>
 </div>
 <ul>
@@ -1291,7 +1291,7 @@ Enhancing! amount=0.8</code></pre>
 <li>Common way to prevent multiple threads from dog-piling during program initialisation</li>
 </ul></li>
 </ul>
-<div id="395eb0c9" class="cell" data-execution_count="4">
+<div id="f7d60c75" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> threading</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
