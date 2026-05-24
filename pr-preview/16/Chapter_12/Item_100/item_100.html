@@ -983,7 +983,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>e.g.&nbsp;numbers from smallest to largest, strings alphabetically</li>
 </ul></li>
 </ul>
-<div id="5d4fc60d" class="cell" data-execution_count="1">
+<div id="2a5563a5" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="dv">93</span>, <span class="dv">86</span>, <span class="dv">11</span>, <span class="dv">68</span>, <span class="dv">70</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>numbers.sort()</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(numbers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -997,7 +997,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Need to define the underlying comparison operators</li>
 </ul></li>
 </ul>
-<div id="f84ce4d3" class="cell" data-execution_count="2">
+<div id="7632a13e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Tool:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, weight):</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
@@ -1055,7 +1055,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Here we can sort the <code>Tool</code> objects alphabetically by name</li>
 </ul></li>
 </ul>
-<div id="b6b3da33" class="cell" data-execution_count="3">
+<div id="b4d36c0d" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Tool:</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, weight):</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
@@ -1084,7 +1084,7 @@ Sorted:     [Tool('chisel', 0.25), Tool('hammer', 1.25), Tool('level', 3.5), Too
 <ul>
 <li>Instead we could sort on <code>weight</code></li>
 </ul>
-<div id="6ae28394" class="cell" data-execution_count="4">
+<div id="5057fcd8" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Tool:</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, weight):</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
@@ -1127,7 +1127,7 @@ Sorted:     [Tool('chisel', 0.25), Tool('screwdriver', 0.5), Tool('hammer', 1.25
 <li>For example, we might use <code>strip</code> and <code>lower</code> to remove extra whitespace and convert to lowercase before comparing</li>
 </ul></li>
 </ul>
-<div id="a6b51964" class="cell" data-execution_count="5">
+<div id="d6d85fd7" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>places <span class="op">=</span> [<span class="st">"home"</span>, <span class="st">"work"</span>, <span class="st">"New York"</span>, <span class="st">" Paris"</span>]</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>places.sort()</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Case Sensitive Sort: "</span>, places)</span>
@@ -1150,7 +1150,7 @@ Case Insensitive Sort:    [' Paris', 'home', 'New York', 'work']</code></pre>
 <li>Each index is compared in sequence</li>
 </ul></li>
 </ul>
-<div id="ff7a2b9c" class="cell" data-execution_count="6">
+<div id="6e2e1374" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>saw <span class="op">=</span> (<span class="dv">5</span>, <span class="st">"circular saw"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>jackhammer <span class="op">=</span> (<span class="dv">40</span>, <span class="st">"jackhammer"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1172,7 +1172,7 @@ Drill compares less than sander</code></pre>
 <ul>
 <li>We could implement this behaviour using a <code>lambda</code> to work with our <code>Tool</code> class</li>
 </ul>
-<div id="a56c7cad" class="cell" data-execution_count="7">
+<div id="dec239dd" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Tool:</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, weight):</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
@@ -1199,7 +1199,7 @@ Drill compares less than sander</code></pre>
 <li>What happens if we want to <code>sort</code> in the opposite order, e.g.&nbsp;descending rather than ascending</li>
 <li>Can so via the <code>reverse</code> parameter</li>
 </ul>
-<div id="4104eff8" class="cell" data-execution_count="8">
+<div id="9db2bb9e" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Tool:</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, weight):</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
@@ -1230,7 +1230,7 @@ Drill compares less than sander</code></pre>
 <li>For numerical types we can get around this by using the negation operator.</li>
 <li>For example, if we want to sort by <code>weight</code> in descending, but name is ascending we can write</li>
 </ul>
-<div id="83458d78" class="cell" data-execution_count="9">
+<div id="75c6d41c" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Tool:</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, weight):</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
@@ -1259,7 +1259,7 @@ Drill compares less than sander</code></pre>
 <li>Can’t <em>negate</em> a <code>str</code></li>
 </ul></li>
 </ul>
-<div id="d6f5bdbe" class="cell" data-execution_count="10">
+<div id="0d0f55c4" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Tool:</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, weight):</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
@@ -1315,7 +1315,7 @@ Drill compares less than sander</code></pre>
 </ul></li>
 <li>We can repeat the descending weight, ascending name example using two chained sorts</li>
 </ul>
-<div id="e0b44754" class="cell" data-execution_count="11">
+<div id="e04ab0f3" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Tool:</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, weight):</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
