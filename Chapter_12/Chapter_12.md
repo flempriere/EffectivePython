@@ -6,8 +6,8 @@
   python standard library
 - More complex pre-packaged data structures and types also exist for
   handling specialised data, including
-  1.  Date and time manipulations
-  2.  Handling monetary or other high-precision decimal values
-  3.  Saving and restoring program state, and more
+  1. Date and time manipulations
+  2. Handling monetary or other high-precision decimal values
+  3. Saving and restoring program state, and more
 - Where possible prefer using library-implementations over rolling your
   own
