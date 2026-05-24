@@ -19,6 +19,7 @@ This repository contains code fragments and notes from the book, Effective Pytho
 - [Chapter 9: Concurrency and Parallelism](./Chapter_09/Chapter_09.md)
 - [Chapter 10: Robustness](./Chapter_10/Chapter_10.md)
 - [Chapter 11: Performance](./Chapter_11/Chapter_11.md)
+- [Chapter 12: Data Structures Algorithms](./Chapter_12/Chapter_12.md)
 
 ## Attribution
 

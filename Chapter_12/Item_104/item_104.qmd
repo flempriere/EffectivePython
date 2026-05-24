@@ -4,4 +4,93 @@ title: "Item 104: Know how to use `heapq` for Priority Queues"
 
 ## Notes
 
+- Python's traditional queue types (See [Item 103](../Item_103/item_103.qmd) and [Item 70](../../Chapter_09/Item_070/item_070.qmd)) are all First-in, First-out queues (FIFO)
+- Typically instead might need to select items in order of *priority*
+    - Priority might be distinct from the insertion order
+- In these cases we instead use a *priority queue*
+- E.g. Consider a library management system
+    - Needs to send emails out to remind people to return overdue books
+    - Books can be varied for different lengths of time
+        - Means we can't use a FIFO queue or a stack
+    - Basic implementation would be to use a list
+        - Maintain in sorted order by a `due_date` field
+
+```{python}
+from dataclasses import dataclass
+
+
+@dataclass
+class Book:
+    title: str
+    due_date: str
+
+
+def add_book(queue, book):
+    queue.append(book)
+    queue.sort(key=lambda x: x.due_date, reverse=True)
+
+
+queue = []
+add_book(queue, Book("Don Quixote", "2019-06-07"))
+add_book(queue, Book("Frankenstein", "2019-06-05"))
+add_book(queue, Book("Les Miserables", "2019-06-08"))
+add_book(queue, Book("War and Peace", "2019-06-03"))
+
+print(queue)
+```
+
+- Working with a sorted list means we have a simple check for overdue books
+    - Simply check the *last* element of the list
+- Can then call repeatedly until we have no more overdue books
+    - Will perform the reminders in order from most overdue to least
+
+```{python}
+from dataclasses import dataclass
+
+
+@dataclass
+class Book:
+    title: str
+    due_date: str
+
+
+def add_book(queue, book):
+    queue.append(book)
+    queue.sort(key=lambda x: x.due_date, reverse=True)
+
+
+queue = []
+add_book(queue, Book("Don Quixote", "2019-06-07"))
+add_book(queue, Book("Frankenstein", "2019-06-05"))
+add_book(queue, Book("Les Miserables", "2019-06-08"))
+add_book(queue, Book("War and Peace", "2019-06-03"))
+
+
+class NoOverdueBooks(Exception):
+    pass
+
+
+def next_overdue_book(book, now):
+    if queue:
+        book = queue[-1]
+        if book.due_date < now:
+            queue.pop()
+            return book
+    raise NoOverdueBooks
+
+
+now = "2019-06-10"
+
+while True:
+    try:
+        found = next_overdue_book(queue, now)
+    except NoOverdueBooks:
+        break
+    else:
+        print(found.due_date, found.title)
+```
+
+- Returned books can be removed from the queue
+- When all overdue books are returned, we can use an exception to indicate their are no more (See [Item 32](../../Chapter_05/Item_032/item_032.qmd))
+
 ## Things to Remember
