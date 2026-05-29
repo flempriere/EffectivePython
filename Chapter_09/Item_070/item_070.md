@@ -376,9 +376,9 @@ print("Producer done")
 thread.join()
 ```
 
-    Consumer waiting
-    Producing putting
+    Consumer waitingProducing putting
     Producer waiting
+
     Consumer working
     Consumer done
     Producer done

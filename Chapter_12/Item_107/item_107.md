@@ -53,7 +53,7 @@ state.lives -= 1  # player has lost a life
 
 print(state.__dict__)
 
-state_path = os.path.join("game_state_v1.pkl")
+state_path = "game_state_v1.pkl"
 
 print("Saving the state...")
 # Add saving functionality
@@ -69,18 +69,9 @@ print(new_state.__dict__)
 ```
 
     {'level': 1, 'lives': 3}
-
-    NameError: name 'os' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[1], line 17
-         13 state.lives -= 1  # player has lost a life
-         15 print(state.__dict__)
-    ---> 17 state_path = os.path.join("game_state_v1.pkl")
-         19 print("Saving the state...")
-         20 # Add saving functionality
-
-    NameError: name 'os' is not defined
+    Saving the state...
+    Loading the state...
+    {'level': 1, 'lives': 3}
 
 - An issue with serialising data is that if the data format changes over
   time then any existing serialized data may become invalid
@@ -109,7 +100,7 @@ state.lives -= 1  # player has lost a life
 
 print(state.__dict__)
 
-state_path = os.path.join("game_state_v2.pkl")
+state_path = "game_state_v2.pkl"
 
 print("Saving the state...")
 # Add saving functionality
@@ -135,18 +126,12 @@ print("Old state is still a GameState Instance")
 ```
 
     {'level': 1, 'lives': 3, 'points': 0}
-
-    NameError: name 'os' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[2], line 18
-         14 state.lives -= 1  # player has lost a life
-         16 print(state.__dict__)
-    ---> 18 state_path = os.path.join("game_state_v2.pkl")
-         20 print("Saving the state...")
-         21 # Add saving functionality
-
-    NameError: name 'os' is not defined
+    Saving the state...
+    Loading the state...
+    {'level': 1, 'lives': 3, 'points': 0}
+    Loading an old state...
+    {'level': 1, 'lives': 3}
+    Old state is still a GameState Instance
 
 - `pickle` has other similar bugbears when dealing with non-trivial use
   cases
@@ -204,7 +189,7 @@ state.lives -= 1  # player has lost a life
 
 print(state.__dict__)
 
-state_path = os.path.join("game_state_v2.pkl")
+state_path = "game_state_v2.pkl"
 
 print("Saving the state...")
 # Add saving functionality
@@ -230,18 +215,12 @@ print("Old state is still a GameState Instance")
 ```
 
     {'level': 1, 'lives': 3, 'points': 1000}
-
-    NameError: name 'os' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[3], line 33
-         29 state.lives -= 1  # player has lost a life
-         31 print(state.__dict__)
-    ---> 33 state_path = os.path.join("game_state_v2.pkl")
-         35 print("Saving the state...")
-         36 # Add saving functionality
-
-    NameError: name 'os' is not defined
+    Saving the state...
+    Loading the state...
+    {'level': 1, 'lives': 3, 'points': 1000}
+    Loading an old state...
+    {'level': 1, 'lives': 3}
+    Old state is still a GameState Instance
 
 - Observe that this still doesn’t fix the issue with previously saved
   old data
@@ -284,7 +263,7 @@ state.mana -= 2  # player has used two spells
 
 print(state.__dict__)
 
-state_path = os.path.join("game_state_v3.pkl")
+state_path = "game_state_v3.pkl"
 
 print("Saving the state...")
 # Add saving functionality
@@ -310,18 +289,12 @@ print("Old state is still a GameState Instance")
 ```
 
     {'level': 1, 'lives': 3, 'points': 1000, 'mana': 3}
-
-    NameError: name 'os' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[4], line 35
-         31 state.mana -= 2  # player has used two spells
-         33 print(state.__dict__)
-    ---> 35 state_path = os.path.join("game_state_v3.pkl")
-         37 print("Saving the state...")
-         38 # Add saving functionality
-
-    NameError: name 'os' is not defined
+    Saving the state...
+    Loading the state...
+    {'level': 1, 'lives': 3, 'points': 1000, 'mana': 3}
+    Loading an old state...
+    {'level': 1, 'lives': 3, 'points': 1000, 'mana': 5}
+    Old state is still a GameState Instance
 
 ### Versioning Classes
 
@@ -367,26 +340,20 @@ print(state.__dict__)
 
     Attempting to load an old state
 
-    FileNotFoundError: [Errno 2] No such file or directory: 'game_state_v3.pkl'
+    TypeError: GameState.__init__() got an unexpected keyword argument 'lives'. Did you mean 'level'?
     ---------------------------------------------------------------------------
-    FileNotFoundError                         Traceback (most recent call last)
-    Cell In[5], line 26
-         24 # Attempting to load an old state
+    TypeError                                 Traceback (most recent call last)
+    Cell In[5], line 27
          25 print("Attempting to load an old state")
-    ---> 26 with open("game_state_v3.pkl", "rb") as f:
-         27     state = pickle.load(f)
+         26 with open("game_state_v3.pkl", "rb") as f:
+    ---> 27     state = pickle.load(f)
          29 print(state.__dict__)
 
-    File ~/work/EffectivePython/EffectivePython/.venv/lib/python3.14/site-packages/IPython/core/interactiveshell.py:346, in _modified_open(file, *args, **kwargs)
-        339 if file in {0, 1, 2}:
-        340     raise ValueError(
-        341         f"IPython won't let you open fd={file} by default "
-        342         "as it is likely to crash IPython. If you know what you are doing, "
-        343         "you can use builtins' open."
-        344     )
-    --> 346 return io_open(file, *args, **kwargs)
+    Cell In[5], line 18, in unpickle_game_state(kwargs)
+         17 def unpickle_game_state(kwargs):
+    ---> 18     return GameState(**kwargs)
 
-    FileNotFoundError: [Errno 2] No such file or directory: 'game_state_v3.pkl'
+    TypeError: GameState.__init__() got an unexpected keyword argument 'lives'. Did you mean 'level'?
 
 - To fix add a version parameter via the `copyreg` functions
   - Have to account for the fact that old data will not have a `version`
@@ -431,27 +398,7 @@ print(state.__dict__)
 ```
 
     Attempting to load an old state
-
-    FileNotFoundError: [Errno 2] No such file or directory: 'game_state_v3.pkl'
-    ---------------------------------------------------------------------------
-    FileNotFoundError                         Traceback (most recent call last)
-    Cell In[6], line 32
-         30 # Attempting to load an old state
-         31 print("Attempting to load an old state")
-    ---> 32 with open("game_state_v3.pkl", "rb") as f:
-         33     state = pickle.load(f)
-         35 print(state.__dict__)
-
-    File ~/work/EffectivePython/EffectivePython/.venv/lib/python3.14/site-packages/IPython/core/interactiveshell.py:346, in _modified_open(file, *args, **kwargs)
-        339 if file in {0, 1, 2}:
-        340     raise ValueError(
-        341         f"IPython won't let you open fd={file} by default "
-        342         "as it is likely to crash IPython. If you know what you are doing, "
-        343         "you can use builtins' open."
-        344     )
-    --> 346 return io_open(file, *args, **kwargs)
-
-    FileNotFoundError: [Errno 2] No such file or directory: 'game_state_v3.pkl'
+    {'level': 1, 'points': 1000, 'mana': 3}
 
 - This let’s us load old data even before introducing versioning
   - So long as they were saved with the `copyreg` functions
@@ -491,27 +438,9 @@ with open("game_state_v1.pkl", "rb") as f:
 ```
 
     Attempting to load a GameState object
-
-    FileNotFoundError: [Errno 2] No such file or directory: 'game_state_v1.pkl'
-    ---------------------------------------------------------------------------
-    FileNotFoundError                         Traceback (most recent call last)
-    Cell In[7], line 13
-          9         self.mana = mana
-         11 print("Attempting to load a GameState object")
-    ---> 13 with open("game_state_v1.pkl", "rb") as f:
-         14     pickled_str = f.read()
-         15     print("Pickled data:\n", pickled_str)
-
-    File ~/work/EffectivePython/EffectivePython/.venv/lib/python3.14/site-packages/IPython/core/interactiveshell.py:346, in _modified_open(file, *args, **kwargs)
-        339 if file in {0, 1, 2}:
-        340     raise ValueError(
-        341         f"IPython won't let you open fd={file} by default "
-        342         "as it is likely to crash IPython. If you know what you are doing, "
-        343         "you can use builtins' open."
-        344     )
-    --> 346 return io_open(file, *args, **kwargs)
-
-    FileNotFoundError: [Errno 2] No such file or directory: 'game_state_v1.pkl'
+    Pickled data:
+     b'\x80\x05\x956\x00\x00\x00\x00\x00\x00\x00\x8c\x08__main__\x94\x8c\tGameState\x94\x93\x94)\x81\x94}\x94(\x8c\x05level\x94K\x01\x8c\x05lives\x94K\x03ub.'
+    {'level': 1, 'lives': 3}
 
 - Can see we get an error because `GameState` no longer exists
   - In the raw pickle data we can see that the object name is encoded as
@@ -567,27 +496,9 @@ with open("game_state_v3.pkl", "rb") as f:
 ```
 
     Attempting to load a GameState object
-
-    FileNotFoundError: [Errno 2] No such file or directory: 'game_state_v3.pkl'
-    ---------------------------------------------------------------------------
-    FileNotFoundError                         Traceback (most recent call last)
-    Cell In[8], line 34
-         29 copyreg.pickle(BetterGameState, pickle_game_state)
-         32 print("Attempting to load a GameState object")
-    ---> 34 with open("game_state_v3.pkl", "rb") as f:
-         35     pickled_str = f.read()
-         36     print("Pickled data:\n", pickled_str)
-
-    File ~/work/EffectivePython/EffectivePython/.venv/lib/python3.14/site-packages/IPython/core/interactiveshell.py:346, in _modified_open(file, *args, **kwargs)
-        339 if file in {0, 1, 2}:
-        340     raise ValueError(
-        341         f"IPython won't let you open fd={file} by default "
-        342         "as it is likely to crash IPython. If you know what you are doing, "
-        343         "you can use builtins' open."
-        344     )
-    --> 346 return io_open(file, *args, **kwargs)
-
-    FileNotFoundError: [Errno 2] No such file or directory: 'game_state_v3.pkl'
+    Pickled data:
+     b'\x80\x05\x95U\x00\x00\x00\x00\x00\x00\x00\x8c\x08__main__\x94\x8c\x13unpickle_game_state\x94\x93\x94}\x94(\x8c\x05level\x94K\x01\x8c\x05lives\x94K\x03\x8c\x06points\x94M\xe8\x03\x8c\x04mana\x94K\x03u\x85\x94R\x94.'
+    {'level': 1, 'points': 1000, 'mana': 3}
 
 - We can see if the raw pickled data rather than storing the path to the
   class name we have the path to the unpickling function
