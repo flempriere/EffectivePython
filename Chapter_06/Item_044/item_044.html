@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-080b3bd5de75608038d564a47213d8e6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-fe96bcf97a920bc5dc7e098a56de92d0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -878,6 +878,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_12/Chapter_12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 12: Data Structures and Algorithms</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_12/Item_100/item_100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 100: Sort by Complex Criteria using the <code>key</code> Parameter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_12/Item_101/item_101.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 101: Know the difference between <code>sort</code> and <code>sorted</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_12/Item_102/item_102.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 102: Consider Searching Sorted Sequences with <code>bisect</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_12/Item_103/item_103.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 103: Prefer <code>deque</code> for Producer-Consumer Queues</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_12/Item_104/item_104.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 104: Know how to use <code>heapq</code> for Priority Queues</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_12/Item_105/item_105.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 105 Use <code>datetime</code> Instead of <code>time</code> for Local Clocks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_12/Item_106/item_106.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 106: Use <code>decimal</code> when Precision is Paramount</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_12/Item_107/item_107.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 107: Make <code>pickle</code> Serialization Maintainable with <code>copyreg</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -924,7 +983,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>For example, reading and counting the number of characters on each line</li>
 </ul>
-<div id="a4935c12" class="cell" data-execution_count="1">
+<div id="233cc316" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>value <span class="op">=</span> [<span class="bu">len</span>(x) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">open</span>(<span class="st">"my_file.txt"</span>)]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(value)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -944,17 +1003,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Generator expressions are created like a list comprehension using <code>()</code> instead of <code>[]</code></li>
 <li>For example, (Naively) converting our program above to use a generator expression</li>
 </ul>
-<div id="d3f96759" class="cell" data-execution_count="2">
+<div id="ece537d9" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> (<span class="bu">len</span>(x) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">open</span>(<span class="st">"my_file.txt"</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(it)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;generator object &lt;genexpr&gt; at 0x7f726c7d9e00&gt;</code></pre>
+<pre><code>&lt;generator object &lt;genexpr&gt; at 0x7f8c0cc75460&gt;</code></pre>
 </div>
 </div>
 <ul>
 <li>To actually get values out of the returned iterator we have to call the <code>next</code> method (either explicitly or implicitly via a loop)</li>
 </ul>
-<div id="207a9c3a" class="cell" data-execution_count="3">
+<div id="59546442" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> (<span class="bu">len</span>(x) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">open</span>(<span class="st">"my_file.txt"</span>))</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">next</span>(it))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">next</span>(it))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -967,7 +1026,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Generator expressions can also be composed together</li>
 <li>We could combine the above generator with a second that also includes the square root</li>
 </ul>
-<div id="1b1a537e" class="cell" data-execution_count="4">
+<div id="955a2191" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>it <span class="op">=</span> (<span class="bu">len</span>(x) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">open</span>(<span class="st">"my_file.txt"</span>))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>roots <span class="op">=</span> ((x, x<span class="op">**</span><span class="fl">0.5</span>) <span class="cf">for</span> x <span class="kw">in</span> it)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
