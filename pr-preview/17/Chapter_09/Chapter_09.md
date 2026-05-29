@@ -1,0 +1,28 @@
+# Chapter 9: Concurrency and Parallelism
+
+- *Concurrency* enables a computer to do many things *seemingly* at the
+  same time
+  - e.g. An operating system rapidly changing which program is running
+    on a CPU
+  - Here programs are *interleaved*
+- *Parallelism*, is the process of *actually* doing many things at the
+  same time
+  - e.g. Computers with multiple CPU cores executing multiple programs
+    simultaneously
+- Concurrency is a tool that makes certain problem types easier
+  - Give distinct paths of execution
+  - Can separate I/O streams
+- Parallelism leads to a general speed-up
+  - Splitting the work between two programs means both make progress
+    simultaneously
+  - Concurrent programs tend not to speed up the total work because they
+    operate sequentially but interleaved
+- Python provides a number of concurrency paradigms
+  - Threads support small amounts of concurrency
+  - Asynchronous coroutines enable vast amounts of concurrent function
+    execution
+- Python also provides parallelisation primitives
+  - system calls
+  - subprocesses
+  - C extensions
+  - *However* true parallelism is difficult

@@ -1,0 +1,150 @@
+# Item 94: Know When and How to Replace Python with Another Programming
+Language
+
+
+- [Notes](#notes)
+- [Things to Remember](#things-to-remember)
+
+## Notes
+
+- Python’s limitations can often reach a point that you may consider a
+  different language
+  - For example, the GIL prevents true parallelism (See [Item
+    68](../../Chapter_09/Item_068/item_068.qmd))
+  - Python tends to have a large memory overhead
+- Some scenarios in which a rewrite might be considered are,
+  1.  Critical path latency or 99th percentile latency optimisation
+      - Garbage collection pauses or non-deterministic data structure
+        behaviours can challenge these
+  2.  Reducing program start-up delay
+      - First look at Python’s provided mechanisms though (See [Item
+        97](../Item_097/item_097.qmd))
+  3.  Using libraries that are tightly coupled to implementation
+      language
+      - Platform specific GUI languages are a common culprit
+      - First consider using C extension modules
+  4.  Needing to target uncommon architectures
+      - Supercomputers
+      - Embedded
+      - There are python packages that do target these environments but
+        they may not be practical
+  5.  You need to distribute the program as an installable executable
+      - Or bundle tools
+      - There are python tools that do allow for this, but typically
+        must also bundle a python runtime
+  6.  Other optimisation techniques and other python runtimes are still
+      not achieving required performance benchmarks
+  7.  You’re unable to properly distribute your code over different
+      processes (See [Item 79](../../Chapter_09/Item_079/item_079.qmd))
+      - Or across computers via tools like [Dask](https://www.dask.org/)
+- Rewrites are non-trivial undertakings
+  - Always work first looking at techniques for optimisation within
+    python
+- There are always multiple strategies to achieve optimisation
+  - Obviously come with tradeoffs and balances
+- As always start by optimising (See [Item 92](../Item_092/item_092.qmd)
+  and benchmarking (See [Item 93](../Item_093/item_093.qmd)))
+- Consider architecture or data structure redesigns
+  - The appropriate data structure can give orders of magnitude
+    improvements for often a simple drop-in refactor
+- If you need to migrate then there are multiple techniques to do so
+  - Most common recurrent bottleneck in python are *tight loops*
+    - Common in mathematics
+    - This is because python’s loop infrastructure is slow
+  - The below function is significantly slower in python than the C
+    equivalent
+
+``` python
+def dot_product(a, b):
+    result = 0
+    for i, j in zip(a, b):
+        result += i * j
+    return result
+
+
+print(dot_product([1, 2], [3, 4]))
+```
+
+    11
+
+- Tight loops or kernel functions are often well-defined interfaces
+  - Means they can normally serve as a concerns boundary between fast
+    and slow code
+  - Speed benefit from improving these functions will be experienced by
+    all higher level callers
+  - No need to rewrite the rest of the codebase
+- Can use this *bottom-up* approach to gradually define key boundaries
+  and change larger components
+- Standard python provides two tools for improving performance this way
+  1.  `ctypes` built-in
+      - Can describe and export native system libraries
+      - Can be implemented in any language that supports the C ABI
+      - Can support
+        1.  Native threads
+        2.  SIMD
+        3.  GPUs
+        4.  and more…
+      - Does not change the build process
+  2.  C Extension API
+      - Allows the creation of pythonic API’s that are implemented in C
+      - Still enables python’s traditional dynamic features
+      - Typically requires more work upfront
+        - Need to actually write the extension
+      - But integrates the ergonomics of python
+        - Does introduce the need to build the extension
+- The larger python ecosystem also has specialised libraries for new
+  programming paradigms and performance
+  - [Numpy](https://numpy.org/) enables array-based programming
+    - Utilises BLAS (Basic Linear Algebra Subprograms)
+      - Provides CPU parallelism and high performance
+    - Typically requires some rearchitecture, but provides good speedup
+  - [Numba](https://numba.pydata.org/) provides a just-in-time compiler
+    (JIT Compiler) for existing functions
+    - Provides a wrapper that can be applied to existing functions
+    - Compiles code at runtime into optimised machine instructions
+    - Code may need to be modified to use simpler data types and less
+      dynamic typing
+    - Avoids additional build complexity
+  - [Cython](https://cython.org/) enhances the python language with
+    features to support writing C extension modules
+    - Avoids the need to actually write C code
+    - Shares build complexity with the C extension API, but without the
+      difficulty of directly interacting with it
+  - [Mypyc](https://github.com/mypyc/mypyc/tree/master) like Cpython but
+    tries to integrate with the standard `typing` annotation
+    - Can make it easier to apply to existing programs
+    - Can ahead-of-time (AOT) compile programs to improve start-up time
+    - Similar build complexity to C extension modules
+    - Does not seem to be actively updated
+  - [CFFI](https://cffi.readthedocs.io/en/stable/) similar to the
+    `ctypes` built-in
+    - Can read C header files to determine function interfaces
+    - Reduces the complexity of calling into native libraries
+  - [SWIG](https://www.swig.org/) a more general tool than for just
+    python
+    - Allows generation of python interfaces for C and C++ native
+      libraries
+    - Similar to CFFI
+    - Translation is explicit rather than runtime
+    - Has associated build complexity
+- Caveat with these tools and libraries is that they can be big and
+  extensive on their own
+  - Learning the Numpy ecosystem is similar to learning a new language
+- Worth considering if learning the tools will be a more effective use
+  of time than just doing the rewrite
+  - Note, that any rewrite is always a big undertaking
+  - Especially when using some of the high-level primitives naturally
+    supported by Python
+- In general rather than rewriting yourself, look to see if someone has
+  already written a C extension module
+
+## Things to Remember
+
+- There are many valid reasons to do a language rewrite for a project
+  - Always investigate all optimisation techniques first
+- Consider moving CPU bottlenecks to C extension modules or native
+  libraries
+  - These often minimise the need to modify existing python code
+- Where possible utilise existing tools and libraries in the broader
+  python ecosystem
+  - These can often give big speed-ups with minimal performance cost
