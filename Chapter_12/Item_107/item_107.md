@@ -1,0 +1,609 @@
+# Item 107: Make `pickle` Serialization Maintainable with `copyreg`
+
+- [Notes](#notes)
+  - [Default Attribute Values](#default-attribute-values)
+  - [Versioning Classes](#versioning-classes)
+  - [Stable `import` Paths](#stable-import-paths)
+- [Things to Remember](#things-to-remember)
+
+## Notes
+
+- `pickle` is a built-in module for serializing and deserializing python
+  objects into bytes and vice-versa (See [Item
+  10](../../Chapter_02/Item_010/item_010.qmd))
+- Don’t use `pickle` to communicate between untrusted parties
+  - Let’s arbitrary objects be serialized and constructed
+  - Allows you pass Python objects between programs you control over a
+    binary stream
+
+> [!IMPORTANT]
+>
+> `pickle` is a unsafe serialization format by design. The pickle format
+> contains the data to be reconstructed and effectively a mini-program
+> describing how to construct the object. Malicious `pickle` code can
+> compromise any python program that deserializes it.
+>
+> `json` is an alternate serialisation format that is safe by design.
+> Contains simple object descriptions as dictionaries, lists and simple
+> primitive types. Deserialized JSON data has less avenue for risk,
+> because the consumer has to actively reconstruct the malicious code.
+>
+> JSON (or other formats) should be used instead of `pickle` when
+> communicating between untrusted programs
+
+- Consider a python `GameState` object
+  - This state is modified as a player progresses
+  - Want them to be able to save the state and resume later
+    - Easy to implement with `pickle`
+
+``` python
+import pickle
+
+
+class GameState:
+    def __init__(self):
+        self.level = 0
+        self.lives = 4
+
+
+# Represent the state updating
+state = GameState()
+state.level += 1  # player has made it to level one
+state.lives -= 1  # player has lost a life
+
+print(state.__dict__)
+
+state_path = os.path.join("game_state_v1.pkl")
+
+print("Saving the state...")
+# Add saving functionality
+with open(state_path, "wb") as f:
+    pickle.dump(state, f)
+
+# Reload a game state
+print("Loading the state...")
+with open(state_path, "rb") as f:
+    new_state = pickle.load(f)
+
+print(new_state.__dict__)
+```
+
+    {'level': 1, 'lives': 3}
+
+    NameError: name 'os' is not defined
+    ---------------------------------------------------------------------------
+    NameError                                 Traceback (most recent call last)
+    Cell In[1], line 17
+         13 state.lives -= 1  # player has lost a life
+         15 print(state.__dict__)
+    ---> 17 state_path = os.path.join("game_state_v1.pkl")
+         19 print("Saving the state...")
+         20 # Add saving functionality
+
+    NameError: name 'os' is not defined
+
+- An issue with serialising data is that if the data format changes over
+  time then any existing serialized data may become invalid
+  - e.g. Consider adding a new field to our game state
+    - Works fine on any newly serialized data
+    - Old data will be unserialized fine, but does not have the new
+      fields
+      - Will still register as an instance of the class,
+        e.g. `GameState`
+
+``` python
+import pickle
+
+
+class GameState:
+    def __init__(self):
+        self.level = 0
+        self.lives = 4
+        self.points = 0  # New field
+
+
+# Represent the state updating
+state = GameState()
+state.level += 1  # player has made it to level one
+state.lives -= 1  # player has lost a life
+
+print(state.__dict__)
+
+state_path = os.path.join("game_state_v2.pkl")
+
+print("Saving the state...")
+# Add saving functionality
+with open(state_path, "wb") as f:
+    pickle.dump(state, f)
+
+# Reload a game state
+print("Loading the state...")
+with open(state_path, "rb") as f:
+    new_state = pickle.load(f)
+
+print(new_state.__dict__)
+
+# Attempting to load an old state
+print("Loading an old state...")
+with open("game_state_v1.pkl", "rb") as f:
+    old_state = pickle.load(f)
+
+print(old_state.__dict__)
+
+assert isinstance(old_state, GameState)
+print("Old state is still a GameState Instance")
+```
+
+    {'level': 1, 'lives': 3, 'points': 0}
+
+    NameError: name 'os' is not defined
+    ---------------------------------------------------------------------------
+    NameError                                 Traceback (most recent call last)
+    Cell In[2], line 18
+         14 state.lives -= 1  # player has lost a life
+         16 print(state.__dict__)
+    ---> 18 state_path = os.path.join("game_state_v2.pkl")
+         20 print("Saving the state...")
+         21 # Add saving functionality
+
+    NameError: name 'os' is not defined
+
+- `pickle` has other similar bugbears when dealing with non-trivial use
+  cases
+- Use the `copyreg` built-in to fix these
+  - Can define serialization and deserialization functions
+    - Provides finer controls over how an object is serialised
+
+### Default Attribute Values
+
+- Simple fix is to provide a constructor with default values (See [Item
+  35](../../Chapter_05/Item_035/item_035.qmd))
+  - Ensures objects have all attributes after unpickling
+- Define a helper function to take a `GameState` object into a tuple of
+  parameters for `copyreg`
+  - Tuple contains a function for deserializing, plus parameters to pass
+    to the function
+- Define a deserialization function
+  - Takes serialized data and returns a reconstructed object
+  - Here we take the provided `kwargs` and past them into the
+    constructor
+- Last step is to register them with `copyreg`
+  - via `copyreg.pickle`
+  - Takes in the object to register, and the pickling function
+
+``` python
+import copyreg
+import pickle
+
+
+class GameState:
+    def __init__(self, level=0, lives=4, points=0):
+        self.level = level
+        self.lives = lives
+        self.points = points
+
+
+def pickle_game_state(game_state):
+    kwargs = game_state.__dict__
+    return unpickle_game_state, (kwargs,)
+
+
+def unpickle_game_state(kwargs):
+    return GameState(**kwargs)
+
+
+# Register pickling functions
+copyreg.pickle(GameState, pickle_game_state)
+
+
+# Represent the state updating
+state = GameState()
+state.points += 1000
+state.level += 1  # player has made it to level one
+state.lives -= 1  # player has lost a life
+
+print(state.__dict__)
+
+state_path = os.path.join("game_state_v2.pkl")
+
+print("Saving the state...")
+# Add saving functionality
+with open(state_path, "wb") as f:
+    pickle.dump(state, f)
+
+# Reload a game state
+print("Loading the state...")
+with open(state_path, "rb") as f:
+    new_state = pickle.load(f)
+
+print(new_state.__dict__)
+
+# Attempting to load an old state
+print("Loading an old state...")
+with open("game_state_v1.pkl", "rb") as f:
+    old_state = pickle.load(f)
+
+print(old_state.__dict__)
+
+assert isinstance(old_state, GameState)
+print("Old state is still a GameState Instance")
+```
+
+    {'level': 1, 'lives': 3, 'points': 1000}
+
+    NameError: name 'os' is not defined
+    ---------------------------------------------------------------------------
+    NameError                                 Traceback (most recent call last)
+    Cell In[3], line 33
+         29 state.lives -= 1  # player has lost a life
+         31 print(state.__dict__)
+    ---> 33 state_path = os.path.join("game_state_v2.pkl")
+         35 print("Saving the state...")
+         36 # Add saving functionality
+
+    NameError: name 'os' is not defined
+
+- Observe that this still doesn’t fix the issue with previously saved
+  old data
+  - The pickling functions are saved as part of the file format
+- But if we now change our `GameState` again, we can load our
+  `game_state_v2.pkl`
+
+``` python
+import copyreg
+import pickle
+
+
+class GameState:
+    def __init__(self, level=0, lives=4, points=0, mana=5):
+        self.level = level
+        self.lives = lives
+        self.points = points
+        self.mana = mana
+
+
+def pickle_game_state(game_state):
+    kwargs = game_state.__dict__
+    return unpickle_game_state, (kwargs,)
+
+
+def unpickle_game_state(kwargs):
+    return GameState(**kwargs)
+
+
+# Register pickling functions
+copyreg.pickle(GameState, pickle_game_state)
+
+
+# Represent the state updating
+state = GameState()
+state.points += 1000
+state.level += 1  # player has made it to level one
+state.lives -= 1  # player has lost a life
+state.mana -= 2  # player has used two spells
+
+print(state.__dict__)
+
+state_path = os.path.join("game_state_v3.pkl")
+
+print("Saving the state...")
+# Add saving functionality
+with open(state_path, "wb") as f:
+    pickle.dump(state, f)
+
+# Reload a game state
+print("Loading the state...")
+with open(state_path, "rb") as f:
+    new_state = pickle.load(f)
+
+print(new_state.__dict__)
+
+# Attempting to load an old state
+print("Loading an old state...")
+with open("game_state_v2.pkl", "rb") as f:
+    old_state = pickle.load(f)
+
+print(old_state.__dict__)
+
+assert isinstance(old_state, GameState)
+print("Old state is still a GameState Instance")
+```
+
+    {'level': 1, 'lives': 3, 'points': 1000, 'mana': 3}
+
+    NameError: name 'os' is not defined
+    ---------------------------------------------------------------------------
+    NameError                                 Traceback (most recent call last)
+    Cell In[4], line 35
+         31 state.mana -= 2  # player has used two spells
+         33 print(state.__dict__)
+    ---> 35 state_path = os.path.join("game_state_v3.pkl")
+         37 print("Saving the state...")
+         38 # Add saving functionality
+
+    NameError: name 'os' is not defined
+
+### Versioning Classes
+
+- The constructor approach works for adding new attributes
+  - These maintain backwards compatibility
+- Sometimes need to make breaking changes
+  - e.g. removing attributes
+- For example, game might now remove lives and just use a score instead
+  - Old data is now unable to be deserialized via the constructor method
+    - Since invalid keyword arguments are passed to the constructor
+
+``` python
+import copyreg
+import pickle
+
+
+class GameState:
+    def __init__(self, level=0, points=0, mana=5):
+        self.level = level
+        self.points = points
+        self.mana = mana
+
+
+def pickle_game_state(game_state):
+    kwargs = game_state.__dict__
+    return unpickle_game_state, (kwargs,)
+
+
+def unpickle_game_state(kwargs):
+    return GameState(**kwargs)
+
+
+# Register pickling functions
+copyreg.pickle(GameState, pickle_game_state)
+
+# Attempting to load an old state
+print("Attempting to load an old state")
+with open("game_state_v3.pkl", "rb") as f:
+    state = pickle.load(f)
+
+print(state.__dict__)
+```
+
+    Attempting to load an old state
+
+    FileNotFoundError: [Errno 2] No such file or directory: 'game_state_v3.pkl'
+    ---------------------------------------------------------------------------
+    FileNotFoundError                         Traceback (most recent call last)
+    Cell In[5], line 26
+         24 # Attempting to load an old state
+         25 print("Attempting to load an old state")
+    ---> 26 with open("game_state_v3.pkl", "rb") as f:
+         27     state = pickle.load(f)
+         29 print(state.__dict__)
+
+    File ~/work/EffectivePython/EffectivePython/.venv/lib/python3.14/site-packages/IPython/core/interactiveshell.py:346, in _modified_open(file, *args, **kwargs)
+        339 if file in {0, 1, 2}:
+        340     raise ValueError(
+        341         f"IPython won't let you open fd={file} by default "
+        342         "as it is likely to crash IPython. If you know what you are doing, "
+        343         "you can use builtins' open."
+        344     )
+    --> 346 return io_open(file, *args, **kwargs)
+
+    FileNotFoundError: [Errno 2] No such file or directory: 'game_state_v3.pkl'
+
+- To fix add a version parameter via the `copyreg` functions
+  - Have to account for the fact that old data will not have a `version`
+    field when unpickling
+
+``` python
+import copyreg
+import pickle
+
+
+class GameState:
+    def __init__(self, level=0, points=0, mana=5):
+        self.level = level
+        self.points = points
+        self.mana = mana
+
+
+def pickle_game_state(game_state):
+    kwargs = game_state.__dict__
+    kwargs["version"] = 2
+    return unpickle_game_state, (kwargs,)
+
+
+def unpickle_game_state(kwargs):
+    version = kwargs.pop(
+        "version", 1
+    )  # returns value of the key or 1 by default then removes it
+    if version == 1:  # if old data need to remove the lives keyword
+        del kwargs["lives"]
+    return GameState(**kwargs)
+
+
+# Register pickling functions
+copyreg.pickle(GameState, pickle_game_state)
+
+# Attempting to load an old state
+print("Attempting to load an old state")
+with open("game_state_v3.pkl", "rb") as f:
+    state = pickle.load(f)
+
+print(state.__dict__)
+```
+
+    Attempting to load an old state
+
+    FileNotFoundError: [Errno 2] No such file or directory: 'game_state_v3.pkl'
+    ---------------------------------------------------------------------------
+    FileNotFoundError                         Traceback (most recent call last)
+    Cell In[6], line 32
+         30 # Attempting to load an old state
+         31 print("Attempting to load an old state")
+    ---> 32 with open("game_state_v3.pkl", "rb") as f:
+         33     state = pickle.load(f)
+         35 print(state.__dict__)
+
+    File ~/work/EffectivePython/EffectivePython/.venv/lib/python3.14/site-packages/IPython/core/interactiveshell.py:346, in _modified_open(file, *args, **kwargs)
+        339 if file in {0, 1, 2}:
+        340     raise ValueError(
+        341         f"IPython won't let you open fd={file} by default "
+        342         "as it is likely to crash IPython. If you know what you are doing, "
+        343         "you can use builtins' open."
+        344     )
+    --> 346 return io_open(file, *args, **kwargs)
+
+    FileNotFoundError: [Errno 2] No such file or directory: 'game_state_v3.pkl'
+
+- This let’s us load old data even before introducing versioning
+  - So long as they were saved with the `copyreg` functions
+- When we make future breaking changes to a class, we can then again
+  update the version number applied by the serialization function
+  - Then add the version specific deserialization logic to the
+    deserializer function
+
+### Stable `import` Paths
+
+- Renaming a class can break `pickle`
+- Happens when,
+  1. A class is moved
+  2. Renamed for better clarity
+- E.g. Suppose our `GameState` has now been refactored into
+  `BetterGameState`
+  - We’ll try to then deserialize our original non-`copyreg` pickle data
+
+``` python
+import pickle
+
+
+# Renamed class
+class BetterGameState:
+    def __init__(self, level=0, points=0, mana=5):
+        self.level = level
+        self.points = points
+        self.mana = mana
+
+print("Attempting to load a GameState object")
+
+with open("game_state_v1.pkl", "rb") as f:
+    pickled_str = f.read()
+    print("Pickled data:\n", pickled_str)
+    state = pickle.loads(pickled_str)
+    print(state.__dict__)
+```
+
+    Attempting to load a GameState object
+
+    FileNotFoundError: [Errno 2] No such file or directory: 'game_state_v1.pkl'
+    ---------------------------------------------------------------------------
+    FileNotFoundError                         Traceback (most recent call last)
+    Cell In[7], line 13
+          9         self.mana = mana
+         11 print("Attempting to load a GameState object")
+    ---> 13 with open("game_state_v1.pkl", "rb") as f:
+         14     pickled_str = f.read()
+         15     print("Pickled data:\n", pickled_str)
+
+    File ~/work/EffectivePython/EffectivePython/.venv/lib/python3.14/site-packages/IPython/core/interactiveshell.py:346, in _modified_open(file, *args, **kwargs)
+        339 if file in {0, 1, 2}:
+        340     raise ValueError(
+        341         f"IPython won't let you open fd={file} by default "
+        342         "as it is likely to crash IPython. If you know what you are doing, "
+        343         "you can use builtins' open."
+        344     )
+    --> 346 return io_open(file, *args, **kwargs)
+
+    FileNotFoundError: [Errno 2] No such file or directory: 'game_state_v1.pkl'
+
+- Can see we get an error because `GameState` no longer exists
+  - In the raw pickle data we can see that the object name is encoded as
+    `GameState`
+    - As is `__main__` and the attribute field names
+  - `pickle` encodes the `import` path of the object
+- By using `copyreg` `pickle` instead looks for the name of the function
+  to do the unpickling
+  - As long as this is stable we can change the name of the underlying
+    class
+  - As demonstrated below, all we had to do was replace `GameState` with
+    `BetterGameState`
+
+``` python
+import copyreg
+import pickle
+
+
+# Renamed class
+class BetterGameState:
+    def __init__(self, level=0, points=0, mana=5):
+        self.level = level
+        self.points = points
+        self.mana = mana
+
+
+def pickle_game_state(game_state):
+    kwargs = game_state.__dict__
+    kwargs["version"] = 2
+    return unpickle_game_state, (kwargs,)
+
+
+def unpickle_game_state(kwargs):
+    version = kwargs.pop(
+        "version", 1
+    )  # returns value of the key or 1 by default then removes it
+    if version == 1:  # if old data need to remove the lives keyword
+        del kwargs["lives"]
+    return BetterGameState(**kwargs)
+
+
+# Register pickling functions -> just need to adjust the name here
+copyreg.pickle(BetterGameState, pickle_game_state)
+
+
+print("Attempting to load a GameState object")
+
+with open("game_state_v3.pkl", "rb") as f:
+    pickled_str = f.read()
+    print("Pickled data:\n", pickled_str)
+    state = pickle.loads(pickled_str)
+    print(state.__dict__)
+```
+
+    Attempting to load a GameState object
+
+    FileNotFoundError: [Errno 2] No such file or directory: 'game_state_v3.pkl'
+    ---------------------------------------------------------------------------
+    FileNotFoundError                         Traceback (most recent call last)
+    Cell In[8], line 34
+         29 copyreg.pickle(BetterGameState, pickle_game_state)
+         32 print("Attempting to load a GameState object")
+    ---> 34 with open("game_state_v3.pkl", "rb") as f:
+         35     pickled_str = f.read()
+         36     print("Pickled data:\n", pickled_str)
+
+    File ~/work/EffectivePython/EffectivePython/.venv/lib/python3.14/site-packages/IPython/core/interactiveshell.py:346, in _modified_open(file, *args, **kwargs)
+        339 if file in {0, 1, 2}:
+        340     raise ValueError(
+        341         f"IPython won't let you open fd={file} by default "
+        342         "as it is likely to crash IPython. If you know what you are doing, "
+        343         "you can use builtins' open."
+        344     )
+    --> 346 return io_open(file, *args, **kwargs)
+
+    FileNotFoundError: [Errno 2] No such file or directory: 'game_state_v3.pkl'
+
+- We can see if the raw pickled data rather than storing the path to the
+  class name we have the path to the unpickling function
+- This method shifts the immutability from the class path to the
+  function path
+  - We can’t change the name or move the unpickling function
+
+## Things to Remember
+
+- `pickle` built-in is useful for serializing and deserializing objects
+  between trusted python programs
+- Deserializing pickled objects may break if classes have been changed
+  over time, e.g. via,
+  1. Adding or removing attributes
+  2. Adding or removing methods
+  3. Changing their name or location
+- `copyreg` built-in can be used to register functions for serializing
+  and deserializing `pickle` objects
+  - Can be used to implement backwards compatible interfaces
