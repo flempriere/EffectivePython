@@ -110,9 +110,9 @@ slowdown = 1 + ((baseline - comparison) / comparison)
 print(f"{slowdown:.1f}x slower")
 ```
 
-    Linear search takes 0.419588s
-    Bisect search takes 0.000329s
-    1275.3x slower
+    Linear search takes 0.428346s
+    Bisect search takes 0.000333s
+    1284.7x slower
 
 - `bisect` works on any sequence type (See [Item
   57](../../Chapter_07/Item_057/item_057.qmd))
