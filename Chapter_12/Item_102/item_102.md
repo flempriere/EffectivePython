@@ -83,12 +83,12 @@ size = 10**5
 iterations = 1000
 
 data = list(range(size))
-to_lookup = [random.randint(0, size) for _ in range(iterations)]
+to_lookup = [random.randint(0, size - 1) for _ in range(iterations)]
 
 
 def run_linear(data, to_lookup):
     for index in to_lookup:
-        data.index(data)
+        data.index(index)
 
 
 def run_bisect(data, to_lookup):
@@ -110,41 +110,9 @@ slowdown = 1 + ((baseline - comparison) / comparison)
 print(f"{slowdown:.1f}x slower")
 ```
 
-    ValueError: list.index(x): x not in list
-    ---------------------------------------------------------------------------
-    ValueError                                Traceback (most recent call last)
-    Cell In[4], line 23
-         18     for index in to_lookup:
-         19         bisect_left(data, index)
-         22 baseline = (
-    ---> 23     timeit.timeit(stmt="run_linear(data, to_lookup)", globals=globals(), number=10) / 10
-         24 )
-         25 print(f"Linear search takes {baseline:.6f}s")
-         27 comparison = (
-         28     timeit.timeit(stmt="run_bisect(data, to_lookup)", globals=globals(), number=10) / 10
-         29 )
-
-    File /opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/timeit.py:234, in timeit(stmt, setup, timer, number, globals)
-        231 def timeit(stmt="pass", setup="pass", timer=default_timer,
-        232            number=default_number, globals=None):
-        233     """Convenience function to create Timer object and call timeit method."""
-    --> 234     return Timer(stmt, setup, timer, globals).timeit(number)
-
-    File /opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/timeit.py:177, in Timer.timeit(self, number)
-        175 gc.disable()
-        176 try:
-    --> 177     timing = self.inner(it, self.timer)
-        178 finally:
-        179     if gcold:
-
-    File <timeit-src>:6, in inner(_it, _timer)
-
-    Cell In[4], line 14, in run_linear(data, to_lookup)
-         12 def run_linear(data, to_lookup):
-         13     for index in to_lookup:
-    ---> 14         data.index(data)
-
-    ValueError: list.index(x): x not in list
+    Linear search takes 0.419588s
+    Bisect search takes 0.000329s
+    1275.3x slower
 
 - `bisect` works on any sequence type (See [Item
   57](../../Chapter_07/Item_057/item_057.qmd))
