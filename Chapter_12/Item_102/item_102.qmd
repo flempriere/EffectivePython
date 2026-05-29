@@ -70,12 +70,12 @@ size = 10**5
 iterations = 1000
 
 data = list(range(size))
-to_lookup = [random.randint(0, size) for _ in range(iterations)]
+to_lookup = [random.randint(0, size - 1) for _ in range(iterations)]
 
 
 def run_linear(data, to_lookup):
     for index in to_lookup:
-        data.index(data)
+        data.index(index)
 
 
 def run_bisect(data, to_lookup):
