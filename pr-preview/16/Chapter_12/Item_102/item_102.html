@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-080b3bd5de75608038d564a47213d8e6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-fe96bcf97a920bc5dc7e098a56de92d0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -896,7 +896,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Chapter_12/Item_101/item_101.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Know the difference between <code>sort</code> and <code>sorted</code></span></a>
+ <span class="menu-text">Item 101: Know the difference between <code>sort</code> and <code>sorted</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -987,7 +987,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Designed for arbitrarily organised data</li>
 </ul></li>
 </ul>
-<div id="bf38bc59" class="cell" data-execution_count="1">
+<div id="bed912ef" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span><span class="op">**</span><span class="dv">5</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> data.index(<span class="dv">91234</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> index <span class="op">==</span> <span class="dv">91234</span></span>
@@ -1004,7 +1004,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Still linear though</li>
 </ul></li>
 </ul>
-<div id="f33bf76d" class="cell" data-execution_count="2">
+<div id="54e1b9ef" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span><span class="op">**</span><span class="dv">5</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1032,7 +1032,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul></li>
 </ul>
-<div id="e849bacd" class="cell" data-execution_count="3">
+<div id="3b44a839" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bisect <span class="im">import</span> bisect_left</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span><span class="op">**</span><span class="dv">5</span>))</span>
@@ -1056,7 +1056,7 @@ Found insertion point</code></pre>
 </ul></li>
 <li>We can compare <code>bisect_left</code> vs <code>index</code> via <code>timeit</code> (See <a href="../../Chapter_11/Item_093/item_093.html">Item 93</a>)</li>
 </ul>
-<div id="1e1550e8" class="cell" data-execution_count="4">
+<div id="294edd50" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bisect <span class="im">import</span> bisect_left</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
@@ -1065,12 +1065,12 @@ Found insertion point</code></pre>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>iterations <span class="op">=</span> <span class="dv">1000</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(size))</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>to_lookup <span class="op">=</span> [random.randint(<span class="dv">0</span>, size) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(iterations)]</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>to_lookup <span class="op">=</span> [random.randint(<span class="dv">0</span>, size <span class="op">-</span> <span class="dv">1</span>) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(iterations)]</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_linear(data, to_lookup):</span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> index <span class="kw">in</span> to_lookup:</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        data.index(data)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        data.index(index)</span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_bisect(data, to_lookup):</span>
@@ -1090,43 +1090,10 @@ Found insertion point</code></pre>
 <span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>slowdown <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> ((baseline <span class="op">-</span> comparison) <span class="op">/</span> comparison)</span>
 <span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>slowdown<span class="sc">:.1f}</span><span class="ss">x slower"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 23</span>
-<span class="ansi-green-fg">     18</span>     <span style="font-weight:bold;color:rgb(0,135,0)">for</span> index <span style="font-weight:bold;color:rgb(175,0,255)">in</span> to_lookup:
-<span class="ansi-green-fg">     19</span>         bisect_left(data, index)
-<span class="ansi-green-fg">     22</span> baseline = (
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">23</span>     <span class="ansi-yellow-bg">timeit</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">timeit</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">stmt</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">run_linear(data, to_lookup)</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">globals</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">globals</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">number</span><span class="ansi-yellow-bg">=</span><span class="ansi-green-fg ansi-yellow-bg">10</span><span class="ansi-yellow-bg">)</span> / <span class="ansi-green-fg">10</span>
-<span class="ansi-green-fg">     24</span> )
-<span class="ansi-green-fg">     25</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Linear search takes </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>baseline<span style="font-weight:bold;color:rgb(175,95,135)">:</span><span class="ansi-yellow-fg">.6f</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">s</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">     27</span> comparison = (
-<span class="ansi-green-fg">     28</span>     timeit.timeit(stmt=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">run_bisect(data, to_lookup)</span><span class="ansi-yellow-fg">"</span>, <span style="color:rgb(0,135,0)">globals</span>=<span style="color:rgb(0,135,0)">globals</span>(), number=<span class="ansi-green-fg">10</span>) / <span class="ansi-green-fg">10</span>
-<span class="ansi-green-fg">     29</span> )
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/timeit.py:234</span>, in <span class="ansi-cyan-fg">timeit</span><span class="ansi-blue-fg">(stmt, setup, timer, number, globals)</span>
-<span class="ansi-green-fg">    231</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">timeit</span>(stmt=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">pass</span><span class="ansi-yellow-fg">"</span>, setup=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">pass</span><span class="ansi-yellow-fg">"</span>, timer=default_timer,
-<span class="ansi-green-fg">    232</span>            number=default_number, <span style="color:rgb(0,135,0)">globals</span>=<span style="font-weight:bold;color:rgb(0,135,0)">None</span>):
-<span class="ansi-green-fg">    233</span> <span style="color:rgb(188,188,188)">    </span><span style="font-style:italic" class="ansi-yellow-fg">"""Convenience function to create Timer object and call timeit method."""</span>
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">234</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">Timer</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">stmt</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">setup</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">timer</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">globals</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">timeit</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">number</span><span class="ansi-yellow-bg">)</span>
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/timeit.py:177</span>, in <span class="ansi-cyan-fg">Timer.timeit</span><span class="ansi-blue-fg">(self, number)</span>
-<span class="ansi-green-fg">    175</span> gc.disable()
-<span class="ansi-green-fg">    176</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">177</span>     timing = <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">inner</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">it</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">timer</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg">    178</span> <span style="font-weight:bold;color:rgb(0,135,0)">finally</span>:
-<span class="ansi-green-fg">    179</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> gcold:
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">&lt;timeit-src&gt;:6</span>, in <span class="ansi-cyan-fg">inner</span><span class="ansi-blue-fg">(_it, _timer)</span>
-
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 14</span>, in <span class="ansi-cyan-fg">run_linear</span><span class="ansi-blue-fg">(data, to_lookup)</span>
-<span class="ansi-green-fg">     12</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">run_linear</span>(data, to_lookup):
-<span class="ansi-green-fg">     13</span>     <span style="font-weight:bold;color:rgb(0,135,0)">for</span> index <span style="font-weight:bold;color:rgb(175,0,255)">in</span> to_lookup:
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">14</span>         <span class="ansi-yellow-bg">data</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">index</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">data</span><span class="ansi-yellow-bg">)</span>
-
-<span class="ansi-red-fg">ValueError</span>: list.index(x): x not in list</pre>
-</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear search takes 0.453674s
+Bisect search takes 0.000334s
+1359.5x slower</code></pre>
 </div>
 </div>
 <ul>
@@ -1559,8 +1526,8 @@ Found insertion point</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../Chapter_12/Item_101/item_101.html" class="pagination-link" aria-label="Know the difference between `sort` and `sorted`">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Know the difference between <code>sort</code> and <code>sorted</code></span>
+      <a href="../../Chapter_12/Item_101/item_101.html" class="pagination-link" aria-label="Item 101: Know the difference between `sort` and `sorted`">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Item 101: Know the difference between <code>sort</code> and <code>sorted</code></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

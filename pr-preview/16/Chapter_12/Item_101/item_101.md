@@ -1,4 +1,4 @@
-# Know the difference between `sort` and `sorted`
+# Item 101: Know the difference between `sort` and `sorted`
 
 
 - [Notes](#notes)

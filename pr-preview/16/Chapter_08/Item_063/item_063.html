@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-080b3bd5de75608038d564a47213d8e6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-fe96bcf97a920bc5dc7e098a56de92d0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -896,7 +896,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Chapter_12/Item_101/item_101.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Know the difference between <code>sort</code> and <code>sorted</code></span></a>
+ <span class="menu-text">Item 101: Know the difference between <code>sort</code> and <code>sorted</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -992,7 +992,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Creates a JSON dictionary (See <a href="../../Chapter_07/Item_054/item_054.html">Item 54</a> for a mix-in approach)</li>
 </ul></li>
 </ul>
-<div id="213bd8d9" class="cell" data-execution_count="1">
+<div id="5d8307f9" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Serialisable:</span>
@@ -1005,7 +1005,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Can then inherit to create serializable classes</li>
 </ul>
-<div id="4a3f0dda" class="cell" data-execution_count="2">
+<div id="c69bd7dd" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Serializable:</span>
@@ -1038,7 +1038,7 @@ Serialized:   {"args": [5, 3]}</code></pre>
 <li>Define a class that can deserialize a given parent class</li>
 </ul></li>
 </ul>
-<div id="10a874cd" class="cell" data-execution_count="3">
+<div id="ea6e56c2" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Serializable:</span>
@@ -1089,7 +1089,7 @@ After:    Point2D(5, 3)</code></pre>
 <li>If we forget, then attempting to deserialize the class will break</li>
 </ul></li>
 </ul>
-<div id="bc74c3e3" class="cell" data-execution_count="4">
+<div id="af945c28" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Serializable:</span>
@@ -1199,7 +1199,7 @@ Serialized:   {"class": "Point3D", "args": [5, -9, 4]}</code></pre>
 </ul></li>
 <li>For example, below defines a new metaclass to automatically register a class for deserialization</li>
 </ul>
-<div id="1aa2a4c5" class="cell" data-execution_count="5">
+<div id="994e17b6" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>REGISTRY <span class="op">=</span> {}</span>
@@ -1286,7 +1286,7 @@ After:    Point3D(5, -9, 4)</code></pre>
 <li>Reduces the boilerplate associated with metaclasses</li>
 </ul></li>
 </ul>
-<div id="31f1ec30" class="cell" data-execution_count="6">
+<div id="d8e5686d" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>REGISTRY <span class="op">=</span> {}</span>
