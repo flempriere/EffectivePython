@@ -1046,7 +1046,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>E.g. The below assert (See <a href="../../Chapter_10/Item_081/item_081.html">Item 81</a>) demonstrates the trace</li>
 </ul>
-<div id="d6a9f5b5" class="cell" data-execution_count="1">
+<div id="9b1ff35c" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> inner_func(message):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="va">False</span>, message</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1086,7 +1086,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>One solution is a blanket <code>try/except</code> block (See <a href="../../Chapter_10/Item_085/item_085.html">Item 85</a> and <a href="../../Chapter_10/Item_086/item_086.html">Item 86</a>)</li>
 <li>The following <code>request</code> class mocks this behaviour</li>
 </ul>
-<div id="e76abbc3" class="cell" data-execution_count="2">
+<div id="c380807e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Request:</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, body):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.body <span class="op">=</span> body</span>
@@ -1119,7 +1119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>print_tb</code> let’s us print out the stack trace</li>
 </ul></li>
 </ul>
-<div id="048a3132" class="cell" data-execution_count="3">
+<div id="c235580f" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> traceback</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1148,10 +1148,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>AssertionError('My Message')</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>  File "/tmp/ipykernel_11911/1677808877.py", line 16, in handle
+<pre><code>  File "/tmp/ipykernel_11961/1677808877.py", line 16, in handle
     do_work(request.body)
     ~~~~~~~^^^^^^^^^^^^^^
-  File "/tmp/ipykernel_11911/1677808877.py", line 11, in do_work
+  File "/tmp/ipykernel_11961/1677808877.py", line 11, in do_work
     assert False, data
            ^^^^^</code></pre>
 </div>
@@ -1170,7 +1170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>We could make our <code>handle</code> for example list the function names in the stack trace</li>
 </ul>
-<div id="1a01c401" class="cell" data-execution_count="4">
+<div id="c34236c2" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> traceback</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1211,7 +1211,7 @@ AssertionError('My Message')</code></pre>
 <li>Can be implemented via a wrapper</li>
 </ul></li>
 </ul>
-<div id="636785e1" class="cell" data-execution_count="5">
+<div id="f70a154e" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> traceback</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>

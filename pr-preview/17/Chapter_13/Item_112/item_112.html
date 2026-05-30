@@ -1054,7 +1054,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Can then be directly injected into <code>do_rounds</code></li>
 </ul></li>
 </ul>
-<div id="7494e200" class="cell" data-execution_count="1">
+<div id="10c8cec5" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1096,7 +1096,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Makes it much cleaner to separate setting up a <code>Mock</code> from the object being tested</li>
 </ul></li>
 </ul>
-<div id="98a0a36f" class="cell" data-execution_count="2">
+<div id="32170b0b" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest.mock <span class="im">import</span> Mock</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1134,14 +1134,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>database.feed_animal.assert_any_call()</span>
 <span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Mock passed all testes"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;Mock name='mock.feed_animal' id='139973054300240'&gt;
+<pre><code>&lt;Mock name='mock.feed_animal' id='140381010116688'&gt;
 Mock passed all testes</code></pre>
 </div>
 </div>
 <ul>
 <li>Implementing the full mock code</li>
 </ul>
-<div id="12d8e039" class="cell" data-execution_count="3">
+<div id="788196d8" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime, timedelta</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest.mock <span class="im">import</span> Mock, call</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1226,7 +1226,7 @@ Mock passed all testes</code></pre>
 <li>For example, cache a module scope <code>ZooDatabase</code> object</li>
 <li>Can then use <code>patch</code> to inject the mock</li>
 </ul>
-<div id="f568ab54" class="cell" data-execution_count="4">
+<div id="914a2015" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> contextlib</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime, timedelta</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> io</span>

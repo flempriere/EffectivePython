@@ -29,7 +29,7 @@ delay = timeit.timeit(stmt="1+2")
 print(delay)
 ```
 
-    0.01099376599995594
+    0.010269374000017706
 
 - `timeit.timeit` calculates the time to run one million iterations of
   the provided `stmt` argument
@@ -42,7 +42,7 @@ delay = timeit.timeit(stmt="1+2", number=100)
 print(delay)
 ```
 
-    1.8020000425167382e-06
+    1.9529998098732904e-06
 
 - The risk with smaller iteration numbers is that there is a risk that
   the computer’s noise will obfuscate the test results
@@ -62,7 +62,7 @@ delay = timeit.timeit(stmt="1+2", number=count)
 print(f"{delay / count * 1e9:.2f} nanoseconds")
 ```
 
-    11.08 nanoseconds
+    11.04 nanoseconds
 
 - Often there needs to be some surrounding scaffolding or test harness
   to support a benchmark, e.g.
@@ -98,7 +98,7 @@ probe in numbers
 print(f"{delay / count * 1e9:.2f} nanoseconds")
 ```
 
-    5809.73 nanoseconds
+    59773.60 nanoseconds
 
 - Once a baseline is established we can modify the approach and compare
   the behaviours
@@ -126,7 +126,7 @@ probe in numbers
 print(f"{delay / count * 1e9:.2f} nanoseconds")
 ```
 
-    34.00 nanoseconds
+    31.08 nanoseconds
 
 - We should see that checking for membership in a `set` over our `list`
   takes on the order of nanoseconds as opposed to microseconds
@@ -160,7 +160,7 @@ delay = timeit.timeit(
 print(f"{delay / count * 1e9:.2f} nanoseconds")
 ```
 
-    288644.74 nanoseconds
+    285581.08 nanoseconds
 
 - Above measures how long each call to `loop_sum` takes
   - Meaningless as we are interested in the timing of the inner loop
@@ -190,7 +190,7 @@ delay = timeit.timeit(
 print(f"{delay / count / 10_000 * 1e9:.2f} nanoseconds")
 ```
 
-    28.85 nanoseconds
+    28.96 nanoseconds
 
 - Can see the cost of the function now *per item*
 - `timeit` can also be used as a command-line tool

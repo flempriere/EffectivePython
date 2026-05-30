@@ -1089,7 +1089,7 @@ window.Quarto = {
 <li><code>run</code> is a simple convenience function to start a process, read the output and verify it terminated successfully</li>
 </ul></li>
 </ul>
-<div id="44af4b1d" class="cell" data-execution_count="1">
+<div id="cad9f43f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> subprocess.run([<span class="st">"echo"</span>, <span class="st">"Hello from the child!"</span>], capture_output<span class="op">=</span><span class="va">True</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
@@ -1123,7 +1123,7 @@ Warning
 <li>Let’s you poll child processes status periodically while the global process does other work</li>
 </ul></li>
 </ul>
-<div id="41b83acc" class="cell" data-execution_count="2">
+<div id="b1d84303" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1137,7 +1137,6 @@ Warning
 Working...
 Working...
 Working...
-Working...
 Exit status 0</code></pre>
 </div>
 </div>
@@ -1148,7 +1147,7 @@ Exit status 0</code></pre>
 <li>We then wait for them all to finish I/O and terminate with <code>communicate()</code></li>
 </ul></li>
 </ul>
-<div id="7a45e418" class="cell" data-execution_count="3">
+<div id="c3c4e579" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1184,7 +1183,7 @@ Exit status 0</code></pre>
 <li>Then wait and retrieve the final output</li>
 </ul></li>
 </ul>
-<div id="a5038ceb" class="cell" data-execution_count="4">
+<div id="30fa39fa" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
@@ -1212,9 +1211,9 @@ Exit status 0</code></pre>
 <span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    out, _ <span class="op">=</span> proc.communicate()</span>
 <span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(out[<span class="op">-</span><span class="dv">10</span>:])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>b'G\xc3\x15U\x88\xb4gOm\xf8'
-b'M\xf5\xf7\x18;\xa6\xa8$gM'
-b'\xc2\x06\x87\x91\x11\x144`/\xf0'</code></pre>
+<pre><code>b'\xb1\x109?cO\x06\xd8\xf6\x05'
+b'e\xb3\x84/\x11@%]\xca\xdb'
+b'\x8boF\x02\xdfg\xc5\xfdZl'</code></pre>
 </div>
 </div>
 <ul>
@@ -1224,7 +1223,7 @@ b'\xc2\x06\x87\x91\x11\x144`/\xf0'</code></pre>
 </ul></li>
 <li>For example, use <code>openssl</code> to generate a blake2b hash of the input stream</li>
 </ul>
-<div id="98ec620a" class="cell" data-execution_count="5">
+<div id="35647a94" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1276,9 +1275,9 @@ b'\xc2\x06\x87\x91\x11\x144`/\xf0'</code></pre>
 <span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(out[<span class="op">-</span><span class="dv">10</span>:])</span>
 <span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> proc.returncode <span class="op">==</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>b'\xf9\xaf\x8f[\xb9\x15\xa2@{\x11'
-b"7\x16\xf5\xa6W\xa9O'_\x1f"
-b'\x91\xb7_\xbdR&gt;\x00\x02\x0e&amp;'</code></pre>
+<pre><code>b'\x8aA~o\x84\x0b\x18(t\xb9'
+b'.\xb2\xf7\x87\x11\x16/\x81B\xf7'
+b'\xf0\x9b\xd3\x80\x19;\xc7;Cs'</code></pre>
 </div>
 </div>
 <ul>
@@ -1305,7 +1304,7 @@ b'\x91\xb7_\xbdR&gt;\x00\x02\x0e&amp;'</code></pre>
 <li>Can then force a termination</li>
 </ul></li>
 </ul>
-<div id="0a3b5e9a" class="cell" data-execution_count="6">
+<div id="45dbabb1" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>proc <span class="op">=</span> subprocess.Popen([<span class="st">"sleep"</span>, <span class="st">"1"</span>])</span>

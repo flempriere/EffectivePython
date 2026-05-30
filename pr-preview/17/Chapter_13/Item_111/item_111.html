@@ -1043,7 +1043,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>We might then query a database for animals of a certain species and when they ate</li>
 </ul></li>
 </ul>
-<div id="b2f14cb6" class="cell" data-execution_count="1">
+<div id="dcf3fde0" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Database connection model</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DatabaseConnection:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, host, port):</span>
@@ -1123,7 +1123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>We can create a mock that simulates the <code>get_animals</code> function</li>
 </ul>
-<div id="a9168645" class="cell" data-execution_count="2">
+<div id="310e3a97" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest.mock <span class="im">import</span> Mock</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1183,7 +1183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>The <code>.return_value</code> attribute on a <code>Mock</code> indicates what should returned when the <code>Mock</code> is called</li>
 </ul>
-<div id="482df3a5" class="cell" data-execution_count="3">
+<div id="e79afa92" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest.mock <span class="im">import</span> Mock</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1243,7 +1243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>For example, might only care that we use the <em>correct</em> database</li>
 </ul></li>
 </ul>
-<div id="ab4514c7" class="cell" data-execution_count="4">
+<div id="a3d0d132" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest.mock <span class="im">import</span> Mock, ANY</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1325,8 +1325,8 @@ Passing incorrect parameters...</code></pre>
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">986</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">AssertionError</span>(_error_message()) <span style="font-weight:bold;color:rgb(0,135,0)">from</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg ansi-bold">cause</span>
 
 <span class="ansi-red-fg">AssertionError</span>: expected call not found.
-Expected: mock(&lt;object object at 0x7f65801c1860&gt;, 'Meerkat')
-  Actual: mock(&lt;object object at 0x7f65801c1860&gt;, 'Eagle')</pre>
+Expected: mock(&lt;object object at 0x7fd8a8225860&gt;, 'Meerkat')
+  Actual: mock(&lt;object object at 0x7fd8a8225860&gt;, 'Eagle')</pre>
 </div>
 </div>
 </div>
@@ -1341,7 +1341,7 @@ Expected: mock(&lt;object object at 0x7f65801c1860&gt;, 'Meerkat')
 <li>Use the <code>side_effect</code> method</li>
 </ul></li>
 </ul>
-<div id="f8fe70e9" class="cell" data-execution_count="5">
+<div id="cdb21da6" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest.mock <span class="im">import</span> Mock</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1412,7 +1412,7 @@ Expected: mock(&lt;object object at 0x7f65801c1860&gt;, 'Meerkat')
 <li>First need some methods to handle feeding animals</li>
 </ul></li>
 </ul>
-<div id="43e577d1" class="cell" data-execution_count="6">
+<div id="7388d481" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest.mock <span class="im">import</span> Mock</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1509,7 +1509,7 @@ Expected: mock(&lt;object object at 0x7f65801c1860&gt;, 'Meerkat')
 <li><code>call</code> let’s you verify that a <code>Mock</code> has received a certain function call</li>
 </ul></li>
 </ul>
-<div id="03b6d50a" class="cell" data-execution_count="7">
+<div id="62ef56ec" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime, timedelta</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest.mock <span class="im">import</span> Mock, call</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1650,7 +1650,7 @@ Feed function calls match expectations</code></pre>
 </ul></li>
 <li>For example, we could patch <code>get_animals</code></li>
 </ul>
-<div id="2fb001e2" class="cell" data-execution_count="8">
+<div id="a211d9cc" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest.mock <span class="im">import</span> patch</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1682,9 +1682,9 @@ Feed function calls match expectations</code></pre>
 <span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Inside patch"</span>, get_animals)</span>
 <span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"After patch:"</span>, get_animals)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Outside patch: &lt;function get_animals at 0x7f6578faab90&gt;
-Inside patch &lt;MagicMock name='get_animals' id='140073921829520'&gt;
-After patch: &lt;function get_animals at 0x7f6578faab90&gt;</code></pre>
+<pre><code>Outside patch: &lt;function get_animals at 0x7fd8a0f6ac40&gt;
+Inside patch &lt;MagicMock name='get_animals' id='140568514566800'&gt;
+After patch: &lt;function get_animals at 0x7fd8a0f6ac40&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -1694,7 +1694,7 @@ After patch: &lt;function get_animals at 0x7f6578faab90&gt;</code></pre>
 <li>Fails since <code>datetime</code> class is defined via C extensions</li>
 </ul></li>
 </ul>
-<div id="4f368adf" class="cell" data-execution_count="9">
+<div id="e650fa1e" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest.mock <span class="im">import</span> patch</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1745,7 +1745,7 @@ During handling of the above exception, another exception occurred:
 <li>Then patch the wrapper</li>
 </ul></li>
 </ul>
-<div id="304f5fc1" class="cell" data-execution_count="10">
+<div id="c7296190" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest.mock <span class="im">import</span> patch</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1763,9 +1763,9 @@ During handling of the above exception, another exception occurred:
 <span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Now inside patch:"</span>, get_do_rounds_time())</span>
 <span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Now back outside patch:"</span>, get_do_rounds_time())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Now outside patch: 2026-05-30 11:44:00.723655
+<pre><code>Now outside patch: 2026-05-30 11:44:51.869785
 Now inside patch: 2024-06-05 15:45:00
-Now back outside patch: 2026-05-30 11:44:00.724119</code></pre>
+Now back outside patch: 2026-05-30 11:44:51.870207</code></pre>
 </div>
 </div>
 <ul>
@@ -1775,7 +1775,7 @@ Now back outside patch: 2026-05-30 11:44:00.724119</code></pre>
 <li>Patch remaining functionality</li>
 </ul></li>
 </ul>
-<div id="59827f6f" class="cell" data-execution_count="11">
+<div id="59ba011b" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime, timedelta</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest.mock <span class="im">import</span> Mock, patch, DEFAULT, call</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>

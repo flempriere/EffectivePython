@@ -46,7 +46,7 @@ main(argv=[""], exit=False)
 
     OK
 
-    <unittest.main.TestProgram at 0x7f66b82eaf90>
+    <unittest.main.TestProgram at 0x7f29404fef90>
 
 - For integration tests (See [Item 109](../Item_109/item_109.qmd)) it
   can be expensive to set up the environment for *every* individual test
@@ -99,7 +99,7 @@ main(argv=[""], exit=False)
     * Test clean-up
     * Module clean-up
 
-    <unittest.main.TestProgram at 0x7f66b81451d0>
+    <unittest.main.TestProgram at 0x7f29403911d0>
 
 - `setUpModule` is run once by `unittest` once *before* any `setUp`
 - `tearDownModule` is run once *after* every `tearDown`

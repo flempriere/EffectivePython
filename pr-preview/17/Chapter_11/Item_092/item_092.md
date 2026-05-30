@@ -89,96 +89,96 @@ stats.sort_stats("cumulative")
 stats.print_stats()
 ```
 
-             41853 function calls (41849 primitive calls) in 4.533 seconds
+             42003 function calls (41999 primitive calls) in 4.308 seconds
 
        Ordered by: cumulative time
 
        ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-        20736    4.495    0.000    4.525    0.000 2565863959.py:10(insert_value)
-            4    0.000    0.000    4.522    1.130 base_events.py:1977(_run_once)
-            1    0.001    0.001    4.372    4.372 2565863959.py:7(<lambda>)
-            1    0.004    0.004    3.841    3.841 2565863959.py:18(insertion_sort)
-            3    0.001    0.000    0.149    0.050 selectors.py:435(select)
-        20721    0.030    0.000    0.030    0.000 {method 'insert' of 'list' objects}
-            1    0.000    0.000    0.010    0.010 iostream.py:348(<lambda>)
-            1    0.000    0.000    0.010    0.010 iostream.py:350(_really_send)
-            1    0.000    0.000    0.010    0.010 socket.py:700(send_multipart)
-            3    0.001    0.000    0.001    0.000 {built-in method time.sleep}
+        20736    4.270    0.000    4.301    0.000 2565863959.py:10(insert_value)
+            4    0.000    0.000    4.296    1.074 base_events.py:1977(_run_once)
+            1    0.001    0.001    4.155    4.155 2565863959.py:7(<lambda>)
+            1    0.004    0.004    3.625    3.625 2565863959.py:18(insertion_sort)
+            3    0.001    0.000    0.141    0.047 selectors.py:435(select)
+        20721    0.031    0.000    0.031    0.000 {method 'insert' of 'list' objects}
+            2    0.000    0.000    0.010    0.005 zmqstream.py:546(_run_callback)
+            2    0.000    0.000    0.010    0.005 iostream.py:229(_handle_event)
+            2    0.000    0.000    0.010    0.005 iostream.py:348(<lambda>)
+            2    0.000    0.000    0.010    0.005 iostream.py:350(_really_send)
+            2    0.000    0.000    0.010    0.005 socket.py:700(send_multipart)
+            3    0.000    0.000    0.000    0.000 {built-in method time.sleep}
             3    0.000    0.000    0.000    0.000 {method 'poll' of 'select.epoll' objects}
             3    0.000    0.000    0.000    0.000 events.py:92(_run)
             3    0.000    0.000    0.000    0.000 {method 'run' of '_contextvars.Context' objects}
+           14    0.000    0.000    0.000    0.000 socket.py:623(send)
             3    0.000    0.000    0.000    0.000 ioloop.py:750(_run_callback)
             1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+           14    0.000    0.000    0.000    0.000 enum.py:1583(__or__)
             1    0.000    0.000    0.000    0.000 zmqstream.py:684(<lambda>)
-            1    0.000    0.000    0.000    0.000 zmqstream.py:573(_handle_events)
             2    0.000    0.000    0.000    0.000 zmqstream.py:653(_rebuild_io_state)
+            1    0.000    0.000    0.000    0.000 zmqstream.py:573(_handle_events)
             2    0.000    0.000    0.000    0.000 zmqstream.py:676(_update_handler)
-            7    0.000    0.000    0.000    0.000 socket.py:623(send)
+           57    0.000    0.000    0.000    0.000 enum.py:1576(_get_value)
+      163/159    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
             1    0.000    0.000    0.000    0.000 zmqstream.py:614(_handle_recv)
             1    0.000    0.000    0.000    0.000 socket.py:771(recv_multipart)
-            8    0.000    0.000    0.000    0.000 enum.py:1583(__or__)
+            4    0.000    0.000    0.000    0.000 typing.py:184(_type_check)
             2    0.000    0.000    0.000    0.000 iostream.py:682(_flush)
-      104/100    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
             3    0.000    0.000    0.000    0.000 attrsettr.py:43(__getattr__)
-           39    0.000    0.000    0.000    0.000 enum.py:1576(_get_value)
-            2    0.000    0.000    0.000    0.000 iostream.py:776(_flush_buffers)
+           24    0.000    0.000    0.000    0.000 enum.py:677(__call__)
             5    0.000    0.000    0.000    0.000 enum.py:1594(__and__)
+            2    0.000    0.000    0.000    0.000 iostream.py:776(_flush_buffers)
             1    0.000    0.000    0.000    0.000 asyncio.py:231(add_callback)
-            2    0.000    0.000    0.000    0.000 typing.py:184(_type_check)
-           17    0.000    0.000    0.000    0.000 enum.py:677(__call__)
             2    0.000    0.000    0.000    0.000 iostream.py:784(_rotate_buffers)
-            1    0.000    0.000    0.000    0.000 base_events.py:817(call_soon)
             3    0.000    0.000    0.000    0.000 attrsettr.py:66(_get_attr_opt)
             2    0.000    0.000    0.000    0.000 typing.py:1292(__instancecheck__)
-            2    0.000    0.000    0.000    0.000 zmqstream.py:532(sending)
+           32    0.000    0.000    0.000    0.000 typing.py:1355(__eq__)
             2    0.000    0.000    0.000    0.000 typing.py:1583(__subclasscheck__)
-            6    0.000    0.000    0.000    0.000 base_events.py:766(time)
-            2    0.000    0.000    0.000    0.000 queue.py:112(empty)
-            2    0.000    0.000    0.000    0.000 {built-in method _heapq.heappop}
-            1    0.000    0.000    0.000    0.000 base_events.py:846(_call_soon)
             4    0.000    0.000    0.000    0.000 {built-in method posix.getppid}
-           16    0.000    0.000    0.000    0.000 typing.py:1355(__eq__)
-            1    0.000    0.000    0.000    0.000 zmqstream.py:546(_run_callback)
-           17    0.000    0.000    0.000    0.000 enum.py:1146(__new__)
-            2    0.000    0.000    0.000    0.000 {built-in method builtins.issubclass}
+            1    0.000    0.000    0.000    0.000 base_events.py:817(call_soon)
+           24    0.000    0.000    0.000    0.000 enum.py:1146(__new__)
+            2    0.000    0.000    0.000    0.000 zmqstream.py:532(sending)
+            6    0.000    0.000    0.000    0.000 base_events.py:766(time)
+            2    0.000    0.000    0.000    0.000 {built-in method _heapq.heappop}
+            2    0.000    0.000    0.000    0.000 queue.py:112(empty)
+            1    0.000    0.000    0.000    0.000 base_events.py:846(_call_soon)
+           12    0.000    0.000    0.000    0.000 typing.py:1361(__hash__)
+            4    0.000    0.000    0.000    0.000 typing.py:175(_type_convert)
             3    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:1409(_handle_fromlist)
-            6    0.000    0.000    0.000    0.000 typing.py:1361(__hash__)
-            1    0.000    0.000    0.000    0.000 iostream.py:288(_check_mp_mode)
-           14    0.000    0.000    0.000    0.000 {built-in method builtins.len}
+            2    0.000    0.000    0.000    0.000 {built-in method builtins.issubclass}
+            2    0.000    0.000    0.000    0.000 iostream.py:288(_check_mp_mode)
+           15    0.000    0.000    0.000    0.000 {built-in method builtins.len}
+            4    0.000    0.000    0.000    0.000 typing.py:396(inner)
+            2    0.000    0.000    0.000    0.000 iostream.py:285(_is_master_process)
             2    0.000    0.000    0.000    0.000 <frozen abc>:121(__subclasscheck__)
             1    0.000    0.000    0.000    0.000 events.py:41(__init__)
            15    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
             6    0.000    0.000    0.000    0.000 {built-in method time.monotonic}
-            1    0.000    0.000    0.000    0.000 iostream.py:285(_is_master_process)
-            2    0.000    0.000    0.000    0.000 typing.py:396(inner)
             3    0.000    0.000    0.000    0.000 {built-in method math.ceil}
-            2    0.000    0.000    0.000    0.000 typing.py:175(_type_convert)
-            2    0.000    0.000    0.000    0.000 queue.py:266(_qsize)
             1    0.000    0.000    0.000    0.000 events.py:162(__lt__)
-            3    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
-            4    0.000    0.000    0.000    0.000 {method 'popleft' of 'collections.deque' objects}
-            2    0.000    0.000    0.000    0.000 {built-in method _abc._abc_subclasscheck}
             2    0.000    0.000    0.000    0.000 {method '__enter__' of '_thread.RLock' objects}
+           12    0.000    0.000    0.000    0.000 {built-in method builtins.hash}
+            2    0.000    0.000    0.000    0.000 {built-in method _abc._abc_subclasscheck}
+            3    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
+            5    0.000    0.000    0.000    0.000 {method 'popleft' of 'collections.deque' objects}
+            2    0.000    0.000    0.000    0.000 {built-in method posix.getpid}
             3    0.000    0.000    0.000    0.000 {method 'append' of 'collections.deque' objects}
-            1    0.000    0.000    0.000    0.000 iostream.py:229(_handle_event)
-            6    0.000    0.000    0.000    0.000 {built-in method builtins.hash}
-            3    0.000    0.000    0.000    0.000 selector_events.py:744(_process_events)
-            2    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
             2    0.000    0.000    0.000    0.000 {method '__enter__' of '_thread.lock' objects}
+            2    0.000    0.000    0.000    0.000 queue.py:266(_qsize)
+            3    0.000    0.000    0.000    0.000 {built-in method builtins.hasattr}
+            2    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
+            3    0.000    0.000    0.000    0.000 selector_events.py:744(_process_events)
             3    0.000    0.000    0.000    0.000 {method 'upper' of 'str' objects}
             2    0.000    0.000    0.000    0.000 {method '__exit__' of '_thread.RLock' objects}
-            3    0.000    0.000    0.000    0.000 {built-in method builtins.hasattr}
-            1    0.000    0.000    0.000    0.000 {built-in method posix.getpid}
-            2    0.000    0.000    0.000    0.000 {method '__exit__' of '_thread.lock' objects}
-            1    0.000    0.000    0.000    0.000 {built-in method _contextvars.copy_context}
             3    0.000    0.000    0.000    0.000 zmqstream.py:528(receiving)
+            2    0.000    0.000    0.000    0.000 {method '__exit__' of '_thread.lock' objects}
+            2    0.000    0.000    0.000    0.000 iostream.py:327(closed)
             1    0.000    0.000    0.000    0.000 {built-in method _asyncio.get_running_loop}
-            1    0.000    0.000    0.000    0.000 iostream.py:327(closed)
+            1    0.000    0.000    0.000    0.000 {built-in method _contextvars.copy_context}
+            2    0.000    0.000    0.000    0.000 typing.py:2300(cast)
             1    0.000    0.000    0.000    0.000 base_events.py:548(_check_closed)
             1    0.000    0.000    0.000    0.000 base_events.py:2075(get_debug)
-            1    0.000    0.000    0.000    0.000 typing.py:2300(cast)
 
-    <pstats.Stats at 0x7ff4ec539e80>
+    <pstats.Stats at 0x7f2828389e80>
 
 - The profiler shows a range of statistics, namely
   1.  **ncalls:** The number of times the function is called
@@ -236,86 +236,86 @@ stats.sort_stats("cumulative")
 stats.print_stats()
 ```
 
-             62556 function calls (62552 primitive calls) in 0.046 seconds
+             62531 function calls (62527 primitive calls) in 0.047 seconds
 
        Ordered by: cumulative time
 
        ncalls  tottime  percall  cumtime  percall filename:lineno(function)
         20736    0.007    0.000    0.043    0.000 2000139989.py:11(insert_value)
-            1    0.000    0.000    0.041    0.041 2000139989.py:8(<lambda>)
-            1    0.003    0.003    0.041    0.041 2000139989.py:16(insertion_sort)
+            1    0.000    0.000    0.036    0.036 2000139989.py:8(<lambda>)
+            1    0.002    0.002    0.036    0.036 2000139989.py:16(insertion_sort)
         20736    0.028    0.000    0.028    0.000 {method 'insert' of 'list' objects}
+            1    0.000    0.000    0.010    0.010 iostream.py:348(<lambda>)
+            1    0.000    0.000    0.010    0.010 iostream.py:350(_really_send)
+            1    0.001    0.001    0.010    0.010 socket.py:700(send_multipart)
         20736    0.007    0.000    0.007    0.000 {built-in method _bisect.bisect_left}
-            1    0.000    0.000    0.000    0.000 iostream.py:348(<lambda>)
             1    0.000    0.000    0.000    0.000 base_events.py:1977(_run_once)
-            1    0.000    0.000    0.000    0.000 iostream.py:350(_really_send)
-            1    0.000    0.000    0.000    0.000 socket.py:700(send_multipart)
             1    0.000    0.000    0.000    0.000 events.py:92(_run)
             1    0.000    0.000    0.000    0.000 {method 'run' of '_contextvars.Context' objects}
             1    0.000    0.000    0.000    0.000 ioloop.py:750(_run_callback)
             1    0.000    0.000    0.000    0.000 zmqstream.py:684(<lambda>)
             1    0.000    0.000    0.000    0.000 zmqstream.py:573(_handle_events)
-           10    0.000    0.000    0.000    0.000 socket.py:623(send)
             2    0.000    0.000    0.000    0.000 zmqstream.py:653(_rebuild_io_state)
-           10    0.000    0.000    0.000    0.000 enum.py:1583(__or__)
             1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
-            1    0.000    0.000    0.000    0.000 zmqstream.py:614(_handle_recv)
             2    0.000    0.000    0.000    0.000 zmqstream.py:676(_update_handler)
+            1    0.000    0.000    0.000    0.000 zmqstream.py:614(_handle_recv)
+            7    0.000    0.000    0.000    0.000 socket.py:623(send)
+            8    0.000    0.000    0.000    0.000 enum.py:1583(__or__)
             1    0.000    0.000    0.000    0.000 socket.py:771(recv_multipart)
-           45    0.000    0.000    0.000    0.000 enum.py:1576(_get_value)
-      113/109    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
             3    0.000    0.000    0.000    0.000 attrsettr.py:43(__getattr__)
+           39    0.000    0.000    0.000    0.000 enum.py:1576(_get_value)
+       103/99    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
             5    0.000    0.000    0.000    0.000 enum.py:1594(__and__)
-           19    0.000    0.000    0.000    0.000 enum.py:677(__call__)
+           17    0.000    0.000    0.000    0.000 enum.py:677(__call__)
             2    0.000    0.000    0.000    0.000 typing.py:184(_type_check)
             1    0.000    0.000    0.000    0.000 asyncio.py:231(add_callback)
             3    0.000    0.000    0.000    0.000 attrsettr.py:66(_get_attr_opt)
             2    0.000    0.000    0.000    0.000 typing.py:1292(__instancecheck__)
-            1    0.000    0.000    0.000    0.000 selectors.py:435(select)
             2    0.000    0.000    0.000    0.000 zmqstream.py:532(sending)
             2    0.000    0.000    0.000    0.000 typing.py:1583(__subclasscheck__)
-            1    0.000    0.000    0.000    0.000 base_events.py:817(call_soon)
             2    0.000    0.000    0.000    0.000 queue.py:112(empty)
-            1    0.000    0.000    0.000    0.000 {method 'poll' of 'select.epoll' objects}
-           16    0.000    0.000    0.000    0.000 typing.py:1355(__eq__)
-           19    0.000    0.000    0.000    0.000 enum.py:1146(__new__)
+            1    0.000    0.000    0.000    0.000 base_events.py:817(call_soon)
+            1    0.000    0.000    0.000    0.000 selectors.py:435(select)
             1    0.000    0.000    0.000    0.000 base_events.py:846(_call_soon)
+           16    0.000    0.000    0.000    0.000 typing.py:1355(__eq__)
+           17    0.000    0.000    0.000    0.000 enum.py:1146(__new__)
+            1    0.000    0.000    0.000    0.000 {method 'poll' of 'select.epoll' objects}
             1    0.000    0.000    0.000    0.000 zmqstream.py:546(_run_callback)
-            2    0.000    0.000    0.000    0.000 {built-in method builtins.issubclass}
             3    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:1409(_handle_fromlist)
+            2    0.000    0.000    0.000    0.000 {built-in method builtins.issubclass}
             6    0.000    0.000    0.000    0.000 typing.py:1361(__hash__)
             1    0.000    0.000    0.000    0.000 iostream.py:288(_check_mp_mode)
+            2    0.000    0.000    0.000    0.000 <frozen abc>:121(__subclasscheck__)
             1    0.000    0.000    0.000    0.000 events.py:41(__init__)
             1    0.000    0.000    0.000    0.000 iostream.py:285(_is_master_process)
-            2    0.000    0.000    0.000    0.000 <frozen abc>:121(__subclasscheck__)
+            2    0.000    0.000    0.000    0.000 queue.py:266(_qsize)
             2    0.000    0.000    0.000    0.000 base_events.py:766(time)
             2    0.000    0.000    0.000    0.000 typing.py:396(inner)
             3    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
             2    0.000    0.000    0.000    0.000 typing.py:175(_type_convert)
-            2    0.000    0.000    0.000    0.000 queue.py:266(_qsize)
             8    0.000    0.000    0.000    0.000 {built-in method builtins.len}
-            2    0.000    0.000    0.000    0.000 {method '__enter__' of '_thread.lock' objects}
             2    0.000    0.000    0.000    0.000 {built-in method _abc._abc_subclasscheck}
             1    0.000    0.000    0.000    0.000 iostream.py:229(_handle_event)
+            2    0.000    0.000    0.000    0.000 {method '__enter__' of '_thread.lock' objects}
             3    0.000    0.000    0.000    0.000 {built-in method builtins.hasattr}
             6    0.000    0.000    0.000    0.000 {built-in method builtins.hash}
-            1    0.000    0.000    0.000    0.000 {built-in method posix.getpid}
-            2    0.000    0.000    0.000    0.000 {method 'popleft' of 'collections.deque' objects}
             3    0.000    0.000    0.000    0.000 {method 'upper' of 'str' objects}
             2    0.000    0.000    0.000    0.000 {method '__exit__' of '_thread.lock' objects}
+            2    0.000    0.000    0.000    0.000 {method 'popleft' of 'collections.deque' objects}
+            1    0.000    0.000    0.000    0.000 {built-in method posix.getpid}
             2    0.000    0.000    0.000    0.000 {built-in method time.monotonic}
             1    0.000    0.000    0.000    0.000 {built-in method _contextvars.copy_context}
-            1    0.000    0.000    0.000    0.000 {built-in method _asyncio.get_running_loop}
-            1    0.000    0.000    0.000    0.000 selector_events.py:744(_process_events)
             3    0.000    0.000    0.000    0.000 zmqstream.py:528(receiving)
+            1    0.000    0.000    0.000    0.000 {built-in method _asyncio.get_running_loop}
             1    0.000    0.000    0.000    0.000 {built-in method math.ceil}
             1    0.000    0.000    0.000    0.000 {method 'append' of 'collections.deque' objects}
             1    0.000    0.000    0.000    0.000 iostream.py:327(closed)
+            1    0.000    0.000    0.000    0.000 selector_events.py:744(_process_events)
             1    0.000    0.000    0.000    0.000 base_events.py:548(_check_closed)
             1    0.000    0.000    0.000    0.000 base_events.py:2075(get_debug)
             1    0.000    0.000    0.000    0.000 typing.py:2300(cast)
 
-    <pstats.Stats at 0x7ff4ec7a2350>
+    <pstats.Stats at 0x7f28285f2350>
 
 - The new implementation runs much faster
   - The function with the highest **tottime** is now the `insert` method
@@ -363,14 +363,14 @@ stats.sort_stats("cumulative")
 stats.print_stats()
 ```
 
-             20749 function calls (20744 primitive calls) in 0.103 seconds
+             20749 function calls (20744 primitive calls) in 0.092 seconds
 
        Ordered by: cumulative time
 
        ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-        20200    0.080    0.000    0.080    0.000 3007661153.py:5(utility)
-           20    0.003    0.000    0.076    0.004 3007661153.py:11(first_function)
-          2/1    0.019    0.009    0.066    0.066 3007661153.py:21(program)
+        20200    0.070    0.000    0.070    0.000 3007661153.py:5(utility)
+           20    0.003    0.000    0.067    0.003 3007661153.py:11(first_function)
+          2/1    0.018    0.009    0.055    0.055 3007661153.py:21(program)
             2    0.000    0.000    0.016    0.008 events.py:92(_run)
             2    0.000    0.000    0.016    0.008 {method 'run' of '_contextvars.Context' objects}
             2    0.000    0.000    0.016    0.008 zmqstream.py:573(_handle_events)
@@ -380,72 +380,72 @@ stats.print_stats()
             2    0.000    0.000    0.015    0.008 iostream.py:229(_handle_event)
             2    0.000    0.000    0.015    0.008 iostream.py:348(<lambda>)
             2    0.000    0.000    0.015    0.008 iostream.py:350(_really_send)
-            2    0.000    0.000    0.005    0.002 socket.py:700(send_multipart)
+            2    0.000    0.000    0.003    0.001 socket.py:700(send_multipart)
            20    0.000    0.000    0.001    0.000 3007661153.py:16(second_function)
             1    0.000    0.000    0.000    0.000 base_events.py:1977(_run_once)
+            2    0.000    0.000    0.000    0.000 socket.py:771(recv_multipart)
             1    0.000    0.000    0.000    0.000 ioloop.py:750(_run_callback)
             1    0.000    0.000    0.000    0.000 zmqstream.py:684(<lambda>)
-            2    0.000    0.000    0.000    0.000 socket.py:771(recv_multipart)
+           14    0.000    0.000    0.000    0.000 enum.py:1583(__or__)
            14    0.000    0.000    0.000    0.000 socket.py:623(send)
             2    0.000    0.000    0.000    0.000 zmqstream.py:653(_rebuild_io_state)
             1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
-           14    0.000    0.000    0.000    0.000 enum.py:1583(__or__)
-            4    0.000    0.000    0.000    0.000 attrsettr.py:43(__getattr__)
-            2    0.000    0.000    0.000    0.000 zmqstream.py:676(_update_handler)
            60    0.000    0.000    0.000    0.000 enum.py:1576(_get_value)
+            4    0.000    0.000    0.000    0.000 attrsettr.py:43(__getattr__)
       168/164    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
+            2    0.000    0.000    0.000    0.000 zmqstream.py:676(_update_handler)
             6    0.000    0.000    0.000    0.000 enum.py:1594(__and__)
-            4    0.000    0.000    0.000    0.000 attrsettr.py:66(_get_attr_opt)
             4    0.000    0.000    0.000    0.000 typing.py:184(_type_check)
+            4    0.000    0.000    0.000    0.000 attrsettr.py:66(_get_attr_opt)
            26    0.000    0.000    0.000    0.000 enum.py:677(__call__)
             1    0.000    0.000    0.000    0.000 asyncio.py:231(add_callback)
-            2    0.000    0.000    0.000    0.000 typing.py:1292(__instancecheck__)
            32    0.000    0.000    0.000    0.000 typing.py:1355(__eq__)
-            2    0.000    0.000    0.000    0.000 typing.py:1583(__subclasscheck__)
-            1    0.000    0.000    0.000    0.000 selectors.py:435(select)
-            2    0.000    0.000    0.000    0.000 zmqstream.py:532(sending)
+            2    0.000    0.000    0.000    0.000 typing.py:1292(__instancecheck__)
            26    0.000    0.000    0.000    0.000 enum.py:1146(__new__)
-            1    0.000    0.000    0.000    0.000 base_events.py:817(call_soon)
+            1    0.000    0.000    0.000    0.000 selectors.py:435(select)
+            2    0.000    0.000    0.000    0.000 typing.py:1583(__subclasscheck__)
+            2    0.000    0.000    0.000    0.000 zmqstream.py:532(sending)
             2    0.000    0.000    0.000    0.000 queue.py:112(empty)
-            1    0.000    0.000    0.000    0.000 {method 'poll' of 'select.epoll' objects}
             4    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:1409(_handle_fromlist)
-            1    0.000    0.000    0.000    0.000 base_events.py:846(_call_soon)
+            1    0.000    0.000    0.000    0.000 base_events.py:817(call_soon)
+            1    0.000    0.000    0.000    0.000 {method 'poll' of 'select.epoll' objects}
            12    0.000    0.000    0.000    0.000 typing.py:1361(__hash__)
+            1    0.000    0.000    0.000    0.000 base_events.py:846(_call_soon)
             2    0.000    0.000    0.000    0.000 {built-in method builtins.issubclass}
+            4    0.000    0.000    0.000    0.000 typing.py:396(inner)
+            4    0.000    0.000    0.000    0.000 typing.py:175(_type_convert)
             2    0.000    0.000    0.000    0.000 iostream.py:288(_check_mp_mode)
             2    0.000    0.000    0.000    0.000 selector_events.py:744(_process_events)
-            4    0.000    0.000    0.000    0.000 typing.py:396(inner)
             3    0.000    0.000    0.000    0.000 base_events.py:766(time)
-            4    0.000    0.000    0.000    0.000 typing.py:175(_type_convert)
-            4    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
-            1    0.000    0.000    0.000    0.000 events.py:41(__init__)
             2    0.000    0.000    0.000    0.000 <frozen abc>:121(__subclasscheck__)
             2    0.000    0.000    0.000    0.000 iostream.py:285(_is_master_process)
+            1    0.000    0.000    0.000    0.000 events.py:41(__init__)
+            4    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
            10    0.000    0.000    0.000    0.000 {built-in method builtins.len}
-            1    0.000    0.000    0.000    0.000 base_events.py:1962(_add_callback)
            12    0.000    0.000    0.000    0.000 {built-in method builtins.hash}
-            2    0.000    0.000    0.000    0.000 {built-in method _abc._abc_subclasscheck}
-            2    0.000    0.000    0.000    0.000 queue.py:266(_qsize)
             4    0.000    0.000    0.000    0.000 {method 'upper' of 'str' objects}
+            2    0.000    0.000    0.000    0.000 {built-in method _abc._abc_subclasscheck}
+            1    0.000    0.000    0.000    0.000 base_events.py:1962(_add_callback)
             4    0.000    0.000    0.000    0.000 {built-in method builtins.hasattr}
-            2    0.000    0.000    0.000    0.000 {built-in method posix.getpid}
             3    0.000    0.000    0.000    0.000 {built-in method time.monotonic}
+            2    0.000    0.000    0.000    0.000 queue.py:266(_qsize)
             4    0.000    0.000    0.000    0.000 {method 'popleft' of 'collections.deque' objects}
+            2    0.000    0.000    0.000    0.000 {built-in method posix.getpid}
             2    0.000    0.000    0.000    0.000 {method '__enter__' of '_thread.lock' objects}
             1    0.000    0.000    0.000    0.000 {method 'get' of 'dict' objects}
             2    0.000    0.000    0.000    0.000 {method '__exit__' of '_thread.lock' objects}
-            2    0.000    0.000    0.000    0.000 {method 'append' of 'collections.deque' objects}
             4    0.000    0.000    0.000    0.000 zmqstream.py:528(receiving)
+            2    0.000    0.000    0.000    0.000 {method 'append' of 'collections.deque' objects}
+            1    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+            1    0.000    0.000    0.000    0.000 {built-in method math.ceil}
+            2    0.000    0.000    0.000    0.000 iostream.py:327(closed)
             1    0.000    0.000    0.000    0.000 {built-in method _asyncio.get_running_loop}
             1    0.000    0.000    0.000    0.000 {built-in method _contextvars.copy_context}
-            2    0.000    0.000    0.000    0.000 iostream.py:327(closed)
-            1    0.000    0.000    0.000    0.000 {built-in method math.ceil}
-            1    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
             2    0.000    0.000    0.000    0.000 typing.py:2300(cast)
             1    0.000    0.000    0.000    0.000 base_events.py:548(_check_closed)
             1    0.000    0.000    0.000    0.000 base_events.py:2075(get_debug)
 
-    <pstats.Stats at 0x7ff4ec7a2710>
+    <pstats.Stats at 0x7f28285f2710>
 
 - We can see that `utility` is called the most
   - But not obvious why, or which caller is most responsible
@@ -493,42 +493,37 @@ stats.print_callers()
 
     Function                                              was called by...
                                                               ncalls  tottime  cumtime
-    3101860672.py:5(utility)                              <- 17478/670    0.068    0.003  3101860672.py:11(first_function)
+    3101860672.py:5(utility)                              <- 18945/671    0.066    0.003  3101860672.py:11(first_function)
                                                                  200    0.001    0.001  3101860672.py:16(second_function)
-                                                            1328/665    0.005    0.003  selectors.py:435(select)
-                                                            1192/329    0.005    0.001  socket.py:700(send_multipart)
+                                                            1054/328    0.004    0.001  selectors.py:435(select)
     3101860672.py:11(first_function)                      <-       0    0.000    0.000  3101860672.py:21(program)
-                                                                  15    0.002    0.059  base_events.py:1977(_run_once)
-                                                                   3    0.001    0.012  iostream.py:350(_really_send)
+                                                                  19    0.003    0.068  base_events.py:1977(_run_once)
     3101860672.py:21(program)                             <- 
-    events.py:92(_run)                                    <-       1    0.000    0.016  3101860672.py:11(first_function)
-                                                                   2    0.000    0.000  base_events.py:1977(_run_once)
-    {method 'run' of '_contextvars.Context' objects}      <-       3    0.000    0.016  events.py:92(_run)
-    zmqstream.py:573(_handle_events)                      <-       1    0.000    0.016  asyncio.py:206(_handle_events)
-                                                                   1    0.000    0.000  zmqstream.py:684(<lambda>)
-    asyncio.py:206(_handle_events)                        <-       1    0.000    0.016  {method 'run' of '_contextvars.Context' objects}
-    zmqstream.py:614(_handle_recv)                        <-       2    0.000    0.016  zmqstream.py:573(_handle_events)
-    zmqstream.py:546(_run_callback)                       <-       2    0.000    0.016  zmqstream.py:614(_handle_recv)
-    iostream.py:229(_handle_event)                        <-       2    0.000    0.015  zmqstream.py:546(_run_callback)
-    iostream.py:348(<lambda>)                             <-       2    0.000    0.015  iostream.py:229(_handle_event)
-    iostream.py:350(_really_send)                         <-       2    0.000    0.015  iostream.py:348(<lambda>)
-    base_events.py:1977(_run_once)                        <-       2    0.000    0.008  3101860672.py:21(program)
-    socket.py:700(send_multipart)                         <-       2    0.000    0.002  iostream.py:350(_really_send)
+    base_events.py:1977(_run_once)                        <-       2    0.000    0.035  3101860672.py:21(program)
     selectors.py:435(select)                              <-       2    0.000    0.001  base_events.py:1977(_run_once)
-    3101860672.py:16(second_function)                     <-      16    0.000    0.000  base_events.py:1977(_run_once)
-                                                                   4    0.000    0.000  iostream.py:350(_really_send)
-    socket.py:623(send)                                   <-     4/3    0.000    0.000  3101860672.py:11(first_function)
-                                                                 9/3    0.000    0.000  socket.py:700(send_multipart)
+    3101860672.py:16(second_function)                     <-      20    0.000    0.001  base_events.py:1977(_run_once)
+    events.py:92(_run)                                    <-       1    0.000    0.000  3101860672.py:11(first_function)
+                                                                   2    0.000    0.000  base_events.py:1977(_run_once)
+    {method 'run' of '_contextvars.Context' objects}      <-       3    0.000    0.000  events.py:92(_run)
+    zmqstream.py:573(_handle_events)                      <-       1    0.000    0.000  asyncio.py:206(_handle_events)
+                                                                   1    0.000    0.000  zmqstream.py:684(<lambda>)
+    asyncio.py:206(_handle_events)                        <-       1    0.000    0.000  {method 'run' of '_contextvars.Context' objects}
+    zmqstream.py:614(_handle_recv)                        <-       2    0.000    0.000  zmqstream.py:573(_handle_events)
+    zmqstream.py:546(_run_callback)                       <-       2    0.000    0.000  zmqstream.py:614(_handle_recv)
+    iostream.py:229(_handle_event)                        <-       2    0.000    0.000  zmqstream.py:546(_run_callback)
+    iostream.py:348(<lambda>)                             <-       2    0.000    0.000  iostream.py:229(_handle_event)
+    iostream.py:350(_really_send)                         <-       2    0.000    0.000  iostream.py:348(<lambda>)
+    socket.py:700(send_multipart)                         <-       2    0.000    0.000  iostream.py:350(_really_send)
     ioloop.py:750(_run_callback)                          <-       2    0.000    0.000  {method 'run' of '_contextvars.Context' objects}
     zmqstream.py:684(<lambda>)                            <-       1    0.000    0.000  ioloop.py:750(_run_callback)
     socket.py:771(recv_multipart)                         <-       2    0.000    0.000  zmqstream.py:614(_handle_recv)
-    zmqstream.py:653(_rebuild_io_state)                   <-       2    0.000    0.000  zmqstream.py:573(_handle_events)
-    enum.py:1583(__or__)                                  <-       2    0.000    0.000  3101860672.py:11(first_function)
-                                                                  10    0.000    0.000  socket.py:700(send_multipart)
-                                                                   2    0.000    0.000  zmqstream.py:653(_rebuild_io_state)
     {method 'disable' of '_lsprof.Profiler' objects}      <-       1    0.000    0.000  3101860672.py:21(program)
+    zmqstream.py:653(_rebuild_io_state)                   <-       2    0.000    0.000  zmqstream.py:573(_handle_events)
+    enum.py:1583(__or__)                                  <-      12    0.000    0.000  socket.py:700(send_multipart)
+                                                                   2    0.000    0.000  zmqstream.py:653(_rebuild_io_state)
     attrsettr.py:43(__getattr__)                          <-       2    0.000    0.000  zmqstream.py:573(_handle_events)
                                                                    2    0.000    0.000  zmqstream.py:676(_update_handler)
+    socket.py:623(send)                                   <-      14    0.000    0.000  socket.py:700(send_multipart)
     zmqstream.py:676(_update_handler)                     <-       2    0.000    0.000  zmqstream.py:653(_rebuild_io_state)
     enum.py:1576(_get_value)                              <-      42    0.000    0.000  enum.py:1583(__or__)
                                                                   18    0.000    0.000  enum.py:1594(__and__)
@@ -544,77 +539,77 @@ stats.print_callers()
     typing.py:184(_type_check)                            <-       4    0.000    0.000  socket.py:771(recv_multipart)
     enum.py:1594(__and__)                                 <-       4    0.000    0.000  zmqstream.py:573(_handle_events)
                                                                    2    0.000    0.000  zmqstream.py:676(_update_handler)
+    {method 'poll' of 'select.epoll' objects}             <-       1    0.000    0.000  selectors.py:435(select)
     attrsettr.py:66(_get_attr_opt)                        <-       4    0.000    0.000  attrsettr.py:43(__getattr__)
     enum.py:677(__call__)                                 <-       4    0.000    0.000  attrsettr.py:66(_get_attr_opt)
                                                                   14    0.000    0.000  enum.py:1583(__or__)
                                                                    6    0.000    0.000  enum.py:1594(__and__)
                                                                    2    0.000    0.000  socket.py:771(recv_multipart)
-    asyncio.py:231(add_callback)                          <-       1    0.000    0.000  zmqstream.py:676(_update_handler)
     iostream.py:682(_flush)                               <-       1    0.000    0.000  ioloop.py:750(_run_callback)
-    typing.py:1292(__instancecheck__)                     <-       2    0.000    0.000  {built-in method builtins.isinstance}
     typing.py:1355(__eq__)                                <-      32    0.000    0.000  typing.py:184(_type_check)
-    typing.py:1583(__subclasscheck__)                     <-       2    0.000    0.000  typing.py:1292(__instancecheck__)
+    asyncio.py:231(add_callback)                          <-       1    0.000    0.000  zmqstream.py:676(_update_handler)
     iostream.py:776(_flush_buffers)                       <-       1    0.000    0.000  iostream.py:682(_flush)
-    enum.py:1146(__new__)                                 <-      26    0.000    0.000  enum.py:677(__call__)
-    {method 'poll' of 'select.epoll' objects}             <-       1    0.000    0.000  selectors.py:435(select)
+    typing.py:1292(__instancecheck__)                     <-       2    0.000    0.000  {built-in method builtins.isinstance}
     zmqstream.py:532(sending)                             <-       2    0.000    0.000  zmqstream.py:653(_rebuild_io_state)
-    base_events.py:817(call_soon)                         <-       1    0.000    0.000  asyncio.py:231(add_callback)
+    typing.py:1583(__subclasscheck__)                     <-       2    0.000    0.000  typing.py:1292(__instancecheck__)
+    enum.py:1146(__new__)                                 <-      26    0.000    0.000  enum.py:677(__call__)
     queue.py:112(empty)                                   <-       2    0.000    0.000  zmqstream.py:532(sending)
     <frozen importlib._bootstrap>:1409(_handle_fromlist)  <-       4    0.000    0.000  attrsettr.py:43(__getattr__)
-    typing.py:1361(__hash__)                              <-      12    0.000    0.000  socket.py:771(recv_multipart)
-    base_events.py:846(_call_soon)                        <-       1    0.000    0.000  base_events.py:817(call_soon)
+    base_events.py:817(call_soon)                         <-       1    0.000    0.000  asyncio.py:231(add_callback)
     iostream.py:784(_rotate_buffers)                      <-       1    0.000    0.000  iostream.py:776(_flush_buffers)
+    typing.py:1361(__hash__)                              <-      12    0.000    0.000  socket.py:771(recv_multipart)
     {built-in method builtins.issubclass}                 <-       2    0.000    0.000  typing.py:1583(__subclasscheck__)
-    iostream.py:288(_check_mp_mode)                       <-       2    0.000    0.000  iostream.py:350(_really_send)
+    base_events.py:846(_call_soon)                        <-       1    0.000    0.000  base_events.py:817(call_soon)
+    {built-in method _heapq.heappop}                      <-       1    0.000    0.000  base_events.py:1977(_run_once)
     base_events.py:766(time)                              <-       1    0.000    0.000  3101860672.py:11(first_function)
                                                                    4    0.000    0.000  base_events.py:1977(_run_once)
     selector_events.py:744(_process_events)               <-       1    0.000    0.000  3101860672.py:11(first_function)
                                                                    2    0.000    0.000  base_events.py:1977(_run_once)
-    typing.py:396(inner)                                  <-       4    0.000    0.000  socket.py:771(recv_multipart)
-    {built-in method _heapq.heappop}                      <-       1    0.000    0.000  base_events.py:1977(_run_once)
-    <frozen abc>:121(__subclasscheck__)                   <-       2    0.000    0.000  {built-in method builtins.issubclass}
-    events.py:41(__init__)                                <-       1    0.000    0.000  base_events.py:846(_call_soon)
-    iostream.py:285(_is_master_process)                   <-       2    0.000    0.000  iostream.py:288(_check_mp_mode)
+    iostream.py:288(_check_mp_mode)                       <-       2    0.000    0.000  iostream.py:350(_really_send)
     typing.py:175(_type_convert)                          <-       4    0.000    0.000  typing.py:184(_type_check)
+    typing.py:396(inner)                                  <-       4    0.000    0.000  socket.py:771(recv_multipart)
+    <frozen abc>:121(__subclasscheck__)                   <-       2    0.000    0.000  {built-in method builtins.issubclass}
     {built-in method builtins.len}                        <-       1    0.000    0.000  3101860672.py:11(first_function)
                                                                    5    0.000    0.000  base_events.py:1977(_run_once)
                                                                    2    0.000    0.000  iostream.py:229(_handle_event)
                                                                    2    0.000    0.000  queue.py:266(_qsize)
                                                                    3    0.000    0.000  selectors.py:435(select)
+    iostream.py:285(_is_master_process)                   <-       2    0.000    0.000  iostream.py:288(_check_mp_mode)
+    events.py:41(__init__)                                <-       1    0.000    0.000  base_events.py:846(_call_soon)
     {built-in method builtins.getattr}                    <-       4    0.000    0.000  attrsettr.py:43(__getattr__)
     {built-in method builtins.hash}                       <-      12    0.000    0.000  typing.py:1361(__hash__)
+    {built-in method time.monotonic}                      <-       5    0.000    0.000  base_events.py:766(time)
+    events.py:162(__lt__)                                 <-       2    0.000    0.000  {built-in method _heapq.heappop}
     base_events.py:1962(_add_callback)                    <-       1    0.000    0.000  selector_events.py:744(_process_events)
+    {method 'upper' of 'str' objects}                     <-       4    0.000    0.000  attrsettr.py:43(__getattr__)
+    {built-in method builtins.hasattr}                    <-       4    0.000    0.000  <frozen importlib._bootstrap>:1409(_handle_fromlist)
+    queue.py:266(_qsize)                                  <-       2    0.000    0.000  queue.py:112(empty)
     {built-in method _abc._abc_subclasscheck}             <-       2    0.000    0.000  <frozen abc>:121(__subclasscheck__)
+    {built-in method posix.getpid}                        <-       2    0.000    0.000  iostream.py:285(_is_master_process)
+    {method '__enter__' of '_thread.lock' objects}        <-       2    0.000    0.000  queue.py:112(empty)
     {method 'popleft' of 'collections.deque' objects}     <-       1    0.000    0.000  3101860672.py:11(first_function)
                                                                    2    0.000    0.000  base_events.py:1977(_run_once)
                                                                    2    0.000    0.000  iostream.py:229(_handle_event)
-    {built-in method posix.getpid}                        <-       2    0.000    0.000  iostream.py:285(_is_master_process)
-    events.py:162(__lt__)                                 <-       2    0.000    0.000  {built-in method _heapq.heappop}
-    queue.py:266(_qsize)                                  <-       2    0.000    0.000  queue.py:112(empty)
-    {method 'upper' of 'str' objects}                     <-       4    0.000    0.000  attrsettr.py:43(__getattr__)
-    {built-in method time.monotonic}                      <-       5    0.000    0.000  base_events.py:766(time)
-    {method '__enter__' of '_thread.lock' objects}        <-       2    0.000    0.000  queue.py:112(empty)
-    {built-in method builtins.hasattr}                    <-       4    0.000    0.000  <frozen importlib._bootstrap>:1409(_handle_fromlist)
     {method 'append' of 'collections.deque' objects}      <-       1    0.000    0.000  base_events.py:846(_call_soon)
                                                                    1    0.000    0.000  base_events.py:1962(_add_callback)
                                                                    1    0.000    0.000  base_events.py:1977(_run_once)
-    {method 'get' of 'dict' objects}                      <-       1    0.000    0.000  3101860672.py:5(utility)
-    {built-in method math.ceil}                           <-       2    0.000    0.000  selectors.py:435(select)
-    {method '__enter__' of '_thread.RLock' objects}       <-       1    0.000    0.000  iostream.py:784(_rotate_buffers)
-    {method '__exit__' of '_thread.lock' objects}         <-       2    0.000    0.000  queue.py:112(empty)
-    {built-in method _asyncio.get_running_loop}           <-       1    0.000    0.000  asyncio.py:231(add_callback)
     zmqstream.py:528(receiving)                           <-       2    0.000    0.000  zmqstream.py:573(_handle_events)
                                                                    2    0.000    0.000  zmqstream.py:653(_rebuild_io_state)
-    {built-in method _contextvars.copy_context}           <-       1    0.000    0.000  events.py:41(__init__)
+    {method '__exit__' of '_thread.lock' objects}         <-       2    0.000    0.000  queue.py:112(empty)
+    {built-in method math.ceil}                           <-       2    0.000    0.000  selectors.py:435(select)
+    {method 'get' of 'dict' objects}                      <-       1    0.000    0.000  3101860672.py:5(utility)
+    {method '__enter__' of '_thread.RLock' objects}       <-       1    0.000    0.000  iostream.py:784(_rotate_buffers)
     {method 'items' of 'dict' objects}                    <-       1    0.000    0.000  iostream.py:776(_flush_buffers)
-    iostream.py:327(closed)                               <-       2    0.000    0.000  iostream.py:350(_really_send)
     {method '__exit__' of '_thread.RLock' objects}        <-       1    0.000    0.000  iostream.py:784(_rotate_buffers)
-    base_events.py:548(_check_closed)                     <-       1    0.000    0.000  base_events.py:817(call_soon)
+    {built-in method _contextvars.copy_context}           <-       1    0.000    0.000  events.py:41(__init__)
+    iostream.py:327(closed)                               <-       2    0.000    0.000  iostream.py:350(_really_send)
+    {built-in method _asyncio.get_running_loop}           <-       1    0.000    0.000  asyncio.py:231(add_callback)
     {method 'append' of 'list' objects}                   <-       1    0.000    0.000  3101860672.py:5(utility)
     typing.py:2300(cast)                                  <-       2    0.000    0.000  socket.py:771(recv_multipart)
+    base_events.py:548(_check_closed)                     <-       1    0.000    0.000  base_events.py:817(call_soon)
     base_events.py:2075(get_debug)                        <-       1    0.000    0.000  events.py:41(__init__)
 
-    <pstats.Stats at 0x7ff4ec550c30>
+    <pstats.Stats at 0x7f28283a0c30>
 
 - Functions called are listed on the left
   - Functions that call that function are listed on the right
@@ -664,154 +659,155 @@ stats.print_callees()
                                                               ncalls  tottime  cumtime
     3103966480.py:5(utility)                              ->       1    0.000    0.000  {method 'append' of 'list' objects}
                                                                    1    0.000    0.000  {method 'get' of 'dict' objects}
-    3103966480.py:11(first_function)                      -> 18648/674    0.066    0.003  3103966480.py:5(utility)
+    3103966480.py:11(first_function)                      -> 18865/667    0.071    0.003  3103966480.py:5(utility)
                                                                    1    0.000    0.000  base_events.py:766(time)
-                                                                   2    0.000    0.011  events.py:92(_run)
+                                                                   5    0.000    0.000  enum.py:1583(__or__)
+                                                                   1    0.000    0.016  events.py:92(_run)
                                                                    1    0.000    0.000  selector_events.py:744(_process_events)
-                                                                   1    0.000    0.000  socket.py:623(send)
-                                                                   1    0.000    0.000  {built-in method _heapq.heappop}
+                                                                 8/4    0.000    0.000  socket.py:623(send)
                                                                    1    0.000    0.000  {built-in method builtins.len}
-                                                                   1    0.000    0.000  {method 'append' of 'collections.deque' objects}
-                                                                   2    0.000    0.000  {method 'popleft' of 'collections.deque' objects}
+                                                                   1    0.000    0.000  {method 'popleft' of 'collections.deque' objects}
     3103966480.py:21(program)                             ->       0    0.000    0.000  3103966480.py:11(first_function)
                                                                    1    0.000    0.000  base_events.py:1977(_run_once)
                                                                    1    0.000    0.000  {method 'disable' of '_lsprof.Profiler' objects}
-    events.py:92(_run)                                    ->       3    0.000    0.011  {method 'run' of '_contextvars.Context' objects}
-    {method 'run' of '_contextvars.Context' objects}      ->       1    0.000    0.011  asyncio.py:206(_handle_events)
+    events.py:92(_run)                                    ->       3    0.000    0.016  {method 'run' of '_contextvars.Context' objects}
+    {method 'run' of '_contextvars.Context' objects}      ->       1    0.000    0.016  asyncio.py:206(_handle_events)
                                                                    2    0.000    0.000  ioloop.py:750(_run_callback)
     zmqstream.py:573(_handle_events)                      ->       2    0.000    0.000  attrsettr.py:43(__getattr__)
                                                                    4    0.000    0.000  enum.py:1594(__and__)
                                                                    2    0.000    0.000  zmqstream.py:528(receiving)
-                                                                   2    0.000    0.010  zmqstream.py:614(_handle_recv)
+                                                                   2    0.000    0.016  zmqstream.py:614(_handle_recv)
                                                                    2    0.000    0.000  zmqstream.py:653(_rebuild_io_state)
-    asyncio.py:206(_handle_events)                        ->       1    0.000    0.011  zmqstream.py:573(_handle_events)
+    asyncio.py:206(_handle_events)                        ->       1    0.000    0.016  zmqstream.py:573(_handle_events)
     zmqstream.py:614(_handle_recv)                        ->       2    0.000    0.000  socket.py:771(recv_multipart)
-                                                                   2    0.000    0.010  zmqstream.py:546(_run_callback)
-    zmqstream.py:546(_run_callback)                       ->       2    0.000    0.010  iostream.py:229(_handle_event)
+                                                                   2    0.000    0.016  zmqstream.py:546(_run_callback)
+    zmqstream.py:546(_run_callback)                       ->       2    0.000    0.016  iostream.py:229(_handle_event)
                                                                    2    0.000    0.000  {built-in method builtins.isinstance}
-    iostream.py:229(_handle_event)                        ->       2    0.000    0.010  iostream.py:348(<lambda>)
+    iostream.py:229(_handle_event)                        ->       2    0.000    0.016  iostream.py:348(<lambda>)
                                                                    2    0.000    0.000  {built-in method builtins.len}
                                                                    2    0.000    0.000  {method 'popleft' of 'collections.deque' objects}
-    iostream.py:348(<lambda>)                             ->       2    0.000    0.010  iostream.py:350(_really_send)
-    iostream.py:350(_really_send)                         ->       2    0.000    0.005  3103966480.py:11(first_function)
-                                                                   3    0.000    0.000  3103966480.py:16(second_function)
+    iostream.py:348(<lambda>)                             ->       2    0.000    0.016  iostream.py:350(_really_send)
+    iostream.py:350(_really_send)                         ->       3    0.000    0.009  3103966480.py:11(first_function)
+                                                                   4    0.000    0.000  3103966480.py:16(second_function)
                                                                    2    0.000    0.000  iostream.py:288(_check_mp_mode)
                                                                    2    0.000    0.000  iostream.py:327(closed)
-                                                                   2    0.000    0.004  socket.py:700(send_multipart)
-    socket.py:700(send_multipart)                         -> 444/325    0.002    0.001  3103966480.py:5(utility)
-                                                                  12    0.000    0.000  enum.py:1583(__or__)
-                                                                11/6    0.000    0.000  socket.py:623(send)
+                                                                   2    0.000    0.005  socket.py:700(send_multipart)
+    socket.py:700(send_multipart)                         -> 459/332    0.002    0.001  3103966480.py:5(utility)
+                                                                   7    0.000    0.000  enum.py:1583(__or__)
+                                                                 5/2    0.000    0.000  socket.py:623(send)
                                                                   14    0.000    0.000  {built-in method builtins.isinstance}
     3103966480.py:16(second_function)                     ->     200    0.001    0.001  3103966480.py:5(utility)
-    base_events.py:1977(_run_once)                        ->      16    0.003    0.058  3103966480.py:11(first_function)
-                                                                  17    0.000    0.000  3103966480.py:16(second_function)
+    base_events.py:1977(_run_once)                        ->      15    0.002    0.058  3103966480.py:11(first_function)
+                                                                  16    0.000    0.000  3103966480.py:16(second_function)
                                                                    2    0.000    0.000  base_events.py:766(time)
-                                                                   1    0.000    0.000  events.py:92(_run)
+                                                                   2    0.000    0.000  events.py:92(_run)
                                                                    1    0.000    0.000  selector_events.py:744(_process_events)
                                                                    1    0.000    0.000  selectors.py:435(select)
+                                                                   1    0.000    0.000  {built-in method _heapq.heappop}
                                                                    3    0.000    0.000  {built-in method builtins.len}
-                                                                   1    0.000    0.000  {method 'popleft' of 'collections.deque' objects}
+                                                                   1    0.000    0.000  {method 'append' of 'collections.deque' objects}
+                                                                   2    0.000    0.000  {method 'popleft' of 'collections.deque' objects}
+    socket.py:623(send)                                   -> 
     ioloop.py:750(_run_callback)                          ->       1    0.000    0.000  iostream.py:682(_flush)
                                                                    1    0.000    0.000  zmqstream.py:684(<lambda>)
-    zmqstream.py:684(<lambda>)                            ->       1    0.000    0.000  zmqstream.py:573(_handle_events)
-    zmqstream.py:653(_rebuild_io_state)                   ->       2    0.000    0.000  enum.py:1583(__or__)
-                                                                   2    0.000    0.000  zmqstream.py:528(receiving)
-                                                                   2    0.000    0.000  zmqstream.py:532(sending)
-                                                                   2    0.000    0.000  zmqstream.py:676(_update_handler)
     socket.py:771(recv_multipart)                         ->       2    0.000    0.000  enum.py:677(__call__)
                                                                    4    0.000    0.000  typing.py:184(_type_check)
                                                                    4    0.000    0.000  typing.py:396(inner)
                                                                   12    0.000    0.000  typing.py:1361(__hash__)
                                                                    2    0.000    0.000  typing.py:2300(cast)
-    socket.py:623(send)                                   -> 
+    zmqstream.py:684(<lambda>)                            ->       1    0.000    0.000  zmqstream.py:573(_handle_events)
+    enum.py:1583(__or__)                                  ->      14    0.000    0.000  enum.py:677(__call__)
+                                                                  42    0.000    0.000  enum.py:1576(_get_value)
+    zmqstream.py:653(_rebuild_io_state)                   ->       2    0.000    0.000  enum.py:1583(__or__)
+                                                                   2    0.000    0.000  zmqstream.py:528(receiving)
+                                                                   2    0.000    0.000  zmqstream.py:532(sending)
+                                                                   2    0.000    0.000  zmqstream.py:676(_update_handler)
+    {method 'disable' of '_lsprof.Profiler' objects}      -> 
     attrsettr.py:43(__getattr__)                          ->       4    0.000    0.000  <frozen importlib._bootstrap>:1409(_handle_fromlist)
                                                                    4    0.000    0.000  attrsettr.py:66(_get_attr_opt)
                                                                    4    0.000    0.000  {built-in method builtins.getattr}
                                                                    4    0.000    0.000  {method 'upper' of 'str' objects}
-    {method 'disable' of '_lsprof.Profiler' objects}      -> 
     zmqstream.py:676(_update_handler)                     ->       1    0.000    0.000  asyncio.py:231(add_callback)
                                                                    2    0.000    0.000  attrsettr.py:43(__getattr__)
                                                                    2    0.000    0.000  enum.py:1594(__and__)
-    enum.py:1583(__or__)                                  ->      14    0.000    0.000  enum.py:677(__call__)
-                                                                  42    0.000    0.000  enum.py:1576(_get_value)
     enum.py:1576(_get_value)                              ->     100    0.000    0.000  {built-in method builtins.isinstance}
     {built-in method builtins.isinstance}                 ->       2    0.000    0.000  typing.py:1292(__instancecheck__)
-    enum.py:1594(__and__)                                 ->       6    0.000    0.000  enum.py:677(__call__)
-                                                                  18    0.000    0.000  enum.py:1576(_get_value)
     typing.py:184(_type_check)                            ->       4    0.000    0.000  typing.py:175(_type_convert)
                                                                   32    0.000    0.000  typing.py:1355(__eq__)
                                                                    8    0.000    0.000  {built-in method builtins.isinstance}
+    enum.py:1594(__and__)                                 ->       6    0.000    0.000  enum.py:677(__call__)
+                                                                  18    0.000    0.000  enum.py:1576(_get_value)
     attrsettr.py:66(_get_attr_opt)                        ->       4    0.000    0.000  enum.py:677(__call__)
     enum.py:677(__call__)                                 ->      26    0.000    0.000  enum.py:1146(__new__)
     asyncio.py:231(add_callback)                          ->       1    0.000    0.000  base_events.py:817(call_soon)
                                                                    1    0.000    0.000  {built-in method _asyncio.get_running_loop}
-    zmqstream.py:532(sending)                             ->       2    0.000    0.000  queue.py:112(empty)
-    typing.py:1355(__eq__)                                ->      32    0.000    0.000  {built-in method builtins.isinstance}
     typing.py:1292(__instancecheck__)                     ->       2    0.000    0.000  typing.py:1583(__subclasscheck__)
+    typing.py:1355(__eq__)                                ->      32    0.000    0.000  {built-in method builtins.isinstance}
     iostream.py:682(_flush)                               ->       1    0.000    0.000  iostream.py:776(_flush_buffers)
-    queue.py:112(empty)                                   ->       2    0.000    0.000  queue.py:266(_qsize)
-                                                                   2    0.000    0.000  {method '__enter__' of '_thread.lock' objects}
-                                                                   2    0.000    0.000  {method '__exit__' of '_thread.lock' objects}
-    selectors.py:435(select)                              ->     906    0.003    0.003  3103966480.py:5(utility)
+    typing.py:1583(__subclasscheck__)                     ->       4    0.000    0.000  {built-in method builtins.isinstance}
+                                                                   2    0.000    0.000  {built-in method builtins.issubclass}
+    enum.py:1146(__new__)                                 -> 
+    zmqstream.py:532(sending)                             ->       2    0.000    0.000  queue.py:112(empty)
+    selectors.py:435(select)                              ->     674    0.003    0.003  3103966480.py:5(utility)
                                                                    2    0.000    0.000  {built-in method builtins.len}
                                                                    1    0.000    0.000  {built-in method math.ceil}
                                                                    1    0.000    0.000  {method 'poll' of 'select.epoll' objects}
-    enum.py:1146(__new__)                                 -> 
-    typing.py:1583(__subclasscheck__)                     ->       4    0.000    0.000  {built-in method builtins.isinstance}
-                                                                   2    0.000    0.000  {built-in method builtins.issubclass}
-    {method 'poll' of 'select.epoll' objects}             -> 
     base_events.py:817(call_soon)                         ->       1    0.000    0.000  base_events.py:548(_check_closed)
                                                                    1    0.000    0.000  base_events.py:846(_call_soon)
+    queue.py:112(empty)                                   ->       2    0.000    0.000  queue.py:266(_qsize)
+                                                                   2    0.000    0.000  {method '__enter__' of '_thread.lock' objects}
+                                                                   2    0.000    0.000  {method '__exit__' of '_thread.lock' objects}
     iostream.py:776(_flush_buffers)                       ->       1    0.000    0.000  iostream.py:784(_rotate_buffers)
                                                                    1    0.000    0.000  {method 'items' of 'dict' objects}
     <frozen importlib._bootstrap>:1409(_handle_fromlist)  ->       4    0.000    0.000  {built-in method builtins.hasattr}
                                                                    4    0.000    0.000  {built-in method builtins.isinstance}
+    {method 'poll' of 'select.epoll' objects}             -> 
+    typing.py:1361(__hash__)                              ->      12    0.000    0.000  {built-in method builtins.hash}
     base_events.py:846(_call_soon)                        ->       1    0.000    0.000  events.py:41(__init__)
                                                                    1    0.000    0.000  {method 'append' of 'collections.deque' objects}
-    typing.py:1361(__hash__)                              ->      12    0.000    0.000  {built-in method builtins.hash}
-    iostream.py:784(_rotate_buffers)                      ->       1    0.000    0.000  {method '__enter__' of '_thread.RLock' objects}
-                                                                   1    0.000    0.000  {method '__exit__' of '_thread.RLock' objects}
     {built-in method builtins.issubclass}                 ->       2    0.000    0.000  <frozen abc>:121(__subclasscheck__)
     iostream.py:288(_check_mp_mode)                       ->       2    0.000    0.000  iostream.py:285(_is_master_process)
-    typing.py:396(inner)                                  -> 
-    {built-in method _heapq.heappop}                      ->       2    0.000    0.000  events.py:162(__lt__)
-    base_events.py:766(time)                              ->       3    0.000    0.000  {built-in method time.monotonic}
+    iostream.py:784(_rotate_buffers)                      ->       1    0.000    0.000  {method '__enter__' of '_thread.RLock' objects}
+                                                                   1    0.000    0.000  {method '__exit__' of '_thread.RLock' objects}
     selector_events.py:744(_process_events)               ->       1    0.000    0.000  base_events.py:1962(_add_callback)
-    iostream.py:285(_is_master_process)                   ->       2    0.000    0.000  {built-in method posix.getpid}
+    typing.py:396(inner)                                  -> 
+    typing.py:175(_type_convert)                          ->       4    0.000    0.000  {built-in method builtins.isinstance}
     <frozen abc>:121(__subclasscheck__)                   ->       2    0.000    0.000  {built-in method _abc._abc_subclasscheck}
+    {built-in method _heapq.heappop}                      ->       2    0.000    0.000  events.py:162(__lt__)
+    iostream.py:285(_is_master_process)                   ->       2    0.000    0.000  {built-in method posix.getpid}
+    base_events.py:766(time)                              ->       3    0.000    0.000  {built-in method time.monotonic}
     events.py:41(__init__)                                ->       1    0.000    0.000  base_events.py:2075(get_debug)
                                                                    1    0.000    0.000  {built-in method _contextvars.copy_context}
-    typing.py:175(_type_convert)                          ->       4    0.000    0.000  {built-in method builtins.isinstance}
     {built-in method builtins.getattr}                    -> 
-    events.py:162(__lt__)                                 ->       2    0.000    0.000  {built-in method builtins.isinstance}
-    {built-in method builtins.len}                        -> 
     {built-in method builtins.hash}                       -> 
+    {built-in method builtins.len}                        -> 
     base_events.py:1962(_add_callback)                    ->       1    0.000    0.000  {method 'append' of 'collections.deque' objects}
-    {built-in method builtins.hasattr}                    -> 
-    {method 'upper' of 'str' objects}                     -> 
-    {method 'popleft' of 'collections.deque' objects}     -> 
-    queue.py:266(_qsize)                                  ->       2    0.000    0.000  {built-in method builtins.len}
     {built-in method _abc._abc_subclasscheck}             -> 
+    {method 'popleft' of 'collections.deque' objects}     -> 
+    {built-in method builtins.hasattr}                    -> 
     {built-in method posix.getpid}                        -> 
+    queue.py:266(_qsize)                                  ->       2    0.000    0.000  {built-in method builtins.len}
+    events.py:162(__lt__)                                 ->       2    0.000    0.000  {built-in method builtins.isinstance}
+    {method 'upper' of 'str' objects}                     -> 
     {method '__enter__' of '_thread.lock' objects}        -> 
     {built-in method time.monotonic}                      -> 
-    {method 'append' of 'collections.deque' objects}      -> 
-    {method '__exit__' of '_thread.lock' objects}         -> 
     {method 'get' of 'dict' objects}                      -> 
     zmqstream.py:528(receiving)                           -> 
-    {built-in method math.ceil}                           -> 
     {built-in method _contextvars.copy_context}           -> 
-    {method '__enter__' of '_thread.RLock' objects}       -> 
-    base_events.py:548(_check_closed)                     -> 
+    {method 'append' of 'collections.deque' objects}      -> 
+    {method '__exit__' of '_thread.lock' objects}         -> 
     {built-in method _asyncio.get_running_loop}           -> 
-    {method '__exit__' of '_thread.RLock' objects}        -> 
+    {method '__enter__' of '_thread.RLock' objects}       -> 
+    {built-in method math.ceil}                           -> 
     {method 'append' of 'list' objects}                   -> 
     iostream.py:327(closed)                               -> 
     {method 'items' of 'dict' objects}                    -> 
+    {method '__exit__' of '_thread.RLock' objects}        -> 
     typing.py:2300(cast)                                  -> 
+    base_events.py:548(_check_closed)                     -> 
     base_events.py:2075(get_debug)                        -> 
 
-    <pstats.Stats at 0x7ff4ec5508a0>
+    <pstats.Stats at 0x7f28283a08a0>
 
 - There are further tools for analysing performance once a basic
   profiling has been conducted (See [Item 93](../Item_093/item_093.qmd)
