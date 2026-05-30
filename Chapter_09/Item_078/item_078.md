@@ -170,11 +170,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmppus1ccfg/0. Expected [b'/tmp/tmppus1ccfg/0-01-hiavlpuzdm\n'] lines, found [b'/tmp/tmppus1ccfg/0-01-hiavlpuzdm\n']
-    File: /tmp/tmppus1ccfg/1. Expected [] lines, found []
-    File: /tmp/tmppus1ccfg/2. Expected [] lines, found []
-    File: /tmp/tmppus1ccfg/3. Expected [b'/tmp/tmppus1ccfg/3-01-xzirstepzw\n', b'/tmp/tmppus1ccfg/3-02-myqokjwlbe\n'] lines, found [b'/tmp/tmppus1ccfg/3-01-xzirstepzw\n', b'/tmp/tmppus1ccfg/3-02-myqokjwlbe\n']
-    File: /tmp/tmppus1ccfg/4. Expected [] lines, found []
+    File: /tmp/tmpzv1f02wp/0. Expected [] lines, found []
+    File: /tmp/tmpzv1f02wp/1. Expected [b'/tmp/tmpzv1f02wp/1-01-fzpsmlkbqz\n'] lines, found [b'/tmp/tmpzv1f02wp/1-01-fzpsmlkbqz\n']
+    File: /tmp/tmpzv1f02wp/2. Expected [] lines, found []
+    File: /tmp/tmpzv1f02wp/3. Expected [b'/tmp/tmpzv1f02wp/3-01-crzzfzhwdr\n'] lines, found [b'/tmp/tmpzv1f02wp/3-01-crzzfzhwdr\n']
+    File: /tmp/tmpzv1f02wp/4. Expected [] lines, found []
     All tests passed!
 
 - Now the code looks better but we now have blocking system calls
@@ -447,11 +447,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmpo9pmdsxo/0. Expected [] lines, found []
-    File: /tmp/tmpo9pmdsxo/1. Expected [b'/tmp/tmpo9pmdsxo/1-01-ldoffzdnvl\n', b'/tmp/tmpo9pmdsxo/1-02-aqeumrgbkd\n', b'/tmp/tmpo9pmdsxo/1-03-veviiddkbd\n', b'/tmp/tmpo9pmdsxo/1-04-wnbdlmzasz\n'] lines, found [b'/tmp/tmpo9pmdsxo/1-01-ldoffzdnvl\n', b'/tmp/tmpo9pmdsxo/1-02-aqeumrgbkd\n', b'/tmp/tmpo9pmdsxo/1-03-veviiddkbd\n', b'/tmp/tmpo9pmdsxo/1-04-wnbdlmzasz\n']
-    File: /tmp/tmpo9pmdsxo/2. Expected [] lines, found []
-    File: /tmp/tmpo9pmdsxo/3. Expected [] lines, found []
-    File: /tmp/tmpo9pmdsxo/4. Expected [b'/tmp/tmpo9pmdsxo/4-01-sincxausip\n'] lines, found [b'/tmp/tmpo9pmdsxo/4-01-sincxausip\n']
+    File: /tmp/tmp6a8se8dw/0. Expected [] lines, found []
+    File: /tmp/tmp6a8se8dw/1. Expected [] lines, found []
+    File: /tmp/tmp6a8se8dw/2. Expected [b'/tmp/tmp6a8se8dw/2-01-xxiflkaabo\n'] lines, found [b'/tmp/tmp6a8se8dw/2-01-xxiflkaabo\n']
+    File: /tmp/tmp6a8se8dw/3. Expected [b'/tmp/tmp6a8se8dw/3-01-dbpknrzqth\n'] lines, found [b'/tmp/tmp6a8se8dw/3-01-dbpknrzqth\n']
+    File: /tmp/tmp6a8se8dw/4. Expected [] lines, found []
     All tests passed!
 
 ## Things to Remember

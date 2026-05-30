@@ -1,4 +1,4 @@
-# Chapter 12: Testing and Debugging
+# Chapter 13: Testing and Debugging
 
 - Python’s dynamic type system allows for fast development at the cost
   of compile time validation (See [Item
