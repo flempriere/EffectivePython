@@ -1,6 +1,5 @@
 # Item 108: Verify Related Behaviours in `TestCase` Subclasses
 
-
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
 
