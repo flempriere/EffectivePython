@@ -940,7 +940,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../Chapter_13/Chapter_13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Chapter 12: Testing and Debugging</span></a>
+ <span class="menu-text">Chapter 13: Testing and Debugging</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -1043,7 +1043,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>A naive approach is,</li>
 </ul>
-<div id="32fea152" class="cell" data-execution_count="1">
+<div id="d2b00649" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> sleep</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1054,8 +1054,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>sleep(<span class="fl">0.1</span>)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>log(<span class="st">"Hello again"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>2026-05-29 11:13:30.876698: Hi there
-2026-05-29 11:13:30.876698: Hello again</code></pre>
+<pre><code>2026-05-30 11:27:07.960224: Hi there
+2026-05-30 11:27:07.960224: Hello again</code></pre>
 </div>
 </div>
 <ul>
@@ -1072,7 +1072,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Actual behaviour is then documented in the function docstring</li>
 </ul></li>
 </ul>
-<div id="0cebcd6b" class="cell" data-execution_count="2">
+<div id="34a14e1f" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> sleep</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1100,14 +1100,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>sleep(<span class="fl">0.1</span>)</span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>log(<span class="st">"Hello again"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>2026-05-29 11:13:30.984931: Hi there
-2026-05-29 11:13:31.085238: Hello again</code></pre>
+<pre><code>2026-05-30 11:27:08.068064: Hi there
+2026-05-30 11:27:08.168378: Hello again</code></pre>
 </div>
 </div>
 <ul>
 <li>Again, suppose we tried to write function that loads json data,</li>
 </ul>
-<div id="4edd3563" class="cell" data-execution_count="3">
+<div id="67f4c962" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> decode(data, default<span class="op">=</span>{}):</span>
@@ -1133,7 +1133,7 @@ Bar: {'stuff': 5, 'meep': 1}</code></pre>
 <li>Same issue arises, the dictionary created by <code>default</code> is shared by all calls to <code>decode</code></li>
 <li>Have to use <code>None</code> as a placeholder then explicitly create the dictionary</li>
 </ul>
-<div id="b4b5304c" class="cell" data-execution_count="4">
+<div id="20f16f84" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1179,7 +1179,7 @@ Bar: {'meep': 1}</code></pre>
 <ul>
 <li>We can extend this further via typing</li>
 </ul>
-<div id="d642ae93" class="cell" data-execution_count="5">
+<div id="21cbbbae" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> sleep</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1207,8 +1207,8 @@ Bar: {'meep': 1}</code></pre>
 <span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>sleep(<span class="fl">0.1</span>)</span>
 <span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>log(<span class="st">"Hello again"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>2026-05-29 11:13:31.108999: Hi there
-2026-05-29 11:13:31.209270: Hello again</code></pre>
+<pre><code>2026-05-30 11:27:08.191119: Hi there
+2026-05-30 11:27:08.291451: Hello again</code></pre>
 </div>
 </div>
 </section>

@@ -940,7 +940,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../Chapter_13/Chapter_13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Chapter 12: Testing and Debugging</span></a>
+ <span class="menu-text">Chapter 13: Testing and Debugging</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -1052,13 +1052,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>Use case is straight forward, e.g.&nbsp;to time the addition of two integers</li>
 </ul>
-<div id="58217ade" class="cell" data-execution_count="1">
+<div id="0b5d0de2" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>delay <span class="op">=</span> timeit.timeit(stmt<span class="op">=</span><span class="st">"1+2"</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(delay)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.006980829999974958</code></pre>
+<pre><code>0.007901448999973582</code></pre>
 </div>
 </div>
 <ul>
@@ -1067,13 +1067,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>This number is adjustable</li>
 </ul></li>
 </ul>
-<div id="0466db1c" class="cell" data-execution_count="2">
+<div id="f62e89b5" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>delay <span class="op">=</span> timeit.timeit(stmt<span class="op">=</span><span class="st">"1+2"</span>, number<span class="op">=</span><span class="dv">100</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(delay)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>1.5830000847927295e-06</code></pre>
+<pre><code>2.182999878641567e-06</code></pre>
 </div>
 </div>
 <ul>
@@ -1090,7 +1090,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Helps for conducting follow on statistics</li>
 </ul></li>
 </ul>
-<div id="850e6711" class="cell" data-execution_count="3">
+<div id="ad94bd95" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">1_000_000</span></span>
@@ -1098,7 +1098,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>delay <span class="op">=</span> timeit.timeit(stmt<span class="op">=</span><span class="st">"1+2"</span>, number<span class="op">=</span>count)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>delay <span class="op">/</span> count <span class="op">*</span> <span class="fl">1e9</span><span class="sc">:.2f}</span><span class="ss"> nanoseconds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>7.70 nanoseconds</code></pre>
+<pre><code>8.86 nanoseconds</code></pre>
 </div>
 </div>
 <ul>
@@ -1118,7 +1118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Put this in a <code>setup</code> function</li>
 </ul></li>
 </ul>
-<div id="05a96b4f" class="cell" data-execution_count="4">
+<div id="d91b9ddd" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1139,7 +1139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>delay <span class="op">/</span> count <span class="op">*</span> <span class="fl">1e9</span><span class="sc">:.2f}</span><span class="ss"> nanoseconds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>58427.21 nanoseconds</code></pre>
+<pre><code>62200.46 nanoseconds</code></pre>
 </div>
 </div>
 <ul>
@@ -1148,7 +1148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>For example, instead of using a <code>list</code> we use a <code>set</code> to find our number</li>
 </ul></li>
 </ul>
-<div id="9bbdf227" class="cell" data-execution_count="5">
+<div id="283c3ce2" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1168,7 +1168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>delay <span class="op">/</span> count <span class="op">*</span> <span class="fl">1e9</span><span class="sc">:.2f}</span><span class="ss"> nanoseconds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>27.23 nanoseconds</code></pre>
+<pre><code>29.63 nanoseconds</code></pre>
 </div>
 </div>
 <ul>
@@ -1183,7 +1183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>For example, consider summing a list of numbers</li>
 </ul>
-<div id="973947cf" class="cell" data-execution_count="6">
+<div id="f3cdebd6" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1205,7 +1205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>delay <span class="op">/</span> count <span class="op">*</span> <span class="fl">1e9</span><span class="sc">:.2f}</span><span class="ss"> nanoseconds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>273522.85 nanoseconds</code></pre>
+<pre><code>303436.01 nanoseconds</code></pre>
 </div>
 </div>
 <ul>
@@ -1218,7 +1218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul></li>
 </ul>
-<div id="bd135858" class="cell" data-execution_count="7">
+<div id="974edd71" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1240,7 +1240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>delay <span class="op">/</span> count <span class="op">/</span> <span class="dv">10_000</span> <span class="op">*</span> <span class="fl">1e9</span><span class="sc">:.2f}</span><span class="ss"> nanoseconds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>27.86 nanoseconds</code></pre>
+<pre><code>30.42 nanoseconds</code></pre>
 </div>
 </div>
 <ul>

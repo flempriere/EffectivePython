@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -71,6 +106,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <meta property="og:title" content="Item 113: Use assertAlmostEqual to Control Precision in Floating Point Tests – Effective Python: Notes">
 <meta property="og:site_name" content="Effective Python: Notes">
@@ -108,7 +172,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_13/Chapter_13.html">Chapter 12: Testing and Debugging</a></li><li class="breadcrumb-item"><a href="../../Chapter_13/Item_113/item_113.html">Item 113: Use <code>assertAlmostEqual</code> to Control Precision in Floating Point Tests</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_13/Chapter_13.html">Chapter 13: Testing and Debugging</a></li><li class="breadcrumb-item"><a href="../../Chapter_13/Item_113/item_113.html">Item 113: Use <code>assertAlmostEqual</code> to Control Precision in Floating Point Tests</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -905,7 +969,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../Chapter_13/Chapter_13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Chapter 12: Testing and Debugging</span></a>
+ <span class="menu-text">Chapter 13: Testing and Debugging</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -979,7 +1043,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_13/Chapter_13.html">Chapter 12: Testing and Debugging</a></li><li class="breadcrumb-item"><a href="../../Chapter_13/Item_113/item_113.html">Item 113: Use <code>assertAlmostEqual</code> to Control Precision in Floating Point Tests</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_13/Chapter_13.html">Chapter 13: Testing and Debugging</a></li><li class="breadcrumb-item"><a href="../../Chapter_13/Item_113/item_113.html">Item 113: Use <code>assertAlmostEqual</code> to Control Precision in Floating Point Tests</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Item 113: Use <code>assertAlmostEqual</code> to Control Precision in Floating Point Tests</h1>
 </div>
@@ -1000,9 +1064,245 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li>Floating point numbers supported in python are useful but beware their precision limitations (See <a href="../../Chapter_12/Item_106/item_106.html">Item 106</a>)</li>
+<li>Mathematical code often needs to be checked for boundary conditions or other error cases (See <a href="../../Chapter_13/Item_109/item_109.html">Item 109</a>)</li>
+<li>Can be difficult to automate floating point tests
+<ul>
+<li>Since precision often cannot be predicted ahead of time</li>
+<li>The following simple test fails as a result
+<ul>
+<li>Can’t represent <span class="math inline">\(5/3\)</span> exactly as a <code>float</code></li>
+<li>Passed expected value is insufficiently precise
+<ul>
+<li>In theory could then change the provided expected value to match what is expected</li>
+<li>But don’t want to have to write a test, let it fail to work out the expected value, then fix it
+<ul>
+<li>Essentially we are using the code supposedly being tested to instead test the test</li>
+</ul></li>
+<li>Precision is also then often overkill and hard to maintain
+<ul>
+<li>May change on different architectures</li>
+<li>May change due to ordering of operations impacting rounding of intermediates</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<div id="a5b0d92c" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> unittest</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyTestCase(unittest.TestCase):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_equal(<span class="va">self</span>):</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        n <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        d <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertEqual(<span class="fl">1.667</span>, n <span class="op">/</span> d)  <span class="co"># Raises</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>unittest.main(argv<span class="op">=</span>[<span class="st">""</span>], exit<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">F</span>
+
+
+======================================================================
+
+<span class="ansi-red-fg">FAIL</span><span class="ansi-red-fg ansi-bold">: test_equal (__main__.MyTestCase.test_equal)</span>
+
+----------------------------------------------------------------------
+
+Traceback (most recent call last):
+
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_14106/1899314891.py"</span>, line <span class="ansi-magenta-fg">8</span>, in <span class="ansi-magenta-fg">test_equal</span>
+
+    <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">(1.667, n / d)</span>  # Raises
+
+    <span class="ansi-red-fg">~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^</span>
+
+<span class="ansi-magenta-fg ansi-bold">AssertionError</span>: <span class="ansi-magenta-fg">1.667 != 1.6666666666666667</span>
+
+
+
+----------------------------------------------------------------------
+
+Ran 1 test in 0.001s
+
+
+
+<span class="ansi-red-fg ansi-bold">FAILED</span> (<span class="ansi-red-fg ansi-bold">failures=1</span>)
+</pre>
+</div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>&lt;unittest.main.TestProgram at 0x7f57f8b0af90&gt;</code></pre>
+</div>
+</div>
+<ul>
+<li>For example, the two equivalent calculations below will actually give different answers due to rounding in the intermediates</li>
+</ul>
+<div id="8a8cf463" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">5</span> <span class="op">/</span> <span class="dv">3</span> <span class="op">*</span> <span class="fl">0.1</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">0.1</span> <span class="op">*</span> <span class="dv">5</span> <span class="op">/</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.16666666666666669
+0.16666666666666666</code></pre>
+</div>
+</div>
+<ul>
+<li>Often we instead want to test the value matches the expected result to a controlled level of precision</li>
+<li>In this case can use the <code>unittest.TestCase.assertAlmostEqual</code> method
+<ul>
+<li>Properly handles <code>NaN</code> and infinities</li>
+<li>Minimises rounding errors</li>
+<li>Can specify the level of precision such as number of decimal places</li>
+</ul></li>
+</ul>
+<div id="f7181623" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> unittest</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyImprovedTestCase(unittest.TestCase):</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_equal(<span class="va">self</span>):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        n <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        d <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertAlmostEqual(<span class="fl">1.667</span>, n <span class="op">/</span> d, places<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>unittest.main(argv<span class="op">=</span>[<span class="st">""</span>], exit<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-green-fg">.</span>
+<span class="ansi-red-fg">F</span>
+
+
+======================================================================
+
+<span class="ansi-red-fg">FAIL</span><span class="ansi-red-fg ansi-bold">: test_equal (__main__.MyTestCase.test_equal)</span>
+
+----------------------------------------------------------------------
+
+Traceback (most recent call last):
+
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_14106/1899314891.py"</span>, line <span class="ansi-magenta-fg">8</span>, in <span class="ansi-magenta-fg">test_equal</span>
+
+    <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">(1.667, n / d)</span>  # Raises
+
+    <span class="ansi-red-fg">~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^</span>
+
+<span class="ansi-magenta-fg ansi-bold">AssertionError</span>: <span class="ansi-magenta-fg">1.667 != 1.6666666666666667</span>
+
+
+
+----------------------------------------------------------------------
+
+Ran 2 tests in 0.002s
+
+
+
+<span class="ansi-red-fg ansi-bold">FAILED</span> (<span class="ansi-red-fg ansi-bold">failures=1</span>)
+</pre>
+</div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>&lt;unittest.main.TestProgram at 0x7f57f8b76210&gt;</code></pre>
+</div>
+</div>
+<ul>
+<li><code>places</code> is suitable for verifying numbers with a fractional part that are close to unit magnitude
+<ul>
+<li>Rounding behaviour and precision is harder to predict for larger or smaller quantities</li>
+<li>Operations between floating point numbers of significantly different magnitudes are liable to lose precision</li>
+</ul></li>
+</ul>
+<div id="cb9d29a8" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">1e24</span> <span class="op">/</span> <span class="fl">1.1e16</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">1e24</span> <span class="op">/</span> <span class="fl">1.101e16</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>90909090.9090909
+90826521.34423251</code></pre>
+</div>
+</div>
+<ul>
+<li>The above values are “close”, but the difference is around <span class="math inline">\(80,000\)</span>
+<ul>
+<li>May or may not matter depending on the required precision</li>
+</ul></li>
+<li>Can use the <code>delta</code> parameter to specify acceptable precision
+<ul>
+<li><code>assertAlmostEqual</code> will then compare the absolute difference of the expected value and result
+<ul>
+<li>Fail’s if the absolute difference is greater than the <code>delta</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<div id="0d440757" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> unittest</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DeltaTestCase(unittest.TestCase):</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_equal(<span class="va">self</span>):</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        a <span class="op">=</span> <span class="fl">1e24</span> <span class="op">/</span> <span class="fl">1.1e16</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        b <span class="op">=</span> <span class="fl">1e24</span> <span class="op">/</span> <span class="fl">1.101e16</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertAlmostEqual(<span class="fl">90.9e6</span>, a, delta<span class="op">=</span><span class="fl">0.1e6</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertAlmostEqual(<span class="fl">90.9e6</span>, b, delta<span class="op">=</span><span class="fl">0.1e6</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>unittest.main(argv<span class="op">=</span>[<span class="st">""</span>], exit<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-green-fg">.</span>
+<span class="ansi-green-fg">.</span>
+<span class="ansi-red-fg">F</span>
+
+
+======================================================================
+
+<span class="ansi-red-fg">FAIL</span><span class="ansi-red-fg ansi-bold">: test_equal (__main__.MyTestCase.test_equal)</span>
+
+----------------------------------------------------------------------
+
+Traceback (most recent call last):
+
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_14106/1899314891.py"</span>, line <span class="ansi-magenta-fg">8</span>, in <span class="ansi-magenta-fg">test_equal</span>
+
+    <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">(1.667, n / d)</span>  # Raises
+
+    <span class="ansi-red-fg">~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^</span>
+
+<span class="ansi-magenta-fg ansi-bold">AssertionError</span>: <span class="ansi-magenta-fg">1.667 != 1.6666666666666667</span>
+
+
+
+----------------------------------------------------------------------
+
+Ran 3 tests in 0.003s
+
+
+
+<span class="ansi-red-fg ansi-bold">FAILED</span> (<span class="ansi-red-fg ansi-bold">failures=1</span>)
+</pre>
+</div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>&lt;unittest.main.TestProgram at 0x7f57f8b76490&gt;</code></pre>
+</div>
+</div>
+<ul>
+<li>If you need to assert a false case, then consider using <code>unittest.TestCase.assertNotAlmostEqual</code></li>
+<li>For more complex cases (such as relative tolerances) consider the <code>isclose</code> function from the <code>math</code> built-in library</li>
+</ul>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li>Rounding behaviour in floating point can mean that changing the order of operations changes the result</li>
+<li>Testing floating point values with equality ala <code>assertEqual</code> should always be avoided</li>
+<li>Use <code>assertAlmostEqual</code> or <code>assertNotAlmostEqual</code> when testing floating point values in a <code>unittest.TestCase</code> test.
+<ul>
+<li>You can specify a tolerance via the <code>places</code> or <code>delta</code> parameters</li>
+</ul></li>
+</ul>
 
 
 </section>

@@ -940,7 +940,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../Chapter_13/Chapter_13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Chapter 12: Testing and Debugging</span></a>
+ <span class="menu-text">Chapter 13: Testing and Debugging</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -1066,7 +1066,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>When no data is present, we raise an exception (See <a href="../../Chapter_05/Item_032/item_032.html">Item 32</a>)</li>
 </ul></li>
 </ul>
-<div id="11ef2251" class="cell" data-execution_count="1">
+<div id="b71b982a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NoNewData(<span class="pp">Exception</span>):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1228,7 +1228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Cleanup the temporary directory</li>
 </ol></li>
 </ul>
-<div id="a1b503cf" class="cell" data-execution_count="2">
+<div id="9d6204de" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections <span class="co"># for testing</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co"># for testing</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="co"># for testing</span></span>
@@ -1353,11 +1353,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>tmpdir.cleanup()</span>
 <span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All tests passed!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>File: /tmp/tmpxngpbgrc/0. Expected [b'/tmp/tmpxngpbgrc/0-01-mlxayzcqac\n'] lines, found [b'/tmp/tmpxngpbgrc/0-01-mlxayzcqac\n']
-File: /tmp/tmpxngpbgrc/1. Expected [b'/tmp/tmpxngpbgrc/1-01-krlsqzmvcs\n', b'/tmp/tmpxngpbgrc/1-02-fmxefpuchh\n'] lines, found [b'/tmp/tmpxngpbgrc/1-01-krlsqzmvcs\n', b'/tmp/tmpxngpbgrc/1-02-fmxefpuchh\n']
-File: /tmp/tmpxngpbgrc/2. Expected [b'/tmp/tmpxngpbgrc/2-01-zkcdgcxxzn\n'] lines, found [b'/tmp/tmpxngpbgrc/2-01-zkcdgcxxzn\n']
-File: /tmp/tmpxngpbgrc/3. Expected [] lines, found []
-File: /tmp/tmpxngpbgrc/4. Expected [b'/tmp/tmpxngpbgrc/4-01-uwddhfrahh\n', b'/tmp/tmpxngpbgrc/4-02-nidruurlap\n'] lines, found [b'/tmp/tmpxngpbgrc/4-01-uwddhfrahh\n', b'/tmp/tmpxngpbgrc/4-02-nidruurlap\n']
+<pre><code>File: /tmp/tmpgo4495bl/0. Expected [] lines, found []
+File: /tmp/tmpgo4495bl/1. Expected [] lines, found []
+File: /tmp/tmpgo4495bl/2. Expected [b'/tmp/tmpgo4495bl/2-01-ndxrsxekbo\n', b'/tmp/tmpgo4495bl/2-02-mioblqsycw\n', b'/tmp/tmpgo4495bl/2-03-gbdwgbursn\n', b'/tmp/tmpgo4495bl/2-04-ahwxrrsrke\n', b'/tmp/tmpgo4495bl/2-05-rnorkofzmn\n'] lines, found [b'/tmp/tmpgo4495bl/2-01-ndxrsxekbo\n', b'/tmp/tmpgo4495bl/2-02-mioblqsycw\n', b'/tmp/tmpgo4495bl/2-03-gbdwgbursn\n', b'/tmp/tmpgo4495bl/2-04-ahwxrrsrke\n', b'/tmp/tmpgo4495bl/2-05-rnorkofzmn\n']
+File: /tmp/tmpgo4495bl/3. Expected [b'/tmp/tmpgo4495bl/3-01-xbjifhctnk\n', b'/tmp/tmpgo4495bl/3-02-ynfyztqsqr\n', b'/tmp/tmpgo4495bl/3-03-hpqhjxsnme\n'] lines, found [b'/tmp/tmpgo4495bl/3-01-xbjifhctnk\n', b'/tmp/tmpgo4495bl/3-02-ynfyztqsqr\n', b'/tmp/tmpgo4495bl/3-03-hpqhjxsnme\n']
+File: /tmp/tmpgo4495bl/4. Expected [] lines, found []
 All tests passed!</code></pre>
 </div>
 </div>
@@ -1467,7 +1467,7 @@ All tests passed!</code></pre>
 <li>We can reuse our existing test harness</li>
 </ul></li>
 </ul>
-<div id="48fe3397" class="cell" data-execution_count="3">
+<div id="8136d424" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections <span class="co"># for testing</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co"># for testing</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="co"># for testing</span></span>
@@ -1601,11 +1601,11 @@ All tests passed!</code></pre>
 <span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a>tmpdir.cleanup()</span>
 <span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All tests passed!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>File: /tmp/tmpdbzg4ej2/0. Expected [b'/tmp/tmpdbzg4ej2/0-01-geblxmmvik\n', b'/tmp/tmpdbzg4ej2/0-02-zcnzikhuda\n'] lines, found [b'/tmp/tmpdbzg4ej2/0-01-geblxmmvik\n', b'/tmp/tmpdbzg4ej2/0-02-zcnzikhuda\n']
-File: /tmp/tmpdbzg4ej2/1. Expected [b'/tmp/tmpdbzg4ej2/1-01-wbilvaccpe\n', b'/tmp/tmpdbzg4ej2/1-02-pizfyarlvv\n', b'/tmp/tmpdbzg4ej2/1-03-qtkpwooyfs\n', b'/tmp/tmpdbzg4ej2/1-04-topnzbfldu\n', b'/tmp/tmpdbzg4ej2/1-05-wivhdefpya\n', b'/tmp/tmpdbzg4ej2/1-06-ccwyadihtv\n', b'/tmp/tmpdbzg4ej2/1-07-kzeentelcr\n', b'/tmp/tmpdbzg4ej2/1-08-yanwlpgyjd\n'] lines, found [b'/tmp/tmpdbzg4ej2/1-01-wbilvaccpe\n', b'/tmp/tmpdbzg4ej2/1-02-pizfyarlvv\n', b'/tmp/tmpdbzg4ej2/1-03-qtkpwooyfs\n', b'/tmp/tmpdbzg4ej2/1-04-topnzbfldu\n', b'/tmp/tmpdbzg4ej2/1-05-wivhdefpya\n', b'/tmp/tmpdbzg4ej2/1-06-ccwyadihtv\n', b'/tmp/tmpdbzg4ej2/1-07-kzeentelcr\n', b'/tmp/tmpdbzg4ej2/1-08-yanwlpgyjd\n']
-File: /tmp/tmpdbzg4ej2/2. Expected [b'/tmp/tmpdbzg4ej2/2-01-deeckgtiwz\n'] lines, found [b'/tmp/tmpdbzg4ej2/2-01-deeckgtiwz\n']
-File: /tmp/tmpdbzg4ej2/3. Expected [] lines, found []
-File: /tmp/tmpdbzg4ej2/4. Expected [b'/tmp/tmpdbzg4ej2/4-01-eicfexoozg\n'] lines, found [b'/tmp/tmpdbzg4ej2/4-01-eicfexoozg\n']
+<pre><code>File: /tmp/tmptlvfg3w0/0. Expected [b'/tmp/tmptlvfg3w0/0-01-ebtqzyvoso\n'] lines, found [b'/tmp/tmptlvfg3w0/0-01-ebtqzyvoso\n']
+File: /tmp/tmptlvfg3w0/1. Expected [] lines, found []
+File: /tmp/tmptlvfg3w0/2. Expected [] lines, found []
+File: /tmp/tmptlvfg3w0/3. Expected [b'/tmp/tmptlvfg3w0/3-01-wejwqryeqy\n'] lines, found [b'/tmp/tmptlvfg3w0/3-01-wejwqryeqy\n']
+File: /tmp/tmptlvfg3w0/4. Expected [b'/tmp/tmptlvfg3w0/4-01-lxjhcoansr\n', b'/tmp/tmptlvfg3w0/4-02-wdfzwlwrbk\n'] lines, found [b'/tmp/tmptlvfg3w0/4-01-lxjhcoansr\n', b'/tmp/tmptlvfg3w0/4-02-wdfzwlwrbk\n']
 All tests passed!</code></pre>
 </div>
 </div>
@@ -1636,7 +1636,7 @@ All tests passed!</code></pre>
 <li>Now use <code>asyncio.TaskGroup</code> to handle fan-out/in of <code>tail_async</code> (available since Python 3.11)</li>
 </ul></li>
 </ul>
-<div id="b159f361" class="cell" data-execution_count="4">
+<div id="ef8bac33" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections <span class="co"># for testing</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co"># for testing</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="co"># for testing</span></span>
@@ -1762,11 +1762,11 @@ All tests passed!</code></pre>
 <span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a>tmpdir.cleanup()</span>
 <span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All tests passed!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>File: /tmp/tmp8gqr8wsc/0. Expected [] lines, found []
-File: /tmp/tmp8gqr8wsc/1. Expected [] lines, found []
-File: /tmp/tmp8gqr8wsc/2. Expected [] lines, found []
-File: /tmp/tmp8gqr8wsc/3. Expected [] lines, found []
-File: /tmp/tmp8gqr8wsc/4. Expected [b'/tmp/tmp8gqr8wsc/4-01-vlxnonsehv\n', b'/tmp/tmp8gqr8wsc/4-02-cskznmzruf\n', b'/tmp/tmp8gqr8wsc/4-03-dlzxuwmvoa\n'] lines, found [b'/tmp/tmp8gqr8wsc/4-01-vlxnonsehv\n', b'/tmp/tmp8gqr8wsc/4-02-cskznmzruf\n', b'/tmp/tmp8gqr8wsc/4-03-dlzxuwmvoa\n']
+<pre><code>File: /tmp/tmpq6_vb9ov/0. Expected [] lines, found []
+File: /tmp/tmpq6_vb9ov/1. Expected [b'/tmp/tmpq6_vb9ov/1-01-bfgozbeozf\n'] lines, found [b'/tmp/tmpq6_vb9ov/1-01-bfgozbeozf\n']
+File: /tmp/tmpq6_vb9ov/2. Expected [] lines, found []
+File: /tmp/tmpq6_vb9ov/3. Expected [b'/tmp/tmpq6_vb9ov/3-01-nszzahewmz\n', b'/tmp/tmpq6_vb9ov/3-02-kcvmxbevor\n', b'/tmp/tmpq6_vb9ov/3-03-voccgnwrls\n'] lines, found [b'/tmp/tmpq6_vb9ov/3-01-nszzahewmz\n', b'/tmp/tmpq6_vb9ov/3-02-kcvmxbevor\n', b'/tmp/tmpq6_vb9ov/3-03-voccgnwrls\n']
+File: /tmp/tmpq6_vb9ov/4. Expected [b'/tmp/tmpq6_vb9ov/4-01-yrgelpxarx\n', b'/tmp/tmpq6_vb9ov/4-02-ajemuboigg\n', b'/tmp/tmpq6_vb9ov/4-03-iixehppwqz\n'] lines, found [b'/tmp/tmpq6_vb9ov/4-01-yrgelpxarx\n', b'/tmp/tmpq6_vb9ov/4-02-ajemuboigg\n', b'/tmp/tmpq6_vb9ov/4-03-iixehppwqz\n']
 All tests passed!</code></pre>
 </div>
 </div>
@@ -1830,7 +1830,7 @@ All tests passed!</code></pre>
 <ul>
 <li>We can plug this in and run our test harness</li>
 </ul>
-<div id="a071f39b" class="cell" data-execution_count="5">
+<div id="41f4dc22" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections <span class="co"># for testing</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co"># for testing</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="co"># for testing</span></span>
@@ -1971,11 +1971,11 @@ All tests passed!</code></pre>
 <span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a>tmpdir.cleanup()</span>
 <span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All tests passed"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>File: /tmp/tmp590j_60a/0. Expected [] lines, found []
-File: /tmp/tmp590j_60a/1. Expected [] lines, found []
-File: /tmp/tmp590j_60a/2. Expected [] lines, found []
-File: /tmp/tmp590j_60a/3. Expected [b'/tmp/tmp590j_60a/3-01-fogybslpbk\n', b'/tmp/tmp590j_60a/3-02-fbugvebojl\n', b'/tmp/tmp590j_60a/3-03-eentfbopeq\n'] lines, found [b'/tmp/tmp590j_60a/3-01-fogybslpbk\n', b'/tmp/tmp590j_60a/3-02-fbugvebojl\n', b'/tmp/tmp590j_60a/3-03-eentfbopeq\n']
-File: /tmp/tmp590j_60a/4. Expected [b'/tmp/tmp590j_60a/4-01-kpdkzqforr\n', b'/tmp/tmp590j_60a/4-02-qvierqlgeq\n'] lines, found [b'/tmp/tmp590j_60a/4-01-kpdkzqforr\n', b'/tmp/tmp590j_60a/4-02-qvierqlgeq\n']
+<pre><code>File: /tmp/tmpmexpvpwj/0. Expected [] lines, found []
+File: /tmp/tmpmexpvpwj/1. Expected [b'/tmp/tmpmexpvpwj/1-01-jldwzgpkxe\n', b'/tmp/tmpmexpvpwj/1-02-jnyxocwmgf\n'] lines, found [b'/tmp/tmpmexpvpwj/1-01-jldwzgpkxe\n', b'/tmp/tmpmexpvpwj/1-02-jnyxocwmgf\n']
+File: /tmp/tmpmexpvpwj/2. Expected [b'/tmp/tmpmexpvpwj/2-01-umjczvdndu\n'] lines, found [b'/tmp/tmpmexpvpwj/2-01-umjczvdndu\n']
+File: /tmp/tmpmexpvpwj/3. Expected [] lines, found []
+File: /tmp/tmpmexpvpwj/4. Expected [] lines, found []
 All tests passed</code></pre>
 </div>
 </div>

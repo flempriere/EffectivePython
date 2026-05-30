@@ -940,7 +940,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../Chapter_13/Chapter_13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Chapter 12: Testing and Debugging</span></a>
+ <span class="menu-text">Chapter 13: Testing and Debugging</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -1068,7 +1068,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>We’ll inject some demonstration test data</li>
 </ul></li>
 </ul>
-<div id="ebb6e7ae" class="cell" data-execution_count="1">
+<div id="c2b6554d" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> threading <span class="im">import</span> Thread</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> queue <span class="im">import</span> Queue, ShutDown</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1163,7 +1163,7 @@ All tests passed!</code></pre>
 <li>Items added to <code>in_queue</code> are fanned-out the worker threads</li>
 <li>Collected in the <code>out_queue</code> for fan-in and consumption by <code>simulate</code></li>
 </ul>
-<div id="edfc701e" class="cell" data-execution_count="2">
+<div id="bf3c831b" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> threading <span class="im">import</span> Thread</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> queue <span class="im">import</span> Queue, ShutDown</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1319,7 +1319,7 @@ All tests passed!</code></pre>
 </ul></li>
 <li>The code below demonstrates, by modifying <code>game_logic</code> to raise an <code>OSError</code></li>
 </ul>
-<div id="4b5acc1e" class="cell" data-execution_count="3">
+<div id="326b1b6e" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> threading <span class="im">import</span> Thread</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> queue <span class="im">import</span> Queue, ShutDown</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1472,7 +1472,7 @@ The above exception was the direct cause of the following exception:
 <li>Simply have to call <code>simulate_pipeline</code> in a loop</li>
 </ul></li>
 </ul>
-<div id="b0b9ffaf" class="cell" data-execution_count="4">
+<div id="926cde7e" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> threading <span class="im">import</span> Thread</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> queue <span class="im">import</span> Queue, ShutDown</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1692,7 +1692,7 @@ The above exception was the direct cause of the following exception:
 <li>Then need to refactor the pipeline to incorporate both phases</li>
 <li>The total refactor might then look like</li>
 </ul>
-<div id="dc3faacf" class="cell" data-execution_count="5">
+<div id="8959b553" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> threading <span class="im">import</span> Thread, Lock</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> queue <span class="im">import</span> Queue, ShutDown</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>

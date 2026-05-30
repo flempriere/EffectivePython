@@ -143,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_13/Chapter_13.html">Chapter 12: Testing and Debugging</a></li><li class="breadcrumb-item"><a href="../../Chapter_13/Item_108/item_108.html">Item 108: Verify Related Behaviours in <code>TestCase</code> Subclasses</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_13/Chapter_13.html">Chapter 13: Testing and Debugging</a></li><li class="breadcrumb-item"><a href="../../Chapter_13/Item_108/item_108.html">Item 108: Verify Related Behaviours in <code>TestCase</code> Subclasses</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -940,7 +940,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../Chapter_13/Chapter_13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Chapter 12: Testing and Debugging</span></a>
+ <span class="menu-text">Chapter 13: Testing and Debugging</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -1014,7 +1014,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_13/Chapter_13.html">Chapter 12: Testing and Debugging</a></li><li class="breadcrumb-item"><a href="../../Chapter_13/Item_108/item_108.html">Item 108: Verify Related Behaviours in <code>TestCase</code> Subclasses</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Chapter_13/Chapter_13.html">Chapter 13: Testing and Debugging</a></li><li class="breadcrumb-item"><a href="../../Chapter_13/Item_108/item_108.html">Item 108: Verify Related Behaviours in <code>TestCase</code> Subclasses</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Item 108: Verify Related Behaviours in <code>TestCase</code> Subclasses</h1>
 </div>
@@ -1042,7 +1042,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>Consider the following utility code to be tested</li>
 </ul>
-<div id="c166b8c4" class="cell" data-execution_count="1">
+<div id="2e8b9408" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> to_str(data):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(data, <span class="bu">str</span>):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> data</span>
@@ -1058,7 +1058,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Typically named either <code>test_util</code> or <code>util_test</code> etc.</li>
 </ul></li>
 </ul>
-<div id="94763659" class="cell" data-execution_count="2">
+<div id="c4b778dc" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest <span class="im">import</span> TestCase, main</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1102,7 +1102,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/1261816152.py"</span>, line <span class="ansi-magenta-fg">25</span>, in <span class="ansi-magenta-fg">test_failing</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/1261816152.py"</span>, line <span class="ansi-magenta-fg">25</span>, in <span class="ansi-magenta-fg">test_failing</span>
 
     <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">("incorrect", to_str("hello"))</span>
 
@@ -1129,7 +1129,7 @@ Ran 3 tests in 0.002s
 </div>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>&lt;unittest.main.TestProgram at 0x7f572890aba0&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7f18b4136ba0&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -1165,7 +1165,7 @@ Ran 3 tests in 0.002s
 <li>They will provide more contextual information for understanding why a test case has failed</li>
 </ul></li>
 </ul>
-<div id="de992f83" class="cell" data-execution_count="3">
+<div id="da961c13" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest <span class="im">import</span> TestCase, main</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Testing code</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1200,7 +1200,7 @@ Ran 3 tests in 0.002s
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/2536451551.py"</span>, line <span class="ansi-magenta-fg">9</span>, in <span class="ansi-magenta-fg">test_assert_helper</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/2536451551.py"</span>, line <span class="ansi-magenta-fg">9</span>, in <span class="ansi-magenta-fg">test_assert_helper</span>
 
     <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">(expected, found)</span>
 
@@ -1218,7 +1218,7 @@ Traceback (most recent call last):
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/2536451551.py"</span>, line <span class="ansi-magenta-fg">14</span>, in <span class="ansi-magenta-fg">test_assert_statement</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/2536451551.py"</span>, line <span class="ansi-magenta-fg">14</span>, in <span class="ansi-magenta-fg">test_assert_statement</span>
 
     assert <span class="ansi-red-fg ansi-bold">found == expected</span>
 
@@ -1236,7 +1236,7 @@ Traceback (most recent call last):
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/1261816152.py"</span>, line <span class="ansi-magenta-fg">25</span>, in <span class="ansi-magenta-fg">test_failing</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/1261816152.py"</span>, line <span class="ansi-magenta-fg">25</span>, in <span class="ansi-magenta-fg">test_failing</span>
 
     <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">("incorrect", to_str("hello"))</span>
 
@@ -1254,7 +1254,7 @@ Traceback (most recent call last):
 
 ----------------------------------------------------------------------
 
-Ran 5 tests in 0.004s
+Ran 5 tests in 0.003s
 
 
 
@@ -1263,7 +1263,7 @@ Ran 5 tests in 0.004s
 </div>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>&lt;unittest.main.TestProgram at 0x7f5728b72350&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7f18b43a60d0&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -1273,7 +1273,7 @@ Ran 5 tests in 0.004s
 <li>Gives a similar interface to a <code>try/except</code> block</li>
 </ul></li>
 </ul>
-<div id="c35a8e11" class="cell" data-execution_count="4">
+<div id="d7c26402" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest <span class="im">import</span> TestCase, main</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1320,7 +1320,7 @@ Ran 5 tests in 0.004s
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/2536451551.py"</span>, line <span class="ansi-magenta-fg">9</span>, in <span class="ansi-magenta-fg">test_assert_helper</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/2536451551.py"</span>, line <span class="ansi-magenta-fg">9</span>, in <span class="ansi-magenta-fg">test_assert_helper</span>
 
     <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">(expected, found)</span>
 
@@ -1338,7 +1338,7 @@ Traceback (most recent call last):
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/2536451551.py"</span>, line <span class="ansi-magenta-fg">14</span>, in <span class="ansi-magenta-fg">test_assert_statement</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/2536451551.py"</span>, line <span class="ansi-magenta-fg">14</span>, in <span class="ansi-magenta-fg">test_assert_statement</span>
 
     assert <span class="ansi-red-fg ansi-bold">found == expected</span>
 
@@ -1356,7 +1356,7 @@ Traceback (most recent call last):
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/1261816152.py"</span>, line <span class="ansi-magenta-fg">25</span>, in <span class="ansi-magenta-fg">test_failing</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/1261816152.py"</span>, line <span class="ansi-magenta-fg">25</span>, in <span class="ansi-magenta-fg">test_failing</span>
 
     <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">("incorrect", to_str("hello"))</span>
 
@@ -1374,7 +1374,7 @@ Traceback (most recent call last):
 
 ----------------------------------------------------------------------
 
-Ran 7 tests in 0.006s
+Ran 7 tests in 0.004s
 
 
 
@@ -1383,7 +1383,7 @@ Ran 7 tests in 0.006s
 </div>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>&lt;unittest.main.TestProgram at 0x7f5728b72710&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7f18b43a6710&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -1396,7 +1396,7 @@ Ran 7 tests in 0.006s
 <li>e.g.&nbsp;if an invariant is violated</li>
 </ul></li>
 </ul>
-<div id="6fe78189" class="cell" data-execution_count="5">
+<div id="ea80469a" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest <span class="im">import</span> TestCase, main</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1460,13 +1460,13 @@ Ran 7 tests in 0.006s
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/2356407664.py"</span>, line <span class="ansi-magenta-fg">29</span>, in <span class="ansi-magenta-fg">test_too_long</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/2356407664.py"</span>, line <span class="ansi-magenta-fg">29</span>, in <span class="ansi-magenta-fg">test_too_long</span>
 
     <span class="ansi-red-fg">self.verify_complex_case</span><span class="ansi-red-fg ansi-bold">(values, expected)</span>
 
     <span class="ansi-red-fg">~~~~~~~~~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^^</span>
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/2356407664.py"</span>, line <span class="ansi-magenta-fg">17</span>, in <span class="ansi-magenta-fg">verify_complex_case</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/2356407664.py"</span>, line <span class="ansi-magenta-fg">17</span>, in <span class="ansi-magenta-fg">verify_complex_case</span>
 
     for i, (expect, found) in <span class="ansi-red-fg">enumerate</span><span class="ansi-red-fg ansi-bold">(test_it)</span>:
 
@@ -1484,13 +1484,13 @@ Traceback (most recent call last):
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/2356407664.py"</span>, line <span class="ansi-magenta-fg">24</span>, in <span class="ansi-magenta-fg">test_too_short</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/2356407664.py"</span>, line <span class="ansi-magenta-fg">24</span>, in <span class="ansi-magenta-fg">test_too_short</span>
 
     <span class="ansi-red-fg">self.verify_complex_case</span><span class="ansi-red-fg ansi-bold">(values, expected)</span>
 
     <span class="ansi-red-fg">~~~~~~~~~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^^</span>
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/2356407664.py"</span>, line <span class="ansi-magenta-fg">17</span>, in <span class="ansi-magenta-fg">verify_complex_case</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/2356407664.py"</span>, line <span class="ansi-magenta-fg">17</span>, in <span class="ansi-magenta-fg">verify_complex_case</span>
 
     for i, (expect, found) in <span class="ansi-red-fg">enumerate</span><span class="ansi-red-fg ansi-bold">(test_it)</span>:
 
@@ -1508,13 +1508,13 @@ Traceback (most recent call last):
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/2356407664.py"</span>, line <span class="ansi-magenta-fg">38</span>, in <span class="ansi-magenta-fg">test_wrong_results</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/2356407664.py"</span>, line <span class="ansi-magenta-fg">38</span>, in <span class="ansi-magenta-fg">test_wrong_results</span>
 
     <span class="ansi-red-fg">self.verify_complex_case</span><span class="ansi-red-fg ansi-bold">(values, expected)</span>
 
     <span class="ansi-red-fg">~~~~~~~~~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^^</span>
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/2356407664.py"</span>, line <span class="ansi-magenta-fg">19</span>, in <span class="ansi-magenta-fg">verify_complex_case</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/2356407664.py"</span>, line <span class="ansi-magenta-fg">19</span>, in <span class="ansi-magenta-fg">verify_complex_case</span>
 
     <span class="ansi-red-fg">self.fail</span><span class="ansi-red-fg ansi-bold">(f"Index {i} is wrong: ", f"{found} != {expect}")</span>
 
@@ -1532,7 +1532,7 @@ Traceback (most recent call last):
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/2536451551.py"</span>, line <span class="ansi-magenta-fg">9</span>, in <span class="ansi-magenta-fg">test_assert_helper</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/2536451551.py"</span>, line <span class="ansi-magenta-fg">9</span>, in <span class="ansi-magenta-fg">test_assert_helper</span>
 
     <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">(expected, found)</span>
 
@@ -1550,7 +1550,7 @@ Traceback (most recent call last):
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/2536451551.py"</span>, line <span class="ansi-magenta-fg">14</span>, in <span class="ansi-magenta-fg">test_assert_statement</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/2536451551.py"</span>, line <span class="ansi-magenta-fg">14</span>, in <span class="ansi-magenta-fg">test_assert_statement</span>
 
     assert <span class="ansi-red-fg ansi-bold">found == expected</span>
 
@@ -1568,7 +1568,7 @@ Traceback (most recent call last):
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/1261816152.py"</span>, line <span class="ansi-magenta-fg">25</span>, in <span class="ansi-magenta-fg">test_failing</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/1261816152.py"</span>, line <span class="ansi-magenta-fg">25</span>, in <span class="ansi-magenta-fg">test_failing</span>
 
     <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">("incorrect", to_str("hello"))</span>
 
@@ -1586,7 +1586,7 @@ Traceback (most recent call last):
 
 ----------------------------------------------------------------------
 
-Ran 10 tests in 0.010s
+Ran 10 tests in 0.008s
 
 
 
@@ -1595,7 +1595,7 @@ Ran 10 tests in 0.010s
 </div>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>&lt;unittest.main.TestProgram at 0x7f5728920fc0&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7f18b4150fc0&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -1614,7 +1614,7 @@ Ran 10 tests in 0.010s
 </ul></li>
 </ul></li>
 </ul>
-<div id="cc54c660" class="cell" data-execution_count="6">
+<div id="b16b023f" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest <span class="im">import</span> TestCase, main</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1676,13 +1676,13 @@ Ran 10 tests in 0.010s
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/2356407664.py"</span>, line <span class="ansi-magenta-fg">29</span>, in <span class="ansi-magenta-fg">test_too_long</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/2356407664.py"</span>, line <span class="ansi-magenta-fg">29</span>, in <span class="ansi-magenta-fg">test_too_long</span>
 
     <span class="ansi-red-fg">self.verify_complex_case</span><span class="ansi-red-fg ansi-bold">(values, expected)</span>
 
     <span class="ansi-red-fg">~~~~~~~~~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^^</span>
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/2356407664.py"</span>, line <span class="ansi-magenta-fg">17</span>, in <span class="ansi-magenta-fg">verify_complex_case</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/2356407664.py"</span>, line <span class="ansi-magenta-fg">17</span>, in <span class="ansi-magenta-fg">verify_complex_case</span>
 
     for i, (expect, found) in <span class="ansi-red-fg">enumerate</span><span class="ansi-red-fg ansi-bold">(test_it)</span>:
 
@@ -1700,13 +1700,13 @@ Traceback (most recent call last):
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/2356407664.py"</span>, line <span class="ansi-magenta-fg">24</span>, in <span class="ansi-magenta-fg">test_too_short</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/2356407664.py"</span>, line <span class="ansi-magenta-fg">24</span>, in <span class="ansi-magenta-fg">test_too_short</span>
 
     <span class="ansi-red-fg">self.verify_complex_case</span><span class="ansi-red-fg ansi-bold">(values, expected)</span>
 
     <span class="ansi-red-fg">~~~~~~~~~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^^</span>
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/2356407664.py"</span>, line <span class="ansi-magenta-fg">17</span>, in <span class="ansi-magenta-fg">verify_complex_case</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/2356407664.py"</span>, line <span class="ansi-magenta-fg">17</span>, in <span class="ansi-magenta-fg">verify_complex_case</span>
 
     for i, (expect, found) in <span class="ansi-red-fg">enumerate</span><span class="ansi-red-fg ansi-bold">(test_it)</span>:
 
@@ -1724,13 +1724,13 @@ Traceback (most recent call last):
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/2356407664.py"</span>, line <span class="ansi-magenta-fg">38</span>, in <span class="ansi-magenta-fg">test_wrong_results</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/2356407664.py"</span>, line <span class="ansi-magenta-fg">38</span>, in <span class="ansi-magenta-fg">test_wrong_results</span>
 
     <span class="ansi-red-fg">self.verify_complex_case</span><span class="ansi-red-fg ansi-bold">(values, expected)</span>
 
     <span class="ansi-red-fg">~~~~~~~~~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^^</span>
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/2356407664.py"</span>, line <span class="ansi-magenta-fg">19</span>, in <span class="ansi-magenta-fg">verify_complex_case</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/2356407664.py"</span>, line <span class="ansi-magenta-fg">19</span>, in <span class="ansi-magenta-fg">verify_complex_case</span>
 
     <span class="ansi-red-fg">self.fail</span><span class="ansi-red-fg ansi-bold">(f"Index {i} is wrong: ", f"{found} != {expect}")</span>
 
@@ -1748,7 +1748,7 @@ Traceback (most recent call last):
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/2536451551.py"</span>, line <span class="ansi-magenta-fg">9</span>, in <span class="ansi-magenta-fg">test_assert_helper</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/2536451551.py"</span>, line <span class="ansi-magenta-fg">9</span>, in <span class="ansi-magenta-fg">test_assert_helper</span>
 
     <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">(expected, found)</span>
 
@@ -1766,7 +1766,7 @@ Traceback (most recent call last):
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/2536451551.py"</span>, line <span class="ansi-magenta-fg">14</span>, in <span class="ansi-magenta-fg">test_assert_statement</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/2536451551.py"</span>, line <span class="ansi-magenta-fg">14</span>, in <span class="ansi-magenta-fg">test_assert_statement</span>
 
     assert <span class="ansi-red-fg ansi-bold">found == expected</span>
 
@@ -1784,7 +1784,7 @@ Traceback (most recent call last):
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/3680052845.py"</span>, line <span class="ansi-magenta-fg">24</span>, in <span class="ansi-magenta-fg">test_good</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/3680052845.py"</span>, line <span class="ansi-magenta-fg">24</span>, in <span class="ansi-magenta-fg">test_good</span>
 
     <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">(expected, to_str(value))</span>
 
@@ -1802,7 +1802,7 @@ Traceback (most recent call last):
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13656/1261816152.py"</span>, line <span class="ansi-magenta-fg">25</span>, in <span class="ansi-magenta-fg">test_failing</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13676/1261816152.py"</span>, line <span class="ansi-magenta-fg">25</span>, in <span class="ansi-magenta-fg">test_failing</span>
 
     <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">("incorrect", to_str("hello"))</span>
 
@@ -1820,7 +1820,7 @@ Traceback (most recent call last):
 
 ----------------------------------------------------------------------
 
-Ran 12 tests in 0.010s
+Ran 12 tests in 0.008s
 
 
 
@@ -1829,7 +1829,7 @@ Ran 12 tests in 0.010s
 </div>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>&lt;unittest.main.TestProgram at 0x7f5728921f30&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7f18b4151f30&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -2273,8 +2273,8 @@ Ran 12 tests in 0.010s
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../Chapter_13/Chapter_13.html" class="pagination-link" aria-label="Chapter 12: Testing and Debugging">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Chapter 12: Testing and Debugging</span>
+      <a href="../../Chapter_13/Chapter_13.html" class="pagination-link" aria-label="Chapter 13: Testing and Debugging">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Chapter 13: Testing and Debugging</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
