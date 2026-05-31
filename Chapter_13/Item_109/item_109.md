@@ -194,7 +194,7 @@ main(argv=[""], exit=False)
 
     Pop!
 
-    <unittest.main.TestProgram at 0x7f4cb095c1a0>
+    <unittest.main.TestProgram at 0x7f2434c541a0>
 
 - We’ll also then have to write unit tests for our `ReusableTimer` app
 
@@ -267,13 +267,13 @@ main(argv=[""], exit=False)
 
     ....
     ----------------------------------------------------------------------
-    Ran 4 tests in 0.004s
+    Ran 4 tests in 0.005s
 
     OK
 
     Pop!
 
-    <unittest.main.TestProgram at 0x7f4cb0ce6710>
+    <unittest.main.TestProgram at 0x7f2434fd6710>
 
 - Since the `Toaster` and `ReusableTimer` are designed to be used
   together we can see we have to heavily mock the internals
@@ -352,7 +352,7 @@ main(argv=[""], exit=False)
 
     ......
     ----------------------------------------------------------------------
-    Ran 6 tests in 0.106s
+    Ran 6 tests in 0.107s
 
     OK
 
@@ -360,7 +360,7 @@ main(argv=[""], exit=False)
     Pop!
     Pop!
 
-    <unittest.main.TestProgram at 0x7f4cb0ce6850>
+    <unittest.main.TestProgram at 0x7f2434fd6850>
 
 - Test is shorter and more focused on the actual state being tested than
   the unit test implementations
@@ -445,7 +445,7 @@ main(argv=[""], exit=False)
     Pop!
     Pop!
 
-    <unittest.main.TestProgram at 0x7f4cb0a9f820>
+    <unittest.main.TestProgram at 0x7f2434d8f820>
 
 - We don’t have to mock out the `ReusableTimer` since we don’t use it’s
   functionality

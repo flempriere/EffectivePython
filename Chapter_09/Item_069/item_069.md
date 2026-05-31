@@ -61,7 +61,7 @@ expected = how_many * sensor_count
 print(f"Counter should be {expected}, got {counter}")
 ```
 
-    Counter should be 4000000, got 2425076
+    Counter should be 4000000, got 1641851
 
 - You should see that the result above seems wrong
 - This is because we still have race conditions
