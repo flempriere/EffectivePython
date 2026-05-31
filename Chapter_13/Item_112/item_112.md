@@ -99,7 +99,7 @@ database.feed_animal.assert_any_call()
 print("Mock passed all testes")
 ```
 
-    <Mock name='mock.feed_animal' id='140167941292112'>
+    <Mock name='mock.feed_animal' id='139910977880144'>
     Mock passed all testes
 
 - Implementing the full mock code
@@ -129,6 +129,7 @@ def do_rounds(database, species, *, now_func=datetime.now):
     for name, last_mealtime in animals:
         if (now - last_mealtime) >= feeding_timedelta:
             database.feed_animal(name, now)
+            fed += 1
     return fed
 
 
@@ -146,6 +147,7 @@ database.get_animals.return_value = [
 ]
 
 result = do_rounds(database, "Meerkat", now_func=now_func)
+print(result)
 assert result == 2
 
 database.get_food_period.assert_called_once_with("Meerkat")
@@ -160,21 +162,8 @@ database.feed_animal.assert_has_calls(
 print("All mocked tests passed")
 ```
 
-    AssertionError:
-    ---------------------------------------------------------------------------
-    AssertionError                            Traceback (most recent call last)
-    Cell In[3], line 42
-         35 database.get_animals.return_value = [
-         36     ("Spot", datetime(2019, 6, 5, 11, 15)),
-         37     ("Fluffy", datetime(2019, 6, 5, 12, 30)),
-         38     ("Jojo", datetime(2019, 6, 5, 12, 55)),
-         39 ]
-         41 result = do_rounds(database, "Meerkat", now_func=now_func)
-    ---> 42 assert result == 2
-         44 database.get_food_period.assert_called_once_with("Meerkat")
-         45 database.get_animals.assert_called_once_with("Meerkat")
-
-    AssertionError:
+    2
+    All mocked tests passed
 
 - Always use the `spec` parameter so the `Mock` maps to the underlying
   class
