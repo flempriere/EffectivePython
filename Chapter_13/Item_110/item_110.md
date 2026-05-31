@@ -19,6 +19,8 @@
   files we might want an isolated test directory for each invocation
 
 ``` python
+%reset
+
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest import TestCase, main
@@ -46,7 +48,7 @@ main(argv=[""], exit=False)
 
     OK
 
-    <unittest.main.TestProgram at 0x7f7158b12f90>
+    <unittest.main.TestProgram at 0x7ff4b027ecf0>
 
 - For integration tests (See [Item 109](../Item_109/item_109.qmd)) it
   can be expensive to set up the environment for *every* individual test
@@ -57,6 +59,8 @@ main(argv=[""], exit=False)
   - Test harness is then torn down once
 
 ``` python
+%reset
+
 from unittest import TestCase, main
 
 
@@ -85,9 +89,9 @@ class IntegrationTest(TestCase):
 main(argv=[""], exit=False)
 ```
 
-    ...
+    ..
     ----------------------------------------------------------------------
-    Ran 3 tests in 0.002s
+    Ran 2 tests in 0.001s
 
     OK
 
@@ -99,7 +103,7 @@ main(argv=[""], exit=False)
     * Test clean-up
     * Module clean-up
 
-    <unittest.main.TestProgram at 0x7f71589751d0>
+    <unittest.main.TestProgram at 0x7ff4b02e7ed0>
 
 - `setUpModule` is run once by `unittest` once *before* any `setUp`
 - `tearDownModule` is run once *after* every `tearDown`

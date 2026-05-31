@@ -24,6 +24,8 @@ def to_str(data):
   - Typically named either `test_util` or `util_test` etc.
 
 ``` python
+%reset
+
 from unittest import TestCase, main
 
 
@@ -59,7 +61,7 @@ main(argv=[""], exit=False)
     FAIL: test_failing (__main__.UtilsTestCase.test_failing)
     ----------------------------------------------------------------------
     Traceback (most recent call last):
-      File "/tmp/ipykernel_13698/1261816152.py", line 25, in test_failing
+      File "/tmp/ipykernel_13598/1771159310.py", line 27, in test_failing
         self.assertEqual("incorrect", to_str("hello"))
         ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     AssertionError: 'incorrect' != 'hello'
@@ -72,7 +74,7 @@ main(argv=[""], exit=False)
 
     FAILED (failures=1)
 
-    <unittest.main.TestProgram at 0x7fe4c0776ba0>
+    <unittest.main.TestProgram at 0x7f1d3c552ba0>
 
 - One can then run the test file via
 
@@ -109,6 +111,8 @@ uv run test_util.py UtilsTestCase.test_to_str_bytes
     a test case has failed
 
 ``` python
+%reset
+
 from unittest import TestCase, main
 # Testing code
 
@@ -128,12 +132,12 @@ class AssertTestCase(TestCase):
 main(argv=[""], exit=False)
 ```
 
-    FFF..
+    FF
     ======================================================================
     FAIL: test_assert_helper (__main__.AssertTestCase.test_assert_helper)
     ----------------------------------------------------------------------
     Traceback (most recent call last):
-      File "/tmp/ipykernel_13698/2536451551.py", line 9, in test_assert_helper
+      File "/tmp/ipykernel_13598/1659466453.py", line 11, in test_assert_helper
         self.assertEqual(expected, found)
         ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
     AssertionError: 12 != 10
@@ -142,29 +146,17 @@ main(argv=[""], exit=False)
     FAIL: test_assert_statement (__main__.AssertTestCase.test_assert_statement)
     ----------------------------------------------------------------------
     Traceback (most recent call last):
-      File "/tmp/ipykernel_13698/2536451551.py", line 14, in test_assert_statement
+      File "/tmp/ipykernel_13598/1659466453.py", line 16, in test_assert_statement
         assert found == expected
                ^^^^^^^^^^^^^^^^^
     AssertionError
 
-    ======================================================================
-    FAIL: test_failing (__main__.UtilsTestCase.test_failing)
     ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "/tmp/ipykernel_13698/1261816152.py", line 25, in test_failing
-        self.assertEqual("incorrect", to_str("hello"))
-        ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    AssertionError: 'incorrect' != 'hello'
-    - incorrect
-    + hello
+    Ran 2 tests in 0.001s
 
+    FAILED (failures=2)
 
-    ----------------------------------------------------------------------
-    Ran 5 tests in 0.003s
-
-    FAILED (failures=3)
-
-    <unittest.main.TestProgram at 0x7fe4c07e2490>
+    <unittest.main.TestProgram at 0x7f1d3c5ba5d0>
 
 - If we want to verify that a method *does* raise an exception we can
   use the `assertRaises`
@@ -173,6 +165,8 @@ main(argv=[""], exit=False)
   - Gives a similar interface to a `try/except` block
 
 ``` python
+%reset
+
 from unittest import TestCase, main
 
 
@@ -202,43 +196,13 @@ class UtilsErrorTestCase(TestCase):
 main(argv=[""], exit=False)
 ```
 
-    FF..F..
-    ======================================================================
-    FAIL: test_assert_helper (__main__.AssertTestCase.test_assert_helper)
+    ..
     ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "/tmp/ipykernel_13698/2536451551.py", line 9, in test_assert_helper
-        self.assertEqual(expected, found)
-        ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
-    AssertionError: 12 != 10
+    Ran 2 tests in 0.001s
 
-    ======================================================================
-    FAIL: test_assert_statement (__main__.AssertTestCase.test_assert_statement)
-    ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "/tmp/ipykernel_13698/2536451551.py", line 14, in test_assert_statement
-        assert found == expected
-               ^^^^^^^^^^^^^^^^^
-    AssertionError
+    OK
 
-    ======================================================================
-    FAIL: test_failing (__main__.UtilsTestCase.test_failing)
-    ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "/tmp/ipykernel_13698/1261816152.py", line 25, in test_failing
-        self.assertEqual("incorrect", to_str("hello"))
-        ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    AssertionError: 'incorrect' != 'hello'
-    - incorrect
-    + hello
-
-
-    ----------------------------------------------------------------------
-    Ran 7 tests in 0.004s
-
-    FAILED (failures=3)
-
-    <unittest.main.TestProgram at 0x7fe4c07e2710>
+    <unittest.main.TestProgram at 0x7f1d3c5ba490>
 
 - Normal helper methods can be defined for complex logic
   - Just don’t name the method starting with `test`
@@ -246,6 +210,8 @@ main(argv=[""], exit=False)
   - e.g. if an invariant is violated
 
 ``` python
+%reset
+
 from unittest import TestCase, main
 
 
@@ -289,15 +255,15 @@ class HelperTestCase(TestCase):
 main(argv=[""], exit=False)
 ```
 
-    FFEEE..F..
+    EEE
     ======================================================================
     ERROR: test_too_long (__main__.HelperTestCase.test_too_long)
     ----------------------------------------------------------------------
     Traceback (most recent call last):
-      File "/tmp/ipykernel_13698/2356407664.py", line 29, in test_too_long
+      File "/tmp/ipykernel_13598/3238691829.py", line 31, in test_too_long
         self.verify_complex_case(values, expected)
         ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-      File "/tmp/ipykernel_13698/2356407664.py", line 17, in verify_complex_case
+      File "/tmp/ipykernel_13598/3238691829.py", line 19, in verify_complex_case
         for i, (expect, found) in enumerate(test_it):
                                   ~~~~~~~~~^^^^^^^^^
     ValueError: zip() argument 2 is shorter than argument 1
@@ -306,10 +272,10 @@ main(argv=[""], exit=False)
     ERROR: test_too_short (__main__.HelperTestCase.test_too_short)
     ----------------------------------------------------------------------
     Traceback (most recent call last):
-      File "/tmp/ipykernel_13698/2356407664.py", line 24, in test_too_short
+      File "/tmp/ipykernel_13598/3238691829.py", line 26, in test_too_short
         self.verify_complex_case(values, expected)
         ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-      File "/tmp/ipykernel_13698/2356407664.py", line 17, in verify_complex_case
+      File "/tmp/ipykernel_13598/3238691829.py", line 19, in verify_complex_case
         for i, (expect, found) in enumerate(test_it):
                                   ~~~~~~~~~^^^^^^^^^
     ValueError: zip() argument 2 is longer than argument 1
@@ -318,50 +284,20 @@ main(argv=[""], exit=False)
     ERROR: test_wrong_results (__main__.HelperTestCase.test_wrong_results)
     ----------------------------------------------------------------------
     Traceback (most recent call last):
-      File "/tmp/ipykernel_13698/2356407664.py", line 38, in test_wrong_results
+      File "/tmp/ipykernel_13598/3238691829.py", line 40, in test_wrong_results
         self.verify_complex_case(values, expected)
         ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-      File "/tmp/ipykernel_13698/2356407664.py", line 19, in verify_complex_case
+      File "/tmp/ipykernel_13598/3238691829.py", line 21, in verify_complex_case
         self.fail(f"Index {i} is wrong: ", f"{found} != {expect}")
         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     TypeError: TestCase.fail() takes from 1 to 2 positional arguments but 3 were given
 
-    ======================================================================
-    FAIL: test_assert_helper (__main__.AssertTestCase.test_assert_helper)
     ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "/tmp/ipykernel_13698/2536451551.py", line 9, in test_assert_helper
-        self.assertEqual(expected, found)
-        ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
-    AssertionError: 12 != 10
+    Ran 3 tests in 0.003s
 
-    ======================================================================
-    FAIL: test_assert_statement (__main__.AssertTestCase.test_assert_statement)
-    ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "/tmp/ipykernel_13698/2536451551.py", line 14, in test_assert_statement
-        assert found == expected
-               ^^^^^^^^^^^^^^^^^
-    AssertionError
+    FAILED (errors=3)
 
-    ======================================================================
-    FAIL: test_failing (__main__.UtilsTestCase.test_failing)
-    ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "/tmp/ipykernel_13698/1261816152.py", line 25, in test_failing
-        self.assertEqual("incorrect", to_str("hello"))
-        ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    AssertionError: 'incorrect' != 'hello'
-    - incorrect
-    + hello
-
-
-    ----------------------------------------------------------------------
-    Ran 10 tests in 0.007s
-
-    FAILED (failures=3, errors=3)
-
-    <unittest.main.TestProgram at 0x7fe4c0794fc0>
+    <unittest.main.TestProgram at 0x7f1d3c566780>
 
 - A good pattern is *one* `TestCase` subclass for each set of related
   tests
@@ -379,6 +315,8 @@ main(argv=[""], exit=False)
       continue to run even after failure
 
 ``` python
+%reset
+
 from unittest import TestCase, main
 
 
@@ -418,88 +356,22 @@ class DataDrivenTestCase(TestCase):
 main(argv=[""], exit=False)
 ```
 
-    FF.FEEE..F..
-    ======================================================================
-    ERROR: test_too_long (__main__.HelperTestCase.test_too_long)
-    ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "/tmp/ipykernel_13698/2356407664.py", line 29, in test_too_long
-        self.verify_complex_case(values, expected)
-        ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-      File "/tmp/ipykernel_13698/2356407664.py", line 17, in verify_complex_case
-        for i, (expect, found) in enumerate(test_it):
-                                  ~~~~~~~~~^^^^^^^^^
-    ValueError: zip() argument 2 is shorter than argument 1
-
-    ======================================================================
-    ERROR: test_too_short (__main__.HelperTestCase.test_too_short)
-    ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "/tmp/ipykernel_13698/2356407664.py", line 24, in test_too_short
-        self.verify_complex_case(values, expected)
-        ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-      File "/tmp/ipykernel_13698/2356407664.py", line 17, in verify_complex_case
-        for i, (expect, found) in enumerate(test_it):
-                                  ~~~~~~~~~^^^^^^^^^
-    ValueError: zip() argument 2 is longer than argument 1
-
-    ======================================================================
-    ERROR: test_wrong_results (__main__.HelperTestCase.test_wrong_results)
-    ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "/tmp/ipykernel_13698/2356407664.py", line 38, in test_wrong_results
-        self.verify_complex_case(values, expected)
-        ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-      File "/tmp/ipykernel_13698/2356407664.py", line 19, in verify_complex_case
-        self.fail(f"Index {i} is wrong: ", f"{found} != {expect}")
-        ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    TypeError: TestCase.fail() takes from 1 to 2 positional arguments but 3 were given
-
-    ======================================================================
-    FAIL: test_assert_helper (__main__.AssertTestCase.test_assert_helper)
-    ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "/tmp/ipykernel_13698/2536451551.py", line 9, in test_assert_helper
-        self.assertEqual(expected, found)
-        ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
-    AssertionError: 12 != 10
-
-    ======================================================================
-    FAIL: test_assert_statement (__main__.AssertTestCase.test_assert_statement)
-    ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "/tmp/ipykernel_13698/2536451551.py", line 14, in test_assert_statement
-        assert found == expected
-               ^^^^^^^^^^^^^^^^^
-    AssertionError
-
+    .F
     ======================================================================
     FAIL: test_good (__main__.DataDrivenTestCase.test_good) [no error]
     ----------------------------------------------------------------------
     Traceback (most recent call last):
-      File "/tmp/ipykernel_13698/3680052845.py", line 24, in test_good
+      File "/tmp/ipykernel_13598/2986973493.py", line 26, in test_good
         self.assertEqual(expected, to_str(value))
         ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
     AssertionError: b'no error' != 'no error'
 
-    ======================================================================
-    FAIL: test_failing (__main__.UtilsTestCase.test_failing)
     ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "/tmp/ipykernel_13698/1261816152.py", line 25, in test_failing
-        self.assertEqual("incorrect", to_str("hello"))
-        ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    AssertionError: 'incorrect' != 'hello'
-    - incorrect
-    + hello
+    Ran 2 tests in 0.001s
 
+    FAILED (failures=1)
 
-    ----------------------------------------------------------------------
-    Ran 12 tests in 0.008s
-
-    FAILED (failures=4, errors=3)
-
-    <unittest.main.TestProgram at 0x7fe4c0795f30>
+    <unittest.main.TestProgram at 0x7f1d3c5663f0>
 
 - `unittest` is a powerful framework
   - However it does it have it’s limits
