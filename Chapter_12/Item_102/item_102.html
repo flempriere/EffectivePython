@@ -937,6 +937,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_13/Chapter_13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 13: Testing and Debugging</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_108/item_108.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 108: Verify Related Behaviours in <code>TestCase</code> Subclasses</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_109/item_109.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 109: Prefer Integration Tests over Unit Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_110/item_110.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 110: Isolate Tests from Each Other with <code>setUp</code>, <code>tearDown</code>, <code>setUpModule</code> and <code>tearDownModule</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_111/item_111.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 111: Use Mocks to Test Code with Complex Dependencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_112/item_112.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 112: Encapsulate Dependencies to Faciliate Mocking and Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_113/item_113.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 113: Use <code>assertAlmostEqual</code> to Control Precision in Floating Point Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_114/item_114.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 114: Consider Interactive Debugging with <code>pdb</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_115/item_115.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 115: Use <code>tracemalloc</code> to Understand Memory Usage and Leaks</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -987,7 +1046,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Designed for arbitrarily organised data</li>
 </ul></li>
 </ul>
-<div id="1c26ff22" class="cell" data-execution_count="1">
+<div id="f3a5ae9c" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span><span class="op">**</span><span class="dv">5</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> data.index(<span class="dv">91234</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> index <span class="op">==</span> <span class="dv">91234</span></span>
@@ -1004,7 +1063,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Still linear though</li>
 </ul></li>
 </ul>
-<div id="b829ab0f" class="cell" data-execution_count="2">
+<div id="8a0c2c9f" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span><span class="op">**</span><span class="dv">5</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1032,7 +1091,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul></li>
 </ul>
-<div id="858009ee" class="cell" data-execution_count="3">
+<div id="1e9ce25c" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bisect <span class="im">import</span> bisect_left</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span><span class="op">**</span><span class="dv">5</span>))</span>
@@ -1056,7 +1115,7 @@ Found insertion point</code></pre>
 </ul></li>
 <li>We can compare <code>bisect_left</code> vs <code>index</code> via <code>timeit</code> (See <a href="../../Chapter_11/Item_093/item_093.html">Item 93</a>)</li>
 </ul>
-<div id="fa1a4bd5" class="cell" data-execution_count="4">
+<div id="b4ff6b38" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bisect <span class="im">import</span> bisect_left</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
@@ -1091,9 +1150,9 @@ Found insertion point</code></pre>
 <span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>slowdown <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> ((baseline <span class="op">-</span> comparison) <span class="op">/</span> comparison)</span>
 <span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>slowdown<span class="sc">:.1f}</span><span class="ss">x slower"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Linear search takes 0.440128s
-Bisect search takes 0.000334s
-1318.2x slower</code></pre>
+<pre><code>Linear search takes 0.452084s
+Bisect search takes 0.000272s
+1660.9x slower</code></pre>
 </div>
 </div>
 <ul>

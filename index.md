@@ -28,6 +28,7 @@ Effective Python by Brett Slatkin
 - [Chapter 11: Performance](./Chapter_11/Chapter_11.qmd)
 - [Chapter 12: Data Structures and
   Algorithms](./Chapter_12/Chapter_12.qmd)
+- [Chapter 13: Testing and Debugging](./Chapter_13/Chapter_13.qmd)
 
 ## Attribution
 

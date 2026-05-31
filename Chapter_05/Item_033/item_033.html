@@ -937,6 +937,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_13/Chapter_13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 13: Testing and Debugging</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_108/item_108.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 108: Verify Related Behaviours in <code>TestCase</code> Subclasses</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_109/item_109.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 109: Prefer Integration Tests over Unit Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_110/item_110.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 110: Isolate Tests from Each Other with <code>setUp</code>, <code>tearDown</code>, <code>setUpModule</code> and <code>tearDownModule</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_111/item_111.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 111: Use Mocks to Test Code with Complex Dependencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_112/item_112.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 112: Encapsulate Dependencies to Faciliate Mocking and Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_113/item_113.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 113: Use <code>assertAlmostEqual</code> to Control Precision in Floating Point Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_114/item_114.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 114: Consider Interactive Debugging with <code>pdb</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_115/item_115.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 115: Use <code>tracemalloc</code> to Understand Memory Usage and Leaks</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -986,7 +1045,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Helper function return value is used as the sorting key value</li>
 </ul></li>
 </ul>
-<div id="ee609d13" class="cell" data-execution_count="1">
+<div id="685b4359" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sort_priority(values, group):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> helper(x):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> x <span class="kw">in</span> group:</span>
@@ -1027,7 +1086,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Intuitively might seem like we could use the closure to flip a flag</li>
 </ul></li>
 </ul>
-<div id="38f46ca7" class="cell" data-execution_count="2">
+<div id="d6bb4ccc" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sort_priority2(numbers, groups):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    found <span class="op">=</span> <span class="va">False</span> <span class="co"># Initial flag value</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1067,7 +1126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>If no match found then a <code>NameError</code> is raised</li>
 </ul></li>
 </ul>
-<div id="be166184" class="cell" data-execution_count="3">
+<div id="ed07dcc1" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>foo <span class="op">=</span> fake <span class="op">*</span> <span class="dv">5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -1092,7 +1151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Similarly <code>global</code> lets us look for variables in the global scope</li>
 </ul></li>
 </ul>
-<div id="387c8276" class="cell" data-execution_count="4">
+<div id="63b56d1d" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sort_priority3(numbers, groups):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    found <span class="op">=</span> <span class="va">False</span> <span class="co"># Initial flag value</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1128,7 +1187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>But easier to read and reason about (and extend)</li>
 </ul></li>
 </ul>
-<div id="00094074" class="cell" data-execution_count="5">
+<div id="13a7590e" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Sorter:</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, group):</span>

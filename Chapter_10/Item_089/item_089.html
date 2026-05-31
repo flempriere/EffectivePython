@@ -937,6 +937,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_13/Chapter_13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 13: Testing and Debugging</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_108/item_108.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 108: Verify Related Behaviours in <code>TestCase</code> Subclasses</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_109/item_109.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 109: Prefer Integration Tests over Unit Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_110/item_110.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 110: Isolate Tests from Each Other with <code>setUp</code>, <code>tearDown</code>, <code>setUpModule</code> and <code>tearDownModule</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_111/item_111.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 111: Use Mocks to Test Code with Complex Dependencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_112/item_112.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 112: Encapsulate Dependencies to Faciliate Mocking and Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_113/item_113.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 113: Use <code>assertAlmostEqual</code> to Control Precision in Floating Point Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_114/item_114.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 114: Consider Interactive Debugging with <code>pdb</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_115/item_115.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 115: Use <code>tracemalloc</code> to Understand Memory Usage and Leaks</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -985,7 +1044,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol></li>
 <li>For example, we can use a <code>finally</code> clause from a <code>try</code> to ensure something always executes before a function return</li>
 </ul>
-<div id="73064624" class="cell" data-execution_count="1">
+<div id="aae00382" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_func():</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">123</span></span>
@@ -1010,7 +1069,7 @@ After</code></pre>
 <li>So <code>finally</code> is executed <em>after</em> the last item is received</li>
 </ul></li>
 </ul>
-<div id="76724907" class="cell" data-execution_count="2">
+<div id="bfe9e43e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_generator():</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> <span class="dv">10</span></span>
@@ -1058,7 +1117,7 @@ After</code></pre>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">next</span>(it))</span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">next</span>(it))</span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"After"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="dad154f7" class="cell" data-execution_count="3">
+<div id="6d95bbc7" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code>Before
 Before
@@ -1077,7 +1136,7 @@ After</code></pre>
 </ul></li>
 </ul></li>
 </ul>
-<div id="1fdebb61" class="cell" data-execution_count="4">
+<div id="7a7d5f50" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gc</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1120,7 +1179,7 @@ Finally my_generator</code></pre>
 <li>Technically this type of exception can be caught</li>
 </ul></li>
 </ul>
-<div id="15940a08" class="cell" data-execution_count="5">
+<div id="a0f8c23f" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gc</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1164,7 +1223,7 @@ Catching handler &lt;class 'GeneratorExit'&gt; </code></pre>
 </ul></li>
 <li>What if another exception is raised?</li>
 </ul>
-<div id="e5df1abb" class="cell" data-execution_count="6">
+<div id="59bd146c" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gc</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1187,9 +1246,9 @@ Catching handler &lt;class 'GeneratorExit'&gt; </code></pre>
 <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>gc.collect()</span>
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Still going"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Exception ignored while closing generator &lt;generator object broken_generator at 0x7f4fe82e5120&gt;:
+<pre><code>Exception ignored while closing generator &lt;generator object broken_generator at 0x7f49f06e1120&gt;:
 Traceback (most recent call last):
-  File "/tmp/ipykernel_11860/416899508.py", line 10, in broken_generator
+  File "/tmp/ipykernel_11648/416899508.py", line 10, in broken_generator
 RuntimeError: Broken</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -1222,7 +1281,7 @@ Still going</code></pre>
 <li>In our initial implementation we might be tempted to simply open the path with the generator</li>
 </ul></li>
 </ul>
-<div id="48bf0a8a" class="cell" data-execution_count="7">
+<div id="6a98fd9d" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gc</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1289,7 +1348,7 @@ Finally lengths_path</code></pre>
 </ul></li>
 <li>We rework the generator to accept a file handle rather than file path</li>
 </ul>
-<div id="d1566fb8" class="cell" data-execution_count="8">
+<div id="60e4a5b6" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lengths_handle(handle):</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, line <span class="kw">in</span> <span class="bu">enumerate</span>(handle):</span>

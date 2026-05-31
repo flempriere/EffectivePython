@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../Chapter_13/Chapter_13.html" rel="next">
 <link href="../../Chapter_12/Item_106/item_106.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -936,6 +937,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_13/Chapter_13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 13: Testing and Debugging</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_108/item_108.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 108: Verify Related Behaviours in <code>TestCase</code> Subclasses</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_109/item_109.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 109: Prefer Integration Tests over Unit Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_110/item_110.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 110: Isolate Tests from Each Other with <code>setUp</code>, <code>tearDown</code>, <code>setUpModule</code> and <code>tearDownModule</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_111/item_111.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 111: Use Mocks to Test Code with Complex Dependencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_112/item_112.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 112: Encapsulate Dependencies to Faciliate Mocking and Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_113/item_113.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 113: Use <code>assertAlmostEqual</code> to Control Precision in Floating Point Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_114/item_114.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 114: Consider Interactive Debugging with <code>pdb</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_115/item_115.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 115: Use <code>tracemalloc</code> to Understand Memory Usage and Leaks</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -1013,7 +1073,7 @@ Important
 </ul></li>
 </ul></li>
 </ul>
-<div id="1dbc6601" class="cell" data-execution_count="1">
+<div id="d498c151" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1030,7 +1090,7 @@ Important
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(state.__dict__)</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>state_path <span class="op">=</span> os.path.join(<span class="st">"game_state_v1.pkl"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>state_path <span class="op">=</span> <span class="st">"game_state_v1.pkl"</span></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Saving the state..."</span>)</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Add saving functionality</span></span>
@@ -1044,21 +1104,10 @@ Important
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(new_state.__dict__)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>{'level': 1, 'lives': 3}</code></pre>
-</div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 17</span>
-<span class="ansi-green-fg">     13</span> state.lives -= <span class="ansi-green-fg">1</span>  <span style="font-style:italic;color:rgb(95,135,135)"># player has lost a life</span>
-<span class="ansi-green-fg">     15</span> <span style="color:rgb(0,135,0)">print</span>(state.<span class="ansi-blue-fg">__dict__</span>)
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">17</span> state_path = <span class="ansi-yellow-bg">os</span>.path.join(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">game_state_v1.pkl</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">     19</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Saving the state...</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">     20</span> <span style="font-style:italic;color:rgb(95,135,135)"># Add saving functionality</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'os' is not defined</pre>
-</div>
+<pre><code>{'level': 1, 'lives': 3}
+Saving the state...
+Loading the state...
+{'level': 1, 'lives': 3}</code></pre>
 </div>
 </div>
 <ul>
@@ -1074,7 +1123,7 @@ Important
 </ul></li>
 </ul></li>
 </ul>
-<div id="f29f2a5c" class="cell" data-execution_count="2">
+<div id="46781a3d" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1092,7 +1141,7 @@ Important
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(state.__dict__)</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>state_path <span class="op">=</span> os.path.join(<span class="st">"game_state_v2.pkl"</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>state_path <span class="op">=</span> <span class="st">"game_state_v2.pkl"</span></span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Saving the state..."</span>)</span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Add saving functionality</span></span>
@@ -1116,21 +1165,13 @@ Important
 <span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">isinstance</span>(old_state, GameState)</span>
 <span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Old state is still a GameState Instance"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>{'level': 1, 'lives': 3, 'points': 0}</code></pre>
-</div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 18</span>
-<span class="ansi-green-fg">     14</span> state.lives -= <span class="ansi-green-fg">1</span>  <span style="font-style:italic;color:rgb(95,135,135)"># player has lost a life</span>
-<span class="ansi-green-fg">     16</span> <span style="color:rgb(0,135,0)">print</span>(state.<span class="ansi-blue-fg">__dict__</span>)
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">18</span> state_path = <span class="ansi-yellow-bg">os</span>.path.join(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">game_state_v2.pkl</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">     20</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Saving the state...</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">     21</span> <span style="font-style:italic;color:rgb(95,135,135)"># Add saving functionality</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'os' is not defined</pre>
-</div>
+<pre><code>{'level': 1, 'lives': 3, 'points': 0}
+Saving the state...
+Loading the state...
+{'level': 1, 'lives': 3, 'points': 0}
+Loading an old state...
+{'level': 1, 'lives': 3}
+Old state is still a GameState Instance</code></pre>
 </div>
 </div>
 <ul>
@@ -1165,7 +1206,7 @@ Important
 <li>Takes in the object to register, and the pickling function</li>
 </ul></li>
 </ul>
-<div id="90bebcbe" class="cell" data-execution_count="3">
+<div id="47a15deb" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copyreg</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1198,7 +1239,7 @@ Important
 <span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(state.__dict__)</span>
 <span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>state_path <span class="op">=</span> os.path.join(<span class="st">"game_state_v2.pkl"</span>)</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>state_path <span class="op">=</span> <span class="st">"game_state_v2.pkl"</span></span>
 <span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Saving the state..."</span>)</span>
 <span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Add saving functionality</span></span>
@@ -1222,21 +1263,13 @@ Important
 <span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">isinstance</span>(old_state, GameState)</span>
 <span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Old state is still a GameState Instance"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>{'level': 1, 'lives': 3, 'points': 1000}</code></pre>
-</div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 33</span>
-<span class="ansi-green-fg">     29</span> state.lives -= <span class="ansi-green-fg">1</span>  <span style="font-style:italic;color:rgb(95,135,135)"># player has lost a life</span>
-<span class="ansi-green-fg">     31</span> <span style="color:rgb(0,135,0)">print</span>(state.<span class="ansi-blue-fg">__dict__</span>)
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">33</span> state_path = <span class="ansi-yellow-bg">os</span>.path.join(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">game_state_v2.pkl</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">     35</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Saving the state...</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">     36</span> <span style="font-style:italic;color:rgb(95,135,135)"># Add saving functionality</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'os' is not defined</pre>
-</div>
+<pre><code>{'level': 1, 'lives': 3, 'points': 1000}
+Saving the state...
+Loading the state...
+{'level': 1, 'lives': 3, 'points': 1000}
+Loading an old state...
+{'level': 1, 'lives': 3}
+Old state is still a GameState Instance</code></pre>
 </div>
 </div>
 <ul>
@@ -1246,7 +1279,7 @@ Important
 </ul></li>
 <li>But if we now change our <code>GameState</code> again, we can load our <code>game_state_v2.pkl</code></li>
 </ul>
-<div id="c93d543a" class="cell" data-execution_count="4">
+<div id="f1c111b5" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copyreg</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1281,7 +1314,7 @@ Important
 <span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(state.__dict__)</span>
 <span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>state_path <span class="op">=</span> os.path.join(<span class="st">"game_state_v3.pkl"</span>)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>state_path <span class="op">=</span> <span class="st">"game_state_v3.pkl"</span></span>
 <span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Saving the state..."</span>)</span>
 <span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Add saving functionality</span></span>
@@ -1305,21 +1338,13 @@ Important
 <span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">isinstance</span>(old_state, GameState)</span>
 <span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Old state is still a GameState Instance"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>{'level': 1, 'lives': 3, 'points': 1000, 'mana': 3}</code></pre>
-</div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 35</span>
-<span class="ansi-green-fg">     31</span> state.mana -= <span class="ansi-green-fg">2</span>  <span style="font-style:italic;color:rgb(95,135,135)"># player has used two spells</span>
-<span class="ansi-green-fg">     33</span> <span style="color:rgb(0,135,0)">print</span>(state.<span class="ansi-blue-fg">__dict__</span>)
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">35</span> state_path = <span class="ansi-yellow-bg">os</span>.path.join(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">game_state_v3.pkl</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">     37</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Saving the state...</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">     38</span> <span style="font-style:italic;color:rgb(95,135,135)"># Add saving functionality</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'os' is not defined</pre>
-</div>
+<pre><code>{'level': 1, 'lives': 3, 'points': 1000, 'mana': 3}
+Saving the state...
+Loading the state...
+{'level': 1, 'lives': 3, 'points': 1000, 'mana': 3}
+Loading an old state...
+{'level': 1, 'lives': 3, 'points': 1000, 'mana': 5}
+Old state is still a GameState Instance</code></pre>
 </div>
 </div>
 </section>
@@ -1342,7 +1367,7 @@ Important
 </ul></li>
 </ul></li>
 </ul>
-<div id="2b4b06bb" class="cell" data-execution_count="5">
+<div id="035faa0a" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copyreg</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1378,24 +1403,18 @@ Important
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">FileNotFoundError</span>                         Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 26</span>
-<span class="ansi-green-fg">     24</span> <span style="font-style:italic;color:rgb(95,135,135)"># Attempting to load an old state</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 27</span>
 <span class="ansi-green-fg">     25</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Attempting to load an old state</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">26</span> <span style="font-weight:bold;color:rgb(0,135,0)">with</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">open</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">game_state_v3.pkl</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">rb</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">)</span> <span style="font-weight:bold;color:rgb(0,135,0)">as</span> f:
-<span class="ansi-green-fg">     27</span>     state = pickle.load(f)
+<span class="ansi-green-fg">     26</span> <span style="font-weight:bold;color:rgb(0,135,0)">with</span> <span style="color:rgb(0,135,0)">open</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">game_state_v3.pkl</span><span class="ansi-yellow-fg">"</span>, <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">rb</span><span class="ansi-yellow-fg">"</span>) <span style="font-weight:bold;color:rgb(0,135,0)">as</span> f:
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">27</span>     state = <span class="ansi-yellow-bg">pickle</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">load</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">f</span><span class="ansi-yellow-bg">)</span>
 <span class="ansi-green-fg">     29</span> <span style="color:rgb(0,135,0)">print</span>(state.<span class="ansi-blue-fg">__dict__</span>)
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/work/EffectivePython/EffectivePython/.venv/lib/python3.14/site-packages/IPython/core/interactiveshell.py:346</span>, in <span class="ansi-cyan-fg">_modified_open</span><span class="ansi-blue-fg">(file, *args, **kwargs)</span>
-<span class="ansi-green-fg">    339</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> file <span style="font-weight:bold;color:rgb(175,0,255)">in</span> {<span class="ansi-green-fg">0</span>, <span class="ansi-green-fg">1</span>, <span class="ansi-green-fg">2</span>}:
-<span class="ansi-green-fg">    340</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">ValueError</span>(
-<span class="ansi-green-fg">    341</span>         <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">IPython won</span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">t let you open fd=</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>file<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> by default </span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">    342</span>         <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">as it is likely to crash IPython. If you know what you are doing, </span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">    343</span>         <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">you can use builtins</span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg"> open.</span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">    344</span>     )
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">346</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">io_open</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">file</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 18</span>, in <span class="ansi-cyan-fg">unpickle_game_state</span><span class="ansi-blue-fg">(kwargs)</span>
+<span class="ansi-green-fg">     17</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">unpickle_game_state</span>(kwargs):
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">18</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">GameState</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
 
-<span class="ansi-red-fg">FileNotFoundError</span>: [Errno 2] No such file or directory: 'game_state_v3.pkl'</pre>
+<span class="ansi-red-fg">TypeError</span>: GameState.__init__() got an unexpected keyword argument 'lives'. Did you mean 'level'?</pre>
 </div>
 </div>
 </div>
@@ -1405,7 +1424,7 @@ Important
 <li>Have to account for the fact that old data will not have a <code>version</code> field when unpickling</li>
 </ul></li>
 </ul>
-<div id="d7a8020f" class="cell" data-execution_count="6">
+<div id="75a19391" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copyreg</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1442,30 +1461,8 @@ Important
 <span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(state.__dict__)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Attempting to load an old state</code></pre>
-</div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">FileNotFoundError</span>                         Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 32</span>
-<span class="ansi-green-fg">     30</span> <span style="font-style:italic;color:rgb(95,135,135)"># Attempting to load an old state</span>
-<span class="ansi-green-fg">     31</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Attempting to load an old state</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">32</span> <span style="font-weight:bold;color:rgb(0,135,0)">with</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">open</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">game_state_v3.pkl</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">rb</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">)</span> <span style="font-weight:bold;color:rgb(0,135,0)">as</span> f:
-<span class="ansi-green-fg">     33</span>     state = pickle.load(f)
-<span class="ansi-green-fg">     35</span> <span style="color:rgb(0,135,0)">print</span>(state.<span class="ansi-blue-fg">__dict__</span>)
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/work/EffectivePython/EffectivePython/.venv/lib/python3.14/site-packages/IPython/core/interactiveshell.py:346</span>, in <span class="ansi-cyan-fg">_modified_open</span><span class="ansi-blue-fg">(file, *args, **kwargs)</span>
-<span class="ansi-green-fg">    339</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> file <span style="font-weight:bold;color:rgb(175,0,255)">in</span> {<span class="ansi-green-fg">0</span>, <span class="ansi-green-fg">1</span>, <span class="ansi-green-fg">2</span>}:
-<span class="ansi-green-fg">    340</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">ValueError</span>(
-<span class="ansi-green-fg">    341</span>         <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">IPython won</span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">t let you open fd=</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>file<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> by default </span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">    342</span>         <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">as it is likely to crash IPython. If you know what you are doing, </span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">    343</span>         <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">you can use builtins</span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg"> open.</span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">    344</span>     )
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">346</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">io_open</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">file</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
-
-<span class="ansi-red-fg">FileNotFoundError</span>: [Errno 2] No such file or directory: 'game_state_v3.pkl'</pre>
-</div>
+<pre><code>Attempting to load an old state
+{'level': 1, 'points': 1000, 'mana': 3}</code></pre>
 </div>
 </div>
 <ul>
@@ -1493,7 +1490,7 @@ Important
 <li>We’ll try to then deserialize our original non-<code>copyreg</code> pickle data</li>
 </ul></li>
 </ul>
-<div id="ec0bb873" class="cell" data-execution_count="7">
+<div id="dddabf33" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1512,30 +1509,10 @@ Important
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    state <span class="op">=</span> pickle.loads(pickled_str)</span>
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(state.__dict__)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Attempting to load a GameState object</code></pre>
-</div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">FileNotFoundError</span>                         Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 13</span>
-<span class="ansi-green-fg">      9</span>         <span style="color:rgb(0,135,0)">self</span>.mana = mana
-<span class="ansi-green-fg">     11</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Attempting to load a GameState object</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">13</span> <span style="font-weight:bold;color:rgb(0,135,0)">with</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">open</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">game_state_v1.pkl</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">rb</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">)</span> <span style="font-weight:bold;color:rgb(0,135,0)">as</span> f:
-<span class="ansi-green-fg">     14</span>     pickled_str = f.read()
-<span class="ansi-green-fg">     15</span>     <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Pickled data:</span><span style="font-weight:bold;color:rgb(175,95,0)">\n</span><span class="ansi-yellow-fg">"</span>, pickled_str)
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/work/EffectivePython/EffectivePython/.venv/lib/python3.14/site-packages/IPython/core/interactiveshell.py:346</span>, in <span class="ansi-cyan-fg">_modified_open</span><span class="ansi-blue-fg">(file, *args, **kwargs)</span>
-<span class="ansi-green-fg">    339</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> file <span style="font-weight:bold;color:rgb(175,0,255)">in</span> {<span class="ansi-green-fg">0</span>, <span class="ansi-green-fg">1</span>, <span class="ansi-green-fg">2</span>}:
-<span class="ansi-green-fg">    340</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">ValueError</span>(
-<span class="ansi-green-fg">    341</span>         <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">IPython won</span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">t let you open fd=</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>file<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> by default </span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">    342</span>         <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">as it is likely to crash IPython. If you know what you are doing, </span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">    343</span>         <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">you can use builtins</span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg"> open.</span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">    344</span>     )
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">346</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">io_open</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">file</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
-
-<span class="ansi-red-fg">FileNotFoundError</span>: [Errno 2] No such file or directory: 'game_state_v1.pkl'</pre>
-</div>
+<pre><code>Attempting to load a GameState object
+Pickled data:
+ b'\x80\x05\x956\x00\x00\x00\x00\x00\x00\x00\x8c\x08__main__\x94\x8c\tGameState\x94\x93\x94)\x81\x94}\x94(\x8c\x05level\x94K\x01\x8c\x05lives\x94K\x03ub.'
+{'level': 1, 'lives': 3}</code></pre>
 </div>
 </div>
 <ul>
@@ -1553,7 +1530,7 @@ Important
 <li>As demonstrated below, all we had to do was replace <code>GameState</code> with <code>BetterGameState</code></li>
 </ul></li>
 </ul>
-<div id="8b601beb" class="cell" data-execution_count="8">
+<div id="d99b2e2b" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copyreg</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1593,30 +1570,10 @@ Important
 <span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>    state <span class="op">=</span> pickle.loads(pickled_str)</span>
 <span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(state.__dict__)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Attempting to load a GameState object</code></pre>
-</div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">FileNotFoundError</span>                         Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 34</span>
-<span class="ansi-green-fg">     29</span> copyreg.pickle(BetterGameState, pickle_game_state)
-<span class="ansi-green-fg">     32</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Attempting to load a GameState object</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">34</span> <span style="font-weight:bold;color:rgb(0,135,0)">with</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">open</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">game_state_v3.pkl</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">rb</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">)</span> <span style="font-weight:bold;color:rgb(0,135,0)">as</span> f:
-<span class="ansi-green-fg">     35</span>     pickled_str = f.read()
-<span class="ansi-green-fg">     36</span>     <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Pickled data:</span><span style="font-weight:bold;color:rgb(175,95,0)">\n</span><span class="ansi-yellow-fg">"</span>, pickled_str)
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/work/EffectivePython/EffectivePython/.venv/lib/python3.14/site-packages/IPython/core/interactiveshell.py:346</span>, in <span class="ansi-cyan-fg">_modified_open</span><span class="ansi-blue-fg">(file, *args, **kwargs)</span>
-<span class="ansi-green-fg">    339</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> file <span style="font-weight:bold;color:rgb(175,0,255)">in</span> {<span class="ansi-green-fg">0</span>, <span class="ansi-green-fg">1</span>, <span class="ansi-green-fg">2</span>}:
-<span class="ansi-green-fg">    340</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">ValueError</span>(
-<span class="ansi-green-fg">    341</span>         <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">IPython won</span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">t let you open fd=</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>file<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> by default </span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">    342</span>         <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">as it is likely to crash IPython. If you know what you are doing, </span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">    343</span>         <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">you can use builtins</span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg"> open.</span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">    344</span>     )
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">346</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">io_open</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">file</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
-
-<span class="ansi-red-fg">FileNotFoundError</span>: [Errno 2] No such file or directory: 'game_state_v3.pkl'</pre>
-</div>
+<pre><code>Attempting to load a GameState object
+Pickled data:
+ b'\x80\x05\x95U\x00\x00\x00\x00\x00\x00\x00\x8c\x08__main__\x94\x8c\x13unpickle_game_state\x94\x93\x94}\x94(\x8c\x05level\x94K\x01\x8c\x05lives\x94K\x03\x8c\x06points\x94M\xe8\x03\x8c\x04mana\x94K\x03u\x85\x94R\x94.'
+{'level': 1, 'points': 1000, 'mana': 3}</code></pre>
 </div>
 </div>
 <ul>
@@ -2055,6 +2012,9 @@ Important
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../Chapter_13/Chapter_13.html" class="pagination-link" aria-label="Chapter 13: Testing and Debugging">
+        <span class="nav-page-text">Chapter 13: Testing and Debugging</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

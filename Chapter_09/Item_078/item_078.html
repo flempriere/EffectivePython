@@ -937,6 +937,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_13/Chapter_13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 13: Testing and Debugging</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_108/item_108.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 108: Verify Related Behaviours in <code>TestCase</code> Subclasses</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_109/item_109.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 109: Prefer Integration Tests over Unit Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_110/item_110.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 110: Isolate Tests from Each Other with <code>setUp</code>, <code>tearDown</code>, <code>setUpModule</code> and <code>tearDownModule</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_111/item_111.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 111: Use Mocks to Test Code with Complex Dependencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_112/item_112.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 112: Encapsulate Dependencies to Faciliate Mocking and Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_113/item_113.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 113: Use <code>assertAlmostEqual</code> to Control Precision in Floating Point Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_114/item_114.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 114: Consider Interactive Debugging with <code>pdb</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_13/Item_115/item_115.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 115: Use <code>tracemalloc</code> to Understand Memory Usage and Leaks</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -1010,7 +1069,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Reintroducing the test code from <a href="../../Chapter_09/Item_077/item_077.html">Item 77</a></li>
 </ul></li>
 </ul>
-<div id="726ef18c" class="cell" data-execution_count="1">
+<div id="aef749b3" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections  <span class="co"># for testing</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os  <span class="co"># for testing</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random  <span class="co"># for testing</span></span>
@@ -1138,11 +1197,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>tmpdir.cleanup()</span>
 <span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All tests passed!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>File: /tmp/tmp6m34l289/0. Expected [] lines, found []
-File: /tmp/tmp6m34l289/1. Expected [b'/tmp/tmp6m34l289/1-01-nomqyaipdo\n', b'/tmp/tmp6m34l289/1-02-xvymjgaojh\n'] lines, found [b'/tmp/tmp6m34l289/1-01-nomqyaipdo\n', b'/tmp/tmp6m34l289/1-02-xvymjgaojh\n']
-File: /tmp/tmp6m34l289/2. Expected [b'/tmp/tmp6m34l289/2-01-jdcmuyrivi\n'] lines, found [b'/tmp/tmp6m34l289/2-01-jdcmuyrivi\n']
-File: /tmp/tmp6m34l289/3. Expected [b'/tmp/tmp6m34l289/3-01-ubnzjjggsc\n'] lines, found [b'/tmp/tmp6m34l289/3-01-ubnzjjggsc\n']
-File: /tmp/tmp6m34l289/4. Expected [b'/tmp/tmp6m34l289/4-01-bxnuoycuhr\n'] lines, found [b'/tmp/tmp6m34l289/4-01-bxnuoycuhr\n']
+<pre><code>File: /tmp/tmpukzx89l2/0. Expected [b'/tmp/tmpukzx89l2/0-01-kitmobdpxy\n'] lines, found [b'/tmp/tmpukzx89l2/0-01-kitmobdpxy\n']
+File: /tmp/tmpukzx89l2/1. Expected [] lines, found []
+File: /tmp/tmpukzx89l2/2. Expected [b'/tmp/tmpukzx89l2/2-01-jgydhewefu\n', b'/tmp/tmpukzx89l2/2-02-eibbrgpadx\n'] lines, found [b'/tmp/tmpukzx89l2/2-01-jgydhewefu\n', b'/tmp/tmpukzx89l2/2-02-eibbrgpadx\n']
+File: /tmp/tmpukzx89l2/3. Expected [b'/tmp/tmpukzx89l2/3-01-aipyzaiyby\n', b'/tmp/tmpukzx89l2/3-02-efhqsyeyiq\n', b'/tmp/tmpukzx89l2/3-03-cityghnkvq\n', b'/tmp/tmpukzx89l2/3-04-knkrtcddme\n'] lines, found [b'/tmp/tmpukzx89l2/3-01-aipyzaiyby\n', b'/tmp/tmpukzx89l2/3-02-efhqsyeyiq\n', b'/tmp/tmpukzx89l2/3-03-cityghnkvq\n', b'/tmp/tmpukzx89l2/3-04-knkrtcddme\n']
+File: /tmp/tmpukzx89l2/4. Expected [] lines, found []
 All tests passed!</code></pre>
 </div>
 </div>
@@ -1164,7 +1223,7 @@ All tests passed!</code></pre>
 </ul></li>
 </ul></li>
 </ul>
-<div id="331835b9" class="cell" data-execution_count="2">
+<div id="41d214cd" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> asyncio</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1260,7 +1319,7 @@ All tests passed!</code></pre>
 <li>Avoid’s running system calls in main event loop</li>
 </ul></li>
 </ul>
-<div id="d2e3900d" class="cell" data-execution_count="3">
+<div id="7ed237a0" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections  <span class="co"># for testing</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os  <span class="co"># for testing</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random  <span class="co"># for testing</span></span>
@@ -1426,11 +1485,11 @@ All tests passed!</code></pre>
 <span id="cb6-163"><a href="#cb6-163" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All tests passed!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>File: /tmp/tmpucbd6nq7/0. Expected [] lines, found []
-File: /tmp/tmpucbd6nq7/1. Expected [b'/tmp/tmpucbd6nq7/1-01-znnovqypbi\n'] lines, found [b'/tmp/tmpucbd6nq7/1-01-znnovqypbi\n']
-File: /tmp/tmpucbd6nq7/2. Expected [b'/tmp/tmpucbd6nq7/2-01-svdenmzimv\n', b'/tmp/tmpucbd6nq7/2-02-jbluucobwc\n'] lines, found [b'/tmp/tmpucbd6nq7/2-01-svdenmzimv\n', b'/tmp/tmpucbd6nq7/2-02-jbluucobwc\n']
-File: /tmp/tmpucbd6nq7/3. Expected [b'/tmp/tmpucbd6nq7/3-01-dlefwcoikj\n'] lines, found [b'/tmp/tmpucbd6nq7/3-01-dlefwcoikj\n']
-File: /tmp/tmpucbd6nq7/4. Expected [b'/tmp/tmpucbd6nq7/4-01-shgndwrrmz\n', b'/tmp/tmpucbd6nq7/4-02-rtyyztyaox\n', b'/tmp/tmpucbd6nq7/4-03-csqcgxwpkl\n', b'/tmp/tmpucbd6nq7/4-04-ddkcbjwcma\n', b'/tmp/tmpucbd6nq7/4-05-billnpcxxy\n'] lines, found [b'/tmp/tmpucbd6nq7/4-01-shgndwrrmz\n', b'/tmp/tmpucbd6nq7/4-02-rtyyztyaox\n', b'/tmp/tmpucbd6nq7/4-03-csqcgxwpkl\n', b'/tmp/tmpucbd6nq7/4-04-ddkcbjwcma\n', b'/tmp/tmpucbd6nq7/4-05-billnpcxxy\n']
+<pre><code>File: /tmp/tmpny3rl7lp/0. Expected [] lines, found []
+File: /tmp/tmpny3rl7lp/1. Expected [b'/tmp/tmpny3rl7lp/1-01-qstgfvzkgm\n'] lines, found [b'/tmp/tmpny3rl7lp/1-01-qstgfvzkgm\n']
+File: /tmp/tmpny3rl7lp/2. Expected [] lines, found []
+File: /tmp/tmpny3rl7lp/3. Expected [] lines, found []
+File: /tmp/tmpny3rl7lp/4. Expected [b'/tmp/tmpny3rl7lp/4-01-lybsfyocai\n'] lines, found [b'/tmp/tmpny3rl7lp/4-01-lybsfyocai\n']
 All tests passed!</code></pre>
 </div>
 </div>
