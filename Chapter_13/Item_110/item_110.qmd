@@ -13,6 +13,8 @@ title: "Item 110: Isolate Tests from Each Other with `setUp`, `tearDown`, `setUp
 - For example, if we have a test that needs to write some temporary files we might want an isolated test directory for each invocation
 
 ```{python}
+%reset
+
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest import TestCase, main
@@ -42,6 +44,8 @@ main(argv=[""], exit=False)
     - Test harness is then torn down once
 
 ```{python}
+%reset
+
 from unittest import TestCase, main
 
 

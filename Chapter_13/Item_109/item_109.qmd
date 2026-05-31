@@ -104,6 +104,8 @@ print("After time:  ", toaster.hot)
     - But would require us to mock out the timer (See [Item 111](../Item_111/item_111.qmd))
 
 ```{python}
+%reset
+
 from unittest import TestCase, main
 from unittest.mock import Mock
 import threading
@@ -173,6 +175,8 @@ main(argv=[""], exit=False)
 - We'll also then have to write unit tests for our `ReusableTimer` app
 
 ```{python}
+%reset
+
 from unittest import TestCase, main, mock
 import threading
 
@@ -243,6 +247,8 @@ main(argv=[""], exit=False)
 - Arguably better to just test the two components together as an *integration test*
 
 ```{python}
+%reset
+
 from unittest import TestCase, main
 import threading
 
@@ -319,6 +325,8 @@ main(argv=[""], exit=False)
     - Might still be useful to unit test the range bounds of the `Toaster` `doneness` state
 
 ```{python}
+%reset
+
 from unittest import TestCase, main
 import threading
 
