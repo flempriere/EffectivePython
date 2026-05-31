@@ -1,0 +1,216 @@
+---
+title: "Item 119: Use Packages to Organise Modules and Provide Stable APIs"
+---
+
+## Notes
+
+:::{.callout-note}
+This example heavily relies on the module structure of a packaged python program. For that reason it is not provided as
+an executable notebook. Consider downloading the provided source code from the github directly to run the examples yourself
+:::
+
+- When refactoring it is common to break large components down into smaller ones
+    - Large functions into smaller helper functions
+    - Data structures into helper classes (See [Item 29](../../Chapter_04/Item_029/item_029.qmd))
+    - Functionality into modules
+- When a project has a large number of modules it can be good to organise these into *packages*
+    - From python's perspective, a package is a *module* containing *modules*
+- Packages are defined via a `__init__.py` file in a directory
+    - That directory becomes the package
+    - module files in that directory can be imported
+        - Path relative to the package directory
+- Consider the following project structure
+
+  ```shell
+    main.py
+    mypackage/__init__.py
+    mypackage/models.py
+    mypackage/utils.py
+  ```
+
+- Modules can be imported via the absolute name
+
+  ```python
+    # main.py
+    import mypackage.utils
+  ```
+
+- Or via the `from` clause
+
+  ```python
+    # main.py
+    from mypackage import utils
+  ```
+
+- More dot's can added for even more deeply nested packages e.g. `import mypackage.foo.bar` or `from mypackage.foo import bar`
+
+### Namespaces
+
+- Packages divide modules into distinct *namespaces*
+    - Modules can share the same file name if bundled into different packages
+- For example,
+
+  ```python
+    # main.py
+
+    from analysis.utils import log_base2_bucket
+    from frontend.utils import stringify
+
+    bucket = stringify(log_base2_bucket(33))
+    print(repr(bucket))
+  ```
+  ```shell
+    '5.044394119358453'
+  ```
+
+- An issue with using `from` imports to import functions is that if two modules name the *same* function the most recent import will overwrite previous imports
+
+  ```python
+    # main2.py
+
+    from analysis.utils import inspect
+    from frontend.utils import inspect # Overwrites!
+
+    inspect(33)
+  ```
+  ```shell
+    Hello from frontend!
+  ```
+
+- Can resolve this using the `as` clause, to give a new alias to imported functions
+
+  ```python
+    # main3.py
+
+    from analysis.utils import inspect as analysis_inspect
+    from frontend.utils import inspect as frontend_inspect
+
+    value = 33
+    if analysis_inspect(value) == frontend_inspect(value):
+        print("Inspection equal!")
+  ```
+  ```shell
+    Hello from analysis!
+    Hello from frontend!
+    Inspection equal!
+  ```
+
+- `as` can be used with *any* import statement, can rename,
+    - Modules
+    - Classes
+    - Variables and constants
+    - Functions
+    - etc...
+- Let's you name namespaced code with a name that is meaningful to you
+- The other solution is just to only import up to unique identifiers
+    - For example, just importing package or module level without using `from`
+
+```python
+import analysis.utils
+import frontend.utils
+
+value = 33
+if (analysis.utils.inspect(value) == frontend.utils.inspect(value)):
+    print("Inspection equal!")
+```
+```shell
+    Hello from analysis!
+    Hello from frontend!
+    Inspection equal!
+```
+
+- Has the benefit of making it clear where everything is from at the cost of some additional verbosity from the namespacing
+
+### Stable APIs
+
+- Packages can be used to provide stable APIs for consumers
+- When writing an API for others to use you should aim to keep as much stable as possible between releases (See [Item 116](../Item_116/item_116.qmd))
+- This means hiding internal implementation details from external consumers
+    - Can refactor and improve internal modules without breaking a public interface
+- Python can limit what is exposed to API consumers via the `__all__` special module / package attribute
+    - `__all__` is a list of every name to be exported from a module to consumers that `import` it
+        - When using an `import *` only attributes in the `__all__` list are imported
+        - If no `__all__` is specified all public module attributes (no leading underscore) are imported (See [Item 55](../../Chapter_07/Item_055/item_055.qmd))
+- For example, consider a simple package for calculating collisions between projectiles
+
+```python
+# models.py
+
+__all__ = ["Projectile"]
+
+class Projectile:
+    def __init__(self, mass, velocity):
+        self.mass = mass
+        self.velocity = velocity
+```
+
+- We want to promote these public API components from their module's to the `mypackage` module
+    - Downstream consumers should then only need to import `mypackage` *not* the modules
+    - Means we can restructure the modules underneath the package but consumers will see a stable interface
+- We need to do this via the `__init__.py`
+    - Can do so via importing the contents of the submodules `__all__` variables
+        - Since this constitutes the API
+
+```python
+# init.py
+
+__all__ = []
+from .modals import *
+from .utils import *
+
+_all__ += ( models.__all__ + utils.__all__ )
+```
+
+- Then consuming the package
+    - We can access all public attributes (e.g. `Projectile` and `simulate_collision`)
+    - But not internal functions like `dot_product`
+
+```python
+# api_consumer.py
+
+from mypackage import *
+
+a = Projectile(1.5, 3)
+b = Projectile(4, 1.7)
+after_a, after_b = simulate_collision(a, b)
+
+# should fail since dot_product doesn't exist in the namespace
+result = dot_product(after_a, after_b)
+```
+```shell
+Traceback (most recent call last):
+  File ".../EffectivePython/Chapter_14/Item_119/Examples/API/api_consumer.py", line 9, in <module>
+    result = dot_product(after_a, after_b)
+             ^^^^^^^^^^^
+NameError: name 'dot_product' is not defined
+```
+
+- We can see that the internal function `dot_product` is now hidden from the external API consumer
+- For internal APIs namespacing is probably sufficient
+    - `__all__` is probably overkill
+        - Makes internal boundaries too brittle
+
+:::{.callout-warning}
+Import statements like `from x import y` are clear about what they import and from where. Wildcard imports like `from foo import *` can be useful but they import *all* the contents of a module.
+
+- `from foo import *` hides source of names from new readers
+    - If there are multiple `import *` it's hard to determine where a function comes from
+- Names from `import *` statements can clash with each other
+    - Will silently overwrite other functions that share the same name
+
+In general prefer explicit imports over wildcards
+:::
+
+
+## Things to Remember
+
+- Packages in python are modules containing other modules
+    - Packages can be used to organise modules into separate, non-conflicting namespaces
+- Simple packages are defined by adding an `__init__.py` file to a directory containing python module files
+    - These files become child modules of the package
+    - Package directories may contain other packages
+- You can provide an explicit API for a module by listing publicly visible names in the `__all__` module / package special attribute
+- You can hide a package's internal implementation by only importing public names in the package level `__init__.py`
+    - Or name internal members with a leading underscore
+- `__all__` should be reserved for external APIs
+    - Internal APIs should be fine with namespacing
