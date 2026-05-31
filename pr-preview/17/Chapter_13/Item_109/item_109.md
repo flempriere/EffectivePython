@@ -121,6 +121,8 @@ print("After time:  ", toaster.hot)
     111](../Item_111/item_111.qmd))
 
 ``` python
+%reset
+
 from unittest import TestCase, main
 from unittest.mock import Mock
 import threading
@@ -195,11 +197,13 @@ main(argv=[""], exit=False)
 
     Pop!
 
-    <unittest.main.TestProgram at 0x7f2434c541a0>
+    <unittest.main.TestProgram at 0x7fede88d01a0>
 
 - We’ll also then have to write unit tests for our `ReusableTimer` app
 
 ``` python
+%reset
+
 from unittest import TestCase, main, mock
 import threading
 
@@ -266,15 +270,13 @@ class ReuseableTimerUnitTest(TestCase):
 main(argv=[""], exit=False)
 ```
 
-    ....
+    ..
     ----------------------------------------------------------------------
-    Ran 4 tests in 0.005s
+    Ran 2 tests in 0.003s
 
     OK
 
-    Pop!
-
-    <unittest.main.TestProgram at 0x7f2434fd6710>
+    <unittest.main.TestProgram at 0x7fede8c66710>
 
 - Since the `Toaster` and `ReusableTimer` are designed to be used
   together we can see we have to heavily mock the internals
@@ -282,6 +284,8 @@ main(argv=[""], exit=False)
   *integration test*
 
 ``` python
+%reset
+
 from unittest import TestCase, main
 import threading
 
@@ -351,17 +355,21 @@ class ToasterIntegrationTest(TestCase):
 main(argv=[""], exit=False)
 ```
 
-    ......
+    .
+
+    Pop!
+
+    .
+
+    Pop!
+
+
     ----------------------------------------------------------------------
-    Ran 6 tests in 0.107s
+    Ran 2 tests in 0.104s
 
     OK
 
-    Pop!
-    Pop!
-    Pop!
-
-    <unittest.main.TestProgram at 0x7f2434fd6850>
+    <unittest.main.TestProgram at 0x7fede8c665d0>
 
 - Test is shorter and more focused on the actual state being tested than
   the unit test implementations
@@ -375,6 +383,8 @@ main(argv=[""], exit=False)
     `doneness` state
 
 ``` python
+%reset
+
 from unittest import TestCase, main
 import threading
 
@@ -433,20 +443,13 @@ class DonenessUnitTest(TestCase):
 main(argv=[""], exit=False)
 ```
 
-    .....
-
-    Pop!
-
-    ...
+    ..
     ----------------------------------------------------------------------
-    Ran 8 tests in 0.107s
+    Ran 2 tests in 0.001s
 
     OK
 
-    Pop!
-    Pop!
-
-    <unittest.main.TestProgram at 0x7f2434d8f820>
+    <unittest.main.TestProgram at 0x7fede8a169e0>
 
 - We don’t have to mock out the `ReusableTimer` since we don’t use it’s
   functionality

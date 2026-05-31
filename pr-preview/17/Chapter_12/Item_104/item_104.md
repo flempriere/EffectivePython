@@ -202,11 +202,11 @@ for i in range(1, 6):
     print(f"Count {count:>5,} takes: {delay * 1e3:6.2f}ms")
 ```
 
-    Count 1,000 takes:   2.63ms
-    Count 2,000 takes:   7.78ms
-    Count 3,000 takes:  16.77ms
-    Count 4,000 takes:  28.17ms
-    Count 5,000 takes:  42.46ms
+    Count 1,000 takes:   2.18ms
+    Count 2,000 takes:   7.14ms
+    Count 3,000 takes:  15.07ms
+    Count 4,000 takes:  25.45ms
+    Count 5,000 takes:  38.61ms
 
 - Removing items takes linear time to scan through the list
   - Can again benchmark this
@@ -244,11 +244,11 @@ for i in range(1, 6):
     print(f"Count {count:>5,} takes: {delay * 1e3:6.2f}ms")
 ```
 
-    Count 1,000 takes:   3.07ms
-    Count 2,000 takes:  11.41ms
-    Count 3,000 takes:  25.51ms
-    Count 4,000 takes:  46.11ms
-    Count 5,000 takes:  64.73ms
+    Count 1,000 takes:   2.54ms
+    Count 2,000 takes:  10.35ms
+    Count 3,000 takes:  22.66ms
+    Count 4,000 takes:  39.34ms
+    Count 5,000 takes:  60.20ms
 
 - We can use the `heapq` module to implement a priority queue with more
   consistent time-complexity across the operations
@@ -496,11 +496,11 @@ for i in range(1, 6):
     print(f"Count {count:>5,} takes {delay*1e3:6.2f}ms")
 ```
 
-    Count 10,000 takes   3.25ms
-    Count 20,000 takes   6.96ms
-    Count 30,000 takes  11.23ms
-    Count 40,000 takes  15.44ms
-    Count 50,000 takes  19.93ms
+    Count 10,000 takes   3.18ms
+    Count 20,000 takes   6.63ms
+    Count 30,000 takes  10.54ms
+    Count 40,000 takes  14.03ms
+    Count 50,000 takes  18.59ms
 
 - Downside of a heap is that removing arbitrary items is not
   straightforward

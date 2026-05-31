@@ -1042,7 +1042,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>Consider the following utility code to be tested</li>
 </ul>
-<div id="1656103d" class="cell" data-execution_count="1">
+<div id="dd03c631" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> to_str(data):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(data, <span class="bu">str</span>):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> data</span>
@@ -1058,35 +1058,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Typically named either <code>test_util</code> or <code>util_test</code> etc.</li>
 </ul></li>
 </ul>
-<div id="d3fc9146" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest <span class="im">import</span> TestCase, main</span>
+<div id="ab6c824a" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>reset</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># utils functionality</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> to_str(data):</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(data, <span class="bu">str</span>):</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> data</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="bu">isinstance</span>(data, <span class="bu">bytes</span>):</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> data.decode(<span class="st">"utf-8"</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">TypeError</span>(<span class="ss">f"Must supply str or bytes, found: </span><span class="sc">{</span>data<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Testing code</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest <span class="im">import</span> TestCase, main</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># utils functionality</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> to_str(data):</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(data, <span class="bu">str</span>):</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> data</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="bu">isinstance</span>(data, <span class="bu">bytes</span>):</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> data.decode(<span class="st">"utf-8"</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">TypeError</span>(<span class="ss">f"Must supply str or bytes, found: </span><span class="sc">{</span>data<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> UtilsTestCase(TestCase):</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_to_str_bytes(<span class="va">self</span>):</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertEqual(<span class="st">"hello"</span>, to_str(<span class="st">b"hello"</span>))</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_to_str_str(<span class="va">self</span>):</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertEqual(<span class="st">"hello"</span>, to_str(<span class="st">"hello"</span>))</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_failing(<span class="va">self</span>):</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertEqual(<span class="st">"incorrect"</span>, to_str(<span class="st">"hello"</span>))</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>main(argv<span class="op">=</span>[<span class="st">""</span>], exit<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Testing code</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> UtilsTestCase(TestCase):</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_to_str_bytes(<span class="va">self</span>):</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertEqual(<span class="st">"hello"</span>, to_str(<span class="st">b"hello"</span>))</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_to_str_str(<span class="va">self</span>):</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertEqual(<span class="st">"hello"</span>, to_str(<span class="st">"hello"</span>))</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_failing(<span class="va">self</span>):</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertEqual(<span class="st">"incorrect"</span>, to_str(<span class="st">"hello"</span>))</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>main(argv<span class="op">=</span>[<span class="st">""</span>], exit<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">F</span>
@@ -1102,7 +1104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/1261816152.py"</span>, line <span class="ansi-magenta-fg">25</span>, in <span class="ansi-magenta-fg">test_failing</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13571/1771159310.py"</span>, line <span class="ansi-magenta-fg">27</span>, in <span class="ansi-magenta-fg">test_failing</span>
 
     <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">("incorrect", to_str("hello"))</span>
 
@@ -1129,7 +1131,7 @@ Ran 3 tests in 0.002s
 </div>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>&lt;unittest.main.TestProgram at 0x7eff9c272ba0&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7f86c434eba0&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -1165,31 +1167,30 @@ Ran 3 tests in 0.002s
 <li>They will provide more contextual information for understanding why a test case has failed</li>
 </ul></li>
 </ul>
-<div id="184eb205" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest <span class="im">import</span> TestCase, main</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Testing code</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> AssertTestCase(TestCase):</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_assert_helper(<span class="va">self</span>):</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        expected <span class="op">=</span> <span class="dv">12</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        found <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="dv">5</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertEqual(expected, found)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_assert_statement(<span class="va">self</span>):</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        expected <span class="op">=</span> <span class="dv">12</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        found <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="dv">5</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> found <span class="op">==</span> expected</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>main(argv<span class="op">=</span>[<span class="st">""</span>], exit<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="2bfb8681" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>reset</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest <span class="im">import</span> TestCase, main</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Testing code</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> AssertTestCase(TestCase):</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_assert_helper(<span class="va">self</span>):</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        expected <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        found <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="dv">5</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.assertEqual(expected, found)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_assert_statement(<span class="va">self</span>):</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        expected <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        found <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="dv">5</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> found <span class="op">==</span> expected</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>main(argv<span class="op">=</span>[<span class="st">""</span>], exit<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">F</span>
 <span class="ansi-red-fg">F</span>
-<span class="ansi-red-fg">F</span>
-<span class="ansi-green-fg">.</span>
-<span class="ansi-green-fg">.</span>
 
 
 ======================================================================
@@ -1200,7 +1201,7 @@ Ran 3 tests in 0.002s
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/2536451551.py"</span>, line <span class="ansi-magenta-fg">9</span>, in <span class="ansi-magenta-fg">test_assert_helper</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13571/1659466453.py"</span>, line <span class="ansi-magenta-fg">11</span>, in <span class="ansi-magenta-fg">test_assert_helper</span>
 
     <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">(expected, found)</span>
 
@@ -1218,7 +1219,7 @@ Traceback (most recent call last):
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/2536451551.py"</span>, line <span class="ansi-magenta-fg">14</span>, in <span class="ansi-magenta-fg">test_assert_statement</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13571/1659466453.py"</span>, line <span class="ansi-magenta-fg">16</span>, in <span class="ansi-magenta-fg">test_assert_statement</span>
 
     assert <span class="ansi-red-fg ansi-bold">found == expected</span>
 
@@ -1228,42 +1229,18 @@ Traceback (most recent call last):
 
 
 
-======================================================================
-
-<span class="ansi-red-fg">FAIL</span><span class="ansi-red-fg ansi-bold">: test_failing (__main__.UtilsTestCase.test_failing)</span>
-
 ----------------------------------------------------------------------
 
-Traceback (most recent call last):
-
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/1261816152.py"</span>, line <span class="ansi-magenta-fg">25</span>, in <span class="ansi-magenta-fg">test_failing</span>
-
-    <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">("incorrect", to_str("hello"))</span>
-
-    <span class="ansi-red-fg">~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-
-<span class="ansi-magenta-fg ansi-bold">AssertionError</span>: <span class="ansi-magenta-fg">'incorrect' != 'hello'
-
-- incorrect
-
-+ hello
-
-</span>
+Ran 2 tests in 0.002s
 
 
 
-----------------------------------------------------------------------
-
-Ran 5 tests in 0.003s
-
-
-
-<span class="ansi-red-fg ansi-bold">FAILED</span> (<span class="ansi-red-fg ansi-bold">failures=3</span>)
+<span class="ansi-red-fg ansi-bold">FAILED</span> (<span class="ansi-red-fg ansi-bold">failures=2</span>)
 </pre>
 </div>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>&lt;unittest.main.TestProgram at 0x7eff9c2de350&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7f86c43b65d0&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -1273,117 +1250,54 @@ Ran 5 tests in 0.003s
 <li>Gives a similar interface to a <code>try/except</code> block</li>
 </ul></li>
 </ul>
-<div id="058e5ba7" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest <span class="im">import</span> TestCase, main</span>
+<div id="2ba8d49f" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>reset</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># utils functionality</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> to_str(data):</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(data, <span class="bu">str</span>):</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> data</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="bu">isinstance</span>(data, <span class="bu">bytes</span>):</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> data.decode(<span class="st">"utf-8"</span>)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">TypeError</span>(<span class="ss">f"Must supply str or bytes, found: </span><span class="sc">{</span>data<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Testing code</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest <span class="im">import</span> TestCase, main</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># utils functionality</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> to_str(data):</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(data, <span class="bu">str</span>):</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> data</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="bu">isinstance</span>(data, <span class="bu">bytes</span>):</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> data.decode(<span class="st">"utf-8"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">TypeError</span>(<span class="ss">f"Must supply str or bytes, found: </span><span class="sc">{</span>data<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> UtilsErrorTestCase(TestCase):</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_to_str_bad(<span class="va">self</span>):</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="va">self</span>.assertRaises(<span class="pp">TypeError</span>):</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>            to_str(<span class="bu">object</span>())</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_to_str_bad_encoding(<span class="va">self</span>):</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="va">self</span>.assertRaises(<span class="pp">UnicodeDecodeError</span>):</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>            to_str(<span class="st">b"</span><span class="ch">\xfa\xfa</span><span class="st">"</span>)</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>main(argv<span class="op">=</span>[<span class="st">""</span>], exit<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Testing code</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> UtilsErrorTestCase(TestCase):</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_to_str_bad(<span class="va">self</span>):</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="va">self</span>.assertRaises(<span class="pp">TypeError</span>):</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>            to_str(<span class="bu">object</span>())</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_to_str_bad_encoding(<span class="va">self</span>):</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="va">self</span>.assertRaises(<span class="pp">UnicodeDecodeError</span>):</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>            to_str(<span class="st">b"</span><span class="ch">\xfa\xfa</span><span class="st">"</span>)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>main(argv<span class="op">=</span>[<span class="st">""</span>], exit<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">F</span>
-<span class="ansi-red-fg">F</span>
+<pre><span class="ansi-green-fg">.</span>
 <span class="ansi-green-fg">.</span>
-<span class="ansi-green-fg">.</span>
-<span class="ansi-red-fg">F</span>
-<span class="ansi-green-fg">.</span>
-<span class="ansi-green-fg">.</span>
-
-
-======================================================================
-
-<span class="ansi-red-fg">FAIL</span><span class="ansi-red-fg ansi-bold">: test_assert_helper (__main__.AssertTestCase.test_assert_helper)</span>
-
-----------------------------------------------------------------------
-
-Traceback (most recent call last):
-
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/2536451551.py"</span>, line <span class="ansi-magenta-fg">9</span>, in <span class="ansi-magenta-fg">test_assert_helper</span>
-
-    <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">(expected, found)</span>
-
-    <span class="ansi-red-fg">~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^</span>
-
-<span class="ansi-magenta-fg ansi-bold">AssertionError</span>: <span class="ansi-magenta-fg">12 != 10</span>
-
-
-
-======================================================================
-
-<span class="ansi-red-fg">FAIL</span><span class="ansi-red-fg ansi-bold">: test_assert_statement (__main__.AssertTestCase.test_assert_statement)</span>
-
-----------------------------------------------------------------------
-
-Traceback (most recent call last):
-
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/2536451551.py"</span>, line <span class="ansi-magenta-fg">14</span>, in <span class="ansi-magenta-fg">test_assert_statement</span>
-
-    assert <span class="ansi-red-fg ansi-bold">found == expected</span>
-
-           <span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^</span>
-
-<span class="ansi-magenta-fg ansi-bold">AssertionError</span>
-
-
-
-======================================================================
-
-<span class="ansi-red-fg">FAIL</span><span class="ansi-red-fg ansi-bold">: test_failing (__main__.UtilsTestCase.test_failing)</span>
-
-----------------------------------------------------------------------
-
-Traceback (most recent call last):
-
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/1261816152.py"</span>, line <span class="ansi-magenta-fg">25</span>, in <span class="ansi-magenta-fg">test_failing</span>
-
-    <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">("incorrect", to_str("hello"))</span>
-
-    <span class="ansi-red-fg">~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-
-<span class="ansi-magenta-fg ansi-bold">AssertionError</span>: <span class="ansi-magenta-fg">'incorrect' != 'hello'
-
-- incorrect
-
-+ hello
-
-</span>
-
 
 
 ----------------------------------------------------------------------
 
-Ran 7 tests in 0.005s
+Ran 2 tests in 0.001s
 
 
 
-<span class="ansi-red-fg ansi-bold">FAILED</span> (<span class="ansi-red-fg ansi-bold">failures=3</span>)
+<span class="ansi-green-fg">OK</span>
 </pre>
 </div>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>&lt;unittest.main.TestProgram at 0x7eff9c2de710&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7f86c43b6490&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -1396,60 +1310,55 @@ Ran 7 tests in 0.005s
 <li>e.g.&nbsp;if an invariant is violated</li>
 </ul></li>
 </ul>
-<div id="632f2d2e" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest <span class="im">import</span> TestCase, main</span>
+<div id="f6a76594" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>reset</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sum_squares(values):</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    cumulative <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> value <span class="kw">in</span> values:</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        cumulative <span class="op">+=</span> value<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> cumulative</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> HelperTestCase(TestCase):</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> verify_complex_case(<span class="va">self</span>, values, expected):</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        expect_it <span class="op">=</span> <span class="bu">iter</span>(expected)</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        found_it <span class="op">=</span> <span class="bu">iter</span>(sum_squares(values))</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        test_it <span class="op">=</span> <span class="bu">zip</span>(expect_it, found_it, strict<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, (expect, found) <span class="kw">in</span> <span class="bu">enumerate</span>(test_it):</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> found <span class="op">!=</span> expect:</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.fail(<span class="ss">f"Index </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss"> is wrong: "</span>, <span class="ss">f"</span><span class="sc">{</span>found<span class="sc">}</span><span class="ss"> != </span><span class="sc">{</span>expect<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_too_short(<span class="va">self</span>):</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>        values <span class="op">=</span> [<span class="fl">1.1</span>, <span class="fl">2.2</span>]</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>        expected <span class="op">=</span> [<span class="fl">1.1</span><span class="op">**</span><span class="dv">2</span>]</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.verify_complex_case(values, expected)</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_too_long(<span class="va">self</span>):</span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>        values <span class="op">=</span> [<span class="fl">1.1</span>, <span class="fl">2.2</span>]</span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>        expected <span class="op">=</span> [<span class="fl">1.1</span><span class="op">**</span><span class="dv">2</span>, <span class="fl">1.1</span><span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">2.2</span><span class="op">**</span><span class="dv">2</span>, <span class="dv">0</span>]</span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.verify_complex_case(values, expected)</span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_wrong_results(<span class="va">self</span>):</span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>        values <span class="op">=</span> [<span class="fl">1.1</span>, <span class="fl">2.2</span>, <span class="fl">3.3</span>]</span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>        expected <span class="op">=</span> [</span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>            <span class="fl">1.1</span><span class="op">**</span><span class="dv">2</span>,</span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>            <span class="fl">1.1</span><span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">2.2</span><span class="op">**</span><span class="dv">2</span>,</span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>            <span class="fl">1.1</span><span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">2.2</span><span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">3.3</span><span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">4.4</span><span class="op">**</span><span class="dv">2</span>,</span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>        ]</span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.verify_complex_case(values, expected)</span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>main(argv<span class="op">=</span>[<span class="st">""</span>], exit<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest <span class="im">import</span> TestCase, main</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sum_squares(values):</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    cumulative <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> value <span class="kw">in</span> values:</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        cumulative <span class="op">+=</span> value<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> cumulative</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> HelperTestCase(TestCase):</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> verify_complex_case(<span class="va">self</span>, values, expected):</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        expect_it <span class="op">=</span> <span class="bu">iter</span>(expected)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        found_it <span class="op">=</span> <span class="bu">iter</span>(sum_squares(values))</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>        test_it <span class="op">=</span> <span class="bu">zip</span>(expect_it, found_it, strict<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, (expect, found) <span class="kw">in</span> <span class="bu">enumerate</span>(test_it):</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> found <span class="op">!=</span> expect:</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.fail(<span class="ss">f"Index </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss"> is wrong: "</span>, <span class="ss">f"</span><span class="sc">{</span>found<span class="sc">}</span><span class="ss"> != </span><span class="sc">{</span>expect<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_too_short(<span class="va">self</span>):</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>        values <span class="op">=</span> [<span class="fl">1.1</span>, <span class="fl">2.2</span>]</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>        expected <span class="op">=</span> [<span class="fl">1.1</span><span class="op">**</span><span class="dv">2</span>]</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.verify_complex_case(values, expected)</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_too_long(<span class="va">self</span>):</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>        values <span class="op">=</span> [<span class="fl">1.1</span>, <span class="fl">2.2</span>]</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>        expected <span class="op">=</span> [<span class="fl">1.1</span><span class="op">**</span><span class="dv">2</span>, <span class="fl">1.1</span><span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">2.2</span><span class="op">**</span><span class="dv">2</span>, <span class="dv">0</span>]</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.verify_complex_case(values, expected)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_wrong_results(<span class="va">self</span>):</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>        values <span class="op">=</span> [<span class="fl">1.1</span>, <span class="fl">2.2</span>, <span class="fl">3.3</span>]</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>        expected <span class="op">=</span> [</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>            <span class="fl">1.1</span><span class="op">**</span><span class="dv">2</span>,</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>            <span class="fl">1.1</span><span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">2.2</span><span class="op">**</span><span class="dv">2</span>,</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>            <span class="fl">1.1</span><span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">2.2</span><span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">3.3</span><span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">4.4</span><span class="op">**</span><span class="dv">2</span>,</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.verify_complex_case(values, expected)</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>main(argv<span class="op">=</span>[<span class="st">""</span>], exit<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">F</span>
-<span class="ansi-red-fg">F</span>
+<pre><span class="ansi-red-fg">E</span>
 <span class="ansi-red-fg">E</span>
 <span class="ansi-red-fg">E</span>
-<span class="ansi-red-fg">E</span>
-<span class="ansi-green-fg">.</span>
-<span class="ansi-green-fg">.</span>
-<span class="ansi-red-fg">F</span>
-<span class="ansi-green-fg">.</span>
-<span class="ansi-green-fg">.</span>
 
 
 ======================================================================
@@ -1460,13 +1369,13 @@ Ran 7 tests in 0.005s
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/2356407664.py"</span>, line <span class="ansi-magenta-fg">29</span>, in <span class="ansi-magenta-fg">test_too_long</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13571/3238691829.py"</span>, line <span class="ansi-magenta-fg">31</span>, in <span class="ansi-magenta-fg">test_too_long</span>
 
     <span class="ansi-red-fg">self.verify_complex_case</span><span class="ansi-red-fg ansi-bold">(values, expected)</span>
 
     <span class="ansi-red-fg">~~~~~~~~~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^^</span>
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/2356407664.py"</span>, line <span class="ansi-magenta-fg">17</span>, in <span class="ansi-magenta-fg">verify_complex_case</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13571/3238691829.py"</span>, line <span class="ansi-magenta-fg">19</span>, in <span class="ansi-magenta-fg">verify_complex_case</span>
 
     for i, (expect, found) in <span class="ansi-red-fg">enumerate</span><span class="ansi-red-fg ansi-bold">(test_it)</span>:
 
@@ -1484,13 +1393,13 @@ Traceback (most recent call last):
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/2356407664.py"</span>, line <span class="ansi-magenta-fg">24</span>, in <span class="ansi-magenta-fg">test_too_short</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13571/3238691829.py"</span>, line <span class="ansi-magenta-fg">26</span>, in <span class="ansi-magenta-fg">test_too_short</span>
 
     <span class="ansi-red-fg">self.verify_complex_case</span><span class="ansi-red-fg ansi-bold">(values, expected)</span>
 
     <span class="ansi-red-fg">~~~~~~~~~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^^</span>
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/2356407664.py"</span>, line <span class="ansi-magenta-fg">17</span>, in <span class="ansi-magenta-fg">verify_complex_case</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13571/3238691829.py"</span>, line <span class="ansi-magenta-fg">19</span>, in <span class="ansi-magenta-fg">verify_complex_case</span>
 
     for i, (expect, found) in <span class="ansi-red-fg">enumerate</span><span class="ansi-red-fg ansi-bold">(test_it)</span>:
 
@@ -1508,13 +1417,13 @@ Traceback (most recent call last):
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/2356407664.py"</span>, line <span class="ansi-magenta-fg">38</span>, in <span class="ansi-magenta-fg">test_wrong_results</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13571/3238691829.py"</span>, line <span class="ansi-magenta-fg">40</span>, in <span class="ansi-magenta-fg">test_wrong_results</span>
 
     <span class="ansi-red-fg">self.verify_complex_case</span><span class="ansi-red-fg ansi-bold">(values, expected)</span>
 
     <span class="ansi-red-fg">~~~~~~~~~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^^</span>
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/2356407664.py"</span>, line <span class="ansi-magenta-fg">19</span>, in <span class="ansi-magenta-fg">verify_complex_case</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13571/3238691829.py"</span>, line <span class="ansi-magenta-fg">21</span>, in <span class="ansi-magenta-fg">verify_complex_case</span>
 
     <span class="ansi-red-fg">self.fail</span><span class="ansi-red-fg ansi-bold">(f"Index {i} is wrong: ", f"{found} != {expect}")</span>
 
@@ -1524,78 +1433,18 @@ Traceback (most recent call last):
 
 
 
-======================================================================
-
-<span class="ansi-red-fg">FAIL</span><span class="ansi-red-fg ansi-bold">: test_assert_helper (__main__.AssertTestCase.test_assert_helper)</span>
-
 ----------------------------------------------------------------------
 
-Traceback (most recent call last):
-
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/2536451551.py"</span>, line <span class="ansi-magenta-fg">9</span>, in <span class="ansi-magenta-fg">test_assert_helper</span>
-
-    <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">(expected, found)</span>
-
-    <span class="ansi-red-fg">~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^</span>
-
-<span class="ansi-magenta-fg ansi-bold">AssertionError</span>: <span class="ansi-magenta-fg">12 != 10</span>
+Ran 3 tests in 0.003s
 
 
 
-======================================================================
-
-<span class="ansi-red-fg">FAIL</span><span class="ansi-red-fg ansi-bold">: test_assert_statement (__main__.AssertTestCase.test_assert_statement)</span>
-
-----------------------------------------------------------------------
-
-Traceback (most recent call last):
-
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/2536451551.py"</span>, line <span class="ansi-magenta-fg">14</span>, in <span class="ansi-magenta-fg">test_assert_statement</span>
-
-    assert <span class="ansi-red-fg ansi-bold">found == expected</span>
-
-           <span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^</span>
-
-<span class="ansi-magenta-fg ansi-bold">AssertionError</span>
-
-
-
-======================================================================
-
-<span class="ansi-red-fg">FAIL</span><span class="ansi-red-fg ansi-bold">: test_failing (__main__.UtilsTestCase.test_failing)</span>
-
-----------------------------------------------------------------------
-
-Traceback (most recent call last):
-
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/1261816152.py"</span>, line <span class="ansi-magenta-fg">25</span>, in <span class="ansi-magenta-fg">test_failing</span>
-
-    <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">("incorrect", to_str("hello"))</span>
-
-    <span class="ansi-red-fg">~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-
-<span class="ansi-magenta-fg ansi-bold">AssertionError</span>: <span class="ansi-magenta-fg">'incorrect' != 'hello'
-
-- incorrect
-
-+ hello
-
-</span>
-
-
-
-----------------------------------------------------------------------
-
-Ran 10 tests in 0.007s
-
-
-
-<span class="ansi-red-fg ansi-bold">FAILED</span> (<span class="ansi-red-fg ansi-bold">failures=3</span>, <span class="ansi-red-fg ansi-bold">errors=3</span>)
+<span class="ansi-red-fg ansi-bold">FAILED</span> (<span class="ansi-red-fg ansi-bold">errors=3</span>)
 </pre>
 </div>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>&lt;unittest.main.TestProgram at 0x7eff9c288fc0&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7f86c4362780&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -1614,166 +1463,50 @@ Ran 10 tests in 0.007s
 </ul></li>
 </ul></li>
 </ul>
-<div id="43e0e8e1" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest <span class="im">import</span> TestCase, main</span>
+<div id="fdac1758" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>reset</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># utils functionality</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> to_str(data):</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(data, <span class="bu">str</span>):</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> data</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="bu">isinstance</span>(data, <span class="bu">bytes</span>):</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> data.decode(<span class="st">"utf-8"</span>)</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">TypeError</span>(<span class="ss">f"Must supply str or bytes, found: </span><span class="sc">{</span>data<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DataDrivenTestCase(TestCase):</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_good(<span class="va">self</span>):</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        good_cases <span class="op">=</span> [</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>            (<span class="st">b"my bytes"</span>, <span class="st">"my bytes"</span>),</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>            (<span class="st">"no error"</span>, <span class="st">b"no error"</span>),  <span class="co"># this one fails</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>            (<span class="st">"other str"</span>, <span class="st">"other str"</span>),</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        ]</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> value, expected <span class="kw">in</span> good_cases:</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">with</span> <span class="va">self</span>.subTest(value):</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.assertEqual(expected, to_str(value))</span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_bad(<span class="va">self</span>):</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>        bad_cases <span class="op">=</span> [</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>            (<span class="bu">object</span>(), <span class="pp">TypeError</span>),</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>            (<span class="st">b"</span><span class="ch">\xfa\xfa</span><span class="st">"</span>, <span class="pp">UnicodeDecodeError</span>),</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>        ]</span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> value, exception <span class="kw">in</span> bad_cases:</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>            <span class="cf">with</span> <span class="va">self</span>.subTest(value):</span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>                <span class="cf">with</span> <span class="va">self</span>.assertRaises(exception):</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>                    to_str(value)</span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>main(argv<span class="op">=</span>[<span class="st">""</span>], exit<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest <span class="im">import</span> TestCase, main</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># utils functionality</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> to_str(data):</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(data, <span class="bu">str</span>):</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> data</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="bu">isinstance</span>(data, <span class="bu">bytes</span>):</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> data.decode(<span class="st">"utf-8"</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">TypeError</span>(<span class="ss">f"Must supply str or bytes, found: </span><span class="sc">{</span>data<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DataDrivenTestCase(TestCase):</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_good(<span class="va">self</span>):</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>        good_cases <span class="op">=</span> [</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>            (<span class="st">b"my bytes"</span>, <span class="st">"my bytes"</span>),</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>            (<span class="st">"no error"</span>, <span class="st">b"no error"</span>),  <span class="co"># this one fails</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>            (<span class="st">"other str"</span>, <span class="st">"other str"</span>),</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> value, expected <span class="kw">in</span> good_cases:</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">with</span> <span class="va">self</span>.subTest(value):</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.assertEqual(expected, to_str(value))</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> test_bad(<span class="va">self</span>):</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>        bad_cases <span class="op">=</span> [</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>            (<span class="bu">object</span>(), <span class="pp">TypeError</span>),</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>            (<span class="st">b"</span><span class="ch">\xfa\xfa</span><span class="st">"</span>, <span class="pp">UnicodeDecodeError</span>),</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> value, exception <span class="kw">in</span> bad_cases:</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>            <span class="cf">with</span> <span class="va">self</span>.subTest(value):</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>                <span class="cf">with</span> <span class="va">self</span>.assertRaises(exception):</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>                    to_str(value)</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>main(argv<span class="op">=</span>[<span class="st">""</span>], exit<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">F</span>
+<pre><span class="ansi-green-fg">.</span>
 <span class="ansi-red-fg">F</span>
-<span class="ansi-green-fg">.</span>
-<span class="ansi-red-fg">F</span>
-<span class="ansi-red-fg">E</span>
-<span class="ansi-red-fg">E</span>
-<span class="ansi-red-fg">E</span>
-<span class="ansi-green-fg">.</span>
-<span class="ansi-green-fg">.</span>
-<span class="ansi-red-fg">F</span>
-<span class="ansi-green-fg">.</span>
-<span class="ansi-green-fg">.</span>
-
-
-======================================================================
-
-<span class="ansi-red-fg">ERROR</span><span class="ansi-red-fg ansi-bold">: test_too_long (__main__.HelperTestCase.test_too_long)</span>
-
-----------------------------------------------------------------------
-
-Traceback (most recent call last):
-
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/2356407664.py"</span>, line <span class="ansi-magenta-fg">29</span>, in <span class="ansi-magenta-fg">test_too_long</span>
-
-    <span class="ansi-red-fg">self.verify_complex_case</span><span class="ansi-red-fg ansi-bold">(values, expected)</span>
-
-    <span class="ansi-red-fg">~~~~~~~~~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^^</span>
-
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/2356407664.py"</span>, line <span class="ansi-magenta-fg">17</span>, in <span class="ansi-magenta-fg">verify_complex_case</span>
-
-    for i, (expect, found) in <span class="ansi-red-fg">enumerate</span><span class="ansi-red-fg ansi-bold">(test_it)</span>:
-
-                              <span class="ansi-red-fg">~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^</span>
-
-<span class="ansi-magenta-fg ansi-bold">ValueError</span>: <span class="ansi-magenta-fg">zip() argument 2 is shorter than argument 1</span>
-
-
-
-======================================================================
-
-<span class="ansi-red-fg">ERROR</span><span class="ansi-red-fg ansi-bold">: test_too_short (__main__.HelperTestCase.test_too_short)</span>
-
-----------------------------------------------------------------------
-
-Traceback (most recent call last):
-
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/2356407664.py"</span>, line <span class="ansi-magenta-fg">24</span>, in <span class="ansi-magenta-fg">test_too_short</span>
-
-    <span class="ansi-red-fg">self.verify_complex_case</span><span class="ansi-red-fg ansi-bold">(values, expected)</span>
-
-    <span class="ansi-red-fg">~~~~~~~~~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^^</span>
-
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/2356407664.py"</span>, line <span class="ansi-magenta-fg">17</span>, in <span class="ansi-magenta-fg">verify_complex_case</span>
-
-    for i, (expect, found) in <span class="ansi-red-fg">enumerate</span><span class="ansi-red-fg ansi-bold">(test_it)</span>:
-
-                              <span class="ansi-red-fg">~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^</span>
-
-<span class="ansi-magenta-fg ansi-bold">ValueError</span>: <span class="ansi-magenta-fg">zip() argument 2 is longer than argument 1</span>
-
-
-
-======================================================================
-
-<span class="ansi-red-fg">ERROR</span><span class="ansi-red-fg ansi-bold">: test_wrong_results (__main__.HelperTestCase.test_wrong_results)</span>
-
-----------------------------------------------------------------------
-
-Traceback (most recent call last):
-
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/2356407664.py"</span>, line <span class="ansi-magenta-fg">38</span>, in <span class="ansi-magenta-fg">test_wrong_results</span>
-
-    <span class="ansi-red-fg">self.verify_complex_case</span><span class="ansi-red-fg ansi-bold">(values, expected)</span>
-
-    <span class="ansi-red-fg">~~~~~~~~~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^^</span>
-
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/2356407664.py"</span>, line <span class="ansi-magenta-fg">19</span>, in <span class="ansi-magenta-fg">verify_complex_case</span>
-
-    <span class="ansi-red-fg">self.fail</span><span class="ansi-red-fg ansi-bold">(f"Index {i} is wrong: ", f"{found} != {expect}")</span>
-
-    <span class="ansi-red-fg">~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-
-<span class="ansi-magenta-fg ansi-bold">TypeError</span>: <span class="ansi-magenta-fg">TestCase.fail() takes from 1 to 2 positional arguments but 3 were given</span>
-
-
-
-======================================================================
-
-<span class="ansi-red-fg">FAIL</span><span class="ansi-red-fg ansi-bold">: test_assert_helper (__main__.AssertTestCase.test_assert_helper)</span>
-
-----------------------------------------------------------------------
-
-Traceback (most recent call last):
-
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/2536451551.py"</span>, line <span class="ansi-magenta-fg">9</span>, in <span class="ansi-magenta-fg">test_assert_helper</span>
-
-    <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">(expected, found)</span>
-
-    <span class="ansi-red-fg">~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^</span>
-
-<span class="ansi-magenta-fg ansi-bold">AssertionError</span>: <span class="ansi-magenta-fg">12 != 10</span>
-
-
-
-======================================================================
-
-<span class="ansi-red-fg">FAIL</span><span class="ansi-red-fg ansi-bold">: test_assert_statement (__main__.AssertTestCase.test_assert_statement)</span>
-
-----------------------------------------------------------------------
-
-Traceback (most recent call last):
-
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/2536451551.py"</span>, line <span class="ansi-magenta-fg">14</span>, in <span class="ansi-magenta-fg">test_assert_statement</span>
-
-    assert <span class="ansi-red-fg ansi-bold">found == expected</span>
-
-           <span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^</span>
-
-<span class="ansi-magenta-fg ansi-bold">AssertionError</span>
-
 
 
 ======================================================================
@@ -1784,7 +1517,7 @@ Traceback (most recent call last):
 
 Traceback (most recent call last):
 
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/3680052845.py"</span>, line <span class="ansi-magenta-fg">24</span>, in <span class="ansi-magenta-fg">test_good</span>
+  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13571/2986973493.py"</span>, line <span class="ansi-magenta-fg">26</span>, in <span class="ansi-magenta-fg">test_good</span>
 
     <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">(expected, to_str(value))</span>
 
@@ -1794,42 +1527,18 @@ Traceback (most recent call last):
 
 
 
-======================================================================
-
-<span class="ansi-red-fg">FAIL</span><span class="ansi-red-fg ansi-bold">: test_failing (__main__.UtilsTestCase.test_failing)</span>
-
 ----------------------------------------------------------------------
 
-Traceback (most recent call last):
-
-  File <span class="ansi-magenta-fg">"/tmp/ipykernel_13671/1261816152.py"</span>, line <span class="ansi-magenta-fg">25</span>, in <span class="ansi-magenta-fg">test_failing</span>
-
-    <span class="ansi-red-fg">self.assertEqual</span><span class="ansi-red-fg ansi-bold">("incorrect", to_str("hello"))</span>
-
-    <span class="ansi-red-fg">~~~~~~~~~~~~~~~~</span><span class="ansi-red-fg ansi-bold">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-
-<span class="ansi-magenta-fg ansi-bold">AssertionError</span>: <span class="ansi-magenta-fg">'incorrect' != 'hello'
-
-- incorrect
-
-+ hello
-
-</span>
+Ran 2 tests in 0.002s
 
 
 
-----------------------------------------------------------------------
-
-Ran 12 tests in 0.008s
-
-
-
-<span class="ansi-red-fg ansi-bold">FAILED</span> (<span class="ansi-red-fg ansi-bold">failures=4</span>, <span class="ansi-red-fg ansi-bold">errors=3</span>)
+<span class="ansi-red-fg ansi-bold">FAILED</span> (<span class="ansi-red-fg ansi-bold">failures=1</span>)
 </pre>
 </div>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>&lt;unittest.main.TestProgram at 0x7eff9c289f30&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7f86c43623f0&gt;</code></pre>
 </div>
 </div>
 <ul>

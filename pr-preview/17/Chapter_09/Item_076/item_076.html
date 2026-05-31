@@ -1453,7 +1453,7 @@ Note
 <ul>
 <li>Putting everything together in the one cell,</li>
 </ul>
-<div id="52eff755" class="cell" data-execution_count="1">
+<div id="38dd91f4" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> contextlib</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> socket</span>
@@ -1665,18 +1665,22 @@ Note
 <span id="cb5-209"><a href="#cb5-209" aria-hidden="true" tabindex="-1"></a>main()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Guess between 1 and 5! Shhhhh, it's 3
-Guess between 10 and 15! Shhhhh, it's 12
-Server: 3 is correct
-Server: 10 is unsure
-Server: 14 is same
-Server: 15 is colder
-Guess between 1 and 3! Shhhhh, it's 2Server: 12 is correct
+Server: 4 is unsure
+Server: 2 is same
+Server: 1 is colder
+Server: 5 is same
+Guess between 10 and 15! Shhhhh, it's 12Server: 3 is correct
 
+Server: 13 is unsure
+Server: 12 is correct
+Guess between 1 and 3! Shhhhh, it's 2
 Server: 2 is correct
+Client: 4 is unsure
+Client: 2 is same
+Client: 1 is colder
+Client: 5 is same
 Client: 3 is correct
-Client: 10 is unsure
-Client: 14 is same
-Client: 15 is colder
+Client: 13 is unsure
 Client: 12 is correct
 Client: 2 is correct</code></pre>
 </div>
@@ -2026,7 +2030,7 @@ Warning
 <ul>
 <li>Putting it all together and running the code,</li>
 </ul>
-<div id="76f9a473" class="cell" data-execution_count="2">
+<div id="87cdd0f9" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> asyncio</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> contextlib</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
@@ -2242,26 +2246,20 @@ Warning
 <span id="cb14-213"><a href="#cb14-213" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> main_async()  <span class="co"># Comment out in favour of the line above if running as a script</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Guess a number between 1 and 5! Shhhh, it's 3
-Server: 1 is unsure
+Server: 5 is unsure
+Server: 4 is warmer
+Server: 1 is colder
 Guess a number between 10 and 15! Shhhh, it's 12
 Server: 3 is correct
-Server: 13 is unsure
-Server: 14 is colder
-Server: 10 is same
-Server: 15 is colder
 Guess a number between 1 and 3! Shhhh, it's 2
 Server: 12 is correct
 Server: 3 is unsure
-Server: 1 is same
-Client: 1 is unsure
+Client: 5 is unsure
+Client: 4 is warmer
+Client: 1 is colder
 Client: 3 is correct
-Client: 13 is unsure
-Client: 14 is colder
-Client: 10 is same
-Client: 15 is colder
 Client: 12 is correct
 Client: 3 is unsure
-Client: 1 is same
 Client: 2 is correct
 Server: 2 is correct</code></pre>
 </div>

@@ -29,6 +29,7 @@ Point Tests
           intermediates
 
 ``` python
+%reset
 import unittest
 
 
@@ -47,7 +48,7 @@ unittest.main(argv=[""], exit=False)
     FAIL: test_equal (__main__.MyTestCase.test_equal)
     ----------------------------------------------------------------------
     Traceback (most recent call last):
-      File "/tmp/ipykernel_14121/1899314891.py", line 8, in test_equal
+      File "/tmp/ipykernel_14015/4259668897.py", line 9, in test_equal
         self.assertEqual(1.667, n / d)  # Raises
         ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
     AssertionError: 1.667 != 1.6666666666666667
@@ -57,7 +58,7 @@ unittest.main(argv=[""], exit=False)
 
     FAILED (failures=1)
 
-    <unittest.main.TestProgram at 0x7f9a58b8af90>
+    <unittest.main.TestProgram at 0x7fc9540decf0>
 
 - For example, the two equivalent calculations below will actually give
   different answers due to rounding in the intermediates
@@ -78,6 +79,8 @@ print(0.1 * 5 / 3)
   - Can specify the level of precision such as number of decimal places
 
 ``` python
+%reset
+
 import unittest
 
 
@@ -91,22 +94,13 @@ class MyImprovedTestCase(unittest.TestCase):
 unittest.main(argv=[""], exit=False)
 ```
 
-    .F
-    ======================================================================
-    FAIL: test_equal (__main__.MyTestCase.test_equal)
+    .
     ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "/tmp/ipykernel_14121/1899314891.py", line 8, in test_equal
-        self.assertEqual(1.667, n / d)  # Raises
-        ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
-    AssertionError: 1.667 != 1.6666666666666667
+    Ran 1 test in 0.001s
 
-    ----------------------------------------------------------------------
-    Ran 2 tests in 0.002s
+    OK
 
-    FAILED (failures=1)
-
-    <unittest.main.TestProgram at 0x7f9a58df20d0>
+    <unittest.main.TestProgram at 0x7fc954343d90>
 
 - `places` is suitable for verifying numbers with a fractional part that
   are close to unit magnitude
@@ -131,6 +125,8 @@ print(1e24 / 1.101e16)
     - Fail’s if the absolute difference is greater than the `delta`
 
 ``` python
+%reset
+
 import unittest
 
 
@@ -145,22 +141,13 @@ class DeltaTestCase(unittest.TestCase):
 unittest.main(argv=[""], exit=False)
 ```
 
-    ..F
-    ======================================================================
-    FAIL: test_equal (__main__.MyTestCase.test_equal)
+    .
     ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "/tmp/ipykernel_14121/1899314891.py", line 8, in test_equal
-        self.assertEqual(1.667, n / d)  # Raises
-        ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
-    AssertionError: 1.667 != 1.6666666666666667
+    Ran 1 test in 0.001s
 
-    ----------------------------------------------------------------------
-    Ran 3 tests in 0.002s
+    OK
 
-    FAILED (failures=1)
-
-    <unittest.main.TestProgram at 0x7f9a58df2490>
+    <unittest.main.TestProgram at 0x7fc954343ed0>
 
 - If you need to assert a false case, then consider using
   `unittest.TestCase.assertNotAlmostEqual`
