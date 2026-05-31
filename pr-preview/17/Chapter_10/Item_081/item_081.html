@@ -1039,7 +1039,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The python <code>assert</code> command raises an <code>AssertionError</code> at runtime if given a false value (See <a href="../../Chapter_01/Item_007/item_007.html">Item 7</a>)</li>
 <li>E.g. asserting that two lists are not empty</li>
 </ul>
-<div id="4a3d3900" class="cell" data-execution_count="1">
+<div id="4a457658" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>list_a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> list_a, <span class="st">"a empty"</span>  <span class="co"># Does not raise</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1062,7 +1062,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The <code>raise</code> statement also allows for manually raising exceptions to callers (See <a href="../../Chapter_05/Item_032/item_032.html">Item 32</a>)</li>
 <li>Using this paradigm for our empty list problem</li>
 </ul>
-<div id="3f693082" class="cell" data-execution_count="2">
+<div id="a3434306" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> EmptyError(<span class="pp">Exception</span>):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1090,7 +1090,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Similarly one can catch the <code>AssertionError</code> from an <code>assert</code></li>
 </ul></li>
 </ul>
-<div id="ecdfbac9" class="cell" data-execution_count="3">
+<div id="55c0d4ef" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> EmptyError(<span class="pp">Exception</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1143,7 +1143,7 @@ Caught: From assert statement</code></pre>
 </ul></li>
 </ul></li>
 </ul>
-<div id="5fed8422" class="cell" data-execution_count="4">
+<div id="3119b8ff" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RatingError(<span class="pp">Exception</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1193,7 +1193,7 @@ Caught: From assert statement</code></pre>
 <li>Here we’re assuming that other parts of the codebase have already validated <code>max_rating</code> and <code>rating</code></li>
 </ul></li>
 </ul>
-<div id="e53f5d82" class="cell" data-execution_count="5">
+<div id="a830d3bf" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RatingInternal:</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, max_rating):</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> max_rating <span class="op">&gt;</span> <span class="dv">0</span>, <span class="ss">f"Invalid </span><span class="sc">{</span>max_rating<span class="op">=</span><span class="sc">}</span><span class="ss">"</span></span>

@@ -170,11 +170,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmpzv1f02wp/0. Expected [] lines, found []
-    File: /tmp/tmpzv1f02wp/1. Expected [b'/tmp/tmpzv1f02wp/1-01-fzpsmlkbqz\n'] lines, found [b'/tmp/tmpzv1f02wp/1-01-fzpsmlkbqz\n']
-    File: /tmp/tmpzv1f02wp/2. Expected [] lines, found []
-    File: /tmp/tmpzv1f02wp/3. Expected [b'/tmp/tmpzv1f02wp/3-01-crzzfzhwdr\n'] lines, found [b'/tmp/tmpzv1f02wp/3-01-crzzfzhwdr\n']
-    File: /tmp/tmpzv1f02wp/4. Expected [] lines, found []
+    File: /tmp/tmp_ehi45x8/0. Expected [b'/tmp/tmp_ehi45x8/0-01-liqnnhvkwl\n'] lines, found [b'/tmp/tmp_ehi45x8/0-01-liqnnhvkwl\n']
+    File: /tmp/tmp_ehi45x8/1. Expected [b'/tmp/tmp_ehi45x8/1-01-dqghmjhaby\n', b'/tmp/tmp_ehi45x8/1-02-vdbafagzch\n'] lines, found [b'/tmp/tmp_ehi45x8/1-01-dqghmjhaby\n', b'/tmp/tmp_ehi45x8/1-02-vdbafagzch\n']
+    File: /tmp/tmp_ehi45x8/2. Expected [] lines, found []
+    File: /tmp/tmp_ehi45x8/3. Expected [] lines, found []
+    File: /tmp/tmp_ehi45x8/4. Expected [b'/tmp/tmp_ehi45x8/4-01-ubnsgbxwim\n'] lines, found [b'/tmp/tmp_ehi45x8/4-01-ubnsgbxwim\n']
     All tests passed!
 
 - Now the code looks better but we now have blocking system calls
@@ -447,11 +447,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmp6a8se8dw/0. Expected [] lines, found []
-    File: /tmp/tmp6a8se8dw/1. Expected [] lines, found []
-    File: /tmp/tmp6a8se8dw/2. Expected [b'/tmp/tmp6a8se8dw/2-01-xxiflkaabo\n'] lines, found [b'/tmp/tmp6a8se8dw/2-01-xxiflkaabo\n']
-    File: /tmp/tmp6a8se8dw/3. Expected [b'/tmp/tmp6a8se8dw/3-01-dbpknrzqth\n'] lines, found [b'/tmp/tmp6a8se8dw/3-01-dbpknrzqth\n']
-    File: /tmp/tmp6a8se8dw/4. Expected [] lines, found []
+    File: /tmp/tmp9lx57p8v/0. Expected [] lines, found []
+    File: /tmp/tmp9lx57p8v/1. Expected [b'/tmp/tmp9lx57p8v/1-01-pxvywnecos\n'] lines, found [b'/tmp/tmp9lx57p8v/1-01-pxvywnecos\n']
+    File: /tmp/tmp9lx57p8v/2. Expected [] lines, found []
+    File: /tmp/tmp9lx57p8v/3. Expected [] lines, found []
+    File: /tmp/tmp9lx57p8v/4. Expected [] lines, found []
     All tests passed!
 
 ## Things to Remember

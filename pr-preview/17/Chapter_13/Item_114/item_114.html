@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -1000,9 +1035,276 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We can’t run the debugger in the generator for this site. So rather than providing inline examples, we’ll provide scripts</p>
+</div>
+</div>
+<ul>
+<li><code>print</code> debugging can usually get you pretty far (See <a href="../../Chapter_02/Item_012/item_012.html">Item 12</a>)</li>
+<li>Writing tests for specific cases also helps you find and solve problems (See <a href="../../Chapter_13/Item_109/item_109.html">Item 109</a>)</li>
+<li>For more complex case often we want to use <em>interactive debugging</em>
+<ul>
+<li>Able to investigate the state of a running python program</li>
+<li>Python comes with a pre-supplied interactive debugger</li>
+</ul></li>
+<li>Python programs can directly invoke the debugger (see <a href="./Examples/always_breakpoint.py">always_breakpoint.py</a>)
+<ul>
+<li>Just have to call <code>breakpoint</code>
+<ul>
+<li>Equivalent to importing <code>pdb</code> and running <code>set_trace</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># always_breakpoint.py</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_rmse(observed, ideal):</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    total_err_2 <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> got, wanted <span class="kw">in</span> <span class="bu">zip</span>(observed, ideal):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        err_2 <span class="op">=</span> (got <span class="op">-</span> wanted) <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">breakpoint</span>()  <span class="co"># Start the debugger here</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        total_err_2 <span class="op">+=</span> err_2</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    mean_err <span class="op">=</span> total_err_2 <span class="op">/</span> count</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    rmse <span class="op">=</span> math.sqrt(mean_err)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> rmse</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> compute_rmse([<span class="fl">1.8</span>, <span class="fl">1.7</span>, <span class="fl">3.2</span>, <span class="dv">6</span>], [<span class="dv">2</span>, <span class="fl">1.5</span>, <span class="dv">3</span>, <span class="dv">5</span>])</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Running this program, as soon as the <code>breakpoint</code> call is reached <code>pdb</code> is invoked</li>
+</ul>
+<pre class="shell"><code>$ uv run always_breakpoint.py
+&gt; always_breakpoint.py(10)compute_rmse()
+-&gt; breakpoint() # Start the debugger here
+(Pdb)</code></pre>
+<ul>
+<li><p>With <code>pdb</code> you can</p>
+<ol type="1">
+<li>Type names of a local variable
+<ul>
+<li>Or use <code>p &lt;name&gt;</code></li>
+<li>Show’s the current value</li>
+</ul></li>
+<li>Call <code>locals()</code> to see a list of all local variables</li>
+<li>Import modules</li>
+<li>Inspect global state</li>
+<li>Construct new objects</li>
+<li>Modify a running program</li>
+</ol></li>
+<li><p>Not all python functionality is supported</p>
+<ul>
+<li><code>interact</code> provides a python REPL
+<ul>
+<li>Maintains the program state</li>
+</ul></li>
+</ul></li>
+<li><p>Debugger has specific commands for controlling program execution and inspecting state</p>
+<ul>
+<li><code>help</code> provides the full list</li>
+</ul></li>
+<li><p>For example,</p>
+<ol type="1">
+<li><strong>where</strong>
+<ul>
+<li>Print current call stack</li>
+<li>Can figure out where you are in a program</li>
+<li>Also shows how you got there</li>
+</ul></li>
+<li><strong>up</strong>
+<ul>
+<li>Move scope up the execution call stack</li>
+<li>Can inspect variables in a higher scope</li>
+</ul></li>
+<li><strong>down</strong>
+<ul>
+<li>Move scope down the execution call stack</li>
+</ul></li>
+</ol></li>
+<li><p>Once done inspecting state we might want to continue program execution</p>
+<ul>
+<li>Different methods for doing so</li>
+</ul>
+<ol type="1">
+<li><strong>step</strong>
+<ul>
+<li>Run until next line of execution in the program</li>
+<li>Control returns to the debugger prompt</li>
+<li>If next line is a function debugger stops inside the called function</li>
+<li>i.e.&nbsp;will step <em>into</em> a function</li>
+</ul></li>
+<li><strong>next</strong>
+<ul>
+<li>Run until next line of execution in the current program</li>
+<li>Control returns to the debugger</li>
+<li>If next line of execution is a function, debugger will not stop until the function returns</li>
+<li>i.e.&nbsp;will step <em>over</em> a function</li>
+</ul></li>
+<li><strong>return</strong>
+<ul>
+<li>Run the program until the current function returns</li>
+<li>Control then returns to the debugger</li>
+</ul></li>
+<li><strong>continue</strong>
+<ul>
+<li>Continue running a program until the next breakpoint</li>
+</ul></li>
+<li><strong>quit</strong>
+<ul>
+<li>Exit debugger and end the program</li>
+<li>Run when the problem has been,
+<ul>
+<li>Identified,</li>
+<li>You’ve gone too far through the program,</li>
+<li>Or need to modify the program</li>
+</ul></li>
+</ul></li>
+</ol></li>
+<li><p>Can call <code>breakpoint</code> anywhere in a program</p>
+<ul>
+<li>If trying to find bug that has very specific trigger conditions, then set a <code>breakpoint</code> in code to only fire when that condition is made</li>
+<li>See <a href="./Examples/conditional_breakpoint.py">conditional_breakpoint.py</a></li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># conditional_breakpoint</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_rmse(observed, ideal):</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    total_err_2 <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> got, wanted <span class="kw">in</span> <span class="bu">zip</span>(observed, ideal):</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        err_2 <span class="op">=</span> (got <span class="op">-</span> wanted) <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> err_2 <span class="op">&gt;=</span> <span class="dv">1</span>:  <span class="co"># Debugging condition</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>            <span class="bu">breakpoint</span>()</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        total_err_2 <span class="op">+=</span> err_2</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    mean_err <span class="op">=</span> total_err_2 <span class="op">/</span> count</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    rmse <span class="op">=</span> math.sqrt(mean_err)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> rmse</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> compute_rmse([<span class="fl">1.8</span>, <span class="fl">1.7</span>, <span class="fl">3.2</span>, <span class="dv">6</span>], [<span class="dv">2</span>, <span class="fl">1.5</span>, <span class="dv">3</span>, <span class="dv">5</span>])</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>When the debugger trips we can confirm that the condition is true</li>
+</ul>
+<pre class="shell"><code>$ uv run conditional_breakpoint.py
+&gt; conditional_breakpoint.py(11)compute_rmse()
+-&gt; breakpoint()
+(Pdb) wanted
+5
+(Pdb) got
+6
+(Pdb) err_2
+2</code></pre>
+<ul>
+<li>Alternative technique is <em>postmortem debugging</em>
+<ul>
+<li>Can debug a program <em>after</em> an exception is raised</li>
+</ul></li>
+<li>Help’s when unsure where to use a breakpoint</li>
+<li>For example, (see <a href="./Examples/postmortem_breakpoint.py">postmortem_breakpoint.py</a>)</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># postmortem_breakpoint</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_rmse(observed, ideal):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    total_err_2 <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> got, wanted <span class="kw">in</span> <span class="bu">zip</span>(observed, ideal):</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        err_2 <span class="op">=</span> (got <span class="op">-</span> wanted) <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        total_err_2 <span class="op">+=</span> err_2</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    mean_err <span class="op">=</span> total_err_2 <span class="op">/</span> count</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    rmse <span class="op">=</span> math.sqrt(mean_err)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> rmse</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> compute_rmse(</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">1.8</span>, <span class="fl">1.7</span>, <span class="fl">3.2</span>, <span class="ot">7j</span>],  <span class="co"># Bad input</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">2</span>, <span class="fl">1.5</span>, <span class="dv">3</span>, <span class="dv">5</span>],</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>To run the post-mortem debugger we can run as follows</li>
+</ul>
+<pre class="shell"><code>$ uv run -m pdb -c continue postmortem_breakpoint.py
+Traceback (most recent call last):
+  File ".../pdb.py", line 3652, in main
+    pdb._run(target)
+    ~~~~~~~~^^^^^^^^
+  File ".../pdb.py", line 2566, in _run
+    self.run(target.code)
+    ~~~~~~~~^^^^^^^^^^^^^
+  File ".../bdb.py", line 913, in run
+    exec(cmd, globals, locals)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "&lt;string&gt;", line 1, in &lt;module&gt;
+  File ".../postmortem_breakpoint.py", line 18, in &lt;module&gt;
+    result = compute_rmse(
+        [1.8, 1.7, 3.2, 7j],  # Bad input
+        [2, 1.5, 3, 5],
+    )
+  File "..../postmortem_breakpoint.py", line 14, in compute_rmse
+    rmse = math.sqrt(mean_err)
+TypeError: must be real number, not complex
+Uncaught exception. Entering post mortem debugging
+Running 'cont' or 'step' will restart the program
+&gt; postmortem_breakpoint.py(14)compute_rmse()
+-&gt; rmse = math.sqrt(mean_err)
+(Pdb)</code></pre>
+<ul>
+<li><code>-m pdb</code> tells python to run the <code>pdb</code> debugger over the program
+<ul>
+<li><code>-c continue</code> tells <code>pdb</code> to start the program immediately</li>
+</ul></li>
+<li>When the program encounters an error rather than crashing the <code>pdb</code> debugger is invoked</li>
+<li>Can invoke postmortem debugging in the interactive debugger
+<ul>
+<li>Call the <code>pm</code> function from the <code>pdb</code> module</li>
+</ul></li>
+</ul>
+<pre class="shell"><code>$ uv run python3.14
+&gt;&gt;&gt; import my_module
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+    import my_module
+ModuleNotFoundError: No module named 'my_module'
+&gt;&gt;&gt; import pdb; pdb.pm()
+&gt; &lt;stdin-0&gt;(1)&lt;module&gt;()
+(Pdb)</code></pre>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li>Initiate the python interactive debugger directly within a python program via the <code>breakpoint()</code> function call</li>
+<li><code>pdb</code> shell commands let you control program execution and inspect program state</li>
+<li>The <code>pdb</code> module can be used to debug exceptions after they happen in independent Python programs
+<ul>
+<li>Use <code>python -m pdb -c continue &lt;program path&gt;</code></li>
+<li>Or the interactive interpreter
+<ul>
+<li>Via <code>import pdb; pdb.pm()</code></li>
+</ul></li>
+</ul></li>
+</ul>
 
 
 </section>

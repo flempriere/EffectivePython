@@ -221,11 +221,11 @@ unittest.main(argv=[""], verbosity=2, exit=False)
     test_zero_result (__main__.ExtensionTest.test_zero_result) ... ok
 
     ----------------------------------------------------------------------
-    Ran 7 tests in 0.006s
+    Ran 7 tests in 0.007s
 
     OK
 
-    <unittest.main.TestProgram at 0x7f2f2ccaef90>
+    <unittest.main.TestProgram at 0x7fa6e844af90>
 
 - Compared to `ctypes` there is a lot of overhead in this implementation
   - However the interface appears more pythonic
@@ -413,11 +413,11 @@ unittest.main(argv=[""], verbosity=2, exit=False)
     test_zero_result (__main__.ExtensionTest.test_zero_result) ... ok
 
     ----------------------------------------------------------------------
-    Ran 15 tests in 0.014s
+    Ran 15 tests in 0.013s
 
     OK
 
-    <unittest.main.TestProgram at 0x7f2f2cb091d0>
+    <unittest.main.TestProgram at 0x7fa6e82f91d0>
 
 - The flexibility and extensibility of above provides good ergonomics
   - Would have to reinvent a lot of the Python machinery to reimplement

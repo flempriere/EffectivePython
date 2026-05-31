@@ -100,7 +100,7 @@ database.feed_animal.assert_any_call()
 print("Mock passed all testes")
 ```
 
-    <Mock name='mock.feed_animal' id='139809516355664'>
+    <Mock name='mock.feed_animal' id='140704887717968'>
     Mock passed all testes
 
 - Implementing the full mock code
