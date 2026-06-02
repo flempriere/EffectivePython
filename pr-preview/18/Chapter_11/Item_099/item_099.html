@@ -1147,7 +1147,7 @@ window.Quarto = {
 </ul></li>
 <li>We might have functions to implement this by converting a time-code to a index and returning the associated chunk of data</li>
 </ul>
-<div id="0af256f3" class="cell" data-execution_count="1">
+<div id="bf8a6794" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co"># for demo only</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> timecode_to_index(video_id, timecode):</span>
@@ -1169,7 +1169,7 @@ window.Quarto = {
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>video_id<span class="op">=</span><span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>timecode<span class="op">=</span><span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>byte_offset<span class="op">=</span><span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>video_data<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>video_id=1, timecode='01:09:14:28', byte_offset=0, video_data=b"\t\xd31\xd7\xb5f&gt;\xad\xbc9\xd3\x038\xeb\x8b'\xb4\xb7(\n\xb1:\xd1:\xef\x12\xd7G\x0e\xb8^nU\xb3|)\xe6i\x9c\xc9\x9f{\x85=\xe0\xd9\xd0\xdb\xdbF\n\xea\xab\x05\xc7l\xa1]\xd0\xe89iX1"</code></pre>
+<pre><code>video_id=1, timecode='01:09:14:28', byte_offset=0, video_data=b'\xed\x0fQ!\x12\xde"\x97zTM\x94\x95\x1c\xdf\xbdt\xc9E/\xd2\x07\xb4\x16na\x13Z\x9e&amp;\xd4\x16Y&lt;\xc9\xdf\x13\xdf\xe28^\xf3\xae\x05\xf5\x8d\xd0\xd1K\x96\x19\xbe\xf4\xe8%\x1dM\xf7H]\x89\x16\x89\x9a'</code></pre>
 </div>
 </div>
 <ul>
@@ -1184,7 +1184,7 @@ window.Quarto = {
 <li>Extracted then sent over a socket back to a client</li>
 </ul></li>
 </ul>
-<div id="bdedfadb" class="cell" data-execution_count="2">
+<div id="be9b1844" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co"># for demo only</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> timecode_to_index(video_id, timecode):</span>
@@ -1219,7 +1219,7 @@ window.Quarto = {
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sent </span><span class="sc">{</span>chunk<span class="op">=</span><span class="sc">}</span><span class="ss"> over socket"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Sent chunk=b"\xa0\rg\xd6\x01\xae\xd2h\xdc\x1bU\r\xb9.\xb2\xda\t5\x9bf\xa9\xd5\x1e5'&gt;6j&amp;\xb6C\xcaz\xa2\x8a\xa5I\xd2?Q\x8cY\xcdZ\xdf\x8b\xa3\xc4\x03\xab&amp;&lt;\xfd]\x8e;\xd6s\xa9Q\xc6W\x11\x03" over socket</code></pre>
+<pre><code>Sent chunk=b'l\x99\xacT\xd9\xf6\xfe0P`\xba\x01\xc6\x1c\xf3\xd1\xe7\xfc\\=\xca\xc3\xe6\x8e\x18\x9d\xe7\xba&gt;t\xdb\x94I\x85\xa3\x8c{7\x8b\xf0\xfb\xd7\x1b\xc2\xbc:\x18\xf4\x16P\xc4\xa2\xe7\xb6\x98#\x92#\x85p?\x0e\x9d4' over socket</code></pre>
 </div>
 </div>
 <ul>
@@ -1234,7 +1234,7 @@ window.Quarto = {
 <li>Here we’ll set the size to <span class="math inline">\(20\)</span> MB.</li>
 </ul></li>
 </ul>
-<div id="e2f0abbc" class="cell" data-execution_count="3">
+<div id="bcb5728b" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>size <span class="op">=</span> <span class="dv">20</span> <span class="op">*</span> (<span class="dv">1024</span><span class="op">**</span><span class="dv">2</span>)</span>
@@ -1248,7 +1248,7 @@ window.Quarto = {
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>result<span class="sc">:0.9f}</span><span class="ss"> seconds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.001122724 seconds</code></pre>
+<pre><code>0.001237194 seconds</code></pre>
 </div>
 </div>
 <ul>
@@ -1287,7 +1287,7 @@ window.Quarto = {
 </ul></li>
 <li><code>memoryview</code> can be sliced to create a new <code>memoryview</code> without a copy</li>
 </ul>
-<div id="e60f7628" class="cell" data-execution_count="4">
+<div id="cb321ed2" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="st">b"shave and a haircut, two bits"</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>view <span class="op">=</span> <span class="bu">memoryview</span>(data)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>chunk <span class="op">=</span> view[<span class="dv">12</span>:<span class="dv">19</span>]</span>
@@ -1297,7 +1297,7 @@ window.Quarto = {
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Data in view:    "</span>, chunk.tobytes())</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Underlying data: "</span>, chunk.obj)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;memory at 0x7fd30854b7c0&gt;
+<pre><code>&lt;memory at 0x7f1a10a337c0&gt;
 Size:             7
 Data in view:     b'haircut'
 Underlying data:  b'shave and a haircut, two bits'</code></pre>
@@ -1311,7 +1311,7 @@ Underlying data:  b'shave and a haircut, two bits'</code></pre>
 </ol></li>
 <li>Using <code>memoryview</code> as a drop-in replacement for our video serving service</li>
 </ul>
-<div id="3532470e" class="cell" data-execution_count="5">
+<div id="c19bb0d6" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>size <span class="op">=</span> <span class="dv">20</span> <span class="op">*</span> (<span class="dv">1024</span><span class="op">**</span><span class="dv">2</span>)</span>
@@ -1326,7 +1326,7 @@ Underlying data:  b'shave and a haircut, two bits'</code></pre>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>result<span class="sc">:0.9f}</span><span class="ss"> seconds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.000000196 seconds</code></pre>
+<pre><code>0.000000211 seconds</code></pre>
 </div>
 </div>
 <ul>
@@ -1358,7 +1358,7 @@ Underlying data:  b'shave and a haircut, two bits'</code></pre>
 <li>Cache it for clients to read from</li>
 </ul></li>
 </ul>
-<div id="83c29075" class="cell" data-execution_count="6">
+<div id="050cbfd3" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> timecode_to_index(video_id, timecode):</span>
@@ -1396,7 +1396,7 @@ Underlying data:  b'shave and a haircut, two bits'</code></pre>
 <span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Updated the cache: </span><span class="sc">{</span>new_cache<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Updated the cache: new_cache=b'\x9f\xc8\xb2E\xb7h6\xd4\xa8=i\xa0\r\xca\xab\xf1\xba\xf58\x97\x7f\xa8\x0f\xa90W\xff\xb7\x83% \x03\xef;eI\x7fj\xb9@\x7f\xe6\xb0\x19\x9c\x0f~x\x1a\x10Kl\\:\xa9)\xa7o\x07tvo\xeb\'\xa1\x1c\r\xb5\xfa\xf0\xebXME\x9b\xc0=n\xa1\xfe{\x19\\\xc8\xba\x0f\x92\x00I2\xc5\xd34v\x80\x10.(\xd8\x04\xf60\x14\x9f;\x1d\xf6\x1d\x14\x80\xa4z\x13\x1c\xd8\x91\x08\x9f\xdc\x92;T\x0fN\xec\x18S\xd3\xb2\xc4\x88/o\xd7\xd6\xe0\x94\xaa\x02%@\xf6\xdf\x80\x8e\xbc\x11\xac\x89\x88\xe0D\x08r\x17\x84\xd1\xa7L\xda1`\xbc\xc3 G\x9e]8\xc1f\xb0\xfbMJ\xcap\x13\x13\xba\xd1h\xd6\x85\xee\xfbM_\x8bM\x98\xa6\xba\x04\x14\x07\xc3\xc5\x82!\x13\xcfO\x9e\xd3\x1f\xc4\xe9"F\xa3H\xe8%\xf7)}\xcd\xde\x82\xd6\xaa\xf4\xcf,\xa8R\xac\x1a\xd1\x8chk*\xc7\x9e\xe6\xff\xef|\xb3\x02\x81\xfaN\xea\x88\x10\xdaw\xa7\xbf0y\xb4"\x0cp\x9f\x11\xca\xe1;\xd8\xa3\'\xfd\xe7\x8e&amp;\x83o\xeeK\x97b_n\xc2\xa2\xfb_2\xd8\x0f\xe6q2\xb1dh&amp;\x8d\xfeC\x8f\xe0\xa2_\xc4\xa1\xb9\x15\xc1\xa0\x06\'\xcd?\x0c\x00V!H}ZniWG'</code></pre>
+<pre><code>Updated the cache: new_cache=b'qh&amp;yR\x86\r\x0e\xb8\x02T\x13\xa9J\xdcN?\x1do\xbc\xeaH\x9aYe\xe4\xc6\x1c.\x9d\xb0-\xc5\x81\xd6\xd9.\xe1@\x84S7\x7f\xe4\xbc\x94\xd5y\xbe\xdd\xa1\xb3\xb5\xb6\xd6\x88\x90p\xfa\x03\xe3t\xb3*$0\xb8\xe1E\xd4$\xce\xdb\xb7\x8dEh\x85\xc7\xa4\xa5(\x99\x1cVh&gt;\xd6\xc4\xac\xd1S\xb8\x01\x1a\xfb\xbb\xcb\x98\x13K\x90TN\xd7\x8a\xb3L\xb3#\x01DeC\xc4q\x85\x7f&amp;Z\xe1[\xfe\\\x8cH3\x90\xe5v2\xfa)\xec\x96\x16zw\xc2\xe7n\x8f\xaa\xb18\xd4E`"\t#\x80T_\xe64W\x8c\xb8\x80\xa9\xdc:\xae\x87\xe4\xb2P\xc5\xe8\x81\rG8D\xb0{}\xea-\xa2\x9b\x99\x19m\xa6\x82\xf5DOL\xd6\xbd\xca\x01/a1aP\xbff\xf1\xf6T\xbe\xa1Rn\xcd\r\x83\xe8\x9aB\x89k\xdc\xd7$\xa5\t\xa6X\xf4\x0c\xbd\xeeAW\xc6\xc55\xfb\x04\x01d&amp;\x06\xc9.\xeb\x9ba&gt;\xd3\x11\xe1\x1ffh~]b\xfa\xdaY*\xeb\xd8\xc8\xec\xe9\xca\xc3tNA\x95L=\na4\x01E/\x83\xc0(\xbe1\x88w\xb0\xdc\xf1O}\xd5,\xc9H\x1f\xbf_\x8e2\\D\xbcTd\x0b\xf8\xfc\x0f\x831\'?\xbbwj\xe7\xf1\xcc\xa2\xa5\x80'</code></pre>
 </div>
 </div>
 <ul>
@@ -1407,7 +1407,7 @@ Underlying data:  b'shave and a haircut, two bits'</code></pre>
 </ul></li>
 <li>Now need to profile the timing</li>
 </ul>
-<div id="6f4844ba" class="cell" data-execution_count="7">
+<div id="2932da00" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1437,7 +1437,7 @@ Underlying data:  b'shave and a haircut, two bits'</code></pre>
 <span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>result<span class="sc">:0.9f}</span><span class="ss"> seconds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.001074565 seconds</code></pre>
+<pre><code>0.001264260 seconds</code></pre>
 </div>
 </div>
 <ul>
@@ -1456,7 +1456,7 @@ Underlying data:  b'shave and a haircut, two bits'</code></pre>
 <li><code>bytes</code> are immutable like strings</li>
 </ul></li>
 </ul>
-<div id="ab85dbd9" class="cell" data-execution_count="8">
+<div id="e1c018c3" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>some_bytes <span class="op">=</span> <span class="st">b"hello"</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>some_bytes[<span class="dv">0</span>] <span class="op">=</span> <span class="bn">0x79</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
@@ -1478,7 +1478,7 @@ Underlying data:  b'shave and a haircut, two bits'</code></pre>
 </ul></li>
 <li><code>bytearray</code> values are integers rather than bytes</li>
 </ul>
-<div id="f0ffbefb" class="cell" data-execution_count="9">
+<div id="9cfef7de" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>array <span class="op">=</span> <span class="bu">bytearray</span>(<span class="st">b"hello"</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>array[<span class="dv">0</span>] <span class="op">=</span> <span class="bn">0x79</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(array)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1492,7 +1492,7 @@ Underlying data:  b'shave and a haircut, two bits'</code></pre>
 <li>Then can slice the <code>memoryview</code> and modify to overwrite the underlying <code>bytearray</code></li>
 </ul></li>
 </ul>
-<div id="6b3d6b8c" class="cell" data-execution_count="10">
+<div id="4cec5e19" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>array <span class="op">=</span> <span class="bu">bytearray</span>(<span class="st">b"row, row, row your boat"</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>view <span class="op">=</span> <span class="bu">memoryview</span>(array)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>write_view <span class="op">=</span> view[<span class="dv">3</span>:<span class="dv">13</span>]</span>
@@ -1514,7 +1514,7 @@ Underlying data:  b'shave and a haircut, two bits'</code></pre>
 </ul></li>
 <li>We can convert our program to use <code>recv_into</code> and a <code>memoryview</code> slice to speed up our broadcasting method</li>
 </ul>
-<div id="4d9f3297" class="cell" data-execution_count="11">
+<div id="c3606eb5" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MockIncomingSocket:</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> recv(<span class="va">self</span>, size):</span>
@@ -1541,13 +1541,13 @@ Underlying data:  b'shave and a haircut, two bits'</code></pre>
 <span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"New cache: </span><span class="sc">{</span>video_cache<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>New cache: video_cache=b'aPu\xd7\x91\n\xeaVXm\x99\xa0\x89br\xa1\x81\x85\xa9e2\x046\r!\xa7\xb4\xf7\xc7=\x19\xcf\x9c\xb0\x1aCzT\x81Y\xd0\x12\xfbAu\xb6\x1e\xdd\xa1\x88N.\x8f\xd8\x1b\xd2\x1f\xdf\xeb\xb1&lt;\xc8\xf3\x8a\x9b\xe5G9g\x03w\x90\xbfV\x0c\xe7\x8c\xb2U\x8d\x97\x05U\xc8`!\xe8\x7f-:Rm\x87\xb0y\xad\xb8\xe0@\xccu\xe1\xf5\xe2oi\x87}\xe2\xde\xa3\r\xc5}\xb5\xfa\xf6\xa6\xf5\x02(\x82\x96x\xe3|\x03\xfeV\xf9\xdc \xaf*\x84\xfe\x86\xf9\xafh\xabLg\xdc#\x9a4:ip\x13\xbb[\xf3\xed+\xd9\xf5E\x91\x9a\xf0z\xd7\x11\xdc\x125\t\x1b;?\xd2\x14\xc9\xa2\xe0\x15\xeb \x83QI\x02\x8b\x14\xef\xb7\xc4N(1U\x06\xbc\x8c\x13\xf5\xb9\x02\x00=&amp;]H\xca\xdc\x95\x84$6ZA\\\xf8\x8f\xc9\xb6mHkd\x96@e\x8d\xec\xb2\xd8\xdc\xef\x9a\xef\xd6{\xcf\xc2\xef\xcb\xe7\xf4Q\x9d\x1a\xa0&lt;r\x9a\xfa\x98\xa2\xbe\x85\x1fc\xa1)-#,\x87%"\xb3=\xbb\xd6\x87&amp;!D\x93[\x11h\xb3\xbd\x81S)\xe7\xed\xae\xa5\x0f\xcf\x88\x8bU\x1bP\x92&lt;n\t\xe9\xfc\x0e!\xbb\xff\x1aR\x81\x85\xec\xf8\xa7\xc7\xd0\x7ftCey\xd0\xff\xe0\x83\x11'</code></pre>
+<pre><code>New cache: video_cache=b"\xe8\xffr1c\xdd\x8d)\xd8\x1fO\xe8Q\xee\x1evM}Od\x18\x8f_,p\xb5(\xb9c\x9f\xe5\xa7\x80R\x9d\xaa\xe4\x07\xf4\xd7\xf7\xbdP\xaf/b-\x14|\xc4'\xca\xad\xaa\x10\x0c\xbc\x8f\xbc\x19\x86\xebS\x03\xe72M{o\x19z6\xf9\xf2\x05&amp;\xc5\x04U\x1e\xcf\xd1\x88#\xbea&amp;$\xef\xfa\xa1d\xea6&lt;*z\xfcl\xba\xbaW\\%\xd1K\x15c\x8a\xd3\x1c\xa5\x86\xb8`7f\xb9\t5\x0c\x93`\xf45K%\x95\xa0\x97\x0e\x13 \xd6\xb0Z\xb4\xa5\xcf\xd3,\x98\xf5\xc3\xacab\xeaGN\xb7\x01\xcb\xe4N,\x13LK\xe5\xab.M\x05\xe4\t[V\xcb^\x05\xcd\xc2\xef\xa2v\x82M\xef,\x86\x1b&gt;\xc4\xf0\x0b_4=qR\xb6v\x03_\x9b\xceL\xa2,\xb6(\x12Ed\x05\xbf_\x1a%\xa9hh|]Y\xbb0\xc0*\xdfpMc9%w\xd6\x94\xab\xfa$\x043\xa5\xd0:\xb5\xe6).\x00\x848\xeb\xc2\x9f\x02\xf1\xa5\x1e\xf3\x11\xec\xda]Q\xb0\xc3\x91\x1dC\xe3\x85\xdbP\xacN\x9d\xd2K|\xce8J\xdc\xc6\xdb\xfa\xd6Pb\xa2\x1aW=\x14\xe2\xadjXd\x97\xaad&gt;\xa6\to\xceS\x01\xa5t\x05\x01q\xa5\xb1\xef\\\x84\x02\x7f:\x9f\x99\x81\xbbe"</code></pre>
 </div>
 </div>
 <ul>
 <li>We can again microbenchmark the result for a <span class="math inline">\(1\)</span> MB chunk</li>
 </ul>
-<div id="2112da18" class="cell" data-execution_count="12">
+<div id="ab5333f7" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1583,7 +1583,7 @@ Underlying data:  b'shave and a haircut, two bits'</code></pre>
 <span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>result<span class="sc">:0.9f}</span><span class="ss"> seconds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.000034583 seconds</code></pre>
+<pre><code>0.000043894 seconds</code></pre>
 </div>
 </div>
 <ul>

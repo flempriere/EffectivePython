@@ -1155,7 +1155,7 @@ window.Quarto = {
 </ul></li>
 </ul></li>
 </ul>
-<div id="457f622d" class="cell" data-execution_count="1">
+<div id="6b37bc61" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1191,7 +1191,7 @@ window.Quarto = {
 <li>Will perform the reminders in order from most overdue to least</li>
 </ul></li>
 </ul>
-<div id="486e5790" class="cell" data-execution_count="2">
+<div id="5706bac7" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1246,7 +1246,7 @@ window.Quarto = {
 <li>Returned books can be removed from the queue</li>
 <li>When all overdue books are returned, we can use an exception to indicate their are no more (See <a href="../../Chapter_05/Item_032/item_032.html">Item 32</a>)</li>
 </ul>
-<div id="6b3a101e" class="cell" data-execution_count="3">
+<div id="479a19be" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1308,7 +1308,7 @@ After Return: ['Les Miserables', 'Don Quixote', 'Frankenstein', 'War and Peace']
 <li>We can benchmark this below</li>
 </ul></li>
 </ul>
-<div id="ac54fb8d" class="cell" data-execution_count="4">
+<div id="2ae808bc" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1340,11 +1340,11 @@ After Return: ['Les Miserables', 'Don Quixote', 'Frankenstein', 'War and Peace']
 <span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    delay <span class="op">=</span> list_overdue_benchmark(count)</span>
 <span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Count </span><span class="sc">{</span>count<span class="sc">:&gt;5,}</span><span class="ss"> takes: </span><span class="sc">{</span>delay <span class="op">*</span> <span class="fl">1e3</span><span class="sc">:6.2f}</span><span class="ss">ms"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Count 1,000 takes:   2.53ms
-Count 2,000 takes:   7.95ms
-Count 3,000 takes:  16.55ms
-Count 4,000 takes:  28.51ms
-Count 5,000 takes:  43.21ms</code></pre>
+<pre><code>Count 1,000 takes:   2.33ms
+Count 2,000 takes:   7.43ms
+Count 3,000 takes:  15.47ms
+Count 4,000 takes:  26.41ms
+Count 5,000 takes:  38.72ms</code></pre>
 </div>
 </div>
 <ul>
@@ -1353,7 +1353,7 @@ Count 5,000 takes:  43.21ms</code></pre>
 <li>Can again benchmark this</li>
 </ul></li>
 </ul>
-<div id="9ec2e5b9" class="cell" data-execution_count="5">
+<div id="34a2ddb7" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1385,11 +1385,11 @@ Count 5,000 takes:  43.21ms</code></pre>
 <span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    delay <span class="op">=</span> list_return_benchmark(count)</span>
 <span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Count </span><span class="sc">{</span>count<span class="sc">:&gt;5,}</span><span class="ss"> takes: </span><span class="sc">{</span>delay <span class="op">*</span> <span class="fl">1e3</span><span class="sc">:6.2f}</span><span class="ss">ms"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Count 1,000 takes:   2.72ms
-Count 2,000 takes:   9.76ms
-Count 3,000 takes:  22.06ms
-Count 4,000 takes:  40.42ms
-Count 5,000 takes:  61.33ms</code></pre>
+<pre><code>Count 1,000 takes:   2.95ms
+Count 2,000 takes:  10.96ms
+Count 3,000 takes:  26.00ms
+Count 4,000 takes:  40.28ms
+Count 5,000 takes:  60.38ms</code></pre>
 </div>
 </div>
 <ul>
@@ -1410,7 +1410,7 @@ Count 5,000 takes:  61.33ms</code></pre>
 </ul></li>
 </ul></li>
 </ul>
-<div id="190bc34e" class="cell" data-execution_count="6">
+<div id="61ff7375" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> heapq <span class="im">import</span> heappush</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1448,7 +1448,7 @@ Count 5,000 takes:  61.33ms</code></pre>
 <ul>
 <li>Defining the <code>__lt__</code> method, to enable comparison,</li>
 </ul>
-<div id="12cb4f48" class="cell" data-execution_count="7">
+<div id="7fd1d9ad" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> heapq <span class="im">import</span> heappush</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1492,7 +1492,7 @@ Count 5,000 takes:  61.33ms</code></pre>
 </ul></li>
 <li>Method 1,</li>
 </ul>
-<div id="053d5962" class="cell" data-execution_count="8">
+<div id="9eada14b" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1521,7 +1521,7 @@ Count 5,000 takes:  61.33ms</code></pre>
 <ul>
 <li>Method 2</li>
 </ul>
-<div id="07c776af" class="cell" data-execution_count="9">
+<div id="36c7dc85" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> heapq <span class="im">import</span> heapify</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1559,7 +1559,7 @@ Count 5,000 takes:  61.33ms</code></pre>
 <li>Now using `heappop</li>
 </ul></li>
 </ul>
-<div id="0770826d" class="cell" data-execution_count="10">
+<div id="7d005c45" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> heapq <span class="im">import</span> heapify, heappush, heappop</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1619,7 +1619,7 @@ Books: ['Wuthering Heights']</code></pre>
 <ul>
 <li>Benchmarking the <code>heappq</code> implementation,</li>
 </ul>
-<div id="32dc29c0" class="cell" data-execution_count="11">
+<div id="d7203460" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> heapq <span class="im">import</span> heappush, heappop</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
@@ -1649,11 +1649,11 @@ Books: ['Wuthering Heights']</code></pre>
 <span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>    delay <span class="op">=</span> heap_overdue_benchmark(count)</span>
 <span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Count </span><span class="sc">{</span>count<span class="sc">:&gt;5,}</span><span class="ss"> takes </span><span class="sc">{</span>delay<span class="op">*</span><span class="fl">1e3</span><span class="sc">:6.2f}</span><span class="ss">ms"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Count 10,000 takes   3.22ms
-Count 20,000 takes   7.07ms
-Count 30,000 takes  10.84ms
-Count 40,000 takes  15.15ms
-Count 50,000 takes  19.56ms</code></pre>
+<pre><code>Count 10,000 takes   2.78ms
+Count 20,000 takes   6.36ms
+Count 30,000 takes  10.41ms
+Count 40,000 takes  13.93ms
+Count 50,000 takes  18.39ms</code></pre>
 </div>
 </div>
 <ul>
@@ -1666,7 +1666,7 @@ Count 50,000 takes  19.56ms</code></pre>
 </ul></li>
 </ul></li>
 </ul>
-<div id="31e0b520" class="cell" data-execution_count="12">
+<div id="cf0c951d" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> heapq <span class="im">import</span> heapify, heappush, heappop</span>

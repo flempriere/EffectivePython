@@ -1124,7 +1124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Unfortunately this is quite blunt</li>
 </ul></li>
 </ul>
-<div id="26c82ebe" class="cell" data-execution_count="1">
+<div id="4e644c68" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gc</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1161,9 +1161,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>Before: 87902
 After:    97977
-&lt;__main__.MyObject object at 0x7fb5dc21d860&gt;
-&lt;__main__.MyObject object at 0x7fb5dc21d8b0&gt;
-&lt;__main__.MyObject object at 0x7fb5dc21d900&gt;</code></pre>
+&lt;__main__.MyObject object at 0x7f4968e15680&gt;
+&lt;__main__.MyObject object at 0x7f4968e156d0&gt;
+&lt;__main__.MyObject object at 0x7f4968e15720&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -1178,7 +1178,7 @@ After:    97977
 <li>Allows you to link an object to where it was allocated</li>
 </ul></li>
 </ul>
-<div id="b10ace19" class="cell" data-execution_count="2">
+<div id="2a118fb6" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tracemalloc</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1214,9 +1214,9 @@ After:    97977
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> stat <span class="kw">in</span> stats[:<span class="dv">3</span>]:</span>
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(stat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>/tmp/ipykernel_14135/1425524081.py:11: size=1299 KiB (+1299 KiB), count=10000 (+10000), average=133 B
-/tmp/ipykernel_14135/1425524081.py:17: size=785 KiB (+785 KiB), count=10000 (+10000), average=80 B
-/tmp/ipykernel_14135/1425524081.py:18: size=84.4 KiB (+84.4 KiB), count=100 (+100), average=864 B</code></pre>
+<pre><code>/tmp/ipykernel_14106/1425524081.py:11: size=1299 KiB (+1299 KiB), count=10000 (+10000), average=133 B
+/tmp/ipykernel_14106/1425524081.py:17: size=785 KiB (+785 KiB), count=10000 (+10000), average=80 B
+/tmp/ipykernel_14106/1425524081.py:18: size=84.4 KiB (+84.4 KiB), count=100 (+100), average=864 B</code></pre>
 </div>
 </div>
 <ul>
@@ -1226,7 +1226,7 @@ After:    97977
 </ul></li>
 <li>Can print the full stack trace</li>
 </ul>
-<div id="4ac7f544" class="cell" data-execution_count="3">
+<div id="6065ea38" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tracemalloc</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>tracemalloc.start(<span class="dv">10</span>)</span>
@@ -1274,13 +1274,13 @@ After:    97977
     if await self.run_code(code, result, async_=asy):
   File "/home/runner/work/EffectivePython/EffectivePython/.venv/lib/python3.14/site-packages/IPython/core/interactiveshell.py", line 3747
     exec(code_obj, self.user_global_ns, self.user_ns)
-  File "/tmp/ipykernel_14135/1838260187.py", line 27
+  File "/tmp/ipykernel_14106/1838260187.py", line 27
     waste_memory = run()
-  File "/tmp/ipykernel_14135/1838260187.py", line 23
+  File "/tmp/ipykernel_14106/1838260187.py", line 23
     deep_values.append(get_data())
-  File "/tmp/ipykernel_14135/1838260187.py", line 15
+  File "/tmp/ipykernel_14106/1838260187.py", line 15
     obj = MyObject()
-  File "/tmp/ipykernel_14135/1838260187.py", line 9
+  File "/tmp/ipykernel_14106/1838260187.py", line 9
     self.data = os.urandom(1000)</code></pre>
 </div>
 </div>

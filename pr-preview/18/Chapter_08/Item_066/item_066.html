@@ -1114,7 +1114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>Naturally this can be implemented via decorator (See <a href="../../Chapter_05/Item_038/item_038.html">Item 38</a>)</li>
 </ul>
-<div id="f71f92e7" class="cell" data-execution_count="1">
+<div id="6946f4ed" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> trace_func(func):</span>
@@ -1144,7 +1144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>We could then use this to create a version of a dictionary that provides a trace (See <a href="../../Chapter_07/Item_057/item_057.html">Item 58</a>)</li>
 </ul>
-<div id="1c689efb" class="cell" data-execution_count="2">
+<div id="ddf694ad" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> trace_func(func):</span>
@@ -1214,7 +1214,7 @@ __getitem__(({'hi': 1, 'there': 2}, 'does not exist'), {}) -&gt; KeyError('does 
 </ul></li>
 <li>We can then declare the <code>TraceDict</code> with this metaclass</li>
 </ul>
-<div id="01d2803d" class="cell" data-execution_count="3">
+<div id="bc0ed2fb" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> types</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1295,7 +1295,7 @@ __getitem__(({'hi': 1, 'there': 2}, 'does not exist'), {}) -&gt; KeyError('does 
 <ul>
 <li>However, we’ll run back into the problem that we can’t use this approach with any class that already has a metaclass</li>
 </ul>
-<div id="b9c0e61e" class="cell" data-execution_count="4">
+<div id="c1230a5c" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> OtherMeta(<span class="bu">type</span>):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1324,7 +1324,7 @@ __getitem__(({'hi': 1, 'there': 2}, 'does not exist'), {}) -&gt; KeyError('does 
 <li>i.e.&nbsp;the fix above we make <code>OtherMeta</code> inherit from <code>TraceMeta</code></li>
 </ul></li>
 </ul>
-<div id="caa375ba" class="cell" data-execution_count="5">
+<div id="0be17441" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> OtherMeta(TraceMeta):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1353,7 +1353,7 @@ __getitem__(({'hi': 1, 'there': 2}, 'does not exist'), {}) -&gt; KeyError('does 
 <li>New version is then returned</li>
 </ul></li>
 </ul>
-<div id="ad34bde9" class="cell" data-execution_count="6">
+<div id="a6370463" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_class_decorator(klass):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    klass.extra_param <span class="op">=</span> <span class="st">"hello"</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> klass</span>
@@ -1375,7 +1375,7 @@ hello</code></pre>
 <li>Instead of a metaclass we just write a standalone function</li>
 </ul></li>
 </ul>
-<div id="021c45e1" class="cell" data-execution_count="7">
+<div id="e0515f25" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> functools</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> types</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1452,7 +1452,7 @@ __getitem__(({'hi': 1, 'there': 2}, 'does not exist'), {}) -&gt; KeyError('does 
 <ul>
 <li>Class decorators also work when the class has a metaclass</li>
 </ul>
-<div id="d68a5d0f" class="cell" data-execution_count="8">
+<div id="cda3d9ce" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> OtherMeta(<span class="bu">type</span>):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
