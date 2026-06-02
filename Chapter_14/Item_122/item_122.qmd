@@ -4,4 +4,249 @@ title: "Item 122: Know how to Break Circular Dependencies"
 
 ## Notes
 
+:::{.callout-note}
+This example heavily relies on the module structure of a packaged python program. For that reason it is not provided as
+an executable notebook. Consider downloading the provided source code from the github directly to run the examples yourself
+:::
+
+- A common issue that comes up in code is a circular dependency
+    - This happens when modules end up interdependent on each other
+- For example, A GUI program might show a dialog for saving a document
+    - Dialog uses arguments to know what data to display
+    - This is passed to event handlers
+    - Dialog also reads global state (e.g. preferences)
+        - Determines how to render itself
+
+```python
+# dialog.py
+import app
+
+class Dialog:
+    def __init__(self, save_dir):
+        self.save_dir = save_dir
+
+save_dialog = Dialog(app.prefs.get("save_dir"))
+
+def show():
+    print(f"Dialog: saving to {save_dialog.save_dir}")
+```
+
+- The dialog depends on the `prefs` object defined in the `app` module
+    - But `app` itself then imports the `Dialog` class to be able to display it
+
+```python
+# app.py
+import dialog
+
+class Prefs:
+    def get(self, name):
+        return "Hello, World!"
+
+prefs = Prefs()
+dialog.show()
+```
+
+- Trying to integrate this into our main program will throw an error from the resulting circular import
+
+```python
+Traceback (most recent call last):
+  File ".../EffectivePython/Chapter_14/Item_122/Examples/RecursiveImport/main.py", line 1, in <module>
+    import app  # noqa: F401
+    ^^^^^^^^^^
+  File ".../EffectivePython/Chapter_14/Item_122/Examples/RecursiveImport/app.py", line 2, in <module>
+    import dialog
+  File ".../EffectivePython/Chapter_14/Item_122/Examples/RecursiveImport/dialog.py", line 10, in <module>
+    save_dialog = Dialog(app.prefs.get("save_dir"))
+                         ^^^^^^^^^
+AttributeError: module 'app' has no attribute 'prefs' (consider renaming '.../EffectivePython/Chapter_14/Item_122/Examples/RecursiveImport/app.py' if it has the same name as a library you intended to import)
+```
+
+- This error arises because of the specific way that python handles module importing
+    - Described [in the docs here](https://docs.python.org/3/library/importlib.html)
+- Python performs, depth-first
+
+  1. Attempt to locate the module via `sys.path`
+  2. Load the module, and check for compilation errors
+  3. Create an empty module object
+  4. Insert the module into `sys.modules`
+  5. Run module to define it's contents
+
+- A circular dependency results in one module being invoked by another before it's attributes are loaded (Step 5.)
+    - But the module can be loaded after the module is in `sys.modules` (Step 4.)
+- Above, `app` imports `dialog`
+    - Nothing is defined yet
+    - `dialog` then imports `app`
+        - `app` has yet to finish running (since it's importing `dialog`)
+        - `AttributeError` exception is raised since `prefs` is yet to be defined when accessed by `dialog`
+- In general in these cases code should be refactored to avoid circular dependencies
+    - Here we want `prefs` to be at the bottom of the dependency tree
+        - Enables both `app` and `dialog` to import it as long as they are higher level modules
+    - Not always possible or practical to do such a restructure
+- There are three other techniques that can be used
+
+### Reordering Imports
+
+ - Changing when and where `import` are called can resolve the unloaded `import` issue
+    - E.g. changing the `import dialog` to after the `prefs` variable instantiation
+
+      ```python
+        # app.py
+        class Prefs:
+            def get(self, name):
+                return "Hello, World!"
+
+
+        prefs = Prefs()
+
+        import dialog  # noqa: E402
+
+        dialog.show()
+      ```
+
+        - Works here because when `dialog` runs it's import `app.perfs` is already defined
+ - Breaks the PEP 8 style guide
+    - Module is no longer at the top but buried in the code
+    - For larger files, means the `import` statements can be hard to find
+- This solution is brittle
+    - Latter changes might move the relative position of the `import` and break again
+- Avoid using this technique
+
+### Import, Configure, Run
+
+- Second approach, minimise side-effects introduced by a module at runtime
+    - e.g. Only run definitions at import time
+        - Including constants
+    - Don't call any functions
+        - Including constructors that rely on external modules
+- Module's are explicitly configured after `import` via a `configure` function
+    - Prepares a module's state
+    - Is able to access other initialised modules
+-   - Must be run after all required imports have been completed
+- For example, we could redefine our `dialog` module
+    - Access's `prefs` object as part of the `configure` call
+
+      ```python
+        # dialog.py
+        import app
+
+
+        class Dialog:
+            def __init__(self):
+                self.save_dir = None
+
+
+        save_dialog = Dialog()
+
+
+        def show():
+            print(f"Dialog: saving to {save_dialog.save_dir}")
+
+
+        # new configure method
+        def configure():
+            save_dialog.save_dir = app.prefs.get("save_dir")
+      ```
+    - Can also remove side effects from `app` `import`
+
+      ```python
+        # app.py
+
+
+        class Prefs:
+            def get(self, name):
+                return "Hello, World!"
+
+
+        prefs = Prefs()
+
+
+        def configure():
+            pass
+      ```
+
+    - Lastly, construct everything in `main`
+        - Including the new `configure` step
+
+      ```python
+        # main.py
+
+        import app
+        import dialog
+
+        app.configure()
+        dialog.configure()
+
+        dialog.show()
+        print("Running program...")
+      ```
+
+- Works well generally
+- Supports *dependency injection* style patterns at the module level (See [Item 112](../../Chapter_13/Item_112/item_112.qmd))
+- Not all modules naturally support an explicit `configure` step structure
+- Two phases in a module makes it harder to follow program flow in a module
+    - `import`
+        - Objects are defined here
+    - `configure`
+        - Use patterns of an object are defined here
+
+### Dynamic Import
+
+- Potentially the simplest solution
+- Dynamically import module at site of use
+    - Simply call the `import` within a function or method
+    - `import` occurs at program runtime rather than start-up
+- For example, redefining `dialog` to use dynamic imports
+
+  ```python
+    # dialog.py
+    class Dialog:
+        def __init__(self):
+            self.save_dir = None
+
+
+    save_dialog = Dialog()
+
+
+    def show():
+        # move configuration into `show` as a dynamic import
+        import app
+
+        save_dialog.save_dir = app.prefs.get("save_dir")
+        print(f"Dialog: saving to {save_dialog.save_dir}")
+
+  ```
+
+- Can leave `app` unchanged
+
+  ```python
+    # app.py
+    import dialog
+
+
+    class Prefs:
+        def get(self, name):
+            return "Hello, World!"
+
+
+    prefs = Prefs()
+    dialog.show()
+  ```
+
+- Approach effectively hides the `configure` approach of [the second method](#import-configure-run) inside the standard function calls
+- Has the advantage of not needing to change external interface of the module
+- Delay's the `import` until we're sure that all modules will end up properly initialised
+- But, should try to avoid this approach where possible
+    - `import` statement has a performance cost
+         - Can add up if the `import` statement is invoked frequently (See [Item 98](../../Chapter_11/Item_098/item_098.qmd))
+    - Need to ensure all use paths will correctly load the module
+        - Else can run into errors during runtime
+            - Including `SyntaxError` exceptions (See [Item 108](../../Chapter_13/Item_108/item_108.qmd))
+- Weight these downsides against the cost of refactoring a program
+
 ## Things to Remember
+
+- Circular dependencies arise when two modules call each other at runtime
+    - Can cause program crashes at start-up due to improper module initialisation
+- Try to break circular dependencies by refactoring mutual dependencies into distinct modules at the bottom of a dependency tree
+- Dynamic imports are a simple solution for breaking a circular dependency when a refactor is impractical
+    - Minimises changes to the client facing interface
