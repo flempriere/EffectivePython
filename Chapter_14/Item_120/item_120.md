@@ -1,6 +1,6 @@
 # Item 120: Consider Module-Scoped Code to Configure Deployment
-Environments
 
+Environments
 
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
@@ -47,8 +47,8 @@ Environments
 
 - E.g. We might have two `main` files
 
-  1.  A production file
-  2.  A development file
+  1. A production file
+  2. A development file
 
   ``` python
     # dev_main.py
@@ -127,6 +127,7 @@ Environments
     else:
         Database = PosixDatabase
   ```
+
 - Can similarly use environment variables via `os.environ` to define how
   a program should be configured
 

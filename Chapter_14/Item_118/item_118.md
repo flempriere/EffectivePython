@@ -1,6 +1,5 @@
 # Item 118: Write Docstrings for Every Function, Class and Module
 
-
 - [Notes](#notes)
   - [Documenting Modules](#documenting-modules)
   - [Documenting Classes](#documenting-classes)
@@ -47,12 +46,12 @@ print(palindrome.__doc__)
 
 - By providing docstrings,
 
-  1.  Documentation is more accessible
+  1. Documentation is more accessible
       - Can develop interactively by interrogating documentation
       - Many IDE’s or development environments can display the docstring
         text
       - Otherwise you can use the `help` function
-  2.  Standardised documentation format
+  2. Standardised documentation format
       - Easy to create tools for ingesting documentation
       - Many tools convert the raw documentation to more appealing
         formats
@@ -62,7 +61,7 @@ print(palindrome.__doc__)
       - Open source documentation can be freely hosted by sites like
         [read the
         docs](https://about.readthedocs.com/?ref=app.readthedocs.org)
-  3.  Ease of writing documentation
+  3. Ease of writing documentation
 
   - Easy to write documentation encourages documenting it in the first
     place

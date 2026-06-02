@@ -1,6 +1,5 @@
 # Item 121: Define a Root `Exception` to Insulate Callers from APIs
 
-
 - [Notes](#notes)
 - [Things to Remember](#things-to-remember)
 
@@ -83,9 +82,9 @@ except Error as e:
 
 - Has three helpful effects
 
-  1.  Root exception makes it clear when the caller is misusing an API
-  2.  Distinguishes misuses of the API from the API itself having a bug
-  3.  Future-proofs an API
+  1. Root exception makes it clear when the caller is misusing an API
+  2. Distinguishes misuses of the API from the API itself having a bug
+  3. Future-proofs an API
       - Can expand to provide more exception types for specific
         situations
 

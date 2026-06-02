@@ -1,6 +1,5 @@
 # Item 119: Use Packages to Organise Modules and Provide Stable APIs
 
-
 - [Notes](#notes)
   - [Namespaces](#namespaces)
   - [Stable APIs](#stable-apis)

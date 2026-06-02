@@ -1,6 +1,6 @@
 # Item 117: Use Viirtual Environments for Isolated and Reproducible
-Dependencies
 
+Dependencies
 
 - [Notes](#notes)
   - [Using `venv` on the Command Line](#using-venv-on-the-command-line)
