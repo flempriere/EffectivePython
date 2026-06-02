@@ -136,9 +136,9 @@ except Error:  # Misuse of the API
 
     ERROR:root:Bug in the calling code
     Traceback (most recent call last):
-      File "/tmp/ipykernel_14375/1234711497.py", line 32, in <module>
+      File "/tmp/ipykernel_14401/1234711497.py", line 32, in <module>
         weight = determine_weight(-1, 1)
-      File "/tmp/ipykernel_14375/1234711497.py", line 26, in determine_weight
+      File "/tmp/ipykernel_14401/1234711497.py", line 26, in determine_weight
         raise InvalidVolumeError("Volume must be positive")
     InvalidVolumeError: Volume must be positive
 
@@ -191,9 +191,9 @@ except Exception:  # catch anything else
 
     ERROR:root:Bug in the API code!
     Traceback (most recent call last):
-      File "/tmp/ipykernel_14375/4162312265.py", line 31, in <module>
+      File "/tmp/ipykernel_14401/4162312265.py", line 31, in <module>
         weight = determine_weight(0, 1)
-      File "/tmp/ipykernel_14375/4162312265.py", line 27, in determine_weight
+      File "/tmp/ipykernel_14401/4162312265.py", line 27, in determine_weight
         density / volume  # trigger a divide by zero error
         ~~~~~~~~^~~~~~~~
     ZeroDivisionError: division by zero

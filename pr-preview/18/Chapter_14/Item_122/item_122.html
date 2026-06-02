@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -1042,7 +1077,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a>
+  <ul>
+  <li><a href="#reordering-imports" id="toc-reordering-imports" class="nav-link" data-scroll-target="#reordering-imports">Reordering Imports</a></li>
+  <li><a href="#import-configure-run" id="toc-import-configure-run" class="nav-link" data-scroll-target="#import-configure-run">Import, Configure, Run</a></li>
+  <li><a href="#dynamic-import" id="toc-dynamic-import" class="nav-link" data-scroll-target="#dynamic-import">Dynamic Import</a></li>
+  </ul></li>
   <li><a href="#things-to-remember" id="toc-things-to-remember" class="nav-link" data-scroll-target="#things-to-remember">Things to Remember</a></li>
   </ul>
 <div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/flempriere/EffectivePython/" target="_blank"><i class="bi bi-github"></i>GitHub Repo</a></li><li><a href="https://mybinder.org/v2/gh/flempriere/EffectivePython/HEAD?urlpath=vscode" target="_blank"><i class="bi bi-journals"></i>Launch Binder</a></li></ul></div></nav>
@@ -1071,9 +1111,302 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This example heavily relies on the module structure of a packaged python program. For that reason it is not provided as an executable notebook. Consider downloading the provided source code from the github directly to run the examples yourself</p>
+</div>
+</div>
+<ul>
+<li>A common issue that comes up in code is a circular dependency
+<ul>
+<li>This happens when modules end up interdependent on each other</li>
+</ul></li>
+<li>For example, A GUI program might show a dialog for saving a document
+<ul>
+<li>Dialog uses arguments to know what data to display</li>
+<li>This is passed to event handlers</li>
+<li>Dialog also reads global state (e.g.&nbsp;preferences)
+<ul>
+<li>Determines how to render itself</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dialog.py</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> app</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Dialog:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, save_dir):</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.save_dir <span class="op">=</span> save_dir</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>save_dialog <span class="op">=</span> Dialog(app.prefs.get(<span class="st">"save_dir"</span>))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> show():</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Dialog: saving to </span><span class="sc">{</span>save_dialog<span class="sc">.</span>save_dir<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>The dialog depends on the <code>prefs</code> object defined in the <code>app</code> module
+<ul>
+<li>But <code>app</code> itself then imports the <code>Dialog</code> class to be able to display it</li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># app.py</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dialog</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Prefs:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get(<span class="va">self</span>, name):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Hello, World!"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>prefs <span class="op">=</span> Prefs()</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>dialog.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Trying to integrate this into our main program will throw an error from the resulting circular import</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Traceback (most recent call last):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  File <span class="st">".../EffectivePython/Chapter_14/Item_122/Examples/RecursiveImport/main.py"</span>, line <span class="dv">1</span>, <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> app  <span class="co"># noqa: F401</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">^^^^^^^^^^</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  File <span class="st">".../EffectivePython/Chapter_14/Item_122/Examples/RecursiveImport/app.py"</span>, line <span class="dv">2</span>, <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> dialog</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  File <span class="st">".../EffectivePython/Chapter_14/Item_122/Examples/RecursiveImport/dialog.py"</span>, line <span class="dv">10</span>, <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    save_dialog <span class="op">=</span> Dialog(app.prefs.get(<span class="st">"save_dir"</span>))</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                         <span class="op">^^^^^^^^^</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="pp">AttributeError</span>: module <span class="st">'app'</span> has no attribute <span class="st">'prefs'</span> (consider renaming <span class="st">'.../EffectivePython/Chapter_14/Item_122/Examples/RecursiveImport/app.py'</span> <span class="cf">if</span> it has the same name <span class="im">as</span> a library you intended to <span class="im">import</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><p>This error arises because of the specific way that python handles module importing</p>
+<ul>
+<li>Described <a href="https://docs.python.org/3/library/importlib.html">in the docs here</a></li>
+</ul></li>
+<li><p>Python performs, depth-first</p>
+<ol type="1">
+<li>Attempt to locate the module via <code>sys.path</code></li>
+<li>Load the module, and check for compilation errors</li>
+<li>Create an empty module object</li>
+<li>Insert the module into <code>sys.modules</code></li>
+<li>Run module to define it’s contents</li>
+</ol></li>
+<li><p>A circular dependency results in one module being invoked by another before it’s attributes are loaded (Step 5.)</p>
+<ul>
+<li>But the module can be loaded after the module is in <code>sys.modules</code> (Step 4.)</li>
+</ul></li>
+<li><p>Above, <code>app</code> imports <code>dialog</code></p>
+<ul>
+<li>Nothing is defined yet</li>
+<li><code>dialog</code> then imports <code>app</code>
+<ul>
+<li><code>app</code> has yet to finish running (since it’s importing <code>dialog</code>)</li>
+<li><code>AttributeError</code> exception is raised since <code>prefs</code> is yet to be defined when accessed by <code>dialog</code></li>
+</ul></li>
+</ul></li>
+<li><p>In general in these cases code should be refactored to avoid circular dependencies</p>
+<ul>
+<li>Here we want <code>prefs</code> to be at the bottom of the dependency tree
+<ul>
+<li>Enables both <code>app</code> and <code>dialog</code> to import it as long as they are higher level modules</li>
+</ul></li>
+<li>Not always possible or practical to do such a restructure</li>
+</ul></li>
+<li><p>There are three other techniques that can be used</p></li>
+</ul>
+<section id="reordering-imports" class="level3">
+<h3 class="anchored" data-anchor-id="reordering-imports">Reordering Imports</h3>
+<ul>
+<li>Changing when and where <code>import</code> are called can resolve the unloaded <code>import</code> issue
+<ul>
+<li><p>E.g. changing the <code>import dialog</code> to after the <code>prefs</code> variable instantiation</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># app.py</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Prefs:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> get(<span class="va">self</span>, name):</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="st">"Hello, World!"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  prefs <span class="op">=</span> Prefs()</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> dialog  <span class="co"># noqa: E402</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  dialog.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Works here because when <code>dialog</code> runs it’s import <code>app.perfs</code> is already defined</li>
+</ul></li>
+</ul></li>
+<li>Breaks the PEP 8 style guide
+<ul>
+<li>Module is no longer at the top but buried in the code</li>
+<li>For larger files, means the <code>import</code> statements can be hard to find</li>
+</ul></li>
+<li>This solution is brittle
+<ul>
+<li>Latter changes might move the relative position of the <code>import</code> and break again</li>
+</ul></li>
+<li>Avoid using this technique</li>
+</ul>
+</section>
+<section id="import-configure-run" class="level3">
+<h3 class="anchored" data-anchor-id="import-configure-run">Import, Configure, Run</h3>
+<ul>
+<li>Second approach, minimise side-effects introduced by a module at runtime
+<ul>
+<li>e.g.&nbsp;Only run definitions at import time
+<ul>
+<li>Including constants</li>
+</ul></li>
+<li>Don’t call any functions
+<ul>
+<li>Including constructors that rely on external modules</li>
+</ul></li>
+</ul></li>
+<li>Module’s are explicitly configured after <code>import</code> via a <code>configure</code> function
+<ul>
+<li>Prepares a module’s state</li>
+<li>Is able to access other initialised modules</li>
+</ul></li>
+<li><ul>
+<li>Must be run after all required imports have been completed</li>
+</ul></li>
+<li>For example, we could redefine our <code>dialog</code> module
+<ul>
+<li><p>Access’s <code>prefs</code> object as part of the <code>configure</code> call</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># dialog.py</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> app</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Dialog:</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.save_dir <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  save_dialog <span class="op">=</span> Dialog()</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> show():</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="ss">f"Dialog: saving to </span><span class="sc">{</span>save_dialog<span class="sc">.</span>save_dir<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># new configure method</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> configure():</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>      save_dialog.save_dir <span class="op">=</span> app.prefs.get(<span class="st">"save_dir"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Can also remove side effects from <code>app</code> <code>import</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># app.py</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Prefs:</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> get(<span class="va">self</span>, name):</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="st">"Hello, World!"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  prefs <span class="op">=</span> Prefs()</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> configure():</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>      <span class="cf">pass</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Lastly, construct everything in <code>main</code></p>
+<ul>
+<li>Including the new <code>configure</code> step</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># main.py</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> app</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> dialog</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  app.configure()</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  dialog.configure()</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  dialog.show()</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Running program..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+<li>Works well generally</li>
+<li>Supports <em>dependency injection</em> style patterns at the module level (See <a href="../../Chapter_13/Item_112/item_112.html">Item 112</a>)</li>
+<li>Not all modules naturally support an explicit <code>configure</code> step structure</li>
+<li>Two phases in a module makes it harder to follow program flow in a module
+<ul>
+<li><code>import</code>
+<ul>
+<li>Objects are defined here</li>
+</ul></li>
+<li><code>configure</code>
+<ul>
+<li>Use patterns of an object are defined here</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="dynamic-import" class="level3">
+<h3 class="anchored" data-anchor-id="dynamic-import">Dynamic Import</h3>
+<ul>
+<li><p>Potentially the simplest solution</p></li>
+<li><p>Dynamically import module at site of use</p>
+<ul>
+<li>Simply call the <code>import</code> within a function or method</li>
+<li><code>import</code> occurs at program runtime rather than start-up</li>
+</ul></li>
+<li><p>For example, redefining <code>dialog</code> to use dynamic imports</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># dialog.py</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Dialog:</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.save_dir <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  save_dialog <span class="op">=</span> Dialog()</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> show():</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>      <span class="co"># move configuration into `show` as a dynamic import</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>      <span class="im">import</span> app</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>      save_dialog.save_dir <span class="op">=</span> app.prefs.get(<span class="st">"save_dir"</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="ss">f"Dialog: saving to </span><span class="sc">{</span>save_dialog<span class="sc">.</span>save_dir<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Can leave <code>app</code> unchanged</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># app.py</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> dialog</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Prefs:</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> get(<span class="va">self</span>, name):</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="st">"Hello, World!"</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  prefs <span class="op">=</span> Prefs()</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  dialog.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Approach effectively hides the <code>configure</code> approach of <a href="#import-configure-run">the second method</a> inside the standard function calls</p></li>
+<li><p>Has the advantage of not needing to change external interface of the module</p></li>
+<li><p>Delay’s the <code>import</code> until we’re sure that all modules will end up properly initialised</p></li>
+<li><p>But, should try to avoid this approach where possible</p>
+<ul>
+<li><code>import</code> statement has a performance cost
+<ul>
+<li>Can add up if the <code>import</code> statement is invoked frequently (See <a href="../../Chapter_11/Item_098/item_098.html">Item 98</a>)</li>
+</ul></li>
+<li>Need to ensure all use paths will correctly load the module
+<ul>
+<li>Else can run into errors during runtime
+<ul>
+<li>Including <code>SyntaxError</code> exceptions (See <a href="../../Chapter_13/Item_108/item_108.html">Item 108</a>)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>Weight these downsides against the cost of refactoring a program</p></li>
+</ul>
+</section>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li>Circular dependencies arise when two modules call each other at runtime
+<ul>
+<li>Can cause program crashes at start-up due to improper module initialisation</li>
+</ul></li>
+<li>Try to break circular dependencies by refactoring mutual dependencies into distinct modules at the bottom of a dependency tree</li>
+<li>Dynamic imports are a simple solution for breaking a circular dependency when a refactor is impractical
+<ul>
+<li>Minimises changes to the client facing interface</li>
+</ul></li>
+</ul>
 
 
 </section>

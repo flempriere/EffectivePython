@@ -128,9 +128,9 @@ for proc in procs:
     print(out[-10:])
 ```
 
-    b's\xfd\x9bE\x088xbd\xab'
-    b'i\x06\x13QF\xfd\x89\xcc/\xfb'
-    b'f\xea$M\x85\x0eF\xdd{\x0f'
+    b'"W\x9c\xb4\xe8\xe7[\x87\xa6\xc9'
+    b'\x10)\xf20\x8f\xc8\x8e\xa5\x16\xa8'
+    b'\xb3\x97\xc2\x957\xa5\x10\x05t-'
 
 - Can also chain parallel processes, a-la UNIX pipelines
   - Connect the output of one child process as the input of another
@@ -191,9 +191,9 @@ for proc in hash_procs:
     assert proc.returncode == 0
 ```
 
-    b'v\xcf]\xb3\xa9\x81\xe8\xa1\x86\xc9'
-    b'\xec2\xb94\xa7\x13\x04Kks'
-    b'\xbb\x9e\xed\xcfYk\xcc\x82n\xc4'
+    b'\xf21S\xb8D\xcc\\\x17xZ'
+    b'\x86E\xf4\\\xa4\x1d\x18\x05\xfaL'
+    b'?\x86\x8d\xe6\xbf\xee\xe4u_\xf6'
 
 - `run_hash` defines spawns and returns one process to create the hash
   - It connects the spawned process to a provided input stream

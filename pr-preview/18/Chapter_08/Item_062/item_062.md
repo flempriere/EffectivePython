@@ -57,10 +57,10 @@ class MySubClass(MyClass):
 
     * Running <class '__main__.Meta'>.__new__ for MyClass
     Bases: ()
-    {'__module__': '__main__', '__qualname__': 'MyClass', '__firstlineno__': 11, 'stuff': 123, 'foo': <function MyClass.foo at 0x7ffbb86fe4b0>, '__static_attributes__': (), '__classdictcell__': <cell at 0x7ffbb8724820: dict object at 0x7ffbb8575900>}
+    {'__module__': '__main__', '__qualname__': 'MyClass', '__firstlineno__': 11, 'stuff': 123, 'foo': <function MyClass.foo at 0x7f492cec24b0>, '__static_attributes__': (), '__classdictcell__': <cell at 0x7f492ceee260: dict object at 0x7f492cd43700>}
     * Running <class '__main__.Meta'>.__new__ for MySubClass
     Bases: (<class '__main__.MyClass'>,)
-    {'__module__': '__main__', '__qualname__': 'MySubClass', '__firstlineno__': 17, 'other': 567, 'bar': <function MySubClass.bar at 0x7ffbb86fe610>, '__static_attributes__': (), '__classdictcell__': <cell at 0x7ffbb8726290: dict object at 0x7ffbb8575a40>}
+    {'__module__': '__main__', '__qualname__': 'MySubClass', '__firstlineno__': 17, 'other': 567, 'bar': <function MySubClass.bar at 0x7f492cec2610>, '__static_attributes__': (), '__classdictcell__': <cell at 0x7f492ceee1d0: dict object at 0x7f492cd437c0>}
 
 - Metaclass has access to,
   1.  Itself (`meta`)

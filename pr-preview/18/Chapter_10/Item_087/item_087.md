@@ -112,10 +112,10 @@ handle(request)
 
     AssertionError('My Message')
 
-      File "/tmp/ipykernel_11918/1677808877.py", line 16, in handle
+      File "/tmp/ipykernel_11935/1677808877.py", line 16, in handle
         do_work(request.body)
         ~~~~~~~^^^^^^^^^^^^^^
-      File "/tmp/ipykernel_11918/1677808877.py", line 11, in do_work
+      File "/tmp/ipykernel_11935/1677808877.py", line 11, in do_work
         assert False, data
                ^^^^^
 
