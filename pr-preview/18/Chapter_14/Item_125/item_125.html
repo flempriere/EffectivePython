@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -1070,9 +1105,176 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li>Consider the process of shipping a developed application (See <a href="../../Chapter_14/Item_120/item_120.html">Item 120</a>)
+<ul>
+<li>Can be done via Package Managers (See <a href="../../Chapter_14/Item_116/item_116.html">Item 116</a>)</li>
+<li>Or by providing the source code and dependencies directly (e.g.&nbsp;to a container or server)</li>
+</ul></li>
+<li>Might consider putting all code and dependencies into a directory
+<ul>
+<li>Like the <code>pip</code> <code>site-packages</code> directory (See <a href="../../Chapter_14/Item_117/item_117.html">Item 117</a>)</li>
+</ul></li>
+<li>Copying many dependencies can add up
+<ul>
+<li>Especially when there are large numbers of small files</li>
+<li>File transfers can also alter permissions</li>
+</ul></li>
+<li>An old solution was to transfer a codebase as a <code>zip</code> file archive
+<ul>
+<li>Python has native support for handling these types of projects through the <code>zipimport</code> built-in library
+<ul>
+<li>Programs can be decompressed and loaded from within a python program</li>
+<li>zip files must be in the <code>PYTHONPATH</code> environment variable or <code>sys.path</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<pre class="shell"><code>$ cd flask-deps
+$ zip -r ../flask_deps.zip *
+$ cd ..
+$ PYTHONPATH=flask_deps.zip python3 -m flask --app=myapp routes
+
+Endpoint     Methods  Rules
+---------------------------------------------
+hello_world  GET      /
+static       GET      /static/&lt;path:filename&gt;</code></pre>
+<ul>
+<li><p>There’s generally negligible performance cost to loading a python program from a <code>zip</code> archive</p>
+<ul>
+<li>Decompression time is dwarfed by the time to load files into memory via I/O</li>
+<li>Modern systems can also cache most of the files into memory (See <a href="../../Chapter_11/Item_097/item_097.html">Item 97</a>)</li>
+</ul></li>
+<li><p>Why not always compress a python program?</p>
+<ul>
+<li><p>Can do so via python’s <code>zipapp</code> built-in module</p>
+<pre class="shell"><code>  $ python3 -m zipapp flask_deps -m "flask.__main__:main" -p '/usr/bin/env python3' -c
+  $ ./flask_deps.pyz --app myapp routes
+  Endpoint
+
+  Endpoint     Methods  Rules
+  ---------------------------------------------
+  hello_world  GET      /
+  static       GET      /static/&lt;path:filename&gt;</code></pre></li>
+<li><p>Can break data file accesses and extension modules</p></li>
+</ul></li>
+<li><p>For example, trying to create a <code>zip</code> archive for Django and then run an application</p>
+<pre class="shell"><code>$ python3 -m compileall django
+$ zip -r django.zip Django-5.0.3.dist-info django
+$ rm -R Django-5.0.3.dist-info django
+$ PYTHONPATH=django.zip python3 django_project/manage.py check
+Traceback (most recent call last):
+...
+OSError: No translation files found for default language en-us</code></pre></li>
+<li><p>Breaks since Django looks for a file stored with the source files</p>
+<ul>
+<li><p>Ends up looking inside the <code>zip</code> archive</p></li>
+<li><p>Can’t be resolved and so fails</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># trans_real.py</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Copyright (c) Django Software Foundation and</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># individual contributors. All rights reserved.</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DjangoTranslation(gettext_module.GNUTranslations):</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _init_translation_catalog(<span class="va">self</span>):</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        settingsfile <span class="op">=</span> sys.modules[settings.__module__].<span class="va">__file__</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        localedir <span class="op">=</span> os.path.join(</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>            os.path.dirname(settingsfile),</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">"locale"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        translation <span class="op">=</span> <span class="va">self</span>._new_gnu_trans(localedir)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.merge(translation)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+<li><p>Can patch this problem via the <code>pkgutil</code> built-in module</p>
+<ul>
+<li><p>Inspects modules to patch data accesses</p></li>
+<li><p>Works for <code>zip</code> archives and custom module loaders</p></li>
+<li><p>E.g. loading the missing Django file</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># django_pkgutil.py</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pkgutil</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pkgutil.get_data(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"django.conf.locale"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"en/LC_MESSAGES/django.po"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.decode(<span class="st">"utf-8"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+<li><p><code>pkgutil</code> is generally not used in practice</p>
+<ul>
+<li>As shown above, even Django doesn’t use it</li>
+</ul></li>
+<li><p>More common to transfer python projects as they are with their fixed directory structure</p>
+<ul>
+<li>Means resources are always at a fixed location</li>
+<li>Other languages might compile resources and code into a separate build directory
+<ul>
+<li>By default assumption becomes to handle data accesses explicitly</li>
+<li>Python can be more flexible since code should be colocated with data</li>
+</ul></li>
+</ul></li>
+<li><p><code>zipapp</code> also can’t load extension modules (See <a href="../../Chapter_11/Item_096/item_096.html">Item 96</a>)</p>
+<ul>
+<li>This is due to the Operating System</li>
+</ul></li>
+<li><p>For example, trying to run <code>numpy</code></p>
+<pre class="shell"><code>  $ zip -r ./numpy.zip numpy numpy-1.26.4.dist-info
+  $ rm -R numpy numpy-1.26.4.dist-info
+  $ PYTHONPATH=numpy.zip python -c 'import numpy'
+  Traceback(most recent call last):
+  ...
+  ModuleNotFoundError: No module named 'numpy.core._multiarray_umath'
+
+  During handling of the above exception, another exception occurred:
+
+  Traceback(most recent call last):
+  ...
+  ImportError:
+
+  IMPORTANT: PLEASE READ THIS FOR ADVICE ON HOW TO SOLVE THIS ISSUE!
+
+
+  Importing the numpy C-extensions failed. This error can happen for many
+  reasons, often due to issues with your setup or how NumPy was installed.
+  ...</code></pre></li>
+<li><p>Extension modules are common and popular for many python packages</p>
+<ul>
+<li>Alleviate CPU-intensive tasks (See <a href="../../Chapter_11/Item_096/item_096.html">Item 96</a>)</li>
+<li>Thus avoid using <code>zipimport</code> and <code>zipapp</code> for anything but a trivial program</li>
+</ul></li>
+<li><p>Python’s open-source community has a number of better methods for deploying Python programs</p>
+<ol type="1">
+<li><p><a href="https://github.com/pex-tool/pex">Pex</a></p></li>
+<li><p><a href="https://github.com/linkedin/shiv">Shiv</a></p>
+<ul>
+<li><p>Provide <code>zipapp</code>-like functionality but provide solutions to data file sourcing and extension modules</p>
+<pre class="shell"><code> $ pip install -e django_project
+ $ pex django_project -o myapp.pex
+ $ ./django_project.pex -m manage check
+ System check identified no issues (0 silenced)</code></pre></li>
+</ul></li>
+<li><p><a href="https://pyinstaller.org/en/stable/">PyInstaller</a></p>
+<ul>
+<li>Bundles a python executable to create a standalone executable program</li>
+</ul></li>
+</ol></li>
+<li><p>These tools can take some experimentation</p>
+<ul>
+<li>Make sure to read the docs</li>
+</ul></li>
+</ul>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>
+<ul>
+<li><p>Python can load and execute modules directly from <code>zip</code> archives</p>
+<ul>
+<li>Enables applications to be deployed as single-files</li>
+</ul></li>
+<li><p>Many common open-source packages break when deployed via a <code>zip</code> archive, due to</p>
+<ol type="1">
+<li>Reliance on data files</li>
+<li>Use of native extension libraries</li>
+</ol></li>
+<li><p>Use community-built alternatives to <code>zipapp</code> like <code>Pex</code> or <code>PyInstaller</code> to get the benefits of <code>zip</code> archives and single-file installs without the downsides</p></li>
+</ul>
 
 
 </section>

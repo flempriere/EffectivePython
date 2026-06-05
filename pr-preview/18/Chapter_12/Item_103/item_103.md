@@ -123,11 +123,11 @@ for i in range(1, 6):
     print(f"Count {count:>5,} takes: {delay * 1e3:>6.2f}ms")
 ```
 
-    Count 1,000,000 takes:  43.07ms
-    Count 2,000,000 takes:  82.97ms
-    Count 3,000,000 takes: 118.36ms
-    Count 4,000,000 takes: 158.77ms
-    Count 5,000,000 takes: 197.61ms
+    Count 1,000,000 takes:  43.81ms
+    Count 2,000,000 takes:  83.57ms
+    Count 3,000,000 takes: 119.33ms
+    Count 4,000,000 takes: 167.22ms
+    Count 5,000,000 takes: 206.06ms
 
 - Append takes roughly constant time for `list` type
 - The total time for enqueuing scales linearly with the data
@@ -159,11 +159,11 @@ for i in range(1, 6):
     print(f"Count {count:>5,} takes: {delay * 1e3:>6.2f}ms")
 ```
 
-    Count 10,000 takes:   7.23ms
-    Count 20,000 takes:  28.06ms
-    Count 30,000 takes:  60.86ms
-    Count 40,000 takes: 107.84ms
-    Count 50,000 takes: 173.25ms
+    Count 10,000 takes:   7.41ms
+    Count 20,000 takes:  27.13ms
+    Count 30,000 takes:  60.07ms
+    Count 40,000 takes: 106.87ms
+    Count 50,000 takes: 166.92ms
 
 - Total time for `pop` scales quadratically with the `list` size
 - Occurs since `pop(0)` causes every element to be shifted down one
@@ -274,11 +274,11 @@ for i in range(1, 6):
     print(f"Count {count:>5,} takes {delay * 1e3:>6.2f}ms")
 ```
 
-    Count 100,000 takes   3.34ms
-    Count 200,000 takes   6.68ms
-    Count 300,000 takes  11.32ms
-    Count 400,000 takes  15.69ms
-    Count 500,000 takes  19.94ms
+    Count 100,000 takes   3.33ms
+    Count 200,000 takes   6.41ms
+    Count 300,000 takes  11.87ms
+    Count 400,000 takes  15.33ms
+    Count 500,000 takes  19.78ms
 
 - Still shows an approximate constant time cost
 - Can also benchmark `popleft`
@@ -307,11 +307,11 @@ for i in range(1, 6):
     print(f"Count {count:>5,} takes {delay * 1e3:>6.2f}ms")
 ```
 
-    Count 100,000 takes   3.80ms
-    Count 200,000 takes   7.43ms
-    Count 300,000 takes  10.83ms
-    Count 400,000 takes  13.98ms
-    Count 500,000 takes  18.55ms
+    Count 100,000 takes   3.51ms
+    Count 200,000 takes   6.64ms
+    Count 300,000 takes   9.93ms
+    Count 400,000 takes  13.31ms
+    Count 500,000 takes  18.89ms
 
 - Here this scales linearly with the number of `popleft` calls, rather
   than quadratic like with `pop(0)`

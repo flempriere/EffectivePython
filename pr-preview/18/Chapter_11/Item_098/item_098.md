@@ -304,7 +304,7 @@ result = timeit.timeit(
 print(f"{result / trials * 1e9:2.1f} nanos per call")
 ```
 
-    241.7 nanos per call
+    245.2 nanos per call
 
 - In comparison, consider the approach below of using a lock-protected
   global variable

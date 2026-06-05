@@ -1183,7 +1183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul></li>
 </ul>
-<div id="fe62fa33" class="cell" data-execution_count="1">
+<div id="c90b8fe3" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> threading</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1247,7 +1247,7 @@ After time:   False</code></pre>
 <li>But would require us to mock out the timer (See <a href="../../Chapter_13/Item_111/item_111.html">Item 111</a>)</li>
 </ul></li>
 </ul>
-<div id="d2e64ce6" class="cell" data-execution_count="2">
+<div id="02955789" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>reset</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest <span class="im">import</span> TestCase, main</span>
@@ -1334,13 +1334,13 @@ Ran 2 tests in 0.002s
 <pre><code>Pop!</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>&lt;unittest.main.TestProgram at 0x7f1d6c47fa10&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7fcd185d7a10&gt;</code></pre>
 </div>
 </div>
 <ul>
 <li>We’ll also then have to write unit tests for our <code>ReusableTimer</code> app</li>
 </ul>
-<div id="86315563" class="cell" data-execution_count="3">
+<div id="58e6aea6" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>reset</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest <span class="im">import</span> TestCase, main, mock</span>
@@ -1415,7 +1415,7 @@ Ran 2 tests in 0.002s
 
 ----------------------------------------------------------------------
 
-Ran 2 tests in 0.003s
+Ran 2 tests in 0.004s
 
 
 
@@ -1424,14 +1424,14 @@ Ran 2 tests in 0.003s
 </div>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>&lt;unittest.main.TestProgram at 0x7f1d6c4ea850&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7fcd1863e850&gt;</code></pre>
 </div>
 </div>
 <ul>
 <li>Since the <code>Toaster</code> and <code>ReusableTimer</code> are designed to be used together we can see we have to heavily mock the internals</li>
 <li>Arguably better to just test the two components together as an <em>integration test</em></li>
 </ul>
-<div id="6857dfc5" class="cell" data-execution_count="4">
+<div id="e938d396" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>reset</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest <span class="im">import</span> TestCase, main</span>
@@ -1516,7 +1516,7 @@ Ran 2 tests in 0.003s
 
 ----------------------------------------------------------------------
 
-Ran 2 tests in 0.103s
+Ran 2 tests in 0.102s
 
 
 
@@ -1528,7 +1528,7 @@ Ran 2 tests in 0.103s
 <pre><code>Pop!</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>&lt;unittest.main.TestProgram at 0x7f1d6c4ea710&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7fcd1863e710&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -1540,7 +1540,7 @@ Ran 2 tests in 0.103s
 <li>Might still be useful to unit test the range bounds of the <code>Toaster</code> <code>doneness</code> state</li>
 </ul></li>
 </ul>
-<div id="1e6cca5f" class="cell" data-execution_count="5">
+<div id="cba64b40" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>reset</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest <span class="im">import</span> TestCase, main</span>
@@ -1607,7 +1607,7 @@ Ran 2 tests in 0.103s
 
 ----------------------------------------------------------------------
 
-Ran 2 tests in 0.001s
+Ran 2 tests in 0.002s
 
 
 
@@ -1616,7 +1616,7 @@ Ran 2 tests in 0.001s
 </div>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>&lt;unittest.main.TestProgram at 0x7f1d6c49aea0&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7fcd185f6ea0&gt;</code></pre>
 </div>
 </div>
 <ul>
