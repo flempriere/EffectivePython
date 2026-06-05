@@ -5,8 +5,8 @@
 
 ## Notes
 
-- List comprehensions have the disadvantage of needing to instance all
-  their values
+- List comprehensions (See [Item 40](../Item_040/item_040.qmd)) have the
+  disadvantage of needing to instance all their values
   - Can lead to excessive memory consumption for large inputs
 - For example, reading and counting the number of characters on each
   line
@@ -34,7 +34,7 @@ it = (len(x) for x in open("my_file.txt"))
 print(it)
 ```
 
-    <generator object <genexpr> at 0x7f01a46b19a0>
+    <generator object <genexpr> at 0x7f41183a17e0>
 
 - To actually get values out of the returned iterator we have to call
   the `next` method (either explicitly or implicitly via a loop)

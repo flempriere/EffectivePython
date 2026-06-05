@@ -7,8 +7,9 @@
 
 ## Notes
 
-- Given the cleanliness of coroutines, how does one port existing
-  *threaded* concurrency to use `aysnc`?
+- Given the cleanliness of coroutines (See [Item
+  75](../Item_075/item_075.qmd)), how does one port existing *threaded*
+  concurrency to use `aysnc`?
 - Since `async` is a language feature, not a library one conversion is
   usually straightforward
 - For example, consider a simple TCP server hosting the “guess the
@@ -27,8 +28,8 @@
 
 ### Thread Implementation
 
-- Standard implementation for a client/server is to use threads to
-  handle blocking I/O
+- Standard implementation for a client/server is to use threads (See
+  [Item 68](../Item_068/item_068.qmd)) to handle blocking I/O
 
 ``` python
 import random
@@ -140,7 +141,8 @@ class ServerSession(Connection):
       the same or correct
     - Then updates it’s internal state
   - Last command clears the state and ends a game
-- We then run a game using a context manager via a `with` statement
+- We then run a game using a context manager via a `with` statement (See
+  [Item 82](../../Chapter_10/Item_082/item_082.qmd))
   - Ensures the server state is managed correctly (See [Item
     78](../Item_078/item_078.qmd))
   - We do this with a function `new_game`
@@ -611,37 +613,43 @@ def main():
 main()
 ```
 
-    Guess between 1 and 5! Shhhhh, it's 3
-    Server: 4 is unsure
-    Server: 5 is colder
-    Server: 1 is same
-    Server: 2 is warmer
-    Server: 3 is correctGuess between 10 and 15! Shhhhh, it's 12
+    ConnectionRefusedError: [Errno 111] Connection refused
+    ---------------------------------------------------------------------------
+    ConnectionRefusedError                    Traceback (most recent call last)
+    Cell In[1], line 209
+        206     for number, outcome in results:
+        207         print(f"Client: {number} is {outcome}")
+    --> 209 main()
 
-    Server: 10 is unsure
-    Server: 13 is warmer
-    Server: 15 is colder
-    Server: 14 is warmer
-    Server: 11 is warmer
-    Server: 12 is correctGuess between 1 and 3! Shhhhh, it's 2
+    Cell In[1], line 205, in main()
+        202 server_thread = Thread(target=run_server, args=(address,), daemon=True)
+        203 server_thread.start()
+    --> 205 results = run_client(address)
+        206 for number, outcome in results:
+        207     print(f"Client: {number} is {outcome}")
 
-    Server: 1 is unsure
-    Server: 3 is same
-    Server: 2 is correct
-    Client: 4 is unsure
-    Client: 5 is colder
-    Client: 1 is same
-    Client: 2 is warmer
-    Client: 3 is correct
-    Client: 10 is unsure
-    Client: 13 is warmer
-    Client: 15 is colder
-    Client: 14 is warmer
-    Client: 11 is warmer
-    Client: 12 is correct
-    Client: 1 is unsure
-    Client: 3 is same
-    Client: 2 is correct
+    Cell In[1], line 177, in run_client(address)
+        176 def run_client(address):
+    --> 177     with socket.create_connection(address) as server_sock:
+        178         server = Connection(server_sock)
+        180         with new_game(server, 1, 5, 3) as session:
+
+    File /opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/socket.py:874, in create_connection(address, timeout, source_address, all_errors)
+        872 try:
+        873     if not all_errors:
+    --> 874         raise exceptions[0]
+        875     raise ExceptionGroup("create_connection failed", exceptions)
+        876 finally:
+        877     # Break explicitly a reference cycle
+
+    File /opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/socket.py:859, in create_connection(address, timeout, source_address, all_errors)
+        857 if source_address:
+        858     sock.bind(source_address)
+    --> 859 sock.connect(sa)
+        860 # Break explicitly a reference cycle
+        861 exceptions.clear()
+
+    ConnectionRefusedError: [Errno 111] Connection refused
 
 - Now we want to refactor this design to instead use `async` and `await`
   via the `asyncio` built-in module
@@ -945,7 +953,7 @@ async def run_async_client(address):
     45](../../Chapter_06/Item_045/item_045.qmd))
     - Composing generators thus becomes less clean
   - Worth considering looking for third party libraries where friction
-    occurs
+    occurs (See [Item 116](../../Chapter_14/Item_116/item_116.qmd))
 - Last step is to update the driver code
   - Start by using `asyncio.create_task` to queue server onto the event
     loop
@@ -1188,28 +1196,28 @@ await main_async()  # Comment out in favour of the line above if running as a sc
 ```
 
     Guess a number between 1 and 5! Shhhh, it's 3
-    Server: 1 is unsure
-    Server: 4 is warmer
-    Server: 2 is same
-    Server: 5 is colder
+    Server: 5 is unsure
+    Server: 2 is warmer
     Guess a number between 10 and 15! Shhhh, it's 12
     Server: 3 is correct
-    Server: 14 is unsure
-    Server: 13 is warmer
+    Server: 13 is unsure
+    Server: 10 is colder
+    Server: 11 is warmer
+    Server: 15 is colder
+    Server: 14 is warmer
     Guess a number between 1 and 3! Shhhh, it's 2
     Server: 12 is correct
-    Server: 1 is unsure
-    Server: 3 is same
-    Client: 1 is unsure
-    Client: 4 is warmer
-    Client: 2 is same
-    Client: 5 is colder
+    Server: 3 is unsure
+    Client: 5 is unsure
+    Client: 2 is warmer
     Client: 3 is correct
-    Client: 14 is unsure
-    Client: 13 is warmer
+    Client: 13 is unsure
+    Client: 10 is colder
+    Client: 11 is warmer
+    Client: 15 is colder
+    Client: 14 is warmer
     Client: 12 is correct
-    Client: 1 is unsure
-    Client: 3 is same
+    Client: 3 is unsure
     Client: 2 is correct
     Server: 2 is correct
 

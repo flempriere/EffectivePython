@@ -5,7 +5,8 @@
 
 ## Notes
 
-- Python doesn’t support pointer types
+- Python doesn’t support pointer types (See [Item
+  95](../../Chapter_11/Item_095/item_095.qmd))
   - But variables are all technically references
 - Function arguments are passed by reference too
   - Simple types (`string`, `int` etc.) are immutable types
@@ -48,7 +49,8 @@ print("b:", b)
     b: [7, 6, 5, 4]
 
 - List’s and dictionaries can pass a copy to act as insulation layer
-- Here we demonstrate doing so via slice operators
+- Here we demonstrate doing so via slice operators (See [Item
+  14](../../Chapter_02/Item_014/item_014.qmd))
 
 ``` python
 # Using a copy of a list to isolate changes to the original reference
@@ -89,8 +91,10 @@ print("Copy:", pairs_copy)
     Original: {'foo': 1, 'bar': 2}
     Copy: {'foo': 'foo=1', 'bar': 'bar=2'}
 
-- User-defined classes are also modifiable
-  - Any internal properties that can be accessed can be modified
+- User-defined classes are also modifiable (See [Item
+  29](../../Chapter_04/Item_029/item_029.qmd))
+  - Any internal properties that can be accessed can be modified (See
+    [Item 55](../../Chapter_07/Item_055/item_055.qmd))
 
 ``` python
 class MyClass:
@@ -128,7 +132,8 @@ print(x.value)
     - Your data might get modified
   - For complex objects you control,
     - Consider adding helper functions to create defensive copies
-    - Or consider a functional approach
+    - Or consider a functional approach ([Item
+      56](../../Chapter_07/Item_056/item_056.qmd))
       - Leverage immutable objects
       - Make functions pure
 

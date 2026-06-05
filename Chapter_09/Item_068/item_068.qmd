@@ -7,7 +7,7 @@ title: "Item 68: Use Threads for Blocking I/O; Avoid for Parallelism"
 - The reference or standard implementation of Python is called CPython
 - CPython runs a program in two steps
     1. Source text is parsed and compiled into *bytecode*
-        - Low-level representation of program as 8-bit instructions
+        - Low-level representation of program as 8-bit instructions (See [Item 97](../../Chapter_11/Item_097/item_097.qmd))
         - From python 3.6 it's technically 16-bit *wordcode*
     2. Bytecode is run using a stack-based interpreter
         - Interpreter has a state that must be maintained during program execution
@@ -16,6 +16,7 @@ title: "Item 68: Use Threads for Blocking I/O; Avoid for Parallelism"
 - The GIL is a mutex preventing the interpreter from being preempted by another thread
     - This interruption could corrupt the state (e.g. garbage collection reference counts)
     - GIL prevents these interruptions
+    - Ensures CPython and C extension modules work as expected (See [Item 96](../../Chapter_11/Item_096/item_096.qmd))
 - In other languages multiple-execution threads can be run on multiple CPUs
     - Supports multiple simultaneous threads of execution
 - GIL means only one thread can make progress at a time
@@ -104,7 +105,7 @@ print(f"Took {delta:.3f} seconds")
 ```
 
 - Here the program shows no significant time difference from the single-thread version
-- There are mechanisms to get true concurrency (See [Item 79](../Item_079/item_079.qmd))
+- There are mechanisms to get true concurrency (See [Item 79](../Item_079/item_079.qmd) and [Item 94](../../Chapter_11/Item_094/item_094.qmd))
     - Not the case for `Thread` with older python versions
 
 :::{.callout-note}

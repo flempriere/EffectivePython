@@ -18,7 +18,8 @@ Language
         behaviours can challenge these
   2. Reducing program start-up delay
       - First look at Python’s provided mechanisms though (See [Item
-        97](../Item_097/item_097.qmd))
+        97](../Item_097/item_097.qmd) and [Item
+        98](../Item_098/item_098.qmd))
   3. Using libraries that are tightly coupled to implementation
       language
       - Platform specific GUI languages are a common culprit
@@ -29,6 +30,7 @@ Language
       - There are python packages that do target these environments but
         they may not be practical
   5. You need to distribute the program as an installable executable
+      (See [Item 125](../../Chapter_14/Item_125/item_125.qmd))
       - Or bundle tools
       - There are python tools that do allow for this, but typically
         must also bundle a python runtime
@@ -44,7 +46,11 @@ Language
   - Obviously come with tradeoffs and balances
 - As always start by optimising (See [Item 92](../Item_092/item_092.qmd)
   and benchmarking (See [Item 93](../Item_093/item_093.qmd)))
-- Consider architecture or data structure redesigns
+  - Identify true sources of slowdown or excessive memory usage (See
+    [Item 115](../../Chapter_13/Item_115/item_115.qmd))
+- Consider architecture or data structure redesigns (See [Item
+  104](../../Chapter_12/Item_104/item_104.qmd) and [Item
+  102](../../Chapter_12/Item_102/item_102.qmd))
   - The appropriate data structure can give orders of magnitude
     improvements for often a simple drop-in refactor
 - If you need to migrate then there are multiple techniques to do so
@@ -75,8 +81,10 @@ print(dot_product([1, 2], [3, 4]))
   - No need to rewrite the rest of the codebase
 - Can use this *bottom-up* approach to gradually define key boundaries
   and change larger components
-- Standard python provides two tools for improving performance this way
-  1. `ctypes` built-in
+- Standard python (See [Item 1](../../Chapter_01/Item_001/item_001.qmd))
+  provides two tools for improving performance this way
+  1. `ctypes` built-in (See [Item
+      95](../../Chapter_11/Item_095/item_095.qmd))
       - Can describe and export native system libraries
       - Can be implemented in any language that supports the C ABI
       - Can support
@@ -85,7 +93,8 @@ print(dot_product([1, 2], [3, 4]))
         3. GPUs
         4. and more…
       - Does not change the build process
-  2. C Extension API
+  2. C Extension API (See [Item
+      96](../../Chapter_11/Item_096/item_096.qmd))
       - Allows the creation of pythonic API’s that are implemented in C
       - Still enables python’s traditional dynamic features
       - Typically requires more work upfront
@@ -93,7 +102,8 @@ print(dot_product([1, 2], [3, 4]))
       - But integrates the ergonomics of python
         - Does introduce the need to build the extension
 - The larger python ecosystem also has specialised libraries for new
-  programming paradigms and performance
+  programming paradigms and performance (See [Item
+  116](../../Chapter_14/Item_116/item_116.qmd))
   - [Numpy](https://numpy.org/) enables array-based programming
     - Utilises BLAS (Basic Linear Algebra Subprograms)
       - Provides CPU parallelism and high performance
@@ -111,7 +121,8 @@ print(dot_product([1, 2], [3, 4]))
     - Shares build complexity with the C extension API, but without the
       difficulty of directly interacting with it
   - [Mypyc](https://github.com/mypyc/mypyc/tree/master) like Cpython but
-    tries to integrate with the standard `typing` annotation
+    tries to integrate with the standard `typing` annotation (See [Item
+    124](../../Chapter_14/Item_124/item_124.qmd))
     - Can make it easier to apply to existing programs
     - Can ahead-of-time (AOT) compile programs to improve start-up time
     - Similar build complexity to C extension modules

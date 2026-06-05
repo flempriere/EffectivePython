@@ -145,7 +145,7 @@ print("After Return:", [x.title for x in queue])
     - These are constant time since we're removing the last element of a list
 - Adding new books is expensive since we have to pay the cost of sorting the list every time
     - Adding $n$ books, means the total cost is about $n^{2}\log\left(n\right)$
-    - We can benchmark this below
+    - We can benchmark this below with `timeit` (See [Item 93]((../../Chapter_11/Item_093/item_093.qmd)))
 ```{python}
 import random
 import timeit
@@ -497,7 +497,7 @@ while True:
 print("Books:", [x.title for x in queue])
 ```
 
-- Downside is the memory footprint
+- Downside is the memory footprint (See [Item 115](../../Chapter_13/Item_115/item_115.qmd))
 - A book might be in the queue multiple times (multiple returned instances and one currently out on loan)
 - Queue operations fast, but at the cost of more memory
     - For robust system you should plan for worst case scenario

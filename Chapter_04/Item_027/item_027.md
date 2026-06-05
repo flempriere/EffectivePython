@@ -97,9 +97,11 @@ print(visits.data)
 - Code can assume that accessing any key in the data will return a `set`
   instance
 - Only allocates a `set` when required
-- Using `defaultdict` is better than using `setdefault`
+- Using `defaultdict` is better than using `setdefault` (See [Item
+  29](../Item_029/item_029.qmd))
   - `defaultdict` doesn’t solve every problem, but it is useful to know
-    about
+    about (See [Item 28](../Item_028/item_028.qmd) and [Item
+    57](../../Chapter_07/Item_057/item_057.qmd))
 
 ## Things to Remember
 

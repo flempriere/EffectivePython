@@ -56,10 +56,10 @@ class MySubClass(MyClass):
 
     * Running <class '__main__.Meta'>.__new__ for MyClass
     Bases: ()
-    {'__module__': '__main__', '__qualname__': 'MyClass', '__firstlineno__': 11, 'stuff': 123, 'foo': <function MyClass.foo at 0x7f2840dbe4b0>, '__static_attributes__': (), '__classdictcell__': <cell at 0x7f2840dea170: dict object at 0x7f2840def6c0>}
+    {'__module__': '__main__', '__qualname__': 'MyClass', '__firstlineno__': 11, 'stuff': 123, 'foo': <function MyClass.foo at 0x7f17009d24b0>, '__static_attributes__': (), '__classdictcell__': <cell at 0x7f17009fe2c0: dict object at 0x7f1700875140>}
     * Running <class '__main__.Meta'>.__new__ for MySubClass
     Bases: (<class '__main__.MyClass'>,)
-    {'__module__': '__main__', '__qualname__': 'MySubClass', '__firstlineno__': 17, 'other': 567, 'bar': <function MySubClass.bar at 0x7f2840dbe610>, '__static_attributes__': (), '__classdictcell__': <cell at 0x7f2840dea110: dict object at 0x7f2840def7c0>}
+    {'__module__': '__main__', '__qualname__': 'MySubClass', '__firstlineno__': 17, 'other': 567, 'bar': <function MySubClass.bar at 0x7f17009d2610>, '__static_attributes__': (), '__classdictcell__': <cell at 0x7f17009fe410: dict object at 0x7f1700875200>}
 
 - Metaclass has access to,
   1. Itself (`meta`)
@@ -74,6 +74,8 @@ class MySubClass(MyClass):
   - Attempting to define an polygon with less than three sides causes
     the class statement to fail as soon as the program attempts to
     define the object
+    - Typically start-up time unless module is lazy imported (See [Item
+      98](../../Chapter_11/Item_098/item_098.qmd))
 
 ``` python
 # defining the metaclass

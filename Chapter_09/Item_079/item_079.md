@@ -5,6 +5,8 @@
 
 ## Notes
 
+- Only so far-single threaded optimisation can take python (See [Item
+  92](../../Chapter_11/Item_092/item_092.qmd))
 - As discussed Python’s GIL generally prevents true parallelism (See
   [Item 68](../Item_068/item_068.qmd))
 - The `multiprocessing` built-in bypasses this by enabling multiple
@@ -56,7 +58,7 @@ if __name__ == "__main__":
     main()
 ```
 
-    Took 7.441 seconds
+    Took 10.459 seconds
 
 - Can’t speed this up via threads due to the GIL
   - Only one CPU can be executing in the interpreter at a time
@@ -104,7 +106,7 @@ if __name__ == "__main__":
     main()
 ```
 
-    Took 7.263 seconds
+    Took 9.373 seconds
 
 - This may or may not be slower due to the overhead of managing the
   threads
@@ -168,7 +170,8 @@ if __name__ == "__main__":
   1. Takes each item from `numbers` to `map`
   2. Serialises the item into binary via `pickle`
   3. Copies serialized data from the main interpreter to a child
-      interpreter process
+      interpreter process (See [Item
+      107](../../Chapter_12/Item_107/item_107.qmd))
       - Copy occurs via a socket
   4. Item is deserialized back into Python objects via `pickle` (in the
       child)
@@ -221,7 +224,8 @@ if __name__ == "__main__":
   - If code becomes performance bottlenecked can then switch to
     `ProcessPoolExecutor`
   - Then if still an issue consider `multiprocessing` directly or
-    another language
+    another language (See [Item
+    94](../../Chapter_11/Item_094/item_094.qmd))
 
 ## Things to Remember
 

@@ -1,0 +1,208 @@
+---
+title: "Item 118: Write Docstrings for Every Function, Class and Module"
+---
+
+## Notes
+
+- As with any language python code should always be documented
+- Python provides built-in support for in-line documentation
+- In-line documentation can be accessed by programs at runtime
+- A *docstring* is in-line documentation written the line immediately following a module, class or function
+    - The docstring can then be interogated with the `__doc__` special attribute
+
+```{python}
+def palindrome(word):
+    """Return True if the given word is a palindrome"""
+    return word == word[::-1]
+
+
+assert palindrome("tacocat")
+assert not palindrome("banana")
+print(palindrome.__doc__)
+```
+
+- `pydoc` is a built-in module for serving python documentation as a local webserver
+
+  ```shell
+    $ python3 -m pydoc -p 1234
+    Server ready at http://localhost:1234/
+    Server commands: [b]rowser, [q]uit
+    Server> b
+  ```
+
+- As mentioned docstrings can be associated to functions, classes and modules
+- By providing docstrings,
+
+  1. Documentation is more accessible
+     - Can develop interactively by interrogating documentation
+     - Many IDE's or development environments can display the docstring text
+     - Otherwise you can use the `help` function
+  2. Standardised documentation format
+     - Easy to create tools for ingesting documentation
+     - Many tools convert the raw documentation to more appealing formats
+        - HTML
+        - PDF
+     - A common tool is [Sphinx](https://www.sphinx-doc.org/en/master/)
+     - Open source documentation can be freely hosted by sites like [read the docs](https://about.readthedocs.com/?ref=app.readthedocs.org)
+  3. Ease of writing documentation
+    - Easy to write documentation encourages documenting it in the first place
+    - It is assumed that most open-source code should be well-documented
+
+- Docstrings are covered by a number of standards for writing them
+    - [PEP 257](https://peps.python.org/pep-0257/) provides the common conventions for writing a docstring
+    - Other standards for docstring writing are provided by [google](https://google.github.io/styleguide/pyguide.html) and [numpy](https://numpydoc.readthedocs.io/en/latest/format.html)
+
+### Documenting Modules
+
+- Modules should have a top level docstring
+    - First statement in a file
+- Should introduce the module and it's contents
+- First line should describe the module's purpose
+- Following paragraphs should provide detailed usage instructions for consumers
+- Important classes, variables or constants and functions should be listed
+
+```python
+# words.py
+#! usr/bin/env python3
+"""Library for finding linguistic patterns in words.
+
+Testing how words relate to each other can be tricky sometimes! This module provides easy ways to determine when words
+you've found have special properties.
+
+Available functions:
+- palindrome: Determine if a word is a palindrome
+- check_anagram: Determine if two words are anagrams
+...
+"""
+```
+
+- For modules that run as command-line utilities the module docstring is a great place to put usage information
+
+### Documenting Classes
+
+- Classes should have a class level docstring
+    - Should act like the module docstring but localised to the class scope
+- First line is a simple summary of the class
+- Following paragraphs discuss class's usage
+- Highlight important class methods and attributes
+- Should provide guidance on interacting with protected attributes and how to subclass (See [Item 55](../../Chapter_07/Item_055/item_055.qmd))
+    - Also for superclass methods (See [Item 53](../../Chapter_07/Item_053/item_053.qmd))
+- For example,
+
+```python
+class Player:
+    """Represents a player of a game
+
+    Subclasses may override the `tick` method to provide custom animations for the
+    player's movement depending on their power level, etc.
+
+    Public Attributes
+    - power: Unused power-ups (float between 0 and 1)
+    - coins: Coins found during the level (integer)
+    """
+
+    pass
+```
+
+### Documenting Functions
+
+- Should have a docstring like modules and classes
+- First line is a single sentence description
+- Following paragraphs describe in-depth behaviour and usage
+- Arguments and return values should then also be described
+- Any exceptions that may be raised should also be documented (See [Item 32](../../Chapter_05/Item_032/item_032.qmd))
+
+```python
+def find_anagrams(words, dictionary):
+    """Find all anagrams for a word.
+
+    This function only runs as fast as the test for membership in the `dictionary` container
+
+    Args:
+        word: String of the target word
+        dictionary: Collections.abc.Container with all strings that are known to be actual words
+
+    Returns:
+        List all anagrams that were found. Empty if none were found
+    """
+    pass
+```
+
+- There are also rules for handling special cases in a function
+
+    - A function with no arguments and return values can just have a one-sentence description
+    - If a function doesn't return a value, don't mention the return value rather than stating `None`
+    - If exceptions are raised document which ones and how they are raised
+    - If a function is not expected to raise an exception in normal use, don't mention it
+    - For functions that accept a variable number of arguments use `*args` and `**kwargs` (See [Item 35](../../Chapter_05/Item_035/item_035.qmd))
+        - Describe them
+    - If a function has default-value arguments, specify them (See [Item 36](../../Chapter_05/Item_036/item_036.qmd))
+    - If a function is a generator, the docstring should document the `yield` value (See [Item 43](../../Chapter_06/Item_043/item_043.qmd))
+    - For asynchronous coroutines explain when execution stops (See [Item 75](../../Chapter_09/Item_075/item_075.qmd))
+
+### Using Docstrings and Type Annotations
+
+- Python supports type annotations (See [Item 124](../Item_124/item_124.qmd))
+- Can lead to repetition of information in the docstrings
+- For example, repeating our `find_anagrams` function but with type signatures
+
+```python
+from collections.abc import Container
+
+def find_anagrams(word: str, dictionary: Container[str]) -> list[str]:
+    """Find all anagrams for a word.
+
+    This function only runs as fast as the test for membership in the `dictionary` container
+
+    Args:
+        word: String of the target word
+        dictionary: Collections.abc.Container with all strings that are known to be actual words
+
+    Returns:
+        List all anagrams that were found. Empty if none were found
+    """
+    pass
+```
+
+- The duplicated type specification in the function signature and the docstring is a maintainability issue
+    - Doesn't provide additional information
+    - Forced to make sure they stay in sync
+- The rewritten docstring might then be
+
+```python
+from collections.abc import Container
+
+def find_anagrams(word: str, dictionary: Container[str]) -> list[str]:
+    """Find all anagrams for a word.
+
+    This function only runs as fast as the test for membership in the `dictionary` container
+
+    Args:
+        word: Target word
+        dictionary: All known actual words
+
+    Returns:
+        Anagrams that were found
+    """
+    pass
+```
+
+## Things to Remember
+
+- Write documentation for every class, module and function using docstrings
+    - Ensure they are updated with your code
+- For modules document
+    - Purpose
+    - Usage
+    - Important classes, constants and functions
+- For a class, document
+    - Behaviour
+    - Important attributes
+    - Subclassing behaviour
+- For a function (or method) document,
+    - Description
+    - Arguments
+    - Returned value
+    - Raised exceptions
+    - Other behaviours
+- When using type annotations avoid duplicating type information in the docstring

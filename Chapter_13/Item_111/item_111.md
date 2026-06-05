@@ -255,8 +255,8 @@ mock2.assert_called_once_with(database, "Meerkat")
     Passing incorrect parameters...
 
     AssertionError: expected call not found.
-    Expected: mock(<object object at 0x7faa0ce29860>, 'Meerkat')
-      Actual: mock(<object object at 0x7faa0ce29860>, 'Eagle')
+    Expected: mock(<object object at 0x7f373c455860>, 'Meerkat')
+      Actual: mock(<object object at 0x7f373c455860>, 'Eagle')
     ---------------------------------------------------------------------------
     AssertionError                            Traceback (most recent call last)
     Cell In[4], line 52
@@ -278,8 +278,8 @@ mock2.assert_called_once_with(database, "Meerkat")
     --> 986     raise AssertionError(_error_message()) from cause
 
     AssertionError: expected call not found.
-    Expected: mock(<object object at 0x7faa0ce29860>, 'Meerkat')
-      Actual: mock(<object object at 0x7faa0ce29860>, 'Eagle')
+    Expected: mock(<object object at 0x7f373c455860>, 'Meerkat')
+      Actual: mock(<object object at 0x7f373c455860>, 'Eagle')
 
 - `ANY` useful when a parameter is not critical to the behaviour being
   tested
@@ -574,7 +574,14 @@ print("Feed function calls match expectations")
   - Family of functions
   - Allows a temporary overwrite of a module or class attribute or
     function / method
+    - Can be used as a `with` context (See [Item
+      82](../../Chapter_10/Item_082/item_082.qmd))
+    - Can be used as a function definition (See [Item
+      38](../../Chapter_05/Item_038/item_038.qmd))
     - Can be used to temporarily replace a function call with a `Mock`
+    - Can be integrated into `setUp` and `tearDown` methods of
+      `TestCase` implementations (See [Item
+      110](../Item_110/item_110.qmd))
 - For example, we could patch `get_animals`
 
 ``` python
@@ -610,9 +617,9 @@ with patch("__main__.get_animals"):
 print("After patch:", get_animals)
 ```
 
-    Outside patch: <function get_animals at 0x7faa0cc6eb90>
-    Inside patch <MagicMock name='get_animals' id='140368593885840'>
-    After patch: <function get_animals at 0x7faa0cc6eb90>
+    Outside patch: <function get_animals at 0x7f373c29ada0>
+    Inside patch <MagicMock name='get_animals' id='139875215235392'>
+    After patch: <function get_animals at 0x7f373c29ada0>
 
 - Doesn’t work for all functions
 - e.g. If we try to `patch` `datetime.now` to inject a stable time
@@ -684,9 +691,9 @@ with patch("__main__.get_do_rounds_time"):
 print("Now back outside patch:", get_do_rounds_time())
 ```
 
-    Now outside patch: 2026-05-31 06:03:17.246028
+    Now outside patch: 2026-06-05 16:01:22.386868
     Now inside patch: 2024-06-05 15:45:00
-    Now back outside patch: 2026-05-31 06:03:17.246400
+    Now back outside patch: 2026-06-05 16:01:22.387308
 
 - Alternatively we might decide to use a keyword-only dependency
   injection for the time

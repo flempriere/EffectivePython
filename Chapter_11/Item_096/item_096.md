@@ -7,17 +7,19 @@ Ergonomics
 
 ## Notes
 
+- CPython (See [Item 1](../../Chapter_01/Item_001/item_001.qmd))
+  supports C Extension Modules
 - An alternative to `ctypes` (See [Item 95](../Item_095/item_095.qmd))
   is to write a C Extension module
 - Can directly use the Python API
 - Let’s you use python features, e.g.
-  - OOP
-  - Protocols
+  - OOP (See [Chapter 7](../../Chapter_07/Chapter_07.qmd))
+  - Protocols (See [Item 25](../../Chapter_04/Item_025/item_025.qmd))
   - Reference-counting
   - etc…
 - Extension modules let the calling code be more Pythonic
 - Creating an extension module is much more complicated than using
-  `ctypes`
+  `ctypes` (See [Item 94](../../Chapter_11/Item_094/item_094.qmd))
   - Have to understand the Python C API
 - We’ll demonstrate by again implementing our `dot_product` function
   (See [Item 94](../Item_094/item_094.qmd))
@@ -121,6 +123,8 @@ PyInit_extension(void) {
 - Now need to compile C code into a native library
   - Can then be dynamically loaded into the CPython interpreter
 - Can do so via a simple `setup.py` configuration file
+  - Utilises the `setuptools` built-in module (See [Item
+    116](../../Chapter_14/Item_116/item_116.qmd))
 
 ``` python
 # setup.py
@@ -139,7 +143,7 @@ setup(
 ```
 
 - We can then use this to install the extension into our virtual
-  environment
+  environment (See [Item 117](../../Chapter_14/Item_117/item_117.qmd))
   - By running the following from the folder containing our extension
     module
 
@@ -165,7 +169,8 @@ uv pip install -e .
 > packages into the system python (non-virtual environment), but doubly
 > so for those packages that are ephemeral or active development.
 
-- We can now test our module
+- We can now test our module (See [Item
+  108](../../Chapter_13/Item_108/item_108.qmd))
 
 ``` python
 import unittest
@@ -221,11 +226,11 @@ unittest.main(argv=[""], verbosity=2, exit=False)
     test_zero_result (__main__.ExtensionTest.test_zero_result) ... ok
 
     ----------------------------------------------------------------------
-    Ran 7 tests in 0.005s
+    Ran 7 tests in 0.006s
 
     OK
 
-    <unittest.main.TestProgram at 0x7f7a3c342f90>
+    <unittest.main.TestProgram at 0x7f35f847ee40>
 
 - Compared to `ctypes` there is a lot of overhead in this implementation
   - However the interface appears more pythonic
@@ -413,15 +418,17 @@ unittest.main(argv=[""], verbosity=2, exit=False)
     test_zero_result (__main__.ExtensionTest.test_zero_result) ... ok
 
     ----------------------------------------------------------------------
-    Ran 15 tests in 0.011s
+    Ran 15 tests in 0.015s
 
     OK
 
-    <unittest.main.TestProgram at 0x7f7a3c1f11d0>
+    <unittest.main.TestProgram at 0x7f35f83151d0>
 
 - The flexibility and extensibility of above provides good ergonomics
   - Would have to reinvent a lot of the Python machinery to reimplement
     this in basic C
+  - But works for the python types like iterable and `Decimal` class
+    (See [Item 106](../../Chapter_12/Item_106/item_106.qmd))
 
 ## Things to Remember
 

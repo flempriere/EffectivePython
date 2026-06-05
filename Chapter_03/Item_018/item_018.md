@@ -7,7 +7,8 @@
 
 - It is common to end up with lists or sequences of related objects
   - For example, list comprehensions allow us to derive a new list from
-    a source list via an expression
+    a source list via an expression (See [Item
+    40](../../Chapter_06/Item_040/item_040.qmd))
   - Below, we take a list of names and convert it to a list of name
     lengths
 
@@ -24,7 +25,7 @@ print(counts)
   - e.g. the length of the $i$-th name, is the $i$-th value in `counts`
 - If we wanted to iterate over both bits of data at the same time the
   naive approach would be to use `enumerate` or `range` to perform an
-  index-based lookup
+  index-based lookup ((See [Item 17](../Item_017/item_017.qmd)))
   - e.g. to find the longest name
 
 ``` python
@@ -66,7 +67,8 @@ print(f"Longest name (enumerate-based approach): {longest_name}")
 - Instead we should use the `zip` operator
   - `zip` wraps multiple iterators in a lazy generator
   - Yields tuples containing the *next* element from *each* iterator
-  - Can unpack them as for `enumerate`
+  - Can unpack them as for `enumerate` (See [Item
+    5](../../Chapter_01/Item_005/item_005.qmd))
 
 ``` python
 names = ["Alice", "Bob", "Charlie"]
@@ -82,7 +84,9 @@ for name, count in zip(names, counts):
 ```
 
 - `zip` consumes elements one at a time from each iterator
-- Provides memory efficient access to long generators
+- Provides memory efficient access to long generators (See [Item
+  43](../../Chapter_06/Item_043/item_043.qmd) and [Item
+  44](../../Chapter_06/Item_044/item_044.qmd))
   - Or infinite generators
 - `zip` stops yielding when *any* of the wrapped iterators are exhausted
   - Means that if iterators of different size are combined the shortest
@@ -137,7 +141,8 @@ for name, count in zip(names, counts, strict=True):
   - It’s not designed to allow you to continue to iterate until all
     iterators are exhausted
 - If you want to continue until the *end* of the *longest* iterator, use
-  `zip_longest` from the `itertools` built-in module
+  `zip_longest` from the `itertools` built-in module (See [Item
+  24](../Item_024/item_024.qmd))
   - Let’s you pad exhausted iterators with a default value (by default
     this is `None`)
 

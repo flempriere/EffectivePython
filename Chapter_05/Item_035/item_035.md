@@ -73,7 +73,8 @@ assert remainder(**kwargs_1, **kwargs_2)
 - Similarly to how `*args` lets a function accept a variable number of
   positional arguments, `**kwargs` lets you accept a variable number of
   keyword arguments
-  - keyword arguments are packaged into a dictionary
+  - keyword arguments are packaged into a dictionary (See [Item
+    38](../Item_038/item_038.qmd))
 
 ``` python
 def print_parameters(**kwargs):
@@ -159,7 +160,8 @@ print(f"{flow_per_second:.3f} kg per second\n{flow_per_hour:.3f} kg per hour")
 
 - Works well for simple, immutable default arguments
 
-- Tricky for complex, mutable values e.g. `list`
+- Tricky for complex, mutable values e.g. `list` (See [Item
+  36](../Item_036/item_036.qmd))
 
 - Keyword arguments also let us extend function arguments in a backwards
   compatible way
@@ -222,7 +224,8 @@ print(f"{flow_per_second:.3f} kg per second\n{flow_pounds_per_hour:.3f} pounds p
 
 - Best practice is to always specify optional parameters as keyword
   arguments
-  - The function author can enforce this
+  - The function author can enforce this (See [Item
+    37](../Item_037/item_037.qmd))
 
 ## Things to Remember
 

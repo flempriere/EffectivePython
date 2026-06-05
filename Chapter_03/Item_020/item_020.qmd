@@ -52,8 +52,9 @@ print(j)
 ```
 
 - We can find a solution for this specific example
+    - There are alternate techniques (See [Item 19](../Item_019/item_019.qmd))
     - But general point, no way to guarantee a loop variable is bound after the loop completes
-- Comprehensions and generator expressions do not leak their variables after execution
+- Comprehensions and generator expressions do not leak their variables after execution (See [Item 40](../../Chapter_06/Item_040/item_040.qmd) and [Item 44](../../Chapter_06/Item_044/item_044.qmd))
     - Trying to access them will lead to an error
 
 ```{python}
@@ -62,9 +63,9 @@ even = [k for k in foo if k % 2 == 0]
 print(k)  # always raises an error
 ```
 
-- Assignment expressions in comprehensions can change this
+- Assignment expressions in comprehensions can change this (See [Item 42](../../Chapter_06/Item_042/item_042.qmd))
 - Exception variables also don't leak
-    - But have their own quirks
+    - But have their own quirks (See [Item 84](../../Chapter_10/Item_084/item_084.qmd))
 
 ## Things to Remember
 

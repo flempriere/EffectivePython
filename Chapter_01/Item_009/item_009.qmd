@@ -5,8 +5,8 @@ title: "Item 9: Consider `match` for Destructuring in Flow Control; Avoid When `
 ## Notes
 
 - `match` was introduced in Python 3.10
-- `match` has it's own mini-language embedded in python
-- `match` appears to  provide `switch`-like capabilities
+- `match` has it's own mini-language embedded in python (See [Item 40](../../Chapter_06/Item_040/item_040.qmd) and [Item 44](../../Chapter_06/Item_044/item_044.qmd))
+- `match` appears to  provide `switch`-like capabilities (See [Item 8](../Item_008/item_008.qmd))
     - e.g. The `if` statement based construct below,
 ```{python}
 def take_action(light):
@@ -97,7 +97,7 @@ truncated_action(GREEN)
 - Naively we would expect this to resolve to `case "red" != "green"`
 - However, the first case *is* executed
     - We can see from the debug output above `RED` was reassigned the value of `light`, here `GREEN`
-- `match` is best thought of as analogous to variable unpacking
+- `match` is best thought of as analogous to variable unpacking (See [item 5](../Item_005/item_005.qmd))
     - Tries to match the structure of the received argument
     - Python here is checking that the multiple assignment below, executes without error
 
@@ -185,14 +185,14 @@ take_enum_action("green")
 ### `match` is for Destructuring
 
 - *Destructuring* means extracting components from a complex nested data structure
-- multiple assignment and tuple unpacking is an example of destructuring, e.g.
+- multiple assignment and tuple unpacking is an example of destructuring (See [Item 17](../../Chapter_03/Item_017/item_017.qmd)), e.g.
 
 ```{python}
 for index, value in enumerate("abc"):
     print(f"Index is {index} and value is {value}")
 ```
 
-- We've seen that unpacking for lists and tuples can be used on deeply nested constructs too
+- We've seen that unpacking for lists and tuples can be used on deeply nested constructs too (See [Item 16](../../Chapter_02/Item_016/item_016.qmd))
     - `match` emulates this for dictionaries, sets and user-defined classes
     - This is restricted purely to determining control flow
 - *Structural pattern matching* is useful for dealing with heterogeneous objects
@@ -259,7 +259,7 @@ assert not contains_match(my_tree, 14)
 ```
 
 - Eliminates the call to `isinstance` relies on the implicit unpacking
-- Code structure is regularised
+- Code structure is regularised (See [Item 76](../../Chapter_09/Item_076/item_076.qmd))
 - Logic is more compact and inline
 - How does this work?
     - Each clause tries to extract the contents of `tree` to the given pattern
@@ -272,7 +272,7 @@ assert not contains_match(my_tree, 14)
         - The second capture pattern is simple variable assignment so will catch anything
             - Used to capture leaf nodes
 
-- Now suppose we want to use class structure to capture our nodes
+- Now suppose we want to use class structure to capture our nodes (See [Item 29](../../Chapter_04/Item_029/item_029.qmd))
 
 ```{python}
 class Node:
@@ -334,13 +334,13 @@ assert not contains_match_class(obj_tree, 14)
 ### Semi-structured Data vs Encapsulated Data
 
 - `match` also useful when serialisation of data and interpretation are decoupled
-- e.g. Deserializing a JSON object
+- e.g. Deserializing a JSON object (See [Item 54](../../Chapter_07/Item_054/item_054.qmd))
     - The Deserialized object is a nested structure of
         1. Dictionaries
         2. Lists
         3. Strings
         4. Numbers
-- Responsibilities are not clearly encapsulated like with a class hierarchy
+- Responsibilities are not clearly encapsulated like with a class hierarchy (See [Item 53](../../Chapter_07/Item_053/item_053.qmd))
 - The nesting structure gives the semantic meaning for a program
 - For example, billing software looking to deserialize JSON customer records
     - Some customers might be individuals
@@ -352,7 +352,7 @@ record_business = """{"customer": {"entity": "Steve's Painting Co."}}"""
 ```
 
 - Naturally we want to convert these into proper python objects
-    - Easier to integrate into data processes
+    - Easier to integrate into data processes (See [Item 51](../../Chapter_07/Item_051/item_051.qmd))
     - UI widgets
     - etc.
 
@@ -394,7 +394,7 @@ print("Record for a business: ", deserialize(record_business))
     1. set patterns
     2. `as` patterns
     3. Positional constructor patterns (with `__match_args__` customisation)
-    4. Exhaustiveness checking with type annotations
+    4. Exhaustiveness checking with type annotations (See [Item 124](../../Chapter_14/Item_124/item_124.qmd))
     5. and more...
 - Refer to the official [tutorial](https://peps.python.org/pep-0636/)
 

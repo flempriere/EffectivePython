@@ -10,7 +10,7 @@
   - They call back to code while executing
 - E.g. `list` has a `sort` method
   - Takes an optional `key` argument, determine’s each indices value for
-    sorting
+    sorting (See [Item 100](../../Chapter_12/Item_100/item_100.qmd))
   - For example we might sort a list of names by their length
 
 ``` python

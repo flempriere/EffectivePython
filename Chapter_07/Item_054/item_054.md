@@ -203,7 +203,8 @@ print(my_tree.to_dict())
 - Mix-in’s can be composed together
 - E.g. A JSON serializer might composed the `ToDictMixin` to use the
   `to_dict` method
-  - The mixin can define both class and instance methods
+  - The mixin can define both class and instance methods (See [Item
+    52](../Item_052/item_052.qmd))
   - Here we use a class method to deserialize and an instance method to
     serialize
   - Only requirements for `JSONMixin` are

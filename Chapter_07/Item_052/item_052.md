@@ -77,7 +77,8 @@ class LineCountWorker(Worker):
   `PathInputData` worker for each file
   - Then create `Worker` for each of the returned `InputData` instances
   - Last step is to then execute the `Worker` instances
-    - Can fan out via `threading`
+    - Can fan out via `threading` (See [Item
+      68](../../Chapter_09/Item_068/item_068.qmd))
     - Then use `reduce` to combine the results into a final value
       - Lastly connect it all together into one function to run it all
 
@@ -185,7 +186,7 @@ print(f"There are {result} lines")
 remove_test_files(tmpdir)
 ```
 
-    There are 4815 lines
+    There are 4618 lines
 
 - The problem here is our implementation is now very inflexible
   - `mapreduce` is very specific to our the exact process we want to
@@ -384,7 +385,7 @@ print(f"There are {result} lines")
 remove_test_files(tmpdir)
 ```
 
-    There are 5012 lines
+    There are 4723 lines
 
 - We can thus write new `GenericInputData` and `GenericWorker`
   subclasses without having to rewrite the glue code

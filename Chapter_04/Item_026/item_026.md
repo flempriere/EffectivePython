@@ -49,7 +49,8 @@ print(bread_votes)
 
 - The key is accessed twice and assigned once
 - Instead of explicitly checking, we can use the fact that dictionaries
-  raise a `KeyError` when attempting to access a non-existent key
+  raise a `KeyError` when attempting to access a non-existent key (See
+  [Item 80](../../Chapter_10/Item_080/item_080.qmd))
 
 ``` python
 bread_votes = {
@@ -74,7 +75,8 @@ print(bread_votes)
 - However, what we’re really trying to do here is get the value
   associated with a key *or* a default value
   - `get` provides a clean dictionary method
-  - By default the default value is `None`
+  - By default the default value is `None` (See [Item
+    32](../../Chapter_05/Item_032/item_032.qmd))
 - The `get` approach is not strictly more efficient than the exception
   handling method but it is a more encapsulated interface
 
@@ -130,6 +132,7 @@ print(bread_voters)
 - The triple assignment `bread_voters[key] = names = []` populates the
   key in one step
   - Works because the list is stored as a reference not a value type
+    (See [Item 30](../../Chapter_05/Item_030/item_030.qmd))
 - We can also use the `KeyError` approach as before
   - This requires fewer key lookup’s (at the cost of the exception
     handling overhead)
@@ -155,7 +158,8 @@ print(bread_voters)
     {'pumpernickel': ['Alice', 'Bob'], 'sourdough': ['Charlie'], 'wheat': ['Danielle']}
 
 - We could use `get` again
-  - Combine with an assignment expression for brevity
+  - Combine with an assignment expression for brevity (See [Item
+    8](../../Chapter_01/Item_008/item_008.qmd))
 
 ``` python
 bread_voters = {
@@ -203,7 +207,7 @@ print(bread_voters)
   - `setdefault` is not intuitively clear (called set, but returns a
     value)
 - The default value is also assigned directly as opposed to copied
-  - See below
+  - See below (See [Item 36](../../Chapter_05/Item_036/item_036.qmd))
 
 ``` python
 data = {}
@@ -248,7 +252,8 @@ print(bread_votes)
   - One case is for `list` instance default values
   - They are cheap to construct and don’t raise exceptions
 - However, the lack of clarity in the method name means it’s often
-  preferable to use a `defaultDict`
+  preferable to use a `defaultDict` (See [Item
+  27](../Item_027/item_027.qmd))
   - A dictionary-type class that can have defined default value for
     missing keys
 

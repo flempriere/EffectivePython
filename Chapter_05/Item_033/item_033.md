@@ -9,7 +9,7 @@
   - Might correspond to a message log (certain message ID’s should be
     shown first)
 - A useful technique is passing a helper function as the `key` argument
-  to `sort`
+  to `sort` (See [Item 33](../../Chapter_12/Item_100/item_100.qmd))
   - Helper function return value is used as the sorting key value
 
 ``` python
@@ -137,7 +137,9 @@ print(numbers)
 - Here we reimplement the above using a class that can be called like a
   function
   - More complicated implementation
-  - But easier to read and reason about (and extend)
+  - But easier to read and reason about (and extend) (See [Item
+    55](../../Chapter_07/Item_055/item_055.qmd) and [Item
+    48](../../Chapter_07/Item_048/item_048.qmd))
 
 ``` python
 class Sorter:

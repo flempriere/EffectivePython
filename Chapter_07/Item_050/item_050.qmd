@@ -4,7 +4,7 @@ title: "Item 50: Consider `functools.singledispatch` for Functional-Style Progra
 
 ## Notes
 
-- We've seen that Object-Oriented Programming lets us structure code by packaging behaviours and data in a class hierarchy
+- We've seen that Object-Oriented Programming lets us structure code by packaging behaviours and data in a class hierarchy (See [Item 49](../Item_049/item_049.qmd))
     - Then use runtime polymorphism to dispatch methods to the respective subclass implementation
 - Results in a hierarchy like,
 
@@ -92,7 +92,7 @@ class NodeAlt2:
 - Issue is to change one behaviour we might have to navigate a small part of twenty-plus files rather than one
 - OOP also conflates dependencies
     - e.g. LaTeX generation might require, special formatting libraries, formula-solving might require symbolic math
-    - Each class then needs to import those dependencies
+    - Each class then needs to import those dependencies (See [Item 98](../../Chapter_11/Item_098/item_098.qmd))
     - Dependencies from various subsystems thus leak across into each other due to class-based organisation
 
 

@@ -5,7 +5,8 @@
 
 ## Notes
 
-- Comprehensions support multiple levels of looping
+- Comprehensions (See [Item 40](../Item_040/item_040.qmd)) support
+  multiple levels of looping
 - E.g. consider unpacking a 2d matrix into a flat list
 
 ``` python

@@ -8,11 +8,10 @@
 - For python programs with slow start-up times (See [Item
   97](../Item_097/item_097.qmd)) an option is to consider *dynamic
   imports*
-
+  - First consider all standard optimisations (See [Item
+    92](../../Chapter_11/Item_092/item_092.qmd))
 - For example, consider an image processing tool
-
   - Has two features
-
 - One adjusts brightness and contrast using user supplied parameters
   (see [adjust.py](./CLI/adjust.py))
 
@@ -162,7 +161,8 @@ import time:      9100 |      41394 |   _colorize
   dependencies
 - ideally we want to delay loading the `enhance` module until (or if) we
   need it
-  - `import` statements can be scoped
+  - `import` statements can be scoped (See [Item
+    122](../../Chapter_14/Item_122/item_122.qmd))
   - e.g. located within functions
   - Let’s us explicitly `import` when and where it’s needed
     - At the cost of making it harder to see what all the imports
@@ -284,9 +284,10 @@ def do_enhance():
 - There is a cost associated with dynamic imports compared to global
   imports
   - Since we have to check if we’ve already loaded a module each time
-  - But it’s not high
-  - We can time it using `timeit` to check the time associated with
-    dynamically importing an already imported module
+  - But it’s not hig
+  - We can time it using `timeit` (See [Item
+    93](../../Chapter_11/Item_093/item_093.qmd)) to check the time
+    associated with dynamically importing an already imported module
 
 ``` python
 import timeit
@@ -303,7 +304,7 @@ result = timeit.timeit(
 print(f"{result / trials * 1e9:2.1f} nanos per call")
 ```
 
-    182.0 nanos per call
+    232.8 nanos per call
 
 - In comparison, consider the approach below of using a lock-protected
   global variable
@@ -337,7 +338,7 @@ if not initialised:
 print(f"{result / trials * 1e9:2.1f} nanos per call")
 ```
 
-    9.8 nanos per call
+    11.6 nanos per call
 
 - There should be an order of magnitude difference between the above and
   the dynamic import (approx. $10$ times)
@@ -347,7 +348,8 @@ print(f"{result / trials * 1e9:2.1f} nanos per call")
   boilerplate
   - The takeaway is not to *not use* dynamic imports but rather consider
     where to put them
-  - Avoid putting them in hot loops
+  - Avoid putting them in hot loops (See [Item
+    94](../../Chapter_11/Item_094/item_094.qmd))
 
 > [!TIP]
 >

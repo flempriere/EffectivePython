@@ -24,7 +24,8 @@ my_dict["does not exist"]
 
     KeyError: 'does not exist'
 
-- As expected can catch the exception
+- As expected can catch the exception (See [Item
+  80](../Item_080/item_080.qmd))
 
 ``` python
 my_dict = {}
@@ -262,7 +263,8 @@ print("Result:", lookup("my key"))
     interface
   - For a concrete example of why we might want to do this, it could be
     the case that `ServerMissingKeyError` is an exception defined in a
-    dependency we don’t control
+    dependency we don’t control (See [Item
+    121](../../Chapter_14/Item_121/item_121.qmd))
     - E.g. Our database provider
 
 ``` python

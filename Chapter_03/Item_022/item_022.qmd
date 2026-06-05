@@ -4,7 +4,7 @@ title: "Item 22: Never Modify Containers While Iterating over Them; Use Copies o
 
 ## Notes
 
-- Modifying containers while iterating over them can lead to many gotchas
+- Modifying containers while iterating over them can lead to many gotchas (See [Item 21](../Item_021/item_021.qmd))
 - For example, adding a key to a dictionary while iterating will raise a runtime error
 
 ```{python}
@@ -112,7 +112,7 @@ print(my_list)
     - Especially when dealing with more complex algorithms rather than linear traversal where the access my be more esoteric
 - If you need to modify a container by iterating over it's contents
     - Make a copy, iterate over the copy
-    - Modify the original
+    - Modify the original (See [Item 30](../../Chapter_05/Item_030/item_030.qmd))
 - For example,
 
 ```{python}
@@ -146,7 +146,7 @@ for colour in set_copy:
 print(my_set)
 ```
 
-- Copying can be slow for large containers
+- Copying can be slow for large containers (See [Item 92](../../Chapter_11/Item_092/item_092.qmd))
 - Alternative is to stage modifications in a container
 - Then merge the changes into the main container post-iteration
 
@@ -209,7 +209,7 @@ print(my_dict)
 
 - Hard to generalise this solution
     - Need to ensure that the cache respects the constraints of the algorithm
-- Best enforced with automated tests
+- Best enforced with automated tests (See [Item 109](../../Chapter_13/Item_109/item_109.qmd) and [Item 93](../../Chapter_11/Item_093/item_093.qmd))
 
 ## Things to Remember
 

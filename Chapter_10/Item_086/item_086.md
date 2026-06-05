@@ -72,7 +72,8 @@ if __name__ == "__main__":
     - Flush open files to disk
 - Might also be tempted to use it to insulate components against
   potential errors
-  - Or provide robust APIs (See [Item 85](../Item_085/item_085.qmd))
+  - Or provide robust APIs (See [Item 85](../Item_085/item_085.qmd) and
+    [Item 121](../../Chapter_14/Item_121/item_121.qmd))
 - Can use a nonzero return value to indicate the program has exited with
   an error code
 

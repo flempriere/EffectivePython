@@ -150,7 +150,8 @@ print(b"foo" == "foo")
 
     False
 
-- The `%` operator works with format strings for both
+- The `%` operator works with format strings for both (See [Item
+  11](../Item_011/item_011.qmd))
 
 ``` python
 blue_bytes = b"blue"
@@ -184,7 +185,7 @@ print(b"red %s" % blue_str)
   - Or in an interpolated f-string
 - However, the code doesn’t behave as expected
   - The `bytes` text is converted to its `__repr__` i.e. the string
-    `"b'text'"`
+    `"b'text'"` (see [Item 12](../Item_012/item_012.qmd))
   - This is then injected into the string
 
 ``` python

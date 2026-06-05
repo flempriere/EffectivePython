@@ -18,8 +18,10 @@
 - Strings are the standard data format for presenting data to people
   - Rendering user interface messages
   - Writing data to files and sockets
-  - Specifying exceptions
-  - Used in logging and debugging
+  - Specifying exceptions (See [Item
+    88](../../Chapter_10/Item_088/item_088.qmd))
+  - Used in logging and debugging (See [Item
+    12](../Item_012/item_012.qmd))f
 - *Formatting* strings is thus a common scenario
 - Formatting is combining text and values into a single human readable
   message
@@ -481,7 +483,8 @@ for i, (item, count) in enumerate(pantry):
     assert format_method_style == f_string_style
 ```
 
-- You can split an f-string via adjacent string concatenation
+- You can split an f-string via adjacent string concatenation (See [Item
+  13](../Item_013/item_013.qmd))
 
 ``` python
 pantry = [

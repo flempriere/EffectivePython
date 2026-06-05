@@ -6,6 +6,7 @@
 ## Notes
 
 - Uncaught exceptions propagate up to the entry point of the program
+  (See [Item 80](../Item_080/item_080.qmd))
   - Result in exiting with an error code
 - The interpreter will print out a *traceback* of the stack trace
   - Aids in identifying the source of the error
@@ -111,10 +112,10 @@ handle(request)
 
     AssertionError('My Message')
 
-      File "/tmp/ipykernel_11512/1677808877.py", line 16, in handle
+      File "/tmp/ipykernel_11964/1677808877.py", line 16, in handle
         do_work(request.body)
         ~~~~~~~^^^^^^^^^^^^^^
-      File "/tmp/ipykernel_11512/1677808877.py", line 11, in do_work
+      File "/tmp/ipykernel_11964/1677808877.py", line 11, in do_work
         assert False, data
                ^^^^^
 

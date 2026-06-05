@@ -5,8 +5,9 @@
 
 ## Notes
 
-- A limitation of basic unpacking is that you must know the length of
-  the sequence being unpacked
+- A limitation of basic unpacking (See [Item
+  5](../../Chapter_01/Item_005/item_005.qmd)) is that you must know the
+  length of the sequence being unpacked
   - For example, lets say we want to extract the two oldest car’s from a
     list
   - Below fails because it expects two items but encounters more than
@@ -63,7 +64,8 @@ print(f"oldest: {oldest}, second oldest: {second_oldest}, others: {others}")
 - Code is shorter, easier to read and less brittle to changes
 - Starred expression can appear at any point in an unpacking
   - Start, end, middle etc.
-  - Benefits any time we have one optional slice
+  - Benefits any time we have one optional slice (See [Item
+    9](../../Chapter_01/Item_009/item_009.qmd))
   - E.g. if we instead wanted to extract the oldest and the youngest car
 
 ``` python
@@ -108,7 +110,8 @@ first, *middle, *second_middle, last = [1,2,3,4]
 
 - You can use multiple catch-all’s for different levels in a nested
   structure
-  - Generally try to avoid this
+  - Generally try to avoid this (See [Item
+    31](../../Chapter_05/Item_031/item_031.qmd))
   - It can make things hard to read
 
 ``` python
@@ -198,9 +201,11 @@ print("Row count:", len(rows))
 
 - One thing to be careful is that the unpacking assignment will result
   in the entire iterator being read into memory
-  - This could cause your program to crash
+  - This could cause your program to crash (See [Item
+    115](../../Chapter_13/Item_115/item_115.qmd))
   - Only use catch-all unpacking for iterators when you have a good
     understanding of their size and can ensure it will fit in memory
+    (See [Item 21](../../Chapter_03/Item_021/item_021.qmd))
 
 ## Things to Remember
 

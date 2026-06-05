@@ -27,7 +27,9 @@ def flip_is_heads():
 
 - Want to flip a coin a fixed number of times, and see if every result
   is heads
-- Can perform with a comprehension and an `in` query
+- Can perform with a comprehension and an `in` query (See [Item
+  40](../../Chapter_06/Item_040/item_040.qmd) and [Item
+  57](../../Chapter_07/Item_057/item_057.qmd))
 
 ``` python
 import random
@@ -86,8 +88,10 @@ print(all_heads)
 
 - Code is now much longer and less clear
 - We can use the `all` built-in to combine the short-circuiting
-  behaviour with a succinct expression
-- `all` steps through an iterator, checks for truthy values
+  behaviour with a succinct expression (See [Item
+  44](../../Chapter_06/Item_044/item_044.qmd))
+- `all` steps through an iterator, checks for truthy values (See [Item
+  7](../../Chapter_01/Item_007/item_007.qmd))
   - Stops processing if not
   - Returns `True` if it reaches the end of the iterator, else `False`
 - This is different to `and` which returns the value that determines
@@ -137,7 +141,8 @@ print(all_heads)
 - If we pass a list comprehension the list is generated first
   - Which defeats the whole point of using `all`
 - You can use a generator expression instead
-  - i.e. something that `yield`’s
+  - i.e. something that `yield`’s (See [Item
+    43](../../Chapter_06/Item_043/item_043.qmd))
   - So it’s only called as required
 
 ``` python
@@ -174,7 +179,8 @@ print(all_heads)
 - When a `False` is found,
   - `all` stops calling the iterator and the result is returned
   - No references exist any more to the iterator
-  - It is garbage collected
+  - It is garbage collected (See [Item
+    89](../../Chapter_10/Item_089/item_089.qmd))
 - What if we have a function that behaves the opposite?
   - i.e. Mostly returns `False` and we want to look for a single `True`
     result
@@ -248,6 +254,9 @@ for a in (True, False):
         assert any([a, b]) == (not all ([not a, not b]))
         assert all([a, b]) == (not any ([not a, not b]))
 ```
+
+- There are additional built-in modules for efficiently working with
+  iterators and generators (See [Item 24](../Item_024/item_024.qmd))
 
 ## Things to Remember
 

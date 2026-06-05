@@ -21,6 +21,7 @@ This repository contains code fragments and notes from the book, Effective Pytho
 - [Chapter 11: Performance](./Chapter_11/Chapter_11.md)
 - [Chapter 12: Data Structures Algorithms](./Chapter_12/Chapter_12.md)
 - [Chapter 13: Testing and Debugging](./Chapter_13/Chapter_13.qmd)
+- [Chapter 14: Collaboration](./Chapter_14/Chapter_14.md)
 
 ## Attribution
 

@@ -80,7 +80,8 @@ print(foo_list)
 
 - This can be easy to miss
   - Autoformatters may structure the code or merge strings which can
-    help you spot the error
+    help you spot the error (See [Item
+    2](../../Chapter_01/Item_002/item_002.qmd))
 - Best to be explicit when you are concatenating
   - Might not be the cleanest presentation but makes the intention clear
   - Recall the [Zen of Python](../../Chapter_01/Chapter_01.qmd) *Prefer
@@ -163,12 +164,13 @@ print(value)
 ```
 
     With implicit concatenation
-    MyData((123, 'foo', 'my_format_string 1another value 2', 'and here is more text', 'bar'), {'stream': <ipykernel.iostream.OutStream object at 0x7ff7ed2f5c00>})
+    MyData((123, 'foo', 'my_format_string 1another value 2', 'and here is more text', 'bar'), {'stream': <ipykernel.iostream.OutStream object at 0x7f93a4ac5b70>})
     With explicit concatenation
-    MyData((123, 'foo', 'my_format string 1another value 2', 'and here is more text', 'bar'), {'stream': <ipykernel.iostream.OutStream object at 0x7ff7ed2f5c00>})
+    MyData((123, 'foo', 'my_format string 1another value 2', 'and here is more text', 'bar'), {'stream': <ipykernel.iostream.OutStream object at 0x7f93a4ac5b70>})
 
 - Always prefer explicit concatenation when a function has multiple
-  positional arguments
+  positional arguments (See [Item
+  37](../../Chapter_05/Item_037/item_037.qmd))
 - If there’s one positional argument then implicit string concatenation
   is fine
   - Here there is no ambiguity if separate strings are separate

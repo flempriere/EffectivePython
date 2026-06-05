@@ -249,7 +249,7 @@ class WriteThread(Thread):
     - `real_write` does the actual system call
 - Similarly provide a `real_stop` method and a thread-safe wrapper `stop`
     - Let's coroutines tell the worker thread to stop
-- To let the class be used with a context manager (i.e. `with` statements) we define the `__aenter__` and `__aexit__` dunder methods
+- To let the class be used with a context manager (i.e. `with` statements (See [Item 82](../../Chapter_10/Item_082/item_082.qmd))) we define the `__aenter__` and `__aexit__` dunder methods
     - Ensures the thread is appropriately started and stopped (See [Item 76](../Item_076/item_076.qmd) for background)
 - Can now refactor `run_tasks` into a fully asynchronous version
     - Doesn't interfere with main event loop's default executor

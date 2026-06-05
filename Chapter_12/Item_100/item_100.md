@@ -6,6 +6,8 @@
 ## Notes
 
 - `list` provides a built-in `sort` method
+  - Don’t confuse it with the `sorted` built-in function (See [Item
+    101](../Item_101/item_101.qmd))
   - Default `sort` orders is the *natural ascending* order
   - e.g. numbers from smallest to largest, strings alphabetically
 
@@ -19,6 +21,8 @@ print(numbers)
 
 - For non-trivial or user-defined types `sort` often fails
   - Need to define the underlying comparison operators
+  - Here we have a lightweight class with a simple `repr` method (See
+    [Item 12](../../Chapter_02/Item_012/item_012.qmd))
 
 ``` python
 class Tool:
@@ -59,7 +63,8 @@ tools.sort()
   operators
   - Let’s `sort` work out of the box
 - For complex objects and record types it often doesn’t make sense to
-  have a *natural* ordering
+  have a *natural* ordering (See [Item 104](../Item_104/item_104.qmd)
+  and [Item 57](../../Chapter_07/Item_057/item_057.qmd))
   - For example, A list of songs, might sort,
     - On the name of the artist
     - The length of the song

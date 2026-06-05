@@ -26,17 +26,19 @@ sleep(0.1)
 log("Hello again")
 ```
 
-    2026-05-31 05:49:21.765334: Hi there
-    2026-05-31 05:49:21.765334: Hello again
+    2026-06-05 15:44:21.039281: Hi there
+    2026-06-05 15:44:21.039281: Hello again
 
 - Erroneously assumes that `datetime.now` is called whenever `log` is
   called with the default `when` value
   - The function is actually executed once when the function is defined
-    at module import time
+    at module import time (See [Item
+    98](../../Chapter_11/Item_098/item_098.qmd))
   - The same occurs if we for example try to pass an empty list
     - The same list is used
 - Correct convention is to use `None`
-  - Actual behaviour is then documented in the function docstring
+  - Actual behaviour is then documented in the function docstring (See
+    [Item 118](../../Chapter_14/Item_118/item_118.qmd))
 
 ``` python
 from time import sleep
@@ -67,8 +69,8 @@ sleep(0.1)
 log("Hello again")
 ```
 
-    2026-05-31 05:49:21.871892: Hi there
-    2026-05-31 05:49:21.972191: Hello again
+    2026-06-05 15:44:21.147470: Hi there
+    2026-06-05 15:44:21.247795: Hello again
 
 - Again, suppose we tried to write function that loads json data,
 
@@ -142,7 +144,8 @@ assert foo is not bar
     Foo: {'stuff': 5}
     Bar: {'meep': 1}
 
-- We can extend this further via typing
+- We can extend this further via typing (See [Item
+  124](../../Chapter_14/Item_124/item_124.qmd))
 
 ``` python
 from time import sleep
@@ -173,8 +176,8 @@ sleep(0.1)
 log("Hello again")
 ```
 
-    2026-05-31 05:49:21.990734: Hi there
-    2026-05-31 05:49:22.090998: Hello again
+    2026-06-05 15:44:21.271793: Hi there
+    2026-06-05 15:44:21.372152: Hello again
 
 ## Things to Remember
 

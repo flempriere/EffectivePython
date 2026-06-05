@@ -153,7 +153,8 @@ print(utc_now)
   - Uses the `tzinfo` class
 - Since Python 3.9 `zoneinfo` built-in module contains a time zone
   database
-  - On Windows might instead need the `tzdata` community package
+  - On Windows might instead need the `tzdata` community package (See
+    [Item 116](../../Chapter_14/Item_116/item_116.qmd))
     - It’s officially endorsed
 - Rather than convert between timezones, always better to go via UTC
   intermediate

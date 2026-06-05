@@ -6,5 +6,7 @@
 - Comes at the cost that errors are propagated through to runtime
   - If code is not tested properly it can often be painful to debug once
     it is found in production
+    - For example a `SyntaxError` from a dynamic import (See [Item
+      98](../Chapter_11/Item_098/item_098.qmd))
 - Python’s dynamic features have the benefit of enabling many powerful
   testing paradigms

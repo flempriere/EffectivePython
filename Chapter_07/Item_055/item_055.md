@@ -126,7 +126,8 @@ print(baz.__dict__)
     contracts or promises
   - Idea is to support unplanned extension over strict encapsulation
 - Python also provides dynamic hooks to modify objects
-  - e.g `__getattr__`, `__getattribute__` and `__setattr`
+  - e.g `__getattr__`, `__getattribute__` and `__setattr` (See [Item
+    61](../../Chapter_08/Item_061/item_061.qmd))
   - Also able to configure object internals irrespective of the class
     writer’s intent
   - Undermines value of private attributes

@@ -1,0 +1,144 @@
+# Item 120: Consider Module-Scoped Code to Configure Deployment
+
+Environments
+
+- [Notes](#notes)
+- [Things to Remember](#things-to-remember)
+
+## Notes
+
+> [!NOTE]
+>
+> This example heavily relies on the module structure of a packaged
+> python program. For that reason it is not provided as an executable
+> notebook. Consider downloading the provided source code from the
+> github directly to run the examples yourself
+
+- A deployment environment is a configuration in which a program runs
+
+  - Every program will at least run in a *production environment*
+
+- To develop a program we typically speak of having to setup the
+  *development environment*
+
+  - This might differ substantially from the production environment
+
+- For example, we might develop a program on a laptop that is to be
+  deployed on a micro-controller
+
+- First step is using tools like `venv` to insulate the dependencies
+  (See [Item 117](../Item_117/item_117.qmd))
+
+  - Production environments typically also have further external
+    requirements not captured by a virtual environment
+
+- For example, a program running in a web server connected to a database
+
+  - A real deployment requires
+    - A server container
+    - Database schema
+    - Access authorisation
+  - Overkill for testing small changes
+
+- Useful to be able to override program configuration at startup to
+  modify functionality
+
+  - Can then configure on the deployment environment
+
+- E.g. We might have two `main` files
+
+  1. A production file
+  2. A development file
+
+  ``` python
+    # dev_main.py
+    import db_connection
+
+    TESTING = True
+
+    db = db_connection.Database()
+
+    # prod_main.py
+    import db_connection
+
+    TESTING = False
+
+    db = db_connection.Database()
+  ```
+
+- These two files differ by configuring the global `TESTING` constant
+
+- Other modules then derive their behaviour based on how this value is
+  set
+
+  ``` python
+    # db_connection.py
+    import __main__
+
+    class TestingDatabase:
+        pass
+
+    class RealDatabase:
+        pass
+
+    if __main__.TESTING:
+        Database = TestingDatabase
+    else:
+        Database = RealDatabase
+  ```
+
+- Code running at module scope works the same as code written in a main
+  file (See [Item 98](../../Chapter_11/Item_098/item_098.qmd))
+
+  - Can use conditional logic at module scope to control how a module is
+    set-up when invoked
+
+- Makes it easy to tailor program to it’s deployment environment
+
+  - Avoid needing to perform extensive steps when unneeded, like
+    database connections
+  - Provides a simple interface for injecting testing configurations or
+    mock data (See [Item 111](../../Chapter_13/Item_111/item_111.qmd))
+
+> [!NOTE]
+>
+> For complicated deployment environment configuration considering
+> moving it out of the python code as constants and into dedicated
+> configuration files. Tools like the `configparser` built-in module are
+> designed to help maintain and integrate production configurations.
+
+- Module-scoped code can be used for other configuration decisions such
+  as switching behaviour based on host platform
+  - Can inspect these values via `sys`
+
+  ``` python
+    # db_connection.py
+
+    import sys
+
+    class Win32Database:
+        pass
+
+    class PosixDatabase:
+        pass
+
+    if sys.platform.startswith("win32"):
+        Database = Win32Database
+    else:
+        Database = PosixDatabase
+  ```
+
+- Can similarly use environment variables via `os.environ` to define how
+  a program should be configured
+
+## Things to Remember
+
+- Programs often need to run in different deployment environments
+  - Each may have different assumptions and configurations
+- Modules can be tailored to different employment environments using
+  normal python code at the module level
+- Module contents can be modified by any accessible external condition
+  e.g.
+  - Constants from other modules
+  - Host introspection via `sys`
+  - Environment query through `os.environ`
