@@ -80,7 +80,7 @@ print(f"Sent {chunk=} over socket")
 ```
 
 - Latency and throughput determined by two factors
-    1. How long to slice the chunk from `video_data`
+    1. How long to slice (See [Item 14](../../Chapter_02/Item_014/item_014.qmd)) the chunk from `video_data`
     2. How long to transmit over a socket
 
 - Focusing just on point 1, we can microbenchmark how long fetching a chunk takes.

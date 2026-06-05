@@ -29,7 +29,7 @@ summary = run_report("missing_data_file.csv")
 print(summary)
 ```
 
-- We could wrap `run_report` in a `try/except` block
+- We could wrap `run_report` in a `try/except` block (See [Item 80](../Item_080/item_080.qmd))
 
 ```{python}
 def load_data(path):
@@ -152,6 +152,7 @@ else:
 - There are other pitfalls with overly broad exception handling (See [Item 86](../Item_086/item_086.qmd) and [Item 89](../Item_089/item_089.qmd))
 - The main thing with exception handling is to try and be as specific as possible
     - Avoid potentially catching errors that you don't expect
+- Can design API's to explicitly be separable from other sources of errors (See [item 121](../../Chapter_14/Item_121/item_121.qmd))
 
 ## Things to Remember
 

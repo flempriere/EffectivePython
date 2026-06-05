@@ -8,9 +8,10 @@ title: "Item 51: Prefer `dataclasses` for Defining Lightweight Classes"
 - Python classes by default provide heavy object-oriented machinery
     - Can be overkill for simple classes
     - There are techniques to make this more approachable (See [Item 57](../Item_057/item_057.qmd))
+        - Also community packages (See [Item 116](../../Chapter_14/Item_116/item_116.qmd))
 - `dataclasses` is a built-in module
     - Help's reduce the repeated boilerplate in class definitions
-    - Cost of use is a small runtime cost at `import` (due to using `exec`)
+    - Cost of use is a small runtime cost at `import` (due to using `exec` (See [Item 91](../../Chapter_10/Item_091/item_091.qmd)))
 - `dataclass` is very useful for writing plain-old data (POD) or C-like structs
     - i.e. record types
     - See [Item 56](../Item_056/item_056.qmd) for more examples
@@ -58,7 +59,7 @@ red = BadRGB(255, 0, 0)
 print(red)
 ```
 
-- `dataclasses` provides the `dataclass` decorator
+- `dataclasses` provides the `dataclass` decorator (See [Item 66](../../Chapter_08/Item_066/item_066.qmd))
     - Decorates a class to provide default behaviours
 - We can reimplement our class using this decorator
 
@@ -78,7 +79,7 @@ print(red)
 ```
 
 - To use the decorator define the data attributes as if they were class attributes
-    - Attributes need to be tagged with the corresponding type hint
+    - Attributes need to be tagged with the corresponding type hint (See [Item 124](../../Chapter_14/Item_124/item_124.qmd))
 - Each attribute is defined only once
     - Reordering attributes only needs to update the callers
 - Type annotations give us static type checking tools to detect errors before program execution
@@ -125,7 +126,7 @@ class RGB:
         self.blue = blue
 ```
 
-- If you don't want to deal with type annotations you can always use `Any`
+- If you don't want to deal with type annotations you can always use `Any` (See [Item 3](../../Chapter_01/Item_003/item_003.qmd))
 
 ```{python}
 from typing import Any
@@ -168,7 +169,7 @@ print(f"Red: {red}\nGreen: {green}\nBlue: {blue}")
 ```
 
 - Still prone to the issues raised earlier of mixing up the parameters in the initializer
-- We can use `*` in the argument list to force keyword-only arguments
+- We can use `*` in the argument list to force keyword-only arguments (See [Item 37](../../Chapter_05/Item_037/item_037.qmd))
 
 ```{python}
 class RGB_keywordOnly:
@@ -452,7 +453,7 @@ print(red_copy)
 assert red is not red_copy
 ```
 
-- We can get the same behaviour directly with a dataclass via the `asdict` method
+- We can get the same behaviour directly with a dataclass via the `asdict` method (See [Item 54](../../Chapter_07/Item_054/item_054.qmd))
 
 ```{python}
 from dataclasses import dataclass, asdict
@@ -580,8 +581,8 @@ data.sort()
 print(data)
 ```
 
-- There are alternatives for most cases (such as using `sort` and passing a `key` function)
-- However, often it is useful for an object to have it's own natural ordering (or we might just want to do a comparison)
+- There are alternatives for most cases (such as using `sort` and passing a `key` function (See [Item 100](../../Chapter_12/Item_100/item_100.qmd)))
+- However, often it is useful for an object to have it's own natural ordering (or we might just want to do a comparison) (See [Item 104](../../Chapter_12/Item_104/item_104.qmd))
 - To do comparison we need to implement the `__lt__` (less than), `__le__` (less than or equal), `__gt__` (greater than) or `__ge__` (greater than or equal)
     - A natural technique is to pass this over to a comparison on the tuple representation
 

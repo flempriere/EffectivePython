@@ -449,7 +449,10 @@ print("Feed function calls match expectations")
 - Instead prefer `unittest.mock.patch`
     - Family of functions
     - Allows a temporary overwrite of a module or class attribute or function / method
+        - Can be used as a `with` context (See [Item 82](../../Chapter_10/Item_082/item_082.qmd))
+        - Can be used as a function definition (See [Item 38](../../Chapter_05/Item_038/item_038.qmd))
         - Can be used to temporarily replace a function call with a `Mock`
+        - Can be integrated into `setUp` and `tearDown` methods of `TestCase` implementations (See [Item 110](../Item_110/item_110.qmd))
 - For example, we could patch `get_animals`
 
 ```{python}

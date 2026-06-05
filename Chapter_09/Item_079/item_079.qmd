@@ -4,6 +4,7 @@ title: "Item 79: Consider `concurrent.futures` for True Parallelism"
 
 ## Notes
 
+- Only so far-single threaded optimisation can take python (See [Item 92](../../Chapter_11/Item_092/item_092.qmd))
 - As discussed Python's GIL generally prevents true parallelism (See [Item 68](../Item_068/item_068.qmd))
 - The `multiprocessing` built-in bypasses this by enabling multiple python interpreters to execute as child processes (See [Item 67](../Item_067/item_067.qmd))
     - Different child interpreters each have their own independent GILs
@@ -151,7 +152,7 @@ if __name__ == "__main__":
 
     1. Takes each item from `numbers` to `map`
     2. Serialises the item into binary via `pickle`
-    3. Copies serialized data from the main interpreter to a child interpreter process
+    3. Copies serialized data from the main interpreter to a child interpreter process (See [Item 107](../../Chapter_12/Item_107/item_107.qmd))
         - Copy occurs via a socket
     4. Item is deserialized back into Python objects via `pickle` (in the child)
     5. Runs the `gcd` function on the input data
@@ -184,7 +185,7 @@ if __name__ == "__main__":
 - Until you find yourself struggling with the out-of-the-box simplicity of `concurrent.futures` avoid directly using `multiprocessing`
 - `ThreadPoolExecutor` provides a good starting point for setting up concurrent execution of isolated, high-leverage code
     - If code becomes performance bottlenecked can then switch to `ProcessPoolExecutor`
-    - Then if still an issue consider `multiprocessing` directly or another language
+    - Then if still an issue consider `multiprocessing` directly or another language (See [Item 94](../../Chapter_11/Item_094/item_094.qmd))
 
 ## Things to Remember
 

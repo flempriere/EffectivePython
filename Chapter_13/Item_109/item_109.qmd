@@ -9,7 +9,7 @@ title: "Item 109: Prefer Integration Tests over Unit Tests"
     2. Property-based testing,
     3. Mutation testing,
     4. Code and branch coverage reporting
-    - and more...
+    - and more, all available via community packages (See [Item 116](../../Chapter_14/Item_116/item_116.qmd))
 - The question is never when and can you write tests?
     - How much testing is enough?
     - *What* should tests verify?
@@ -35,7 +35,7 @@ title: "Item 109: Prefer Integration Tests over Unit Tests"
         - Typically also harder to write (See [Item 110](../Item_110/item_110.qmd))
             - But since they test more natural boundaries can be more immutable to changes
         - Highly important in Python
-            - Other languages can give some validation of boundaries using type checking
+            - Other languages can give some validation of boundaries using type checking (See [Item 124](../../Chapter_14/Item_124/item_124.qmd))
             - Python has no guarantees until runtime (See [Item 3](../../Chapter_01/Item_003/item_003.qmd))
 - Prefer writing integration tests
     - Write unit tests for edge cases or complex boundary conditions
@@ -101,7 +101,7 @@ print("After time:  ", toaster.hot)
 ```
 
 - Might be tempted to write unit test's for the `Toaster`
-    - But would require us to mock out the timer (See [Item 111](../Item_111/item_111.qmd))
+    - But would require us to mock out the timer (See [Item 111](../Item_111/item_111.qmd) and [Item 108](../Item_108/item_108.qmd))
 
 ```{python}
 %reset

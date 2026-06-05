@@ -5,6 +5,7 @@ title: "Item 98: Lazy-Load Modules with Dynamic Imports to Reduce Startup Time"
 ## Notes
 
 - For python programs with slow start-up times (See [Item 97](../Item_097/item_097.qmd)) an option is to consider *dynamic imports*
+    - First consider all standard optimisations (See [Item 92](../../Chapter_11/Item_092/item_092.qmd))
 
 - For example, consider an image processing tool
     - Has two features
@@ -140,7 +141,7 @@ import time:      9100 |      41394 |   _colorize
     - Excludes imports
 - The cumulative column is the time to load a module and all it's dependencies
 - ideally we want to delay loading the `enhance` module until (or if) we need it
-    - `import` statements can be scoped
+    - `import` statements can be scoped (See [Item 122](../../Chapter_14/Item_122/item_122.qmd))
     - e.g. located within functions
     - Let's us explicitly `import` when and where it's needed
         - At the cost of making it harder to see what all the imports associated with a file are (See [cli_faster.py](./CLI/cli_faster.py))
@@ -254,8 +255,8 @@ def do_enhance():
     - Subsequent calls will access the already loaded module
 - There is a cost associated with dynamic imports compared to global imports
     - Since we have to check if we've already loaded a module each time
-    - But it's not high
-    - We can time it using `timeit` to check the time associated with dynamically importing an already imported module
+    - But it's not hig
+    - We can time it using `timeit` (See [Item 93](../../Chapter_11/Item_093/item_093.qmd)) to check the time associated with dynamically importing an already imported module
 
 ```{python}
 import timeit
@@ -307,7 +308,7 @@ print(f"{result / trials * 1e9:2.1f} nanos per call")
     - But the speed is about equal to adding two integers in python
 - However, dynamic import is simple code that doesn't require boilerplate
     - The takeaway is not to *not use* dynamic imports but rather consider where to put them
-    - Avoid putting them in hot loops
+    - Avoid putting them in hot loops (See [Item 94](../../Chapter_11/Item_094/item_094.qmd))
 
 :::{.callout-tip}
 **Python 3.15 and Lazy Imports**

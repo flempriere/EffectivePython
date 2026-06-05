@@ -4,7 +4,7 @@ title: "Item 76: Know how to Port Threaded I/O to `asyncio`"
 
 ## Notes
 
-- Given the cleanliness of coroutines, how does one port existing *threaded* concurrency to use `aysnc`?
+- Given the cleanliness of coroutines (See [Item 75](../Item_075/item_075.qmd)), how does one port existing *threaded* concurrency to use `aysnc`?
 - Since `async` is a language feature, not a library one conversion is usually straightforward
 - For example, consider a simple TCP server hosting the "guess the number" game
     - Server takes a `lower` and `upper` parameter
@@ -18,7 +18,7 @@ This section deals with a slightly larger example and uses network communication
 
 ### Thread Implementation
 
-- Standard implementation for a client/server is to use threads to handle blocking I/O
+- Standard implementation for a client/server is to use threads (See [Item 68](../Item_068/item_068.qmd)) to handle blocking I/O
 
 ```python
 import random
@@ -124,7 +124,7 @@ class ServerSession(Connection):
         - Receives decision from client noting if guess is warmer, colder, the same or correct
         - Then updates it's internal state
     - Last command clears the state and ends a game
-- We then run a game using a context manager via a `with` statement
+- We then run a game using a context manager via a `with` statement (See [Item 82](../../Chapter_10/Item_082/item_082.qmd))
     - Ensures the server state is managed correctly (See [Item 78](../Item_078/item_078.qmd))
     - We do this with a function `new_game`
         - Sends first and last commands to the server
@@ -812,6 +812,7 @@ async def run_async_server(address):
         - We have to close the `writer` then wait for it to be closed via `writer.wait_closed`
     - Observe that overall we didn't have to make any significant *structural* changes to the code
 
+
 :::{.callout-warning}
 The event loop can result in a race condition where `run_async_client` attempts to connect to the server before it has been set-up to listen. This is an example of a race condition. There are more idiomatic techniques to fix this, such as using events to make sure the main function waits for the server to confirm it's listening before proceeding, but a quick fix can be to use `asyncio.sleep` to add a delay to the start of the `run_async_client` function and ensure the server has time to set-up.
 
@@ -855,7 +856,7 @@ async def run_async_client(address):
     - E.g. No `async` equivalent for `itertools` functions (See [Item 24](../../Chapter_03/Item_024/item_024.qmd))
     - No `async` equivalent of `yield from` (See [Item 45](../../Chapter_06/Item_045/item_045.qmd))
         - Composing generators thus becomes less clean
-    - Worth considering looking for third party libraries where friction occurs
+    - Worth considering looking for third party libraries where friction occurs (See [Item 116](../../Chapter_14/Item_116/item_116.qmd))
 - Last step is to update the driver code
     - Start by using `asyncio.create_task` to queue server onto the event loop
         - Ensures that it runs alongside the client

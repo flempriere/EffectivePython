@@ -5,7 +5,7 @@ title: "Item 93: Optimise Performance-Critical Code Using `timeit` Micro-benchma
 ## Notes
 
 - Once a bottleneck has been identified via profiling (See [Item 92](../Item_092/item_092.qmd)) other techniques can then be used to improve performance
-    - Often a new data structure or architecture can then improve the performance
+    - Often a new data structure or architecture can then improve the performance (See [Item 104](../../Chapter_12/Item_104/item_104.qmd))
 - Hot-spots may continue to remain even after rounds of refactoring
     - Rather than considering drastic solutions (See [Item 94](../Item_094/item_094.qmd))
     - Consider *micro-benchmarks* via `timeit`
@@ -50,7 +50,7 @@ print(f"{delay / count * 1e9:.2f} nanoseconds")
 - Often there needs to be some surrounding scaffolding or test harness to support a benchmark, e.g.
     - Setting up a data structure
     - Warming a cache
-- `timeit` provides a  `setup` argument
+- `timeit` provides a  `setup` argument (See [Item 91](../../Chapter_10/Item_091/item_091.qmd))
     - Run's once before all iterations
     - Excluded from final timing
 - For example, measuring the time to find a number in a randomised list
@@ -195,7 +195,8 @@ print(f"{delay / count / 10_000 * 1e9:.2f} nanoseconds")
     - Also repeats the result five times and takes the best
     - This accounts for system variance to give a best case lower bound
 - From our result, we can see that for keys that are expected to exist in the dictionary
-    - exception catching is the fastest
+    - exception catching is the fastest (See [Item 32](../../Chapter_05/Item_032/item_032.qmd))
+        - Common python paradigm
     - `in` is the slowest
     - Might not be intuitively obvious given the extra machinery to set up exceptions
 - Note, this hasn't timed the impact of looking for keys that *don't* exist which might differ

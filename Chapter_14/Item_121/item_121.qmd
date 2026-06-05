@@ -16,7 +16,7 @@ def determine_weight(volume, density):
         raise ValueError("Density must be positive")
 
 
-determine_weight(-10)
+determine_weight(1, -10)
 ```
 
 - For API's typically want to define a new hierarchy of exceptions
@@ -113,6 +113,7 @@ except Error:  # Misuse of the API
 - If we instead have a bug in the API itself it will bypass the insulation layer and propagate up
     - Or can be caught and recorded separately
     - As per below, the `determine_weight` code has a division by zero error since it doesn't account for the case of volume being zero.
+    - Caller needs to extend the `try/except` block that catches the broader Python `Exception` class to handle the error (See [Item 85](../../Chapter_10/Item_085/item_085.qmd))
 
 ```{python}
 import logging

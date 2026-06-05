@@ -4,15 +4,16 @@ title: "Item 96: Consider Extension Modules to Maximise Performance and Ergonomi
 
 ## Notes
 
+- CPython (See [Item 1](../../Chapter_01/Item_001/item_001.qmd)) supports C Extension Modules
 - An alternative to `ctypes` (See [Item 95](../Item_095/item_095.qmd)) is to write a C Extension module
 - Can directly use the Python API
 - Let's you use python features, e.g.
-    - OOP
-    - Protocols
+    - OOP (See [Chapter 7](../../Chapter_07/Chapter_07.qmd))
+    - Protocols (See [Item 25](../../Chapter_04/Item_025/item_025.qmd))
     - Reference-counting
     - etc...
 - Extension modules let the calling code be more Pythonic
-- Creating an extension module is much more complicated than using `ctypes`
+- Creating an extension module is much more complicated than using `ctypes` (See [Item 94](../../Chapter_11/Item_094/item_094.qmd))
     - Have to understand the Python C API
 - We'll demonstrate by again implementing our `dot_product` function (See [Item 94](../Item_094/item_094.qmd))
 - As usual start by providing a header declaration
@@ -113,6 +114,7 @@ PyInit_extension(void) {
 - Now need to compile C code into a native library
     - Can then be dynamically loaded into the CPython interpreter
 - Can do so via a simple `setup.py` configuration file
+    - Utilises the `setuptools` built-in module (See [Item 116](../../Chapter_14/Item_116/item_116.qmd))
 
 ```python
 # setup.py
@@ -130,7 +132,7 @@ setup(
 )
 ```
 
-- We can then use this to install the extension into our virtual environment
+- We can then use this to install the extension into our virtual environment (See [Item 117](../../Chapter_14/Item_117/item_117.qmd))
     - By running the following from the folder containing our extension module
 
 ```shell
@@ -145,7 +147,7 @@ There are many methods for packaging projects and extension modules. The process
 The above steps install our module as an *editable* install in our local virtual environment. This is a good way to deal with a local package that is being actively developed. In general avoid installing packages into the system python (non-virtual environment), but doubly so for those packages that are ephemeral or active development.
 :::
 
-- We can now test our module
+- We can now test our module (See [Item 108](../../Chapter_13/Item_108/item_108.qmd))
 
 ```{python}
 import unittest
@@ -358,6 +360,7 @@ unittest.main(argv=[""], verbosity=2, exit=False)
 
 - The flexibility and extensibility of above provides good ergonomics
     - Would have to reinvent a lot of the Python machinery to reimplement this in basic C
+    - But works for the python types like iterable and `Decimal` class (See [Item 106](../../Chapter_12/Item_106/item_106.qmd))
 
 ## Things to Remember
 

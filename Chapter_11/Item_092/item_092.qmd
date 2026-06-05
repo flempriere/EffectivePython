@@ -90,7 +90,7 @@ stats.print_stats()
     5. **cumtime percall:** Average number of seconds spent executing this function each call, including in sub-functions
 - As expected the biggest consumer is our `insert_value` function
     - We can reimplement this with a *binary search*
-    - Provided by the `bisect` built-in module
+    - Provided by the `bisect` built-in module (See [Item 102](../../Chapter_12/Item_102/item_102.qmd))
 
 ::: {.callout-note}
 When profiling a program be sure to measure the actual code and not any external systems. Functions that access disk or networks will tend to otherwise dominate the profile because these operations are orders of magnitude slower than the actual CPU. If your program or system provides a cache then improperly warming it may cause subsequent tests to give very different results
@@ -217,7 +217,7 @@ stats.print_callers()
 - Functions called are listed on the left
     - Functions that call that function are listed on the right
 - This lets us see that `first_function` is clearly the main culprit
-- An alternative is the `print_calles` method
+- An alternative is the `print_callees` method
     - Provides a top down view of which functions another function calls
 
 ```{python}
@@ -257,7 +257,7 @@ stats.print_callees()
 ```
 
 - There are further tools for analysing performance once a basic profiling has been conducted (See [Item 93](../Item_093/item_093.qmd) and [Item 98](../Item_098/item_098.qmd))
-- There is also a broader community of profiling tools, e.g.
+- There is also a broader community of profiling tools (See [Item 116](../../Chapter_14/Item_116/item_116.qmd)), e.g.
     - Line profilers
     - Sampling profilers
     - Linux's `perf` tool

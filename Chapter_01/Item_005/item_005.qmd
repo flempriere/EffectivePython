@@ -4,7 +4,7 @@ title: "Item 5: Prefer Multiple-Assignment Unpacking over Indexing"
 
 ## Notes
 
-- `tuple` is a builtin type for immutable, ordered sequences
+- `tuple` is a builtin type for immutable, ordered sequences (See [Item 56](../../Chapter_07/Item_056/item_056.qmd))
 - Can be empty, contain a single item, or multiple, e.g.
 
 ```{python}
@@ -102,7 +102,7 @@ print(names)
     - Right side is evaluated and stored in a temporary tuple
     - The left side is then assigned via unpacking of this temporary right side tuple
     - Temporary tuple then ceases to exist at the end of the process
-- A common use case is in unpacking lists generated in `for` loop expressions, e.g.
+- A common use case is in unpacking lists generated in `for` loop expressions (See [Item 40](../../Chapter_06/Item_040/item_040.qmd) and [Item 44](../../Chapter_06/Item_044/item_044.qmd)), e.g.
 
 ```{python}
 snacks = [("bacon", 350), ("donut", 240), ("muffin", 190)]
@@ -111,19 +111,20 @@ for rank, (name, calories) in enumerate(snacks, 1):
 ```
 
 - This is the classic example of *pythonic*
+    - Uses the `enumerate` built-in (See [Item 17](../../Chapter_03/Item_017/item_017.qmd))
 - Short, but clear to see what is happening
     - No indices, which clutter the code with noise
 - Unpacking can also be used for
 
-    1. Unpacking list construction
-    2. Function arguments
-    3. Keyword arguments
-    4. Multiple return values
-    5. Structural pattern matching
+    1. Unpacking list construction (See [Item 16](../../Chapter_02/Item_016/item_016.qmd))
+    2. Function arguments (See [Item 34](../../Chapter_05/Item_034/item_034.qmd))
+    3. Keyword arguments (See [Item 35](../../Chapter_05/Item_035/item_035.qmd))
+    4. Multiple return values (See [Item 31](../../Chapter_05/Item_031/item_031.qmd))
+    5. Structural pattern matching (See [Item 9](../../Chapter_01/Item_009/item_009.qmd))
     6. etc.
 
 - Unpacking does not work for assignment expressions
-- Requires you to be careful with your data structure to ensure the pattern matching works
+- Requires you to be careful with your data structure to ensure the pattern matching works (See [Item 6](../Item_006/item_006.qmd), [Item 8](../Item_008/item_008.qmd))
 
 ## Things to Remember
 
