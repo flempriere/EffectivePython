@@ -61,11 +61,11 @@ for obj in found_objects[:3]:
     print(repr(obj)[:100])
 ```
 
-    Before: 87920
-    After:    97995
-    <__main__.MyObject object at 0x7fbb9030dae0>
-    <__main__.MyObject object at 0x7fbb9030db30>
-    <__main__.MyObject object at 0x7fbb9030db80>
+    Before: 87936
+    After:    98008
+    <__main__.MyObject object at 0x7fd9c4d11810>
+    <__main__.MyObject object at 0x7fd9c4d11860>
+    <__main__.MyObject object at 0x7fd9c4d118b0>
 
 - Lot’s of the memory above is from running the jupyter notebook
 - But `gc.get_objects` doesn’t provide context about the object’s it’s
@@ -113,9 +113,9 @@ for stat in stats[:3]:
     print(stat)
 ```
 
-    /tmp/ipykernel_14182/1425524081.py:11: size=1299 KiB (+1299 KiB), count=10000 (+10000), average=133 B
-    /tmp/ipykernel_14182/1425524081.py:17: size=785 KiB (+785 KiB), count=10000 (+10000), average=80 B
-    /tmp/ipykernel_14182/1425524081.py:18: size=84.4 KiB (+84.4 KiB), count=100 (+100), average=864 B
+    /tmp/ipykernel_13952/1425524081.py:11: size=1299 KiB (+1299 KiB), count=10000 (+10000), average=133 B
+    /tmp/ipykernel_13952/1425524081.py:17: size=785 KiB (+785 KiB), count=10000 (+10000), average=80 B
+    /tmp/ipykernel_13952/1425524081.py:18: size=84.4 KiB (+84.4 KiB), count=100 (+100), average=864 B
 
 - `size` and `count` labels help identify which objects dominate memory
   usage
@@ -171,13 +171,13 @@ print("\n".join(top.traceback.format()))
         if await self.run_code(code, result, async_=asy):
       File "/home/runner/work/EffectivePython/EffectivePython/.venv/lib/python3.14/site-packages/IPython/core/interactiveshell.py", line 3747
         exec(code_obj, self.user_global_ns, self.user_ns)
-      File "/tmp/ipykernel_14182/1838260187.py", line 27
+      File "/tmp/ipykernel_13952/1838260187.py", line 27
         waste_memory = run()
-      File "/tmp/ipykernel_14182/1838260187.py", line 23
+      File "/tmp/ipykernel_13952/1838260187.py", line 23
         deep_values.append(get_data())
-      File "/tmp/ipykernel_14182/1838260187.py", line 15
+      File "/tmp/ipykernel_13952/1838260187.py", line 15
         obj = MyObject()
-      File "/tmp/ipykernel_14182/1838260187.py", line 9
+      File "/tmp/ipykernel_13952/1838260187.py", line 9
         self.data = os.urandom(1000)
 
 - Stack trace is the best mechanism for differentiating different usages

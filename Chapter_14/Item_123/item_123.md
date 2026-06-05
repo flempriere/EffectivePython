@@ -157,11 +157,11 @@ print_distance(5, 2.5)
 
     12.5 miles
 
-    /tmp/ipykernel_14517/579820821.py:29: DeprecationWarning: speed_units required
+    /tmp/ipykernel_14286/579820821.py:29: DeprecationWarning: speed_units required
       warnings.warn("speed_units required", DeprecationWarning)
-    /tmp/ipykernel_14517/579820821.py:32: DeprecationWarning: time_units required
+    /tmp/ipykernel_14286/579820821.py:32: DeprecationWarning: time_units required
       warnings.warn("time_units required", DeprecationWarning)
-    /tmp/ipykernel_14517/579820821.py:35: DeprecationWarning: distance_units required
+    /tmp/ipykernel_14286/579820821.py:35: DeprecationWarning: distance_units required
       warnings.warn("distance_units required", DeprecationWarning)
 
 - We can see the errors are reported on `stderr`
@@ -236,11 +236,11 @@ print_distance(5, 2.5)
 
     12.5 miles
 
-    /tmp/ipykernel_14517/4080730032.py:50: DeprecationWarning: speed_units will be required soon, update your code
+    /tmp/ipykernel_14286/4080730032.py:50: DeprecationWarning: speed_units will be required soon, update your code
       print_distance(5, 2.5)
-    /tmp/ipykernel_14517/4080730032.py:50: DeprecationWarning: time_units will be required soon, update your code
+    /tmp/ipykernel_14286/4080730032.py:50: DeprecationWarning: time_units will be required soon, update your code
       print_distance(5, 2.5)
-    /tmp/ipykernel_14517/4080730032.py:50: DeprecationWarning: distance_units will be required soon, update your code
+    /tmp/ipykernel_14286/4080730032.py:50: DeprecationWarning: distance_units will be required soon, update your code
       print_distance(5, 2.5)
 
 - Can configure how to handle raised warnings, e.g.
@@ -315,7 +315,7 @@ warnings.simplefilter("default")
 warnings.warn("This will go to the logs output")
 ```
 
-    2026-06-05 16:02:38,694 WARNING] /tmp/ipykernel_14517/2298159381.py:16: UserWarning: This will go to the logs output
+    2026-06-05 16:36:26,456 WARNING] /tmp/ipykernel_14286/2298159381.py:16: UserWarning: This will go to the logs output
       warnings.warn("This will go to the logs output")
 
 - Syncing `warnings` to `logging` ensures that we don’t run two parallel

@@ -210,7 +210,7 @@ print(my_set)
     2
     3
     [4, 1, 2, 3]
-    {'green', 'blue', 'red', 'yellow'}
+    {'green', 'yellow', 'blue', 'red'}
 
 - Copying can be slow for large containers (See [Item
   92](../../Chapter_11/Item_092/item_092.qmd))

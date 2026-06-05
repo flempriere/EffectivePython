@@ -58,7 +58,7 @@ if __name__ == "__main__":
     main()
 ```
 
-    Took 10.459 seconds
+    Took 9.220 seconds
 
 - Can’t speed this up via threads due to the GIL
   - Only one CPU can be executing in the interpreter at a time
@@ -106,7 +106,7 @@ if __name__ == "__main__":
     main()
 ```
 
-    Took 9.373 seconds
+    Took 9.504 seconds
 
 - This may or may not be slower due to the overhead of managing the
   threads

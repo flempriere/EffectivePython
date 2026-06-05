@@ -52,7 +52,7 @@ delta = end - start
 print(f"Took {delta:.3f} seconds")
 ```
 
-    Took 5.716 seconds
+    Took 6.848 seconds
 
 - In another language might seem natural to do this computation using
   multiple threads of execution
@@ -114,7 +114,7 @@ delta = end - start
 print(f"Took {delta:.3f} seconds")
 ```
 
-    Took 5.522 seconds
+    Took 5.551 seconds
 
 - Here the program shows no significant time difference from the
   single-thread version

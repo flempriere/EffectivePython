@@ -90,7 +90,7 @@ result = my_library.dot_product(
 print(result)
 ```
 
-    <_FuncPtr object at 0x7fd03479c5f0>
+    <_FuncPtr object at 0x7fd48840c5f0>
     -39.35
 
 - We can find the `dot_product` function as an attribute of the
@@ -247,7 +247,7 @@ unittest.main(argv=[""], verbosity=2, exit=False)
 
     OK
 
-    <unittest.main.TestProgram at 0x7fd03458aba0>
+    <unittest.main.TestProgram at 0x7fd488202ba0>
 
 - `ctypes` provides further functionality, e.g.
   - Mapping python objects to C structs
