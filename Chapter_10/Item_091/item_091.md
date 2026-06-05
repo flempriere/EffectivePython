@@ -85,7 +85,8 @@ print(local_scope)
 - Use of `exec` or `eval` is a red flag in standard application code
   - Allowing dynamic and arbitrary code execution is a serious security
     risk
-  - There are better techniques even for plugin architectures
+  - There are better techniques even for plugin architectures (See [Item
+    98](../../Chapter_11/Item_098/item_098.qmd))
 - `exec` and `eval` should only be used for developer tools e.g.
   - A debugger
   - Notebook system

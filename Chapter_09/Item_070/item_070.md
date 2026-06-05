@@ -42,7 +42,8 @@ def upload(item):
 
 - Now need to set-up a way to hand work between the pipeline phases
   - Can use a thread-safe producer-consumer queue (See [Item
-    69](../Item_069/item_069.qmd))
+    69](../Item_069/item_069.qmd) and [Item
+    103](../../Chapter_12/Item_103/item_103.qmd))
   - We can use the `deque` (double-ended queue) data structure from the
     collections built-in
 
@@ -391,7 +392,8 @@ thread.join()
     - Means that we can still complete any enqueued work
   - Once Queue is fully empty a `ShutDown` exception is raised by `get`
     in the worker thread
-    - Means the thread can clean up and exit
+    - Means the thread can clean up and exit (See [Item
+      80](../../Chapter_10/Item_080/item_080.qmd))
 - For example, here a thread processes work after `shutdown` is called
 
 ``` python
@@ -745,7 +747,8 @@ print(counter, "items finished")
     2000 items finished
 
 - Queue works well with a linear pipeline
-- For other workflows consider other tools e.g. Coroutines
+- For other workflows consider other tools e.g. Coroutines (See [Item
+  75](../Item_075/item_075.qmd))
 
 ## Things to Remember
 

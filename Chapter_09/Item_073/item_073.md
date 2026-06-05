@@ -625,7 +625,8 @@ print(columns)
         represented)
 - This poses further challenges
   1. How to propagate exceptions between stages and the main thread
-  2. Need to reintroduce a lock to `Grid` to synchronise between
+  2. Need to reintroduce a lock (See [Item
+      69](../Item_069/item_069.qmd)) to `Grid` to synchronise between
       pipeline stages (See [Item 72](../Item_072/item_072.qmd) and
       `LockingGrid`)
   3. If our maximum number of threads is fixed, we now have to divide

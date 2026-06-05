@@ -48,7 +48,8 @@ else:
 - Here we effectively duplicate `count`, because we assign then test it
   - Also means that `count` is promoted to an outer scope
   - This is a common and negative python pattern
-  - People will try and create workarounds
+  - People will try and create workarounds (See [Item
+    4](../Item_004/item_004.qmd) and [Item 7](../Item_007/item_007.qmd))
 - We can rewrite the above using the walrus operator
 
 ``` python
@@ -132,8 +133,9 @@ except OutOfBananas:
   `if`
   - Means that `pieces` has two places where it can potentially be
     defined
-  - Works because of python’s scoping rules, but easy to break if code
-    changes around it
+  - Works because of python’s scoping rules (See [Item
+    33](../../Chapter_05/Item_033/item_033.qmd)), but easy to break if
+    code changes around it
 - We can instead use the walrus operator
 
 ``` python
@@ -173,7 +175,8 @@ else:
     Slicing 8 bananas
     Making smoothies with 32 banana slices
 
-- We can use the walrus operator to flatten this structure
+- We can use the walrus operator to flatten this structure (See [Item
+  9](../Item_009/item_009.qmd))
 
 ``` python
 if (count := fresh_fruit.get("banana", 0)) >= 2:
@@ -276,6 +279,9 @@ print(bottles)
 ```
 
     [('apple juice', 1), ('banana juice', 3), ('lemon juice', 2), ('lime juice', 5), ('orange juice', 3), ('melon juice', 2)]
+
+- See [Item 42](../../Chapter_06/Item_042/item_042.qmd) for more
+  examples of using assignment expressions
 
 ## Things to Remember
 

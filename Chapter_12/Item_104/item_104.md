@@ -166,7 +166,8 @@ print("After Return:", [x.title for x in queue])
   the list every time
   - Adding $n$ books, means the total cost is about
     $n^{2}\log\left(n\right)$
-  - We can benchmark this below
+  - We can benchmark this below with `timeit` (See [Item
+    93]((../../Chapter_11/Item_093/item_093.qmd)))
 
 ``` python
 import random
@@ -201,11 +202,11 @@ for i in range(1, 6):
     print(f"Count {count:>5,} takes: {delay * 1e3:6.2f}ms")
 ```
 
-    Count 1,000 takes:   2.16ms
-    Count 2,000 takes:   7.30ms
-    Count 3,000 takes:  14.92ms
-    Count 4,000 takes:  25.75ms
-    Count 5,000 takes:  38.70ms
+    Count 1,000 takes:   2.52ms
+    Count 2,000 takes:   8.58ms
+    Count 3,000 takes:  17.00ms
+    Count 4,000 takes:  28.56ms
+    Count 5,000 takes:  42.72ms
 
 - Removing items takes linear time to scan through the list
   - Can again benchmark this
@@ -243,11 +244,11 @@ for i in range(1, 6):
     print(f"Count {count:>5,} takes: {delay * 1e3:6.2f}ms")
 ```
 
-    Count 1,000 takes:   2.88ms
-    Count 2,000 takes:   9.75ms
-    Count 3,000 takes:  21.96ms
-    Count 4,000 takes:  38.96ms
-    Count 5,000 takes:  58.38ms
+    Count 1,000 takes:   3.13ms
+    Count 2,000 takes:  10.22ms
+    Count 3,000 takes:  23.26ms
+    Count 4,000 takes:  40.17ms
+    Count 5,000 takes:  63.43ms
 
 - We can use the `heapq` module to implement a priority queue with more
   consistent time-complexity across the operations
@@ -495,11 +496,11 @@ for i in range(1, 6):
     print(f"Count {count:>5,} takes {delay*1e3:6.2f}ms")
 ```
 
-    Count 10,000 takes   2.97ms
-    Count 20,000 takes   6.76ms
-    Count 30,000 takes  10.09ms
-    Count 40,000 takes  14.20ms
-    Count 50,000 takes  18.34ms
+    Count 10,000 takes   3.33ms
+    Count 20,000 takes   7.01ms
+    Count 30,000 takes  11.36ms
+    Count 40,000 takes  15.44ms
+    Count 50,000 takes  20.28ms
 
 - Downside of a heap is that removing arbitrary items is not
   straightforward
@@ -582,7 +583,8 @@ print("Books:", [x.title for x in queue])
     2019-06-06 Crime and Punishment
     Books: ['Wuthering Heights']
 
-- Downside is the memory footprint
+- Downside is the memory footprint (See [Item
+  115](../../Chapter_13/Item_115/item_115.qmd))
 - A book might be in the queue multiple times (multiple returned
   instances and one currently out on loan)
 - Queue operations fast, but at the cost of more memory

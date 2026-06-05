@@ -64,7 +64,8 @@ print(f"Opacity:    {opacity!r}")
   - So we move to the second sub-expression which results in `0` being
     returned
 - In the `"opacity"` case, opacity is not in the dictionary
-  - `get` returns `[""]`
+  - `get` returns `[""]` (See [Item
+    26](../../Chapter_04/Item_026/item_026.qmd))
   - We then access the list to get the empty string
   - This evaluates to `False`
   - We move to the second sub-expression which results in `0` being
@@ -85,6 +86,17 @@ print(f"Red:        {red!r}")
 
 - At this the code while functional is too obscure to be easily
   understood
+- Could use an inline `if` but there’s not much more clarity (See [Item
+  7](../Item_007/item_007.qmd))
+
+``` python
+red_str = my_values.get("red", [""])
+red = int(red_str[0]) if red_str[0] else 0
+print(f"Red:    {red!r}")
+```
+
+    Red:    5
+
 - Instead we could write a simple function
 
 ``` python
@@ -100,6 +112,10 @@ def get_first_int(values, key, default=0):
 - We can rewrite our initial parse as
 
 ``` python
+from urllib.parse import parse_qs
+
+my_values = parse_qs("red=5&blue=0&green=", keep_blank_values=True)
+
 red = get_first_int(my_values, "red")
 green = get_first_int(my_values, "green")
 opacity = get_first_int(my_values, "opacity")

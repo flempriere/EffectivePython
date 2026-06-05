@@ -144,7 +144,8 @@ bad_math()
 - Linting tools like [Flake 8](../Item_002/item_002.qmd#automation) and
   Ruff (see above) can help catch these
 
-  - More advanced techniques are *type checkers*
+  - More advanced techniques are *type checkers* (See [Item
+    124](../../Chapter_14/Item_124/item_124.qmd))
   - We’ll discuss these later
 
 - Even with these tools its important to be aware that most python
@@ -154,8 +155,10 @@ bad_math()
 
 - Therefore it’s important to,
 
-  1. Check assumptions are correct at run time
-  2. Verify program correctness with automated tests
+  1. Check assumptions are correct at run time (See [Item
+      81](../../Chapter_10/Item_081/item_081.qmd))
+  2. Verify program correctness with automated tests (See [Item
+      109](../../Chapter_13/Item_109/item_109.qmd))
 
 ## Things to Remember
 

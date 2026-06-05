@@ -29,7 +29,9 @@ Generators
 ## Notes
 
 - `itertools` is a built-in module providing functions for advanced
-  interactions with iterators
+  interactions with iterators (See [Item
+  43](../../Chapter_06/Item_043/item_043.qmd) and [Item
+  21](../Item_021/item_021.qmd))
 - When you need to perform complex iteration code first check the
   [itertools
   documentation](https://docs.python.org/3/library/itertools.html)
@@ -119,6 +121,7 @@ print(list(it3))
 #### `zip_longest`
 
 - `zip` variant that iterates until the longest iterator is exhausted
+  (See [Item 18](../Item_018/item_018.qmd))
 - Missing values are replaced with a user-specified default `fillvalue`
   or `None`
 
@@ -150,7 +153,9 @@ print("zip_longest: ", longest)
   1. Specify the end
   2. Specify the start and end
   3. Specify the start, end and step
-- Similar logic to that of standard slicing and striding
+- Similar logic to that of standard slicing and striding (See [Item
+  14](../../Chapter_02/Item_014/item_014.qmd) and [Item
+  15](../../Chapter_02/Item_015/item_015.qmd))
 
 ``` python
 import itertools
@@ -171,7 +176,8 @@ print("Middle odds:", list(middle_odds))
 
 - Returns items from an iterator until a predicate function returns
   `False`
-  - All remaining items consumed (but not returned)
+  - All remaining items consumed (but not returned) (See [Item
+    39](../../Chapter_05/Item_039/item_039.qmd))
 
 ``` python
 import itertools
@@ -301,7 +307,8 @@ print("Sum Modulo 20:   ", list(modulo_reduce))
 - Returns the cartesian product from one or more iterators
   - Optional `repeat` lets you calculate the product of an iterator with
     `repeat - 1` copies of itself
-- Provides a good alternative to deeply nested comprehensions
+- Provides a good alternative to deeply nested comprehensions (See [Item
+  41](../../Chapter_06/Item_041/item_041.qmd))
 
 ``` python
 import itertools

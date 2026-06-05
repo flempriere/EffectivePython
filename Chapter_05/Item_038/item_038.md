@@ -17,10 +17,12 @@
   - Enforcing semantics
   - Debugging
   - Registering functions
-  - More…
+  - More… (See [Item 86](../../Chapter_10/Item_086/item_086.qmd))
 - E.g. let’s say we want a simple debugging utility to print the
   arguments and return values of a function call
-  - We define it using `*args` and `**kwargs`
+  - We define it using `*args` and `**kwargs` (See [Item
+    34](../Item_034/item_034.qmd) and [Item
+    35](../Item_035/item_035.qmd))
 
 ``` python
 def trace(func):
@@ -95,7 +97,8 @@ fibonacci = trace(fibonacci)
   - Value returned by the decorator doesn’t recognise it’s name as
     `fibonacci`
   - Instead it is the wrapper function defined in `trace`
-  - This causes issues with introspection tools like debuggers
+  - This causes issues with introspection tools like debuggers (See
+    [Item 114](../../Chapter_13/Item_114/item_114.qmd))
   - e.g. `help` can no longer look up the correct docstring
 
 ``` python
@@ -132,13 +135,14 @@ print(fibonacci)
 help(fibonacci)
 ```
 
-    <function trace.<locals>.wrapper at 0x7ff5c06128d0>
+    <function trace.<locals>.wrapper at 0x7f8d64fbe8d0>
     Help on function wrapper in module __main__:
 
     wrapper(*args, **kwargs)
 
-- Object serializers also break since they can no longer locate the
-  original function
+- Object serializers (See [Item
+  107](../../Chapter_12/Item_107/item_107.qmd)) also break since they
+  can no longer locate the original function
 
 ``` python
 import pickle
@@ -175,7 +179,7 @@ def fibonacci(n):
 pickle.dumps(fibonacci)
 ```
 
-    PicklingError: Can't pickle local object <function trace.<locals>.wrapper at 0x7ff5c0612770>
+    PicklingError: Can't pickle local object <function trace.<locals>.wrapper at 0x7f8d64fbe770>
     ---------------------------------------------------------------------------
     PicklingError                             Traceback (most recent call last)
     Cell In[4], line 32
@@ -183,7 +187,7 @@ pickle.dumps(fibonacci)
          30     return fibonacci(n - 2) + fibonacci(n - 1)
     ---> 32 pickle.dumps(fibonacci)
 
-    PicklingError: Can't pickle local object <function trace.<locals>.wrapper at 0x7ff5c0612770>
+    PicklingError: Can't pickle local object <function trace.<locals>.wrapper at 0x7f8d64fbe770>
 
 - `functools` provides the `wraps` helper function
 - Acts as a decorator for writing decorators

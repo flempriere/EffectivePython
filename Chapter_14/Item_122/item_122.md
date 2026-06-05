@@ -130,7 +130,8 @@ AttributeError: module 'app' has no attribute 'prefs' (consider renaming '.../Ef
 
     - Works here because when `dialog` runs it’s import `app.perfs` is
       already defined
-- Breaks the PEP 8 style guide
+- Breaks the PEP 8 style guide (See [Item
+  2](../../Chapter_01/Item_002/item_002.qmd))
   - Module is no longer at the top but buried in the code
   - For larger files, means the `import` statements can be hard to find
 - This solution is brittle

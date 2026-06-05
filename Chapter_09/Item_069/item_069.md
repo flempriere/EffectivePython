@@ -61,7 +61,7 @@ expected = how_many * sensor_count
 print(f"Counter should be {expected}, got {counter}")
 ```
 
-    Counter should be 4000000, got 1910307
+    Counter should be 4000000, got 3216398
 
 - You should see that the result above seems wrong
 - This is because we still have race conditions
@@ -132,7 +132,8 @@ print(f"Counter after thread A:", counter)
   - We then update our `Worker` class adding a `with` context to use the
     lock before accessing `counter`
     - `with` adds an extra layer on indentation so makes it clear where
-      the lock is active
+      the lock is active (See [Item
+      82](../../Chapter_10/Item_082/item_082.qmd))
     - Also means we don’t have to manually manage the locking ourself
 
 ``` python

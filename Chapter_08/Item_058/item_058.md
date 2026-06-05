@@ -6,7 +6,8 @@
 ## Notes
 
 - Other languages with tighter access controls tend to use the `getter`
-  and `setter` idiom for configuring attributes
+  and `setter` idiom for configuring attributes (See [Item
+  55](../../Chapter_07/Item_055/item_055.qmd))
 - Natural for people to try and repeat this pattern in python
 
 ``` python

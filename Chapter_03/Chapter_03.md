@@ -14,4 +14,5 @@
     3. Capable of handling arbitrary sized data
   - Python provides tools to compose iterators and customise their
     behaviours
-    - Generators provide an advanced way to interface with iterators
+    - Generators (See [Item 6](../../Chapter_01/Item_006/item_006.qmd))
+      provide an advanced way to interface with iterators

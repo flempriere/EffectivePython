@@ -35,7 +35,8 @@ print(f"Outside {e=}")  # Raises
     NameError: name 'e' is not defined
 
 - This includes the scope of a `finally` branch in a
-  `try/except/finally` construct
+  `try/except/finally` construct (See [Item
+  80](../Item_080/item_080.qmd))
 
 ``` python
 class MyError(Exception):

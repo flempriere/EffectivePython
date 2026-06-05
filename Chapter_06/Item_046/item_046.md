@@ -297,7 +297,8 @@ run_modulating(complex_wave_modulating())
     24](../../Chapter_03/Item_024/item_024.qmd))
 - *Downside:* The above assumes the generator is *thread-safe*
   - Not strictly true
-  - In such cases instead consider `async` functions
+  - In such cases instead consider `async` functions (See [Item
+    77](../../Chapter_09/Item_077/item_077.qmd))
 
 ``` python
 import math

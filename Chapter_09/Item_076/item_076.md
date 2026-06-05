@@ -7,8 +7,9 @@
 
 ## Notes
 
-- Given the cleanliness of coroutines, how does one port existing
-  *threaded* concurrency to use `aysnc`?
+- Given the cleanliness of coroutines (See [Item
+  75](../Item_075/item_075.qmd)), how does one port existing *threaded*
+  concurrency to use `aysnc`?
 - Since `async` is a language feature, not a library one conversion is
   usually straightforward
 - For example, consider a simple TCP server hosting the “guess the
@@ -27,8 +28,8 @@
 
 ### Thread Implementation
 
-- Standard implementation for a client/server is to use threads to
-  handle blocking I/O
+- Standard implementation for a client/server is to use threads (See
+  [Item 68](../Item_068/item_068.qmd)) to handle blocking I/O
 
 ``` python
 import random
@@ -140,7 +141,8 @@ class ServerSession(Connection):
       the same or correct
     - Then updates it’s internal state
   - Last command clears the state and ends a game
-- We then run a game using a context manager via a `with` statement
+- We then run a game using a context manager via a `with` statement (See
+  [Item 82](../../Chapter_10/Item_082/item_082.qmd))
   - Ensures the server state is managed correctly (See [Item
     78](../Item_078/item_078.qmd))
   - We do this with a function `new_game`
@@ -951,7 +953,7 @@ async def run_async_client(address):
     45](../../Chapter_06/Item_045/item_045.qmd))
     - Composing generators thus becomes less clean
   - Worth considering looking for third party libraries where friction
-    occurs
+    occurs (See [Item 116](../../Chapter_14/Item_116/item_116.qmd))
 - Last step is to update the driver code
   - Start by using `asyncio.create_task` to queue server onto the event
     loop
@@ -1195,31 +1197,27 @@ await main_async()  # Comment out in favour of the line above if running as a sc
 
     Guess a number between 1 and 5! Shhhh, it's 3
     Server: 5 is unsure
-    Server: 4 is warmer
-    Server: 2 is same
-    Server: 1 is colder
+    Server: 2 is warmer
     Guess a number between 10 and 15! Shhhh, it's 12
     Server: 3 is correct
     Server: 13 is unsure
-    Server: 15 is colder
-    Server: 11 is warmer
     Server: 10 is colder
+    Server: 11 is warmer
+    Server: 15 is colder
+    Server: 14 is warmer
     Guess a number between 1 and 3! Shhhh, it's 2
     Server: 12 is correct
     Server: 3 is unsure
-    Server: 1 is same
     Client: 5 is unsure
-    Client: 4 is warmer
-    Client: 2 is same
-    Client: 1 is colder
+    Client: 2 is warmer
     Client: 3 is correct
     Client: 13 is unsure
-    Client: 15 is colder
-    Client: 11 is warmer
     Client: 10 is colder
+    Client: 11 is warmer
+    Client: 15 is colder
+    Client: 14 is warmer
     Client: 12 is correct
     Client: 3 is unsure
-    Client: 1 is same
     Client: 2 is correct
     Server: 2 is correct
 

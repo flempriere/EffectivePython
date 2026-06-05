@@ -244,7 +244,8 @@ print(f"First is {exam.writing_grade}; should be 82")
     `Exam` passed to `__set__` all `Exam` instances will always have at
     least one reference
   - Means that these `Exam` instances will never be cleaned up by the
-    garbage collector
+    garbage collector (See [Item
+    115](../../Chapter_13/Item_115/item_115.qmd))
 - Instead use the `__set_name__` special method for descriptors (See
   [Item 64](../Item_064/item_064.qmd))
   - Called on each descriptor instance after a class is defined

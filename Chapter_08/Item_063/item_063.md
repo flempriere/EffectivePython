@@ -57,7 +57,8 @@ print("Serialized:  ", point.serialize())
     Serialized:   {"args": [5, 3]}
 
 - We have to pair this with a deserializer
-  - Define a class that can deserialize a given parent class
+  - Define a class that can deserialize a given parent class (See [Item
+    52](../../Chapter_07/Item_052/item_052.qmd))
 
 ``` python
 import json

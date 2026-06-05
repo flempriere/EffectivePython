@@ -21,18 +21,23 @@ def determine_weight(volume, density):
         raise ValueError("Density must be positive")
 
 
-determine_weight(-10)
+determine_weight(1, -10)
 ```
 
-    TypeError: determine_weight() missing 1 required positional argument: 'density'
+    ValueError: Density must be positive
     ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
+    ValueError                                Traceback (most recent call last)
     Cell In[1], line 6
           2     if density <= 0:
           3         raise ValueError("Density must be positive")
-    ----> 6 determine_weight(-10)
+    ----> 6 determine_weight(1, -10)
 
-    TypeError: determine_weight() missing 1 required positional argument: 'density'
+    Cell In[1], line 3, in determine_weight(volume, density)
+          1 def determine_weight(volume, density):
+          2     if density <= 0:
+    ----> 3         raise ValueError("Density must be positive")
+
+    ValueError: Density must be positive
 
 - For API’s typically want to define a new hierarchy of exceptions
 - Typically define a root `Exception` for a given API
@@ -135,9 +140,9 @@ except Error:  # Misuse of the API
 
     ERROR:root:Bug in the calling code
     Traceback (most recent call last):
-      File "/tmp/ipykernel_14379/1234711497.py", line 32, in <module>
+      File "/tmp/ipykernel_14420/1234711497.py", line 32, in <module>
         weight = determine_weight(-1, 1)
-      File "/tmp/ipykernel_14379/1234711497.py", line 26, in determine_weight
+      File "/tmp/ipykernel_14420/1234711497.py", line 26, in determine_weight
         raise InvalidVolumeError("Volume must be positive")
     InvalidVolumeError: Volume must be positive
 
@@ -146,6 +151,9 @@ except Error:  # Misuse of the API
   - Or can be caught and recorded separately
   - As per below, the `determine_weight` code has a division by zero
     error since it doesn’t account for the case of volume being zero.
+  - Caller needs to extend the `try/except` block that catches the
+    broader Python `Exception` class to handle the error (See [Item
+    85](../../Chapter_10/Item_085/item_085.qmd))
 
 ``` python
 import logging
@@ -190,9 +198,9 @@ except Exception:  # catch anything else
 
     ERROR:root:Bug in the API code!
     Traceback (most recent call last):
-      File "/tmp/ipykernel_14379/4162312265.py", line 31, in <module>
+      File "/tmp/ipykernel_14420/4162312265.py", line 31, in <module>
         weight = determine_weight(0, 1)
-      File "/tmp/ipykernel_14379/4162312265.py", line 27, in determine_weight
+      File "/tmp/ipykernel_14420/4162312265.py", line 27, in determine_weight
         density / volume  # trigger a divide by zero error
         ~~~~~~~~^~~~~~~~
     ZeroDivisionError: division by zero

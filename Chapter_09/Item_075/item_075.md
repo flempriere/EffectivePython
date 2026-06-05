@@ -5,10 +5,10 @@
 
 ## Notes
 
-- The previous solutions to parallel I/O we’ve examined, have all
-  fundamentally relied on *threads* (See [Item
-  72](../Item_072/item_072.qmd), [Item 73](../Item_073/item_073.qmd) and
-  [Item 74](../Item_074/item_074.qmd))
+- The previous solutions to parallel I/O we’ve examined (See [Item
+  71](../Item_071/item_071.qmd)), have all fundamentally relied on
+  *threads* (See [Item 72](../Item_072/item_072.qmd), [Item
+  73](../Item_073/item_073.qmd) and [Item 74](../Item_074/item_074.qmd))
 
   - Fundamentally these approaches all struggle with large-scale
     simultaneous I/O requests
@@ -21,7 +21,8 @@
 - Coroutines are implemented via the `async` and `await` keywords
 
   - Generators are a form of coroutine (See [Item
-    43](../../Chapter_06/Item_043/item_043.qmd) and [Item
+    43](../../Chapter_06/Item_043/item_043.qmd), [Item
+    46](../../Chapter_06/Item_046/item_046.qmd) and [Item
     47](../../Chapter_06/Item_047/item_047.qmd))
 
 - Startup cost of a coroutine is a function call
@@ -354,6 +355,7 @@ print(columns)
 - No issues with exception handling
   - Queues and Thread pools could only re-raise exceptions
   - Can even step through coroutines to see how exceptions are handled
+    (See [Item 114](../../Chapter_13/Item_114/item_114.qmd))
 - If requirements change can just convert the specific function to an
   `async` function
   - Add `await` at call sites

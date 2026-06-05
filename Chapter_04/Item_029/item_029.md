@@ -50,6 +50,7 @@ print(book.average_grade("Issac Newton"))
   - We could nest dictionaries, i.e. the gradebook keys return a
     dictionary mapping subjects to grades
   - Use `defaultdict` to handle missing subjects in the inner dictionary
+    (See [Item 27](../Item_027/item_027.qmd))
 
 ``` python
 from collections import defaultdict
@@ -98,7 +99,8 @@ print(book.average_grade("Issac Newton"))
   of (grade, weight) tuples
 - But now, the method signatures and the code is starting to get
   complex, and coupled to our implementation
-  - And increasingly nested
+  - And increasingly nested (See [Item
+    9](../../Chapter_01/Item_009/item_009.qmd))
 
 ``` python
 from collections import defaultdict
@@ -156,7 +158,8 @@ print(book.average_grade("Issac Newton"))
 
 ### Refactoring to Classes
 
-- Refactoring a topic in and off itself
+- Refactoring a topic in and off itself (See [Item
+  123](../../Chapter_14/Item_123/item_123.qmd))
 - In this example we work bottom up
 - First our grades are simple scores and weights
   - Probably overkill to wrap this in a class, so these can stay as
@@ -204,7 +207,8 @@ print(average_grade)
 - If you find yourself extending a tuple repeatedly it’s a sign to
   consider a higher level structure like a class
   - `dataclass` from the `dataclasses` built-in module provides an easy
-    way to define lightweight classes
+    way to define lightweight classes (See [Item
+    56](../../Chapter_07/Item_056/item_056.qmd))
   - You can additionally make them immutable (like a tuple) via the
     `frozen` attribute
 

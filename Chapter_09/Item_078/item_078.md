@@ -170,11 +170,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmpspo4ngtl/0. Expected [] lines, found []
-    File: /tmp/tmpspo4ngtl/1. Expected [b'/tmp/tmpspo4ngtl/1-01-jyekdskbny\n', b'/tmp/tmpspo4ngtl/1-02-ahonvasupd\n'] lines, found [b'/tmp/tmpspo4ngtl/1-01-jyekdskbny\n', b'/tmp/tmpspo4ngtl/1-02-ahonvasupd\n']
-    File: /tmp/tmpspo4ngtl/2. Expected [b'/tmp/tmpspo4ngtl/2-01-onbygobwlv\n'] lines, found [b'/tmp/tmpspo4ngtl/2-01-onbygobwlv\n']
-    File: /tmp/tmpspo4ngtl/3. Expected [] lines, found []
-    File: /tmp/tmpspo4ngtl/4. Expected [] lines, found []
+    File: /tmp/tmp9z3ape53/0. Expected [b'/tmp/tmp9z3ape53/0-01-pzpqpuxvgt\n', b'/tmp/tmp9z3ape53/0-02-qqktulbubm\n'] lines, found [b'/tmp/tmp9z3ape53/0-01-pzpqpuxvgt\n', b'/tmp/tmp9z3ape53/0-02-qqktulbubm\n']
+    File: /tmp/tmp9z3ape53/1. Expected [] lines, found []
+    File: /tmp/tmp9z3ape53/2. Expected [b'/tmp/tmp9z3ape53/2-01-tnvfgogcuy\n', b'/tmp/tmp9z3ape53/2-02-aalvdkkmtp\n'] lines, found [b'/tmp/tmp9z3ape53/2-01-tnvfgogcuy\n', b'/tmp/tmp9z3ape53/2-02-aalvdkkmtp\n']
+    File: /tmp/tmp9z3ape53/3. Expected [b'/tmp/tmp9z3ape53/3-01-hicmiabcfo\n'] lines, found [b'/tmp/tmp9z3ape53/3-01-hicmiabcfo\n']
+    File: /tmp/tmp9z3ape53/4. Expected [b'/tmp/tmp9z3ape53/4-01-yywotsxevu\n'] lines, found [b'/tmp/tmp9z3ape53/4-01-yywotsxevu\n']
     All tests passed!
 
 - Now the code looks better but we now have blocking system calls
@@ -273,7 +273,8 @@ class WriteThread(Thread):
   `stop`
   - Let’s coroutines tell the worker thread to stop
 - To let the class be used with a context manager (i.e. `with`
-  statements) we define the `__aenter__` and `__aexit__` dunder methods
+  statements (See [Item 82](../../Chapter_10/Item_082/item_082.qmd))) we
+  define the `__aenter__` and `__aexit__` dunder methods
   - Ensures the thread is appropriately started and stopped (See [Item
     76](../Item_076/item_076.qmd) for background)
 - Can now refactor `run_tasks` into a fully asynchronous version
@@ -447,11 +448,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmpp11r05ns/0. Expected [b'/tmp/tmpp11r05ns/0-01-sstsgfkgdt\n'] lines, found [b'/tmp/tmpp11r05ns/0-01-sstsgfkgdt\n']
-    File: /tmp/tmpp11r05ns/1. Expected [] lines, found []
-    File: /tmp/tmpp11r05ns/2. Expected [b'/tmp/tmpp11r05ns/2-01-uackgfwzfr\n', b'/tmp/tmpp11r05ns/2-02-vmepsedivh\n', b'/tmp/tmpp11r05ns/2-03-kvjjkxejoj\n'] lines, found [b'/tmp/tmpp11r05ns/2-01-uackgfwzfr\n', b'/tmp/tmpp11r05ns/2-02-vmepsedivh\n', b'/tmp/tmpp11r05ns/2-03-kvjjkxejoj\n']
-    File: /tmp/tmpp11r05ns/3. Expected [b'/tmp/tmpp11r05ns/3-01-pnvyipsydh\n', b'/tmp/tmpp11r05ns/3-02-ujgqgnfweo\n', b'/tmp/tmpp11r05ns/3-03-pbxcwigfoh\n'] lines, found [b'/tmp/tmpp11r05ns/3-01-pnvyipsydh\n', b'/tmp/tmpp11r05ns/3-02-ujgqgnfweo\n', b'/tmp/tmpp11r05ns/3-03-pbxcwigfoh\n']
-    File: /tmp/tmpp11r05ns/4. Expected [] lines, found []
+    File: /tmp/tmpvb7x8ebw/0. Expected [b'/tmp/tmpvb7x8ebw/0-01-smevjoxpxw\n'] lines, found [b'/tmp/tmpvb7x8ebw/0-01-smevjoxpxw\n']
+    File: /tmp/tmpvb7x8ebw/1. Expected [b'/tmp/tmpvb7x8ebw/1-01-lnhlgsomyj\n'] lines, found [b'/tmp/tmpvb7x8ebw/1-01-lnhlgsomyj\n']
+    File: /tmp/tmpvb7x8ebw/2. Expected [] lines, found []
+    File: /tmp/tmpvb7x8ebw/3. Expected [b'/tmp/tmpvb7x8ebw/3-01-emacaeamlb\n', b'/tmp/tmpvb7x8ebw/3-02-kvpitbpuxv\n', b'/tmp/tmpvb7x8ebw/3-03-vacumtwlzz\n', b'/tmp/tmpvb7x8ebw/3-04-teolkgnust\n', b'/tmp/tmpvb7x8ebw/3-05-xovxmezwsn\n', b'/tmp/tmpvb7x8ebw/3-06-vckaxxxlma\n'] lines, found [b'/tmp/tmpvb7x8ebw/3-01-emacaeamlb\n', b'/tmp/tmpvb7x8ebw/3-02-kvpitbpuxv\n', b'/tmp/tmpvb7x8ebw/3-03-vacumtwlzz\n', b'/tmp/tmpvb7x8ebw/3-04-teolkgnust\n', b'/tmp/tmpvb7x8ebw/3-05-xovxmezwsn\n', b'/tmp/tmpvb7x8ebw/3-06-vckaxxxlma\n']
+    File: /tmp/tmpvb7x8ebw/4. Expected [] lines, found []
     All tests passed!
 
 ## Things to Remember
