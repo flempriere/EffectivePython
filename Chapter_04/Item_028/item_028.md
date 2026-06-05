@@ -16,6 +16,8 @@
   - Dictionary needs to map profile picture path names to file handles
     to read/write as required
 - An approach using a normal dictionary might be implemented as below
+  - Using `get` and assignment expressions (See [Item
+    8](../../Chapter_01/Item_008/item_008.qmd))
 
 ``` python
 import os
@@ -46,7 +48,8 @@ if os.path.exists(path):
 - If the file doesn’t exist
 
   - One access is performed by get
-  - Then an assignment is performed in the `else` case
+  - Then an assignment is performed in the `else` case (See [Item
+    80](../../Chapter_10/Item_080/item_080.qmd))
 
 - Reading is then separated from the access
 
@@ -80,7 +83,7 @@ if os.path.exists(path):
   - Hard to differentiate exceptions raised by `open` from exceptions
     raised from `setdefault`
 - Our third option we’ve already explored is to instead use a
-  `defaultdict`
+  `defaultdict` (See [Item 57](../../Chapter_07/Item_057/item_057.qmd))
 
 ``` python
 from collections import defaultdict
@@ -163,7 +166,7 @@ if os.path.exists(path):
   2.  It must assign that value to the key
   3.  It must return that value
 - Subsequent accesses will not call `__missing__` again as they key now
-  exists
+  exists (See [Item 61](../../Chapter_08/Item_061/item_061.qmd))
 
 ## Things to Remember
 

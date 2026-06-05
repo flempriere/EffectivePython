@@ -1025,6 +1025,77 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_14/Chapter_14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 14: Collaboration</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_116/item_116.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 116: Know Where to Find Community-Built Modules</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_117/item_117.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 117: Use Viirtual Environments for Isolated and Reproducible Dependencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_118/item_118.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 118: Write Docstrings for Every Function, Class and Module</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_119/item_119.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 119: Use Packages to Organise Modules and Provide Stable APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_120/item_120.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 120: Consider Module-Scoped Code to Configure Deployment Environments</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_121/item_121.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 121: Define a Root <code>Exception</code> to Insulate Callers from APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_122/item_122.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 122: Know how to Break Circular Dependencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_123/item_123.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 123: Consider <code>warnings</code> to Refactor and Migrate Usage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_124/item_124.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 124: Consider Static Analysis via <code>typing</code> to Obviate Bugs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_125/item_125.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 125: Prefer Open-Source Projects for Bundling Python Programs over <code>zipimport</code> and <code>zipapp</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -1065,14 +1136,17 @@ window.Quarto = {
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
-<li><p>For python programs with slow start-up times (See <a href="../../Chapter_11/Item_097/item_097.html">Item 97</a>) an option is to consider <em>dynamic imports</em></p></li>
-<li><p>For example, consider an image processing tool</p>
+<li>For python programs with slow start-up times (See <a href="../../Chapter_11/Item_097/item_097.html">Item 97</a>) an option is to consider <em>dynamic imports</em>
+<ul>
+<li>First consider all standard optimisations (See <a href="../../Chapter_11/Item_092/item_092.html">Item 92</a>)</li>
+</ul></li>
+<li>For example, consider an image processing tool
 <ul>
 <li>Has two features</li>
 </ul></li>
-<li><p>One adjusts brightness and contrast using user supplied parameters (see <a href="./CLI/adjust.py">adjust.py</a>)</p></li>
+<li>One adjusts brightness and contrast using user supplied parameters (see <a href="./CLI/adjust.py">adjust.py</a>)</li>
 </ul>
-<div id="2c602307" class="cell" data-execution_count="1">
+<div id="31323e9a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First module</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># adjust.py</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Fast initialisation</span></span>
@@ -1095,7 +1169,7 @@ window.Quarto = {
 <li>Suppose this then initialises slowly</li>
 </ul></li>
 </ul>
-<div id="7e29703a" class="cell" data-execution_count="2">
+<div id="21660f9e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Second module</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># enhance.py</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Slow initialisation</span></span>
@@ -1215,7 +1289,7 @@ import time:      9100 |      41394 |   _colorize</code></pre>
 <li>The cumulative column is the time to load a module and all it’s dependencies</li>
 <li>ideally we want to delay loading the <code>enhance</code> module until (or if) we need it
 <ul>
-<li><code>import</code> statements can be scoped</li>
+<li><code>import</code> statements can be scoped (See <a href="../../Chapter_14/Item_122/item_122.html">Item 122</a>)</li>
 <li>e.g.&nbsp;located within functions</li>
 <li>Let’s us explicitly <code>import</code> when and where it’s needed
 <ul>
@@ -1323,11 +1397,11 @@ Enhancing! amount=0.8</code></pre>
 <li>There is a cost associated with dynamic imports compared to global imports
 <ul>
 <li>Since we have to check if we’ve already loaded a module each time</li>
-<li>But it’s not high</li>
-<li>We can time it using <code>timeit</code> to check the time associated with dynamically importing an already imported module</li>
+<li>But it’s not hig</li>
+<li>We can time it using <code>timeit</code> (See <a href="../../Chapter_11/Item_093/item_093.html">Item 93</a>) to check the time associated with dynamically importing an already imported module</li>
 </ul></li>
 </ul>
-<div id="63dbcea8" class="cell" data-execution_count="3">
+<div id="ee12e5af" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>trials <span class="op">=</span> <span class="dv">10_000_000</span></span>
@@ -1341,7 +1415,7 @@ Enhancing! amount=0.8</code></pre>
 <span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>result <span class="op">/</span> trials <span class="op">*</span> <span class="fl">1e9</span><span class="sc">:2.1f}</span><span class="ss"> nanos per call"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>181.9 nanos per call</code></pre>
+<pre><code>258.1 nanos per call</code></pre>
 </div>
 </div>
 <ul>
@@ -1350,7 +1424,7 @@ Enhancing! amount=0.8</code></pre>
 <li>Common way to prevent multiple threads from dog-piling during program initialisation</li>
 </ul></li>
 </ul>
-<div id="abf35b2d" class="cell" data-execution_count="4">
+<div id="2a9d1fff" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> threading</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1376,7 +1450,7 @@ Enhancing! amount=0.8</code></pre>
 <span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>result <span class="op">/</span> trials <span class="op">*</span> <span class="fl">1e9</span><span class="sc">:2.1f}</span><span class="ss"> nanos per call"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>9.1 nanos per call</code></pre>
+<pre><code>10.3 nanos per call</code></pre>
 </div>
 </div>
 <ul>
@@ -1388,7 +1462,7 @@ Enhancing! amount=0.8</code></pre>
 <li>However, dynamic import is simple code that doesn’t require boilerplate
 <ul>
 <li>The takeaway is not to <em>not use</em> dynamic imports but rather consider where to put them</li>
-<li>Avoid putting them in hot loops</li>
+<li>Avoid putting them in hot loops (See <a href="../../Chapter_11/Item_094/item_094.html">Item 94</a>)</li>
 </ul></li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">

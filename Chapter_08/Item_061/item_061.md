@@ -45,6 +45,9 @@ print("After: ", data.__dict__)
     After:  {'exists': 5, 'foo': 'Value for foo'}
 
 - Can add some debug `print` statements to highlight what’s going on
+  - We use `super().__getattr__` to use superclass implementation
+  - Fetch’s real value and avoids recursion (See [Item
+    53](../../Chapter_07/Item_053/item_053.qmd))
 
 ``` python
 class LazyRecord:

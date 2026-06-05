@@ -170,11 +170,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmpf8h5wopv/0. Expected [b'/tmp/tmpf8h5wopv/0-01-mwwjuiihoi\n'] lines, found [b'/tmp/tmpf8h5wopv/0-01-mwwjuiihoi\n']
-    File: /tmp/tmpf8h5wopv/1. Expected [b'/tmp/tmpf8h5wopv/1-01-vbbqwhicza\n'] lines, found [b'/tmp/tmpf8h5wopv/1-01-vbbqwhicza\n']
-    File: /tmp/tmpf8h5wopv/2. Expected [] lines, found []
-    File: /tmp/tmpf8h5wopv/3. Expected [b'/tmp/tmpf8h5wopv/3-01-siyogbgigi\n', b'/tmp/tmpf8h5wopv/3-02-hswusyktrs\n'] lines, found [b'/tmp/tmpf8h5wopv/3-01-siyogbgigi\n', b'/tmp/tmpf8h5wopv/3-02-hswusyktrs\n']
-    File: /tmp/tmpf8h5wopv/4. Expected [b'/tmp/tmpf8h5wopv/4-01-ldadpzetrs\n'] lines, found [b'/tmp/tmpf8h5wopv/4-01-ldadpzetrs\n']
+    File: /tmp/tmpm2ky2pvu/0. Expected [b'/tmp/tmpm2ky2pvu/0-01-dlamomnpab\n', b'/tmp/tmpm2ky2pvu/0-02-yutwumbrqf\n', b'/tmp/tmpm2ky2pvu/0-03-dkrjzagwln\n', b'/tmp/tmpm2ky2pvu/0-04-pfscmcizqz\n'] lines, found [b'/tmp/tmpm2ky2pvu/0-01-dlamomnpab\n', b'/tmp/tmpm2ky2pvu/0-02-yutwumbrqf\n', b'/tmp/tmpm2ky2pvu/0-03-dkrjzagwln\n', b'/tmp/tmpm2ky2pvu/0-04-pfscmcizqz\n']
+    File: /tmp/tmpm2ky2pvu/1. Expected [b'/tmp/tmpm2ky2pvu/1-01-gutehavygq\n'] lines, found [b'/tmp/tmpm2ky2pvu/1-01-gutehavygq\n']
+    File: /tmp/tmpm2ky2pvu/2. Expected [] lines, found []
+    File: /tmp/tmpm2ky2pvu/3. Expected [] lines, found []
+    File: /tmp/tmpm2ky2pvu/4. Expected [] lines, found []
     All tests passed!
 
 - Now the code looks better but we now have blocking system calls
@@ -273,7 +273,8 @@ class WriteThread(Thread):
   `stop`
   - Let’s coroutines tell the worker thread to stop
 - To let the class be used with a context manager (i.e. `with`
-  statements) we define the `__aenter__` and `__aexit__` dunder methods
+  statements (See [Item 82](../../Chapter_10/Item_082/item_082.qmd))) we
+  define the `__aenter__` and `__aexit__` dunder methods
   - Ensures the thread is appropriately started and stopped (See [Item
     76](../Item_076/item_076.qmd) for background)
 - Can now refactor `run_tasks` into a fully asynchronous version
@@ -447,11 +448,11 @@ tmpdir.cleanup()
 print("All tests passed!")
 ```
 
-    File: /tmp/tmpkmp0345v/0. Expected [b'/tmp/tmpkmp0345v/0-01-dhvbbtfiqo\n'] lines, found [b'/tmp/tmpkmp0345v/0-01-dhvbbtfiqo\n']
-    File: /tmp/tmpkmp0345v/1. Expected [] lines, found []
-    File: /tmp/tmpkmp0345v/2. Expected [] lines, found []
-    File: /tmp/tmpkmp0345v/3. Expected [b'/tmp/tmpkmp0345v/3-01-ydttxhbjqj\n', b'/tmp/tmpkmp0345v/3-02-ifinongulg\n', b'/tmp/tmpkmp0345v/3-03-kxnqqydtej\n'] lines, found [b'/tmp/tmpkmp0345v/3-01-ydttxhbjqj\n', b'/tmp/tmpkmp0345v/3-02-ifinongulg\n', b'/tmp/tmpkmp0345v/3-03-kxnqqydtej\n']
-    File: /tmp/tmpkmp0345v/4. Expected [b'/tmp/tmpkmp0345v/4-01-omlcwevzuj\n', b'/tmp/tmpkmp0345v/4-02-ogqzgwcpdq\n', b'/tmp/tmpkmp0345v/4-03-ijluixzouj\n', b'/tmp/tmpkmp0345v/4-04-vwbwmzeqou\n'] lines, found [b'/tmp/tmpkmp0345v/4-01-omlcwevzuj\n', b'/tmp/tmpkmp0345v/4-02-ogqzgwcpdq\n', b'/tmp/tmpkmp0345v/4-03-ijluixzouj\n', b'/tmp/tmpkmp0345v/4-04-vwbwmzeqou\n']
+    File: /tmp/tmp_ykb4or7/0. Expected [b'/tmp/tmp_ykb4or7/0-01-yyevmdlyeq\n'] lines, found [b'/tmp/tmp_ykb4or7/0-01-yyevmdlyeq\n']
+    File: /tmp/tmp_ykb4or7/1. Expected [] lines, found []
+    File: /tmp/tmp_ykb4or7/2. Expected [b'/tmp/tmp_ykb4or7/2-01-tfwibbxflp\n'] lines, found [b'/tmp/tmp_ykb4or7/2-01-tfwibbxflp\n']
+    File: /tmp/tmp_ykb4or7/3. Expected [] lines, found []
+    File: /tmp/tmp_ykb4or7/4. Expected [b'/tmp/tmp_ykb4or7/4-01-uovmaqgier\n', b'/tmp/tmp_ykb4or7/4-02-immnvgmtmv\n', b'/tmp/tmp_ykb4or7/4-03-ldieryctkq\n'] lines, found [b'/tmp/tmp_ykb4or7/4-01-uovmaqgier\n', b'/tmp/tmp_ykb4or7/4-02-immnvgmtmv\n', b'/tmp/tmp_ykb4or7/4-03-ldieryctkq\n']
     All tests passed!
 
 ## Things to Remember

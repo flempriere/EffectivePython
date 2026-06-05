@@ -996,6 +996,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_14/Chapter_14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 14: Collaboration</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_116/item_116.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 116: Know Where to Find Community-Built Modules</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_117/item_117.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 117: Use Viirtual Environments for Isolated and Reproducible Dependencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_118/item_118.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 118: Write Docstrings for Every Function, Class and Module</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_119/item_119.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 119: Use Packages to Organise Modules and Provide Stable APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_120/item_120.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 120: Consider Module-Scoped Code to Configure Deployment Environments</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_121/item_121.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 121: Define a Root <code>Exception</code> to Insulate Callers from APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_122/item_122.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 122: Know how to Break Circular Dependencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_123/item_123.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 123: Consider <code>warnings</code> to Refactor and Migrate Usage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_124/item_124.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 124: Consider Static Analysis via <code>typing</code> to Obviate Bugs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_125/item_125.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 125: Prefer Open-Source Projects for Bundling Python Programs over <code>zipimport</code> and <code>zipapp</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -1051,7 +1122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Creates a JSON dictionary (See <a href="../../Chapter_07/Item_054/item_054.html">Item 54</a> for a mix-in approach)</li>
 </ul></li>
 </ul>
-<div id="d282e855" class="cell" data-execution_count="1">
+<div id="d934018d" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Serialisable:</span>
@@ -1064,7 +1135,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Can then inherit to create serializable classes</li>
 </ul>
-<div id="6f6522f7" class="cell" data-execution_count="2">
+<div id="ffb6f4d9" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Serializable:</span>
@@ -1094,10 +1165,10 @@ Serialized:   {"args": [5, 3]}</code></pre>
 <ul>
 <li>We have to pair this with a deserializer
 <ul>
-<li>Define a class that can deserialize a given parent class</li>
+<li>Define a class that can deserialize a given parent class (See <a href="../../Chapter_07/Item_052/item_052.html">Item 52</a>)</li>
 </ul></li>
 </ul>
-<div id="85bad13e" class="cell" data-execution_count="3">
+<div id="72eb4259" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Serializable:</span>
@@ -1148,7 +1219,7 @@ After:    Point2D(5, 3)</code></pre>
 <li>If we forget, then attempting to deserialize the class will break</li>
 </ul></li>
 </ul>
-<div id="87f79b33" class="cell" data-execution_count="4">
+<div id="9acd0966" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Serializable:</span>
@@ -1258,7 +1329,7 @@ Serialized:   {"class": "Point3D", "args": [5, -9, 4]}</code></pre>
 </ul></li>
 <li>For example, below defines a new metaclass to automatically register a class for deserialization</li>
 </ul>
-<div id="1ce44c5a" class="cell" data-execution_count="5">
+<div id="f4938066" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>REGISTRY <span class="op">=</span> {}</span>
@@ -1345,7 +1416,7 @@ After:    Point3D(5, -9, 4)</code></pre>
 <li>Reduces the boilerplate associated with metaclasses</li>
 </ul></li>
 </ul>
-<div id="899c7e1e" class="cell" data-execution_count="6">
+<div id="55daa82a" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>REGISTRY <span class="op">=</span> {}</span>

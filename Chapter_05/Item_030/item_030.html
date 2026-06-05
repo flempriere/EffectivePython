@@ -996,6 +996,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_14/Chapter_14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 14: Collaboration</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_116/item_116.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 116: Know Where to Find Community-Built Modules</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_117/item_117.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 117: Use Viirtual Environments for Isolated and Reproducible Dependencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_118/item_118.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 118: Write Docstrings for Every Function, Class and Module</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_119/item_119.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 119: Use Packages to Organise Modules and Provide Stable APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_120/item_120.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 120: Consider Module-Scoped Code to Configure Deployment Environments</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_121/item_121.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 121: Define a Root <code>Exception</code> to Insulate Callers from APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_122/item_122.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 122: Know how to Break Circular Dependencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_123/item_123.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 123: Consider <code>warnings</code> to Refactor and Migrate Usage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_124/item_124.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 124: Consider Static Analysis via <code>typing</code> to Obviate Bugs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_125/item_125.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 125: Prefer Open-Source Projects for Bundling Python Programs over <code>zipimport</code> and <code>zipapp</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -1036,7 +1107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
-<li>Python doesn’t support pointer types
+<li>Python doesn’t support pointer types (See <a href="../../Chapter_11/Item_095/item_095.html">Item 95</a>)
 <ul>
 <li>But variables are all technically references</li>
 </ul></li>
@@ -1052,7 +1123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul></li>
 </ul>
-<div id="b3f891bf" class="cell" data-execution_count="1">
+<div id="ad8097a4" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># demonstrate mutating function arguments</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_func(items):</span>
@@ -1073,7 +1144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Modifying either reference is repeated in the other alias</li>
 </ul></li>
 </ul>
-<div id="3c8e8387" class="cell" data-execution_count="2">
+<div id="bf439790" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_func(items):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    items.append(<span class="dv">4</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1090,9 +1161,9 @@ b: [7, 6, 5, 4]</code></pre>
 </div>
 <ul>
 <li>List’s and dictionaries can pass a copy to act as insulation layer</li>
-<li>Here we demonstrate doing so via slice operators</li>
+<li>Here we demonstrate doing so via slice operators (See <a href="../../Chapter_02/Item_014/item_014.html">Item 14</a>)</li>
 </ul>
-<div id="de6c8006" class="cell" data-execution_count="3">
+<div id="51eda5d9" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using a copy of a list to isolate changes to the original reference</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1115,7 +1186,7 @@ Copy: ['Hello', 'World']</code></pre>
 <ul>
 <li>Dictionary provides a <code>copy</code> method that can be used directly</li>
 </ul>
-<div id="8da64323" class="cell" data-execution_count="4">
+<div id="dfbefdfa" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> concat_pairs(items):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> key <span class="kw">in</span> items:</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        items[key] <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>key<span class="sc">}</span><span class="ss">=</span><span class="sc">{</span>items[key]<span class="sc">}</span><span class="ss">"</span></span>
@@ -1133,12 +1204,12 @@ Copy: {'foo': 'foo=1', 'bar': 'bar=2'}</code></pre>
 </div>
 </div>
 <ul>
-<li>User-defined classes are also modifiable
+<li>User-defined classes are also modifiable (See <a href="../../Chapter_04/Item_029/item_029.html">Item 29</a>)
 <ul>
-<li>Any internal properties that can be accessed can be modified</li>
+<li>Any internal properties that can be accessed can be modified (See <a href="../../Chapter_07/Item_055/item_055.html">Item 55</a>)</li>
 </ul></li>
 </ul>
-<div id="c9c12937" class="cell" data-execution_count="5">
+<div id="45aa5f6a" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyClass:</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, value):</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.value <span class="op">=</span> value</span>
@@ -1180,7 +1251,7 @@ Copy: {'foo': 'foo=1', 'bar': 'bar=2'}</code></pre>
 <li>For complex objects you control,
 <ul>
 <li>Consider adding helper functions to create defensive copies</li>
-<li>Or consider a functional approach
+<li>Or consider a functional approach (<a href="../../Chapter_07/Item_056/item_056.html">Item 56</a>)
 <ul>
 <li>Leverage immutable objects</li>
 <li>Make functions pure</li>

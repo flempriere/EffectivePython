@@ -996,6 +996,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_14/Chapter_14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 14: Collaboration</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_116/item_116.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 116: Know Where to Find Community-Built Modules</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_117/item_117.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 117: Use Viirtual Environments for Isolated and Reproducible Dependencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_118/item_118.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 118: Write Docstrings for Every Function, Class and Module</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_119/item_119.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 119: Use Packages to Organise Modules and Provide Stable APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_120/item_120.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 120: Consider Module-Scoped Code to Configure Deployment Environments</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_121/item_121.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 121: Define a Root <code>Exception</code> to Insulate Callers from APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_122/item_122.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 122: Know how to Break Circular Dependencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_123/item_123.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 123: Consider <code>warnings</code> to Refactor and Migrate Usage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_124/item_124.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 124: Consider Static Analysis via <code>typing</code> to Obviate Bugs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_125/item_125.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 125: Prefer Open-Source Projects for Bundling Python Programs over <code>zipimport</code> and <code>zipapp</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -1043,7 +1114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>For example a logging function might have the signature</li>
 </ul>
-<div id="a1758d49" class="cell" data-execution_count="1">
+<div id="0cdead94" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log(message, values):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> values:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(message)</span>
@@ -1065,7 +1136,7 @@ Hi there</code></pre>
 </ul></li>
 <li>Instead write using variable positional arguments</li>
 </ul>
-<div id="f26be6cf" class="cell" data-execution_count="2">
+<div id="5858afa4" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log(message, <span class="op">*</span>values):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> values:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(message)</span>
@@ -1087,17 +1158,17 @@ Favourite colours: 7, 33, 99</code></pre>
 </div>
 <ul>
 <li>The variadic arguments are packed into a list referenced by <code>values</code></li>
-<li>If we already have a list that we want to <em>unpack</em> into the call to <code>log</code> we use the unpack operator <code>*</code></li>
+<li>If we already have a list that we want to <em>unpack</em> into the call to <code>log</code> we use the unpack operator <code>*</code> (See <a href="../../Chapter_02/Item_016/item_016.html">Item 16</a> and <a href="../../Chapter_01/Item_009/item_009.html">Item 9</a>)</li>
 <li>There are problems with passing a variable number of arguments
 <ul>
 <li>Optional arguments are always packaged into a tuple before being passed</li>
-<li>Using <code>*</code> to unpack a generator results in it being unpacked until exhausted
+<li>Using <code>*</code> to unpack a generator results in it being unpacked until exhausted (See <a href="../../Chapter_06/Item_043/item_043.html">Item 43</a>)
 <ul>
 <li>This may consume too much memory and crash</li>
 </ul></li>
 </ul></li>
 </ul>
-<div id="353ceb27" class="cell" data-execution_count="3">
+<div id="994d5801" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_generator():</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> i</span>
@@ -1127,7 +1198,7 @@ Favourite colours: 7, 33, 99</code></pre>
 <li>e.g.&nbsp;If we updated our <code>log</code> function</li>
 </ul></li>
 </ul>
-<div id="144c7f05" class="cell" data-execution_count="4">
+<div id="5f30b072" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log_seq(sequence, message, <span class="op">*</span>values):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> values:</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>sequence<span class="sc">}</span><span class="ss"> - </span><span class="sc">{</span>message<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -1146,8 +1217,8 @@ Favourite numbers - 7: 33</code></pre>
 </div>
 <ul>
 <li>Above the old call results in the message being passed as the sequence value, and the variadic list leaking into the message parameter</li>
-<li>To avoid this use <em>keyword-only arguments</em> to extend functions that accept a variable number of positional arguments</li>
-<li>Also consider type annotations for an additional layer of defence</li>
+<li>To avoid this use <em>keyword-only arguments</em> to extend functions that accept a variable number of positional arguments (See <a href="../../Chapter_05/Item_037/item_037.html">Item 37</a>)</li>
+<li>Also consider type annotations for an additional layer of defence (See <a href="../../Chapter_14/Item_124/item_124.html">Item 124</a>)</li>
 </ul>
 </section>
 <section id="things-to-remember" class="level2">

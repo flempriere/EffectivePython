@@ -8,11 +8,12 @@ Printing Objects
 ## Notes
 
 - `print` statement style debugging refers to debugging via format
-  strings or `logging`
+  strings or `logging` (See [Item 11](../Item_011/item_011.qmd))
   - Tend’s to get you pretty far
-  - Consider a proper debugger for more complicated issues
+  - Consider a proper debugger for more complicated issues (See [Item
+    114](../../Chapter_13/Item_114/item_114.qmd))
 - Python object internals are typically public and accessible via
-  attributes
+  attributes (See [Item 55](../../Chapter_07/Item_055/item_055.qmd))
 - `print` returns a human readable string
   - Can be customised via formatting (see [Item
     11](../Item_011/item_011.qmd))
@@ -76,7 +77,8 @@ print(f"Is {int_five} == {str_five}? {int_five == str_five}")
   - This is normally the `repr` string
 - `repr` built-in returns the *printable representation* on an object
   - For many built-in types this is also a valid python expression
-  - i.e we can `eval` it to get the object back
+  - i.e we can `eval` it to get the object back (avoid using `eval` in
+    practice. See [Item 91](../../Chapter_10/Item_091/item_091.qmd))
 
 ``` python
 # repr of a byte string
@@ -117,7 +119,8 @@ print(f"Is {int_five!r} == {str_five!r}?")
 - When `str` is called on an argument
   1.  First tries to call `__str__` on the argument
   2.  If no `__str__` falls back to `__repr__`
-  3.  If neither exists, goes through method resolution
+  3.  If neither exists, goes through method resolution (See [Item
+      53](../../Chapter_07/Item_053/item_053.qmd))
       - Calls the default object `repr`
       - The default is not very useful, just object type and memory
         address
@@ -135,9 +138,10 @@ obj = OpaqueClass(1, "foo")
 print(obj)
 ```
 
-    <__main__.OpaqueClass object at 0x7f2090cd1940>
+    <__main__.OpaqueClass object at 0x7fa424add7f0>
 
-- A lightweight `repr` implementation may be,
+- A lightweight `repr` implementation may be, (See [Item
+  51](../../Chapter_07/Item_051/item_051.qmd))
 
 ``` python
 class BetterClass:

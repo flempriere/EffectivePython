@@ -1025,6 +1025,77 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_14/Chapter_14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 14: Collaboration</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_116/item_116.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 116: Know Where to Find Community-Built Modules</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_117/item_117.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 117: Use Viirtual Environments for Isolated and Reproducible Dependencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_118/item_118.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 118: Write Docstrings for Every Function, Class and Module</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_119/item_119.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 119: Use Packages to Organise Modules and Provide Stable APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_120/item_120.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 120: Consider Module-Scoped Code to Configure Deployment Environments</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_121/item_121.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 121: Define a Root <code>Exception</code> to Insulate Callers from APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_122/item_122.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 122: Know how to Break Circular Dependencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_123/item_123.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 123: Consider <code>warnings</code> to Refactor and Migrate Usage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_124/item_124.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 124: Consider Static Analysis via <code>typing</code> to Obviate Bugs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_125/item_125.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 125: Prefer Open-Source Projects for Bundling Python Programs over <code>zipimport</code> and <code>zipapp</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -1070,7 +1141,7 @@ window.Quarto = {
 <ol type="1">
 <li>Source text is parsed and compiled into <em>bytecode</em>
 <ul>
-<li>Low-level representation of program as 8-bit instructions</li>
+<li>Low-level representation of program as 8-bit instructions (See <a href="../../Chapter_11/Item_097/item_097.html">Item 97</a>)</li>
 <li>From python 3.6 it’s technically 16-bit <em>wordcode</em></li>
 </ul></li>
 <li>Bytecode is run using a stack-based interpreter
@@ -1083,6 +1154,7 @@ window.Quarto = {
 <ul>
 <li>This interruption could corrupt the state (e.g.&nbsp;garbage collection reference counts)</li>
 <li>GIL prevents these interruptions</li>
+<li>Ensures CPython and C extension modules work as expected (See <a href="../../Chapter_11/Item_096/item_096.html">Item 96</a>)</li>
 </ul></li>
 <li>In other languages multiple-execution threads can be run on multiple CPUs
 <ul>
@@ -1098,7 +1170,7 @@ window.Quarto = {
 </ul></li>
 <li>For example, consider the following naive factorisation algorithm</li>
 </ul>
-<div id="5e592ec6" class="cell" data-execution_count="1">
+<div id="946853d5" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> factorise(number):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, number<span class="op">+</span> <span class="dv">1</span>):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> number <span class="op">%</span> i <span class="op">==</span> <span class="dv">0</span>:</span>
@@ -1118,7 +1190,7 @@ window.Quarto = {
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>delta <span class="op">=</span> end <span class="op">-</span> start</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Took </span><span class="sc">{</span>delta<span class="sc">:.3f}</span><span class="ss"> seconds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Took 4.448 seconds</code></pre>
+<pre><code>Took 5.378 seconds</code></pre>
 </div>
 </div>
 <ul>
@@ -1127,7 +1199,7 @@ window.Quarto = {
 <li>Let’s try in python</li>
 </ul></li>
 </ul>
-<div id="98dfbac6" class="cell" data-execution_count="2">
+<div id="17eba320" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> threading <span class="im">import</span> Thread</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1182,12 +1254,12 @@ window.Quarto = {
 <span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>delta <span class="op">=</span> end <span class="op">-</span> start</span>
 <span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Took </span><span class="sc">{</span>delta<span class="sc">:.3f}</span><span class="ss"> seconds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Took 4.299 seconds</code></pre>
+<pre><code>Took 5.491 seconds</code></pre>
 </div>
 </div>
 <ul>
 <li>Here the program shows no significant time difference from the single-thread version</li>
-<li>There are mechanisms to get true concurrency (See <a href="../../Chapter_09/Item_079/item_079.html">Item 79</a>)
+<li>There are mechanisms to get true concurrency (See <a href="../../Chapter_09/Item_079/item_079.html">Item 79</a> and <a href="../../Chapter_11/Item_094/item_094.html">Item 94</a>)
 <ul>
 <li>Not the case for <code>Thread</code> with older python versions</li>
 </ul></li>
@@ -1231,7 +1303,7 @@ Note
 <li>Function asks the OS to block for <span class="math inline">\(0.1\)</span> seconds, control then reverts to the program</li>
 </ul></li>
 </ul>
-<div id="810c7afa" class="cell" data-execution_count="3">
+<div id="ba67b37b" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> select</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> socket</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
@@ -1270,7 +1342,7 @@ Note
 <li>While the thread is running we can do some calculation for our next message</li>
 </ul></li>
 </ul>
-<div id="9e627910" class="cell" data-execution_count="4">
+<div id="8cb80867" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> select</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> socket</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>

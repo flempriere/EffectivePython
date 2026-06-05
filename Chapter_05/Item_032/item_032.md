@@ -8,7 +8,8 @@
 
 - Python provides the value `None` to indicate the absence of a value
 - A common idiom is to return this value from a function when an invalid
-  state is reached
+  state is reached (See [Item
+  26](../../Chapter_04/Item_026/item_026.qmd))
   - e.g. when attempting to divide by zero
 
 ``` python
@@ -30,7 +31,9 @@ if result is None:
   is not then it returns zero
 - This means that if someone tries to check for `None` by using a
   falsely comparison then valid results which return $0$ are erroneously
-  flagged as errors
+  flagged as errors (See [Item
+  4](../../Chapter_01/Item_004/item_004.qmd) and [Item
+  7](../../Chapter_01/Item_007/item_007.qmd))
 
 ``` python
 def careful_divide(a, b):
@@ -49,7 +52,8 @@ if not result:
 
 - Two approaches to fixing this issue
 
-  1.  Split return into a 2-tuple
+  1.  Split return into a 2-tuple (See [Item
+      31](../Item_031/item_031.qmd))
       - First part indicates if operation succeeded
       - Second part returns the computed result
       - Problem with this approach is the caller can easily ignore the
@@ -59,7 +63,9 @@ if not result:
       - Raise an exception
       - Caller must handle the exception else the program crashes
       - For example we could convert the `ZeroDivisionError` into a more
-        generic `ValueError`
+        generic `ValueError` (See [Item
+        88](../../Chapter_10/Item_088/item_088.qmd) and [Item
+        121](../../Chapter_14/Item_121/item_121.qmd))
 
 ``` python
 # First approach - error tuple
@@ -109,12 +115,15 @@ else:
 
     Result is 0.0
 
-- Using exceptions also helps with type checking
+- Using exceptions also helps with type checking (See [Item
+  80](../../Chapter_10/Item_080/item_080.qmd))
 - We can write more specific return signatures if we don’t also have
   include `None`
   - Unfortunately python’s type system doesn’t let us indicate the
-    exceptions a function raises
-  - So we have to document them
+    exceptions a function raises (See [Item
+    124](../../Chapter_14/Item_124/item_124.qmd))
+  - So we have to document them (See [Item
+    118](../../Chapter_14/Item_118/item_118.qmd))
 
 ``` python
 # Complete example using exceptions and type signatures

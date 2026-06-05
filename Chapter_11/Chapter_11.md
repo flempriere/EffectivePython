@@ -22,5 +22,9 @@
 - *Performance Engineering* is the process of analysing program
   execution to identify and improve code performance
 - Python code is often not regarded as especially performant
+  - Not unfair given it’s runtime constraints
+    - Interpreter overhead
+    - Parallelism limitations (See [Item
+      68](../Chapter_09/Item_068/item_068.qmd))
   - However it provides a range of tools that can be used to maximise
     what performance it does offer

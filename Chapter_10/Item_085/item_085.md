@@ -64,7 +64,8 @@ print(summary)
 
     FileNotFoundError: [Errno 2] No such file or directory: 'missing_data_file.csv'
 
-- We could wrap `run_report` in a `try/except` block
+- We could wrap `run_report` in a `try/except` block (See [Item
+  80](../Item_080/item_080.qmd))
 
 ``` python
 def load_data(path):
@@ -203,6 +204,8 @@ else:
 - The main thing with exception handling is to try and be as specific as
   possible
   - Avoid potentially catching errors that you don’t expect
+- Can design API’s to explicitly be separable from other sources of
+  errors (See [item 121](../../Chapter_14/Item_121/item_121.qmd))
 
 ## Things to Remember
 

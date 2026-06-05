@@ -46,7 +46,7 @@ def trace_func(func):
 
 - We could then use this to create a version of a dictionary that
   provides a trace (See [Item
-  58](../../Chapter_07/Item_057/item_057.qmd))
+  57](../../Chapter_07/Item_057/item_057.qmd))
 
 ``` python
 import functools
@@ -366,7 +366,8 @@ except KeyError:
     __getitem__(({'hi': 1, 'there': 2}, 'does not exist'), {}) -> KeyError('does not exist')
 
 - Class decorators are typically the best way to make composable
-  extensions to classes
+  extensions to classes (See [Item
+  104](../../Chapter_12/Item_104/item_104.qmd))
 
 ## Things to Remember
 

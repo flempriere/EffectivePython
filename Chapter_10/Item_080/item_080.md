@@ -12,6 +12,8 @@
 - Exception handling comprises four time blocks in which action might
   want to be taken
   - `try`, `except`, `else`, `finally`
+- Each has their uses and can be used in combination (See [Item
+  121](../../Chapter_14/Item_121/item_121.py))
 
 ### `finally` Blocks
 

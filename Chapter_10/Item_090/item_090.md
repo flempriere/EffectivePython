@@ -103,7 +103,8 @@ __debug__ = False  # Should fail
   to validate their runtime (See [Item 81](../Item_081/item_081.qmd))
   - This means turning off `__debug__` *can* break a program
   - The speed up value of turning off debug is also generally
-    questionable
+    questionable (See [Item 92](../../Chapter_11/Item_092/item_092.qmd)
+    and [Item 94](../../Chapter_11/Item_094/item_094.qmd))
 - If you have expensive code that should be disabled in some runtimes
   - Manually implement it
   - Use functions and your own globals

@@ -15,7 +15,7 @@
   - Avoids passing the raw database connection into functions
 - Better abstractions help facilitate mocking and testing
   - If a program is hard to test, probably good evidence it needs a
-    refactor
+    refactor (See [Item 123](../../Chapter_14/Item_123/item_123.qmd))
 - Our new `ZooDatabase` object might look like below
   - Can then be directly injected into `do_rounds`
 
@@ -100,7 +100,7 @@ database.feed_animal.assert_any_call()
 print("Mock passed all testes")
 ```
 
-    <Mock name='mock.feed_animal' id='140167941292112'>
+    <Mock name='mock.feed_animal' id='139673154387456'>
     Mock passed all testes
 
 - Implementing the full mock code
@@ -130,6 +130,7 @@ def do_rounds(database, species, *, now_func=datetime.now):
     for name, last_mealtime in animals:
         if (now - last_mealtime) >= feeding_timedelta:
             database.feed_animal(name, now)
+            fed += 1
     return fed
 
 
@@ -147,6 +148,7 @@ database.get_animals.return_value = [
 ]
 
 result = do_rounds(database, "Meerkat", now_func=now_func)
+print(result)
 assert result == 2
 
 database.get_food_period.assert_called_once_with("Meerkat")
@@ -161,21 +163,8 @@ database.feed_animal.assert_has_calls(
 print("All mocked tests passed")
 ```
 
-    AssertionError: 
-    ---------------------------------------------------------------------------
-    AssertionError                            Traceback (most recent call last)
-    Cell In[3], line 42
-         35 database.get_animals.return_value = [
-         36     ("Spot", datetime(2019, 6, 5, 11, 15)),
-         37     ("Fluffy", datetime(2019, 6, 5, 12, 30)),
-         38     ("Jojo", datetime(2019, 6, 5, 12, 55)),
-         39 ]
-         41 result = do_rounds(database, "Meerkat", now_func=now_func)
-    ---> 42 assert result == 2
-         44 database.get_food_period.assert_called_once_with("Meerkat")
-         45 database.get_animals.assert_called_once_with("Meerkat")
-
-    AssertionError: 
+    2
+    All mocked tests passed
 
 - Always use the `spec` parameter so the `Mock` maps to the underlying
   class
@@ -185,7 +174,8 @@ print("All mocked tests passed")
   109](../Item_109/item_109.qmd)) still need to inject a mock
   - Use helper functions that act as *seams* to control dependency
     injection
-- For example, cache a module scope `ZooDatabase` object
+- For example, cache a module scope `ZooDatabase` object (See [Item
+  120](../../Chapter_14/Item_120/item_120.qmd))
 - Can then use `patch` to inject the mock
 
 ``` python

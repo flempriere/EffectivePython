@@ -25,10 +25,12 @@
   - Can be overkill for simple classes
   - There are techniques to make this more approachable (See [Item
     57](../Item_057/item_057.qmd))
+    - Also community packages (See [Item
+      116](../../Chapter_14/Item_116/item_116.qmd))
 - `dataclasses` is a built-in module
   - Help’s reduce the repeated boilerplate in class definitions
-  - Cost of use is a small runtime cost at `import` (due to using
-    `exec`)
+  - Cost of use is a small runtime cost at `import` (due to using `exec`
+    (See [Item 91](../../Chapter_10/Item_091/item_091.qmd)))
 - `dataclass` is very useful for writing plain-old data (POD) or C-like
   structs
   - i.e. record types
@@ -94,7 +96,8 @@ print(red)
 
     AttributeError: 'BadRGB' object has no attribute 'blue'
 
-- `dataclasses` provides the `dataclass` decorator
+- `dataclasses` provides the `dataclass` decorator (See [Item
+  66](../../Chapter_08/Item_066/item_066.qmd))
   - Decorates a class to provide default behaviours
 - We can reimplement our class using this decorator
 
@@ -117,7 +120,8 @@ print(red)
 
 - To use the decorator define the data attributes as if they were class
   attributes
-  - Attributes need to be tagged with the corresponding type hint
+  - Attributes need to be tagged with the corresponding type hint (See
+    [Item 124](../../Chapter_14/Item_124/item_124.qmd))
 - Each attribute is defined only once
   - Reordering attributes only needs to update the callers
 - Type annotations give us static type checking tools to detect errors
@@ -167,7 +171,7 @@ class RGB:
 ```
 
 - If you don’t want to deal with type annotations you can always use
-  `Any`
+  `Any` (See [Item 3](../../Chapter_01/Item_003/item_003.qmd))
 
 ``` python
 from typing import Any
@@ -220,6 +224,7 @@ print(f"Red: {red}\nGreen: {green}\nBlue: {blue}")
 - Still prone to the issues raised earlier of mixing up the parameters
   in the initializer
 - We can use `*` in the argument list to force keyword-only arguments
+  (See [Item 37](../../Chapter_05/Item_037/item_037.qmd))
 
 ``` python
 class RGB_keywordOnly:
@@ -420,7 +425,7 @@ red = RGB(red=255, green=0, blue=0)
 print(red)
 ```
 
-    <__main__.RGB object at 0x7fe0202c1fd0>
+    <__main__.RGB object at 0x7fa07ceb9e80>
 
 - One can implement either `__repr__` or `__str__` (See [Item
   12](../../Chapter_02/Item_012/item_012.qmd))
@@ -575,7 +580,8 @@ assert red is not red_copy
     (255, 0, 0)
 
 - We can get the same behaviour directly with a dataclass via the
-  `asdict` method
+  `asdict` method (See [Item
+  54](../../Chapter_07/Item_054/item_054.qmd))
 
 ``` python
 from dataclasses import dataclass, asdict
@@ -723,9 +729,11 @@ print(data)
     TypeError: '<' not supported between instances of 'Planet' and 'Planet'
 
 - There are alternatives for most cases (such as using `sort` and
-  passing a `key` function)
+  passing a `key` function (See [Item
+  100](../../Chapter_12/Item_100/item_100.qmd)))
 - However, often it is useful for an object to have it’s own natural
-  ordering (or we might just want to do a comparison)
+  ordering (or we might just want to do a comparison) (See [Item
+  104](../../Chapter_12/Item_104/item_104.qmd))
 - To do comparison we need to implement the `__lt__` (less than),
   `__le__` (less than or equal), `__gt__` (greater than) or `__ge__`
   (greater than or equal)

@@ -8,6 +8,7 @@ Functions
 ## Notes
 
 - Many Python API’s accept simple functions as part of their interfaces
+  (See [Item 100](../../Chapter_12/Item_100/item_100.qmd))
 - Interfaces can be a friction point when their required convention
   doesn’t exactly match your function structure
 - e.g. `reduce`
@@ -172,7 +173,7 @@ log_sum_e = functools.partial(logn_sum, base=math.e)
 print(log_sum_e.args, log_sum_e.keywords, log_sum_e.func)
 ```
 
-    () {'base': 2.718281828459045} <function logn_sum at 0x7f5e58aa5010>
+    () {'base': 2.718281828459045} <function logn_sum at 0x7f3604fb09e0>
 
 - Prefer `partial` over `lambda`
   - More ergonomic interface
@@ -181,7 +182,8 @@ print(log_sum_e.args, log_sum_e.keywords, log_sum_e.func)
   - Here we have to use a `lambda`
 - If we need more complicated function composition two techniques are
   - Using closures (See [item 33](../Item_033/item_033.qmd))
-  - Accepting functions as part of an interface
+  - Accepting functions as part of an interface (See [Item
+    48](../../Chapter_07/Item_048/item_048.qmd))
 
 ## Things to Remember
 

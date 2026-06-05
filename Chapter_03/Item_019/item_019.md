@@ -25,9 +25,9 @@ else:
 - The else block above runs immediately after the loop!
 - Why?
   - `else` in an `if/elif/else` construct only runs if neither preceding
-    block does
+    block does (See [Item 7](../../Chapter_01/Item_007/item_007.qmd))
   - `else` in a `try...except...else` only runs if no exception is
-    thrown
+    thrown (See [Item 80](../../Chapter_10/Item_080/item_080.qmd))
   - `finally` in a `try...except...finally` is clear in that it always
     runs after the block regardless
 - Intuitively one would expect it to mean “Do if the loop didn’t fully

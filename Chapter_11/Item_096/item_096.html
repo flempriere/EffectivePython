@@ -996,6 +996,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_14/Chapter_14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 14: Collaboration</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_116/item_116.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 116: Know Where to Find Community-Built Modules</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_117/item_117.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 117: Use Viirtual Environments for Isolated and Reproducible Dependencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_118/item_118.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 118: Write Docstrings for Every Function, Class and Module</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_119/item_119.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 119: Use Packages to Organise Modules and Provide Stable APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_120/item_120.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 120: Consider Module-Scoped Code to Configure Deployment Environments</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_121/item_121.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 121: Define a Root <code>Exception</code> to Insulate Callers from APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_122/item_122.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 122: Know how to Break Circular Dependencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_123/item_123.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 123: Consider <code>warnings</code> to Refactor and Migrate Usage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_124/item_124.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 124: Consider Static Analysis via <code>typing</code> to Obviate Bugs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_125/item_125.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 125: Prefer Open-Source Projects for Bundling Python Programs over <code>zipimport</code> and <code>zipapp</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -1036,17 +1107,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
+<li>CPython (See <a href="../../Chapter_01/Item_001/item_001.html">Item 1</a>) supports C Extension Modules</li>
 <li>An alternative to <code>ctypes</code> (See <a href="../../Chapter_11/Item_095/item_095.html">Item 95</a>) is to write a C Extension module</li>
 <li>Can directly use the Python API</li>
 <li>Let’s you use python features, e.g.
 <ul>
-<li>OOP</li>
-<li>Protocols</li>
+<li>OOP (See <a href="../../Chapter_07/Chapter_07.html">Chapter 7</a>)</li>
+<li>Protocols (See <a href="../../Chapter_04/Item_025/item_025.html">Item 25</a>)</li>
 <li>Reference-counting</li>
 <li>etc…</li>
 </ul></li>
 <li>Extension modules let the calling code be more Pythonic</li>
-<li>Creating an extension module is much more complicated than using <code>ctypes</code>
+<li>Creating an extension module is much more complicated than using <code>ctypes</code> (See <a href="../../Chapter_11/Item_094/item_094.html">Item 94</a>)
 <ul>
 <li>Have to understand the Python C API</li>
 </ul></li>
@@ -1146,7 +1218,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Can then be dynamically loaded into the CPython interpreter</li>
 </ul></li>
-<li>Can do so via a simple <code>setup.py</code> configuration file</li>
+<li>Can do so via a simple <code>setup.py</code> configuration file
+<ul>
+<li>Utilises the <code>setuptools</code> built-in module (See <a href="../../Chapter_14/Item_116/item_116.html">Item 116</a>)</li>
+</ul></li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># setup.py</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1162,7 +1237,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    ],</span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
-<li>We can then use this to install the extension into our virtual environment
+<li>We can then use this to install the extension into our virtual environment (See <a href="../../Chapter_14/Item_117/item_117.html">Item 117</a>)
 <ul>
 <li>By running the following from the folder containing our extension module</li>
 </ul></li>
@@ -1195,9 +1270,9 @@ Caution
 </div>
 </div>
 <ul>
-<li>We can now test our module</li>
+<li>We can now test our module (See <a href="../../Chapter_13/Item_108/item_108.html">Item 108</a>)</li>
 </ul>
-<div id="c973b81f" class="cell" data-execution_count="1">
+<div id="feec5c84" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> unittest</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> extension</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1267,7 +1342,7 @@ test_zero_result (__main__.ExtensionTest.test_zero_result) ...
 
 ----------------------------------------------------------------------
 
-Ran 7 tests in 0.004s
+Ran 7 tests in 0.007s
 
 
 
@@ -1276,7 +1351,7 @@ Ran 7 tests in 0.004s
 </div>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>&lt;unittest.main.TestProgram at 0x7fa0a4706f90&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7f9d187dee40&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -1379,7 +1454,7 @@ Ran 7 tests in 0.004s
 </ul></li>
 <li>We can then set-up tests for the module</li>
 </ul>
-<div id="0b07841a" class="cell" data-execution_count="2">
+<div id="7d27b2bb" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> unittest</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> extension2</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1505,7 +1580,7 @@ test_zero_result (__main__.ExtensionTest.test_zero_result) ...
 
 ----------------------------------------------------------------------
 
-Ran 15 tests in 0.009s
+Ran 15 tests in 0.020s
 
 
 
@@ -1514,13 +1589,14 @@ Ran 15 tests in 0.009s
 </div>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>&lt;unittest.main.TestProgram at 0x7fa0a45651d0&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7f9d186851d0&gt;</code></pre>
 </div>
 </div>
 <ul>
 <li>The flexibility and extensibility of above provides good ergonomics
 <ul>
 <li>Would have to reinvent a lot of the Python machinery to reimplement this in basic C</li>
+<li>But works for the python types like iterable and <code>Decimal</code> class (See <a href="../../Chapter_12/Item_106/item_106.html">Item 106</a>)</li>
 </ul></li>
 </ul>
 </section>

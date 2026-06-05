@@ -8,7 +8,7 @@ or Caches Instead
 ## Notes
 
 - Modifying containers while iterating over them can lead to many
-  gotchas
+  gotchas (See [Item 21](../Item_021/item_021.qmd))
 - For example, adding a key to a dictionary while iterating will raise a
   runtime error
 
@@ -96,7 +96,7 @@ for colour in my_set:
 print(my_set)
 ```
 
-    {'green', 'red', 'blue'}
+    {'green', 'blue', 'red'}
 
     RuntimeError: Set changed size during iteration
     ---------------------------------------------------------------------------
@@ -170,7 +170,8 @@ print(my_list)
     linear traversal where the access my be more esoteric
 - If you need to modify a container by iterating over it’s contents
   - Make a copy, iterate over the copy
-  - Modify the original
+  - Modify the original (See [Item
+    30](../../Chapter_05/Item_030/item_030.qmd))
 - For example,
 
 ``` python
@@ -209,9 +210,10 @@ print(my_set)
     2
     3
     [4, 1, 2, 3]
-    {'green', 'red', 'blue', 'yellow'}
+    {'green', 'yellow', 'blue', 'red'}
 
-- Copying can be slow for large containers
+- Copying can be slow for large containers (See [Item
+  92](../../Chapter_11/Item_092/item_092.qmd))
 - Alternative is to stage modifications in a container
 - Then merge the changes into the main container post-iteration
 
@@ -283,7 +285,9 @@ print(my_dict)
 - Hard to generalise this solution
   - Need to ensure that the cache respects the constraints of the
     algorithm
-- Best enforced with automated tests
+- Best enforced with automated tests (See [Item
+  109](../../Chapter_13/Item_109/item_109.qmd) and [Item
+  93](../../Chapter_11/Item_093/item_093.qmd))
 
 ## Things to Remember
 

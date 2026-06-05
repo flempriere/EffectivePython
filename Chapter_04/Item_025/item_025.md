@@ -94,7 +94,9 @@ assert items == [("cat", "kitten"), ("dog", "puppy")]
 
 #### Keyword Arguments to Functions
 
-- Keyword arguments supplied via `**kwargs` would be randomly ordered
+- Keyword arguments supplied via `**kwargs` (See [Item
+  35](../../Chapter_05/Item_035/item_035.qmd) and [Item
+  37](../../Chapter_05/Item_037/item_037.qmd)) would be randomly ordered
 - This is now preserved
 
 ``` python
@@ -136,7 +138,7 @@ for key, value in a.__dict__.items():
 - When creating new classes and functions you can count on the insertion
   ordering of dictionaries (for Python 3.6 and up)
 - This means you can include and use this guarantee as part of your API
-  design
+  design (See [Item 65](../../Chapter_08/Item_065/item_065.qmd))
 
 > [!NOTE]
 >
@@ -149,7 +151,7 @@ for key, value in a.__dict__.items():
 > different performance characteristics. For high rates of key insertion
 > and `popitem` calls (e.g. When implementing a least-recently-used
 > cache), `OrderedDict` may provide better performance than a standard
-> `dict`
+> `dict` (See [Item 92](../../Chapter_11/Item_092/item_092.qmd))
 
 ### Custom Containers and Caution
 
@@ -158,10 +160,11 @@ for key, value in a.__dict__.items():
   - These can behave like the standard containers by implementing their
     *protocols*
     - e.g. the *list* protocol, the *iterator* protocol, *dictionary*
-      protocol
-  - Due to *Duck-typing*, i.e. the presence of an attribute or behaviour
-    matching a type implies this object *is* that type can lead to
-    discrepencies across API boundaries
+      protocol (See [Item 57](../../Chapter_07/Item_057/item_057.qmd))
+  - Due to *Duck-typing* (See [Item
+    3](../../Chapter_01/Item_003/item_003.qmd)), i.e. the presence of an
+    attribute or behaviour matching a type implies this object *is* that
+    type can lead to discrepencies across API boundaries
 
 #### Example: Animal Ranking
 
@@ -474,9 +477,10 @@ print(winner)
 
 ##### Solution 3: Adding Type Annotations for Static Analysis
 
-- We can use type annotations to ensure that the `rank` parameter is a
-  `dict` instance *not* a `MutableMapping` (that behaves like a
-  dictionary)
+- We can use type annotations (See [Item
+  124](../../Chapter_014/Item_124/item_124.qmd)) to ensure that the
+  `rank` parameter is a `dict` instance *not* a `MutableMapping` (that
+  behaves like a dictionary)
 - A static analysis tool should then catch the problem
 
 ``` python

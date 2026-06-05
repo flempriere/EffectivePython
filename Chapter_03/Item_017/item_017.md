@@ -22,7 +22,7 @@ for i in range(32): # 32 bits
 print(f"Randomly generated: {bin(random_bits)}")
 ```
 
-    Randomly generated: 0b11100000100011000100010000010011
+    Randomly generated: 0b11110100011001001010101010010101
 
 - We can directly loop over an data structure
 
@@ -59,7 +59,8 @@ for i in range(len(ice_cream_flavours)):
 - Lot’s of noise is introduced via the explicit list index accesses and
   the call to `len`
 - The `enumerate` built-in manages this for us
-  - Wraps any iterator with a lazy generator
+  - Wraps any iterator with a lazy generator (See [Item
+    43](../../Chapter_06/Item_043/item_043.qmd))
   - yields pairs of the form `(counter, value)`
     - Where counter is the number of elements previously returned
     - i.e. returns `0`, then `1` etc.
@@ -75,8 +76,9 @@ print(next(it))
     (0, 'vanilla')
     (1, 'chocolate')
 
-- We can then use unpacking to easily separate the components of the
-  `enumerate` pair
+- We can then use unpacking (See [Item
+  5](../../Chapter_01/Item_005/item_005.qmd)) to easily separate the
+  components of the `enumerate` pair
 
 ``` python
 ice_cream_flavours = ["vanilla", "chocolate", "pecan", "strawberry"]

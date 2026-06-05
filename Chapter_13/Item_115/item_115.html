@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../Chapter_14/Chapter_14.html" rel="next">
 <link href="../../Chapter_13/Item_114/item_114.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -995,6 +996,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Chapter_14/Chapter_14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 14: Collaboration</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_116/item_116.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 116: Know Where to Find Community-Built Modules</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_117/item_117.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 117: Use Viirtual Environments for Isolated and Reproducible Dependencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_118/item_118.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 118: Write Docstrings for Every Function, Class and Module</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_119/item_119.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 119: Use Packages to Organise Modules and Provide Stable APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_120/item_120.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 120: Consider Module-Scoped Code to Configure Deployment Environments</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_121/item_121.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 121: Define a Root <code>Exception</code> to Insulate Callers from APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_122/item_122.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 122: Know how to Break Circular Dependencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_123/item_123.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 123: Consider <code>warnings</code> to Refactor and Migrate Usage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_124/item_124.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 124: Consider Static Analysis via <code>typing</code> to Obviate Bugs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Chapter_14/Item_125/item_125.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Item 125: Prefer Open-Source Projects for Bundling Python Programs over <code>zipimport</code> and <code>zipapp</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -1052,7 +1124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Unfortunately this is quite blunt</li>
 </ul></li>
 </ul>
-<div id="403d4a49" class="cell" data-execution_count="1">
+<div id="6808d979" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gc</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1087,11 +1159,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> obj <span class="kw">in</span> found_objects[:<span class="dv">3</span>]:</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">repr</span>(obj)[:<span class="dv">100</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Before: 87909
-After:    97984
-&lt;__main__.MyObject object at 0x7f7efca21a90&gt;
-&lt;__main__.MyObject object at 0x7f7efca21ae0&gt;
-&lt;__main__.MyObject object at 0x7f7efca21b30&gt;</code></pre>
+<pre><code>Before: 87920
+After:    97995
+&lt;__main__.MyObject object at 0x7f1298445900&gt;
+&lt;__main__.MyObject object at 0x7f1298445950&gt;
+&lt;__main__.MyObject object at 0x7f12984459a0&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -1106,7 +1178,7 @@ After:    97984
 <li>Allows you to link an object to where it was allocated</li>
 </ul></li>
 </ul>
-<div id="96d966fd" class="cell" data-execution_count="2">
+<div id="ae8f7b7d" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tracemalloc</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1142,9 +1214,9 @@ After:    97984
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> stat <span class="kw">in</span> stats[:<span class="dv">3</span>]:</span>
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(stat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>/tmp/ipykernel_13703/1425524081.py:11: size=1299 KiB (+1299 KiB), count=10000 (+10000), average=133 B
-/tmp/ipykernel_13703/1425524081.py:17: size=785 KiB (+785 KiB), count=10000 (+10000), average=80 B
-/tmp/ipykernel_13703/1425524081.py:18: size=84.4 KiB (+84.4 KiB), count=100 (+100), average=864 B</code></pre>
+<pre><code>/tmp/ipykernel_13922/1425524081.py:11: size=1299 KiB (+1299 KiB), count=10000 (+10000), average=133 B
+/tmp/ipykernel_13922/1425524081.py:17: size=785 KiB (+785 KiB), count=10000 (+10000), average=80 B
+/tmp/ipykernel_13922/1425524081.py:18: size=84.4 KiB (+84.4 KiB), count=100 (+100), average=864 B</code></pre>
 </div>
 </div>
 <ul>
@@ -1154,7 +1226,7 @@ After:    97984
 </ul></li>
 <li>Can print the full stack trace</li>
 </ul>
-<div id="08499462" class="cell" data-execution_count="3">
+<div id="fb49c2ac" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tracemalloc</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>tracemalloc.start(<span class="dv">10</span>)</span>
@@ -1202,13 +1274,13 @@ After:    97984
     if await self.run_code(code, result, async_=asy):
   File "/home/runner/work/EffectivePython/EffectivePython/.venv/lib/python3.14/site-packages/IPython/core/interactiveshell.py", line 3747
     exec(code_obj, self.user_global_ns, self.user_ns)
-  File "/tmp/ipykernel_13703/1838260187.py", line 27
+  File "/tmp/ipykernel_13922/1838260187.py", line 27
     waste_memory = run()
-  File "/tmp/ipykernel_13703/1838260187.py", line 23
+  File "/tmp/ipykernel_13922/1838260187.py", line 23
     deep_values.append(get_data())
-  File "/tmp/ipykernel_13703/1838260187.py", line 15
+  File "/tmp/ipykernel_13922/1838260187.py", line 15
     obj = MyObject()
-  File "/tmp/ipykernel_13703/1838260187.py", line 9
+  File "/tmp/ipykernel_13922/1838260187.py", line 9
     self.data = os.urandom(1000)</code></pre>
 </div>
 </div>
@@ -1217,7 +1289,10 @@ After:    97984
 <ul>
 <li>Can work out which usages are causing memory issues</li>
 </ul></li>
-<li>For more complex use cases consider community tools</li>
+<li>For more advanced memory profiling consider community packages (See <a href="../../Chapter_14/Item_116/item_116.html">Item 116</a>)
+<ul>
+<li>e.g.&nbsp;<a href="https://github.com/bloomberg/memray"><code>Memray</code></a></li>
+</ul></li>
 </ul>
 </section>
 <section id="things-to-remember" class="level2">
@@ -1642,6 +1717,9 @@ After:    97984
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../Chapter_14/Chapter_14.html" class="pagination-link" aria-label="Chapter 14: Collaboration">
+        <span class="nav-page-text">Chapter 14: Collaboration</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

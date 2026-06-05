@@ -124,7 +124,8 @@ print("Should be (5 * 2) + 5 = 15. Is", foo.value)
 - The built-in `super` function and method order resolution (MRO) exist
   to work around these issues
   - `super` ensures common superclasses in diamond hierarchies are
-    instantiated only once
+    instantiated only once (See [Item
+    62](../../Chapter_08/Item_062/item_062.qmd))
     - Also means we don’t need to explicitly pass the `self` parameter
   - MRO defines the ordering of superclass initialisation
     - Uses an algorithm (C3 linearisation)

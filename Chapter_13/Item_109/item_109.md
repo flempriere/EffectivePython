@@ -13,7 +13,8 @@
   3.  Mutation testing,
   4.  Code and branch coverage reporting
 
-  - and more…
+  - and more, all available via community packages (See [Item
+    116](../../Chapter_14/Item_116/item_116.qmd))
 - The question is never when and can you write tests?
   - How much testing is enough?
   - *What* should tests verify?
@@ -46,7 +47,8 @@
         immutable to changes
     - Highly important in Python
       - Other languages can give some validation of boundaries using
-        type checking
+        type checking (See [Item
+        124](../../Chapter_14/Item_124/item_124.qmd))
       - Python has no guarantees until runtime (See [Item
         3](../../Chapter_01/Item_003/item_003.qmd))
 - Prefer writing integration tests
@@ -118,7 +120,8 @@ print("After time:  ", toaster.hot)
 
 - Might be tempted to write unit test’s for the `Toaster`
   - But would require us to mock out the timer (See [Item
-    111](../Item_111/item_111.qmd))
+    111](../Item_111/item_111.qmd) and [Item
+    108](../Item_108/item_108.qmd))
 
 ``` python
 %reset
@@ -191,13 +194,13 @@ main(argv=[""], exit=False)
 
     ..
     ----------------------------------------------------------------------
-    Ran 2 tests in 0.001s
+    Ran 2 tests in 0.002s
 
     OK
 
     Pop!
 
-    <unittest.main.TestProgram at 0x7fa4a0c841a0>
+    <unittest.main.TestProgram at 0x7f754cdb3e00>
 
 - We’ll also then have to write unit tests for our `ReusableTimer` app
 
@@ -272,11 +275,11 @@ main(argv=[""], exit=False)
 
     ..
     ----------------------------------------------------------------------
-    Ran 2 tests in 0.002s
+    Ran 2 tests in 0.003s
 
     OK
 
-    <unittest.main.TestProgram at 0x7fa4a0e1a850>
+    <unittest.main.TestProgram at 0x7f754ce1a850>
 
 - Since the `Toaster` and `ReusableTimer` are designed to be used
   together we can see we have to heavily mock the internals
@@ -367,7 +370,7 @@ main(argv=[""], exit=False)
 
     Pop!
 
-    <unittest.main.TestProgram at 0x7fa4a0e1a710>
+    <unittest.main.TestProgram at 0x7f754ce1a710>
 
 - Test is shorter and more focused on the actual state being tested than
   the unit test implementations
@@ -447,7 +450,7 @@ main(argv=[""], exit=False)
 
     OK
 
-    <unittest.main.TestProgram at 0x7fa4a0dce8b0>
+    <unittest.main.TestProgram at 0x7f754cdd2650>
 
 - We don’t have to mock out the `ReusableTimer` since we don’t use it’s
   functionality

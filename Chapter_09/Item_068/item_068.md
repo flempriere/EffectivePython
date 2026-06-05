@@ -9,7 +9,8 @@
 - The reference or standard implementation of Python is called CPython
 - CPython runs a program in two steps
   1.  Source text is parsed and compiled into *bytecode*
-      - Low-level representation of program as 8-bit instructions
+      - Low-level representation of program as 8-bit instructions (See
+        [Item 97](../../Chapter_11/Item_097/item_097.qmd))
       - From python 3.6 it’s technically 16-bit *wordcode*
   2.  Bytecode is run using a stack-based interpreter
       - Interpreter has a state that must be maintained during program
@@ -20,6 +21,8 @@
   - This interruption could corrupt the state (e.g. garbage collection
     reference counts)
   - GIL prevents these interruptions
+  - Ensures CPython and C extension modules work as expected (See [Item
+    96](../../Chapter_11/Item_096/item_096.qmd))
 - In other languages multiple-execution threads can be run on multiple
   CPUs
   - Supports multiple simultaneous threads of execution
@@ -50,7 +53,7 @@ delta = end - start
 print(f"Took {delta:.3f} seconds")
 ```
 
-    Took 4.971 seconds
+    Took 6.848 seconds
 
 - In another language might seem natural to do this computation using
   multiple threads of execution
@@ -112,12 +115,13 @@ delta = end - start
 print(f"Took {delta:.3f} seconds")
 ```
 
-    Took 4.302 seconds
+    Took 5.551 seconds
 
 - Here the program shows no significant time difference from the
   single-thread version
 - There are mechanisms to get true concurrency (See [Item
-  79](../Item_079/item_079.qmd))
+  79](../Item_079/item_079.qmd) and [Item
+  94](../../Chapter_11/Item_094/item_094.qmd))
   - Not the case for `Thread` with older python versions
 
 > [!NOTE]

@@ -14,7 +14,8 @@
   `str`, `bytes`)
 
 - Slicing can be extended to any class implementing the `__getitem__`
-  and `__setitem__` dunder methods
+  and `__setitem__` dunder methods (See [Item
+  57](../../Chapter_07/Item_057/item_057.qmd))
 
 - The basic syntax is `a_sequence[start:end]`
 
@@ -116,7 +117,9 @@ print(a[20])
 > the expression `a[-n:]` works for `n>0`, say `n=3` `a[-3:0]`. When `n`
 > is zero, `a[-0:]` evaluates to `a[:]` which slices the entire list
 
-- Slicing a list creates a new list
+- Slicing a list creates a new list (See [Item
+  2](../../Chapter_01/Item_002/item_002.qmd) and [Item
+  16](../Item_016/item_016.qmd))
   - Modifying the new list doesn’t change the old list
   - The new list refers to the same list items though
     - It’s a shallow copy, not a deep copy

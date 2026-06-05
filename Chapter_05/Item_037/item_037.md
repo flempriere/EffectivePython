@@ -42,7 +42,8 @@ print(result)
 - Above has a problem
   - Not explicitly clear with boolean argument corresponds to which
     parameter
-- Can improve by using defaults and keyword arguments
+- Can improve by using defaults and keyword arguments (See [Item
+  36](../Item_036/item_036.qmd))
 
 ``` python
 def safe_division(number, divisor, ignore_overflow=False, ignore_zero_division=False):
@@ -79,7 +80,7 @@ print(result)
 - To do this we define *keyword-only arguments*
   - Can never be passed positionally
 - To do so separate the positional arguments and the keyword arguments
-  by the `*` symbol
+  by the `*` symbol (See [Item 34](../Item_034/item_034.qmd))
   - Note using `*args` does the same thing but captures all remaining
     positional arguments into the `args` tuple
 

@@ -8,7 +8,8 @@ Programming Instead of Object-Oriented Polymorphism
 ## Notes
 
 - We’ve seen that Object-Oriented Programming lets us structure code by
-  packaging behaviours and data in a class hierarchy
+  packaging behaviours and data in a class hierarchy (See [Item
+  49](../Item_049/item_049.qmd))
   - Then use runtime polymorphism to dispatch methods to the respective
     subclass implementation
 - Results in a hierarchy like,
@@ -105,7 +106,8 @@ class NodeAlt2:
 - OOP also conflates dependencies
   - e.g. LaTeX generation might require, special formatting libraries,
     formula-solving might require symbolic math
-  - Each class then needs to import those dependencies
+  - Each class then needs to import those dependencies (See [Item
+    98](../../Chapter_11/Item_098/item_098.qmd))
   - Dependencies from various subsystems thus leak across into each
     other due to class-based organisation
 - *Single dispatch* is an alternative approach
