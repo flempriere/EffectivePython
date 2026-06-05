@@ -330,6 +330,7 @@ print("Count of 10 is", tree.count(10))
 - There are also further special methods used for object comparison and
   sorting
   - Can be applied to container and non-container types (See [Item
+    104](../../Chapter_12/Item_104/item_104.qmd) and [Item
     51](../Item_051/item_051.qmd))
 
 ## Things to Remember

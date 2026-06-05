@@ -83,9 +83,11 @@ except AssertionError as e:
   - They have different use cases
 - Exceptions from `raise` are considered part of a function’s interface
   - Same importance as arguments and return values
-  - Should be documented as part of the docstring
+  - Should be documented as part of the docstring (See [Item
+    118](../../Chapter_14/Item_118/item_118.qmd))
   - Expected to be caught and handled by calling code
-  - Behaviour should be verified in testing
+  - Behaviour should be verified in testing (See [Item
+    109](../../Chapter_13/Item_109/item_109.qmd))
 - Exceptions from `assert` are considered part of the internal
   implementation
   - Not meant to be caught by caller or function
@@ -188,9 +190,12 @@ movie.rate(7)  # Raises
   outer `try/except` block (See [Item 85](../Item_085/item_085.qmd))
 - Generally when trying to decide between `assert` or `raise` consider
   the following,
-  - For external facing API’s consider `raise`
+  - For external facing API’s consider `raise` (See [Item
+    121](../../Chapter_14/Item_121/item_121.qmd))
   - For internal facing code use `assert` to ensure consistency and
     boundaries between components
+    - Make sure they are not disabled (See [Item
+      90](../Item_090/item_090.qmd))
 
 ## Things to Remember
 

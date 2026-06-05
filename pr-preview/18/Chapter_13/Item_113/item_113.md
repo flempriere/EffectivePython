@@ -48,7 +48,7 @@ unittest.main(argv=[""], exit=False)
     FAIL: test_equal (__main__.MyTestCase.test_equal)
     ----------------------------------------------------------------------
     Traceback (most recent call last):
-      File "/tmp/ipykernel_14044/4259668897.py", line 9, in test_equal
+      File "/tmp/ipykernel_14086/4259668897.py", line 9, in test_equal
         self.assertEqual(1.667, n / d)  # Raises
         ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
     AssertionError: 1.667 != 1.6666666666666667
@@ -58,7 +58,7 @@ unittest.main(argv=[""], exit=False)
 
     FAILED (failures=1)
 
-    <unittest.main.TestProgram at 0x7f466cd72ba0>
+    <unittest.main.TestProgram at 0x7f0b18eaeba0>
 
 - For example, the two equivalent calculations below will actually give
   different answers due to rounding in the intermediates
@@ -100,7 +100,7 @@ unittest.main(argv=[""], exit=False)
 
     OK
 
-    <unittest.main.TestProgram at 0x7f466cfd7ed0>
+    <unittest.main.TestProgram at 0x7f0b18f17ed0>
 
 - `places` is suitable for verifying numbers with a fractional part that
   are close to unit magnitude
@@ -147,7 +147,7 @@ unittest.main(argv=[""], exit=False)
 
     OK
 
-    <unittest.main.TestProgram at 0x7f466cfd6490>
+    <unittest.main.TestProgram at 0x7f0b18f16490>
 
 - If you need to assert a false case, then consider using
   `unittest.TestCase.assertNotAlmostEqual`

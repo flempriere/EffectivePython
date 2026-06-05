@@ -11,7 +11,8 @@ Dependencies
 
 - By default `pip` installs packages into a global environment
 
-  - Means every python program is impacted by installed modules
+  - Means every python program is impacted by installed modules (See
+    [Item 116](../Item_116/item_116.qmd))
   - `pip` needs to resolve a consistent set of package versions across
     all of your programs
 
@@ -59,6 +60,8 @@ Dependencies
 
   - In the worst case this can result in breaking the system
     dependencies that an OS needs to run core programs
+  - This situation is often referred to as *dependency hell* (See [Item
+    119](../Item_119/item_119.qmd))
 
 - Furthermore, when collaborating using the global state means that
   people’s development environments are likely to vary significantly

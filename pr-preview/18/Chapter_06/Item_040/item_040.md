@@ -122,6 +122,7 @@ print(threes_cubed_set)
     collections
   - Means they produce their output one at a time
   - This saves memory (See [Item
+    43](../../Chapter_06/Item_043/item_043.qmd) and [Item
     24](../../Chapter_03/Item_024/item_024.qmd))
 - Comprehensions create and assign the full collection at declaration
   - This can consume a lot of memory for large lists

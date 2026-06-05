@@ -15,7 +15,7 @@
   - Avoids passing the raw database connection into functions
 - Better abstractions help facilitate mocking and testing
   - If a program is hard to test, probably good evidence it needs a
-    refactor
+    refactor (See [Item 123](../../Chapter_14/Item_123/item_123.qmd))
 - Our new `ZooDatabase` object might look like below
   - Can then be directly injected into `do_rounds`
 
@@ -100,7 +100,7 @@ database.feed_animal.assert_any_call()
 print("Mock passed all testes")
 ```
 
-    <Mock name='mock.feed_animal' id='140386653175296'>
+    <Mock name='mock.feed_animal' id='140659658276352'>
     Mock passed all testes
 
 - Implementing the full mock code
@@ -174,7 +174,8 @@ print("All mocked tests passed")
   109](../Item_109/item_109.qmd)) still need to inject a mock
   - Use helper functions that act as *seams* to control dependency
     injection
-- For example, cache a module scope `ZooDatabase` object
+- For example, cache a module scope `ZooDatabase` object (See [Item
+  120](../../Chapter_14/Item_120/item_120.qmd))
 - Can then use `patch` to inject the mock
 
 ``` python

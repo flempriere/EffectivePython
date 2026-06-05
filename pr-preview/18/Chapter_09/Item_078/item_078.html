@@ -1140,7 +1140,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Reintroducing the test code from <a href="../../Chapter_09/Item_077/item_077.html">Item 77</a></li>
 </ul></li>
 </ul>
-<div id="2f0ca8f3" class="cell" data-execution_count="1">
+<div id="58924f70" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections  <span class="co"># for testing</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os  <span class="co"># for testing</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random  <span class="co"># for testing</span></span>
@@ -1268,11 +1268,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>tmpdir.cleanup()</span>
 <span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All tests passed!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>File: /tmp/tmpd3nt81qr/0. Expected [] lines, found []
-File: /tmp/tmpd3nt81qr/1. Expected [] lines, found []
-File: /tmp/tmpd3nt81qr/2. Expected [] lines, found []
-File: /tmp/tmpd3nt81qr/3. Expected [b'/tmp/tmpd3nt81qr/3-01-baqckfvyjb\n', b'/tmp/tmpd3nt81qr/3-02-apxtwydlmh\n'] lines, found [b'/tmp/tmpd3nt81qr/3-01-baqckfvyjb\n', b'/tmp/tmpd3nt81qr/3-02-apxtwydlmh\n']
-File: /tmp/tmpd3nt81qr/4. Expected [b'/tmp/tmpd3nt81qr/4-01-vsjpyhzoge\n', b'/tmp/tmpd3nt81qr/4-02-zbthizqgqj\n', b'/tmp/tmpd3nt81qr/4-03-gofhzcuioz\n', b'/tmp/tmpd3nt81qr/4-04-hpxelamneb\n'] lines, found [b'/tmp/tmpd3nt81qr/4-01-vsjpyhzoge\n', b'/tmp/tmpd3nt81qr/4-02-zbthizqgqj\n', b'/tmp/tmpd3nt81qr/4-03-gofhzcuioz\n', b'/tmp/tmpd3nt81qr/4-04-hpxelamneb\n']
+<pre><code>File: /tmp/tmp84g2f83w/0. Expected [b'/tmp/tmp84g2f83w/0-01-qmjxfraexc\n'] lines, found [b'/tmp/tmp84g2f83w/0-01-qmjxfraexc\n']
+File: /tmp/tmp84g2f83w/1. Expected [] lines, found []
+File: /tmp/tmp84g2f83w/2. Expected [] lines, found []
+File: /tmp/tmp84g2f83w/3. Expected [b'/tmp/tmp84g2f83w/3-01-rtjzdkhqcf\n', b'/tmp/tmp84g2f83w/3-02-jbhpjudput\n', b'/tmp/tmp84g2f83w/3-03-oqogbvwdtx\n'] lines, found [b'/tmp/tmp84g2f83w/3-01-rtjzdkhqcf\n', b'/tmp/tmp84g2f83w/3-02-jbhpjudput\n', b'/tmp/tmp84g2f83w/3-03-oqogbvwdtx\n']
+File: /tmp/tmp84g2f83w/4. Expected [b'/tmp/tmp84g2f83w/4-01-tdvoehagck\n'] lines, found [b'/tmp/tmp84g2f83w/4-01-tdvoehagck\n']
 All tests passed!</code></pre>
 </div>
 </div>
@@ -1294,7 +1294,7 @@ All tests passed!</code></pre>
 </ul></li>
 </ul></li>
 </ul>
-<div id="42e279bb" class="cell" data-execution_count="2">
+<div id="87d7b4ad" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> asyncio</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1380,7 +1380,7 @@ All tests passed!</code></pre>
 <ul>
 <li>Let’s coroutines tell the worker thread to stop</li>
 </ul></li>
-<li>To let the class be used with a context manager (i.e.&nbsp;<code>with</code> statements) we define the <code>__aenter__</code> and <code>__aexit__</code> dunder methods
+<li>To let the class be used with a context manager (i.e.&nbsp;<code>with</code> statements (See <a href="../../Chapter_10/Item_082/item_082.html">Item 82</a>)) we define the <code>__aenter__</code> and <code>__aexit__</code> dunder methods
 <ul>
 <li>Ensures the thread is appropriately started and stopped (See <a href="../../Chapter_09/Item_076/item_076.html">Item 76</a> for background)</li>
 </ul></li>
@@ -1390,7 +1390,7 @@ All tests passed!</code></pre>
 <li>Avoid’s running system calls in main event loop</li>
 </ul></li>
 </ul>
-<div id="f1602a44" class="cell" data-execution_count="3">
+<div id="01e4cb72" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections  <span class="co"># for testing</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os  <span class="co"># for testing</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random  <span class="co"># for testing</span></span>
@@ -1556,11 +1556,11 @@ All tests passed!</code></pre>
 <span id="cb6-163"><a href="#cb6-163" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All tests passed!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>File: /tmp/tmpv23ft9rm/0. Expected [] lines, found []
-File: /tmp/tmpv23ft9rm/1. Expected [] lines, found []
-File: /tmp/tmpv23ft9rm/2. Expected [b'/tmp/tmpv23ft9rm/2-01-lxrematedo\n'] lines, found [b'/tmp/tmpv23ft9rm/2-01-lxrematedo\n']
-File: /tmp/tmpv23ft9rm/3. Expected [] lines, found []
-File: /tmp/tmpv23ft9rm/4. Expected [] lines, found []
+<pre><code>File: /tmp/tmp5_qywx6c/0. Expected [b'/tmp/tmp5_qywx6c/0-01-cdlpuonrhr\n'] lines, found [b'/tmp/tmp5_qywx6c/0-01-cdlpuonrhr\n']
+File: /tmp/tmp5_qywx6c/1. Expected [b'/tmp/tmp5_qywx6c/1-01-wcbptcblso\n', b'/tmp/tmp5_qywx6c/1-02-lgsudhsita\n'] lines, found [b'/tmp/tmp5_qywx6c/1-01-wcbptcblso\n', b'/tmp/tmp5_qywx6c/1-02-lgsudhsita\n']
+File: /tmp/tmp5_qywx6c/2. Expected [b'/tmp/tmp5_qywx6c/2-01-ofvlvwyept\n', b'/tmp/tmp5_qywx6c/2-02-pjhtlcfhco\n'] lines, found [b'/tmp/tmp5_qywx6c/2-01-ofvlvwyept\n', b'/tmp/tmp5_qywx6c/2-02-pjhtlcfhco\n']
+File: /tmp/tmp5_qywx6c/3. Expected [] lines, found []
+File: /tmp/tmp5_qywx6c/4. Expected [] lines, found []
 All tests passed!</code></pre>
 </div>
 </div>

@@ -1189,7 +1189,7 @@ Note
 <li>A static type checker could verify this behaviour without the need to run a test</li>
 </ul></li>
 </ul>
-<div id="638c77a5" class="cell" data-execution_count="1">
+<div id="ffd608e7" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> subtract(a, b):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">-</span> b</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1252,7 +1252,7 @@ Found 1 diagnostic</code></pre>
 </ol></li>
 </ul></li>
 </ul>
-<div id="0982e4e2" class="cell" data-execution_count="2">
+<div id="148d557f" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># class.py</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrates the use of typing with a class</span></span>
@@ -1328,7 +1328,7 @@ info: rule `invalid-return-type` is enabled by default</code></pre>
 </ul></li>
 <li>For example, if we write a mathematical function that we expect to work on any real number the following failure might be non-obvious to a consumer (See <a href="./Examples/03_RealNumber/real_number.py">real_number.py</a>)</li>
 </ul>
-<div id="1bfff39f" class="cell" data-execution_count="3">
+<div id="2a9ef4c7" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> combine(func, values):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> (<span class="bu">len</span>(values)) <span class="op">&gt;</span> <span class="dv">0</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1454,7 +1454,7 @@ Found 1 error in 1 file (checked 1 source file)</code></pre>
 <li>For example, where we might expect to receive an object instead (See <a href="./Examples/04_GetOrDefault/get_or_default.py">get_or_default.py</a>)</li>
 </ul></li>
 </ul>
-<div id="77488e5b" class="cell" data-execution_count="4">
+<div id="3c0d7a57" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_or_default(value, default):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> value <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> value  <span class="co"># bug</span></span>
@@ -1543,7 +1543,7 @@ Found 1 diagnostic</code></pre>
 <li>Perfectly valid, runs without issue without type hints</li>
 </ul></li>
 </ul>
-<div id="212d538f" class="cell" data-execution_count="5">
+<div id="2eeeb5e4" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FirstClass:</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, value):</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.value <span class="op">=</span> value</span>

@@ -1159,7 +1159,7 @@ window.Quarto = {
 <li>Newer versions guarantee the keys are returned in order of insertion</li>
 <li>For example the code below,</li>
 </ul>
-<div id="a28ddb68" class="cell" data-execution_count="1">
+<div id="19ce9849" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>baby_names <span class="op">=</span> {</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cat"</span>: <span class="st">"kitten"</span>,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dog"</span>: <span class="st">"puppy"</span>,</span>
@@ -1175,7 +1175,7 @@ window.Quarto = {
 <li>i.e.&nbsp;The keys are printed in the opposite ordering</li>
 </ul></li>
 </ul>
-<div id="4731a739" class="cell" data-execution_count="2">
+<div id="927802e4" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>{'dog': 'puppy', 'cat', 'kitten'}</code></pre>
 </div>
@@ -1228,7 +1228,7 @@ Caution
 </ol></li>
 <li>These methods are now guaranteed to also have a consistent ordering</li>
 </ul>
-<div id="2ae76d8e" class="cell" data-execution_count="3">
+<div id="a2fddbd5" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>baby_names <span class="op">=</span> {</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cat"</span>: <span class="st">"kitten"</span>,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dog"</span>: <span class="st">"puppy"</span>,</span>
@@ -1250,10 +1250,10 @@ Caution
 <section id="keyword-arguments-to-functions" class="level4">
 <h4 class="anchored" data-anchor-id="keyword-arguments-to-functions">Keyword Arguments to Functions</h4>
 <ul>
-<li>Keyword arguments supplied via <code>**kwargs</code> would be randomly ordered</li>
+<li>Keyword arguments supplied via <code>**kwargs</code> (See <a href="../../Chapter_05/Item_035/item_035.html">Item 35</a> and <a href="../../Chapter_05/Item_037/item_037.html">Item 37</a>) would be randomly ordered</li>
 <li>This is now preserved</li>
 </ul>
-<div id="3320bbf7" class="cell" data-execution_count="4">
+<div id="f057206d" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_func(<span class="op">**</span>kwargs):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> key, value <span class="kw">in</span> kwargs.items():</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>key<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>value<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -1276,7 +1276,7 @@ kangaroo = joey</code></pre>
 <li>Now the ordering is reflected in the <code>__dict__</code> attribute</li>
 </ul></li>
 </ul>
-<div id="4bd29326" class="cell" data-execution_count="5">
+<div id="cab36074" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyClass:</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.alligator <span class="op">=</span> <span class="st">"hatchling"</span></span>
@@ -1296,7 +1296,7 @@ elephant = calf</code></pre>
 <h4 class="anchored" data-anchor-id="apis">APIs</h4>
 <ul>
 <li>When creating new classes and functions you can count on the insertion ordering of dictionaries (for Python 3.6 and up)</li>
-<li>This means you can include and use this guarantee as part of your API design</li>
+<li>This means you can include and use this guarantee as part of your API design (See <a href="../../Chapter_08/Item_065/item_065.html">Item 65</a>)</li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1309,7 +1309,7 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p><code>OrderedDict</code></p>
-<p>The <code>collections</code> built-in module provides the <code>OrderedDict</code> class which preserves the insertion order. This can be used in python versions that predate 3.6 / 3.7. However, while the behaviour is similar the under the hood implementation differs and the two have different performance characteristics. For high rates of key insertion and <code>popitem</code> calls (e.g.&nbsp;When implementing a least-recently-used cache), <code>OrderedDict</code> may provide better performance than a standard <code>dict</code></p>
+<p>The <code>collections</code> built-in module provides the <code>OrderedDict</code> class which preserves the insertion order. This can be used in python versions that predate 3.6 / 3.7. However, while the behaviour is similar the under the hood implementation differs and the two have different performance characteristics. For high rates of key insertion and <code>popitem</code> calls (e.g.&nbsp;When implementing a least-recently-used cache), <code>OrderedDict</code> may provide better performance than a standard <code>dict</code> (See <a href="../../Chapter_11/Item_092/item_092.html">Item 92</a>)</p>
 </div>
 </div>
 </section>
@@ -1322,9 +1322,9 @@ Note
 <ul>
 <li>These can behave like the standard containers by implementing their <em>protocols</em>
 <ul>
-<li>e.g.&nbsp;the <em>list</em> protocol, the <em>iterator</em> protocol, <em>dictionary</em> protocol</li>
+<li>e.g.&nbsp;the <em>list</em> protocol, the <em>iterator</em> protocol, <em>dictionary</em> protocol (See <a href="../../Chapter_07/Item_057/item_057.html">Item 57</a>)</li>
 </ul></li>
-<li>Due to <em>Duck-typing</em>, i.e.&nbsp;the presence of an attribute or behaviour matching a type implies this object <em>is</em> that type can lead to discrepencies across API boundaries</li>
+<li>Due to <em>Duck-typing</em> (See <a href="../../Chapter_01/Item_003/item_003.html">Item 3</a>), i.e.&nbsp;the presence of an attribute or behaviour matching a type implies this object <em>is</em> that type can lead to discrepencies across API boundaries</li>
 </ul></li>
 </ul>
 <section id="example-animal-ranking" class="level4">
@@ -1336,7 +1336,7 @@ Note
 <li>Start by storing votes in a dictionary</li>
 </ul></li>
 </ul>
-<div id="4e1d31d1" class="cell" data-execution_count="6">
+<div id="31abff13" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>votes <span class="op">=</span> {</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"otter"</span> : <span class="dv">1281</span>,</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"polar bear"</span> : <span class="dv">587</span>,</span>
@@ -1350,7 +1350,7 @@ Note
 </ul></li>
 <li>Plus a function which provides the actual winner</li>
 </ul>
-<div id="3be70e67" class="cell" data-execution_count="7">
+<div id="e6f55176" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> populate_ranks(votes, ranks):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    names <span class="op">=</span> <span class="bu">list</span>(votes.keys())</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    names.sort(key<span class="op">=</span>votes.get, reverse<span class="op">=</span><span class="va">True</span>)</span>
@@ -1400,7 +1400,7 @@ otter</code></pre>
 <li>i.e.&nbsp;A dictionary-like class providing alphabetical iteration over it’s keys</li>
 </ul></li>
 </ul>
-<div id="2aef201f" class="cell" data-execution_count="8">
+<div id="ba5367ff" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections.abc <span class="im">import</span> MutableMapping</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SortedDict(MutableMapping):</span>
@@ -1433,7 +1433,7 @@ otter</code></pre>
 <li>Including our previous functions</li>
 </ul></li>
 </ul>
-<div id="a9f15f30" class="cell" data-execution_count="9">
+<div id="d4379d31" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections.abc <span class="im">import</span> MutableMapping</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1501,7 +1501,7 @@ fox</code></pre>
 <li>Most robust solution</li>
 <li>But most conservative</li>
 </ul>
-<div id="195b538e" class="cell" data-execution_count="10">
+<div id="98c6b12d" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections.abc <span class="im">import</span> MutableMapping</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1566,7 +1566,7 @@ otter</code></pre>
 <li>Raise an exception if not</li>
 <li>Solution trades off flexibility of input for better performance (no longer need to search through the dictionary)</li>
 </ul>
-<div id="c83e4d74" class="cell" data-execution_count="11">
+<div id="747e1588" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections.abc <span class="im">import</span> MutableMapping</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1654,10 +1654,10 @@ Passing the sorted_ranks SortedDict directly...</code></pre>
 <section id="solution-3-adding-type-annotations-for-static-analysis" class="level5">
 <h5 class="anchored" data-anchor-id="solution-3-adding-type-annotations-for-static-analysis">Solution 3: Adding Type Annotations for Static Analysis</h5>
 <ul>
-<li>We can use type annotations to ensure that the <code>rank</code> parameter is a <code>dict</code> instance <em>not</em> a <code>MutableMapping</code> (that behaves like a dictionary)</li>
+<li>We can use type annotations (See <a href="../../Chapter_014/Item_124/item_124.qmd">Item 124</a>) to ensure that the <code>rank</code> parameter is a <code>dict</code> instance <em>not</em> a <code>MutableMapping</code> (that behaves like a dictionary)</li>
 <li>A static analysis tool should then catch the problem</li>
 </ul>
-<div id="85c97cdb" class="cell" data-execution_count="12">
+<div id="5c16f713" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections.abc <span class="im">import</span> MutableMapping</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Dict, MutableMapping</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>

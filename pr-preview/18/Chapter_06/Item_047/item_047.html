@@ -1107,13 +1107,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
-<li>Generators can use the <code>throw</code> method to re-raise <code>Exception</code> instances in generator functions</li>
+<li>Generators support <code>yield from</code> (See <a href="../../Chapter_06/Item_045/item_045.html">Item 45</a>) and <code>send</code> (See <a href="../../Chapter_06/Item_046/item_046.html">Item 46</a>) can use the <code>throw</code> method to re-raise <code>Exception</code> instances in generator functions</li>
 <li>When the method is called the next <code>yield</code> re-raises the provided <code>Exception</code>
 <ul>
 <li>The raise occurs after the output is received</li>
 </ul></li>
 </ul>
-<div id="341899d0" class="cell" data-execution_count="1">
+<div id="400a38fe" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyError(<span class="pp">Exception</span>):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1154,10 +1154,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>The generator may catch the injected exception via <code>try/except</code> statements
 <ul>
-<li>Need to surround the last executed <code>yield</code></li>
+<li>Need to surround the last executed <code>yield</code> (See <a href="../../Chapter_10/Item_080/item_080.html">Item 80</a>)</li>
 </ul></li>
 </ul>
-<div id="f3f03321" class="cell" data-execution_count="2">
+<div id="91fe03ae" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyError(<span class="pp">Exception</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1189,7 +1189,7 @@ Got MyError!
 <li>This is another mechanism for two-way communication with a generator (See <a href="../../Chapter_06/Item_046/item_046.html">item 46</a>)</li>
 <li>For example, we might have a timer program that occasionally needs to be interrupted and reset</li>
 </ul>
-<div id="229ce7cc" class="cell" data-execution_count="3">
+<div id="2d0adef9" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Reset(<span class="pp">Exception</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1275,10 +1275,10 @@ Resetting
 <li>We manage internal state and transitions</li>
 <li>e.g.&nbsp;via a <code>tick</code> method to step the timer</li>
 <li><code>reset</code> to restart the clock</li>
-<li>Override the <code>__bool__</code> dunder method to check if a timer has elapsed</li>
+<li>Override the <code>__bool__</code> dunder method to check if a timer has elapsed (See <a href="../../Chapter_07/Item_057/item_057.html">Item 57</a>)</li>
 </ul></li>
 </ul>
-<div id="ea4689d2" class="cell" data-execution_count="4">
+<div id="658ea58a" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Timer:</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, period):</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.current <span class="op">=</span> period</span>
@@ -1352,8 +1352,8 @@ Resetting
 <ul>
 <li>The logic is now much cleaner</li>
 </ul></li>
-<li>In general try to avoid the <code>throw</code> approach and use the class technique</li>
-<li>For more advanced inter-generator communication consider using <code>async</code> programming</li>
+<li>In general try to avoid the <code>throw</code> approach and use the class technique (See <a href="../../Chapter_10/Item_089/item_089.html">Item 89</a>)</li>
+<li>For more advanced inter-generator communication consider using <code>async</code> programming (See <a href="../../Chapter_09/Item_075/item_075.html">Item 75</a>)</li>
 </ul>
 </section>
 <section id="things-to-remember" class="level2">

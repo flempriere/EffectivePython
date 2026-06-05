@@ -1107,7 +1107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
-<li><p>The previous solutions to parallel I/O we’ve examined, have all fundamentally relied on <em>threads</em> (See <a href="../../Chapter_09/Item_072/item_072.html">Item 72</a>, <a href="../../Chapter_09/Item_073/item_073.html">Item 73</a> and <a href="../../Chapter_09/Item_074/item_074.html">Item 74</a>)</p>
+<li><p>The previous solutions to parallel I/O we’ve examined (See <a href="../../Chapter_09/Item_071/item_071.html">Item 71</a>), have all fundamentally relied on <em>threads</em> (See <a href="../../Chapter_09/Item_072/item_072.html">Item 72</a>, <a href="../../Chapter_09/Item_073/item_073.html">Item 73</a> and <a href="../../Chapter_09/Item_074/item_074.html">Item 74</a>)</p>
 <ul>
 <li>Fundamentally these approaches all struggle with large-scale simultaneous I/O requests</li>
 </ul></li>
@@ -1118,7 +1118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p>Coroutines are implemented via the <code>async</code> and <code>await</code> keywords</p>
 <ul>
-<li>Generators are a form of coroutine (See <a href="../../Chapter_06/Item_043/item_043.html">Item 43</a> and <a href="../../Chapter_06/Item_047/item_047.html">Item 47</a>)</li>
+<li>Generators are a form of coroutine (See <a href="../../Chapter_06/Item_043/item_043.html">Item 43</a>, <a href="../../Chapter_06/Item_046/item_046.html">Item 46</a> and <a href="../../Chapter_06/Item_047/item_047.html">Item 47</a>)</li>
 </ul></li>
 <li><p>Startup cost of a coroutine is a function call</p></li>
 <li><p>Running cost is typically less than a kilobyte</p></li>
@@ -1167,7 +1167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Observe we have to <code>await</code> the result of an <code>async</code> function</li>
 </ul></li>
 </ul>
-<div id="faa2d143" class="cell" data-execution_count="1">
+<div id="fd27c8b1" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ALIVE <span class="op">=</span> <span class="st">"*"</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>EMPTY <span class="op">=</span> <span class="st">"-"</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1208,7 +1208,7 @@ Test passed!</code></pre>
 </ul></li>
 <li>The implementation then looks like</li>
 </ul>
-<div id="edbd7f5f" class="cell" data-execution_count="2">
+<div id="601dcf9a" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> asyncio</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>ALIVE <span class="op">=</span> <span class="st">"*"</span></span>
@@ -1331,7 +1331,7 @@ Test passed!</code></pre>
 </ul></li>
 <li>The complete program is then</li>
 </ul>
-<div id="2691e3a5" class="cell" data-execution_count="3">
+<div id="c587b4aa" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> asyncio</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ALIVE <span class="op">=</span> <span class="st">"*"</span></span>
@@ -1459,7 +1459,7 @@ Test passed!</code></pre>
 <li>No issues with exception handling
 <ul>
 <li>Queues and Thread pools could only re-raise exceptions</li>
-<li>Can even step through coroutines to see how exceptions are handled</li>
+<li>Can even step through coroutines to see how exceptions are handled (See <a href="../../Chapter_13/Item_114/item_114.html">Item 114</a>)</li>
 </ul></li>
 <li>If requirements change can just convert the specific function to an <code>async</code> function
 <ul>
@@ -1467,7 +1467,7 @@ Test passed!</code></pre>
 <li>Much less overhead than the thread-based or queue-based restructure (See <a href="../../Chapter_09/Item_076/item_076.html">Item 76</a>)</li>
 </ul></li>
 </ul>
-<div id="2f8ff8f8" class="cell" data-execution_count="4">
+<div id="1ace3423" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> asyncio</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ALIVE <span class="op">=</span> <span class="st">"*"</span></span>

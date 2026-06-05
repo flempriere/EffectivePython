@@ -162,7 +162,9 @@ print('C:', list_c)
     C: [(1,)]
 
 - Single element tuple on the left side of expression can also be used
-  for unpacking
+  for unpacking (See [Item 5](../Item_005/item_005.qmd), [Item
+  31](../../Chapter_05/Item_031/item_031.qmd) and [Item
+  16](../../Chapter_02/Item_016/item_016.qmd))
 
 ``` python
 user = "Alice"
@@ -204,7 +206,8 @@ print(f"a6: {a6}")
     a6: [['DEAL20']]
 
 - Sometimes autoformatters and linters can flag a trailing comma or make
-  it more visible
+  it more visible (See [Item 2](../Item_002/item_002.qmd) and [Item
+  3](../Item_003/item_003.qmd))
 - Often not
   - Won’t be until a test breaks because something that should be a
     collection suddenly isn’t

@@ -21,7 +21,8 @@
     python version (See [Item
     1](../../Chapter_01/Item_001/item_001.qmd))
 
-- For example to install `numpy`
+- For example to install `numpy` (See [Item
+  94](../../Chapter_11/Item_094/item_094.qmd))
 
   ``` shell
     $ python3 -m pip install numpy

@@ -1078,7 +1078,7 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><p>By default <code>pip</code> installs packages into a global environment</p>
 <ul>
-<li>Means every python program is impacted by installed modules</li>
+<li>Means every python program is impacted by installed modules (See <a href="../../Chapter_14/Item_116/item_116.html">Item 116</a>)</li>
 <li><code>pip</code> needs to resolve a consistent set of package versions across all of your programs</li>
 </ul></li>
 <li><p>Many fundamental packages are used by multiple different projects</p></li>
@@ -1108,6 +1108,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p>This occurs because the global state can only have <em>one</em> version of a package at time</p>
 <ul>
 <li>In the worst case this can result in breaking the system dependencies that an OS needs to run core programs</li>
+<li>This situation is often referred to as <em>dependency hell</em> (See <a href="../../Chapter_14/Item_119/item_119.html">Item 119</a>)</li>
 </ul></li>
 <li><p>Furthermore, when collaborating using the global state means that people’s development environments are likely to vary significantly from each other</p></li>
 <li><p>Solution is to use a <em>virtual environment</em></p>

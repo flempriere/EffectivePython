@@ -1134,7 +1134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul></li>
 </ul>
-<div id="b5d30292" class="cell" data-execution_count="1">
+<div id="bd378bde" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1220,7 +1220,7 @@ Consumed Hello, World!</code></pre>
 <li>Here we benchmark the cost of adding new items to a queue</li>
 </ul></li>
 </ul>
-<div id="81cc9fe9" class="cell" data-execution_count="2">
+<div id="a1d9fda4" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1240,11 +1240,11 @@ Consumed Hello, World!</code></pre>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    delay <span class="op">=</span> list_append_benchmark(count)</span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Count </span><span class="sc">{</span>count<span class="sc">:&gt;5,}</span><span class="ss"> takes: </span><span class="sc">{</span>delay <span class="op">*</span> <span class="fl">1e3</span><span class="sc">:&gt;6.2f}</span><span class="ss">ms"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Count 1,000,000 takes:  43.40ms
-Count 2,000,000 takes:  83.19ms
-Count 3,000,000 takes: 119.17ms
-Count 4,000,000 takes: 160.26ms
-Count 5,000,000 takes: 199.71ms</code></pre>
+<pre><code>Count 1,000,000 takes:  49.14ms
+Count 2,000,000 takes:  91.44ms
+Count 3,000,000 takes: 127.27ms
+Count 4,000,000 takes: 173.67ms
+Count 5,000,000 takes: 217.89ms</code></pre>
 </div>
 </div>
 <ul>
@@ -1256,7 +1256,7 @@ Count 5,000,000 takes: 199.71ms</code></pre>
 </ul></li>
 <li>We can also look at the cost for the <code>pop(0)</code> operation</li>
 </ul>
-<div id="e7386256" class="cell" data-execution_count="3">
+<div id="2526ae90" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1279,11 +1279,11 @@ Count 5,000,000 takes: 199.71ms</code></pre>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    delay <span class="op">=</span> list_pop_benchmark(count)</span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Count </span><span class="sc">{</span>count<span class="sc">:&gt;5,}</span><span class="ss"> takes: </span><span class="sc">{</span>delay <span class="op">*</span> <span class="fl">1e3</span><span class="sc">:&gt;6.2f}</span><span class="ss">ms"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Count 10,000 takes:   7.12ms
-Count 20,000 takes:  27.35ms
-Count 30,000 takes:  60.83ms
-Count 40,000 takes: 107.92ms
-Count 50,000 takes: 169.19ms</code></pre>
+<pre><code>Count 10,000 takes:   6.85ms
+Count 20,000 takes:  26.51ms
+Count 30,000 takes:  57.72ms
+Count 40,000 takes: 101.58ms
+Count 50,000 takes: 159.60ms</code></pre>
 </div>
 </div>
 <ul>
@@ -1305,7 +1305,7 @@ Count 50,000 takes: 169.19ms</code></pre>
 <li>To consume we use <code>deque.popleft</code></li>
 <li>The updated scheme is then,</li>
 </ul>
-<div id="22aaf4c8" class="cell" data-execution_count="4">
+<div id="609c42e3" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1376,7 +1376,7 @@ Consumed Hello, World!</code></pre>
 <ul>
 <li>Can verify via a micro-benchmark again</li>
 </ul>
-<div id="29cdcfbd" class="cell" data-execution_count="5">
+<div id="bdd8f071" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1399,18 +1399,18 @@ Consumed Hello, World!</code></pre>
 <span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    delay <span class="op">=</span> deque_append_benchmark(count)</span>
 <span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Count </span><span class="sc">{</span>count<span class="sc">:&gt;5,}</span><span class="ss"> takes </span><span class="sc">{</span>delay <span class="op">*</span> <span class="fl">1e3</span><span class="sc">:&gt;6.2f}</span><span class="ss">ms"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Count 100,000 takes   3.33ms
-Count 200,000 takes   6.35ms
-Count 300,000 takes  11.22ms
-Count 400,000 takes  15.11ms
-Count 500,000 takes  19.51ms</code></pre>
+<pre><code>Count 100,000 takes   3.62ms
+Count 200,000 takes   7.73ms
+Count 300,000 takes  12.54ms
+Count 400,000 takes  17.00ms
+Count 500,000 takes  21.92ms</code></pre>
 </div>
 </div>
 <ul>
 <li>Still shows an approximate constant time cost</li>
 <li>Can also benchmark <code>popleft</code></li>
 </ul>
-<div id="35bc7e2b" class="cell" data-execution_count="6">
+<div id="dd50a1f9" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1433,16 +1433,17 @@ Count 500,000 takes  19.51ms</code></pre>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    delay <span class="op">=</span> deque_popleft_benchmark(count)</span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Count </span><span class="sc">{</span>count<span class="sc">:&gt;5,}</span><span class="ss"> takes </span><span class="sc">{</span>delay <span class="op">*</span> <span class="fl">1e3</span><span class="sc">:&gt;6.2f}</span><span class="ss">ms"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Count 100,000 takes   3.50ms
-Count 200,000 takes   6.99ms
-Count 300,000 takes  10.72ms
-Count 400,000 takes  13.92ms
-Count 500,000 takes  16.25ms</code></pre>
+<pre><code>Count 100,000 takes   4.13ms
+Count 200,000 takes   7.83ms
+Count 300,000 takes  11.39ms
+Count 400,000 takes  15.37ms
+Count 500,000 takes  18.96ms</code></pre>
 </div>
 </div>
 <ul>
 <li>Here this scales linearly with the number of <code>popleft</code> calls, rather than quadratic like with <code>pop(0)</code></li>
 <li>Thus when writing a producer-consumer queue, consider a <code>deque</code></li>
+<li>As always benchmark before you optimise (See <a href="../../Chapter_11/Item_092/item_092.html">Item 92</a>)</li>
 </ul>
 </section>
 <section id="things-to-remember" class="level2">

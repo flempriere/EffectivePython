@@ -1144,6 +1144,7 @@ window.Quarto = {
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
+<li>Python is highly dynamic by design (See <a href="../../Chapter_07/Item_055/item_055.html">Item 55</a> and <a href="../../Chapter_01/Item_003/item_003.html">Item 3</a>)</li>
 <li>Often it is useful to prevent objects from being modified after creation</li>
 <li>This is called <em>immutability</em> and is very common in functional-style programming
 <ul>
@@ -1170,7 +1171,7 @@ window.Quarto = {
 </ul></li>
 <li>For example, consider a simple two-dimensional point representation</li>
 </ul>
-<div id="f5c72062" class="cell" data-execution_count="1">
+<div id="a338b38a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Point:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, x, y):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
@@ -1196,7 +1197,7 @@ window.Quarto = {
 <li>This would work in a language like C which copies arguments, but here because the arguments are references we permanently alter the value of the points and any future distance calculations break</li>
 </ul></li>
 </ul>
-<div id="257a49e9" class="cell" data-execution_count="2">
+<div id="312752db" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Point:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, x, y):</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
@@ -1239,7 +1240,7 @@ window.Quarto = {
 <ul>
 <li>To prevent modifications in a standard class we have to implement the <code>__setattr__</code> and <code>__delattr__</code> dunder methods
 <ul>
-<li>Want to raise an <code>AttributeError</code> exception if called</li>
+<li>Want to raise an <code>AttributeError</code> exception if called (See <a href="../../Chapter_08/Item_061/item_061.html">Item 61</a>)</li>
 </ul></li>
 <li>To set the initial values we then have to bypass <code>__setattr__</code> and <code>__delattr__</code> i.e.&nbsp;by directly invoking the class <code>__dict__</code> attribute</li>
 <li><code>distance</code> then works as expected</li>
@@ -1248,7 +1249,7 @@ window.Quarto = {
 <li>But this preserves future calls to <code>distance</code> and the state of the object</li>
 </ul></li>
 </ul>
-<div id="b1a81372" class="cell" data-execution_count="3">
+<div id="6fe08af3" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ImmutablePoint:</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, x, y):</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__dict__.update(name<span class="op">=</span>name, x<span class="op">=</span>x, y<span class="op">=</span>y)</span>
@@ -1302,7 +1303,7 @@ window.Quarto = {
 <ul>
 <li>Dataclasses implement the same functionality simply by passing <code>frozen=True</code> to the dataclass decorator</li>
 </ul>
-<div id="78ef1f2b" class="cell" data-execution_count="4">
+<div id="4a3e1227" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1350,9 +1351,9 @@ window.Quarto = {
 </div>
 </div>
 <ul>
-<li>Since the dataclass behaviour is built-in it can also be caught by static type-checkers</li>
+<li>Since the dataclass behaviour is built-in it can also be caught by static type-checkers (See <a href="../../Chapter_14/Item_124/item_124.html">Item 124</a>)</li>
 </ul>
-<div id="8188beb8" class="cell" data-execution_count="5">
+<div id="1409f08d" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1399,7 +1400,7 @@ Found 1 diagnostic</code></pre>
 <li>These are type annotations supplied by <code>typing</code></li>
 </ul></li>
 </ul>
-<div id="809376b0" class="cell" data-execution_count="6">
+<div id="58f8306a" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Any, Final, Never</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1467,7 +1468,7 @@ Found 1 diagnostic</code></pre>
 </ul></li>
 <li>For example we might wish to translate our point objects</li>
 </ul>
-<div id="b3d95e8f" class="cell" data-execution_count="7">
+<div id="08f8bde1" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ImmutablePoint:</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, x, y):</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__dict__.update(name<span class="op">=</span>name, x<span class="op">=</span>x, y<span class="op">=</span>y)</span>
@@ -1512,7 +1513,7 @@ Found 1 diagnostic</code></pre>
 <ul>
 <li>Obvious solution is to do the copy explicitly</li>
 </ul>
-<div id="43dd04b3" class="cell" data-execution_count="8">
+<div id="67101e94" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ImmutablePoint:</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, x, y):</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__dict__.update(name<span class="op">=</span>name, x<span class="op">=</span>x, y<span class="op">=</span>y)</span>
@@ -1548,7 +1549,7 @@ Found 1 diagnostic</code></pre>
 <li>Returns a copy</li>
 </ul></li>
 </ul>
-<div id="609ef87b" class="cell" data-execution_count="9">
+<div id="3a5f2b8e" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ImmutablePoint:</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, x, y):</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__dict__.update(name<span class="op">=</span>name, x<span class="op">=</span>x, y<span class="op">=</span>y)</span>
@@ -1595,7 +1596,7 @@ Found 1 diagnostic</code></pre>
 <li>Works as above but invokes no maintenance overhead on our end</li>
 </ul></li>
 </ul>
-<div id="70dcc3ec" class="cell" data-execution_count="10">
+<div id="06198d24" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dataclasses</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1628,7 +1629,7 @@ Found 1 diagnostic</code></pre>
 <li>Overwriting a <code>key</code> should return the new value</li>
 </ul></li>
 </ul>
-<div id="5481867f" class="cell" data-execution_count="11">
+<div id="ff4256ef" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>my_dict <span class="op">=</span> {}</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>my_dict[<span class="st">"a"</span>] <span class="op">=</span> <span class="dv">123</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_dict[<span class="st">"a"</span>])</span>
@@ -1644,7 +1645,7 @@ Found 1 diagnostic</code></pre>
 <ul>
 <li>Adding a value to a set should also be idempotent (i.e.&nbsp;we can only add it once)</li>
 </ul>
-<div id="5594dba0" class="cell" data-execution_count="12">
+<div id="89bca166" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>my_set <span class="op">=</span> <span class="bu">set</span>()</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>my_set.add(<span class="st">"b"</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>my_set.add(<span class="st">"b"</span>)</span>
@@ -1666,7 +1667,7 @@ Found 1 diagnostic</code></pre>
 <li>However, if we create an equivalent <code>Point</code> then the access fails</li>
 </ul></li>
 </ul>
-<div id="974def45" class="cell" data-execution_count="13">
+<div id="0dac71fd" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Point:</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, x, y):</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
@@ -1697,7 +1698,7 @@ Found 1 diagnostic</code></pre>
 <span class="ansi-green-fg">     17</span> point_3 = Point(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">A</span><span class="ansi-yellow-fg">"</span>, <span class="ansi-green-fg">5</span>, <span class="ansi-green-fg">10</span>)
 <span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">18</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-bg">charges</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg">point_3</span><span class="ansi-yellow-bg">]</span>)  <span style="font-style:italic;color:rgb(95,135,135)"># fails</span>
 
-<span class="ansi-red-fg">KeyError</span>: &lt;__main__.Point object at 0x7f7f248ee210&gt;</pre>
+<span class="ansi-red-fg">KeyError</span>: &lt;__main__.Point object at 0x7fa9b0dd2210&gt;</pre>
 </div>
 </div>
 </div>
@@ -1708,7 +1709,7 @@ Found 1 diagnostic</code></pre>
 </ul></li>
 <li>We can implement the <code>__eq__</code> and try again</li>
 </ul>
-<div id="e24eca92" class="cell" data-execution_count="14">
+<div id="faa3ed64" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Point:</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, x, y):</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
@@ -1772,7 +1773,7 @@ Found 1 diagnostic</code></pre>
 <li>Now works as expected</li>
 </ul></li>
 </ul>
-<div id="45151849" class="cell" data-execution_count="15">
+<div id="af1bcfff" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Point:</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, x, y):</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
@@ -1814,7 +1815,7 @@ Found 1 diagnostic</code></pre>
 <li>Using <code>frozen</code> to construct an immutable <code>dataclass</code> will automatically make the object hashable</li>
 <li>Can thus be used as a dictionary key or set value out of the box</li>
 </ul>
-<div id="8d5b2633" class="cell" data-execution_count="16">
+<div id="cbbb0258" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1891,9 +1892,9 @@ Found 1 diagnostic</code></pre>
 </ul></li>
 <li><p>Since it’s not structured like a standard class can make migration to a full-class implementation more difficult</p>
 <ul>
-<li>Especially if it’s a heavily used API</li>
+<li>Especially if it’s a heavily used API (See <a href="../../Chapter_14/Item_119/item_119.html">Item 119</a>)</li>
 </ul></li>
-<li><p>If the data is not sequential, prefer a dataclass or a regular class</p></li>
+<li><p>If the data is not sequential, prefer a dataclass or a regular class (See <a href="../../Chapter_08/Item_065/item_065.html">Item 65</a>)</p></li>
 </ul>
 </section>
 </section>

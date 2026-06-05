@@ -136,7 +136,8 @@
         $ ruff check [file] # lint a file
         $ ruff format [file] # format a file
       ```
-  - [Pylint](https://www.pylint.org/) another linting tool
+  - [Pylint](https://www.pylint.org/) another linting tool (See [Item
+    3](../Item_003/item_003.qmd))
 
 ## Things to Remember
 

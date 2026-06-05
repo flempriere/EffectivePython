@@ -1120,7 +1120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><code>eval</code> takes a single python expression as a string and returns the result of it’s evaluation</li>
 </ul>
-<div id="c92dcc82" class="cell" data-execution_count="1">
+<div id="b3633594" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">eval</span>(<span class="st">"1 + 2"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1133,7 +1133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Will cause an error</li>
 </ul></li>
 </ul>
-<div id="88f0aaa7" class="cell" data-execution_count="2">
+<div id="566d1043" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span>(<span class="st">"""</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">if True:</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">    print("okay")</span></span>
@@ -1165,7 +1165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>To get data need to use <code>global</code> or <code>local</code> scope dictionary arguments</li>
 </ul></li>
 </ul>
-<div id="2f0f52c3" class="cell" data-execution_count="3">
+<div id="e1c3c849" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>global_scope <span class="op">=</span> {<span class="st">"my_condition"</span>: <span class="va">False</span>}</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>local_scope <span class="op">=</span> {}</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1193,7 +1193,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Use of <code>exec</code> or <code>eval</code> is a red flag in standard application code
 <ul>
 <li>Allowing dynamic and arbitrary code execution is a serious security risk</li>
-<li>There are better techniques even for plugin architectures</li>
+<li>There are better techniques even for plugin architectures (See <a href="../../Chapter_11/Item_098/item_098.html">Item 98</a>)</li>
 </ul></li>
 <li><code>exec</code> and <code>eval</code> should only be used for developer tools e.g.
 <ul>

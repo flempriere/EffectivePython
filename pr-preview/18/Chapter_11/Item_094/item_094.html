@@ -1120,7 +1120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>Reducing program start-up delay
 <ul>
-<li>First look at Python’s provided mechanisms though (See <a href="../../Chapter_11/Item_097/item_097.html">Item 97</a>)</li>
+<li>First look at Python’s provided mechanisms though (See <a href="../../Chapter_11/Item_097/item_097.html">Item 97</a> and <a href="../../Chapter_11/Item_098/item_098.html">Item 98</a>)</li>
 </ul></li>
 <li>Using libraries that are tightly coupled to implementation language
 <ul>
@@ -1133,7 +1133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Embedded</li>
 <li>There are python packages that do target these environments but they may not be practical</li>
 </ul></li>
-<li>You need to distribute the program as an installable executable
+<li>You need to distribute the program as an installable executable (See <a href="../../Chapter_14/Item_125/item_125.html">Item 125</a>)
 <ul>
 <li>Or bundle tools</li>
 <li>There are python tools that do allow for this, but typically must also bundle a python runtime</li>
@@ -1152,8 +1152,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Obviously come with tradeoffs and balances</li>
 </ul></li>
-<li>As always start by optimising (See <a href="../../Chapter_11/Item_092/item_092.html">Item 92</a> and benchmarking (See <a href="../../Chapter_11/Item_093/item_093.html">Item 93</a>))</li>
-<li>Consider architecture or data structure redesigns
+<li>As always start by optimising (See <a href="../../Chapter_11/Item_092/item_092.html">Item 92</a> and benchmarking (See <a href="../../Chapter_11/Item_093/item_093.html">Item 93</a>))
+<ul>
+<li>Identify true sources of slowdown or excessive memory usage (See <a href="../../Chapter_13/Item_115/item_115.html">Item 115</a>)</li>
+</ul></li>
+<li>Consider architecture or data structure redesigns (See <a href="../../Chapter_12/Item_104/item_104.html">Item 104</a> and <a href="../../Chapter_12/Item_102/item_102.html">Item 102</a>)
 <ul>
 <li>The appropriate data structure can give orders of magnitude improvements for often a simple drop-in refactor</li>
 </ul></li>
@@ -1167,7 +1170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The below function is significantly slower in python than the C equivalent</li>
 </ul></li>
 </ul>
-<div id="51e9548e" class="cell" data-execution_count="1">
+<div id="2fe02e23" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dot_product(a, b):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, j <span class="kw">in</span> <span class="bu">zip</span>(a, b):</span>
@@ -1188,9 +1191,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>No need to rewrite the rest of the codebase</li>
 </ul></li>
 <li>Can use this <em>bottom-up</em> approach to gradually define key boundaries and change larger components</li>
-<li>Standard python provides two tools for improving performance this way
+<li>Standard python (See <a href="../../Chapter_01/Item_001/item_001.html">Item 1</a>) provides two tools for improving performance this way
 <ol type="1">
-<li><code>ctypes</code> built-in
+<li><code>ctypes</code> built-in (See <a href="../../Chapter_11/Item_095/item_095.html">Item 95</a>)
 <ul>
 <li>Can describe and export native system libraries</li>
 <li>Can be implemented in any language that supports the C ABI</li>
@@ -1203,7 +1206,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol></li>
 <li>Does not change the build process</li>
 </ul></li>
-<li>C Extension API
+<li>C Extension API (See <a href="../../Chapter_11/Item_096/item_096.html">Item 96</a>)
 <ul>
 <li>Allows the creation of pythonic API’s that are implemented in C</li>
 <li>Still enables python’s traditional dynamic features</li>
@@ -1217,7 +1220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul></li>
 </ol></li>
-<li>The larger python ecosystem also has specialised libraries for new programming paradigms and performance
+<li>The larger python ecosystem also has specialised libraries for new programming paradigms and performance (See <a href="../../Chapter_14/Item_116/item_116.html">Item 116</a>)
 <ul>
 <li><a href="https://numpy.org/">Numpy</a> enables array-based programming
 <ul>
@@ -1239,7 +1242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Avoids the need to actually write C code</li>
 <li>Shares build complexity with the C extension API, but without the difficulty of directly interacting with it</li>
 </ul></li>
-<li><a href="https://github.com/mypyc/mypyc/tree/master">Mypyc</a> like Cpython but tries to integrate with the standard <code>typing</code> annotation
+<li><a href="https://github.com/mypyc/mypyc/tree/master">Mypyc</a> like Cpython but tries to integrate with the standard <code>typing</code> annotation (See <a href="../../Chapter_14/Item_124/item_124.html">Item 124</a>)
 <ul>
 <li>Can make it easier to apply to existing programs</li>
 <li>Can ahead-of-time (AOT) compile programs to improve start-up time</li>

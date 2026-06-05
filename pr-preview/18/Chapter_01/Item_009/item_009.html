@@ -1141,13 +1141,13 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
 <li><code>match</code> was introduced in Python 3.10</li>
-<li><code>match</code> has it’s own mini-language embedded in python</li>
-<li><code>match</code> appears to provide <code>switch</code>-like capabilities
+<li><code>match</code> has it’s own mini-language embedded in python (See <a href="../../Chapter_06/Item_040/item_040.html">Item 40</a> and <a href="../../Chapter_06/Item_044/item_044.html">Item 44</a>)</li>
+<li><code>match</code> appears to provide <code>switch</code>-like capabilities (See <a href="../../Chapter_01/Item_008/item_008.html">Item 8</a>)
 <ul>
 <li>e.g.&nbsp;The <code>if</code> statement based construct below,</li>
 </ul></li>
 </ul>
-<div id="31ad7966" class="cell" data-execution_count="1">
+<div id="840beb2f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> take_action(light):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> light <span class="op">==</span> <span class="st">"red"</span>:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Stop"</span>)</span>
@@ -1170,7 +1170,7 @@ Go</code></pre>
 <ul>
 <li>We can convert this a <code>match</code> structure by adding <code>case</code> clauses</li>
 </ul>
-<div id="b4ff65b5" class="cell" data-execution_count="2">
+<div id="2bb07dee" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> take_match_action(light):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> light:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="st">"red"</span>:</span>
@@ -1204,7 +1204,7 @@ Go</code></pre>
 <li>Prefer instead to use module level constants</li>
 </ul></li>
 </ul>
-<div id="63cc344f" class="cell" data-execution_count="3">
+<div id="c8140902" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># module level constants</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>RED <span class="op">=</span> <span class="st">"red"</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>YELLOW <span class="op">=</span> <span class="st">"yellow"</span></span>
@@ -1242,7 +1242,7 @@ Go</code></pre>
 </ul></li>
 <li>If we have the same <code>match</code> above, but with only the <code>RED</code> branch and pass <code>GREEN</code>:</li>
 </ul>
-<div id="03437cf7" class="cell" data-execution_count="4">
+<div id="52f4c68f" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># module level constants</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>RED <span class="op">=</span> <span class="st">"red"</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>YELLOW <span class="op">=</span> <span class="st">"yellow"</span></span>
@@ -1266,7 +1266,7 @@ Go</code></pre>
 <ul>
 <li>We can see from the debug output above <code>RED</code> was reassigned the value of <code>light</code>, here <code>GREEN</code></li>
 </ul></li>
-<li><code>match</code> is best thought of as analogous to variable unpacking
+<li><code>match</code> is best thought of as analogous to variable unpacking (See <a href="../../Chapter_01/Item_005/item_005.html">item 5</a>)
 <ul>
 <li><p>Tries to match the structure of the received argument</p></li>
 <li><p>Python here is checking that the multiple assignment below, executes without error</p>
@@ -1274,7 +1274,7 @@ Go</code></pre>
 <li><p>We could write this in longform</p></li>
 </ul></li>
 </ul>
-<div id="edbcd567" class="cell" data-execution_count="5">
+<div id="1ab3323e" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># module level constants</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>RED <span class="op">=</span> <span class="st">"red"</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>YELLOW <span class="op">=</span> <span class="st">"yellow"</span></span>
@@ -1304,7 +1304,7 @@ Go</code></pre>
 <li>Python determines that these cases are thus unreachable and throws a syntax error</li>
 </ul></li>
 </ul>
-<div id="b053fa68" class="cell" data-execution_count="6">
+<div id="644e3b91" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># module level constants</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>RED <span class="op">=</span> <span class="st">"red"</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>YELLOW <span class="op">=</span> <span class="st">"yellow"</span></span>
@@ -1336,7 +1336,7 @@ Go</code></pre>
 <li>This means to emulate standard switch behaviour we can use an <code>Enum</code></li>
 </ul></li>
 </ul>
-<div id="706462e6" class="cell" data-execution_count="7">
+<div id="b47003c8" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> enum</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1375,9 +1375,9 @@ Go</code></pre>
 <h3 class="anchored" data-anchor-id="match-is-for-destructuring"><code>match</code> is for Destructuring</h3>
 <ul>
 <li><em>Destructuring</em> means extracting components from a complex nested data structure</li>
-<li>multiple assignment and tuple unpacking is an example of destructuring, e.g.</li>
+<li>multiple assignment and tuple unpacking is an example of destructuring (See <a href="../../Chapter_03/Item_017/item_017.html">Item 17</a>), e.g.</li>
 </ul>
-<div id="4e2798de" class="cell" data-execution_count="8">
+<div id="c3a10fdd" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, value <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="st">"abc"</span>):</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Index is </span><span class="sc">{</span>index<span class="sc">}</span><span class="ss"> and value is </span><span class="sc">{</span>value<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1387,7 +1387,7 @@ Index is 2 and value is c</code></pre>
 </div>
 </div>
 <ul>
-<li>We’ve seen that unpacking for lists and tuples can be used on deeply nested constructs too
+<li>We’ve seen that unpacking for lists and tuples can be used on deeply nested constructs too (See <a href="../../Chapter_02/Item_016/item_016.html">Item 16</a>)
 <ul>
 <li><code>match</code> emulates this for dictionaries, sets and user-defined classes</li>
 <li>This is restricted purely to determining control flow</li>
@@ -1410,13 +1410,13 @@ Index is 2 and value is c</code></pre>
 <li>A nested tree containing <span class="math inline">\(7, 9, 10, 11, 13\)</span> might then be defined as</li>
 </ul></li>
 </ul>
-<div id="b9d44e34" class="cell" data-execution_count="9">
+<div id="f96e9da1" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>my_tree <span class="op">=</span> (<span class="dv">10</span>, (<span class="dv">7</span>, <span class="va">None</span>, <span class="dv">9</span>), (<span class="dv">13</span>, <span class="dv">11</span>, <span class="va">None</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>A recursive search using the <code>if...elif...else</code> can be written as below</li>
 </ul>
-<div id="bc0da5ae" class="cell" data-execution_count="10">
+<div id="dfa44e3d" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>my_tree <span class="op">=</span> (<span class="dv">10</span>, (<span class="dv">7</span>, <span class="va">None</span>, <span class="dv">9</span>), (<span class="dv">13</span>, <span class="dv">11</span>, <span class="va">None</span>))</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1440,7 +1440,7 @@ Index is 2 and value is c</code></pre>
 <ul>
 <li>We could instead implement this using <code>match</code></li>
 </ul>
-<div id="a7878d9a" class="cell" data-execution_count="11">
+<div id="c9a51ccc" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>my_tree <span class="op">=</span> (<span class="dv">10</span>, (<span class="dv">7</span>, <span class="va">None</span>, <span class="dv">9</span>), (<span class="dv">13</span>, <span class="dv">11</span>, <span class="va">None</span>))</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1460,7 +1460,7 @@ Index is 2 and value is c</code></pre>
 </div>
 <ul>
 <li>Eliminates the call to <code>isinstance</code> relies on the implicit unpacking</li>
-<li>Code structure is regularised</li>
+<li>Code structure is regularised (See <a href="../../Chapter_09/Item_076/item_076.html">Item 76</a>)</li>
 <li>Logic is more compact and inline</li>
 <li>How does this work?
 <ul>
@@ -1480,9 +1480,9 @@ Index is 2 and value is c</code></pre>
 </ul></li>
 </ul></li>
 </ul></li>
-<li>Now suppose we want to use class structure to capture our nodes</li>
+<li>Now suppose we want to use class structure to capture our nodes (See <a href="../../Chapter_04/Item_029/item_029.html">Item 29</a>)</li>
 </ul>
-<div id="ca1a062f" class="cell" data-execution_count="12">
+<div id="db56af7e" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Node:</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, value, left<span class="op">=</span><span class="va">None</span>, right<span class="op">=</span><span class="va">None</span>):</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.value <span class="op">=</span> value</span>
@@ -1495,13 +1495,13 @@ Index is 2 and value is c</code></pre>
 <li>leaf nodes still specified by a simple value</li>
 </ul></li>
 </ul>
-<div id="abaf79b1" class="cell" data-execution_count="13">
+<div id="4e023f80" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>obj_tree <span class="op">=</span> Node(value<span class="op">=</span><span class="dv">10</span>, left<span class="op">=</span>Node(value<span class="op">=</span><span class="dv">7</span>, right<span class="op">=</span><span class="dv">9</span>), right<span class="op">=</span>Node(value<span class="op">=</span><span class="dv">13</span>, left<span class="op">=</span><span class="dv">11</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>The <code>if</code> statement construction is straightforward to update</li>
 </ul>
-<div id="6740139d" class="cell" data-execution_count="14">
+<div id="483807c4" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> contains_class(tree, value):</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(tree, Node):</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> tree <span class="op">==</span> value</span>
@@ -1523,7 +1523,7 @@ Index is 2 and value is c</code></pre>
 </ul></li>
 <li>The <code>match</code> version can also be updated</li>
 </ul>
-<div id="8bbb0629" class="cell" data-execution_count="15">
+<div id="ca3358a3" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> contains_match_class(tree, value):</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> tree:</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> Node(value<span class="op">=</span>pivot, left<span class="op">=</span>left) <span class="cf">if</span> value <span class="op">&lt;</span> pivot:</span>
@@ -1550,7 +1550,7 @@ Index is 2 and value is c</code></pre>
 <h3 class="anchored" data-anchor-id="semi-structured-data-vs-encapsulated-data">Semi-structured Data vs Encapsulated Data</h3>
 <ul>
 <li><code>match</code> also useful when serialisation of data and interpretation are decoupled</li>
-<li>e.g.&nbsp;Deserializing a JSON object
+<li>e.g.&nbsp;Deserializing a JSON object (See <a href="../../Chapter_07/Item_054/item_054.html">Item 54</a>)
 <ul>
 <li>The Deserialized object is a nested structure of
 <ol type="1">
@@ -1560,7 +1560,7 @@ Index is 2 and value is c</code></pre>
 <li>Numbers</li>
 </ol></li>
 </ul></li>
-<li>Responsibilities are not clearly encapsulated like with a class hierarchy</li>
+<li>Responsibilities are not clearly encapsulated like with a class hierarchy (See <a href="../../Chapter_07/Item_053/item_053.html">Item 53</a>)</li>
 <li>The nesting structure gives the semantic meaning for a program</li>
 <li>For example, billing software looking to deserialize JSON customer records
 <ul>
@@ -1568,19 +1568,19 @@ Index is 2 and value is c</code></pre>
 <li>Some might be businesses</li>
 </ul></li>
 </ul>
-<div id="2af0278c" class="cell" data-execution_count="16">
+<div id="e8e6dbc7" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>record_person <span class="op">=</span> <span class="st">"""{"customer": {"last": "Ross", "first": "Bob"</span><span class="sc">}}</span><span class="st">"""</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>record_business <span class="op">=</span> <span class="st">"""{"customer": {"entity": "Steve's Painting Co."</span><span class="sc">}}</span><span class="st">"""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>Naturally we want to convert these into proper python objects
 <ul>
-<li>Easier to integrate into data processes</li>
+<li>Easier to integrate into data processes (See <a href="../../Chapter_07/Item_051/item_051.html">Item 51</a>)</li>
 <li>UI widgets</li>
 <li>etc.</li>
 </ul></li>
 </ul>
-<div id="5b143634" class="cell" data-execution_count="17">
+<div id="7bc5f73f" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
@@ -1595,7 +1595,7 @@ Index is 2 and value is c</code></pre>
 <ul>
 <li>We can use <code>match</code> to convert the JSON data to the appropriate class structure</li>
 </ul>
-<div id="780c5c88" class="cell" data-execution_count="18">
+<div id="1f576f7a" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1623,7 +1623,7 @@ Record for a business:  BusinessCustomer(company_name="Steve's Painting Co.")</c
 <li>set patterns</li>
 <li><code>as</code> patterns</li>
 <li>Positional constructor patterns (with <code>__match_args__</code> customisation)</li>
-<li>Exhaustiveness checking with type annotations</li>
+<li>Exhaustiveness checking with type annotations (See <a href="../../Chapter_14/Item_124/item_124.html">Item 124</a>)</li>
 <li>and more…</li>
 </ol></li>
 <li>Refer to the official <a href="https://peps.python.org/pep-0636/">tutorial</a></li>

@@ -1138,11 +1138,11 @@ window.Quarto = {
 <ul>
 <li>It is common to end up with lists or sequences of related objects
 <ul>
-<li>For example, list comprehensions allow us to derive a new list from a source list via an expression</li>
+<li>For example, list comprehensions allow us to derive a new list from a source list via an expression (See <a href="../../Chapter_06/Item_040/item_040.html">Item 40</a>)</li>
 <li>Below, we take a list of names and convert it to a list of name lengths</li>
 </ul></li>
 </ul>
-<div id="66e2c254" class="cell" data-execution_count="1">
+<div id="ecbe567e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(n) <span class="cf">for</span> n <span class="kw">in</span> names]</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(counts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1156,12 +1156,12 @@ window.Quarto = {
 <li>Here the items in the <em>same</em> index in each list are related</li>
 <li>e.g.&nbsp;the length of the <span class="math inline">\(i\)</span>-th name, is the <span class="math inline">\(i\)</span>-th value in <code>counts</code></li>
 </ul></li>
-<li>If we wanted to iterate over both bits of data at the same time the naive approach would be to use <code>enumerate</code> or <code>range</code> to perform an index-based lookup
+<li>If we wanted to iterate over both bits of data at the same time the naive approach would be to use <code>enumerate</code> or <code>range</code> to perform an index-based lookup ((See <a href="../../Chapter_03/Item_017/item_017.html">Item 17</a>))
 <ul>
 <li>e.g.&nbsp;to find the longest name</li>
 </ul></li>
 </ul>
-<div id="549879ec" class="cell" data-execution_count="2">
+<div id="4b6fd698" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(n) <span class="cf">for</span> n <span class="kw">in</span> names]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1206,10 +1206,10 @@ Longest name (enumerate-based approach): Charlie</code></pre>
 <ul>
 <li><code>zip</code> wraps multiple iterators in a lazy generator</li>
 <li>Yields tuples containing the <em>next</em> element from <em>each</em> iterator</li>
-<li>Can unpack them as for <code>enumerate</code></li>
+<li>Can unpack them as for <code>enumerate</code> (See <a href="../../Chapter_01/Item_005/item_005.html">Item 5</a>)</li>
 </ul></li>
 </ul>
-<div id="27831dae" class="cell" data-execution_count="3">
+<div id="c48b372c" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(n) <span class="cf">for</span> n <span class="kw">in</span> names]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1223,7 +1223,7 @@ Longest name (enumerate-based approach): Charlie</code></pre>
 </div>
 <ul>
 <li><code>zip</code> consumes elements one at a time from each iterator</li>
-<li>Provides memory efficient access to long generators
+<li>Provides memory efficient access to long generators (See <a href="../../Chapter_06/Item_043/item_043.html">Item 43</a> and <a href="../../Chapter_06/Item_044/item_044.html">Item 44</a>)
 <ul>
 <li>Or infinite generators</li>
 </ul></li>
@@ -1232,7 +1232,7 @@ Longest name (enumerate-based approach): Charlie</code></pre>
 <li>Means that if iterators of different size are combined the shortest determines the length of the loop</li>
 </ul></li>
 </ul>
-<div id="07a90bd2" class="cell" data-execution_count="4">
+<div id="56120f11" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(n) <span class="cf">for</span> n <span class="kw">in</span> names]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1253,7 +1253,7 @@ Charlie: 7</code></pre>
 <li>If <code>True</code> a <code>ValueError</code> is raised if <code>zip</code> exhausts one of the iterators</li>
 </ul></li>
 </ul>
-<div id="fc001af7" class="cell" data-execution_count="5">
+<div id="18e9b39b" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(n) <span class="cf">for</span> n <span class="kw">in</span> names]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1285,12 +1285,12 @@ Charlie: 7</code></pre>
 <ul>
 <li>It’s not designed to allow you to continue to iterate until all iterators are exhausted</li>
 </ul></li>
-<li>If you want to continue until the <em>end</em> of the <em>longest</em> iterator, use <code>zip_longest</code> from the <code>itertools</code> built-in module
+<li>If you want to continue until the <em>end</em> of the <em>longest</em> iterator, use <code>zip_longest</code> from the <code>itertools</code> built-in module (See <a href="../../Chapter_03/Item_024/item_024.html">Item 24</a>)
 <ul>
 <li>Let’s you pad exhausted iterators with a default value (by default this is <code>None</code>)</li>
 </ul></li>
 </ul>
-<div id="c62ef12e" class="cell" data-execution_count="6">
+<div id="f65465be" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>]</span>

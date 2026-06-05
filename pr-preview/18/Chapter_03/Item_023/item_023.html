@@ -1112,7 +1112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Denote heads as <code>True</code>, tails as <code>False</code></li>
 </ul></li>
 </ul>
-<div id="2d153783" class="cell" data-execution_count="1">
+<div id="b6eb2900" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1128,9 +1128,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <ul>
 <li>Want to flip a coin a fixed number of times, and see if every result is heads</li>
-<li>Can perform with a comprehension and an <code>in</code> query</li>
+<li>Can perform with a comprehension and an <code>in</code> query (See <a href="../../Chapter_06/Item_040/item_040.html">Item 40</a> and <a href="../../Chapter_07/Item_057/item_057.html">Item 57</a>)</li>
 </ul>
-<div id="df3ab25c" class="cell" data-execution_count="2">
+<div id="9f98a7e5" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1158,7 +1158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>If coin flips were instead a more expensive operation this would represent a lot of wasted computation</li>
 <li>We could write a terminating <code>for</code> loop</li>
 </ul>
-<div id="7f25302e" class="cell" data-execution_count="3">
+<div id="1a28b541" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1186,15 +1186,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <ul>
 <li>Code is now much longer and less clear</li>
-<li>We can use the <code>all</code> built-in to combine the short-circuiting behaviour with a succinct expression</li>
-<li><code>all</code> steps through an iterator, checks for truthy values
+<li>We can use the <code>all</code> built-in to combine the short-circuiting behaviour with a succinct expression (See <a href="../../Chapter_06/Item_044/item_044.html">Item 44</a>)</li>
+<li><code>all</code> steps through an iterator, checks for truthy values (See <a href="../../Chapter_01/Item_007/item_007.html">Item 7</a>)
 <ul>
 <li>Stops processing if not</li>
 <li>Returns <code>True</code> if it reaches the end of the iterator, else <code>False</code></li>
 </ul></li>
 <li>This is different to <code>and</code> which returns the value that determines truthyness</li>
 </ul>
-<div id="537398ec" class="cell" data-execution_count="4">
+<div id="bc0b2459" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All truthy"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">all</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]))</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span> <span class="kw">and</span> <span class="dv">2</span> <span class="kw">and</span> <span class="dv">3</span>)</span>
@@ -1214,7 +1214,7 @@ False
 <ul>
 <li>Rewriting our <code>all_heads</code> calculation</li>
 </ul>
-<div id="43c782d7" class="cell" data-execution_count="5">
+<div id="c9b7f3eb" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1243,11 +1243,11 @@ False
 </ul></li>
 <li>You can use a generator expression instead
 <ul>
-<li>i.e.&nbsp;something that <code>yield</code>’s</li>
+<li>i.e.&nbsp;something that <code>yield</code>’s (See <a href="../../Chapter_06/Item_043/item_043.html">Item 43</a>)</li>
 <li>So it’s only called as required</li>
 </ul></li>
 </ul>
-<div id="50ee6c4e" class="cell" data-execution_count="6">
+<div id="a23a9967" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1283,7 +1283,7 @@ False</code></pre>
 <ul>
 <li><code>all</code> stops calling the iterator and the result is returned</li>
 <li>No references exist any more to the iterator</li>
-<li>It is garbage collected</li>
+<li>It is garbage collected (See <a href="../../Chapter_10/Item_089/item_089.html">Item 89</a>)</li>
 </ul></li>
 <li>What if we have a function that behaves the opposite?
 <ul>
@@ -1298,7 +1298,7 @@ False</code></pre>
 <li>Like <code>any</code> always returns <code>True</code> or <code>False</code></li>
 </ul></li>
 </ul>
-<div id="ff38f78f" class="cell" data-execution_count="7">
+<div id="928b6f91" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All falsey"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">any</span>([<span class="dv">0</span>, <span class="va">False</span>, <span class="va">None</span>]))</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">0</span> <span class="kw">or</span> <span class="va">False</span> <span class="kw">or</span> <span class="va">None</span>)</span>
@@ -1318,7 +1318,7 @@ True
 <ul>
 <li>We can then rewrite our test for consecutive heads</li>
 </ul>
-<div id="57e52a0b" class="cell" data-execution_count="8">
+<div id="e01fdeb9" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1358,12 +1358,15 @@ False</code></pre>
 </ul></li>
 <li>They are equivalent via De Morgan’s laws for Boolean logic</li>
 </ul>
-<div id="9a189b3c" class="cell" data-execution_count="9">
+<div id="eba309ee" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a <span class="kw">in</span> (<span class="va">True</span>, <span class="va">False</span>):</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> b <span class="kw">in</span> (<span class="va">True</span>, <span class="va">False</span>):</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> <span class="bu">any</span>([a, b]) <span class="op">==</span> (<span class="kw">not</span> <span class="bu">all</span> ([<span class="kw">not</span> a, <span class="kw">not</span> b]))</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> <span class="bu">all</span>([a, b]) <span class="op">==</span> (<span class="kw">not</span> <span class="bu">any</span> ([<span class="kw">not</span> a, <span class="kw">not</span> b]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<ul>
+<li>There are additional built-in modules for efficiently working with iterators and generators (See <a href="../../Chapter_03/Item_024/item_024.html">Item 24</a>)</li>
+</ul>
 </section>
 <section id="things-to-remember" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-remember">Things to Remember</h2>

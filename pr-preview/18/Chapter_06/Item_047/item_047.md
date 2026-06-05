@@ -7,8 +7,10 @@ the Generator `throw` Method
 
 ## Notes
 
-- Generators can use the `throw` method to re-raise `Exception`
-  instances in generator functions
+- Generators support `yield from` (See [Item
+  45](../Item_045/item_045.qmd)) and `send` (See [Item
+  46](../Item_046/item_046.qmd)) can use the `throw` method to re-raise
+  `Exception` instances in generator functions
 - When the method is called the next `yield` re-raises the provided
   `Exception`
   - The raise occurs after the output is received
@@ -51,7 +53,8 @@ print(it.throw(MyError("test error")))  # throw's a MyError
 
 - The generator may catch the injected exception via `try/except`
   statements
-  - Need to surround the last executed `yield`
+  - Need to surround the last executed `yield` (See [Item
+    80](../../Chapter_10/Item_080/item_080.qmd))
 
 ``` python
 class MyError(Exception):
@@ -171,7 +174,7 @@ run()
   - e.g. via a `tick` method to step the timer
   - `reset` to restart the clock
   - Override the `__bool__` dunder method to check if a timer has
-    elapsed
+    elapsed (See [Item 57](../../Chapter_07/Item_057/item_057.qmd))
 
 ``` python
 class Timer:
@@ -245,9 +248,9 @@ run()
 - `run` can then use the `Timer` object as the test condition directly
   - The logic is now much cleaner
 - In general try to avoid the `throw` approach and use the class
-  technique
+  technique (See [Item 89](../../Chapter_10/Item_089/item_089.qmd))
 - For more advanced inter-generator communication consider using `async`
-  programming
+  programming (See [Item 75](../../Chapter_09/Item_075/item_075.qmd))
 
 ## Things to Remember
 

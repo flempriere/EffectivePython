@@ -11,7 +11,7 @@ Micro-benchmarks
   92](../Item_092/item_092.qmd)) other techniques can then be used to
   improve performance
   - Often a new data structure or architecture can then improve the
-    performance
+    performance (See [Item 104](../../Chapter_12/Item_104/item_104.qmd))
 - Hot-spots may continue to remain even after rounds of refactoring
   - Rather than considering drastic solutions (See [Item
     94](../Item_094/item_094.qmd))
@@ -29,7 +29,7 @@ delay = timeit.timeit(stmt="1+2")
 print(delay)
 ```
 
-    0.007007387999919956
+    0.01021294899987879
 
 - `timeit.timeit` calculates the time to run one million iterations of
   the provided `stmt` argument
@@ -42,7 +42,7 @@ delay = timeit.timeit(stmt="1+2", number=100)
 print(delay)
 ```
 
-    1.5830000847927295e-06
+    1.89200000022538e-06
 
 - The risk with smaller iteration numbers is that there is a risk that
   the computer’s noise will obfuscate the test results
@@ -62,13 +62,14 @@ delay = timeit.timeit(stmt="1+2", number=count)
 print(f"{delay / count * 1e9:.2f} nanoseconds")
 ```
 
-    6.44 nanoseconds
+    9.06 nanoseconds
 
 - Often there needs to be some surrounding scaffolding or test harness
   to support a benchmark, e.g.
   - Setting up a data structure
   - Warming a cache
-- `timeit` provides a `setup` argument
+- `timeit` provides a `setup` argument (See [Item
+  91](../../Chapter_10/Item_091/item_091.qmd))
   - Run’s once before all iterations
   - Excluded from final timing
 - For example, measuring the time to find a number in a randomised list
@@ -98,7 +99,7 @@ probe in numbers
 print(f"{delay / count * 1e9:.2f} nanoseconds")
 ```
 
-    65003.93 nanoseconds
+    35396.29 nanoseconds
 
 - Once a baseline is established we can modify the approach and compare
   the behaviours
@@ -126,7 +127,7 @@ probe in numbers
 print(f"{delay / count * 1e9:.2f} nanoseconds")
 ```
 
-    26.89 nanoseconds
+    29.94 nanoseconds
 
 - We should see that checking for membership in a `set` over our `list`
   takes on the order of nanoseconds as opposed to microseconds
@@ -160,7 +161,7 @@ delay = timeit.timeit(
 print(f"{delay / count * 1e9:.2f} nanoseconds")
 ```
 
-    288604.66 nanoseconds
+    285699.49 nanoseconds
 
 - Above measures how long each call to `loop_sum` takes
   - Meaningless as we are interested in the timing of the inner loop
@@ -190,7 +191,7 @@ delay = timeit.timeit(
 print(f"{delay / count / 10_000 * 1e9:.2f} nanoseconds")
 ```
 
-    28.81 nanoseconds
+    28.47 nanoseconds
 
 - Can see the cost of the function now *per item*
 - `timeit` can also be used as a command-line tool
@@ -229,7 +230,9 @@ print(f"{delay / count / 10_000 * 1e9:.2f} nanoseconds")
   - This accounts for system variance to give a best case lower bound
 - From our result, we can see that for keys that are expected to exist
   in the dictionary
-  - exception catching is the fastest
+  - exception catching is the fastest (See [Item
+    32](../../Chapter_05/Item_032/item_032.qmd))
+    - Common python paradigm
   - `in` is the slowest
   - Might not be intuitively obvious given the extra machinery to set up
     exceptions

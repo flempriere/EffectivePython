@@ -1116,23 +1116,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>For example, might raise a <code>ValueError</code> for an invalid parameter value</li>
 </ul>
-<div id="3be4d79f" class="cell" data-execution_count="1">
+<div id="6b0b6ff2" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> determine_weight(volume, density):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> density <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Density must be positive"</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>determine_weight(<span class="op">-</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>determine_weight(<span class="dv">1</span>, <span class="op">-</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
 <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 6</span>
 <span class="ansi-green-fg">      2</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> density &lt;= <span class="ansi-green-fg">0</span>:
 <span class="ansi-green-fg">      3</span>         <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">ValueError</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Density must be positive</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">6</span> <span class="ansi-yellow-bg">determine_weight</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">-</span><span class="ansi-green-fg ansi-yellow-bg">10</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">6</span> <span class="ansi-yellow-bg">determine_weight</span><span class="ansi-yellow-bg">(</span><span class="ansi-green-fg ansi-yellow-bg">1</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">-</span><span class="ansi-green-fg ansi-yellow-bg">10</span><span class="ansi-yellow-bg">)</span>
 
-<span class="ansi-red-fg">TypeError</span>: determine_weight() missing 1 required positional argument: 'density'</pre>
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 3</span>, in <span class="ansi-cyan-fg">determine_weight</span><span class="ansi-blue-fg">(volume, density)</span>
+<span class="ansi-green-fg">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">determine_weight</span>(volume, density):
+<span class="ansi-green-fg">      2</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> density &lt;= <span class="ansi-green-fg">0</span>:
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span>         <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">ValueError</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Density must be positive</span><span class="ansi-yellow-fg">"</span>)
+
+<span class="ansi-red-fg">ValueError</span>: Density must be positive</pre>
 </div>
 </div>
 </div>
@@ -1143,7 +1148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>All other exceptions must then inherit from this one</li>
 </ul></li>
 </ul>
-<div id="6155bf2b" class="cell" data-execution_count="2">
+<div id="50aac63b" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Error(<span class="pp">Exception</span>):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Base class for all exceptions raised by this module"""</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1200,7 +1205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>But is still identified to be properly handled later</li>
 </ul></li>
 </ul>
-<div id="26e1b4f0" class="cell" data-execution_count="3">
+<div id="5f71a305" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1240,9 +1245,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stderr">
 <pre><code>ERROR:root:Bug in the calling code
 Traceback (most recent call last):
-  File "/tmp/ipykernel_14351/1234711497.py", line 32, in &lt;module&gt;
+  File "/tmp/ipykernel_14393/1234711497.py", line 32, in &lt;module&gt;
     weight = determine_weight(-1, 1)
-  File "/tmp/ipykernel_14351/1234711497.py", line 26, in determine_weight
+  File "/tmp/ipykernel_14393/1234711497.py", line 26, in determine_weight
     raise InvalidVolumeError("Volume must be positive")
 InvalidVolumeError: Volume must be positive</code></pre>
 </div>
@@ -1252,9 +1257,10 @@ InvalidVolumeError: Volume must be positive</code></pre>
 <ul>
 <li>Or can be caught and recorded separately</li>
 <li>As per below, the <code>determine_weight</code> code has a division by zero error since it doesn’t account for the case of volume being zero.</li>
+<li>Caller needs to extend the <code>try/except</code> block that catches the broader Python <code>Exception</code> class to handle the error (See <a href="../../Chapter_10/Item_085/item_085.html">Item 85</a>)</li>
 </ul></li>
 </ul>
-<div id="4aae04f8" class="cell" data-execution_count="4">
+<div id="c08c2795" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1296,9 +1302,9 @@ InvalidVolumeError: Volume must be positive</code></pre>
 <div class="cell-output cell-output-stderr">
 <pre><code>ERROR:root:Bug in the API code!
 Traceback (most recent call last):
-  File "/tmp/ipykernel_14351/4162312265.py", line 31, in &lt;module&gt;
+  File "/tmp/ipykernel_14393/4162312265.py", line 31, in &lt;module&gt;
     weight = determine_weight(0, 1)
-  File "/tmp/ipykernel_14351/4162312265.py", line 27, in determine_weight
+  File "/tmp/ipykernel_14393/4162312265.py", line 27, in determine_weight
     density / volume  # trigger a divide by zero error
     ~~~~~~~~^~~~~~~~
 ZeroDivisionError: division by zero</code></pre>
@@ -1329,7 +1335,7 @@ ZeroDivisionError: division by zero</code></pre>
 <li>As long as we expand consistently with our established hierarchy calling code shouldn’t need to change</li>
 </ul></li>
 </ul>
-<div id="43c10c71" class="cell" data-execution_count="5">
+<div id="b7f825c6" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>

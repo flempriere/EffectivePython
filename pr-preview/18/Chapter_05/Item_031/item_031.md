@@ -7,7 +7,8 @@ Callers to Unpack more than Three Variables
 
 ## Notes
 
-- Unpacking lets Python functions emulate multiple return values
+- Unpacking lets Python functions emulate multiple return values (See
+  [Item 5](../../Chapter_01/Item_005/item_005.qmd))
 - E.g. consider a function that returns the statistical summary of a
   dataset
   - Here just the minimum and maximum values encountered
@@ -121,7 +122,9 @@ print(f"Average: {average}, Median: {median}, Count: {count}")
   unpacking return values
   - E.g. by using a catch-all
 - If you need to unpack more values, instead prefer defining a
-  lightweight class
+  lightweight class (See [Item
+  29](../../Chapter_04/Item_029/item_029.qmd) and [Item
+  51](../../Chapter_07/Item_051/item_051.qmd))
   - Return an instance of that class
 
 ``` python

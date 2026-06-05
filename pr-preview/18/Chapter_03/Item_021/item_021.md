@@ -38,7 +38,8 @@ assert sum(percentages) == 100.0
 
     [11.538461538461538, 26.923076923076923, 61.53846153846154]
 
-- To scale this up use a generator from a file
+- To scale this up use a generator from a file (See [Item
+  43](../../Chapter_06/Item_043/item_043.qmd))
   - However, returns an empty list!
 
 ``` python
@@ -165,7 +166,8 @@ finally:
     [11.538461538461538, 26.923076923076923, 61.53846153846154]
 
 - We wrote the generator approach to avoid having to load the entire
-  dataset into memory in the first place!
+  dataset into memory in the first place! (See [Item
+  115](../../Chapter_13/Item_115/item_115.qmd))
 - Alternative solution, accept a function that returns an iterator each
   time it’s called
 
@@ -330,7 +332,8 @@ normalise_defensive(numbers_iter)  # should raise an exception
     TypeError: Must supply a container
 
 - Alternatively can import the `Iterator` class from the abstract
-  collections built-in module (`collections.abc`)
+  collections built-in module (`collections.abc`) (See [Item
+  57](../../Chapter_07/Item_057/item_057.qmd))
 
 ``` python
 from collections.abc import Iterator
@@ -416,7 +419,8 @@ normalise_defensive(numbers_iter)  # should raise an exception
 - As you can see above, `normalise_defensive` accepts the built-in
   `list` and our user-defined `ReadVisits` class
   - In theory any other `Iterator` class
-- Can also extend this approach to asynchronous iterators
+- Can also extend this approach to asynchronous iterators (See [Item
+  76](../../Chapter_09/Item_076/item_076.qmd))
 
 ## Things to Remember
 

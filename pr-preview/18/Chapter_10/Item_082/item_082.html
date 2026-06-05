@@ -1116,7 +1116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Allows code to be run with a resource, then for that resource to be released</li>
 </ul></li>
 </ul>
-<div id="afb5672e" class="cell" data-execution_count="1">
+<div id="7ccdeff1" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Managing a Lock via a context</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> threading <span class="im">import</span> Lock</span>
@@ -1136,7 +1136,7 @@ lock released</code></pre>
 <li>Because <code>Lock</code> implements the methods to be used as a <code>with</code> context object</li>
 </ul></li>
 </ul>
-<div id="11dd0983" class="cell" data-execution_count="2">
+<div id="ce540744" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Managing a lock via try/finally</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> threading <span class="im">import</span> Lock</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1167,7 +1167,7 @@ lock released</code></pre>
 <li>By default the program logger will report <code>WARNING</code> and <code>ERROR</code> messages</li>
 </ul></li>
 </ul>
-<div id="d85a1260" class="cell" data-execution_count="3">
+<div id="34ef8a7f" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1191,7 +1191,7 @@ lock released</code></pre>
 <li>Then returns the logging level to previous</li>
 </ul></li>
 </ul>
-<div id="343874cd" class="cell" data-execution_count="4">
+<div id="9b6a548d" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> contextlib <span class="im">import</span> contextmanager</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1268,7 +1268,7 @@ DEBUG:root:More debug data</code></pre>
 <li>Closed as part of the context clean up at the end of the <code>with</code></li>
 </ul></li>
 </ul>
-<div id="3a042763" class="cell" data-execution_count="5">
+<div id="170b1386" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"my_output.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> handle:</span>
@@ -1283,7 +1283,7 @@ DEBUG:root:More debug data</code></pre>
 <ul>
 <li>The equivalent <code>try/finally</code> block is again bulky and less pythonic</li>
 </ul>
-<div id="efa2fa12" class="cell" data-execution_count="6">
+<div id="acfeafea" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>handle <span class="op">=</span> <span class="bu">open</span>(<span class="st">"my_output.txt"</span>, <span class="st">"w"</span>)</span>
@@ -1305,7 +1305,7 @@ DEBUG:root:More debug data</code></pre>
 <li>Let’s us have distinct loggers for the context</li>
 </ul></li>
 </ul>
-<div id="09e7a838" class="cell" data-execution_count="7">
+<div id="83079399" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> contextlib <span class="im">import</span> contextmanager</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>

@@ -1129,7 +1129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>After reading from a sensor, the worker thread increments a shared counter with the light level received</li>
 </ul></li>
 </ul>
-<div id="670b3a00" class="cell" data-execution_count="1">
+<div id="bdd5f774" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> threading <span class="im">import</span> Thread</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>counter <span class="op">=</span> <span class="dv">0</span></span>
@@ -1167,7 +1167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>expected <span class="op">=</span> how_many <span class="op">*</span> sensor_count</span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Counter should be </span><span class="sc">{</span>expected<span class="sc">}</span><span class="ss">, got </span><span class="sc">{</span>counter<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Counter should be 4000000, got 2998951</code></pre>
+<pre><code>Counter should be 4000000, got 2930667</code></pre>
 </div>
 </div>
 <ul>
@@ -1203,7 +1203,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>A simulated result might look like</li>
 </ul>
-<div id="f540ac6e" class="cell" data-execution_count="2">
+<div id="e6d64cf4" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_offset():</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Always returns 1 or greater</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span></span>
@@ -1243,12 +1243,12 @@ Counter after thread A: 1</code></pre>
 <li>We add a lock <code>counter_lock</code> to lock any access to <code>counter</code></li>
 <li>We then update our <code>Worker</code> class adding a <code>with</code> context to use the lock before accessing <code>counter</code>
 <ul>
-<li><code>with</code> adds an extra layer on indentation so makes it clear where the lock is active</li>
+<li><code>with</code> adds an extra layer on indentation so makes it clear where the lock is active (See <a href="../../Chapter_10/Item_082/item_082.html">Item 82</a>)</li>
 <li>Also means we don’t have to manually manage the locking ourself</li>
 </ul></li>
 </ul></li>
 </ul>
-<div id="feabc6ce" class="cell" data-execution_count="3">
+<div id="a5f97ea2" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> threading <span class="im">import</span> Thread, Lock</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>counter <span class="op">=</span> <span class="dv">0</span></span>

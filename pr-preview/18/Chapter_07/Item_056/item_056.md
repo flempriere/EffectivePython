@@ -13,6 +13,9 @@
 
 ## Notes
 
+- Python is highly dynamic by design (See [Item
+  55](../Item_055/item_055.qmd) and [Item
+  3](../../Chapter_01/Item_003/item_003.qmd))
 - Often it is useful to prevent objects from being modified after
   creation
 - This is called *immutability* and is very common in functional-style
@@ -105,7 +108,8 @@ assert distance(origin, point) == 5.0
 
 - To prevent modifications in a standard class we have to implement the
   `__setattr__` and `__delattr__` dunder methods
-  - Want to raise an `AttributeError` exception if called
+  - Want to raise an `AttributeError` exception if called (See [Item
+    61](../../Chapter_08/Item_061/item_061.qmd))
 - To set the initial values we then have to bypass `__setattr__` and
   `__delattr__` i.e. by directly invoking the class `__dict__` attribute
 - `distance` then works as expected
@@ -214,7 +218,8 @@ print(x_distance(origin, point))
     FrozenInstanceError: cannot assign to field 'y'
 
 - Since the dataclass behaviour is built-in it can also be caught by
-  static type-checkers
+  static type-checkers (See [Item
+  124](../../Chapter_14/Item_124/item_124.qmd))
 
 ``` python
 from dataclasses import dataclass
@@ -540,7 +545,7 @@ print(charges[point_3])  # fails
 
     1.5
 
-    KeyError: <__main__.Point object at 0x7f0b88c02210>
+    KeyError: <__main__.Point object at 0x7f08209ea210>
     ---------------------------------------------------------------------------
     KeyError                                  Traceback (most recent call last)
     Cell In[13], line 18
@@ -548,7 +553,7 @@ print(charges[point_3])  # fails
          17 point_3 = Point("A", 5, 10)
     ---> 18 print(charges[point_3])  # fails
 
-    KeyError: <__main__.Point object at 0x7f0b88c02210>
+    KeyError: <__main__.Point object at 0x7f08209ea210>
 
 - This occurs because we haven’t defined an `__eq__` method
   - Since `point_1` and `point_3` refer to different memory they are not
@@ -733,9 +738,11 @@ assert my_set == {point_1, point_2}
 - Since it’s not structured like a standard class can make migration to
   a full-class implementation more difficult
 
-  - Especially if it’s a heavily used API
+  - Especially if it’s a heavily used API (See [Item
+    119](../../Chapter_14/Item_119/item_119.qmd))
 
 - If the data is not sequential, prefer a dataclass or a regular class
+  (See [Item 65](../../Chapter_08/Item_065/item_065.qmd))
 
 ## Things to Remember
 

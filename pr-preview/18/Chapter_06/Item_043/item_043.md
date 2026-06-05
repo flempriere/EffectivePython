@@ -72,6 +72,8 @@ print(next(it))
 - Generators also have the advantage that since they return the results
   one at a time the memory consumption is bounded
   - Means they can easily be adapted to arbitrary length input
+  - Can be converted to a list explicitly if needed via `list` built-in
+    (See [Item 44](../Item_044/item_044.qmd))
 - For example, we can write an version of `index_words` that streams
   input from a file
 

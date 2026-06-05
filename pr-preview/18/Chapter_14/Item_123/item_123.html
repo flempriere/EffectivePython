@@ -1127,7 +1127,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>time is in hours</li>
 </ol></li>
 </ul>
-<div id="a9f4fd5b" class="cell" data-execution_count="1">
+<div id="67f2b035" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># api</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> print_distance(speed, duration):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    distance <span class="op">=</span> speed <span class="op">*</span> duration</span>
@@ -1145,7 +1145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>E.g. if a caller passes a speed in metres per second and time in seconds the result is misreported</li>
 </ul></li>
 </ul>
-<div id="daeac020" class="cell" data-execution_count="2">
+<div id="a791d788" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># api misuse</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># api</span></span>
@@ -1168,7 +1168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>For example using optional keyword arguments (See <a href="../../Chapter_05/Item_037/item_037.html">Item 37</a>)</li>
 </ul></li>
 </ul>
-<div id="4066d57d" class="cell" data-execution_count="3">
+<div id="88161985" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Updated API with unit conversions</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>CONVERSIONS <span class="op">=</span> {</span>
@@ -1221,7 +1221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>Can use <code>warnings</code> to notify the caller when keyword arguments are not supplied</li>
 </ul>
-<div id="0ebc0b28" class="cell" data-execution_count="4">
+<div id="8aa4d582" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Updated API with unit conversions</span></span>
@@ -1272,11 +1272,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>12.5 miles</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_14448/579820821.py:29: DeprecationWarning: speed_units required
+<pre><code>/tmp/ipykernel_14490/579820821.py:29: DeprecationWarning: speed_units required
   warnings.warn("speed_units required", DeprecationWarning)
-/tmp/ipykernel_14448/579820821.py:32: DeprecationWarning: time_units required
+/tmp/ipykernel_14490/579820821.py:32: DeprecationWarning: time_units required
   warnings.warn("time_units required", DeprecationWarning)
-/tmp/ipykernel_14448/579820821.py:35: DeprecationWarning: distance_units required
+/tmp/ipykernel_14490/579820821.py:35: DeprecationWarning: distance_units required
   warnings.warn("distance_units required", DeprecationWarning)</code></pre>
 </div>
 </div>
@@ -1308,7 +1308,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Then supplies a default value</li>
 </ul></li>
 </ul>
-<div id="59633e81" class="cell" data-execution_count="5">
+<div id="d2bbd40c" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1363,11 +1363,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>12.5 miles</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_14448/4080730032.py:50: DeprecationWarning: speed_units will be required soon, update your code
+<pre><code>/tmp/ipykernel_14490/4080730032.py:50: DeprecationWarning: speed_units will be required soon, update your code
   print_distance(5, 2.5)
-/tmp/ipykernel_14448/4080730032.py:50: DeprecationWarning: time_units will be required soon, update your code
+/tmp/ipykernel_14490/4080730032.py:50: DeprecationWarning: time_units will be required soon, update your code
   print_distance(5, 2.5)
-/tmp/ipykernel_14448/4080730032.py:50: DeprecationWarning: distance_units will be required soon, update your code
+/tmp/ipykernel_14490/4080730032.py:50: DeprecationWarning: distance_units will be required soon, update your code
   print_distance(5, 2.5)</code></pre>
 </div>
 </div>
@@ -1378,7 +1378,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Warnings are converted to exceptions</li>
 </ul></li>
 </ul>
-<div id="9c69d143" class="cell" data-execution_count="6">
+<div id="c85fa111" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># treat warnings as errors</span></span>
@@ -1410,7 +1410,7 @@ DeprecationWarning: This usage is no longer supported</code></pre>
 <li>Or more selectively via <code>filterwarnings</code> (<a href="https://docs.python.org/3/library/warnings.html">Read the docs</a>)</li>
 </ul></li>
 </ul>
-<div id="4375c34a" class="cell" data-execution_count="7">
+<div id="48e2300f" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>warnings.simplefilter(<span class="st">"ignore"</span>)</span>
@@ -1432,13 +1432,13 @@ DeprecationWarning: This usage is no longer supported</code></pre>
 <li>Then configure the <code>py.warnings</code> logger</li>
 </ul></li>
 </ul>
-<div id="2cbad23f" class="cell" data-execution_count="8">
+<div id="0453016e" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>handler <span class="op">=</span> logging.StreamHandler(sys.stderr)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>formatter <span class="op">=</span> logging.Formatter(<span class="st">"(asctime)-15s WARNING] </span><span class="sc">%(message)s</span><span class="st">"</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>formatter <span class="op">=</span> logging.Formatter(<span class="st">"</span><span class="sc">%(asctime)-15s</span><span class="st"> WARNING] </span><span class="sc">%(message)s</span><span class="st">"</span>)</span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>handler.setFormatter(formatter)</span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>logging.captureWarnings(<span class="va">True</span>)</span>
@@ -1450,7 +1450,7 @@ DeprecationWarning: This usage is no longer supported</code></pre>
 <span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>warnings.simplefilter(<span class="st">"default"</span>)</span>
 <span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>warnings.warn(<span class="st">"This will go to the logs output"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>(asctime)-15s WARNING] /tmp/ipykernel_14448/3033121806.py:16: UserWarning: This will go to the logs output
+<pre><code>2026-06-05 16:02:34,761 WARNING] /tmp/ipykernel_14490/2298159381.py:16: UserWarning: This will go to the logs output
   warnings.warn("This will go to the logs output")
 </code></pre>
 </div>
@@ -1471,7 +1471,7 @@ DeprecationWarning: This usage is no longer supported</code></pre>
 </ul></li>
 </ul></li>
 </ul>
-<div id="25072111" class="cell" data-execution_count="9">
+<div id="7040b2a4" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>

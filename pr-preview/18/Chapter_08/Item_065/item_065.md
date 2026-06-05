@@ -90,7 +90,9 @@ assert obj.weight == "25"
 - Approach works but is not pythonic
   - Attributes are specified by strings not variable names
   - Hard to read
-  - Unable to use static analysis tools
+  - Unable to use static analysis tools (See [Item
+    124](../../Chapter_14/Item_124/item_124.qmd) and [Item
+    3](../../Chapter_01/Item_003/item_003.qmd))
 - `fields` is an additional layer of nesting
   - List of attributes as an attribute
 - Would prefer to be able to write the fields in the class body as

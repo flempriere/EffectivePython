@@ -1111,7 +1111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
-<li>Given the cleanliness of coroutines, how does one port existing <em>threaded</em> concurrency to use <code>aysnc</code>?</li>
+<li>Given the cleanliness of coroutines (See <a href="../../Chapter_09/Item_075/item_075.html">Item 75</a>), how does one port existing <em>threaded</em> concurrency to use <code>aysnc</code>?</li>
 <li>Since <code>async</code> is a language feature, not a library one conversion is usually straightforward</li>
 <li>For example, consider a simple TCP server hosting the “guess the number” game
 <ul>
@@ -1139,7 +1139,7 @@ Note
 <section id="thread-implementation" class="level3">
 <h3 class="anchored" data-anchor-id="thread-implementation">Thread Implementation</h3>
 <ul>
-<li>Standard implementation for a client/server is to use threads to handle blocking I/O</li>
+<li>Standard implementation for a client/server is to use threads (See <a href="../../Chapter_09/Item_068/item_068.html">Item 68</a>) to handle blocking I/O</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1257,7 +1257,7 @@ Note
 </ul></li>
 <li>Last command clears the state and ends a game</li>
 </ul></li>
-<li>We then run a game using a context manager via a <code>with</code> statement
+<li>We then run a game using a context manager via a <code>with</code> statement (See <a href="../../Chapter_10/Item_082/item_082.html">Item 82</a>)
 <ul>
 <li>Ensures the server state is managed correctly (See <a href="../../Chapter_09/Item_078/item_078.html">Item 78</a>)</li>
 <li>We do this with a function <code>new_game</code>
@@ -1524,7 +1524,7 @@ Note
 <ul>
 <li>Putting everything together in the one cell,</li>
 </ul>
-<div id="a16c2d43" class="cell" data-execution_count="1">
+<div id="0f3c22c2" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> contextlib</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> socket</span>
@@ -1736,28 +1736,26 @@ Note
 <span id="cb5-209"><a href="#cb5-209" aria-hidden="true" tabindex="-1"></a>main()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Guess between 1 and 5! Shhhhh, it's 3
-Server: 1 is unsure
+Server: 5 is unsure
+Server: 1 is same
 Server: 2 is warmer
 Server: 4 is same
-Server: 5 is colder
-Guess between 10 and 15! Shhhhh, it's 12
-Server: 3 is correct
-Server: 10 is unsure
-Server: 11 is warmer
-Server: 14 is colder
+Guess between 10 and 15! Shhhhh, it's 12Server: 3 is correct
+
+Server: 15 is unsure
+Server: 10 is warmer
 Guess between 1 and 3! Shhhhh, it's 2
 Server: 12 is correct
-Server: 2 is correctClient: 1 is unsure
+Server: 2 is correct
+Client: 5 is unsure
+Client: 1 is same
 Client: 2 is warmer
 Client: 4 is same
-Client: 5 is colder
 Client: 3 is correct
-Client: 10 is unsure
-Client: 11 is warmer
-Client: 14 is colder
+Client: 15 is unsure
+Client: 10 is warmer
 Client: 12 is correct
-Client: 2 is correct
-</code></pre>
+Client: 2 is correct</code></pre>
 </div>
 </div>
 <ul>
@@ -2077,7 +2075,7 @@ Warning
 <ul>
 <li>Composing generators thus becomes less clean</li>
 </ul></li>
-<li>Worth considering looking for third party libraries where friction occurs</li>
+<li>Worth considering looking for third party libraries where friction occurs (See <a href="../../Chapter_14/Item_116/item_116.html">Item 116</a>)</li>
 </ul></li>
 <li>Last step is to update the driver code
 <ul>
@@ -2105,7 +2103,7 @@ Warning
 <ul>
 <li>Putting it all together and running the code,</li>
 </ul>
-<div id="44c55156" class="cell" data-execution_count="2">
+<div id="6634438c" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> asyncio</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> contextlib</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
@@ -2321,24 +2319,22 @@ Warning
 <span id="cb14-213"><a href="#cb14-213" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> main_async()  <span class="co"># Comment out in favour of the line above if running as a script</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Guess a number between 1 and 5! Shhhh, it's 3
-Server: 2 is unsure
-Server: 4 is same
-Server: 1 is colder
+Server: 5 is unsure
+Server: 1 is same
+Server: 2 is warmer
 Guess a number between 10 and 15! Shhhh, it's 12
 Server: 3 is correct
-Server: 15 is unsure
-Server: 10 is warmer
 Guess a number between 1 and 3! Shhhh, it's 2
 Server: 12 is correct
-Server: 3 is unsure
-Client: 2 is unsure
-Client: 4 is same
-Client: 1 is colder
+Server: 1 is unsure
+Server: 3 is same
+Client: 5 is unsure
+Client: 1 is same
+Client: 2 is warmer
 Client: 3 is correct
-Client: 15 is unsure
-Client: 10 is warmer
 Client: 12 is correct
-Client: 3 is unsure
+Client: 1 is unsure
+Client: 3 is same
 Client: 2 is correct
 Server: 2 is correct</code></pre>
 </div>

@@ -6,7 +6,8 @@
 
 ## Notes
 
-- Python *slices* can be extended with a *stride*
+- Python *slices* (See [Item 14](../Item_014/item_014.qmd)) can be
+  extended with a *stride*
   - i.e. `a_sequence[start:stop:stride]`
   - `stride` lets you specify $n$ such that every $n$-th item is taken
   - For example slicing even and odd indices in a list
@@ -127,7 +128,8 @@ print(y)
     intermediate copy
   - If this is still too memory intensive consider the `itertools`
     module
-    - Provides `islice` which is a cleaner interface
+    - Provides `islice` which is a cleaner interface (See [Item
+      24](../../Chapter_03/Item_024/item_024.qmd))
 
 ## Things to Remember
 

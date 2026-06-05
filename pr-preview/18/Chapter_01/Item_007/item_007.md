@@ -35,7 +35,9 @@ print(x)
 
     20
 
-- `if` syntax mimics that for filtering
+- `if` syntax mimics that for filtering (See [Item
+  40](../../Chapter_06/Item_040/item_040.qmd) and [Item
+  44](../../Chapter_06/Item_044/item_044.qmd))
 - Here we can use `if` to control what values are included in a list
   comprehension
 
@@ -48,7 +50,7 @@ print(result)
 
 - Observe the format is still *result* precedes the *test* condition
 - Prior to conditional expressions people would emulate them with
-  *boolean expressions*
+  *boolean expressions* (See [Item 4](../Item_004/item_004.qmd))
 
 ``` python
 i = 3
@@ -62,7 +64,8 @@ print(x)
   - Relies on understanding python’s quirks for evaluating boolean
     expressions
   - `and` returns the first falsely value or last truthy
-  - `or` returns the first truthy or last falsey
+  - `or` returns the first truthy or last falsey (See [Item
+    23](../../Chapter_03/Item_023/item_023.qmd))
 - Doesn’t generalise to when you want a falsey result from a truthy
   condition, e.g.
 
@@ -154,8 +157,10 @@ print(x)
     ```
 
   - Here the expression is the same length as if we had just written it
-    using a normal `if...else` construct
-- Alternative is assignment expressions
+    using a normal `if...else` construct (See [Item
+    2](../Item_002/item_002.qmd))
+- Alternative is assignment expressions (See [Item
+  8](../Item_008/item_008.qmd))
   - Downside is these must be parenthesised in ambiguous contexts
 - For example, we could write
 

@@ -35,7 +35,7 @@ class Field:
   variables
 - Can then use `__set__` and `__get__` to defer to `setattr` and
   `getattr` to load and access state (See [Item
-  64](../Item_061/item_061.qmd))
+  61](../Item_061/item_061.qmd))
 - Can then define a class
   - The class has to supply the row names
 

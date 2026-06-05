@@ -91,7 +91,7 @@ result = my_library.dot_product(
 print(result)
 ```
 
-    <_FuncPtr object at 0x7f0afc3e05f0>
+    <_FuncPtr object at 0x7fd03479c5f0>
     -39.35
 
 - We can find the `dot_product` function as an attribute of the
@@ -118,7 +118,7 @@ print(result)
 - The `ctypes` module obviously has very poor ergonomics
   - Not very Pythonic
 - We can obfuscate a lot of the complexity by using a python wrapper
-  function
+  function (See [Item 81](../../Chapter_10/Item_081/item_081.qmd))
 
 ``` python
 import ctypes
@@ -195,8 +195,9 @@ print(result)
     - Common sources are passing the wrong data type
       (e.g. `ctype.c_double` instead of `ctype.c_int`)
     - Can use `faulthandler` built-in to try and trace these errors
-- When using `ctypes` you should always write unit tests before
-  implementing into more complex code
+- When using `ctypes` you should always write unit tests (See [Item
+  109](../../Chapter_13/Item_109/item_109.qmd)) before implementing into
+  more complex code
   - Confirm that the library works as expected for simple use cases
   - Help’s ensure that if the library is updated your downstream code
     isn’t unaware of any breaking changes
@@ -247,7 +248,7 @@ unittest.main(argv=[""], verbosity=2, exit=False)
 
     OK
 
-    <unittest.main.TestProgram at 0x7f0afc1d6ba0>
+    <unittest.main.TestProgram at 0x7fd03458aba0>
 
 - `ctypes` provides further functionality, e.g.
   - Mapping python objects to C structs
