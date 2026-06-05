@@ -225,7 +225,7 @@ unittest.main(argv=[""], verbosity=2, exit=False)
 
     OK
 
-    <unittest.main.TestProgram at 0x7f15bc182e40>
+    <unittest.main.TestProgram at 0x7fecd4e7ee40>
 
 - Compared to `ctypes` there is a lot of overhead in this implementation
   - However the interface appears more pythonic
@@ -417,7 +417,7 @@ unittest.main(argv=[""], verbosity=2, exit=False)
 
     OK
 
-    <unittest.main.TestProgram at 0x7f15acf2d1d0>
+    <unittest.main.TestProgram at 0x7fecd4d111d0>
 
 - The flexibility and extensibility of above provides good ergonomics
   - Would have to reinvent a lot of the Python machinery to reimplement

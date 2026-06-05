@@ -303,7 +303,7 @@ result = timeit.timeit(
 print(f"{result / trials * 1e9:2.1f} nanos per call")
 ```
 
-    238.3 nanos per call
+    245.2 nanos per call
 
 - In comparison, consider the approach below of using a lock-protected
   global variable
@@ -337,7 +337,7 @@ if not initialised:
 print(f"{result / trials * 1e9:2.1f} nanos per call")
 ```
 
-    13.7 nanos per call
+    9.8 nanos per call
 
 - There should be an order of magnitude difference between the above and
   the dynamic import (approx. $10$ times)

@@ -255,8 +255,8 @@ mock2.assert_called_once_with(database, "Meerkat")
     Passing incorrect parameters...
 
     AssertionError: expected call not found.
-    Expected: mock(<object object at 0x7f3628739860>, 'Meerkat')
-      Actual: mock(<object object at 0x7f3628739860>, 'Eagle')
+    Expected: mock(<object object at 0x7f99f883d860>, 'Meerkat')
+      Actual: mock(<object object at 0x7f99f883d860>, 'Eagle')
     ---------------------------------------------------------------------------
     AssertionError                            Traceback (most recent call last)
     Cell In[4], line 52
@@ -278,8 +278,8 @@ mock2.assert_called_once_with(database, "Meerkat")
     --> 986     raise AssertionError(_error_message()) from cause
 
     AssertionError: expected call not found.
-    Expected: mock(<object object at 0x7f3628739860>, 'Meerkat')
-      Actual: mock(<object object at 0x7f3628739860>, 'Eagle')
+    Expected: mock(<object object at 0x7f99f883d860>, 'Meerkat')
+      Actual: mock(<object object at 0x7f99f883d860>, 'Eagle')
 
 - `ANY` useful when a parameter is not critical to the behaviour being
   tested
@@ -610,9 +610,9 @@ with patch("__main__.get_animals"):
 print("After patch:", get_animals)
 ```
 
-    Outside patch: <function get_animals at 0x7f362857ec40>
-    Inside patch <MagicMock name='get_animals' id='139870587754816'>
-    After patch: <function get_animals at 0x7f362857ec40>
+    Outside patch: <function get_animals at 0x7f99f8682cf0>
+    Inside patch <MagicMock name='get_animals' id='140299280243008'>
+    After patch: <function get_animals at 0x7f99f8682cf0>
 
 - Doesn’t work for all functions
 - e.g. If we try to `patch` `datetime.now` to inject a stable time
@@ -684,9 +684,9 @@ with patch("__main__.get_do_rounds_time"):
 print("Now back outside patch:", get_do_rounds_time())
 ```
 
-    Now outside patch: 2026-06-02 14:34:53.358317
+    Now outside patch: 2026-06-05 11:06:35.045641
     Now inside patch: 2024-06-05 15:45:00
-    Now back outside patch: 2026-06-02 14:34:53.358762
+    Now back outside patch: 2026-06-05 11:06:35.046052
 
 - Alternatively we might decide to use a keyword-only dependency
   injection for the time

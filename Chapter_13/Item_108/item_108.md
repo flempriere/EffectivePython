@@ -61,7 +61,7 @@ main(argv=[""], exit=False)
     FAIL: test_failing (__main__.UtilsTestCase.test_failing)
     ----------------------------------------------------------------------
     Traceback (most recent call last):
-      File "/tmp/ipykernel_13644/1771159310.py", line 27, in test_failing
+      File "/tmp/ipykernel_13627/1771159310.py", line 27, in test_failing
         self.assertEqual("incorrect", to_str("hello"))
         ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     AssertionError: 'incorrect' != 'hello'
@@ -70,11 +70,11 @@ main(argv=[""], exit=False)
 
 
     ----------------------------------------------------------------------
-    Ran 3 tests in 0.002s
+    Ran 3 tests in 0.003s
 
     FAILED (failures=1)
 
-    <unittest.main.TestProgram at 0x7fdb00f92a50>
+    <unittest.main.TestProgram at 0x7f2070486a50>
 
 - One can then run the test file via
 
@@ -137,7 +137,7 @@ main(argv=[""], exit=False)
     FAIL: test_assert_helper (__main__.AssertTestCase.test_assert_helper)
     ----------------------------------------------------------------------
     Traceback (most recent call last):
-      File "/tmp/ipykernel_13644/1659466453.py", line 11, in test_assert_helper
+      File "/tmp/ipykernel_13627/1659466453.py", line 11, in test_assert_helper
         self.assertEqual(expected, found)
         ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
     AssertionError: 12 != 10
@@ -146,7 +146,7 @@ main(argv=[""], exit=False)
     FAIL: test_assert_statement (__main__.AssertTestCase.test_assert_statement)
     ----------------------------------------------------------------------
     Traceback (most recent call last):
-      File "/tmp/ipykernel_13644/1659466453.py", line 16, in test_assert_statement
+      File "/tmp/ipykernel_13627/1659466453.py", line 16, in test_assert_statement
         assert found == expected
                ^^^^^^^^^^^^^^^^^
     AssertionError
@@ -156,7 +156,7 @@ main(argv=[""], exit=False)
 
     FAILED (failures=2)
 
-    <unittest.main.TestProgram at 0x7fdb081fa710>
+    <unittest.main.TestProgram at 0x7f20704ee710>
 
 - If we want to verify that a method *does* raise an exception we can
   use the `assertRaises`
@@ -202,7 +202,7 @@ main(argv=[""], exit=False)
 
     OK
 
-    <unittest.main.TestProgram at 0x7fdb081fa5d0>
+    <unittest.main.TestProgram at 0x7f20704ee5d0>
 
 - Normal helper methods can be defined for complex logic
   - Just don’t name the method starting with `test`
@@ -260,10 +260,10 @@ main(argv=[""], exit=False)
     ERROR: test_too_long (__main__.HelperTestCase.test_too_long)
     ----------------------------------------------------------------------
     Traceback (most recent call last):
-      File "/tmp/ipykernel_13644/2953929442.py", line 31, in test_too_long
+      File "/tmp/ipykernel_13627/2953929442.py", line 31, in test_too_long
         self.verify_complex_case(values, expected)
         ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-      File "/tmp/ipykernel_13644/2953929442.py", line 19, in verify_complex_case
+      File "/tmp/ipykernel_13627/2953929442.py", line 19, in verify_complex_case
         for i, (expect, found) in enumerate(test_it):
                                   ~~~~~~~~~^^^^^^^^^
     ValueError: zip() argument 2 is shorter than argument 1
@@ -272,10 +272,10 @@ main(argv=[""], exit=False)
     ERROR: test_too_short (__main__.HelperTestCase.test_too_short)
     ----------------------------------------------------------------------
     Traceback (most recent call last):
-      File "/tmp/ipykernel_13644/2953929442.py", line 26, in test_too_short
+      File "/tmp/ipykernel_13627/2953929442.py", line 26, in test_too_short
         self.verify_complex_case(values, expected)
         ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-      File "/tmp/ipykernel_13644/2953929442.py", line 19, in verify_complex_case
+      File "/tmp/ipykernel_13627/2953929442.py", line 19, in verify_complex_case
         for i, (expect, found) in enumerate(test_it):
                                   ~~~~~~~~~^^^^^^^^^
     ValueError: zip() argument 2 is longer than argument 1
@@ -284,10 +284,10 @@ main(argv=[""], exit=False)
     FAIL: test_wrong_results (__main__.HelperTestCase.test_wrong_results)
     ----------------------------------------------------------------------
     Traceback (most recent call last):
-      File "/tmp/ipykernel_13644/2953929442.py", line 40, in test_wrong_results
+      File "/tmp/ipykernel_13627/2953929442.py", line 40, in test_wrong_results
         self.verify_complex_case(values, expected)
         ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-      File "/tmp/ipykernel_13644/2953929442.py", line 21, in verify_complex_case
+      File "/tmp/ipykernel_13627/2953929442.py", line 21, in verify_complex_case
         self.fail(f"Index {i} is wrong: {found} != {expect}")
         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     AssertionError: Index 2 is wrong: 16.939999999999998 != 36.3
@@ -297,7 +297,7 @@ main(argv=[""], exit=False)
 
     FAILED (failures=1, errors=2)
 
-    <unittest.main.TestProgram at 0x7fdb00fae3f0>
+    <unittest.main.TestProgram at 0x7f20704a63f0>
 
 - A good pattern is *one* `TestCase` subclass for each set of related
   tests
@@ -361,17 +361,17 @@ main(argv=[""], exit=False)
     FAIL: test_good (__main__.DataDrivenTestCase.test_good) [no error]
     ----------------------------------------------------------------------
     Traceback (most recent call last):
-      File "/tmp/ipykernel_13644/2986973493.py", line 26, in test_good
+      File "/tmp/ipykernel_13627/2986973493.py", line 26, in test_good
         self.assertEqual(expected, to_str(value))
         ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
     AssertionError: b'no error' != 'no error'
 
     ----------------------------------------------------------------------
-    Ran 2 tests in 0.001s
+    Ran 2 tests in 0.002s
 
     FAILED (failures=1)
 
-    <unittest.main.TestProgram at 0x7fdb00fae060>
+    <unittest.main.TestProgram at 0x7f20704a6060>
 
 - `unittest` is a powerful framework
   - However it does it have it’s limits
